@@ -1,0 +1,42 @@
+// ptr -- the pointer, sampled once a frame.
+//
+// The seam reports pointer *state* rather than pointer events (gfx_mouse_x/y and
+// a button bitmask, as of the last poll), so the engine samples it at one known
+// instant -- the end of inp_drain, with the event queue empty -- and every
+// question during the frame is answered from that snapshot. Nothing in a frame
+// can then see the mouse in two places.
+//
+// The backend speaks *window* pixels and everything above this line speaks
+// *surface* pixels, and those are now the same thing: the surface is the window.
+// So the map is the identity and all that is left is the clamp.
+//
+// The clamp is not decoration. The pointer is reported outside the window while a
+// drag is in progress -- which is exactly when a game asks where it is -- and an
+// unclamped coordinate becomes an out-of-range list index, which aborts.
+//
+// A game that wants its own units asks for stage coordinates instead
+// (sys_sx/sys_sy and sys_vp's scale); those are a different question and the two
+// were previously conflated because the surface and the stage were one buffer.
+//
+// **The button mask must be read exactly once a frame, and this is where.** Its
+// three real buttons are state, but its two wheel bits are a *latch*: a wheel
+// notch has no duration -- the platform delivers a press and a release together
+// -- so the backend sets the bit and the read clears it. A second reader in the
+// same frame would see no wheel and the first would still consume it, so there
+// is one, here, and every question during the frame is answered from inp_mo.
+//
+// That latch is why the wheel works at all. Held as ordinary state it was
+// invisible: X drains its whole queue in one poll, so the bit was set and
+// cleared before any `id` code looked, and the editor's zoom did nothing on
+// either mouse button for as long as it existed.
+
+inp_sample() {
+  lset((import inp_mo), 3, (import inp_mo)[2]);
+  lset((import inp_mo), 2, gfx_mouse_buttons());
+  inp_sample2(gfx_mouse_x(), gfx_mouse_y());
+} return void;
+
+inp_sample2(int x, int y) {
+  lset((import inp_mo), 0, fx_clamp(x, 0, (import sf_gw) - 1));
+  lset((import inp_mo), 1, fx_clamp(y, 0, (import sf_gh) - 1));
+} return void;

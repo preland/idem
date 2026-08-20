@@ -1,0 +1,21 @@
+// Unit tests for engine/core/sys -- the surface, the stage, and the key state.
+//
+// The surface is the window, pixel for pixel: sf_init is the resize entry point
+// and re-running it re-assigns sf_gw/sf_gh and grows sf_fb in place. What is
+// checked here is that it does grow rather than being replaced (a replaced list
+// would leak one framebuffer per resize, which nothing observable would catch),
+// that it never shrinks, and that the stage -- a game's declared display mapped
+// into whatever surface it got -- lands where the arithmetic says.
+//
+// The key-state machine answers questions the graphics seam could not answer
+// until it grew key releases, and is unaffected by the surface work; it is here
+// because it is the other half of engine/core/sys.
+//
+// sf_open rather than sf_init: sf_alloc declares the framebuffer and must run
+// exactly once, and calling sf_init first would read a list that does not exist.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  sf_open(320, 200);
+  t_fit();
+} return int 0;

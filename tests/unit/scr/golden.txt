@@ -1,0 +1,14 @@
+game block: best exp 7 = 7
+scene vars n/ticks/taps/hits exp 0 0 0 0 = 0 0 0 0
+entities exp 3, bird tagged exp 1 = 3 1
+own from the bird exp 5, from the scene exp 0 = 5 0
+after one update: n exp 14, own exp 6 = 14 6
+one overlap: hits exp 1 = 1
+moved apart: hits exp 1 = 1
+after 80ms: ticks exp 0 = 0
+after 100ms: ticks exp 1 = 1
+one press: taps exp 1 = 1
+before: entities exp 3 = 3
+after: entities exp 4 = 4
+its pos exp 30000 40000, tagged exp 1 = 30000 40000 1
+its body exp 10000 10000, solid exp 1 = 10000 10000 1

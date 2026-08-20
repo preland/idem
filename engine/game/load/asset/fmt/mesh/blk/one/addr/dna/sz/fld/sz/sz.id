@@ -1,0 +1,27 @@
+// A field's size, and comparing a stored name with one written here.
+//
+// The name decides as much as the type: a leading `*` makes it a pointer whatever
+// it points at, and every `[n]` suffix multiplies. 42 is '*', 91 is '[', 48 is '0'.
+//
+// Pointers are 8 bytes because this reader only accepts the 64-bit form -- the
+// header says which, and a 32-bit .blend would need this to follow it.
+
+bl_fsz(int ti, int np) {
+  int n = bl_tlen(ti);
+  if (asset_at(np) = 42) { n = 8; }
+} return int n * bl_arr(np);
+
+bl_arr(int np) {
+  int m = 1;
+  while (asset_at(np) != 0) {
+    m = m * bl_dim(np);
+    np = np + 1;
+  }
+} return int m;
+
+// The number after a '[', or 1 anywhere else, so the product over the whole name
+// is the total element count without the loop knowing where the brackets are.
+bl_dim(int np) {
+  int m = 1;
+  if (asset_at(np) = 91) { m = bl_num(np + 1); }
+} return int m;

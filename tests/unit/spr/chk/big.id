@@ -1,0 +1,29 @@
+// Every pixel of a small sprite, then the 5x5 sheet and the whole-image thumbnail.
+
+// put() rather than building a line with `+` in a loop: concatenation allocates
+// and never frees, and while eight pixels would not matter, the habit is the
+// engine's own rule (engine/core/util/str.id).
+t_dump(int p, int n) {
+  int i = 0;
+  while (i < n) {
+    put("" + d2_spr_at(p, i) + " ");
+    i = i + 1;
+  }
+  print("");
+} return void;
+
+t_big() {
+  int p = spr_png("runner", "test_assets/spryte-run.png", 5, 5, 40, 40);
+  print("sheet: id " + p + " " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p));
+  t_probe(p);
+} return void;
+
+// Frame 12 is the middle cell of the 5x5 grid and its pixel (20,20) samples source
+// (1280, 1280) -- the pixel tests/unit/png pins at 238 233 205 255, which packs to
+// 15657421. Frame 0's (0,0) samples source (0,0), which is alpha 0 and must be
+// clear despite carrying the colour 250 249 252.
+t_probe(int p) {
+  print("  frame0 (0,0) exp -1 = " + d2_spr_at(p, 0) + " | frame12 (20,20) exp 15657421 = " + d2_spr_at(p, 12 * 1600 + 20 * 40 + 20));
+  t_report(p, 40000, "sheet");
+  t_whole();
+} return void;

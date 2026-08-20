@@ -1,0 +1,29 @@
+// The three block types.
+
+zst_kind(int kd, int n) {
+  if (kd = 0) {
+    zst_raw(n);
+  } else {
+    zst_kind2(kd, n);
+  }
+} return void;
+
+zst_kind2(int kd, int n) {
+  if (kd = 1) {
+    zst_rle(n);
+  } else if (kd = 2) {
+    zst_comp(n);
+  } else {
+    lset((import zst_st), 6, 1);
+  }
+} return void;
+
+// Raw: n bytes straight through, source to output.
+zst_raw(int n) {
+  int i = 0;
+  while (i < n && (import zst_st)[6] = 0) {
+    zst_put(zst_byte((import zst_st)[1] + i));
+    i = i + 1;
+  }
+  lset((import zst_st), 1, (import zst_st)[1] + n);
+} return void;

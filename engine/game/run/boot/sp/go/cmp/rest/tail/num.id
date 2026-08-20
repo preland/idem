@@ -1,0 +1,15 @@
+// Two small readers the component fillers share.
+
+// A component whose single argument is a number: `layer 2`.
+scn_mnum(int nd, string name) {
+  int c = scn_mem(nd, name, 0);
+  int v = 0;
+  if (c != 0) { v = scn_num(c, 0); }
+} return int v;
+
+// Write only if the value is not zero. `scale` and any other component whose
+// default is not zero needs this: writing what a missing component read would
+// replace a 1000 with a 0 and scale the entity out of existence.
+scn_edef(int e, int k, int v) {
+  if (v != 0) { ent_put(e, k, v); }
+} return void;

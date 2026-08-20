@@ -1,0 +1,8 @@
+// A second entity to collide with, and the scene's own script.
+//
+// `on enter` is fired by the test rather than by a scene load, which is what
+// makes the spawn observable: the statement is in the document, parsed by the
+// real parser and run by the real interpreter.
+
+t_src4() {
+} return string "  entity wall {" + chr(10) + "    pos (55, 50)" + chr(10) + "    body (10, 10)" + chr(10) + "    solid" + chr(10) + "    tag deadly" + chr(10) + "  }" + chr(10) + "  script {" + chr(10) + "    on timer 100 { ticks = ticks + 1 }" + chr(10) + "    on enter { spawn Box at (30, 40) }" + chr(10) + "  }" + chr(10) + "}" + chr(10);

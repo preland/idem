@@ -1,0 +1,11 @@
+// The document, four lines at a time.
+
+ed_pg0() {
+} return string ed_pong_ln("# pong -- created by the idem editor's File > New.") + ed_pong_ln("#") + ed_pong_ln("# Two paddles, a ball, and no art: every visible thing is a `shape box`.") + ed_pong_ln("# w/s move the left paddle, the arrow keys move the right.") + ed_pg1();
+
+ed_pg1() {
+} return string ed_pong_ln("") + ed_pong_ln("game pong {") + ed_pong_ln("  display (320, 200) " + chr(34) + "pong" + chr(34) + "") + ed_pong_ln("  fps 60") + ed_pg2();
+
+ed_pg2() {
+} return string ed_pong_ln("  scale 2") + ed_pong_ln("  start play") + ed_pong_ln("  keys { esc = quit }") + ed_pong_ln("  persist { lscore = 0 rscore = 0 }") + ed_pg3();
+

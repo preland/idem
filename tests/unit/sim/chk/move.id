@@ -1,0 +1,21 @@
+// Integration, at sixty frames a second.
+//
+// A dt of 16 ms is 1000/60 floored, which is what the engine uses: a fixed step
+// from the declared frame rate rather than a measured one, so a run is
+// reproducible and a `--shot 30` is comparable between builds.
+//
+// -120 stage units per second is -120000 millunits per second, and one 16 ms step
+// of it is -1920 millunits -- a little under two whole units. Two whole units per
+// frame is what an integer store would have given, and 24 units per second would
+// have given zero forever; that is the entire argument for millunits.
+
+t_move() {
+  ent_put(0, 2, 0 - 120000);
+  sim_move(0, 16);
+  t_move2();
+} return void;
+
+t_move2() {
+  print("x after one 16ms step at -120/s exp -1920 = " + ent_at(0, 0));
+  t_grav();
+} return void;

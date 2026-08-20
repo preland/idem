@@ -1,0 +1,28 @@
+// Reading the project: lex it, then walk the tokens for declarations.
+//
+// The four parallel lists are the model the whole editor is drawn from:
+//
+//     ed_kd[i]  the keyword -- "sprite", "model", "scene", "entity", …
+//     ed_nm[i]  the identifier that followed it
+//     ed_ln[i]  the line it was written on
+//     ed_fl[i]  the file it came from
+//
+// and ed_dir is the distinct files, which is what the project browser lists.
+
+ed_read(string src) {
+  export string[] ed_kd = [];
+  export string[] ed_nm = [];
+  ed_read2(src);
+} return void;
+
+ed_read2(string src) {
+  export int[] ed_ln = [];
+  export string[] ed_fl = [""];
+  ed_read4(src);
+} return void;
+
+ed_read3(string src) {
+  export string[] ed_as = [];
+  ed_scan_as(src, 0);
+  ed_read6(src);
+} return void;

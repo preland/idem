@@ -1,0 +1,12 @@
+// A box's placement and size on the stage.
+
+// The top-left corner: the centre, less half the size, all in millunits until the
+// one divide at the end -- so a shape an odd number of units across lands where
+// it should rather than half a unit off.
+ent_bx(int e, int k, int sk) {
+} return int (ent_at(e, k) - ent_at(e, sk) / 2) * (import sys_vp)[0] / 1000000;
+
+// Floored at one pixel: a shape thinner than a pixel is still a thing the author
+// asked to see, and a zero-width rect draws nothing at all.
+ent_bs(int e, int sk) {
+} return int fx_max(ent_at(e, sk) * (import sys_vp)[0] / 1000000, 1);

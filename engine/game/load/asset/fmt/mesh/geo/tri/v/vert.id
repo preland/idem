@@ -1,0 +1,32 @@
+// The vertex array, converted once on the way in.
+//
+// A position is three IEEE-754 floats. The engine is fixed point, so each becomes
+// millunits -- and the conversion happens here, at the boundary, so that nothing
+// downstream ever holds a float or has to know the file did.
+//
+// Blender is Z-up and right-handed; the engine is Y-up with -Z forward
+// (ARCHITECTURE.md §4). So (x, y, z) becomes (x, z, -y), applied once, here,
+// which is why no game and no later stage carries a per-asset axis flag.
+
+bl_verts(int p, int si) {
+  int k = bl_afind(p, si, "position");
+  int n = bl_mint(p, si, "totvert");
+  bl_vfill(k, n);
+} return void;
+
+bl_vfill(int k, int n) {
+  int i = 0;
+  while (i < n && k >= 0) {
+    bl_vone((import bl_bp)[k] + i * 12);
+    i = i + 1;
+  }
+} return void;
+
+// Transform first, in Blender's own space, then swap axes. The other order would
+// need the matrix expressed on the engine's axes, which is a second convention to
+// keep in step for no gain.
+bl_vone(int o) {
+  int x = bl_f32(o);
+  int y = bl_f32(o + 4);
+  bl_vone2(o, x, y);
+} return void;

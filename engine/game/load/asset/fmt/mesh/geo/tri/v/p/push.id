@@ -1,0 +1,7 @@
+// One vertex into the list, on the engine's axes: Blender is Z-up and the engine
+// is Y-up with -Z forward, so (x, y, z) becomes (x, z, -y).
+bl_vpush(int x, int y, int z) {
+  push((import bl_v), x);
+  push((import bl_v), z);
+  push((import bl_v), 0 - y);
+} return void;

@@ -1,0 +1,7 @@
+// The rest of the load.
+
+idem_alay2(string src) {
+  lex_run(src);
+  idem_apage();
+  idem_aopen();
+} return void;

@@ -1,0 +1,30 @@
+// The drawable form: one triangle, in the record d3_wtri takes.
+//
+// d3_wtri wants twelve slots -- three world-space x,y,z triples then three packed
+// colours -- and transforms the record in place, so it is scratch by contract. A
+// caller draws a whole mesh as:
+//
+//     int[] tri = [0,0,0, 0,0,0, 0,0,0, 0,0,0];
+//     int i = 0;
+//     while (i < bl_ntri()) { bl_tfill(i, tri, 0xB9793F); d3_wtri(tri); i = i + 1; }
+//
+// One record, refilled per triangle: allocating one per triangle would be a leak
+// measured in megabytes per frame, in a language that frees nothing.
+//
+// The colour is the caller's. Per-face material colour is in the file (a
+// `material_index` attribute on FACE, and Material blocks with an r/g/b), and
+// wiring it up is the next piece of work rather than something this hides.
+
+bl_ntri() {
+} return int len((import bl_ti)) / 3;
+
+bl_tfill(int i, int[] tri, int c) {
+  bl_tv(tri, 0, (import bl_ti)[i * 3]);
+  bl_tv(tri, 3, (import bl_ti)[i * 3 + 1]);
+  bl_tfill2(i, tri, c);
+} return void;
+
+bl_tfill2(int i, int[] tri, int c) {
+  bl_tv(tri, 6, (import bl_ti)[i * 3 + 2]);
+  bl_tc(tri, c);
+} return void;

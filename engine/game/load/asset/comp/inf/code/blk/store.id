@@ -1,0 +1,21 @@
+// A 16-bit little-endian field, and the copy.
+
+inf_word() {
+  int lo = inf_bits(8);
+} return int lo + inf_bits(8) * 256;
+
+inf_stored2(int n, int inv) {
+  if (n + inv != 65535) {
+    lset((import inf_st), 7, 1);
+  } else {
+    inf_scopy(n);
+  }
+} return void;
+
+inf_scopy(int n) {
+  int i = 0;
+  while (i < n && (import inf_st)[7] = 0) {
+    inf_put(inf_bits(8));
+    i = i + 1;
+  }
+} return void;

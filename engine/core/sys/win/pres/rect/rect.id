@@ -1,0 +1,11 @@
+// The stage as a pixel rect. A 2D game draws its plane at (sys_sx, sys_sy) sized
+// sys_sw by sys_sh, and everything inside it is in the units the game declared.
+
+sys_sw() {
+} return int (import sys_vp)[3] * (import sys_vp)[0] / 1000;
+
+sys_sh() {
+} return int (import sys_vp)[4] * (import sys_vp)[0] / 1000;
+
+sys_sx() {
+} return int (import sys_vp)[1];

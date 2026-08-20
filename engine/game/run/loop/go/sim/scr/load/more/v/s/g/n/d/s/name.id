@@ -1,0 +1,23 @@
+// Scanning the document for a scene of a given name, and emptying the world.
+
+scn_bfind(int doc, string name, int i) {
+  int nd = 0;
+  while (i < len(ast_ks(doc)) && nd = 0) {
+    nd = scn_bone(ast_ks(doc)[i], name);
+    i = i + 1;
+  }
+} return int nd;
+
+scn_bone(int nd, string name) {
+  int at = 0;
+  if (ast_kd(nd) = ast_k_scene() && ast_tx(nd) = name) { at = nd; }
+} return int at;
+
+// The record list is shortened rather than replaced: `id` frees nothing, so a
+// scene change that allocated a new list would retain the old one, and a game
+// that restarts on every death would retain one per run.
+ent_clear() {
+  while (len((import ent_r)) > 0) {
+    pop((import ent_r));
+  }
+} return void;

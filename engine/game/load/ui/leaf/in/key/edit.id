@@ -1,0 +1,53 @@
+// The transition table: one key, applied to the buffer.
+
+// Fire `key` and say when it fires again -- `due` is that instant in ms, and it
+// is not `nxt`: NAMES.md section 2 already spends that name on "index just past
+// what was consumed", and a name holds one meaning here.
+//
+// The edit time is stamped on every fire, including on a key that changes
+// nothing, because the caret's blink is phased from it and a caret that blinks
+// while a key is held reads as a dropped keystroke.
+tin_fire(int key, int t, int due) {
+  m4_pair((import tin_st), 1, 2, key, due);
+  lset((import tin_st), 3, t);
+  tin_key(key);
+} return void;
+
+// The dispatch is a chain of three-way branches across four functions rather
+// than one table, because a block holds three actions and there is no `break` to
+// end a case with. The order is by frequency: a printable character is what
+// almost every keystroke is, and it is one comparison away.
+//
+// A key that is not listed anywhere in the chain does nothing -- Tab, the
+// function keys, the bare modifiers, ctrl+letter. Doing nothing is the right
+// answer for all of them here: a field that swallowed Tab would be a field
+// nothing could ever move focus out of.
+//
+// The printable range is the face's, so a game that loads a full code page can
+// type the glyphs it just gained -- except 127, which is DEL. Some keyboards
+// send it for ctrl+Backspace, and a 224-glyph face has a glyph at 127, so
+// without that one exclusion loading a font would turn a delete into a
+// character.
+tin_key(int key) {
+  if (key >= txt_first() && key <= txt_last() && key != 127) {
+    tin_ins(key);
+  } else if (key = 8) {
+    tin_del((import tin_st)[0] - 1);
+  } else {
+    tin_key2(key);
+  }
+} return void;
+
+// Backspace (8) deletes the character *before* the caret and Delete (265) the
+// one at it, which is the difference between the two keys and the reason
+// tin_del takes an index rather than a direction. Both answer harmlessly at the
+// ends of the buffer: tin_del ignores an index outside it.
+tin_key2(int key) {
+  if (key = 265) {
+    tin_del((import tin_st)[0]);
+  } else if (key = 256) {
+    tin_move(0 - 1);
+  } else {
+    tin_key3(key);
+  }
+} return void;

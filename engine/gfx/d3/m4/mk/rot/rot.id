@@ -1,0 +1,27 @@
+// The three axis rotations.
+//
+// Right-handed and positive-counter-clockwise: with the axis pointing at you,
+// a positive angle turns the other two axes counter-clockwise. So m4_rot_y with
+// +90000 millidegrees takes +Z onto +X, and m4_rot_x with +90000 takes +Y onto
+// +Z.
+//
+// Note the argument order of m4_rot_y: its 2x2 block is transposed relative to
+// the other two (the y-rotation's sine is +s above the diagonal and -s below,
+// because the axis pair is (z, x) and not (x, y)). Getting that wrong yields a
+// world that rotates the wrong way only when the camera pitches, which is the
+// hardest kind of sign error to see.
+
+m4_rot_x(int deg) {
+  int[] mat = m4_new();
+  m4_rot4(mat, 5, 6, 9, 10, deg);
+} return int[] mat;
+
+m4_rot_y(int deg) {
+  int[] mat = m4_new();
+  m4_rot4(mat, 0, 8, 2, 10, deg);
+} return int[] mat;
+
+m4_rot_z(int deg) {
+  int[] mat = m4_new();
+  m4_rot4(mat, 0, 1, 4, 5, deg);
+} return int[] mat;

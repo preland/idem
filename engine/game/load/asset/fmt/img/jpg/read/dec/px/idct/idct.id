@@ -1,0 +1,37 @@
+// The inverse DCT, separable: eight row transforms, then eight column
+// transforms over the result.
+//
+// A direct 8-point transform per pass -- eight multiply-adds per output -- rather
+// than a fast factorisation. It is 1024 multiplies per block against roughly 200
+// for an AAN, and it is the version whose correctness can be read against the
+// definition, which is worth more here than the speed: a fast IDCT that is subtly
+// wrong produces an image that looks almost right.
+//
+// Scaling: the cosine table is x1024, so one pass multiplies the scale by 1024.
+// The row pass sheds 8 bits and keeps 2 fractional ones; the column pass sheds
+// the remaining 14. Both round rather than truncate -- adding half before the
+// shift is worth a full level of brightness against libjpeg, measured.
+//
+// The shifts are arithmetic (>>), not division: `/` truncates toward zero and
+// `>>` floors, and coefficients are signed. Getting that wrong biases every
+// negative sample by one.
+
+jpg_idct() {
+  jpg_irows(0);
+  jpg_icols(0);
+} return void;
+
+jpg_irows(int v) {
+  while (v < 8) {
+    jpg_irow(v);
+    v = v + 1;
+  }
+} return void;
+
+jpg_irow(int v) {
+  int x = 0;
+  while (x < 8) {
+    lset((import jpg_tm), v * 8 + x, (jpg_isum(v, x) + 128) >> 8);
+    x = x + 1;
+  }
+} return void;

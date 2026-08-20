@@ -1,0 +1,13 @@
+// The three components of a pan, in the camera's basis.
+//
+// dy is negated relative to dx because screen y counts downward and the camera's
+// up vector counts upward: dragging down has to move the centre up.
+
+ed_pcx(int dx, int dy) {
+} return int fx_mul(dx, fx_cos((import ed_st)[2]), 1000) - ed_pup(dy, fx_sin((import ed_st)[2]));
+
+ed_pcy(int dy) {
+} return int 0 - fx_mul(dy, fx_cos((import ed_st)[3]), 1000);
+
+ed_pcz(int dx, int dy) {
+} return int 0 - fx_mul(dx, fx_sin((import ed_st)[2]), 1000) - ed_pup(dy, fx_cos((import ed_st)[2]));

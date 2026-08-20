@@ -1,0 +1,20 @@
+// The AC coefficients: a run of zeros and a value, until the block ends.
+//
+// There is no `break` in this language, so the loop folds its exit into the
+// index: an end-of-block answers 0, which fails the `k > 0` test and stops it.
+// Coefficient 0 is the DC and is never revisited, so 0 is free to mean "done".
+
+jpg_diff(int sz) {
+  int v = 0;
+  if (sz > 0) { v = jpg_ext(jpg_recv(sz), sz); }
+} return int v;
+
+jpg_ac(int ci, int a, int k) {
+  while (k > 0 && k < 64 && (import jpg_st)[8] = 1) {
+    k = jpg_ac1(ci, a, k);
+  }
+} return void;
+
+jpg_ac1(int ci, int a, int k) {
+  int rs = jpg_dec((import jpg_c)[ci * 10 + 5]);
+} return int jpg_ac2(ci, a, k, rs / 16, rs % 16);

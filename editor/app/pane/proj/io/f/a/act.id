@@ -1,0 +1,30 @@
+// New, Open, Save and Export.
+//
+// Each is one line of intent and a status message, because the interesting part
+// is not the operation -- it is that the editor is the thing doing it. A project
+// created here, saved here and packed here never touched a text editor or a
+// shell, which is the difference between an editor and a viewer.
+
+// A new project goes in a sibling directory of the one currently open, so it
+// lands beside the games it was made next to rather than wherever the editor was
+// started from. Nothing is written until Save: New is a document in memory, which
+// is what New means everywhere else.
+ed_new() {
+  sset((import ed_doc), 0, ed_pong());
+  sset((import ed_path), 0, ed_up((import scn_dir)[0]) + "pong/pong.idml");
+  ed_reopen(8);
+} return void;
+
+// The file the project browser has selected, read from the directory the project
+// was loaded from. There is no directory listing across the seam, so the browser's
+// list -- which tools/idem supplied as `#file` markers -- is the file chooser.
+ed_open() {
+  sset((import ed_path), 0, (import scn_dir)[0] + ed_pick_file());
+  sset((import ed_doc), 0, ed_rd((import ed_path)[0]));
+  ed_reopen(7);
+} return void;
+
+ed_pick_file() {
+  string s = "";
+  if ((import ed_st)[1] >= 0 && (import ed_st)[1] < len((import ed_dir))) { s = (import ed_dir)[(import ed_st)[1]]; }
+} return string s;

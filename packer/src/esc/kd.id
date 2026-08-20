@@ -1,0 +1,31 @@
+// kd -- which escape a character needs, as the letter that follows the backslash.
+//
+// 0 means none. Backslash (92) and quote (34) escape to themselves, newline (10)
+// to 'n' (110), tab (9) to 't' (116) and carriage return (13) to 'r' (114).
+// Splitting the test three ways is not tidiness: a block may hold at most a
+// 3-way branch, and six outcomes do not fit in one.
+//
+// The carriage return is the one that is not obvious, and the round-trip fixture
+// found it rather than a reading did. A raw CR inside an `id` string literal
+// survives the `id` lexer and then ends the *C* string literal it is emitted
+// into: gcc says `missing terminating " character` about generated code, pointing
+// at a line nobody wrote. So any game file with CRLF endings -- any file that has
+// been near Windows -- used to pack into a program that does not compile. `\r`
+// passes through to C like the other escapes and comes back as byte 13.
+
+pack_esc_kd(int ch) {
+  int esc = 0;
+  if (ch = 92 || ch = 34) { esc = ch; }
+  else { esc = pack_esc_kd2(ch); }
+} return int esc;
+
+pack_esc_kd2(int ch) {
+  int esc = pack_esc_kd3(ch);
+  if (ch = 10) { esc = 110; }
+} return int esc;
+
+pack_esc_kd3(int ch) {
+  int esc = 0;
+  if (ch = 9) { esc = 116; }
+  else if (ch = 13) { esc = 114; }
+} return int esc;

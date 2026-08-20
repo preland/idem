@@ -1,0 +1,22 @@
+// The last pixel and the checksum.
+//
+// FNV-1a over every decoded byte, in a word because the offset basis does not fit
+// an int and the product needs 56 bits before it is masked back to 32. One number
+// that changes if any pixel does.
+
+t_tail(int w, int h) {
+  t_at("  (last)", w - 1, h - 1);
+  t_sum();
+} return void;
+
+t_sum() {
+  word wp = t_hash(0, 2166136261);
+  print("  FNV-1a of all pixels = " + wp);
+} return void;
+
+t_hash(int y, word wp) {
+  while (y < (import png_st)[1]) {
+    wp = t_row(asset_row(y) + 1, 0, wp);
+    y = y + 1;
+  }
+} return word wp;

@@ -1,0 +1,34 @@
+// The dynamic block header.
+//
+// The tables are sent, and are themselves Huffman-coded: first three counts, then
+// the code lengths for a small "code-length" alphabet in a fixed permutation, then
+// the real lengths encoded with *that* table. It is the fiddliest part of DEFLATE
+// and the reason a decoder is worth reading rather than guessing at.
+//
+//     hlit  = 257 + 5 bits    literal/length codes present
+//     hdist = 1 + 5 bits      distance codes present
+//     hclen = 4 + 4 bits      code-length codes present, in inf_ord's order
+
+inf_dyn() {
+  int hlit = 257 + inf_bits(5);
+  int hdist = 1 + inf_bits(5);
+  inf_dyn2(hlit, hdist, 4 + inf_bits(4));
+} return void;
+
+inf_dyn2(int hlit, int hdist, int hclen) {
+  inf_clens(hclen);
+  inf_build((import inf_cc), (import inf_cs), (import inf_lens), 19);
+  inf_dyn3(hlit, hdist);
+} return void;
+
+// The code-length lengths arrive in inf_ord's order and the ones not sent are
+// zero, so the array is cleared first -- a stale length from the previous block
+// would build a table that decodes, wrongly.
+inf_clens(int n) {
+  int i = 0;
+  lst_set_all((import inf_lens), 19, 0);
+  while (i < n && (import inf_st)[7] = 0) {
+    lset((import inf_lens), (import inf_ord)[i], inf_bits(3));
+    i = i + 1;
+  }
+} return void;

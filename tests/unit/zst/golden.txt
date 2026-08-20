@@ -1,0 +1,16 @@
+bit reader on 0x8C: exp 0 then 6 = 0 6
+LL log 6 base 0   first (0,4,0) last (32,6,0)
+    sums sym 965 nb 324 base 864
+OF log 5 base 512 first (0,5,0) last (24,5,0)
+    sums sym 427 nb 154 base 48
+ML log 6 base 768 first (0,6,0) last (46,6,0)
+    sums sym 1418 nb 359 base 336
+raw   Raw block, exp 64 bytes hash 2246337607 -> ret 64, 64 bytes, hash 2246337607
+rle   sequences, exp ret 300 hash 4095712833 -> ret 300, 300 bytes, hash 4095712833
+two   two frames, exp 128 bytes hash 1687148429 -> ret 128, 128 bytes, hash 1687148429
+skip  skippable frame first, exp 64 bytes hash 2246337607 -> ret 64, 64 bytes, hash 2246337607
+txt   sequences, exp ret 3600 hash 3110509077 -> ret 3600, 3600 bytes, hash 3110509077
+mix   Huffman 1 stream, exp ret 23907 hash 394284743 -> ret 23907, 23907 bytes, hash 394284743
+four  Huffman 4 streams, exp ret 106031 hash 3593549333 -> ret 106031, 106031 bytes, hash 3593549333
+tree  Treeless block, exp ret 959607 hash 1827060101 -> ret 959607, 959607 bytes, hash 1827060101
+blend showroom.blend, exp ret 39481933 hash 1295999127 -> ret 39481933, 39481933 bytes, hash 1295999127

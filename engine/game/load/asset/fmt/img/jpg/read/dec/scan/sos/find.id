@@ -1,0 +1,28 @@
+// Binding a scan's table choices to the components they name.
+
+jpg_stab(int p, int k, int ns) {
+  while (k < ns) {
+    jpg_st1(asset_at(p + k * 2), asset_at(p + k * 2 + 1));
+    k = k + 1;
+  }
+} return void;
+
+// Slot 18 keeps the component a scan named. For an interleaved scan it is simply
+// the last one, which nothing reads; for a non-interleaved scan it is the only
+// one, and it is what the block walk needs.
+jpg_st1(int cid, int tt) {
+  int ci = jpg_cfind(cid);
+  m4_pair((import jpg_c), ci * 10 + 4, ci * 10 + 5, tt / 16, tt % 16 + 4);
+  lset((import jpg_st), 18, ci);
+} return void;
+
+// By component id, not by position: a scan may name components in any order and
+// a progressive scan usually names just one.
+jpg_cfind(int cid) {
+  int ci = 0;
+  int k = 0;
+  while (k < (import jpg_st)[2]) {
+    ci = jpg_cpick(ci, k, cid);
+    k = k + 1;
+  }
+} return int ci;

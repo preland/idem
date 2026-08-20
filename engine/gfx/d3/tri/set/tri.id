@@ -1,0 +1,54 @@
+// d3_tri -- one z-buffered, perspective-projected, Gouraud-or-flat triangle.
+//
+// The input is a 12-slot **camera-space** triangle record, the same shape the
+// clipper produces:
+//
+//     tri[0..2]  x, y, z of vertex 0     camera space, millunits, +Z ahead
+//     tri[3..5]  vertex 1
+//     tri[6..8]  vertex 2
+//     tri[9..11] packed 0xRRGGBB colour of vertices 0, 1, 2
+//
+// Every z must already be at or beyond the near plane -- d3_nclip guarantees that,
+// and calling this directly with a vertex behind the eye smears the triangle
+// across the screen instead of aborting. Nothing else is required: a triangle
+// wholly or partly off any edge, a zero-area one, and one with two coincident
+// vertices are all handled by the clip in d3_span and the empty scanline ranges
+// in d3_tri2.
+//
+// If all three vertex colours are equal the whole triangle takes the flat span
+// loop (a 3-action `while` writing a list parameter, 4.3-5.0 Gpx/s per
+// ARCHITECTURE.md §3.1); otherwise it takes the Gouraud loop, which costs a call
+// per pixel to step three colour accumulators. That is the only reason models are
+// flat-shaded per face: it is roughly 5x faster, and d3_gs slot 6 carries the
+// decision.
+//
+// Backface culling is by screen winding. Faces are wound counter-clockwise when
+// seen from the front in the right-handed world, and the projection flips y for
+// the framebuffer, so a front face has a NEGATIVE signed area on screen. Zero
+// area is always dropped -- it is either a degenerate face or an edge-on one, and
+// dropping it is also what keeps every later divisor non-zero.
+
+d3_tri(int[] tri) {
+  lset((import d3_gs), 6, d3_proj3(tri, (import d3_vts)));
+  int m = d3_area((import d3_vts));
+  if (m < 0 || m > 0 && (import d3_env)[8] & 1 = 0) {
+    d3_tri2((import d3_vts));
+  }
+} return void;
+
+// Project all three vertices into the screen-vertex record, and answer the flat
+// colour for the triangle (-1 if the three vertices disagree and it must be
+// interpolated). Answering it from the return clause is what keeps d3_tri inside
+// three actions.
+d3_proj3(int[] tri, int[] verts) {
+  d3_proj(tri, 0, verts, 0);
+  d3_proj(tri, 1, verts, 6);
+  d3_proj(tri, 2, verts, 12);
+} return int d3_flatc(tri);
+
+d3_flatc(int[] tri) {
+  int c = 0 - 1;
+  if (tri[9] = tri[10] && tri[10] = tri[11]) {
+    c = tri[9];
+  }
+} return int c;

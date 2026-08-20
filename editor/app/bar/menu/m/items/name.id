@@ -1,0 +1,28 @@
+// The menus and their titles.
+//
+// Every item is either implemented or drawn dimmed. That is a deliberate choice
+// over hiding what is not built: a person opening File learns that Save exists
+// and is not there yet, which is information -- an empty menu is a mystery.
+//
+// Each dispatch carries its default in the initialiser and tests at most twice,
+// because a block holds three actions and a declaration plus an `if` and an
+// `else` is all three. It is the shape the whole engine uses for a branch wider
+// than a block allows.
+
+ed_mname(int k) {
+  string s = ed_mname2(k);
+  if (k = 0) { s = "File"; }
+  else if (k = 1) { s = "Edit"; }
+} return string s;
+
+ed_mname2(int k) {
+  string s = "Help";
+  if (k = 2) { s = "Asset"; }
+  else if (k = 3) { s = "View"; }
+} return string s;
+
+// Closing a menu that is already open, and opening any other.
+ed_mtog(int k) {
+  int v = k;
+  if ((import ed_st)[15] = k) { v = 0 - 1; }
+} return int v;

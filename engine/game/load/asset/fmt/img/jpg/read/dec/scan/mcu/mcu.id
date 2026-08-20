@@ -1,0 +1,28 @@
+// The MCU loops.
+//
+// An MCU is one interleaved unit: every component's blocks for one cell of the
+// grid, in component order, each component contributing h*v blocks. Decoding is
+// strictly sequential -- the DC predictor and the bit position both carry from
+// one block to the next -- so this cannot be reordered or parallelised.
+
+jpg_mcus2() {
+  int my = 0;
+  while (my < (import jpg_st)[6] && (import jpg_st)[8] = 1) {
+    jpg_mrow(my);
+    my = my + 1;
+  }
+} return void;
+
+jpg_mrow(int my) {
+  int mx = 0;
+  while (mx < (import jpg_st)[5] && (import jpg_st)[8] = 1) {
+    jpg_mcu(mx, my);
+    mx = mx + 1;
+  }
+} return void;
+
+jpg_mcu(int mx, int my) {
+  jpg_rst();
+  jpg_mcomp(mx, my, 0);
+  lset((import jpg_st), 12, (import jpg_st)[12] + 1);
+} return void;

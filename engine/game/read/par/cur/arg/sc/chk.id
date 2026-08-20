@@ -1,0 +1,20 @@
+par_pow10(int n) {
+  int m = 1;
+  int i = 0;
+  while (i < n) {
+    m = m * 10;
+    i = i + 1;
+  }
+} return int m;
+
+par_fchk(int[] pos, int fr, int sc) {
+  if (fr > sc) { par_err(pos, "a literal with " + fr + " fractional digits does not fit a slot scaled to " + sc); }
+} return void;
+
+// `name = value`: a key bound to one value. The same shape serves `keys { space =
+// press }`, `persist { high = 0 }` and `hook update = my_update`.
+par_bind(int[] pos) {
+  string name = par_text(pos);
+  par_next(pos);
+  par_want(pos, "=");
+} return int ast_new_a(ast_k_var(), name, par_arg(pos));

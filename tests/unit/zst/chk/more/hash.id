@@ -1,0 +1,15 @@
+// FNV-1a over the decompressed bytes, in a word because the offset basis does not
+// fit an int and the product needs 56 bits before it is masked back to 32.
+
+t_hash(int n) {
+  word wp = 2166136261;
+  int i = 0;
+  while (i < n) {
+    wp = ((wp ^ peek8((import zst_st)[3] + i)) * 16777619) & 4294967295;
+    i = i + 1;
+  }
+} return word wp;
+
+t_show(string msg, int got, word wp) {
+  print(msg + " -> ret " + got + ", " + (import zst_st)[4] + " bytes, hash " + wp);
+} return void;

@@ -1,0 +1,39 @@
+// spr -- a quantised image with an alpha plane, turned into a palette and a
+// sprite.
+//
+// The header names the frame grid, not the frames: a sheet is `cols` by `rows`
+// cells of `fw` by `fh`, which is how every sheet in the wild is laid out and how
+// both test assets are (a 5x5 run cycle, a 4x4 water loop). Frame numbering is
+// row-major, so `frame(0)` is the top-left cell and `anim(0, 24, 40)` runs the
+// whole sheet in reading order.
+//
+// Two planes are read rather than one RGBA plane because that is what ImageMagick
+// writes without being argued with: `ppm:` for colour, `-alpha extract pgm:` for
+// coverage, both plain ASCII integers. The colour of a fully transparent pixel is
+// whatever the quantiser felt like -- often a colour that appears nowhere else --
+// so alpha is consulted first and those pixels never reach the palette at all.
+//
+// spr_d, the header record:
+//
+//     0 fw    1 fh    2 cols   3 rows
+//     4 keyR  5 keyG  6 keyB   7 tol       key colour, or keyR < 0 for none
+//     8 w     the sheet's full pixel width, fw * cols
+//     9 over  set when the palette overflowed 62 colours
+
+spr_go(string src) {
+  spr_head(src);
+  spr_lists();
+  spr_body(src);
+} return void;
+
+spr_head(string src) {
+  export string[] spr_nm = [imp_tok(src)];
+  export int[] spr_d = [];
+  spr_dims(src);
+} return void;
+
+spr_dims(string src) {
+  lst_fill((import spr_d), 10, 0);
+  spr_dim4(src);
+  spr_dim5(src);
+} return void;

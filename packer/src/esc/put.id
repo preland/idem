@@ -1,0 +1,12 @@
+// put -- one or two bytes into the escape buffer, and how many that was.
+
+pack_esc_put(int ch, int esc, word ad) {
+  int n = 1;
+  if (esc = 0) { poke8(ad, ch); }
+  else { pack_esc_pair(esc, ad); n = 2; }
+} return int n;
+
+pack_esc_pair(int esc, word ad) {
+  poke8(ad, 92);
+  poke8(ad + 1, esc);
+} return void;

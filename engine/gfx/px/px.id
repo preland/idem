@@ -1,0 +1,32 @@
+// px -- one pixel, and the only place clipping happens.
+//
+// Every higher primitive is allowed to compute coordinates outside the surface;
+// sf_pset is what makes that safe. This is not defensive style, it is survival:
+// an out-of-range list store **aborts the process** ("id: index N out of
+// bounds", exit 1). The comment in demos/gfxdemo claiming the runtime silently
+// drops out-of-range stores is wrong, and a rasteriser trusting it would die on
+// its first off-screen triangle.
+//
+// sf_pset costs about 2.1 ns per pixel (0.5 Gpx/s). That is fine for scattered
+// work -- a line, a glyph, a particle -- and 10x too slow for filling area. Area
+// is filled by sf_span, which clips once and then writes a flat loop.
+
+sf_idx(int x, int y) {
+} return int y * (import sf_gw) + x;
+
+// Clipped to sf_cl like every other write. The default clip is the whole surface,
+// so this is the same bounds test it always was until somebody narrows it.
+sf_pset(int x, int y, int c) {
+  if (x >= (import sf_cl)[0] && x <= (import sf_cl)[2] && y >= (import sf_cl)[1] && y <= (import sf_cl)[3]) {
+    lset((import sf_fb), sf_idx(x, y), c);
+  }
+} return void;
+
+// Out-of-bounds reads answer 0 (black) rather than aborting, so a blend or a
+// blur at the surface edge needs no special case.
+sf_pget(int x, int y) {
+  int c = 0;
+  if (x >= 0 && x < (import sf_gw) && y >= 0 && y < (import sf_gh)) {
+    c = lget((import sf_fb), sf_idx(x, y));
+  }
+} return int c;

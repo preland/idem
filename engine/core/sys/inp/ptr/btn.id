@@ -1,0 +1,14 @@
+// The buttons, as a mask: bit 0 left, bit 1 middle, bit 2 right, bits 3-4 the
+// wheel. `b` is that mask, so inp_mdown(1) is "left held" and inp_mdown(5) is
+// "left or right held".
+//
+// inp_mhit is the click, and it is the whole reason two masks are kept: the seam
+// reports state, and a state becomes an edge exactly when it holds now and did
+// not hold last frame. Wheel notches arrive as a button that is set for one
+// frame, so inp_mhit(8) is one notch up however the platform delivers it.
+
+inp_mdown(int b) {
+} return int ((import inp_mo)[2] & b) != 0;
+
+inp_mhit(int b) {
+} return int ((import inp_mo)[2] & b) != 0 && ((import inp_mo)[3] & b) = 0;

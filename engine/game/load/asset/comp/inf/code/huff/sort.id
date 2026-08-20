@@ -1,0 +1,28 @@
+// The offset table, and the sort that uses it.
+//
+// Length 0 means "this symbol has no code" and is excluded: cnt[0] is counted by
+// inf_count and then never read, which is why the offsets start at length 1.
+
+inf_ofill(int[] cnt) {
+  int i = 1;
+  lset((import inf_ofs), 1, 0);
+  while (i < 15) {
+    lset((import inf_ofs), i + 1, (import inf_ofs)[i] + cnt[i]);
+    i = i + 1;
+  }
+} return void;
+
+inf_osort(int[] sym, int[] lens, int n) {
+  int i = 0;
+  while (i < n) {
+    inf_oput(sym, lens[i], i);
+    i = i + 1;
+  }
+} return void;
+
+inf_oput(int[] sym, int ln, int i) {
+  if (ln != 0) {
+    lset(sym, (import inf_ofs)[ln], i);
+    lset((import inf_ofs), ln, (import inf_ofs)[ln] + 1);
+  }
+} return void;

@@ -1,0 +1,18 @@
+par_val(int[] pos) {
+  int v = 0;
+  if (pos[0] < len((import lex_val))) { v = (import lex_val)[pos[0]]; }
+} return int v;
+
+par_frac(int[] pos) {
+  int fr = 0;
+  if (pos[0] < len((import lex_frac))) { fr = (import lex_frac)[pos[0]]; }
+} return int fr;
+
+// The file a token came from, stamped by the lexer from the last `#file` marker.
+// Looked up rather than threaded: every production would otherwise have to carry
+// a path alongside everything else, and diagnostics are rare enough that this
+// costs nothing.
+par_pth(int[] pos) {
+  string path = "<input>";
+  if (pos[0] < len((import lex_file))) { path = (import lex_file)[pos[0]]; }
+} return string path;

@@ -1,0 +1,17 @@
+// The token kinds. Each is a zero-action named function so that no bare literal
+// kind number ever appears at a call site.
+//
+// They are written as `lex_kbase() + n` rather than as plain literals for a
+// reason the language forces: two functions with the same signature whose bodies
+// differ only in the names of their own locals are a compile error, and a
+// zero-action function returning a bare integer is *only* distinguished by that
+// integer. `ast_k_nil() { } return int 100;` in another module would collide with
+// any function here that happened to return 100. Naming the base makes the callee
+// part of every body's fingerprint, so a kind family can never collide with
+// another family, and the family's origin lives in exactly one place.
+
+lex_kbase() { } return int 11;
+
+lex_k_eof() { } return int lex_kbase() + 0;
+
+lex_k_ident() { } return int lex_kbase() + 1;

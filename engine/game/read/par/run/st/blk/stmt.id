@@ -1,0 +1,17 @@
+par_stmt2(int[] pos, int[] out) {
+  if (par_is(pos, "if")) { out[0] = par_if(pos); }
+  else if (par_is(pos, "while")) { out[0] = par_while(pos); }
+  else { par_stmt3(pos, out); }
+} return void;
+
+par_stmt3(int[] pos, int[] out) {
+  if (par_is(pos, "repeat")) { out[0] = par_repeat(pos); }
+  else if (par_is(pos, "spawn")) { out[0] = par_sspawn(pos); }
+  else { par_stmt4(pos, out); }
+} return void;
+
+par_stmt4(int[] pos, int[] out) {
+  if (par_is(pos, "despawn")) { out[0] = par_despawn(pos); }
+  else if (par_is(pos, "goto")) { out[0] = par_goto(pos); }
+  else { par_stmt5(pos, out); }
+} return void;

@@ -1,0 +1,28 @@
+// The idml item -- the one universal form the whole UI language is made of.
+//
+//     Name(args)[height, width, anchor] ?@ref { children }
+//
+// Only the name and the dimensions are required, and height comes first
+// (research/idml-reference.md §4.2). idml is a **layout** language: it describes
+// where rectangles go and what fills them, and nothing else. Sprites and models
+// are not idml and never were -- this profile's job is the UI, the same job the
+// language does on the web.
+//
+// The node: kind `item`, text the name, a = args, b = dims, c = visibility gate,
+// kids = children. Every one of a, b and c may be 0, which is the arena's "absent"
+// and is why the dumper needs no per-kind knowledge.
+
+par_item(int[] pos) {
+  string name = par_text(pos);
+  par_next(pos);
+} return int par_item2(pos, name);
+
+par_item2(int[] pos, string name) {
+  int a = par_uargs(pos);
+  int b = par_dims(pos);
+} return int par_item3(pos, name, a, b);
+
+par_item3(int[] pos, string name, int a, int b) {
+  int c = par_uvis(pos);
+  int[] kids = par_ukids(pos);
+} return int ast_new(ast_k_item(), name, a, b, c, kids);

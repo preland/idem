@@ -1,0 +1,28 @@
+// A correction bit, and the end-of-band tail.
+//
+// The bit says whether this coefficient's magnitude gains the bit being coded.
+// The guard on p1 matters: a coefficient that already has that bit must not gain
+// it twice, and libjpeg checks the same thing for the same reason.
+
+jpg_rcorr(int a, int k) {
+  if (jpg_bit() = 1) {
+    jpg_rbump(a, (import jpg_zz)[k], jpg_cget(a, (import jpg_zz)[k]));
+  }
+} return void;
+
+jpg_rbump(int a, int k, int v) {
+  if (v & inf_pow2((import jpg_st)[16]) = 0) {
+    jpg_cset(a, k, v + inf_pow2((import jpg_st)[16]) * (2 * (v >= 0) - 1));
+  }
+} return void;
+
+// Phase 1: every remaining nonzero coefficient in the band still takes a
+// correction bit, even though the band ended -- the run says "no more new
+// coefficients", not "no more bits".
+jpg_rtail(int a) {
+  if ((import jpg_r)[0] > (import jpg_st)[14]) {
+    jpg_rdone();
+  } else {
+    jpg_rtail1(a);
+  }
+} return void;

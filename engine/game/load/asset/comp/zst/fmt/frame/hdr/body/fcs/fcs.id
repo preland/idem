@@ -1,0 +1,27 @@
+// Frame_Content_Size: how big the frame decompresses to, when it says.
+//
+// The field's width is the flag, except that flag 0 means one byte when
+// Single_Segment_flag is set and no field at all otherwise -- the one place in
+// the header where two flags decide one field. And flag 1 stores the value minus
+// 256, so a two-byte field covers 256..65791.
+//
+// The value is informational here: the output is sized by the caller, not by what
+// the frame claims, so a frame that lies cannot make this decoder overrun. An
+// eight-byte size overflows an `int` and wraps; the bytes are still consumed
+// correctly, which is all that the parse depends on.
+
+zst_fcs(int f, int ss) {
+  int n = zst_fsz(f, ss);
+  lset((import zst_st), 7, zst_fval(f, n));
+} return void;
+
+zst_fsz(int f, int ss) {
+  int n = ss;
+  if (f = 1) { n = 2; }
+  else { n = zst_fsz2(f, n); }
+} return int n;
+
+zst_fsz2(int f, int n) {
+  if (f = 2) { n = 4; }
+  else if (f = 3) { n = 8; }
+} return int n;

@@ -1,0 +1,27 @@
+// Writing a repeat's run, and the end of the dynamic header.
+
+inf_dfill(int i, int n, int k, int v) {
+  int j = 0;
+  if (i + k > n) { lset((import inf_st), 7, 1); }
+  while (j < k && (import inf_st)[7] = 0) {
+    lset((import inf_lens), i + j, v);
+    j = j + 1;
+  }
+} return int k;
+
+// The distance lengths sit immediately after the literal ones in the same array,
+// so the distance table is built from an offset view of it -- copied down rather
+// than indexed, because inf_build takes an array and a count and nothing else.
+inf_dyn4(int hlit, int hdist) {
+  inf_dshift(hlit, hdist);
+  inf_build((import inf_dc), (import inf_ds), (import inf_lens), hdist);
+  inf_codes();
+} return void;
+
+inf_dshift(int hlit, int hdist) {
+  int i = 0;
+  while (i < hdist) {
+    lset((import inf_lens), i, (import inf_lens)[hlit + i]);
+    i = i + 1;
+  }
+} return void;

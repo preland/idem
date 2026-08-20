@@ -1,0 +1,34 @@
+// Binary operators.
+//
+// `id`'s own precedence and `id`'s own spellings, deliberately: `=` is equality
+// in an expression, `&&` and `||` are logical, and a comparison answers 0 or 1
+// because there is no boolean type. A person moving between a game's script and
+// the engine's source is never surprised, which is worth more than any
+// convenience a different set of rules would buy.
+//
+// && and || do NOT short-circuit. Both sides are always evaluated, and that is
+// written down here rather than discovered: an expression in a game script has no
+// side effects to skip -- there are no calls in it that mutate -- so the only
+// thing short-circuiting would buy is guarding a division, and scr_div answers 0
+// rather than faulting on a zero divisor.
+//
+// The dispatch carries its default in the initialiser, which is the shape the
+// whole engine uses for a branch wider than a block allows: three actions is a
+// declaration, an `if` and an `else`, so two comparisons per function is the most
+// that fits. Every link is pure, so evaluating the tail before the head costs a
+// comparison and nothing else.
+
+scr_bin(int nd, int e) {
+} return int scr_op(ast_tx(nd), scr_ev(ast_ia(nd), e), scr_ev(ast_ib(nd), e));
+
+scr_op(string op, int a, int b) {
+  int v = scr_op2(op, a, b);
+  if (op = "+") { v = a + b; }
+  else if (op = "-") { v = a - b; }
+} return int v;
+
+scr_op2(string op, int a, int b) {
+  int v = scr_op3(op, a, b);
+  if (op = "*") { v = a * b; }
+  else if (op = "/") { v = scr_div(a, b); }
+} return int v;

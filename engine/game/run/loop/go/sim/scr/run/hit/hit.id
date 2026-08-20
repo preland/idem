@@ -1,0 +1,31 @@
+// Collisions: `on hit TAG`.
+//
+// An O(n^2) sweep over entities with bodies. With entity counts in the tens --
+// a bird, a floor and a dozen pipe pieces -- that is a few hundred comparisons a
+// frame, and a broad phase would be more code than the frame budget asks for.
+// The scan is written so the pair (a, b) is visited once, not twice, and the
+// handler fires on `a` with `b`'s tags: a bird hitting a pipe and a pipe hitting
+// a bird are the same event seen from two sides, and both sides get it.
+//
+// Only entities that carry a `body` take part -- flag bit 4. That is also what
+// keeps a scrolling backdrop out of the sweep entirely.
+
+scr_hits(int a) {
+  while (a < ent_n()) {
+    scr_hpair(a, a + 1);
+    a = a + 1;
+  }
+} return void;
+
+scr_hpair(int a, int b) {
+  while (b < ent_n()) {
+    scr_htest(a, b);
+    b = b + 1;
+  }
+} return void;
+
+scr_htest(int a, int b) {
+  if (scr_hlive(a) = 1 && scr_hlive(b) = 1 && scr_ovl(a, b) = 1) {
+    scr_hboth(a, b);
+  }
+} return void;

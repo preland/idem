@@ -1,0 +1,5 @@
+ast_k_import() { } return int ast_kbase() + 2;
+
+ast_k_palette() { } return int ast_kbase() + 3;
+
+ast_k_pcol() { } return int ast_kbase() + 4;

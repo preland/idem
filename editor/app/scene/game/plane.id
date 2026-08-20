@@ -1,0 +1,42 @@
+// The game's 2D view, as a plane that fills the camera's vision.
+//
+// A 2D game in this engine is not a different renderer: it is the 3D one looking
+// straight at a flat plane that exactly fills its view. Everything the game draws
+// -- background, sprites, UI -- lands on that plane, and the camera never moves
+// off it. That is why there is one pipeline and not two.
+//
+// When a plane exactly fills the view, the perspective divide cancels: every
+// point maps to the same screen position it would have had with no camera at all,
+// and the projection is an axis-aligned fit. So the plane is drawn here as that
+// fit -- the game's logical rect, scaled to the panel, letterboxed to keep its
+// aspect -- which is arithmetically the same picture as running it through
+// d3_wtri and would only differ if the camera ever left the plane's normal.
+//
+// The letterbox is the same shape sys_fit computes for the window, and for the
+// same reason: a 288x512 game in a 360x313 panel has to keep its proportions or
+// the art is wrong in a way no game can compensate for.
+//
+// Where the plane lands is **not** computed here. ed_psc, ed_pl0 and ed_pt0 own
+// it, because the picking code needs the same answer to turn a pointer position
+// into an entity -- and a fit computed twice is a fit that disagrees with itself
+// the moment one copy learns about the wheel. It did: zooming moved what was
+// selectable and left the picture alone.
+//
+// Two clips, nested, and both are needed. The plane's furniture -- its
+// background, its border -- is clipped to the **panel**, because a zoomed-in
+// plane is larger than the panel. The game's own world is clipped to the
+// **plane**, because a ground strip stretched twelve screens wide would otherwise
+// run out across the letterbox: the game's screen is what it is drawing on, not
+// the panel it happens to sit in.
+
+ed_plane() {
+  ed_clip_pane();
+  ed_plane3(ed_pl0(), ed_pt0(), ed_gw() * ed_psc() / 1000, ed_gh() * ed_psc() / 1000);
+  sf_unclip();
+} return void;
+
+ed_plane3(int x, int y, int w, int h) {
+  sf_rect(x, y, w, h, (import ed_gu)[1]);
+  ed_pworld(x, y, w);
+  ed_plane4(x, y, w, h);
+} return void;

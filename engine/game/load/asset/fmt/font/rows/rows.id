@@ -1,0 +1,39 @@
+// The copy: a validated PSF's glyphs into the engine's table.
+
+// The face is adopted *before* the rows are copied, because txt_face_put grows
+// the table and the count in txt_st is what bounds every read of it -- setting
+// the metrics last would leave a window in which the old count indexed the new
+// rows. Nothing draws between these two statements, but "nothing draws here
+// today" is not a property worth depending on.
+//
+// The first txt_first() glyphs are skipped rather than stored: a PSF is indexed
+// from code point 0 and its first 32 slots are the control characters, which
+// this engine draws as spaces. See glyph/face/put.id for why every face starts
+// at 32.
+//
+// 256 is the cap. A byte is what indexes a glyph here -- `charat` answers one --
+// so the 256 glyphs above the control characters are all a face can reach, and a
+// 512-glyph PSF (its mode bit 0) has half of them for a keyboard this engine
+// cannot type on.
+psf_copy(int sa, int n, int cs, int h, int w) {
+  txt_face_set(w, h, (w + 7) / 8 * 8, fx_min(n, 256) - txt_first());
+  psf_glyphs(sa + txt_first() * cs, fx_min(n, 256) - txt_first(), cs, h, (w + 7) / 8);
+} return int 1;
+
+// One glyph after another. `cs` steps the source because a glyph may be padded;
+// `h` steps the destination because the table is not.
+psf_glyphs(int sa, int n, int cs, int h, int nb) {
+  int i = 0;
+  while (i < n) {
+    psf_glyph(sa + i * cs, i * h, h, nb);
+    i = i + 1;
+  }
+} return void;
+
+psf_glyph(int sa, int p, int h, int nb) {
+  int j = 0;
+  while (j < h) {
+    txt_face_put((import txt_glyphs), p + j, psf_row(sa + j * nb, nb));
+    j = j + 1;
+  }
+} return void;

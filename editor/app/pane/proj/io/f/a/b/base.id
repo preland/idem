@@ -1,0 +1,8 @@
+// A path's last component.
+//
+// scn_lastsep answers where the final slash is, so everything after it is the
+// name -- and a path with no slash at all answers -1, which makes the slice the
+// whole string.
+
+ed_base(string path) {
+} return string str_slice(path, scn_lastsep(path, 0, 0 - 1) + 1, len(path));

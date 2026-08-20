@@ -1,0 +1,31 @@
+// The offset, and the three repeat codes.
+//
+// Offset_Value = (1 << Offset_Code) + that many extra bits. A value above 3 is a
+// literal offset, three less than what was coded; 1, 2 and 3 name the three most
+// recent offsets instead, and a literal length of zero shifts which one -- because
+// a sequence with no literals cannot be repeating the offset it just used.
+//
+// The literal length *code* is what decides that, not the decoded length: codes
+// 0..15 are lengths 0..15 directly, so code 0 means length 0 and is known before
+// any extra bits are read.
+
+zst_soff(int of, int ll) {
+  int v = inf_pow2(of) + zb_bits(of);
+} return int zst_srep(v, ll);
+
+zst_srep(int v, int ll) {
+  int off = 0;
+  if (v > 3) {
+    off = zst_snew(v - 3);
+  } else {
+    off = zst_srep2(v + (ll = 0));
+  }
+} return int off;
+
+// A new offset pushes the history down. This is also what repeat code 3 and the
+// shifted code 4 do, so they call it rather than repeating the shuffle.
+zst_snew(int off) {
+  lset((import zst_st), 13, (import zst_st)[12]);
+  lset((import zst_st), 12, (import zst_st)[11]);
+  lset((import zst_st), 11, off);
+} return int off;

@@ -1,0 +1,23 @@
+// The self-check: the walked size against the file's own TLEN entry.
+//
+// bl_fwalk returns the struct's total size as it accumulates fields, and TLEN
+// records what Blender's compiler computed. They agree only if every field's
+// size -- including every pointer flagged by a leading `*` and every `[n]`
+// multiplier in the NAME table -- was read correctly. A single field wrong by a
+// byte makes these differ.
+
+t_size() {
+  t_one("Mesh", 1960);
+  t_one("Object", 1288);
+  t_size2();
+} return void;
+
+t_size2() {
+  t_one("MVert", 16);
+  t_geo();
+} return void;
+
+t_one(string name, int n) {
+  int si = bl_sfind(name);
+  print("walked size of " + name + " exp " + n + " = " + bl_fwalk(bl_soff(si) + 4, bl_le16(bl_soff(si) + 2), ""));
+} return void;

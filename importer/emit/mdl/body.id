@@ -1,0 +1,25 @@
+// The two lists, and one line each.
+//
+// Vertices arrive already in millunits and already on the engine's axes (Y up,
+// -Z forward), converted by the exporter so that no game and no later stage
+// carries a per-asset axis flag. What is left here is punctuation.
+
+mdl_body(string src) {
+  mdl_verts(src);
+  print("  }");
+  mdl_faces(src);
+} return void;
+
+mdl_verts(string src) {
+  int i = 0;
+  while (i < (import mdl_n)[0]) {
+    mdl_vert(src);
+    i = i + 1;
+  }
+} return void;
+
+mdl_vert(string src) {
+  int x = imp_int(src);
+  int y = imp_int(src);
+  mdl_v3(src, x, y);
+} return void;

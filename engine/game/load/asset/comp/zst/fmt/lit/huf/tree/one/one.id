@@ -1,0 +1,23 @@
+// Decoding a Huffman stream into a slice of the literals buffer.
+//
+// One stream is the degenerate case of four: the whole buffer is one segment
+// starting at 0, with no jump table in front of it. Sharing the runner means the
+// two forms cannot drift apart.
+
+zst_l1(int reg, int n) {
+  zst_l4run(0, reg, 0, n);
+} return void;
+
+// `off` is where in the literals buffer this stream's output starts, `m` how
+// many symbols it owes, `p` where its bytes begin relative to the section, and
+// `len` how many bytes it has.
+zst_l4run(int off, int m, int p, int len) {
+  lset((import zst_st), 10, off);
+  zb_start((import zst_st)[0] + (import zst_st)[1] + p, len);
+  huf_dec(m);
+} return void;
+
+// The jump table is three little-endian 16-bit lengths; the fourth stream's
+// length is whatever is left, which is why only three are written down.
+zst_l16(int k) {
+} return int zst_byte((import zst_st)[1] + k) + zst_byte((import zst_st)[1] + k + 1) * 256;

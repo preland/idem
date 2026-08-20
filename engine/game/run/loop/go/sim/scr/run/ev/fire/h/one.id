@@ -1,0 +1,15 @@
+// One handler, matched by event name and argument.
+
+scr_fone(int h, string evn, int e, string tg) {
+  if (ast_kd(h) = ast_k_on() && ast_tx(h) = evn && scr_amatch(h, tg) = 1) {
+    scr_hrun(h, e);
+  }
+} return void;
+
+// An empty `tg` matches any handler of that event -- `on update` has no argument
+// to compare. A non-empty one must equal the handler's, which is how
+// `on hit deadly` fires for a pipe and not for a coin.
+scr_amatch(int h, string tg) {
+  int ok = 1;
+  if (tg != "") { ok = ast_ia(h) != 0 && ast_tx(ast_ia(h)) = tg; }
+} return int ok;

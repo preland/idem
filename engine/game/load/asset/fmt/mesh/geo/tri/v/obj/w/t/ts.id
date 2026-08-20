@@ -1,0 +1,22 @@
+// Scale on the right (columns), translation in the fourth column.
+
+bl_wts(int p, int si) {
+  bl_wscale(bl_f32(p + bl_foff(si, "size[3]")), bl_f32(p + bl_foff(si, "size[3]") + 4), bl_f32(p + bl_foff(si, "size[3]") + 8));
+  bl_wtrans(p, si);
+} return void;
+
+// Column j scaled by size[j] -- which is what multiplying by a diagonal matrix on
+// the right does, without the matrix or the product.
+bl_wscale(int a, int b, int c) {
+  int i = 0;
+  while (i < 3) {
+    bl_wcol(i, a, b, c);
+    i = i + 1;
+  }
+} return void;
+
+bl_wcol(int i, int a, int b, int c) {
+  lset((import bl_wm), i * 4, fx_mul((import bl_wm)[i * 4], a, 1000));
+  lset((import bl_wm), i * 4 + 1, fx_mul((import bl_wm)[i * 4 + 1], b, 1000));
+  lset((import bl_wm), i * 4 + 2, fx_mul((import bl_wm)[i * 4 + 2], c, 1000));
+} return void;

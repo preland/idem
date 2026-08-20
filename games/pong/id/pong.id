@@ -1,0 +1,38 @@
+// pong -- the game.
+//
+// All of it: state, rules, input and drawing. The `.idml` beside this directory
+// lays out two scores and a hint over the top and decides nothing (docs/IDML.md).
+//
+// The playfield is 320 x 200 of the game's own units. Everything below works in
+// millunits -- thousandths of one of those -- because a velocity is per second
+// and a frame is a sixtieth of one: at 95 units a second a whole-unit position
+// advances by 1 with a remainder that is thrown away, and the ball curves.
+//
+//   p  0 ly   1 lv    left paddle's centre and speed
+//      2 ry   3 rv    right paddle's
+//      4 bx   5 by    ball
+//      6 bvx  7 bvy
+//      8 l    9 r     scores
+//     10 wait          1 until the first serve
+//
+// The paddle is 6 x 40 units, the ball 6 x 6, and the wall is the playfield.
+
+g_init() {
+  export int[] g_st = [100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1];
+} return void;
+
+// One frame. dt is milliseconds; the engine calls this before it draws.
+g_step(int dt) {
+  g_pad(0, 1, 119, 115, dt);
+  g_pad(2, 3, 258, 259, dt);
+  g_ball(dt);
+} return void;
+
+// One paddle. `up` and `dn` are key codes -- an ASCII byte for a key that makes a
+// character, 258/259 for the arrows. The clamp keeps it inside the playfield,
+// which is why the speed is chosen and then the position tested rather than the
+// other way round.
+g_pad(int y, int v, int up, int dn, int dt) {
+  lset((import g_st), v, 260000 * (inp_down(dn) - inp_down(up)));
+  lset((import g_st), y, fx_clamp((import g_st)[y] + (import g_st)[v] * dt / 1000, 22000, 178000));
+} return void;

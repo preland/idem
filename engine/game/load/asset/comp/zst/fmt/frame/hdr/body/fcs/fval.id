@@ -1,0 +1,7 @@
+// Reading the value, with flag 1's offset applied.
+
+zst_fval(int f, int n) {
+  int v = 0;
+  if (n > 0) { v = zst_le(n); }
+  if (f = 1) { v = v + 256; }
+} return int v;

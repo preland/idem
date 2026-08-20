@@ -1,0 +1,26 @@
+// lst -- writing through a list you do not own.
+//
+// A list passed as a *parameter* is an lvalue; an imported global is not. The
+// compiler only recognises an index-assignment whose target starts with a plain
+// identifier, so `(import xs)[i] = v;` is not an assignment at all -- it is a
+// comparison whose result is thrown away. It used to compile cleanly and do
+// nothing, which made it the language's most expensive trap; it is now rejected,
+// and the diagnostic names this function as the fix:
+//
+//     error: an imported list cannot be index-assigned directly; pass it to a
+//     helper that takes the list as a parameter (lset(xs, i, v))
+//
+// That is a better world to write in, and it changes nothing here: every write to
+// an exported list still goes through lset, defined once for the whole program (a
+// second copy anywhere would be a duplicate-logic error).
+
+lset(int[] xs, int i, int v) {
+  xs[i] = v;
+} return void;
+
+lget(int[] xs, int i) {
+} return int xs[i];
+
+sset(string[] strs, int i, string s) {
+  strs[i] = s;
+} return void;

@@ -1,0 +1,15 @@
+// What the play button says, and what a click does to the run state.
+//
+// Slot 16 is three-valued: 0 stopped, 1 running, 2 run exactly one frame. ed_tick
+// simulates for any non-zero value and clears a 2 afterwards, so `step` is a
+// single frame however long the button is held.
+
+ed_play_lbl() {
+  string s = "play";
+  if ((import ed_st)[16] = 1) { s = "stop"; }
+} return string s;
+
+ed_play_next(int k) {
+  int v = 2;
+  if (k = 1) { v = 1 - ((import ed_st)[16] = 1); }
+} return int v;

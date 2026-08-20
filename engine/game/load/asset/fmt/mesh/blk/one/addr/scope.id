@@ -1,0 +1,18 @@
+// The block range an ID's pointers resolve within.
+//
+// An ID block is followed by the DATA blocks that belong to it, and the run ends
+// at the next block that is not DATA -- the next ID, or DNA1, or ENDB. Setting
+// this before reading an ID is what makes every address inside it unambiguous.
+
+bl_scope(int i) {
+  m4_pair((import bl_st), 13, 14, i + 1, i + 1);
+  bl_srun(i + 1);
+} return void;
+
+// "DATA" packed most significant byte first: 1145132097.
+bl_srun(int i) {
+  while (i < len((import bl_bc)) && (import bl_bc)[i] = 1145132097) {
+    i = i + 1;
+  }
+  lset((import bl_st), 14, i);
+} return void;

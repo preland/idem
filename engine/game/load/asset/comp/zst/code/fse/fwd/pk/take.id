@@ -1,0 +1,13 @@
+// Peek and drop together, and how far the description reached.
+
+zf_bits(int n) {
+  int v = zf_peek(n);
+  zf_drop(n);
+} return int v;
+
+// The description ends at the byte holding its last bit, and the sequences
+// section begins at the next one. `sp` counts bytes pulled into the buffer and
+// `nbits` how many of them are still unread, so the bits actually consumed are
+// sp*8 - nbits, rounded up to a byte.
+zf_used() {
+} return int ((import zf_st)[1] * 8 - (import zf_st)[3] + 7) / 8;

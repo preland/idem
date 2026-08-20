@@ -1,0 +1,48 @@
+// scr -- the script interpreter.
+//
+// A tree-walking evaluator over the AST the parser already built. There is no
+// bytecode: the arena is a better data structure than anything `id` would let us
+// build a second time, and a tree-walk in transpiled C manages tens of thousands
+// of statements a frame, which is ample for game logic and hopeless for per-pixel
+// work. The `hook` escape hatch exists for the latter.
+//
+// **Values are `int`.** One type, matching the language's fixed-point world, so
+// a comparison, a colour, a coordinate and a boolean are all the same thing and
+// nothing has to be converted at a boundary.
+//
+// scr_st:
+//     0 self     the entity a handler is running for, -1 for the scene
+//     1 status   0 running, 1 stopped -- how `stop` and `despawn` cut a handler
+//                short in a language with no `break` and no early return
+//     2 goto     a scene node a handler asked for, 0 for none. Deferred to the
+//                end of the frame because reloading the world underneath a loop
+//                that is still walking it is how an interpreter corrupts itself
+//     3 depth    recursion guard: a script that spawns a script that spawns
+//     4 gn       how many variables the game's own `persist` block declared --
+//                the mark a scene load truncates the table back to
+//
+// scr_vn / scr_vv are one flat name/value table. The game's `persist` block is at
+// the front and lives for the process; the scene's `var`s follow it and are
+// rebuilt on every scene load; each entity's `var`s are a run recorded in its own
+// record (slots 17 and 18). A name resolves innermost-first -- entity, scene,
+// game -- which is the scoping every language with these three has.
+
+scr_init() {
+  export int[] scr_st = [0 - 1, 0, 0, 0, 0];
+  export string[] scr_vn = [];
+  scr_init2();
+} return void;
+
+scr_init2() {
+  export int[] scr_vv = [];
+  export string[] scr_tn = [];
+  scr_init3();
+} return void;
+
+// The template registry: `spawn PipeShaft at (…)` names a `template` declaration,
+// and the spawner needs to find it by name at the moment the statement runs.
+scr_init3() {
+  export string[] scr_pn = [];
+  export int[] scr_pd = [];
+  scr_init4();
+} return void;

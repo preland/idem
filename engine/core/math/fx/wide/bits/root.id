@@ -1,0 +1,10 @@
+// The recursion step: quarter again, or hand the last of it to fx_sqrt.
+//
+// The threshold is below 2^31 - 1 because fx_sqrt's exactness is stated over
+// 0..2^31-1 and nothing is gained by sitting on the boundary. Depth is at most
+// sixteen: each level takes two bits off a value that started with sixty-three.
+
+fx_wroot(word sm) {
+  int m = 0;
+  if (sm > 2000000000) { m = fx_hypfix(sm); } else { m = fx_sqrt(sm); }
+} return int m;

@@ -1,0 +1,29 @@
+// Phase 0: read one run/size symbol.
+//
+// A size is always 1 here -- a refinement can only make a coefficient newly
+// nonzero by one bit -- and the bit that follows says which sign. A size of zero
+// is either a ZRL (run 15, skip sixteen zeros) or the start of an end-of-band run.
+
+jpg_rsym(int ci, int a) {
+  if ((import jpg_r)[0] > (import jpg_st)[14]) {
+    lset((import jpg_r), 3, 2);
+  } else {
+    jpg_rsym2(ci, a, jpg_dec((import jpg_c)[ci * 10 + 5]));
+  }
+} return void;
+
+jpg_rsym2(int ci, int a, int rs) {
+  lset((import jpg_r), 1, rs / 16);
+  lset((import jpg_r), 2, 0);
+  jpg_rsym3(a, rs / 16, rs % 16);
+} return void;
+
+// The sign bit is read here and nowhere else, in its own statement, because it
+// must be consumed immediately after the symbol and before any correction bit.
+jpg_rsym3(int a, int rn, int sz) {
+  if (sz != 0) {
+    jpg_rsign(a);
+  } else {
+    jpg_rzrl(a, rn);
+  }
+} return void;

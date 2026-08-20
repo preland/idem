@@ -1,0 +1,24 @@
+// One MCU's blocks, component by component.
+
+jpg_mcomp(int mx, int my, int ci) {
+  while (ci < (import jpg_st)[2] && (import jpg_st)[8] = 1) {
+    jpg_cblks(mx, my, ci);
+    ci = ci + 1;
+  }
+} return void;
+
+jpg_cblks(int mx, int my, int ci) {
+  int by = 0;
+  while (by < (import jpg_c)[ci * 10 + 2] && (import jpg_st)[8] = 1) {
+    jpg_brow(mx, my, ci, by);
+    by = by + 1;
+  }
+} return void;
+
+jpg_brow(int mx, int my, int ci, int by) {
+  int bx = 0;
+  while (bx < (import jpg_c)[ci * 10 + 1] && (import jpg_st)[8] = 1) {
+    jpg_one(mx, my, ci, by, bx);
+    bx = bx + 1;
+  }
+} return void;

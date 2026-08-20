@@ -1,0 +1,28 @@
+// Symbol_Compression_Modes, and the three tables it describes.
+//
+//     bits 7-6  literal lengths     bits 5-4  offsets     bits 3-2  match lengths
+//
+// and each is 0 predefined, 1 RLE (a single symbol, given as one byte), 2 FSE
+// (a table description follows), 3 repeat (reuse the previous block's table).
+//
+// The tables appear in the order literal lengths, offsets, match lengths -- which
+// is NOT the order the modes are packed in the byte, and reading them in the
+// packed order desynchronises everything after.
+
+zst_smode(int n, int end) {
+  int m = zst_le(1);
+  zst_stabs(m, end);
+  zst_sdec(n, end);
+} return void;
+
+zst_stabs(int m, int end) {
+  zst_stab(0, m / 64, 6, 0);
+  zst_stab(1, m / 16 % 4, 5, 512);
+  zst_stab(2, m / 4 % 4, 6, 768);
+} return void;
+
+// A block with no sequences is literals and nothing else.
+zst_lonly(int end) {
+  zst_slits((import zst_st)[9]);
+  lset((import zst_st), 1, end);
+} return void;

@@ -1,0 +1,38 @@
+// Projection: one camera-space vertex to one screen vertex.
+//
+// The screen-vertex record d3_vts holds three vertices of six slots each, and the
+// six slots are deliberately uniform so that the scanline interpolator can walk
+// them with one loop instead of naming each field:
+//
+//     +0 sx    pixels, x right
+//     +1 sy    pixels, y DOWN (the framebuffer's own axis)
+//     +2 dz    inverse-depth key, 2^36 / z   (tri/zb.id)
+//     +3 cr    +4 cg    +5 cb                unpacked, 0..255
+//
+// The projection is one divide per axis, not a matrix multiply: the only
+// interesting row of a perspective matrix is the one that produces w, and w is
+// just z here. The focal length in d3_cam slot 8 is pixels x1000 (d3_cam_focal),
+// so the result is pixels x1000 and is narrowed by the /1000 inside d3_pscale.
+//
+// The screen origin is the centre of the *viewport*, so a camera-space point on
+// the view axis lands at (d3_vp[4], d3_vp[5]) -- the middle of the panel being
+// drawn into, which is the whole surface unless someone said otherwise. y is
+// negated because camera space has +Y up and
+// the framebuffer counts rows downward -- that single negation is also what makes
+// a front face wind clockwise on screen (see d3_area).
+
+d3_proj(int[] tri, int i, int[] verts, int p) {
+  int z = fx_max(tri[i * 3 + 2], 1);
+  d3_proj_xy(tri, i * 3, verts, p, z);
+  d3_proj_c(verts, p, tri[9 + i], d3_dkey(z));
+} return void;
+
+d3_proj_xy(int[] tri, int i, int[] verts, int p, int z) {
+  lset(verts, p, (import d3_vp)[4] + d3_pscale(tri[i], (import d3_cam)[8], z));
+  lset(verts, p + 1, (import d3_vp)[5] - d3_pscale(tri[i + 1], (import d3_cam)[8], z));
+} return void;
+
+d3_proj_c(int[] verts, int p, int c, int dz) {
+  lset(verts, p + 2, dz);
+  d3_unpack(verts, p + 3, c);
+} return void;

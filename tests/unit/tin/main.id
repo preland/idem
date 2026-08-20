@@ -1,0 +1,24 @@
+// Unit tests for the text field's state machine -- the buffer, the caret, the
+// key transitions and the synthesised key repeat.
+//
+// It is driven the way tests/unit/sys drives the key state: inp_stamp with the
+// codes the backend really sends, and the frame ordinal bumped by hand at each
+// frame boundary. No window, no display, no clock -- the time is a parameter, so
+// the repeat timings are exact rather than approximately sixty times a second.
+//
+// The expected values were worked out from the transition table and the two
+// durations, by hand, before the code was run: 420 ms before the first repeat
+// and 30 ms between them, so a key pressed at 5000 fires at 5000, again at the
+// first frame at or after 5420, and again at the first frame at or after 30 ms
+// past that. The frames below straddle each of those deadlines on both sides,
+// which is the only way to tell a repeat that works from one that fires every
+// frame.
+//
+// txt_init first: the printable range tin_key tests against is the loaded face's
+// (txt_first()/txt_last()), and those read an exported global.
+
+main(int argc, string[] argv) {
+  txt_init();
+  inp_init();
+  t_boot();
+} return int 0;

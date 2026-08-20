@@ -1,0 +1,17 @@
+// The wrap's upper bound and the animation.
+//
+// `anim (first, last, ms)` cycles frames first..last, one every ms. An entity
+// with no anim keeps last = -1, which ent_anim reads as "hold frame 0" -- so a
+// still sprite needs no flag of its own.
+
+scn_efill7(int e, int nd) {
+  ent_put(e, 11, scn_mtup(nd, "wrap", 1) * 1000);
+  ent_put(e, 14, scn_mtup(nd, "anim", 0));
+  scn_efill8(e, nd);
+} return void;
+
+scn_efill8(int e, int nd) {
+  ent_put(e, 15, scn_manim(nd, 1));
+  ent_put(e, 16, fx_max(scn_mtup(nd, "anim", 2), 1));
+  scn_efill9(e, nd);
+} return void;

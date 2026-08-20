@@ -1,0 +1,47 @@
+// ui -- idml, resolved to pixel rects and drawn.
+//
+// idml is a layout language and this is the whole of what it does here: every
+// dimension is a percentage of the parent, containers tile their children along
+// one axis, and the leaves paint. There is no DOM to measure, so the resolution
+// is exact and integer -- a rect is decided by arithmetic, once, on the way down.
+//
+// The walk is immediate: rects are computed and drawn in one descent rather than
+// resolved into a retained tree first. Nothing in a UI here outlives the frame,
+// so a tree would be a copy of the arena with numbers in it, allocated per frame,
+// in a language that never frees.
+//
+// Direction comes from the item's name, which is the only thing a container's
+// name means:
+//
+//     Col     tile children top to bottom     (main axis = height)
+//     Row     tile children left to right     (main axis = width)
+//     Stack   every child gets the whole rect, drawn in declaration order
+//     Layer   the same, and out of its parent's tiling sum
+//
+// Anything else is a leaf: it paints itself and its children are its own business.
+
+ui_draw(int nd, int x, int y, int w, int h) {
+  ui_rput(ast_tx(nd), x, y, w, h);
+  ui_walk(nd, x, y, w, h);
+} return void;
+
+// Both questions are asked of the **resolved** name, not the written one. A
+// styled variant is what a name *is*: `Page:Col` makes every `Page()` a column,
+// and asking whether "Page" tiles answers no. Every such item then stacked its
+// children at full size instead of laying them out, so a document whose
+// containers were all named through variants -- which is how the reference corpus
+// is written -- rendered every child on top of every other, centred, with the
+// percentages ignored. The paint dispatch already went through ui_base; this did
+// not, and the two disagreeing is the whole defect.
+ui_walk(int nd, int x, int y, int w, int h) {
+  if (ui_tiles(ui_base(ast_tx(nd))) = 1) {
+    ui_tile(nd, x, y, w, h);
+  } else {
+    ui_leaf(nd, x, y, w, h);
+  }
+} return void;
+
+ui_tiles(string name) {
+  int ok = 0;
+  if (name = "Col" || name = "Row" || name = "Stack" || name = "Layer") { ok = 1; }
+} return int ok;

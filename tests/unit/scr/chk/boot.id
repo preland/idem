@@ -1,0 +1,27 @@
+// Loading the fixture, and the first checks.
+
+// png_init and inf_init too: scn_load decodes a `sprite … from` declaration, and
+// this fixture declares none -- but the compiler checks that every export a
+// reachable path reads has a declaring function that something calls, not that
+// this particular document takes that path.
+t_boot3() {
+  scn_init();
+  scn_dir_init();
+  t_boot4();
+} return void;
+
+t_boot4() {
+  png_init();
+  inf_init();
+  t_boot5();
+} return void;
+
+// ui_vinit chains ui_rinit. A document may declare a styled variant, and the
+// registry has to exist before the loader walks a top-level declaration.
+// inp_init too: a script may call `key(code)`, and the interpreter reaches the
+// key state whether or not this document does.
+t_boot5() {
+  ui_vinit();
+  inp_init();
+  t_load();
+} return void;

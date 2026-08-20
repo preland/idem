@@ -1,0 +1,40 @@
+// Huffman literals -- ported from the kernel's zstd, not from the specification.
+//
+// `/home/preland/git/linux_id/vendor/linux-6.19.14/lib/zstd/` is upstream zstd as
+// the Linux kernel carries it: `decompress/huf_decompress.c` for the table build
+// and the stream decode, `common/entropy_common.c` for the weight reader. Porting
+// from working code rather than from prose is deliberate -- the one bug that cost
+// this module a session was two mistyped entries in a table transcribed by hand,
+// and every table below came from that source instead.
+//
+// A Huffman description is a list of **weights**, one per symbol. A weight w>0
+// means the symbol's code is `tableLog + 1 - w` bits long and occupies
+// `(1 << w) >> 1` consecutive entries of the decode table; weight 0 means the
+// symbol does not appear. The weights are either four bits each, packed two to a
+// byte, or -- more often -- FSE-coded themselves.
+//
+// huf_st:  0 log   the decode table's accuracy log
+//          1 n     how many symbols the description named
+//          2 last  the implied final weight
+//
+// huf_wt is the weights, huf_rk the count of symbols at each weight, huf_rs the
+// running start of each weight's run, huf_sm the symbols ordered by weight, and
+// huf_sy/huf_nb the decode table itself.
+
+huf_init() {
+  export int[] huf_st = [];
+  export int[] huf_wt = [];
+  huf_init2();
+} return void;
+
+huf_init2() {
+  export int[] huf_rk = [];
+  export int[] huf_rs = [];
+  huf_init3();
+} return void;
+
+huf_init3() {
+  export int[] huf_sm = [];
+  export int[] huf_sy = [];
+  huf_init4();
+} return void;

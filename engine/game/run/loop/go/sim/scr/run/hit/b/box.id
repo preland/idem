@@ -1,0 +1,13 @@
+// Live-with-a-body, the box overlap, and firing both sides.
+
+scr_hlive(int e) {
+} return int ent_at(e, 9) % 2 = 1 && ent_at(e, 9) / 4 % 2 = 1;
+
+// Axis-aligned, centred on pos, in millunits. Touching exactly counts as a hit:
+// a bird whose edge is exactly on the floor's has landed, and the alternative --
+// a gap of one millunit -- is a bug nobody can see and everybody can feel.
+scr_ovl(int a, int b) {
+} return int scr_span(ent_at(a, 0), ent_at(a, 12), ent_at(b, 0), ent_at(b, 12)) = 1 && scr_span(ent_at(a, 1), ent_at(a, 13), ent_at(b, 1), ent_at(b, 13)) = 1;
+
+scr_span(int ac, int aw, int bc, int bw) {
+} return int fx_abs(ac - bc) * 2 <= aw + bw;

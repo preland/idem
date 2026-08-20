@@ -1,0 +1,29 @@
+// Each component's own plane, and the scan header.
+//
+// A component is stored at its own resolution -- a 2x2-sampled luma plane is
+// four times the area of its 1x1 chroma neighbours -- and upsampling happens
+// once, on the way out. Decoding into a common resolution instead would mean
+// interpolating before the coefficients are even complete, which for a
+// progressive image is not yet possible.
+
+jpg_planes(int ci) {
+  while (ci < (import jpg_st)[2]) {
+    jpg_plane(ci);
+    ci = ci + 1;
+  }
+} return void;
+
+jpg_plane(int ci) {
+  m4_pair((import jpg_c), ci * 10 + 8, ci * 10 + 9, (import jpg_st)[5] * (import jpg_c)[ci * 10 + 1], (import jpg_st)[6] * (import jpg_c)[ci * 10 + 2]);
+  lset((import jpg_c), ci * 10 + 7, alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 64, 1)));
+  jpg_coefs(ci);
+} return void;
+
+// The scan header names which components are in this scan and which Huffman
+// tables each uses. Baseline sends one scan with every component; progressive
+// sends several, and this is read the same way for both.
+jpg_sos(int p) {
+  lset((import jpg_st), 11, asset_at(p));
+  jpg_stab(p + 1, 0, asset_at(p));
+  jpg_scan(p + 1 + asset_at(p) * 2);
+} return void;

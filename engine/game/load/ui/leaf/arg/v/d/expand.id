@@ -1,0 +1,24 @@
+// Finding a define, and drawing through it.
+
+ui_def(string name) {
+  int i = ui_dfind(name, 0, 0 - 1);
+  int nd = 0;
+  if (i >= 0 && (import ui_dep)[0] < 8) { nd = (import ui_dd)[i]; }
+} return int nd;
+
+ui_dfind(string name, int i, int p) {
+  while (i < len((import ui_dn))) {
+    p = lst_pick(p, i, (import ui_dn)[i] = name);
+    i = i + 1;
+  }
+} return int p;
+
+// The depth is raised around the expansion and lowered after, so a define that
+// reaches its own name eight levels down stops being expanded and draws as an
+// ordinary unknown item -- nothing, with its children walked -- instead of
+// recursing until the process dies.
+ui_expand(int nd, int x, int y, int w, int h) {
+  lset((import ui_dep), 0, (import ui_dep)[0] + 1);
+  ui_draw(nd, x, y, w, h);
+  lset((import ui_dep), 0, (import ui_dep)[0] - 1);
+} return void;

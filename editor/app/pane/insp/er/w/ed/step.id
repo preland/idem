@@ -1,0 +1,15 @@
+// One stepper button.
+//
+// `-` and `+` are the font's own glyphs rather than drawn shapes, so they scale
+// with the text like everything else in the chrome.
+
+ed_nudge_draw(int x, int y, int ok, int d) {
+  sf_rect(x, y, ed_hdr(), ed_hdr(), ed_col(7 - 5 * (ok = 0)));
+  d2_frame(x, y, ed_hdr(), ed_hdr(), ed_col(3));
+  txt_draw(ed_sign(d), x + (ed_hdr() - txt_width("+")) / 2, y + 1, ed_col(4));
+} return void;
+
+ed_sign(int d) {
+  string s = "+";
+  if (d < 0) { s = "-"; }
+} return string s;

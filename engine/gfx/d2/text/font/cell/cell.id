@@ -1,0 +1,37 @@
+// cell -- the constants both font paths speak.
+//
+// NAMES.md section 5: a number that means something is spoken by a named
+// zero-action function, never as a bare literal at a call site. The return clause
+// is free, so naming a constant costs nothing at all -- and a literal 32 sitting
+// in txt_spr_run is indistinguishable from a literal 32 that happens to be a
+// margin, which is the failure this prevents.
+//
+// Code points are expressed as txt_first() + n for the same reason: the digits
+// and the minus sign are at fixed offsets from the font's first glyph, and
+// writing them that way says WHICH table the number indexes.
+
+// The advance: how far the pen moves per character, which for a monospaced face
+// is also how many columns a glyph draws. It is the *width* only -- the default
+// face is 8x16 now, so the row count is txt_cellh() and the two are different
+// numbers. Everything that measures a string still asks this one; everything
+// that measures a line of them had to be found and changed to ask the other.
+txt_cell() {
+} return int (import txt_st)[0];
+
+// The first code point any face here has a glyph for -- and, by convention, the
+// first frame of a sprite font (IDML_GAME.md section 2's `from 32`).
+//
+// This is still a bare literal while its neighbours read txt_st, and that is the
+// point: it is not a property of the loaded face but a fact about the engine. A
+// loaded PSF is stored from 32 upward whatever its own indexing was
+// (glyph/face/put.id), so txt_num_sc can go on spelling '0' as txt_first() + 16
+// and the sprite-font path can go on assuming frame 0 is a space.
+txt_first() {
+} return int 32;
+
+// The last one the loaded face can draw. 126 for the built-in table -- printable
+// ASCII and nothing above it, because a byte over 126 is a UTF-8 continuation and
+// this engine has no notion of one -- and 255 for a full code page loaded from a
+// .psf, which is where the box-drawing and accented glyphs come from.
+txt_last() {
+} return int txt_first() + txt_facen() - 1;

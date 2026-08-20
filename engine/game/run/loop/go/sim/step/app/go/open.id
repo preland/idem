@@ -1,0 +1,20 @@
+// Bringing the game up, and the window with it.
+//
+// g_init before sys_open, because the size the window asks for is the game's to
+// state and it has to exist to be asked. The window is a *request*: the window
+// manager decides, sys_ follows it, and the stage maps the game's declared units
+// into whatever it gets.
+
+idem_aopen() {
+  g_init();
+  sys_open(g_stage(0), g_stage(1), g_stage(2), "idem");
+  idem_aopen2();
+} return void;
+
+// Input last, because it sizes nothing and needs the surface to exist before it
+// clamps a pointer against it.
+idem_aopen2() {
+  txt_init();
+  inp_init();
+  tin_init();
+} return void;

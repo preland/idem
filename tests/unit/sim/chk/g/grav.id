@@ -1,0 +1,29 @@
+// Gravity, and who it applies to.
+//
+// Flags: 1 live, 2 solid, 4 has a body. A live body that is not solid is the only
+// combination that falls -- flags 5. The bird is 5; the floor and the pipes are 7
+// and hold still; the ground strips and the hills are 1 and scroll under their
+// own velocity. That one rule is what makes flappy's world behave with no
+// per-entity declaration of what gravity means.
+//
+// 1500 stage units per second squared is 1500000 millunits, and 16 ms of it is
+// 24000 millunits per second of new downward speed.
+
+t_grav() {
+  m4_pair((import scn_st), 7, 8, 0, 1500000);
+  ent_put(1, 9, 5);
+  t_grav2();
+} return void;
+
+t_grav2() {
+  sim_grav(1, 16);
+  print("dynamic body: vy after 16ms of 1500/s^2 exp 24000 = " + ent_at(1, 3));
+  t_grav3();
+} return void;
+
+// The same entity made solid stops falling, and one with no body never started.
+t_grav3() {
+  ent_put(1, 9, 7);
+  sim_grav(1, 16);
+  t_grav4();
+} return void;

@@ -1,0 +1,30 @@
+// col2 -- scaling and mixing colours.
+//
+// Split from col.id only by the 3-functions-per-file rule.
+//
+// Both take a per-mille factor, the scale-factor row of ARCHITECTURE.md
+// section 4, so 1000 means "unchanged" in both and a caller never has to
+// remember which of them counts in percent. n above 1000 brightens; d2_rgb's
+// clamp keeps that from wrapping into a different hue.
+//
+// Multiply before dividing, always: (cr * n) / 1000 keeps the fraction that
+// (cr / 1000) * n throws away. The largest product here is 255 * a few thousand,
+// nowhere near the 32-bit wrap, so no word intermediate is needed -- unlike the
+// matrix math in d3, which does need one.
+
+d2_cb(int c) {
+} return int c % 256;
+
+// Scale every channel by n per-mille: the lighting and fog term, and the way a
+// palette gets a darker variant of itself without a second palette.
+d2_shade(int c, int n) {
+  int cr = d2_cr(c) * n / 1000;
+  int cg = d2_cg(c) * n / 1000;
+} return int d2_rgb(cr, cg, d2_cb(c) * n / 1000);
+
+// Mix c towards b: t = 0 is c, t = 1000 is b. Per channel through fx_lerp, so
+// the rounding rule is the same one the rest of the engine interpolates with.
+d2_blend(int c, int b, int t) {
+  int cr = fx_lerp(d2_cr(c), d2_cr(b), t);
+  int cg = fx_lerp(d2_cg(c), d2_cg(b), t);
+} return int d2_rgb(cr, cg, fx_lerp(d2_cb(c), d2_cb(b), t));

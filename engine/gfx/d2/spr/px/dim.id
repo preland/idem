@@ -1,0 +1,22 @@
+// dim -- a sprite's dimensions.
+//
+// Three one-line reads, and they are three functions rather than one indexed
+// accessor because a caller writing d2_spr_w(p) cannot get the column wrong,
+// while a caller writing d2_spr_dim(p, 0) can. The duplicate-logic rule permits
+// them: bodies differ by the imported global they name, which is exactly what
+// distinguishes two functions (NAMES.md section 2).
+//
+// d2_spr_h is the height of ONE frame, not of the pixel list. A 12x12 sprite
+// with 3 frames reports 12, and its list holds 432 pixels.
+
+d2_spr_w(int p) {
+} return int (import asset_sprw)[p];
+
+d2_spr_h(int p) {
+} return int (import asset_sprh)[p];
+
+// The frame count. Blits clamp the frame index against it rather than trusting
+// a caller: an animation whose `anim(first, last, ms)` runs past the end would
+// otherwise index past the pixel list, and that aborts the process.
+d2_spr_nf(int p) {
+} return int (import asset_sprf)[p];

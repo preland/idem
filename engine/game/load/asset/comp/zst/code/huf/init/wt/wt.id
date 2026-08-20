@@ -1,0 +1,24 @@
+// The rest of the sizing, and reading the weight description.
+//
+// The first byte decides the form: 128 or more means the weights follow directly,
+// four bits each, `byte - 127` of them; less means they are FSE-coded and that
+// byte is the compressed size.
+
+huf_init7() {
+  lst_fill((import huf_sy), 2048, 0);
+  lst_fill((import huf_nb), 2048, 0);
+} return void;
+
+huf_stats(int p) {
+  int b0 = peek8((import zst_st)[0] + p);
+  lset((import huf_st), 1, huf_wread(p, b0));
+} return int huf_used(b0, p);
+
+huf_wread(int p, int b0) {
+  int n = 0;
+  if (b0 >= 128) {
+    n = huf_direct(p + 1, b0 - 127);
+  } else {
+    n = huf_wfse(p + 1, b0);
+  }
+} return int n;

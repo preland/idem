@@ -1,0 +1,31 @@
+// The two constant tables, and the sprite join.
+//
+// The zigzag map is the order the standard sends coefficients in: a diagonal
+// walk outwards from DC, so the coefficients most likely to be zero end up
+// together at the tail where one end-of-block symbol dismisses all of them.
+//
+// The cosine table is the IDCT's, scaled by 1024, computed offline with python3
+// as round(1024 * C(u) * cos((2x+1)*u*pi/16)) with C(0) = 1/sqrt(2). Offline
+// because fx_cos interpolates a per-degree table and is good to about a part in
+// a thousand -- ample for a rotation, and worth a level and a half of brightness
+// once eight of them are summed and the result is summed again.
+
+jpg_init8() {
+  lst_fill((import jpg_f), 64, 0);
+  lst_fill((import jpg_tm), 64, 0);
+  jpg_init9();
+} return void;
+
+jpg_init9() {
+  export int[] jpg_zz = [0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63];
+  export int[] jpg_t = [724, 724, 724, 724, 724, 724, 724, 724, 1004, 851, 569, 200, 0 - 200, 0 - 569, 0 - 851, 0 - 1004, 946, 392, 0 - 392, 0 - 946, 0 - 946, 0 - 392, 392, 946, 851, 0 - 200, 0 - 1004, 0 - 569, 569, 1004, 200, 0 - 851, 724, 0 - 724, 0 - 724, 724, 724, 0 - 724, 0 - 724, 724, 569, 0 - 1004, 200, 851, 0 - 851, 0 - 200, 1004, 0 - 569, 392, 0 - 946, 946, 0 - 392, 0 - 392, 946, 0 - 946, 392, 200, 0 - 569, 851, 0 - 1004, 1004, 0 - 851, 569, 0 - 200];
+} return void;
+
+// A JPEG becomes a sprite through exactly the call a PNG does: spr_png2 reads
+// png_st and knows nothing about which decoder filled it.
+jpg_spr(string name, string path, int cols, int rows, int cw, int ch) {
+  int p = 0 - 1;
+  if (jpg_load(path) = 1) {
+    p = spr_png2(name, cols, rows, cw, ch);
+  }
+} return int p;

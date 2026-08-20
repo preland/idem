@@ -1,0 +1,22 @@
+// Refusing what this decoder cannot read.
+//
+// An interlaced PNG is the case that mattered: Adam7 lays the image out as seven
+// passes, nothing like the scanlines here, and the interlace byte was never read
+// at all -- so such a file decoded into a picture made of interleaved fragments
+// rather than being turned away.
+//
+// The refusal is checked *after* a good file, deliberately. png_load has to reset
+// its own state, and a decoder that refuses correctly only on a fresh process is
+// one that gets this wrong the moment an asset pipeline loads two images.
+
+t_lace() {
+  print("interlaced PNG refused, exp load 0 = " + png_load("tests/unit/png/img/lace.png"));
+  print("  header still read: exp 32 24, interlace exp 1 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[10]);
+  t_again();
+} return void;
+
+// And the good file still loads afterwards, so a refusal leaves nothing behind.
+t_again() {
+  print("good PNG after a refusal, exp 1 = " + png_load("test_assets/spryte-run.png"));
+  t_pal();
+} return void;

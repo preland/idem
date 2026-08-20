@@ -1,0 +1,31 @@
+// disc -- the filled circle, as spans.
+//
+// Same walker and the same decision function as the outline (arc/circ/), so the
+// two agree pixel for pixel about where the edge is. What differs is what each
+// arc point becomes: the outline plots eight pixels, the disc draws four spans
+// through sf_span. That is the rule from ARCHITECTURE.md section 3.1 -- area is
+// filled by a span that clips once and then writes flat, never by sf_pset per
+// pixel -- and it is also why this needs no square root: the arc's x offset *is*
+// the half-width of the row.
+//
+// Rows are written more than once where the top and bottom span families overlap
+// near the diagonal. The overdraw is a constant factor of about two on a shape
+// that costs n^2/2 stores, and avoiding it would mean tracking which rows are
+// already done, i.e. state and branches instead of stores.
+
+d2_disc(int x, int y, int n, int c) {
+  int[] st = [0, n, 1 - n];
+  d2_disc_run(st, x, y, c);
+} return void;
+
+d2_disc_run(int[] st, int x, int y, int c) {
+  while (st[0] <= st[1]) {
+    d2_disc_step(st, x, y, c);
+  }
+} return void;
+
+d2_disc_step(int[] st, int x, int y, int c) {
+  d2_disc_spans(x, y, st[0], st[1], c);
+  d2_circ_err(st);
+  st[0] = st[0] + 1;
+} return void;

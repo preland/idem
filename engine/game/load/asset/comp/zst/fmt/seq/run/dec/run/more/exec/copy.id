@@ -1,0 +1,22 @@
+// The match copy, and the literals left after the last sequence.
+//
+// Byte at a time and forwards, because zstd allows an offset shorter than the
+// match: the overlap is how a run is encoded, and any copy that reads ahead of
+// what it has written gets it wrong.
+
+zst_smatch(int off, int n) {
+  int i = 0;
+  if (off > (import zst_st)[4] || off < 1) { lset((import zst_st), 6, 1); }
+  while (i < n && (import zst_st)[6] = 0) {
+    zst_put(zst_back(off));
+    i = i + 1;
+  }
+} return void;
+
+// Whatever literals the sequences did not consume are appended, and the cursor
+// jumps to the end of the block -- the bitstream's own length is not otherwise
+// known to the byte reader.
+zst_sfin(int end) {
+  zst_slits((import zst_st)[9] - (import zst_st)[10]);
+  lset((import zst_st), 1, end);
+} return void;

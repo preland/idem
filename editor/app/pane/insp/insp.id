@@ -1,0 +1,27 @@
+// The inspector: what is known about whatever is selected.
+//
+// An entity selected in the scene view shows its live record -- position,
+// velocity, sprite, layer, tags -- read from the store rather than from the
+// document, so it changes while the game runs. A declaration selected in the
+// hierarchy shows what the lexer recorded about it. Both are label/value rows,
+// which is why they can share every drawing function below.
+
+ed_insp(int x, int y, int w, int h) {
+  ed_pane(x, y, w, h, "Inspector");
+  ed_insp_body(x, y + ed_hdr() + 3, w);
+} return void;
+
+// Three things can be selected and they are checked in the order a person means
+// them: entities picked with the band in the scene view, then a declaration
+// clicked in the hierarchy, then nothing.
+// Diagnostics win over everything. A document that did not parse is the most
+// important thing on screen: whatever is selected is being inspected in a world
+// that was built from a source the engine could not fully read, and every other
+// number in this pane is suspect until that is dealt with.
+ed_insp_body(int x, int y, int w) {
+  if (err_nmsg() > 0) {
+    ed_insp_err(x, y, w, 0);
+  } else {
+    ed_insp_sel(x, y, w);
+  }
+} return void;

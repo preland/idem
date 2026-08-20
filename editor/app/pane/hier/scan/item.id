@@ -1,0 +1,24 @@
+// The rest of an item, the file list, and the keyword test.
+
+ed_item2(int i) {
+  push((import ed_ln), (import lex_line)[i]);
+  push((import ed_fl), (import lex_file)[i]);
+} return void;
+
+// Slot 0 of ed_fl is the file the tokens are currently in, kept up to date as the
+// walk passes each token, so the status bar can name the file without a second
+// pass. It starts as "" and becomes the first `#file` marker's path -- and every
+// time it changes, that file is a new one for the browser, which is what makes
+// ed_dir distinct without a search.
+ed_file(int i) {
+  if ((import lex_file)[i] != (import ed_fl)[0]) {
+    sset((import ed_fl), 0, (import lex_file)[i]);
+    push((import ed_dir), (import lex_file)[i]);
+  }
+} return void;
+
+ed_is_decl(string s) {
+  int ok = 0;
+  if (s = "sprite" || s = "model" || s = "palette" || s = "scene") { ok = 1; }
+  else { ok = ed_is_decl2(s); }
+} return int ok;

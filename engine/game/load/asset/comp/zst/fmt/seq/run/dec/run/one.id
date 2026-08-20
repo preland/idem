@@ -1,0 +1,22 @@
+// One sequence.
+
+zst_sone(int last) {
+  int ll = fse_dsym(0, (import zst_sq)[0]);
+  int of = fse_dsym(1, (import zst_sq)[1]);
+  zst_sone2(ll, of, fse_dsym(2, (import zst_sq)[2]), last);
+} return void;
+
+// Each extra-bit read is its own statement: two side-effecting reads in one
+// expression may evaluate in either order, and here that would take the offset's
+// bits where the match length's belong.
+zst_sone2(int ll, int of, int ml, int last) {
+  int off = zst_soff(of, ll);
+  int mlen = zst_smlen(ml);
+  zst_sone3(ll, off, mlen, last);
+} return void;
+
+zst_sone3(int ll, int off, int mlen, int last) {
+  int llen = zst_sllen(ll);
+  zst_sexec(llen, off, mlen);
+  zst_supd(last);
+} return void;

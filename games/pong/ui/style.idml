@@ -1,0 +1,8 @@
+# The variants pong's screen uses. Colour and nothing else: idml owns geometry,
+# so a variant never carries a size or a position.
+
+Page:Col {}
+
+Hint:Text {
+  fg: #f0e060
+}

@@ -1,0 +1,44 @@
+// One IEEE-754 single, as millunits.
+//
+// There is no cast in this language and the engine is integer anyway, so the bits
+// are decoded arithmetically: sign, an 8-bit exponent biased by 127, and a 23-bit
+// mantissa with an implied leading 1.
+//
+//     value = (2^23 + mantissa) * 2^(exponent - 127 - 23)
+//
+// The mantissa reaches 2^24 and is multiplied by 1000 before the shift -- 1.6e10,
+// past an int -- so the whole thing is computed in a `word` and narrowed once.
+// Multiplying before shifting is what keeps the fraction: the other order throws
+// away every bit below the point.
+//
+// Zero and subnormals answer 0: a subnormal is smaller than a millionth of a
+// millunit and rounds there anyway.
+
+// The two halves are read as bytes rather than sliced out of a 32-bit read with
+// `%`. That is not style: bl_le32 builds its top byte with a multiply, so a byte
+// >= 128 there makes the int negative, and `%` on a negative int in this language
+// is negative -- so the sign, exponent and mantissa all came out wrong whenever
+// the byte AFTER the float happened to have its top bit set. Most vertices
+// decoded correctly and a scattered few did not, which showed up only as a
+// slightly wrong bounding box over 94 000 of them.
+//
+// A python replica of this function did not reproduce the bug, because python's
+// `%` is never negative. Replicas verify algorithms, not arithmetic.
+bl_f32(int p) {
+  int b = asset_at(p + 2) + asset_at(p + 3) * 256;
+  int e = b / 128 % 256;
+  int m = (b % 128) * 65536 + asset_at(p) + asset_at(p + 1) * 256;
+} return int bl_fsc(e, m + 8388608 * (e > 0), 1 - 2 * (b / 32768));
+
+bl_fsc(int e, int m, int sg) {
+  word wp = m;
+  wp = bl_fshift(wp * 1000, e - 150);
+} return int sg * wp;
+
+// A signed binary shift by whatever the exponent asks for. Positive shifts up,
+// negative shifts down; beyond the range of the quantity either way the answer
+// saturates to something the caller can still use rather than wrapping.
+bl_fshift(word wp, int e) {
+  while (e > 0 && wp < 1000000000) { wp = wp * 2; e = e - 1; }
+  while (e < 0 && wp != 0) { wp = wp / 2; e = e + 1; }
+} return word wp;

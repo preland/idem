@@ -1,0 +1,37 @@
+// at -- how far left to shift a string, and how wide a number is.
+//
+// Both answer the same kind of question -- where does this text start? -- and both
+// have to answer it without drawing anything, because a UI centres a label and a
+// HUD right-aligns a score before either is on screen.
+
+// The shift for an alignment: 0 none, 1 half the width, 2 all of it. An unknown
+// align behaves as left, which is the safe default for a value that may have come
+// from a game's idml.
+txt_align(int n, int align) {
+  int m = 0;
+  if (align = 1) {
+    m = n / 2;
+  } else if (align = 2) {
+    m = n;
+  }
+} return int m;
+
+// The pixel width txt_number would draw, at the UI scale, sign included. It has
+// to agree with what txt_number actually draws, or a right-aligned number drifts
+// as the window resizes -- so both go through txt_ui.
+// (v < 0) is a comparison, which yields 1 or 0, so the minus sign costs one glyph
+// exactly when there is one.
+txt_num_width(int v) {
+} return int txt_cell() * txt_ui() * (txt_num_dn(fx_abs(v)) + (v < 0));
+
+// How many decimal digits m has; 0 has one. The loop compares against m / 10
+// rather than multiplying pw by 10 and testing it against m, because the second
+// form overflows on a number near the 32-bit limit and this one cannot.
+txt_num_dn(int m) {
+  int n = 1;
+  int pw = 1;
+  while (pw <= m / 10) {
+    pw = pw * 10;
+    n = n + 1;
+  }
+} return int n;

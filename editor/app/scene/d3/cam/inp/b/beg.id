@@ -1,0 +1,16 @@
+// Beginning and ending a drag.
+
+// The anchor is recorded on the frame the button goes down, so a selection band
+// is measured from where the press happened rather than from wherever the pointer
+// was last looked at.
+ed_drag_beg(int k) {
+  lset((import ed_st), 5, k);
+  m4_pair((import ed_st), 13, 14, inp_mx(), inp_my());
+} return void;
+
+// A selection band commits when the button comes up; an orbit and a pan have
+// already done their work frame by frame and only need clearing.
+ed_drag_fin(int k) {
+  lset((import ed_st), 5, 0);
+  ed_band_take(k);
+} return void;

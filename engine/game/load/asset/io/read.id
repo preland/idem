@@ -1,0 +1,23 @@
+// The read loop, and one chunk of it.
+
+asset_take(string path, int n) {
+  int h = fs_open(path, "r");
+  int got = asset_loop(h, 0, n);
+  fs_close(h);
+} return int got;
+
+asset_loop(int h, int p, int n) {
+  int m = 1;
+  while (p < n && m > 0) {
+    m = asset_one(h, p, fx_min(asset_chunk(), n - p));
+    p = p + m;
+  }
+} return int p;
+
+// One read, staged through the list and poked into the store. fs_read clamps
+// `n` to the list's own length, so the buffer can never be overrun from the C
+// side however wrong the arithmetic here is.
+asset_one(int h, int p, int n) {
+  int m = fs_read(h, (import asset_buf), n);
+  asset_poke(p, m);
+} return int m;

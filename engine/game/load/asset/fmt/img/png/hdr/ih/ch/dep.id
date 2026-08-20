@@ -1,0 +1,22 @@
+// What this decoder will and will not accept.
+//
+// A zero channel count is an unsupported colour type. The depth rule is the
+// format's own: 8 bits for anything, and 1, 2 or 4 only where a pixel is a single
+// sample -- grey or indexed. 16 is refused. Any interlace method but 0 is Adam7.
+
+png_chk2() {
+  if ((import png_st)[4] = 0 || png_baddep() = 1 || (import png_st)[10] != 0) {
+    lset((import png_st), 9, 0 - 1);
+  }
+} return void;
+
+png_baddep() {
+  int bad = 1;
+  if ((import png_st)[2] = 8) { bad = 0; }
+  else { bad = png_subdep((import png_st)[2], (import png_st)[4]); }
+} return int bad;
+
+png_subdep(int d, int n) {
+  int bad = 1;
+  if (n = 1 && (d = 1 || d = 2 || d = 4)) { bad = 0; }
+} return int bad;

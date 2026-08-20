@@ -1,0 +1,18 @@
+// A tuple whose members are expressions.
+//
+// `spawn PipeShaft at (340, gap + 260)` is the case: a spawner places things
+// relative to a variable it just chose, and a literal-only tuple makes that
+// unsayable. par_tuple stays literal-only because the places it serves -- a
+// `display (288, 512)`, a `body (12, 8)` -- are declarations, read once at load,
+// where an expression would have nothing to be evaluated against.
+//
+// The filler is par_efill, the one a call's argument list already uses: a
+// comma-separated run of expressions ending at a bracket is one production, and
+// a second copy of it would be a duplicate-logic error as well as a bug waiting
+// to happen the first time one of them learned something the other did not.
+
+par_etuple(int[] pos) {
+  int[] ks = [];
+  par_want(pos, "(");
+  par_efill(pos, ks);
+} return int ast_new_kids(ast_k_tuple(), "", ks);

@@ -1,0 +1,22 @@
+// The tree, and where the streams begin.
+//
+// A Treeless block (type 3) reuses whatever tree the previous block built, which
+// is why huf_sy and huf_nb are never cleared between blocks.
+
+zst_ltree(int kd) {
+  if (kd = 2) {
+    zst_ltree2();
+  }
+} return void;
+
+zst_ltree2() {
+  int used = huf_stats((import zst_st)[1]);
+  int tot = huf_ranks((import huf_st)[1]);
+  zst_ltree3(used, tot);
+} return void;
+
+zst_ltree3(int used, int tot) {
+  huf_last((import huf_st)[1], tot);
+  huf_rstart();
+  zst_ltree4(used);
+} return void;

@@ -1,0 +1,32 @@
+// Wrapping, and the animation frame.
+//
+// `wrap (min, max)` on an entity moving left means: when it passes min, put it
+// back at max. Two ground strips half a screen apart and one wrap declaration
+// between them is an endless scroller with no spawning at all, which is what
+// flappy's ground is.
+//
+// It wraps on x only. The component's name does not say which axis, and every
+// use of it in practice is a horizontal scroller; a vertical one would need the
+// axis in the declaration rather than guessed here.
+
+sim_wrap(int e) {
+  if (ent_at(e, 9) / 8 % 2 = 1 && ent_at(e, 0) < ent_at(e, 10)) {
+    ent_put(e, 0, ent_at(e, 11));
+  }
+  ent_put(e, 7, ent_anim(e));
+} return void;
+
+// first + (elapsed / ms) mod the cycle length. An entity with no anim holds
+// whatever frame it has, which for a still sprite is 0.
+ent_anim(int e) {
+  int f = ent_at(e, 7);
+  if (ent_at(e, 15) >= ent_at(e, 14)) {
+    f = ent_at(e, 14) + (import sim_st)[0] / ent_at(e, 16) % (ent_at(e, 15) - ent_at(e, 14) + 1);
+  }
+} return int f;
+
+sim_one(int e, int dt) {
+  sim_grav(e, dt);
+  sim_move(e, dt);
+  sim_wrap(e);
+} return void;

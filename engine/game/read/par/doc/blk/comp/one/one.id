@@ -1,0 +1,24 @@
+// The component's arguments.
+
+// A component may carry a braced body of `name = value` pairs -- `keys { space =
+// press, esc = quit }`, `persist { high = 0 }`. They are bindings rather than
+// nested declarations, so they parse as their own small form: an identifier, an
+// `=`, and one value, with commas optional because idml treats them as noise.
+par_comp2(int[] pos, string name, int ln) {
+  int a = par_dargs(pos, ln);
+  int[] kids = [];
+  par_cbody(pos, kids);
+} return int ast_new(ast_k_comp(), name, a, 0, 0, kids);
+
+par_cbody(int[] pos, int[] kids) {
+  if (par_eat(pos, "{") = 1) {
+    par_cfill(pos, kids);
+    par_want(pos, "}");
+  }
+} return void;
+
+par_cfill(int[] pos, int[] kids) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_kv(pos));
+  }
+} return void;

@@ -1,0 +1,9 @@
+// The hierarchy's selected declaration, and the note under it.
+
+ed_insp_decl(int x, int y, int w) {
+  if ((import ed_st)[0] >= 0 && (import ed_st)[0] < len((import ed_nm))) {
+    ed_insp_rows(x, y, w, (import ed_st)[0]);
+  } else {
+    txt_draw("nothing selected", x + 6 * txt_ui(), y + 4 * txt_ui(), ed_col(5));
+  }
+} return void;

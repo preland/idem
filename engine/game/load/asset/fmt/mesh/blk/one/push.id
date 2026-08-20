@@ -1,0 +1,24 @@
+// The other two columns, and the little-endian reader a .blend needs.
+//
+// PNG is big-endian and a .blend is little-endian, which is why this is not
+// asset_be32: the two formats disagree and each says so in its own module.
+//
+// A block CODE, though, is packed most significant byte first so that comparing
+// two codes is comparing two integers -- which is exactly asset_be32, and the
+// compiler said so: a second copy of it here was rejected as duplicate logic.
+
+bl_push2(int n, int i) {
+  push((import bl_bn), n);
+  push((import bl_bs), i);
+  lset((import bl_st), 1, (import bl_st)[1] + 1);
+} return void;
+
+bl_le32(int p) {
+} return int asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536 + asset_at(p + 3) * 16777216;
+
+// A 64-bit little-endian field -- an address, or one of the lengths the newer
+// block header widened. The high half is multiplied in a `word` so the shift does
+// not wrap: the operands decide the width in this language, not the target.
+bl_le64(int p) {
+  word wp = bl_le32(p + 4);
+} return word wp * 4294967296 + bl_ule32(p);

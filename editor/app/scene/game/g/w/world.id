@@ -1,0 +1,12 @@
+// The UI over the world, and the plane's border.
+//
+// The UI is drawn into the plane rect rather than the panel, so a zoomed view
+// magnifies the game's screen layout exactly as it magnifies its sprites -- which
+// is what makes the panel a view of the game rather than a view of its world with
+// its interface pasted on at a fixed size.
+
+ed_plane4(int x, int y, int w, int h) {
+  lset((import ui_ts), 0, ed_psc());
+  ui_draw((import ed_gu)[0], x, y, w, h);
+  ed_plane5(x, y, w, h);
+} return void;

@@ -1,0 +1,14 @@
+// One generated file per turn of this loop.
+
+pack_files(string src, int p, int k) {
+  while (charat(src, p) >= 0 || k = 0) {
+    pack_open(k);
+    p = pack_three(src, p, k);
+    k = k + 3;
+  }
+} return void;
+
+pack_open(int k) {
+  print("@@FILE data/" + pack_path(k / 3) + "d" + (k / 3) + ".id");
+  pack_head();
+} return void;

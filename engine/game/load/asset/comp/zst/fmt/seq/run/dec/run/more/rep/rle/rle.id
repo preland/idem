@@ -1,0 +1,11 @@
+// All THREE columns must be written, not two. The base state was left holding
+// whatever the previous table build put there, so fse_dnext answered a stale
+// value instead of 0 and the single-state table walked off its own one slot --
+// reading a symbol belonging to some other role's table.
+//
+// It is invisible until a block actually uses RLE mode for one of its three
+// alphabets, which nothing before frame 4 of showroom.blend did.
+zst_srle2(int base) {
+  lset((import fse_nb), base, 0);
+  lset((import fse_bs), base, 0);
+} return void;

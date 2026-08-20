@@ -1,0 +1,13 @@
+# build outputs
+/build/
+/out/
+*.o
+*.ppm
+*.png.tmp
+
+# packaged game runtimes
+/games/*/dist/
+
+# editor / OS noise
+*.swp
+.DS_Store

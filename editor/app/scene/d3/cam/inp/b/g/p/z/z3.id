@@ -1,0 +1,5 @@
+// The orbit's distance, on the wheel.
+
+ed_zoom3d() {
+  lset((import ed_st), 4, fx_clamp((import ed_st)[4] - (import ed_st)[4] / 8 * inp_mdown(8) + (import ed_st)[4] / 8 * inp_mdown(16), 1200, 60000));
+} return void;

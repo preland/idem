@@ -1,0 +1,8 @@
+// Where the pointer is, in surface pixels -- the same coordinates sf_pset takes,
+// so a cursor sprite is drawn at inp_mx(), inp_my() with no conversion.
+
+inp_mx() {
+} return int (import inp_mo)[0];
+
+inp_my() {
+} return int (import inp_mo)[1];

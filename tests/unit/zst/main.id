@@ -1,0 +1,27 @@
+// Unit tests for engine/game/load/asset/comp/zst -- Zstandard, in `id`.
+//
+// Every expected value comes from the `zstd` command-line tool decompressing the
+// same fixture, not from this decoder's own first run. The fixtures are committed
+// next to the test so the check is reproducible without zstd installed.
+//
+// The bar is byte-exact agreement on real compressed data, checked as an FNV-1a
+// hash of the whole output plus its length -- one number that moves if any byte
+// does.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  png_init();
+  t_zst();
+} return int 0;
+
+t_zst() {
+  zst_init();
+  t_bits();
+  t_fse();
+} return void;
+
+t_files() {
+  t_one("raw   Raw block, exp 64 bytes hash 2246337607", "tests/unit/zst/img/raw.zst", 64);
+  t_one("rle   sequences, exp ret 300 hash 4095712833", "tests/unit/zst/img/rle.zst", 300);
+  t_more();
+} return void;

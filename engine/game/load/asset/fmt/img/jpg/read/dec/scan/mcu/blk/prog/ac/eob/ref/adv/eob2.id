@@ -1,0 +1,23 @@
+// The run's extra bits, and the walk over coefficients.
+
+jpg_reob2(int n, int rn) {
+  if (rn > 0) {
+    n = n + jpg_recv(rn);
+  }
+  jpg_reob3(n);
+} return void;
+
+jpg_reob3(int n) {
+  lset((import jpg_st), 17, n);
+  lset((import jpg_r), 3, 1);
+} return void;
+
+// Advance over coefficients, appending a correction bit to every nonzero one and
+// counting down the run of zeros. When the run is exhausted the new coefficient
+// goes at the zero that ended it.
+jpg_radv(int a) {
+  while ((import jpg_r)[3] = 3 && (import jpg_r)[0] <= (import jpg_st)[14]) {
+    jpg_radv1(a);
+  }
+  jpg_rend();
+} return void;

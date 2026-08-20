@@ -1,0 +1,34 @@
+// Sizing the scratch records, and the viewport the 3D pipeline draws into.
+//
+// d3_vp, six slots, in surface pixels:
+//
+//     0 x0   1 y0   2 x1   3 y1     the rect, inclusive at both ends
+//     4 cx   5 cy                   where the view axis lands
+//
+// Every 3D stage that used to say "the surface" says "the viewport" instead: the
+// projection centres on (cx, cy), the span clip stops at x0 and x1, and the
+// scanline range stops at y0 and y1. The default is the whole surface, so a game
+// that never mentions a viewport sees exactly what it saw before.
+//
+// This exists because a scene view is a panel. An editor draws 3D into a rect
+// with a hierarchy on one side and an inspector on the other; so does a game with
+// a rear-view mirror, a split screen, or a 3D portrait inside a 2D HUD. Without
+// it the only 3D rect available is the whole window.
+
+d3_fill() {
+  lst_fill((import d3_vts), 18, 0);
+  lst_fill((import d3_spn), 16, 0);
+  d3_fill2();
+} return void;
+
+d3_fill2() {
+  lst_fill((import d3_gs), 7, 0);
+  lst_fill((import d3_clp), 12, 0);
+  d3_fill3();
+} return void;
+
+d3_fill3() {
+  export int[] d3_vp = [0, 0, 0, 0, 0, 0];
+  d3_viewport(0, 0, (import sf_gw), (import sf_gh));
+  d3_mats();
+} return void;

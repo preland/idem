@@ -1,0 +1,13 @@
+// The two questions a caller asks that are not "what is in the buffer".
+
+// Where the caret is, as an index into the buffer. A caller that draws its own
+// field -- one with a selection, or a different frame, or text at a per-mille
+// scale -- needs this and tin_text() and nothing else from the drawing half.
+tin_caret() {
+} return int (import tin_st)[0];
+
+// What the last tin_step came to, asked again. tin_step already answers it; this
+// is for the caller whose drawing code is not the code that stepped, which is
+// every caller with a frame loop that separates update from draw.
+tin_act() {
+} return int (import tin_st)[4];

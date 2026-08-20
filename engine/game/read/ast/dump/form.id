@@ -1,0 +1,17 @@
+// 34 is a double quote. A nil node prints as nothing at all, which is what makes
+// an absent a/b/c invisible instead of noisy.
+ast_sexp3(int nd, int kd, string[] strs) {
+  if (kd = ast_k_str()) { sset(strs, 0, chr(34) + ast_tx(nd) + chr(34)); }
+  else if (kd != ast_k_nil()) { sset(strs, 0, ast_form(nd)); }
+} return void;
+
+ast_form(int nd) {
+  string s = "(" + ast_kname(ast_kd(nd)) + ast_dtx(nd) + ast_dsp(ast_ia(nd));
+} return string s + ast_dsp(ast_ib(nd)) + ast_dsp(ast_ic(nd)) + ast_dkl(ast_ks(nd), 0, "") + ")";
+
+// A literal still owed fractional digits prints as 14e-1, so a golden file shows
+// whether the parser scaled it or left it for the loader.
+ast_numtx(int nd) {
+  string s = "" + ast_ia(nd);
+  if (ast_ib(nd) > 0) { s = s + "e-" + ast_ib(nd); }
+} return string s;

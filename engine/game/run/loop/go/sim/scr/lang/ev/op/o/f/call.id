@@ -1,0 +1,33 @@
+// The builtins a script may call.
+//
+// Deliberately few. Each is here because a game cannot express it and would
+// otherwise need a `hook`: `random` because a script has no state to hold a
+// generator in, `sin` and `cos` because the table is the engine's, `abs`, `min`
+// and `max` because writing them out of comparisons costs three statements in a
+// language whose blocks hold three.
+//
+// `sin(deg)` takes millidegrees and answers a per-mille sine, matching fx_sin --
+// the engine's one convention for an angle, not a second one for scripts.
+//
+// The chain is one comparison per function rather than two, because its tail
+// reports a diagnostic: a chain with a default in the initialiser evaluates that
+// tail for *every* call, and `random` would report itself unknown.
+
+scr_call(int nd, int e) {
+  int a = scr_arg(nd, 0, e);
+  int b = scr_arg(nd, 1, e);
+} return int scr_fn(ast_tx(nd), a, b);
+
+// A missing argument is 0. `random(0, 100)` and `random(100)` then differ by
+// their lower bound rather than by one being an error, which is the reading a
+// person expects.
+scr_arg(int nd, int i, int e) {
+  int v = 0;
+  if (i < len(ast_ks(nd))) { v = scr_ev(ast_ks(nd)[i], e); }
+} return int v;
+
+scr_fn(string name, int a, int b) {
+  int v = 0;
+  if (name = "random") { v = rnd_range(a, b); }
+  else { v = scr_fn2(name, a, b); }
+} return int v;

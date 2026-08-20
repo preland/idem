@@ -1,0 +1,17 @@
+par_and(int[] pos) {
+  int left = par_eq(pos);
+  while (par_is(pos, "&&")) {
+    left = par_and_f(pos, left);
+  }
+} return int left;
+
+par_and_f(int[] pos, int left) {
+  par_next(pos);
+} return int ast_new_ab(ast_k_bin(), "&&", left, par_eq(pos));
+
+par_eq(int[] pos) {
+  int left = par_rel(pos);
+  while (par_is_eqop(pos)) {
+    left = par_eq_f(pos, left);
+  }
+} return int left;

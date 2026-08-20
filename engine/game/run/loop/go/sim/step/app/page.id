@@ -1,0 +1,31 @@
+// Finding the page, and opening the window.
+
+// ui_page is the item tree the `./` marker introduced. A document with no page
+// is legal and lays out nothing -- a game may draw everything itself.
+idem_apage() {
+  int[] pos = [0];
+  ui_pgset(par_doc(pos), 0);
+} return void;
+
+ui_pgset(int doc, int i) {
+  while (i < len(ast_ks(doc))) {
+    ui_pgone(ast_ks(doc)[i]);
+    i = i + 1;
+  }
+} return void;
+
+// scn_one4 already registers a variant and a define, and the compiler rejected a
+// second copy of that dispatch -- correctly: a document's definitions mean the
+// same thing whoever is reading it. It is the last thing the withdrawn loader
+// still owns that this one wants, and it moves here when that loader goes.
+//
+// A document's top level is definitions, styled variants and one page. All three
+// have to be *registered*, not just found: without the defines a `Scores()` is a
+// name nothing knows and draws nothing, and without the variants a `Page` never
+// learns it is a Col. Finding only the page drew an empty screen over a working
+// game, which reads as the layout being broken and is the layout never having
+// been told what its own names mean.
+ui_pgone(int nd) {
+  scn_one4(nd);
+  ui_ppage(nd);
+} return void;

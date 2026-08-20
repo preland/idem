@@ -1,0 +1,35 @@
+// Reading the real code lengths with the code-length table.
+//
+// Three of the nineteen symbols are repeats rather than lengths:
+//
+//     16  copy the previous length 3..6 times   (2 extra bits)
+//     17  a run of zeros, 3..10                 (3 extra bits)
+//     18  a run of zeros, 11..138               (7 extra bits)
+//
+// A repeat that runs past the end of the array is a corrupt stream. Checking it
+// is not defensive: inf_lens is 320 long and symbol 18 can ask for 138 more, so
+// a file that asks at the wrong moment would write past it and abort.
+
+inf_dyn3(int hlit, int hdist) {
+  inf_dlens(hlit + hdist);
+  inf_build((import inf_lc), (import inf_ls), (import inf_lens), hlit);
+  inf_dyn4(hlit, hdist);
+} return void;
+
+inf_dlens(int n) {
+  int i = 0;
+  while (i < n && (import inf_st)[7] = 0) {
+    i = i + inf_dsym2(inf_decode((import inf_cc), (import inf_cs)), i, n);
+  }
+} return void;
+
+// Answers how many entries it filled, so the caller's cursor advances by exactly
+// what was written whichever branch ran.
+inf_dsym2(int kd, int i, int n) {
+  int k = 1;
+  if (kd < 16) {
+    lset((import inf_lens), i, kd);
+  } else {
+    k = inf_drep(kd, i, n);
+  }
+} return int k;

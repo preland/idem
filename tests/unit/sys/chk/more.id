@@ -1,0 +1,28 @@
+// Shrinking, and the stage.
+//
+// The stage is the game's declared display mapped into the surface: the largest
+// per-mille scale that fits, centred. A 288x512 game in a 640x400 surface fits at
+// min(640000/288, 400000/512) = min(2222, 781) = 781 per-mille, so it is
+// 288*781/1000 = 224 by 512*781/1000 = 399 pixels, at x = (640-224)/2 = 208 and
+// y = (400-399)/2 = 0.
+//
+// 399 and not 400: a per-mille scale truncates, and on a 512-unit axis that is
+// worth up to a pixel of the surface left unused. It is the price of an integer
+// scale factor, and the alternative -- fitting exactly and letting the two axes
+// scale differently -- would stretch the art.
+
+t_more() {
+  t_show("shrink to 320x200 exp gw 320 gh 200 cells still 256000", 320, 200);
+  t_stage();
+} return void;
+
+t_stage() {
+  sf_init(640, 400);
+  sys_vp_init(288, 512);
+  t_sshow("288x512 game in a 640x400 surface exp sc 781 x 208 y 0 w 224 h 399");
+} return void;
+
+t_sshow(string msg) {
+  print(msg + " = sc " + (import sys_vp)[0] + " x " + sys_sx() + " y " + sys_sy() + " w " + sys_sw() + " h " + sys_sh());
+  t_keys();
+} return void;

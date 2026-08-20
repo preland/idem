@@ -1,0 +1,20 @@
+// One rect, from the game's units to the surface.
+//
+// Centred on (x, y), like everything else in this engine: the position of a
+// thing is where its middle is, so a paddle at y=100 has 20 units above and 20
+// below it whatever size it is drawn at.
+//
+// The stage scale is per-mille and the coordinates are millunits, so the product
+// is milli-millunits and one divide by a million lands on pixels.
+
+g_box(int x, int y, int w, int h, int c) {
+  sf_rect(sys_sx() + g_px(x - w / 2), sys_sy() + g_px(y - h / 2), g_ext(w), g_ext(h), c);
+} return void;
+
+g_px(int v) {
+} return int v * (import sys_vp)[0] / 1000000;
+
+// Floored at one pixel: a shape thinner than a pixel is still something the game
+// asked to show, and a zero-width rect draws nothing at all.
+g_ext(int v) {
+} return int fx_max(v * (import sys_vp)[0] / 1000000, 1);

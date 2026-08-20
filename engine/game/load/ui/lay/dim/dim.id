@@ -1,0 +1,22 @@
+// A child's extent along the main axis, and whether it renders at all.
+
+// Height is dims.a and width is dims.b -- height first, as idml writes it. A
+// child with no dimension slot at all takes the whole axis, which is what a bare
+// leaf inside a Stack means.
+ui_main(int nd, int w, int h, int k) {
+  int n = h;
+  if (k = 1) { n = w; }
+} return int ui_pct(ast_ib(nd), n, k);
+
+ui_pct(int nd, int n, int k) {
+  int m = n;
+  if (nd != 0) {
+    m = ui_cent(ui_dim(nd, k), n);
+  }
+} return int m;
+
+// dims.a is height, dims.b is width; k = 1 selects the width.
+ui_dim(int nd, int k) {
+  int v = ast_ia(nd);
+  if (k = 1) { v = ast_ib(nd); }
+} return int ast_ia(v);

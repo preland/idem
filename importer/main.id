@@ -1,0 +1,47 @@
+// importer -- a real-world asset, turned into idml an author can read and edit.
+//
+// In:  one normalised text stream on stdin, written by tools/idem. Two shapes:
+//
+//        sprite <name> <fw> <fh> <cols> <rows> <keyR> <keyG> <keyB> <tol>
+//        P3 <w> <h> <max> <w*h*3 ints>          the colour plane
+//        P2 <w> <h> <max> <w*h ints>            the alpha plane
+//
+//        model <name> <nverts> <nfaces>
+//        <nverts * 3 ints>                      millunits, engine axes
+//        <nfaces * 4 ints>                      a b c packed-RGB
+//
+// Out: idml on stdout -- a `palette` and a `sprite`, or a `model`, in exactly the
+//      form IDML_GAME.md sections 2 and 3 describe and a person would have typed.
+//
+// That output shape is the whole design. An imported asset is not a binary blob
+// the engine has a second loader for; it is source, in the same language as
+// hand-drawn art, which means it can be diffed, edited by hand afterwards, packed
+// by the existing packer, and read by the existing lexer. There is exactly one
+// asset path in this engine and this is how a PNG joins it.
+//
+// What the shell did before this program ran is what `id` cannot do: run
+// ImageMagick to decode and quantise a PNG or JPEG, or Blender to evaluate and
+// decimate a .blend. What happens here is everything above that -- the palette,
+// the transparency decision, the frame slicing, the emission -- and it is here
+// because it is the part with judgement in it.
+
+main(int argc, string[] argv) {
+  err_init();
+  imp_go(read_all());
+  flush();
+} return int err_count();
+
+imp_go(string src) {
+  imp_init();
+  imp_kind(src, imp_tok(src));
+} return void;
+
+imp_kind(string src, string name) {
+  if (name = "sprite") {
+    spr_go(src);
+  } else if (name = "model") {
+    mdl_go(src);
+  } else {
+    err_report("stdin", 1, "expected a `sprite` or `model` header, got '" + name + "'");
+  }
+} return void;

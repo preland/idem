@@ -1,0 +1,48 @@
+// Unit tests for engine/game/load/asset/fmt/img/jpg -- the engine reading a JPEG,
+// baseline and progressive.
+//
+// Every expected value comes from a reference decoder written separately in
+// python3 that implements *this* algorithm -- the same x1024 cosine table, the
+// same rounded shifts, the same nearest-neighbour chroma, the same integer
+// YCbCr conversion, and libjpeg's four progressive decoders transcribed
+// directly. Agreement with it is **byte-exact** on all five images below,
+// 374 850 bytes on the largest, and that is the real test of the port: the maths
+// is identical, so any difference is a transcription bug.
+//
+// Agreement with libjpeg is a separate, weaker claim, measured rather than
+// asserted, and it separates cleanly by chroma sampling rather than by mode:
+//
+//     grad     baseline    4:4:4                    max  2  mean 0.583
+//     plasma   baseline    4:2:0                    max 32  mean 4.863
+//     prog444  progressive 4:4:4, 10 scans          max  3  mean 0.516
+//     prog420  progressive 4:2:0, 10 scans          max  5  mean 2.035
+//     water    progressive 4:2:0, 5 scans           max 54  mean 0.840
+//
+// Every 4:4:4 image is within 3 and every 4:2:0 one is not, in both modes. That
+// is the IDCT's rounding against libjpeg's, and libjpeg's interpolated chroma
+// upsampling against this decoder's nearest-neighbour. Re-encoding the water
+// sheet as 4:4:4 and decoding that gives max 3, mean 0.349 -- which is what
+// establishes that its 54 is upsampling and not a progressive fault.
+//
+// The two `prog` fixtures use ImageMagick's default progressive script, which
+// includes **successive approximation** (scans with Ah > 0). The water sheet does
+// not -- all five of its scans are Ah = Al = 0, pure spectral selection -- so the
+// fixtures test the general path that the target asset alone would leave unproven.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  png_init();
+  t_boot();
+} return int 0;
+
+t_boot() {
+  jpg_init();
+  inf_init();
+  t_load();
+} return void;
+
+t_load() {
+  t_one("grad baseline 4:4:4", "tests/unit/jpg/img/grad.jpg", 24, 16);
+  t_one("plasma baseline 4:2:0", "tests/unit/jpg/img/plasma.jpg", 24, 16);
+  t_more();
+} return void;

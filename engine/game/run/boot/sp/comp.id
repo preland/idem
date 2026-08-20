@@ -1,0 +1,20 @@
+// Finding a component inside a declaration, by name.
+
+scn_mtup(int nd, string name, int k) {
+  int c = scn_mem(nd, name, 0);
+  int v = 0;
+  if (c != 0 && len(ast_ks(scn_arg(c, 0))) > k) { v = ast_ia(ast_ks(scn_arg(c, 0))[k]); }
+} return int v;
+
+scn_mem(int nd, string name, int i) {
+  int c = 0;
+  while (i < len(ast_ks(nd)) && c = 0) {
+    c = scn_ifmem(ast_ks(nd)[i], name);
+    i = i + 1;
+  }
+} return int c;
+
+scn_ifmem(int nd, string name) {
+  int c = 0;
+  if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = name) { c = nd; }
+} return int c;

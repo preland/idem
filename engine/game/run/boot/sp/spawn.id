@@ -1,0 +1,23 @@
+// Populating the world from the current scene.
+//
+// A scene's `entity NAME { … }` members become records in the entity store. This
+// is where a document stops being a tree and starts being a world: after this, a
+// frame indexes a record and never walks an AST.
+
+scn_spawn(int nd, int i) {
+  while (nd != 0 && i < len(ast_ks(nd))) {
+    scn_ent(ast_ks(nd)[i]);
+    i = i + 1;
+  }
+} return void;
+
+scn_ent(int nd) {
+  if (ast_kd(nd) = ast_k_entity()) {
+    scn_efill(ent_add(), nd, 0);
+  }
+} return void;
+
+// `pos (x, y)`: member k of the tuple its component carries, in stage units,
+// scaled to the millunits the store keeps.
+scn_ex(int nd, int k) {
+} return int scn_mtup(nd, "pos", k) * 1000;

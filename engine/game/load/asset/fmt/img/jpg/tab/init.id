@@ -1,0 +1,21 @@
+// The tables, allocated once and reused for every image: four quantisation
+// tables, eight Huffman tables (four DC, four AC, indexed td and 4+ta), the
+// component records, the bit reader's state, and two 64-entry scratch blocks.
+
+jpg_init2() {
+  export int[] jpg_q = [];
+  export int[] jpg_hc = [];
+  jpg_init3();
+} return void;
+
+jpg_init3() {
+  export int[] jpg_hs = [];
+  export int[] jpg_c = [];
+  jpg_init4();
+} return void;
+
+jpg_init4() {
+  export int[] jpg_b = [];
+  export int[] jpg_f = [];
+  jpg_init4b();
+} return void;

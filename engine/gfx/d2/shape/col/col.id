@@ -1,0 +1,29 @@
+// col -- a colour is one int, 0xRRGGBB.
+//
+// Not a choice: backends/gfx's id_gfx_present blits an int[] of packed pixels
+// straight into an XImage, so the framebuffer's cell type is the colour type
+// (ARCHITECTURE.md section 4). There is no alpha channel anywhere in the engine
+// -- transparency is a reserved value in a sprite, not a fourth channel (see
+// d2_clear) -- so 8 bits per channel is the whole format.
+//
+// These live in d2 because that is where colour is authored, but they are the
+// 3D renderer's helpers too: d3 shades a face by the lighting term with
+// d2_shade and fogs it with d2_blend, so a lit triangle and a tinted sprite
+// speak the same units.
+//
+// d2_rgb clamps rather than masking. A masked channel wraps -- 300 becomes 44,
+// so a highlight turns into a dark band -- while a clamped one saturates, which
+// is what lighting, fog and every ramp actually want. It also means callers may
+// compute channels freely and let the pack be the one place that worries.
+
+d2_rgb(int cr, int cg, int cb) {
+} return int fx_clamp(cr, 0, 255) * 65536 + fx_clamp(cg, 0, 255) * 256 + fx_clamp(cb, 0, 255);
+
+// The channel extractors mask with % 256 on every channel, including the top
+// one, so a colour carrying junk above bit 24 still yields three legal channels
+// instead of a red value in the thousands.
+d2_cr(int c) {
+} return int (c / 65536) % 256;
+
+d2_cg(int c) {
+} return int (c / 256) % 256;

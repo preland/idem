@@ -1,0 +1,20 @@
+// The literals buffer's size, and the tables every block reuses.
+//
+// A zstd block decompresses to at most 128 KiB, so its literals cannot exceed
+// that either. Allocating for the worst case once is 128 KB of store against an
+// allocation per block, in a language where nothing is ever given back.
+
+zst_lmax() {
+} return int 131072;
+
+zst_tabs() {
+  lset((import zst_st), 8, alloc(zst_lmax()));
+  zb_init();
+  zst_tabs2();
+} return void;
+
+zst_tabs2() {
+  fse_init();
+  zst_stabs_init();
+  zst_tabs3();
+} return void;

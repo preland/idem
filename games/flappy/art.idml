@@ -1,0 +1,12 @@
+# The art, as references. The pixels live in PNGs beside this file and the
+# engine decodes them itself -- idml is a layout language and does not
+# describe images (ARCHITECTURE.md 7.6).
+#
+# Migrated from the character-grid form this file used to carry; the images
+# are pixel-for-pixel what those characters said.
+
+sprite bird from "art/bird.png" grid (1, 3) cell (17, 12)
+sprite pipe-cap from "art/pipe-cap.png" grid (1, 1) cell (52, 26)
+sprite pipe-shaft from "art/pipe-shaft.png" grid (1, 1) cell (52, 8)
+sprite ground from "art/ground.png" grid (1, 1) cell (24, 12)
+font digits from "art/digits.png" grid (1, 10) cell (4, 6) first 48

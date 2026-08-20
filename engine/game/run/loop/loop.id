@@ -1,0 +1,28 @@
+// The frame loop.
+//
+//   sys_sync()   settle the surface size before anything draws (ARCHITECTURE §3)
+//   inp_drain()  one frame's input, at one instant
+//   draw         background, world, UI
+//   sys_present() one native blit
+//   sys_pace()    sleep out the rest of the declared frame
+//
+// The loop ends when the window closes or Esc is pressed, and sys_alive carries
+// both -- including the case where there was never a window, which is what makes
+// a headless run exit cleanly instead of spinning.
+
+idem_run() {
+  run_loop(1);
+} return void;
+
+run_loop(int alive) {
+  while (alive = 1) {
+    alive = run_frame();
+  }
+  gfx_close();
+} return void;
+
+run_frame() {
+  int t = sys_now();
+  run_step();
+  sys_pace(t, (import scn_st)[2]);
+} return int sys_alive();

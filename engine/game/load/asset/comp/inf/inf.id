@@ -1,0 +1,45 @@
+// inf -- DEFLATE, in `id`.
+//
+// This is what "the engine interprets the asset" costs, and it is the honest
+// price: a PNG's pixels are a zlib stream, so reading one means implementing
+// RFC 1951. The algorithm is `puff`'s -- canonical Huffman decoded bit by bit
+// against a per-length count table, rather than through a lookup table -- because
+// it is the version whose correctness can be read off the page, and because the
+// table build is the part that goes subtly wrong.
+//
+// Everything is in the flat store: source bytes in, output bytes out, no lists on
+// the hot path. inf_st is the whole of the state:
+//
+//     0 sa    address of the compressed bytes    1 sp    read cursor, in bytes
+//     2 bitb  the bit buffer                     3 bitn  bits in it
+//     4 da    address of the output              5 dp    write cursor
+//     6 cap   output capacity                    7 err   0, or the first fault
+//     8 slen  how many source bytes there are
+//
+// Both addresses are **flat-store addresses**, not offsets into a file. The
+// distinction cost an hour: the PNG walk works in offsets from the start of the
+// file, the store works in addresses, and handing one where the other belongs
+// reads the right number of bytes from the wrong place.
+//
+// A fault is recorded rather than thrown -- there is no early exit in this
+// language -- and every loop below carries it in its condition, so a corrupt
+// stream stops rather than spinning.
+
+inf_init() {
+  export int[] inf_st = [];
+  lst_fill((import inf_st), 9, 0);
+  inf_tabs();
+} return void;
+
+// Decompress the bytes at `sa` into `cap` bytes at `da`. Answers the number of
+// bytes produced, or -1 if the stream was corrupt.
+inf_run(int sa, int slen, int da, int cap) {
+  inf_reset(sa, slen, da, cap);
+  inf_blocks();
+} return int inf_out();
+
+inf_reset(int sa, int slen, int da, int cap) {
+  m4_pair((import inf_st), 0, 1, sa, 0);
+  m4_pair((import inf_st), 2, 3, 0, 0);
+  inf_reset2(slen, da, cap);
+} return void;

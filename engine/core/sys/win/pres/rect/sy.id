@@ -1,0 +1,4 @@
+// The stage's top edge. Its own file because a file holds three functions.
+
+sys_sy() {
+} return int (import sys_vp)[2];

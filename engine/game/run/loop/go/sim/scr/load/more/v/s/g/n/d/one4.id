@@ -1,0 +1,29 @@
+// The last two top-level kinds.
+
+// A `define` and an `import` share a node kind; ui_dload tells them apart by
+// whether there is a body to register.
+scn_one4(int nd) {
+  if (ast_kd(nd) = ast_k_variant()) {
+    ui_vload(nd);
+  } else if (ast_kd(nd) = ast_k_define()) {
+    ui_dload(nd);
+  }
+} return void;
+
+// `scale`, `keys` and `persist`. The first is the window's; the other two are the
+// interpreter's, and both are read here because the manifest is walked once.
+scn_prop3(int nd) {
+  if (ast_tx(nd) = "scale") {
+    lset((import scn_st), 3, fx_clamp(scn_num(nd, 0), 1, 8));
+  } else {
+    scn_prop4(nd);
+  }
+} return void;
+
+scn_prop4(int nd) {
+  if (ast_tx(nd) = "keys") {
+    scr_keys(nd, 0);
+  } else if (ast_tx(nd) = "persist") {
+    scr_persist(nd, 0);
+  }
+} return void;

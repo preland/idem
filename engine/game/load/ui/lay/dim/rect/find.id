@@ -1,0 +1,15 @@
+// Finding a name. A linear scan over a few dozen entries, done a handful of times
+// a frame; a hash would be more code than the whole module saves.
+//
+// The FIRST match wins, so an item that appears twice in a layout is found at its
+// first occurrence. That is the useful answer for a name used as an identifier
+// and the harmless one for a name used as a component.
+
+ui_rfind(string name) {
+  int p = 0 - 1;
+  int i = 0;
+  while (i < len((import ui_rn))) {
+    p = lst_pick(p, i, (import ui_rn)[i] = name);
+    i = i + 1;
+  }
+} return int p;

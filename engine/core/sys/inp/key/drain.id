@@ -1,0 +1,38 @@
+// drain -- one frame's worth of input, taken from the backend in one place.
+//
+// One poll is never enough: the backend queues every event since the last frame
+// and hands them over one at a time, so the loop runs until it says -1 (nothing
+// left) or -2 (the window wants to close). That last value is what the frame
+// loop needs, so it is what inp_drain returns.
+//
+// The frame ordinal is bumped *first*, before any event is stamped, so every
+// press this drain sees belongs to the frame about to run. The pointer is
+// sampled *last*, after the queue is empty, because the backend updates its
+// pointer state while it pumps -- sampling first would report the position the
+// mouse had a frame ago.
+
+inp_drain() {
+  lset((import inp_st), 0, (import inp_st)[0] + 1);
+  int ev = inp_pump();
+  inp_sample();
+} return int ev;
+
+inp_pump() {
+  int ev = gfx_poll();
+  while (ev >= 0) {
+    inp_stamp(ev);
+    ev = gfx_poll();
+  }
+} return int ev;
+
+// 65536 is GFX_RELEASED: the release of a key arrives as its code plus that.
+// Written inline rather than as a named constant because it appears twice, in
+// one function, and a zero-action function returning a bare literal is a
+// duplicate-logic hazard the whole program shares (NAMES.md §5).
+inp_stamp(int ev) {
+  if (ev >= 65536) {
+    inp_up(ev - 65536);
+  } else {
+    inp_dn(ev);
+  }
+} return void;

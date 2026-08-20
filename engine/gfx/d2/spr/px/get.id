@@ -1,0 +1,25 @@
+// get -- one pixel of one sprite, and the row a blit reads.
+//
+// A pixel index is frame * w * h + row * w + col, flat: the loader walks its
+// decoded rows in order and so does every blit, so nobody multiplies out a
+// frame twice.
+//
+// d2_spr_px hands out the pixel list itself, which matters more than it looks.
+// The blitters need it as a *parameter*, because a flat loop assigning into a
+// list parameter runs at 4.3-5.0 Gpx/s while the same loop through lset runs at
+// 1.0 (ARCHITECTURE.md section 3.1). Returning the list once per row is what
+// buys that.
+//
+// d2_spr_put and d2_spr_at are the load-time and script-level accessors: they
+// pay a call and a bounds check per pixel, which is the right trade for
+// decoding art once and utterly the wrong one for drawing it every frame.
+
+d2_spr_px(int p) {
+} return int[] (import asset_sprpx)[p];
+
+d2_spr_put(int p, int i, int c) {
+  lset(d2_spr_px(p), i, c);
+} return void;
+
+d2_spr_at(int p, int i) {
+} return int lget(d2_spr_px(p), i);

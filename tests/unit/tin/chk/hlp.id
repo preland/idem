@@ -1,0 +1,26 @@
+// A frame with no events, a release, and typing a whole string.
+
+// The frame in which a held key does or does not repeat: nothing is sent at all,
+// which is precisely the case the old level-only input could not distinguish
+// from "no key is down".
+t_hold(int t) {
+  t_next();
+  tin_step(t);
+} return void;
+
+// 65536 is GFX_RELEASED: a release arrives as the key's own code plus that.
+t_up(int key, int t) {
+  t_next();
+  inp_stamp(key + 65536);
+  tin_step(t);
+} return void;
+
+// One character per frame, which is what typing is. The time advances with the
+// index so that no two of them share an instant -- a repeat deadline computed
+// from a frozen clock would fire on the wrong frame and this would not notice.
+t_type(string s, int i, int t) {
+  while (charat(s, i) >= 0) {
+    t_tap(charat(s, i), t + i);
+    i = i + 1;
+  }
+} return void;

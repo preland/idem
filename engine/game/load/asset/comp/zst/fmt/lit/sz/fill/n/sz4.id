@@ -1,0 +1,8 @@
+// The one- and three-byte size forms, split out because a file holds three
+// functions and the buffer helpers next door already fill one.
+
+zst_lsz4(int sf, int h, int n) {
+  if (sf = 3) { n = zst_lsz3(h); }
+  else { lset((import zst_st), 1, (import zst_st)[1] + 1); }
+} return int n;
+

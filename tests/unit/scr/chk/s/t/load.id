@@ -1,0 +1,15 @@
+// Lexing and parsing the fixture.
+
+// The document. A scene with three variables, an entity that owns one, a
+// template to spawn, and handlers for update, timer, press and hit.
+t_load() {
+  lex_init();
+  lex_run(t_src());
+  t_go();
+} return void;
+
+t_go() {
+  int[] pos = [0];
+  scn_load(par_doc(pos));
+  t_vars();
+} return void;

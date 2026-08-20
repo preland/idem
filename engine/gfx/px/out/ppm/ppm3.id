@@ -1,0 +1,17 @@
+// ppm3 -- one pixel, three channels.
+//
+// The masks are %256 on every channel rather than a plain divide on the top one,
+// so a colour carrying junk in bits above 24 -- a packed value that picked up a
+// flag, say -- still emits a legal PPM instead of a channel over 255 that makes
+// the whole file unreadable.
+
+ppm_px(int c) {
+  ppm_chan((c / 65536) % 256);
+  ppm_chan((c / 256) % 256);
+  ppm_chan(c % 256);
+} return void;
+
+ppm_chan(int v) {
+  put((import ppm_num)[v]);
+  put(" ");
+} return void;

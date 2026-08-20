@@ -1,0 +1,32 @@
+// Finding a struct by name, and a field's offset inside it.
+//
+// A struct entry is a type index, a field count, then that many (type, name)
+// index pairs -- four bytes of header and four per field, so walking to struct
+// `i` means walking every struct before it. That is 981 short walks on this file
+// and happens once per lookup, which is fine for the handful of structs a mesh
+// reader asks about.
+
+bl_sfind(string name) {
+  int k = 0 - 1;
+  int i = 0;
+  while (i < (import bl_st)[6] && k < 0) {
+    k = bl_spick(i, name);
+    i = i + 1;
+  }
+} return int k;
+
+bl_spick(int i, string name) {
+  int p = bl_soff(i);
+  int k = 0 - 1;
+  if (bl_streq(bl_nth((import bl_st)[8], bl_le16(p)), name) = 1) { k = i; }
+} return int k;
+
+// The offset of struct i's entry, by walking the ones before it.
+bl_soff(int i) {
+  int p = (import bl_st)[10];
+  int j = 0;
+  while (j < i) {
+    p = p + 4 + bl_le16(p + 2) * 4;
+    j = j + 1;
+  }
+} return int p;

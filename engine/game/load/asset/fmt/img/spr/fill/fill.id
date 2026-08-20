@@ -1,0 +1,30 @@
+// Adding the sprite, and walking the grid.
+//
+// d2_spr_add allocates w * h * frames pixels pre-filled with d2_clear(), so a
+// frame this loop never reaches is transparent rather than garbage -- which is
+// what makes a partially written sheet draw holes instead of noise.
+
+spr_dims(string name, int cols, int rows, int cw, int ch, int sw, int sh) {
+  int p = d2_spr_add(name, cw, ch, cols * rows);
+  spr_fill(p, cols, cw, ch, sw, sh);
+} return int p;
+
+spr_fill(int p, int cols, int cw, int ch, int sw, int sh) {
+  int f = 0;
+  while (f < d2_spr_nf(p)) {
+    spr_frame(p, f, cols, cw, ch, sw, sh);
+    f = f + 1;
+  }
+} return void;
+
+// Frame f sits at column f % cols and row f / cols of the sheet. Its destination
+// base is f * cw * ch (the sprite table's frames are consecutive) and its source
+// row is the cell's top plus the sampled offset -- multiply before divide, or a
+// cell shorter than its source collapses to row 0.
+spr_frame(int p, int f, int cols, int cw, int ch, int sw, int sh) {
+  int y = 0;
+  while (y < ch) {
+    spr_row(p, f * cw * ch + y * cw, asset_row(f / cols * sh + y * sh / ch), f % cols * sw, cw, sw);
+    y = y + 1;
+  }
+} return void;

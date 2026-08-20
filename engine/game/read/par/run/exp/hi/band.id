@@ -1,0 +1,14 @@
+par_bxor_f(int[] pos, int left) {
+  par_next(pos);
+} return int ast_new_ab(ast_k_bin(), "^", left, par_band(pos));
+
+par_band(int[] pos) {
+  int left = par_shift(pos);
+  while (par_is(pos, "&")) {
+    left = par_band_f(pos, left);
+  }
+} return int left;
+
+par_band_f(int[] pos, int left) {
+  par_next(pos);
+} return int ast_new_ab(ast_k_bin(), "&", left, par_shift(pos));

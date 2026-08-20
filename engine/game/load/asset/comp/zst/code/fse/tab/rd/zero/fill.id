@@ -1,0 +1,14 @@
+// The final two bits of the run, and writing the zeroes out.
+
+fse_z2b() {
+  int v = zf_peek(2);
+  zf_drop(2);
+} return int v;
+
+fse_zfill(int n0) {
+  while ((import fse_st)[4] < n0 && (import fse_st)[4] <= (import fse_st)[9]) {
+    lset((import fse_ct), (import fse_st)[4], 0);
+    lset((import fse_st), 4, (import fse_st)[4] + 1);
+  }
+  lset((import fse_st), 5, 0);
+} return void;

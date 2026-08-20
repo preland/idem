@@ -1,0 +1,34 @@
+// The near clip: the cut itself, then the three cases end to end.
+//
+// The cut runs from a vertex 2 units ahead to one exactly at the eye, so the
+// plane at 40 millunits is 98% of the way along: x lands at 979 of 1000 and the
+// colour 98% of the way from red to blue. z is not interpolated at all -- it is
+// assigned the plane's value, because a rounded interpolation could land a
+// millunit behind the plane and a vertex behind the plane is the one thing this
+// whole file exists to prevent.
+
+t_cut() {
+  int[] tri = [0, 0, 2000, 1000, 0, 0, 0, 0, 0, 0xFF0000, 0x0000FF, 0];
+  d3_ncut(tri, 0, 1, 0);
+  t_cutp();
+} return void;
+
+t_cutp() {
+  print("ncut z2000->z0 at near 40: exp x 979 y 0 z 40 = " + (import d3_clp)[0] + " " + (import d3_clp)[1] + " " + (import d3_clp)[2]);
+  print("ncut colour red->blue exp 393465 = " + (import d3_clp)[9]);
+  t_raster();
+} return void;
+
+// The same triangle at four sets of depths, one per branch of the case analysis:
+// wholly in front, wholly behind, two vertices in front (the quad, split into two
+// triangles), one vertex in front (the corner).
+//
+// The wholly-behind case must light nothing. If it lights one pixel, a vertex
+// behind the eye has been projected through the origin and drawn on the opposite
+// side of the screen -- the exact failure the near plane exists to prevent, and
+// one that looks like a smeared wall rather than like a bug.
+t_raster() {
+  t_case("wholly in front (exp ~19044, the triangle's area)", 2000, 2000, 2000);
+  t_case("wholly behind (exp 0 lit)", 0 - 2000, 0 - 2000, 0 - 2000);
+  t_raster2();
+} return void;

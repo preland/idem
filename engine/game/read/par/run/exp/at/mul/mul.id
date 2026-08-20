@@ -1,0 +1,12 @@
+par_mul(int[] pos) {
+  int left = par_unary(pos);
+  while (par_is_mulop(pos)) {
+    left = par_mul_f(pos, left);
+  }
+} return int left;
+
+par_mul_f(int[] pos, int left) {
+  string txt = par_text(pos);
+  par_next(pos);
+  int nd = par_unary(pos);
+} return int ast_new_ab(ast_k_bin(), txt, left, nd);

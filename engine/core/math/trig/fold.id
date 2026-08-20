@@ -1,0 +1,34 @@
+// trig quadrants -- folding a full turn onto the quarter wave.
+//
+// sin(q * 90 + r) for r in [0, 90) is the table read forwards in quadrants 0
+// and 2 and backwards in 1 and 3, negated in 2 and 3. Four cases do not fit one
+// block: an if/else-if/else is already three actions and fills a block by
+// itself, so a fourth arm is impossible. The split is therefore a binary tree,
+// the shape demos/galaxy uses -- one two-way test, then one more.
+//
+// fx_sin_q01 and fx_sin_q23 are two functions rather than one because they
+// differ in an operator and a literal, which is exactly what the
+// function-uniqueness rule looks at.
+
+fx_sin_q(int q, int rm) {
+  int sv = 0;
+  if (q < 2) {
+    sv = fx_sin_q01(q, rm);
+  } else {
+    sv = fx_sin_q23(q, rm);
+  }
+} return int sv;
+
+fx_sin_q01(int q, int rm) {
+  int sv = fx_sin_lin(rm);
+  if (q = 1) {
+    sv = fx_sin_lin(90000 - rm);
+  }
+} return int sv;
+
+fx_sin_q23(int q, int rm) {
+  int sv = 0 - fx_sin_lin(rm);
+  if (q = 3) {
+    sv = 0 - fx_sin_lin(90000 - rm);
+  }
+} return int sv;

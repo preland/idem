@@ -1,0 +1,30 @@
+// The two ways a game runs: a window, or a fixed number of frames to stdout.
+//
+// Nothing else may reach stdout in shot mode -- there is no stderr in this
+// language, so one stray print corrupts the image (NAMES.md 6). That is also why
+// diagnostics are counted rather than printed during a frame.
+//
+// `--shot` renders one frame; `--shot 30` simulates thirty and writes the last.
+// That is not a convenience. One frame shows what a scene *declares*; thirty show
+// what it *does* -- whether the ground scrolled, whether the bird fell, whether an
+// animation advanced -- and the difference between those two is the whole of the
+// simulation. Verifying it any other way needs a person watching a window.
+
+idem_go(int argc, string[] argv) {
+  int n = err_count();
+  idem_go2(argc, argv);
+} return int n;
+
+idem_go2(int argc, string[] argv) {
+  if (argc > 1) {
+    idem_shot(fx_max(shot_n(argc, argv), 1));
+  } else {
+    idem_run();
+  }
+} return void;
+
+idem_shot(int n) {
+  ppm_init();
+  shot_frames(n);
+  ppm_dump();
+} return void;

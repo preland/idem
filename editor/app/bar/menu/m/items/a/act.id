@@ -1,0 +1,18 @@
+// The Asset, View and Help labels.
+
+ed_masset(int i) {
+  string s = "Frame All";
+  if (i = 0) { s = "Import..."; }
+  else if (i = 1) { s = "Reload"; }
+} return string s;
+
+ed_mview(int i) {
+  string s = "Front View";
+  if (i = 0) { s = "Reset View"; }
+  else if (i = 1) { s = "Top View"; }
+} return string s;
+
+ed_mhelp(int i) {
+  string s = "About";
+  if (i = 0) { s = "Controls"; }
+} return string s;

@@ -1,0 +1,22 @@
+// A file, as a string.
+//
+// Building it is a concatenation per byte, which is the shape this language is
+// worst at -- and it is correct here: it happens once, when a person chooses
+// Open, over a few kilobytes of idml. The engine's own rule is that nothing does
+// this *per frame*, and nothing here does.
+
+ed_rd(string path) {
+  int[] buf = [];
+  lst_fill(buf, fx_max(fs_size(path), 0), 0);
+} return string ed_rget(path, buf);
+
+ed_rget(string path, int[] buf) {
+  int h = fs_open(path, "r");
+  int n = ed_rnow(h, buf);
+} return string ed_rstr(buf, 0, n, "");
+
+ed_rnow(int h, int[] buf) {
+  int n = 0;
+  if (h >= 0) { n = fs_read(h, buf, len(buf)); }
+  ed_wshut(h);
+} return int n;

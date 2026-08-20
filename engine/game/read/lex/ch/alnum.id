@@ -1,0 +1,13 @@
+lex_is_alnum(int c) {
+  int ok = 0;
+  if (lex_is_alpha(c) || lex_is_digit(c)) { ok = 1; }
+} return int ok;
+
+// 97..102 'a'..'f', 65..70 'A'..'F'. Lives beside the other character classes
+// rather than with the operator scanner it used to share a file with -- that file
+// grew a third function when the two-byte operator test stopped being a string
+// comparison, and this was always the odd one out there.
+lex_is_hex(int c) {
+  int ok = 0;
+  if (lex_is_digit(c) || c >= 97 && c <= 102 || c >= 65 && c <= 70) { ok = 1; }
+} return int ok;

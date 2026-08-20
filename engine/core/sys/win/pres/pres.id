@@ -1,0 +1,39 @@
+// pres -- keeping the surface the same size as the window, and putting it there.
+//
+// Two calls, and the split between them is the whole correctness argument:
+//
+//   sys_sync()     at the TOP of a frame, before anything draws
+//   sys_present()  at the end, blit and nothing else
+//
+// The surface may only change size at a moment when nothing has been drawn into
+// it yet. Resizing at present time -- after the frame was drawn -- means the
+// content was laid out at one stride and read back at another, and a framebuffer
+// read with the wrong stride is not subtly wrong: it comes out visibly sheared,
+// each row offset a little further than the last. That is the bug this shape
+// exists to prevent, and it is easy to reintroduce by "simplifying" these back
+// into one call.
+//
+// The window manager can still resize between sync and present -- gfx_present
+// pumps events itself -- so the blit is skipped when the two no longer agree.
+// A dropped frame during a drag is invisible; a sheared one is not.
+
+sys_sync() {
+  sys_fit(gfx_width(), gfx_height());
+} return void;
+
+sys_present() {
+  if ((import sf_gw) = gfx_width() && (import sf_gh) = gfx_height()) {
+    gfx_present((import sf_fb));
+  }
+} return void;
+
+// Nothing to do unless the size actually changed -- and with no display at all
+// gfx_width answers 0, which is not a size, so the surface keeps whatever it was
+// opened with. That is what lets `--shot` render at the requested size on a
+// machine with no X server.
+sys_fit(int w, int h) {
+  if (w > 0 && h > 0 && (w != (import sf_gw) || h != (import sf_gh))) {
+    sf_init(w, h);
+    sys_stage();
+  }
+} return void;

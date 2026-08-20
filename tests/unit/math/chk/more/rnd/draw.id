@@ -1,0 +1,31 @@
+// A thousand draws of rnd_range(10, 20), folded into a 2-slot list: slot 0 is the
+// smallest value seen, slot 1 the largest. Both ends of the interval must appear
+// and nothing outside it may, which is the only bound test that means anything
+// for a generator -- a single draw proves nothing.
+//
+// The fold is a list rather than two threaded return values because the loop body
+// cannot both draw and update two extremes inside three actions, and because
+// `id` has no break and no early return: a scan runs to completion carrying its
+// result. The nested-loop split (t_draw walks, t_one does the work) is the same
+// reason -- a while holding a while holding two statements is already at the
+// depth limit.
+
+t_rndloop() {
+  int[] xs = [2147483647, 0 - 2147483647];
+  t_draw(xs, 1000);
+  print("rnd_range(10,20) x1000 min exp 10, max exp 20 = " + xs[0] + " " + xs[1]);
+} return void;
+
+t_draw(int[] xs, int n) {
+  int i = 0;
+  while (i < n) {
+    t_one(xs);
+    i = i + 1;
+  }
+} return void;
+
+t_one(int[] xs) {
+  int v = rnd_range(10, 20);
+  lset(xs, 0, fx_min(xs[0], v));
+  lset(xs, 1, fx_max(xs[1], v));
+} return void;

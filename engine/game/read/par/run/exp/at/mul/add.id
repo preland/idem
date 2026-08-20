@@ -1,0 +1,12 @@
+par_add(int[] pos) {
+  int left = par_mul(pos);
+  while (par_is_addop(pos)) {
+    left = par_add_f(pos, left);
+  }
+} return int left;
+
+par_add_f(int[] pos, int left) {
+  string txt = par_text(pos);
+  par_next(pos);
+  int nd = par_mul(pos);
+} return int ast_new_ab(ast_k_bin(), txt, left, nd);

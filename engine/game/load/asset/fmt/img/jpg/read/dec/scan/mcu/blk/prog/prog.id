@@ -1,0 +1,47 @@
+// The progressive block decoders.
+//
+// A progressive image sends its coefficients in several passes. Each scan
+// declares a band -- Ss to Se -- and a precision, Ah and Al: the bits already
+// sent and the bit this scan adds. A scan with Ah = 0 is the FIRST pass over its
+// band and sends whole values shifted left by Al; a scan with Ah > 0 is a
+// REFINEMENT and sends one more bit of coefficients it has already placed.
+//
+// So there are four decoders, and which one runs is decided per scan rather than
+// per block:
+//
+//     Ss = 0, Ah = 0   the DC, first pass
+//     Ss = 0, Ah > 0   the DC, one more bit
+//     Ss > 0, Ah = 0   an AC band, first pass
+//     Ss > 0, Ah > 0   an AC band, one more bit
+//
+// The DC band is always scan-interleaved and the AC bands never are -- the
+// standard requires it, because an AC scan carries one component's blocks in its
+// own raster order.
+
+jpg_pblk(int ci, int a) {
+  if ((import jpg_st)[13] = 0) {
+    jpg_pdc(ci, a);
+  } else {
+    jpg_pac(ci, a);
+  }
+} return void;
+
+// The first DC pass is the baseline DC decoder: a difference against the
+// predictor, shifted left by Al. jpg_dc already applies that shift, so there is
+// nothing progressive-specific in it.
+jpg_pdc(int ci, int a) {
+  if ((import jpg_st)[15] = 0) {
+    jpg_dc(ci, a);
+  } else {
+    jpg_pdcr(a);
+  }
+} return void;
+
+// A DC refinement is one bit per block, and it is an OR rather than an add: the
+// bit being sent sits above everything already there, and a value that somehow
+// had it set must not carry.
+jpg_pdcr(int a) {
+  if (jpg_bit() = 1) {
+    jpg_cset(a, 0, jpg_cget(a, 0) | inf_pow2((import jpg_st)[16]));
+  }
+} return void;

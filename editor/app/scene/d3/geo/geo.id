@@ -1,0 +1,30 @@
+// Geometry: a ground line as a flat quad, and a box.
+//
+// A "line" on the ground is a quad 30 millunits wide lying in the y = 0 plane.
+// Three centimetres is chosen against the projection, not by eye: at the default
+// orbit distance of nine units and a 60-degree lens it is a little under two
+// pixels, so the grid reads as lines rather than as a haze, and it thins with
+// distance the way a real grid does.
+//
+// Both triangles are wound so that the grid is a front face to a camera ABOVE the
+// plane and is culled from below -- correct, and free. Which winding that is was
+// settled by drawing it: a horizontal quad written in the obvious order came out
+// facing down, because the projection flips y and a front face is the one with
+// negative signed area on screen (gfx/d3/tri/set/tri.id).
+
+ed_gline(int x0, int z0, int x1, int z1, int c) {
+  ed_quad(x0 - 15 * (z0 != z1), z0 - 15 * (x0 != x1), x1 + 15 * (z0 != z1), z1 + 15 * (x0 != x1), 0, c);
+} return void;
+
+ed_quad(int x0, int z0, int x1, int z1, int y, int c) {
+  ed_face(x0, y, z0, x1, y, z1, x1, y, z0, c);
+  ed_face(x0, y, z0, x0, y, z1, x1, y, z1, c);
+} return void;
+
+// One triangle, in world space, straight into the pipeline. The record is
+// rebuilt for every triangle rather than kept: d3_wtri transforms it in place, so
+// it is scratch by contract.
+ed_face(int x0, int y0, int z0, int x1, int y1, int z1, int x2, int y2, int z2, int c) {
+  int[] tri = [x0, y0, z0, x1, y1, z1, x2, y2, z2, c, c, c];
+  d3_wtri(tri);
+} return void;

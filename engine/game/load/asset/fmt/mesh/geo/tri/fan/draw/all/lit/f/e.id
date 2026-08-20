@@ -1,0 +1,29 @@
+// The face-normal buffer.
+//
+// bl_e holds the current triangle's unnormalised face normal. One buffer for the
+// whole program, refilled per triangle -- the obvious shape, an int[3] per
+// triangle, leaks a quarter of a million allocations a frame in a language that
+// frees nothing.
+//
+// A `word[]` because a cross component reaches 1.6e9 for a room-sized triangle
+// and further for anything bigger, and because the backface test that reads it
+// has to be exact (f/vis.id).
+
+
+// A word list is grown, not written as a literal: `[0, 0, 0]` is an `int[]`, and
+// there is no spelling for a word literal list.
+bl_lit_init() {
+  export word[] bl_e = [];
+  bl_efill(0);
+} return void;
+
+bl_efill(int i) {
+  word wz = 0;
+  while (i < 3) { push((import bl_e), wz); i = i + 1; }
+  bl_init();
+} return void;
+
+bl_shade2(int[] tri, int nvx, int nvy) {
+  int nvz = (import bl_e)[2] / 4;
+  bl_tint(tri, bl_lam(nvx, nvy, nvz));
+} return void;

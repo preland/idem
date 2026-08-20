@@ -1,0 +1,24 @@
+// The rest of the dispatch, and the quantisation tables.
+//
+// A DQT segment may carry several tables, each a precision/id byte then 64
+// values in zigzag order -- the same order the coefficients arrive in, so the
+// table is indexed by the zigzag position and never has to be reordered.
+
+jpg_end(int p) {
+} return int (import jpg_st)[9];
+
+jpg_disp2(int p, int m) {
+  if (m = 192 || m = 193 || m = 194) {
+    jpg_sof(p, m);
+  } else if (m = 218) {
+    jpg_sos(p);
+  } else if (m = 221) {
+    lset((import jpg_st), 7, asset_at(p) * 256 + asset_at(p + 1));
+  }
+} return void;
+
+jpg_dqt(int p, int end) {
+  while (p < end && (import jpg_st)[8] = 1) {
+    p = jpg_dqt1(p);
+  }
+} return void;

@@ -1,0 +1,20 @@
+// `spawn Template at (x, y[, z])` as a statement. The same node kind serves the
+// scene-level spawner, which adds the source name, template and period.
+par_sspawn(int[] pos) {
+  par_next(pos);
+  string name = par_text(pos);
+  par_next(pos);
+} return int par_sspawn2(pos, name);
+
+par_sspawn2(int[] pos, string name) {
+  par_eat(pos, "at");
+} return int ast_new_a(ast_k_spawn(), name, par_etuple(pos));
+
+// `despawn` alone means this entity; `despawn other` names one. Since newlines
+// carry no structure inside a block, the target is only taken when it sits on the
+// same line as the keyword -- otherwise `despawn` followed by `say "x"` would eat
+// the next statement's first token.
+par_despawn(int[] pos) {
+  int ln = par_line(pos);
+  par_next(pos);
+} return int ast_new_a(ast_k_despawn(), "", par_dtgt(pos, ln));

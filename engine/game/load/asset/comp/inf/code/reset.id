@@ -1,0 +1,22 @@
+// The rest of the reset, the block loop, and the result.
+
+inf_reset2(int slen, int da, int cap) {
+  m4_pair((import inf_st), 4, 5, da, 0);
+  m4_pair((import inf_st), 6, 7, cap, 0);
+  lset((import inf_st), 8, slen);
+} return void;
+
+// Blocks until the final-block bit is seen, or until something faults. `bfinal`
+// is the first bit of each block header and `btype` the next two.
+inf_blocks() {
+  int last = 0;
+  while (last = 0 && (import inf_st)[7] = 0) {
+    last = inf_bits(1);
+    inf_block(inf_bits(2));
+  }
+} return void;
+
+inf_out() {
+  int n = (import inf_st)[5];
+  if ((import inf_st)[7] != 0) { n = 0 - 1; }
+} return int n;

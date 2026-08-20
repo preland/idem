@@ -1,0 +1,15 @@
+// One argument.
+
+// `(288, 512)` is a tuple, not a parenthesised expression, and par_expr is right
+// to refuse it -- a component's arguments are a list of values and a bracketed
+// group among them is a coordinate. The scale is 0 here: a document's numbers are
+// kept as written and scaled by the slot that consumes them, because the same
+// literal is centipercent in a dimension and a pixel in a position.
+par_darg(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, "(") = 1) {
+    nd = par_stuple(pos, 0);
+  } else {
+    nd = par_expr(pos);
+  }
+} return int nd;

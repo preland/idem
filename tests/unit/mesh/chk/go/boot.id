@@ -1,0 +1,8 @@
+// The suite's setup chain.
+// zst_init as well as bl_geo_init: a .blend is usually zstd-compressed, so the
+// reader decompresses before it parses and the decoder has to exist. The compiler
+// catches a missing link here rather than letting it segfault at the first read.
+t_boot() {
+  zst_init();
+  bl_geo_init();
+} return void;

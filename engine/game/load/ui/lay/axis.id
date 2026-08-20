@@ -1,0 +1,9 @@
+// Which way a container tiles.
+
+// The main axis: 1 for a Row (width), 0 for a Col (height). A Stack and a Layer
+// have no main axis -- every child takes the whole rect -- and answer -1.
+ui_axis(string name) {
+  int k = 0 - 1;
+  if (name = "Row") { k = 1; }
+  else if (name = "Col") { k = 0; }
+} return int k;

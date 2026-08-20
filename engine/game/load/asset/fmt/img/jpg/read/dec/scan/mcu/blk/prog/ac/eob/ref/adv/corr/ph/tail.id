@@ -1,0 +1,14 @@
+// One step of the tail, and finishing.
+
+jpg_rtail1(int a) {
+  if (jpg_cget(a, (import jpg_zz)[(import jpg_r)[0]]) != 0) {
+    jpg_rcorr(a, (import jpg_r)[0]);
+  }
+  lset((import jpg_r), 0, (import jpg_r)[0] + 1);
+} return void;
+
+// One block of the run is now accounted for.
+jpg_rdone() {
+  lset((import jpg_st), 17, (import jpg_st)[17] - 1);
+  lset((import jpg_r), 3, 2);
+} return void;

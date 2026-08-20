@@ -1,0 +1,19 @@
+// Where the game's plane sits inside the scene panel, and at what scale.
+//
+// The same fit ed_plane computes, asked again. It is arithmetic on the panel rect
+// and the declared display, so asking twice costs three divides and keeps the
+// selection from depending on the order the panel happened to be drawn in.
+
+// The fit, times the view's magnification. Floored at 1 so a scale of zero can
+// never reach the blitter, where it would draw nothing and divide by nothing.
+ed_psc() {
+} return int fx_max(fx_min(ed_rq(3, 2) * 1000 / fx_max(ed_gw(), 1), ed_rq(3, 3) * 1000 / fx_max(ed_gh(), 1)) * (import ed_st)[18] / 1000, 1);
+
+// Centred in the panel, then displaced by the pan. Centring on the *scaled* size
+// is what keeps a zoom growing about the middle of the view rather than about its
+// top-left corner.
+ed_pl0() {
+} return int ed_rq(3, 0) + (ed_rq(3, 2) - ed_gw() * ed_psc() / 1000) / 2 + (import ed_st)[19];
+
+ed_pt0() {
+} return int ed_rq(3, 1) + (ed_rq(3, 3) - ed_gh() * ed_psc() / 1000) / 2 + (import ed_st)[20];

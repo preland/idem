@@ -1,0 +1,6 @@
+// Entering the advance.
+// Enter the advance. Phase 3, not 0: see ref.id.
+jpg_rgo(int a) {
+  lset((import jpg_r), 3, 3);
+  jpg_radv(a);
+} return void;

@@ -1,0 +1,35 @@
+// Pitch, the pointer's remembered position, and the wheel.
+
+// Dragging down tips the camera further over the top of the scene, which is what
+// every orbit control does and the opposite of moving the eye down. Clamped just
+// short of straight down, because at exactly 90 degrees the orbit's horizontal
+// component vanishes and yaw stops meaning anything.
+ed_pitch() {
+  lset((import ed_st), 3, fx_clamp((import ed_st)[3] - (inp_my() - (import ed_st)[7]) * 500, 0 - 88000, 88000));
+} return void;
+
+// Where the pointer was, recorded every frame rather than only while dragging, so
+// that the first frame of a drag has a delta of zero instead of jumping by
+// however far the pointer travelled since it was last looked at.
+ed_mark() {
+  lset((import ed_st), 6, inp_mx());
+  lset((import ed_st), 7, inp_my());
+  lset((import ed_st), 8, (import ed_st)[8] + 1);
+} return void;
+
+// Wheel up is bit 3 of the button mask, wheel down bit 4. Each notch is an eighth
+// nearer or further, so zoom is geometric -- the same gesture covers the last
+// metre and the first hundred, which is what a linear step cannot do.
+//
+// Which number it moves depends on which view is on screen: the orbit's distance
+// in 3D, the plane's magnification in 2D. They move in opposite directions for
+// the same notch, because a nearer camera and a bigger picture are the same
+// gesture -- and the wheel meaning nothing at all in a 2D project is what it did
+// before.
+ed_zoom() {
+  if (ed_is2d() = 1) {
+    ed_zoom2d();
+  } else {
+    ed_zoom3d();
+  }
+} return void;

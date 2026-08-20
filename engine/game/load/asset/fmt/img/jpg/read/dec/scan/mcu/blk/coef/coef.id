@@ -1,0 +1,26 @@
+// A coefficient in a block's buffer.
+//
+// Two bytes, two's complement, stored little-endian by poke16 and sign-extended
+// on the way back. Sixteen bits is exactly what the standard allows a quantised
+// coefficient (the magnitude category tops out at 15 bits plus a sign), and the
+// alternative -- four bytes -- would double a 389 KB buffer for range that cannot
+// occur.
+//
+// A biased encoding was the other option and is worse: alloc hands back zeroed
+// memory, and with a bias, zero would mean the most negative coefficient rather
+// than none. Two's complement makes an untouched buffer mean "no coefficients
+// yet", which is exactly what a progressive image starts with.
+
+jpg_cset(int a, int k, int v) {
+  poke16(a + k * 2, v & 65535);
+} return void;
+
+jpg_cget(int a, int k) {
+  int v = peek16(a + k * 2);
+  if (v >= 32768) { v = v - 65536; }
+} return int v;
+
+// Add to one, which is what a refinement scan does.
+jpg_cadd(int a, int k, int v) {
+  jpg_cset(a, k, jpg_cget(a, k) + v);
+} return void;

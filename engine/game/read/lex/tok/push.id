@@ -1,0 +1,22 @@
+// lex_st is the current line, lex_cur the current file: both one-element lists
+// because only a declaring function may assign an exported scalar. The file is
+// set by a `#file` marker (see lex_marker) and stamped onto every token, so a
+// diagnostic can name the right source even though the packager handed the
+// engine one concatenated string.
+
+lex_init4() {
+  export int[] lex_st = [1];
+  export string[] lex_cur = ["<input>"];
+} return void;
+
+lex_push(int kd, string txt, int v, int fr) {
+  push((import lex_kind), kd);
+  push((import lex_text), txt);
+  lex_push2(v, fr);
+} return void;
+
+lex_push2(int v, int fr) {
+  push((import lex_val), v);
+  push((import lex_frac), fr);
+  lex_push3();
+} return void;

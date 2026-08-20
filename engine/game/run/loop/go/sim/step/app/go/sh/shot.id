@@ -1,0 +1,21 @@
+// N frames to stdout as a PPM, with no display. Only the last one survives, so
+// `--shot 60` is a picture of the world after a second rather than of frame 60
+// drawn over frame 1.
+
+idem_ashot(int n) {
+  ppm_init();
+  idem_ashots(n, 0);
+  ppm_dump();
+} return void;
+
+idem_ashots(int n, int i) {
+  while (i < n) {
+    idem_astep();
+    i = i + 1;
+  }
+} return void;
+
+// The page's item tree, found once at load.
+ui_pinit() {
+  export int[] ui_pg = [0];
+} return void;

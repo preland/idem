@@ -1,0 +1,9 @@
+// Borrowing the stage.
+//
+// The editor's own stage is the whole surface at origin (0, 0) -- its surface IS
+// its window, so there is no letterbox to restore around.
+
+ed_pset(int x, int y, int sc) {
+  m4_pair((import sys_vp), 1, 2, x, y);
+  lset((import sys_vp), 0, sc);
+} return void;

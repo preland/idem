@@ -1,0 +1,16 @@
+// A file-global address lookup, for ID pointers.
+//
+// Data pointers resolve inside one ID's run of DATA blocks (blk/one/addr/addr.id)
+// because Blender reuses addresses between IDs. ID blocks themselves do not: the
+// 29 mesh blocks of the showroom have 29 distinct addresses, so an ID pointer is
+// unambiguous across the whole file and has to be looked up that way -- scoping
+// it would find nothing.
+
+bl_gat(word wp) {
+  int k = 0 - 1;
+  int i = 0;
+  while (i < len((import bl_ba)) && k < 0) {
+    k = bl_apick(i, wp);
+    i = i + 1;
+  }
+} return int k;

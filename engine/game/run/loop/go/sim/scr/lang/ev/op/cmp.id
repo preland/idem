@@ -1,0 +1,19 @@
+// Remainder, equality, and the order comparisons.
+
+scr_op3(string op, int a, int b) {
+  int v = scr_op4(op, a, b);
+  if (op = "%") { v = scr_mod(a, b); }
+  else if (op = "=" || op = "==") { v = a = b; }
+} return int v;
+
+scr_op4(string op, int a, int b) {
+  int v = scr_op5(op, a, b);
+  if (op = "!=") { v = a != b; }
+  else if (op = "<") { v = a < b; }
+} return int v;
+
+scr_op5(string op, int a, int b) {
+  int v = scr_op6(op, a, b);
+  if (op = ">") { v = a > b; }
+  else if (op = "<=") { v = a <= b; }
+} return int v;

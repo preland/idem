@@ -1,0 +1,24 @@
+// One collision, delivered to both entities.
+//
+// Each side is told the *other's* tags, one handler firing per tag the other
+// carries -- so `on hit deadly` fires once for a pipe tagged `pipe deadly` and
+// not twice. A tag the other side does not have matches nothing and costs a
+// string compare.
+
+scr_hboth(int a, int b) {
+  scr_hside(a, b, 0);
+  scr_hside(b, a, 0);
+} return void;
+
+scr_hside(int e, int o, int i) {
+  while (i < len((import scr_tn))) {
+    scr_htag(e, o, i);
+    i = i + 1;
+  }
+} return void;
+
+scr_htag(int e, int o, int i) {
+  if (ent_at(o, 20) / inf_pow2(i) % 2 = 1) {
+    scr_fire(scr_sc(e), "hit", e, (import scr_tn)[i]);
+  }
+} return void;

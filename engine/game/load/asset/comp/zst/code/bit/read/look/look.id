@@ -1,0 +1,33 @@
+// Peek and rewind.
+//
+// The Huffman decoder needs a shape the sequence decoder does not: it looks at
+// `tableLog` bits to index its table, then advances by only as many bits as the
+// symbol it found actually occupies. Reading and rewinding is how that is
+// expressed here, the reader walking bit by bit rather than keeping a wide window.
+//
+// A peek past the end answers zeros and does **not** fault. That is deliberate and
+// matches the reference: the last symbols of a Huffman stream are decoded from a
+// window that legitimately extends past the final byte, and the stream's validity
+// is decided by having produced the expected number of symbols.
+
+zb_look(int n) {
+  int v = zb_take(n);
+  zb_rew(n);
+} return int v;
+
+zb_take(int n) {
+  int v = 0;
+  int i = 0;
+  while (i < n) {
+    v = v * 2 + zb_soft();
+    i = i + 1;
+  }
+} return int v;
+
+// Like zb_bit but tolerant: off the end reads 0 rather than setting the fault.
+zb_soft() {
+  int v = 0;
+  if ((import zb_st)[1] >= (import zb_st)[0]) {
+    v = peek8((import zb_st)[1]) / inf_pow2((import zb_st)[2]) % 2;
+  }
+} return int zb_next(v);

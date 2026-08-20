@@ -1,0 +1,18 @@
+// The point contributes nothing to the value: 35.95 accumulates as 3595 and the
+// count of digits after the point is carried separately.
+lex_acc(int v, int c) {
+  int nv = v;
+  if (c != 46) { nv = v * 10 + c - 48; }
+} return int nv;
+
+// 48 is '0', 120 'x', 88 'X'
+lex_ishex0(string src, int i) {
+  int ok = 0;
+  if (charat(src, i) = 48 && (charat(src, i + 1) = 120 || charat(src, i + 1) = 88)) { ok = 1; }
+} return int ok;
+
+// A hex literal is a number with lex_frac 0: a packed colour has no scale.
+lex_hex(string src, int i) {
+  int e = lex_hexend(src, i + 2);
+  lex_push(lex_k_number(), str_slice(src, i, e - i), lex_hexval(src, i + 2, e), 0);
+} return int e;

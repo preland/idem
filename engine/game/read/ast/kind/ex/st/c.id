@@ -1,0 +1,5 @@
+ast_k_goto() { } return int ast_kbase() + 23;
+
+ast_k_play() { } return int ast_kbase() + 24;
+
+ast_k_say() { } return int ast_kbase() + 25;

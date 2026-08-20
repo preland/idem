@@ -1,0 +1,11 @@
+// One block of a non-interleaved scan.
+//
+// The restart check comes first and the counter last, exactly as in the
+// interleaved walk -- for a non-interleaved scan the restart interval counts
+// blocks rather than MCUs, which is what makes one function serve both.
+
+jpg_nblk(int ci, int bx, int by) {
+  jpg_rst();
+  jpg_blk(ci, jpg_bat(ci, bx, by));
+  lset((import jpg_st), 12, (import jpg_st)[12] + 1);
+} return void;

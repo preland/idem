@@ -1,0 +1,38 @@
+// `define Name() { … }` -- a named fragment of layout.
+//
+// An item whose name matches a define is *replaced* by that define's body, drawn
+// into the item's own rect. That is the whole mechanism: a define has no
+// parameters of its own yet, and the rect it gets is the one the caller's layout
+// resolved, so the fragment tiles inside it exactly as it would inside any parent.
+//
+// It is what makes flappy's screen expressible at all. idml's structural rules
+// are that children tile their parent's main axis to exactly 100 and no item has
+// more than three children, so a game-over panel with eight rows has to be four
+// small components -- and a `define` gets its own depth budget, which is why
+// nesting them costs nothing. Without expansion, none of them drew and the whole
+// screen was empty.
+//
+// The depth guard is not paranoia: `define A() { A()[100, 100, center]{} }`
+// parses, and without a limit it recurses until the stack ends. Eight is deeper
+// than any real screen and shallower than any crash.
+
+ui_dinit() {
+  export string[] ui_dn = [];
+  export int[] ui_dd = [];
+  ui_dinit2();
+} return void;
+
+ui_dinit2() {
+  export int[] ui_dep = [0];
+  ui_rinit();
+} return void;
+
+// An `import` is the same node kind as a `define` -- both are `ast_k_define` --
+// and is told apart by having no body. A define always has exactly one child: the
+// item it stands for.
+ui_dload(int nd) {
+  if (len(ast_ks(nd)) > 0) {
+    push((import ui_dn), ast_tx(nd));
+    push((import ui_dd), ast_ks(nd)[0]);
+  }
+} return void;

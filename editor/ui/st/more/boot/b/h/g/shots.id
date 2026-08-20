@@ -1,0 +1,8 @@
+// Every frame is a full step -- input, the game's tick, drawing -- and only the
+// last one survives into the PPM.
+ed_shots(int n, int i) {
+  while (i < n) {
+    ed_step();
+    i = i + 1;
+  }
+} return void;

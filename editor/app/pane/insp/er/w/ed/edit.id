@@ -1,0 +1,32 @@
+// An editable field.
+//
+// A label, the value, and a pair of steppers. There is no text entry in this
+// engine -- no caret, no key repeat, no selection -- and inventing one to change
+// a coordinate would be a month of work for a worse result than two buttons. A
+// stepper is also the right instrument for the job: a position is nudged and
+// looked at, not typed.
+//
+// The step is one whole unit of the game, which is what the number on screen is
+// counted in; the record holds millunits, so the button moves a thousand.
+// Holding a button repeats, because inp_mdown is a level and this is one of the
+// few places where a level is what is wanted.
+
+ed_kve(int x, int y, int w, string s, int e, int k) {
+  ed_kvn(x, y, s, ent_at(e, k) / 1000);
+  ed_nudge(x + w - 2 * ed_hdr() - 6 * txt_ui(), y, e, k, 0 - 1000);
+  ed_nudge(x + w - ed_hdr() - 3 * txt_ui(), y, e, k, 1000);
+} return void;
+
+// A repeat that is not a click: held down, it moves the value every frame, which
+// is what makes dragging a paddle across the screen possible at all. The first
+// frame of a hold is a click too, so a single tap moves exactly one unit.
+ed_nudge(int x, int y, int e, int k, int d) {
+  ed_nudge_draw(x, y, ed_in(x, y, ed_hdr(), ed_hdr()), d);
+  ed_nudge_do(x, y, e, k, d);
+} return void;
+
+ed_nudge_do(int x, int y, int e, int k, int d) {
+  if (ed_in(x, y, ed_hdr(), ed_hdr()) * inp_mdown(1) = 1) {
+    ent_put(e, k, ent_at(e, k) + d);
+  }
+} return void;

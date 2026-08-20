@@ -1,0 +1,23 @@
+// The walls, and one paddle's face.
+
+g_wall() {
+  if ((import g_st)[5] < 4000 && (import g_st)[7] < 0 || (import g_st)[5] > 196000 && (import g_st)[7] > 0) {
+    lset((import g_st), 7, 0 - (import g_st)[7]);
+  }
+} return void;
+
+// A paddle at `x`, whose centre is p[y]. The ball reverses only when it is
+// travelling *towards* that paddle, for the same reason the wall test checks its
+// direction -- and the overlap is the two boxes' half-widths, 3 and 3, plus the
+// paddle's half-height, 20.
+g_hit(int x, int y) {
+  if (fx_abs((import g_st)[4] - x) < 6000 && fx_abs((import g_st)[5] - (import g_st)[y]) < 23000) {
+    g_face(x);
+  }
+} return void;
+
+g_face(int x) {
+  if (((import g_st)[4] < 160000) = ((import g_st)[6] < 0)) {
+    lset((import g_st), 6, 0 - (import g_st)[6]);
+  }
+} return void;

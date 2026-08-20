@@ -1,0 +1,28 @@
+// Building one role's table, whichever way it is coded.
+//
+// Predefined and repeat need no input. RLE is one byte naming the only symbol,
+// which becomes a table of a single state. An FSE description is read from the
+// source and consumes as many bytes as it needs, which the cursor must then skip.
+
+zst_stab(int r, int md, int log, int base) {
+  if (md = 0) {
+    zst_spre(r, base);
+  } else {
+    zst_stab2(r, md, log, base);
+  }
+} return void;
+
+zst_stab2(int r, int md, int log, int base) {
+  if (md = 2) {
+    zst_sfse(r, base);
+  } else if (md = 1) {
+    zst_srle(r, base);
+  }
+} return void;
+
+// Mode 3 is repeat: the previous block's table is still in place, so there is
+// nothing to do. That only holds because the tables live in fse_sy/fse_nb/fse_bs
+// at fixed per-role bases and are never cleared between blocks.
+zst_spre(int r, int base) {
+  zst_pload(r, zst_pdist(r), zst_plog(r), base);
+} return void;

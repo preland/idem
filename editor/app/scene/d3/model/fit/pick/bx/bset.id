@@ -1,0 +1,21 @@
+// The upper bound, and turning the box into an orbit.
+
+ed_bmax(int[] bb, int i) {
+  lset(bb, 3 + i % 3, fx_max(bb[3 + i % 3], (import bl_v)[i]));
+} return void;
+
+// The centre is the box's middle. The distance is **half** the half-diagonal, not
+// a multiple of it, and that is a deliberate choice about what a scene view is
+// for: a .blend is usually a *room*, and framing a room from outside shows its
+// roof. Sitting inside the bounds shows the space. An object smaller than the
+// view still reads, because the orbit and the wheel are right there.
+ed_bset(int[] bb) {
+  lset((import ed_st), 10, (bb[0] + bb[3]) / 2);
+  lset((import ed_st), 11, (bb[1] + bb[4]) / 2);
+  ed_bset2(bb);
+} return void;
+
+ed_bset2(int[] bb) {
+  lset((import ed_st), 12, (bb[2] + bb[5]) / 2);
+  lset((import ed_st), 4, fx_max(ed_diag(bb) / 2, 1000));
+} return void;

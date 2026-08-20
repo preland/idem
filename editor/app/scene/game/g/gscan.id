@@ -1,0 +1,22 @@
+// Parsing the `ui` block's one child, and picking up the scene's background.
+
+ed_gparse(int i) {
+  int[] pos = [i];
+  lset((import ed_gu), 0, par_item(pos));
+} return void;
+
+// `clear 0x70C5CE` in a scene, and `display (288, 512)` in the manifest. Both are
+// a keyword followed by literals, and both have a default that makes a game with
+// neither still draw something.
+ed_gclear(int i) {
+  if ((import lex_text)[i] = "clear" && (import lex_kind)[i + 1] = lex_k_number()) {
+    lset((import ed_gu), 1, (import lex_val)[i + 1]);
+  }
+  ed_gsize(i);
+} return void;
+
+ed_gsize(int i) {
+  if ((import lex_text)[i] = "display" && (import lex_kind)[i + 2] = lex_k_number()) {
+    lset((import ed_gu), 2, (import lex_val)[i + 2] * 65536 + (import lex_val)[i + 4]);
+  }
+} return void;

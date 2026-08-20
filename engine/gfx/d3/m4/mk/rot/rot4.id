@@ -1,0 +1,16 @@
+// The four entries a rotation touches.
+//
+// Every axis rotation is the same 2x2 block [c, -s; s, c] dropped into four
+// slots of the identity; only which four slots differ. So there is one function
+// with the slots as parameters, and the three axis builders are the three slot
+// quadruples -- which is also what keeps them three legal functions rather than
+// one function copied three times (bodies identical up to renaming are a compile
+// error; distinct literals are what distinguish them).
+//
+// deg is millidegrees and fx_sin/fx_cos answer x1000, which is exactly the scale
+// a matrix entry wants, so nothing is converted here.
+
+m4_rot4(int[] mat, int i, int j, int k, int p, int deg) {
+  m4_pair(mat, i, j, fx_cos(deg), 0 - fx_sin(deg));
+  m4_pair(mat, k, p, fx_sin(deg), fx_cos(deg));
+} return void;

@@ -1,0 +1,11 @@
+t_lst_show(int[] xs) {
+  lst_set_all(xs, 3, 1);
+  print("fill 11199 = " + xs[0] + xs[1] + xs[2] + xs[3] + xs[4]);
+  t_err_show(xs);
+} return void;
+
+t_err_show(int[] xs) {
+  print("lget 9 = " + lget(xs, 4) + " len 5 = " + len(xs));
+  err_report("fake.idml", 7, "a reported error is counted");
+  print("errs 1 = " + err_count());
+} return void;

@@ -1,0 +1,13 @@
+// The top-level declarations and manifest properties the interpreter owns.
+//
+// A `template` is registered so a `spawn` can find it; a `sprite` is decoded.
+// They are both declarations that mean something to a later pass rather than to
+// the scene, which is why they sit together.
+
+scn_one2(int nd) {
+  if (ast_kd(nd) = ast_k_sprite()) {
+    scn_sprite(nd);
+  } else {
+    scn_one3(nd);
+  }
+} return void;

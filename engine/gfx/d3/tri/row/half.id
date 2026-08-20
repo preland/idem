@@ -1,0 +1,44 @@
+// One half of a triangle: a run of scanlines between two edges.
+//
+// The two-level loop of a triangle is always at least two functions in this
+// language (a `while` inside a `while` inside a function body is already at the
+// nesting limit and leaves no room for a body), so this file is the outer loop and
+// tri/row/sp/ is the inner one.
+//
+// a and b are the base slots of the long edge's endpoints in d3_vts, p and q the
+// short edge's. Both runs share the long edge, so d3_tri2 passes (0, 12) for it
+// twice and only the short edge changes.
+//
+// The scanline record d3_spn mirrors the screen-vertex layout exactly -- six slots
+// per end, same order -- so one loop interpolates x, y, depth and three colour
+// channels without naming any of them (d3_edge6). Its slots:
+//
+//     0..5   left end   (x, y, dz, cr, cg, cb)
+//     6..11  right end
+//     12     dz step per pixel
+//     13..15 cr, cg, cb step per pixel, x256
+//
+// Left and right are decided per scanline, not per triangle: which edge is on the
+// left swaps at the middle vertex, and for a triangle whose middle vertex is on
+// the left it swaps again between the two halves. Testing it per line is one
+// comparison and removes the whole question.
+
+d3_half(int[] verts, int y, int m, int a, int b, int p, int q) {
+  while (y <= m) {
+    d3_line(verts, y, a, b, p, q);
+    y = y + 1;
+  }
+} return void;
+
+d3_line(int[] verts, int y, int a, int b, int p, int q) {
+  d3_edge(verts, a, b, y, (import d3_spn), 0);
+  d3_edge(verts, p, q, y, (import d3_spn), 6);
+  d3_line2(y, (import d3_spn));
+} return void;
+
+d3_line2(int y, int[] st) {
+  if (st[0] > st[6]) {
+    d3_swapv(st, 0, 6);
+  }
+  d3_span(y, st);
+} return void;

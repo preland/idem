@@ -1,0 +1,16 @@
+ast_dtx(int nd) {
+  string s = "";
+  if (len(ast_tx(nd)) > 0) { s = " " + ast_tx(nd); }
+} return string s;
+
+ast_dsp(int nd) {
+  string s = "";
+  if (nd != 0) { s = " " + ast_sexp(nd); }
+} return string s;
+
+ast_dkl(int[] kids, int i, string s) {
+  while (i < len(kids)) {
+    s = s + ast_dsp(kids[i]);
+    i = i + 1;
+  }
+} return string s;

@@ -1,0 +1,32 @@
+// step -- one Bresenham step, which is two independent tests.
+//
+// e2 is twice the error, captured before either test, and both tests read that
+// same snapshot while both updates accumulate into the error. Doing it in that
+// order is what makes the algorithm octant-free: a shallow line takes the x step
+// every time and the y step occasionally, a steep one the reverse, a diagonal
+// both, and a horizontal or vertical line takes exactly one of them forever --
+// all from these two conditions, with no case analysis anywhere.
+//
+// st is the walker from line.id: slot 0 x, slot 1 y, slot 2 err. It is a
+// parameter, so `st[2] = ...` is a real store; through `(import ...)` it would
+// silently compile to a discarded comparison.
+
+d2_line_adv(int[] st, int dx, int dy, int sx, int sy) {
+  int e2 = 2 * st[2];
+  d2_line_advx(st, dy, sx, e2);
+  d2_line_advy(st, dx, sy, e2);
+} return void;
+
+d2_line_advx(int[] st, int dy, int sx, int e2) {
+  if (e2 > 0 - dy) {
+    st[2] = st[2] - dy;
+    st[0] = st[0] + sx;
+  }
+} return void;
+
+d2_line_advy(int[] st, int dx, int sy, int e2) {
+  if (e2 < dx) {
+    st[2] = st[2] + dx;
+    st[1] = st[1] + sy;
+  }
+} return void;

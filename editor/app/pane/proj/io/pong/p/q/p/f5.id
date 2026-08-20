@@ -1,0 +1,14 @@
+// The document, four lines at a time.
+
+ed_pg15() {
+} return string ed_pong_ln("      on hit paddle { if ((pos.x < 160) = (vel.x < 0)) { vel.x = 0 - vel.x } }") + ed_pong_ln("    }") + ed_pong_ln("  }") + ed_pong_ln("") + ed_pg16();
+
+// A Col to place the scores, because a Row fills its cross axis: the two numbers
+// tile the width and the row itself has to be given a height by something. That
+// is idml's exact-fill rule doing its job -- the Spacer is the 88% nobody else
+// claimed, and writing it down is the whole point of the rule.
+ed_pg16() {
+} return string ed_pong_ln("  ui {") + ed_pong_ln("    Col()[100, 100, top-center] {") + ed_pong_ln("      Scores()[12, 100, top-center]{}") + ed_pong_ln("      Spacer()[88, 100, center]{}") + ed_pg17();
+
+ed_pg17() {
+} return string ed_pong_ln("    }") + ed_pong_ln("  }") + ed_pong_ln("}") + ed_pong_ln("") + ed_pg18();

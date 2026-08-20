@@ -1,0 +1,31 @@
+// The frame: magic number, header, blocks, optional checksum.
+//
+// A file may hold several frames back to back -- showroom.blend holds 36 -- so
+// the top loop keeps going while source remains and nothing has faulted. A
+// skippable frame (magic 0x184D2A50..5F) is a length and that many bytes to
+// ignore, which is how a container hides its own metadata from a decompressor.
+
+zst_reset2(int cap) {
+  m4_pair((import zst_st), 4, 5, 0, cap);
+  m4_pair((import zst_st), 6, 7, 0, 0);
+  zst_reset3();
+} return void;
+
+// Slot 8 is NOT cleared: it holds the literals buffer, allocated once by zst_tabs
+// and reused by every block of every frame. Clearing it here zeroed the address
+// and the first block with literals poked at store address 0, which aborts.
+//
+// 1, 4, 8 are the initial offset history. zstd's repeat-offset codes address the
+// three most recent match offsets, and a frame starts with those defaults rather
+// than with nothing -- a block may use a repeat code before any literal offset.
+zst_reset3() {
+  m4_pair((import zst_st), 9, 10, 0, 0);
+  m4_pair((import zst_st), 11, 12, 1, 4);
+  lset((import zst_st), 13, 8);
+} return void;
+
+zst_frames() {
+  while ((import zst_st)[1] + 4 <= (import zst_st)[2] && (import zst_st)[6] = 0) {
+    zst_frame(zst_le(4));
+  }
+} return void;

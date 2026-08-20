@@ -1,0 +1,25 @@
+// Choosing the entities inside the band.
+//
+// Every entity is cleared first and then re-tested, so a band is a fresh
+// selection rather than an addition -- which is what a drag with no modifier
+// means everywhere else.
+
+ed_pick(int e, int x, int y, int n) {
+  while (e < ent_n()) {
+    n = n + ed_pick1(e, x, y);
+    e = e + 1;
+  }
+  lset((import ed_st), 0, 0 - 1);
+} return void;
+
+ed_pick1(int e, int x, int y) {
+  ent_put(e, 23, 0);
+  ent_put(e, 23, ed_inband(e));
+} return int ent_at(e, 23);
+
+// The entity's centre, in surface pixels, against the band. Its centre and not
+// its rect: a sprite stretched twelve screens wide would otherwise be selected by
+// a band anywhere on the row, and what a person means by dragging over a thing is
+// the thing they can see the middle of.
+ed_inband(int e) {
+} return int ed_in2(ed_epx(e, 0), ed_epy(e), ed_bx0(), ed_by0(), ed_bx1(), ed_by1());

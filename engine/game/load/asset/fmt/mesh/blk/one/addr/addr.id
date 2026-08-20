@@ -1,0 +1,44 @@
+// Resolving a pointer to the block that was written from that address.
+//
+// **The scope is one ID's own data, not the file.** An address in a .blend is
+// only meaningful inside the run of DATA blocks that immediately follows the ID
+// block it belongs to, because Blender builds a fresh map per ID while reading
+// and throws it away afterwards (`read_data_into_datamap` in readfile.c, then
+// `oldnewmap_clear`).
+//
+// That is not a detail -- it is the whole correctness of this module. Blender
+// allocates a temporary array per mesh while writing, writes it, and frees it, so
+// the allocator hands back **the same address every time**: all 29 meshes of the
+// showroom record `dna_attributes` as 0x5ff8352cd535dcb0, and 29 different blocks
+// each claim that address inside their own run. A file-global map therefore gives
+// every mesh the first mesh's geometry -- which is exactly what it did, and why
+// 45% of triangles indexed past the end of the mesh they belonged to.
+//
+// The check that hid it was weak: comparing a resolved `position` array's length
+// against the mesh's own `totvert` passes when the array belongs to a different
+// mesh of the same size, and this file has many. The check that found it compares
+// against Blender's own reading of every mesh -- 29/29 now agree on vertex,
+// polygon and loop counts and on the first vertex's coordinates.
+//
+// bl_st[13] and bl_st[14] hold the current run; bl_scope sets them.
+
+bl_at(word wp) {
+  int k = 0 - 1;
+  int i = (import bl_st)[13];
+  while (i < (import bl_st)[14] && k < 0) {
+    k = bl_apick(i, wp);
+    i = i + 1;
+  }
+} return int k;
+
+bl_apick(int i, word wp) {
+  int k = 0 - 1;
+  if ((import bl_ba)[i] = wp) { k = i; }
+} return int k;
+
+// The low half of a 32-bit field, read as an unsigned quantity: bl_le32 builds it
+// with a multiply that makes the top bit negative in an int, and an address's low
+// half is unsigned.
+bl_ule32(int p) {
+  word wp = asset_at(p + 3);
+} return word wp * 16777216 + asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;

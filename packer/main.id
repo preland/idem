@@ -1,0 +1,27 @@
+// packer -- a game's .idml sources, turned into `id` source.
+//
+// `id` has no file I/O of any kind: stdin and stdout, and nothing else. So a
+// packaged game cannot read its assets at runtime, and the only place left to put
+// them is the program text. This is the program that puts them there.
+//
+// In:  every .idml file of a game, concatenated on stdin, each preceded by a
+//      line `#file <path>`. That is the compiler's own marker convention and the
+//      engine's idml lexer consumes it, so a diagnostic can still name the file
+//      an author actually wrote.
+// Out: a stream of generated files on stdout, each introduced by a line
+//      `@@FILE <relative/path>` followed by that file's bytes. tools/idem splits
+//      on the markers and writes them. Which files exist, what they are called
+//      and how they nest is decided here, in `id` -- the shell only makes
+//      directories and copies bytes.
+//
+// The generated tree is itself a legal `id` project, which is the whole
+// difficulty. Three functions per file and three entries per directory apply to
+// generated code exactly as they apply to hand-written code, so the chunks spill
+// down a chain of `n/` subdirectories instead of sitting in one flat folder, and
+// each chunk function does two things: push its literal, call the next one.
+
+main(int argc, string[] argv) {
+  pack_init(argc, argv);
+  pack_run();
+  flush();
+} return int 0;

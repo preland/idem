@@ -1,0 +1,23 @@
+// The last of the init chain.
+//
+// fse_nx is FSE_buildDTable's `symbolNext`: during the build it starts as each
+// symbol's count and is post-incremented once per table slot, so the value it
+// holds when slot u is filled is what decides that slot's bit count and base
+// state. Getting it from a fresh copy of the counts each time is the difference
+// between a table that decodes and one that almost does.
+//
+// fse_rl is (base, log) per role -- literal lengths, offsets, match lengths, and
+// Huffman weights at base 1280 -- so
+// decoding can find a role's table after the builder's scratch has moved on.
+
+fse_init7() {
+  export int[] fse_nx = [];
+  export int[] fse_rl = [];
+  fse_init8();
+} return void;
+
+fse_init8() {
+  lst_fill((import fse_nx), 256, 0);
+  lst_fill((import fse_rl), 8, 0);
+  lst_fill((import fse_st), 12, 0);
+} return void;

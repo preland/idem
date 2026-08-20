@@ -1,0 +1,5 @@
+ast_k_scene() { } return int ast_kbase() + 8;
+
+ast_k_entity() { } return int ast_kbase() + 9;
+
+ast_k_template() { } return int ast_kbase() + 10;

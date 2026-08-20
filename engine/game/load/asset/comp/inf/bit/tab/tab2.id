@@ -1,0 +1,19 @@
+// The two decode tables, the code-length table, and the header's own ordering.
+
+inf_tabs4() {
+  export int[] inf_ord = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
+  export int[] inf_lc = [];
+  inf_tabs5();
+} return void;
+
+inf_tabs5() {
+  export int[] inf_ls = [];
+  export int[] inf_dc = [];
+  inf_tabs6();
+} return void;
+
+inf_tabs6() {
+  export int[] inf_ds = [];
+  export int[] inf_cc = [];
+  inf_tabs7();
+} return void;

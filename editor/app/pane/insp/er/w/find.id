@@ -1,0 +1,18 @@
+// Which project-browser row names this file.
+//
+// The browser lists the `#file` markers the toolchain wrote, and a diagnostic
+// names the same path, so the two agree by construction. -1 for a diagnostic
+// about a file the browser does not list -- a `#root` line, say -- which leaves
+// the selection alone rather than pointing at the wrong file.
+
+ed_dirfind(string path, int i) {
+  int p = 0 - 1;
+  p = ed_dscan(path, i, p);
+} return int p;
+
+ed_dscan(string path, int i, int p) {
+  while (i < len((import ed_dir))) {
+    p = lst_pick(p, i, (import ed_dir)[i] = path);
+    i = i + 1;
+  }
+} return int p;

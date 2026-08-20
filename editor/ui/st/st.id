@@ -1,0 +1,53 @@
+// The editor's state, and its colours.
+//
+// ed_st, one slot per thing the editor remembers between frames:
+//
+//     0 sel       selected hierarchy row, -1 for none
+//     1 asset     selected project row
+//     2 yaw       orbit camera, millidegrees
+//     3 pitch     NEGATIVE looks down, and an editor camera looks down: the eye
+//                 is placed by walking backwards along the view direction, so a
+//                 positive pitch would put it under the floor looking up at the
+//                 back of a one-sided grid
+//     4 dist      orbit radius, millunits
+//     5 drag      which button is dragging the scene view: 0 none, 1 orbit
+//                 (right), 2 pan (middle), 3 selecting (left)
+//     6 mx  7 my  where the pointer was last frame, for the drag delta
+//     8 frame     frames drawn, for the status bar
+//     9 tool      selected toolbar tool
+//     10 11 12  the point the camera orbits, in millunits. Loaded geometry is
+//               modelled wherever the artist put it, not around the origin, so
+//               the view is framed on what was loaded rather than on (0,0,0).
+//     13 14     where a left-drag started, in surface pixels: the fixed corner
+//               of the selection band
+//     15 menu    which menu title is open, -1 for none
+//     16 run     1 while the game is being simulated by `play`
+//     17 note    which help note the status line is showing, 0 for none
+//     18 zoom    the 2D plane view's magnification, per-mille of the fit
+//     19 20     the 2D plane view's pan, in surface pixels
+//
+// The colours are one list rather than a function each because a zero-action
+// function returning a bare literal collides, program-wide, with every other
+// function returning that literal (NAMES.md §5) -- fourteen of them would be
+// fourteen chances to break an unrelated module for the sake of a colour.
+
+ed_init(string src) {
+  export int[] ed_st = [0 - 1, 0 - 1, 35000, 0 - 9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 - 1, 0, 0, 1000, 0, 0];
+  export int[] ed_pal = [];
+  ed_init2(src);
+} return void;
+
+ed_init2(string src) {
+  ed_colours();
+  ed_lay_init();
+  ed_read(src);
+} return void;
+
+// The theme, in the order ed_col names them:
+// 0 window, 1 pane, 2 header, 3 border, 4 text, 5 dim, 6 selection, 7 hover,
+// 8 scene, 9 grid, 10 X axis, 11 Z axis, 12 white, 13 accent.
+ed_colours() {
+  ed_col_add(0x2B2B2B, 0x3C3C3C, 0x323232, 0x1C1C1C, 0xCFCFCF);
+  ed_col_add(0x8A8A8A, 0x2D5C88, 0x4A4A4A, 0x393939, 0x4E4E4E);
+  ed_col_more();
+} return void;

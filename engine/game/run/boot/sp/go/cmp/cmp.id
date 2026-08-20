@@ -1,0 +1,30 @@
+// An entity's components, read into its record.
+//
+// Every component is optional and every one has a default that is already in the
+// record, so this is a series of independent writes rather than a parse: a
+// component that is not there leaves its slots as ent_add left them.
+//
+// Units are converted here and nowhere else. A document says `pos (144, 392)` and
+// `vel (-120, 0)` in stage units and stage units per second; the store keeps
+// millunits, because a velocity of 24 units per second at sixty frames a second
+// is zero in whole units and the scrolling stops.
+
+scn_efill(int e, int nd, int i) {
+  ent_put(e, 0, scn_ex(nd, 0));
+  ent_put(e, 1, scn_ex(nd, 1));
+  scn_efill2(e, nd);
+} return void;
+
+scn_efill2(int e, int nd) {
+  ent_put(e, 2, scn_mtup(nd, "vel", 0) * 1000);
+  ent_put(e, 3, scn_mtup(nd, "vel", 1) * 1000);
+  scn_efill3(e, nd);
+} return void;
+
+// `scale` is already per-mille and defaults to 1000 rather than to 0, so an
+// absent one has to leave the slot alone instead of writing what it read.
+scn_efill3(int e, int nd) {
+  scn_edef(e, 4, scn_mtup(nd, "scale", 0));
+  scn_edef(e, 5, scn_mtup(nd, "scale", 1));
+  scn_efill4(e, nd);
+} return void;

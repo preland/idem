@@ -1,0 +1,24 @@
+// The rest of the box, and the wall it is made of.
+//
+// Each side is a different shade of the one colour, which is the whole lighting
+// model a flat-shaded rasteriser needs to make a cube read as a cube: without it
+// six faces of one colour are a silhouette.
+
+ed_box_x(int x, int y, int z, int n, int c) {
+  ed_wall(x + n, y, z + n, x + n, y + 2 * n, z - n, d2_shade(c, 850));
+  ed_wall(x - n, y, z - n, x - n, y + 2 * n, z + n, d2_shade(c, 600));
+} return void;
+
+// The lid, wound the same way the grid is -- upward-facing horizontal quads are
+// the one case where the obvious vertex order is the wrong one.
+ed_box_top(int x, int y, int z, int n, int c) {
+  ed_face(x - n, y + 2 * n, z - n, x + n, y + 2 * n, z + n, x + n, y + 2 * n, z - n, d2_shade(c, 1200));
+  ed_face(x - n, y + 2 * n, z - n, x - n, y + 2 * n, z + n, x + n, y + 2 * n, z + n, d2_shade(c, 1200));
+} return void;
+
+// A vertical wall from one ground corner to the opposite top corner. The two
+// x/z pairs give the footprint and y0/y1 the height, so one call is one side.
+ed_wall(int x0, int y0, int z0, int x1, int y1, int z1, int c) {
+  ed_face(x0, y0, z0, x1, y0, z1, x1, y1, z1, c);
+  ed_face(x0, y0, z0, x1, y1, z1, x0, y1, z0, c);
+} return void;

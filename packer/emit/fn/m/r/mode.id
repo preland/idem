@@ -1,0 +1,14 @@
+// Which entry point a packed game calls.
+
+// `packer app` emits a call to idem_app; anything else, idem_boot. The caller
+// knows which because only the caller can look for a game's `id/` directory.
+pack_init(int argc, string[] argv) {
+  export string[] pack_mode = [""];
+  pack_arg(argc, argv);
+} return void;
+
+pack_arg(int argc, string[] argv) {
+  if (argc > 1) { sset((import pack_mode), 0, argv[1]); }
+} return void;
+
+// main.id, the whole of a packed game's own code.

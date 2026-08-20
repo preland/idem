@@ -1,0 +1,37 @@
+// Unpacking a colour, and the perspective divide.
+//
+// d3_pscale is the divide, and d3_pclamp is the reason it is safe. A vertex just
+// beyond the near plane and far off to one side projects to a coordinate in the
+// millions; every later step subtracts two of them (a span width), multiplies one
+// by a step, or feeds one to a list index. Clamping the projected coordinate to
+// +/-10^6 pixels bounds all of that inside 32 bits with four orders of magnitude
+// to spare, and costs nothing visually: geometry a million pixels off screen is
+// clipped away by the span clip either way, and the clamp only bends the shape of
+// a triangle whose vertex is already 3000 screens outside the surface.
+//
+// The alternative -- clipping x and y in camera space as well as z -- is a great
+// deal more code for a case the eye cannot see. The near plane is the only clip
+// plane that has to be exact, because it is the only one that changes what is
+// visible rather than merely where an invisible vertex sits.
+
+d3_unpack(int[] verts, int p, int c) {
+  lset(verts, p, (c / 65536) % 256);
+  lset(verts, p + 1, (c / 256) % 256);
+  lset(verts, p + 2, c % 256);
+} return void;
+
+// a * b / z / 1000, wide. a is a camera-space coordinate in millunits, b the
+// focal length in pixels x1000, z the depth in millunits: 10^6 * 10^6 is 10^12,
+// which is why the whole thing happens in a word and narrows once.
+d3_pscale(int a, int b, int z) {
+  word wp = a;
+  wp = wp * b / z / 1000;
+} return int d3_pclamp(wp);
+
+d3_pclamp(word wp) {
+  if (wp > 1000000) {
+    wp = 1000000;
+  } else if (wp < 0 - 1000000) {
+    wp = 0 - 1000000;
+  }
+} return int wp;

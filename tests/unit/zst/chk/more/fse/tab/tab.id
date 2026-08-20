@@ -1,0 +1,6 @@
+// The third role, and on to the fixtures.
+
+t_ftab2() {
+  t_frole("ML log 6 base 768", 768, 64);
+  t_files();
+} return void;

@@ -1,0 +1,27 @@
+// The menu titles, and opening one.
+//
+// A menu is a popup: it is drawn after everything else so it covers the panes,
+// and which one is open lives in ed_st slot 15 rather than in the title -- the
+// title is redrawn from nothing every frame, and a popup has to outlive the
+// thing that opened it.
+//
+// Clicking an open title closes it, clicking a closed one opens it, and
+// *hovering* a different title while one is open switches to that one. The last
+// is what makes a menu bar feel like a menu bar rather than five buttons: once
+// you are in the bar, you are browsing it.
+
+ed_menu_one(int x, int k, string s) {
+  ed_menu_hl(x, s, ed_in(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1) + ((import ed_st)[15] = k));
+  ed_menu_ttl(x, k, s);
+} return void;
+
+ed_menu_hl(int x, string s, int ok) {
+  if (ok >= 1) {
+    sf_rect(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1, ed_col(7));
+  }
+} return void;
+
+ed_menu_ttl(int x, int k, string s) {
+  ed_menu_click(x, k, s);
+  txt_draw(s, x, 2 * txt_ui(), ed_col(4));
+} return void;

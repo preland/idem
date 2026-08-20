@@ -1,0 +1,24 @@
+// fx_mul / fx_div / fx_lerp. The interesting cases are the ones whose product
+// does not fit in 32 bits: 100000 * 100000 is 10^10 and 46341^2 is just past
+// 2^31-1, so both would wrap to a negative number without the word intermediate.
+// A zero divisor is checked too, because in this language an int division by zero
+// is an unchecked SIGFPE core dump -- if the guard were missing these lines would
+// not print a wrong answer, the binary would die here.
+
+t_fxscale() {
+  print("fx_mul(2000,3000,1000) exp 6000 | (-2000,3000,1000) exp -6000 = " + fx_mul(2000, 3000, 1000) + " " + fx_mul(0 - 2000, 3000, 1000));
+  print("fx_mul word intermediate (100000,100000,1000) exp 10000000 | (46341,46341,1000) exp 2147488 = " + fx_mul(100000, 100000, 1000) + " " + fx_mul(46341, 46341, 1000));
+  t_fxdiv();
+} return void;
+
+t_fxdiv() {
+  print("fx_mul(5,5,0) exp 0 not a crash = " + fx_mul(5, 5, 0));
+  print("fx_div(1000,4000,1000) exp 250 | (-1000,4,1000) exp -250000 | word (3000000,7,1000) exp 428571428 | (5,0,1000) exp 0 = " + fx_div(1000, 4000, 1000) + " " + fx_div(0 - 1000, 4, 1000) + " " + fx_div(3000000, 7, 1000) + " " + fx_div(5, 0, 1000));
+  t_fxlerp();
+} return void;
+
+t_fxlerp() {
+  print("fx_lerp(0,1000,500) exp 500 | (100,200,250) exp 125 = " + fx_lerp(0, 1000, 500) + " " + fx_lerp(100, 200, 250));
+  print("fx_lerp(-1000,1000,750) exp 500 | (7,7,999) exp 7 | (0,1000,0) exp 0 | (0,1000,1000) exp 1000 = " + fx_lerp(0 - 1000, 1000, 750) + " " + fx_lerp(7, 7, 999) + " " + fx_lerp(0, 1000, 0) + " " + fx_lerp(0, 1000, 1000));
+  t_sqrt();
+} return void;

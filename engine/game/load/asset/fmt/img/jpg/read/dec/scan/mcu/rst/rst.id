@@ -1,0 +1,27 @@
+// Restart markers.
+//
+// Every `ri` MCUs the encoder emits a restart marker, byte-aligns, and resets
+// every DC predictor. It exists so that a corrupted stream can resynchronise;
+// here it simply has to be obeyed, because the predictor reset changes every DC
+// value after it and skipping the marker leaves the bit reader a byte adrift.
+
+jpg_rst() {
+  if ((import jpg_st)[7] > 0 && (import jpg_st)[12] > 0 && (import jpg_st)[12] % (import jpg_st)[7] = 0) {
+    jpg_rst2();
+  }
+} return void;
+
+// A restart resets the end-of-band run as well as the predictors: a run is a
+// promise about the blocks that follow, and a restart is where that promise ends.
+jpg_rst2() {
+  jpg_skip();
+  jpg_preds(0);
+  lset((import jpg_st), 17, 0);
+} return void;
+
+// 208..215 are RST0..RST7. The buffer is dropped rather than aligned, because
+// the padding bits before a restart marker are not required to be zero.
+jpg_skip(){
+  m4_pair((import jpg_b), 1, 2, 0, 0);
+  jpg_seek();
+} return void;

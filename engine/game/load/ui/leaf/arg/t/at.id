@@ -1,0 +1,20 @@
+// Where a Text lands in its rect, what colour it is, and its first argument.
+//
+// The anchor's horizontal half decides where the string starts: `left` at the
+// rect's left edge, `center` on its middle, `right` at its right. The vertical
+// half is ignored -- a single line is centred in its rect, which is what every
+// one of these has meant since the first layout.
+
+ui_tx(int nd, int x, int w, int n) {
+} return int x + ui_ax(ast_tx(ast_ib(nd)), w) - txt_align(n, ui_al(ast_tx(ast_ib(nd))));
+
+// Centred on the rect at the *UI's* scale, so a label stays in the middle of its
+// box as the view zooms rather than creeping toward the top of it.
+//
+// The 8 here was the font's cell height, spelled as a literal because for as long
+// as the face was 8x8 it was also the cell width and the advance. It is
+// txt_cellh() now: with the 8x16 face the literal put every label half a line
+// high in its box, which reads as a layout bug rather than as a font change --
+// and it is the one place in the engine that centred text vertically at all.
+ui_ty(int y, int h) {
+} return int y + (h - txt_cellh() * (import ui_ts)[0] / 1000) / 2;

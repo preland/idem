@@ -1,0 +1,18 @@
+// One frame, in order.
+
+run_step() {
+  sys_sync();
+  run_input();
+  run_sim();
+} return void;
+
+run_input() {
+  run_quit(inp_drain());
+} return void;
+
+// -2 is the window's close button, 27 is Esc.
+run_quit(int ev) {
+  if (ev = 0 - 2 || inp_hit(27) = 1) {
+    sys_quit();
+  }
+} return void;

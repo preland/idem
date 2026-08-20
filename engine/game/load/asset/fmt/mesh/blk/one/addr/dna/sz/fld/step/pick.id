@@ -1,0 +1,5 @@
+// One step of the first-match scan.
+bl_fpick(int i, int kd) {
+  int k = 0 - 1;
+  if ((import bl_bc)[i] = kd) { k = i; }
+} return int k;

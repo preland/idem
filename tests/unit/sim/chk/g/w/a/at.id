@@ -1,0 +1,5 @@
+// The frame at a given moment on the clock.
+
+t_at(int t) {
+  lset((import sim_st), 0, t);
+} return int ent_anim(0);

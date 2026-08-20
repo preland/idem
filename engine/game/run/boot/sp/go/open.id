@@ -1,0 +1,26 @@
+// The last two links of the init chain.
+//
+// Entities last: the sprites they name have to be in the table before they are
+// looked up, and the window has to exist before a surface is measured.
+
+// ui_vinit too, and it chains ui_rinit: the runtime draws a scene's `ui` block
+// through the same walk the editor uses, that walk records where each item
+// landed, and the variant registry is what turns a `Title` into a `Text`.
+idem_init5() {
+  scn_init();
+  scn_dir_init();
+  ui_vinit();
+} return void;
+
+// Entities last: the sprites they name have to be in the table before they are
+// looked up, and the window has to exist before a surface is measured.
+//
+// tin_init beside inp_init because the text field's buffer and caret are input
+// state and come up with the keyboard. Nothing in a game types yet, but an
+// export that no reachable function declares is a compile error, not a dormant
+// feature (research/id-language.md section 11).
+idem_open2() {
+  inp_init();
+  tin_init();
+  scn_spawn((import scn_st)[5], 0);
+} return void;

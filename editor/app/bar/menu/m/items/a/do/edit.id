@@ -1,0 +1,20 @@
+// The Edit menu, and which items are live.
+
+ed_medit(int i) {
+  string s = ed_medit2(i);
+  if (i = 0) { s = "Undo"; }
+  else if (i = 1) { s = "Redo"; }
+} return string s;
+
+ed_medit2(int i) {
+  string s = "Clear Sel";
+  if (i = 2) { s = "Select All"; }
+} return string s;
+
+// Undo, Redo, Import and Reload are the four that are not built. Everything else
+// on the bar works, which is the point of listing them at all -- a menu that is
+// all placeholders teaches nothing.
+ed_mon(int k, int i) {
+  int ok = 1;
+  if (k = 1 && i < 2 || k = 2 && i < 2) { ok = 0; }
+} return int ok;

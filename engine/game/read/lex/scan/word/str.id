@@ -1,0 +1,17 @@
+// A string literal, stored unescaped: the parser and every later stage want the
+// value, not the spelling. 34 is '"', 92 is a backslash.
+lex_string(string src, int i) {
+  int e = lex_strend(src, i + 1);
+  lex_push(lex_k_string(), lex_unesc(src, i + 1, e), 0, 0);
+} return int e + 1;
+
+lex_strend(string src, int i) {
+  while (charat(src, i) != 34 && charat(src, i) != -1) {
+    i = lex_sadv(src, i);
+  }
+} return int i;
+
+lex_sadv(string src, int i) {
+  int nxt = i + 1;
+  if (charat(src, i) = 92) { nxt = i + 2; }
+} return int nxt;

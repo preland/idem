@@ -1,0 +1,32 @@
+// lex -- the token store.
+//
+// Tokens are parallel exported lists indexed by token number, the same shape the
+// self-hosted compiler uses: one column per field, appended in lockstep. Token
+// text is sliced out of the source exactly once, never rebuilt by concatenation.
+//
+// Numbers keep two columns. `35.95` is stored as lex_val 3595 with lex_frac 2 --
+// the digits as an integer plus how many sat after the point -- because the slot
+// decides the scale (IDML_GAME.md 1.1) and the lexer does not know the slot.
+// The parser scales, and rejects a literal with more fractional digits than its
+// slot allows.
+//
+// Every list is allocated here, and an id export is NULL until its declaring
+// function has run, so lex_init must precede every other lex_ call.
+
+lex_init() {
+  export int[] lex_kind = [];
+  export string[] lex_text = [];
+  lex_init2();
+} return void;
+
+lex_init2() {
+  export int[] lex_line = [];
+  export int[] lex_val = [];
+  lex_init3();
+} return void;
+
+lex_init3() {
+  export int[] lex_frac = [];
+  export string[] lex_file = [];
+  lex_init4();
+} return void;

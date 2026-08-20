@@ -1,0 +1,12 @@
+par_h2(int[] pos, string name) {
+  int arg = par_hopt(pos);
+} return int ast_new_ab(ast_k_on(), name, arg, par_block(pos));
+
+// `on key space`, `on hit enemy`, `on timer 500` take one argument; `on start`,
+// `on update`, `on press`, `on offscreen`, `on death`, `on enter`, `on leave` take
+// none. Recognised by shape -- whatever precedes the '{' is the argument -- so
+// adding an event later needs no change here.
+par_hopt(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, "{") = 0 && par_kind(pos) != lex_k_eof()) { nd = par_arg(pos); }
+} return int nd;

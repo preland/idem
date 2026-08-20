@@ -1,0 +1,86 @@
+// psf -- a real bitmap font, decoded by the engine.
+//
+// WHY PSF AND NOT SOMETHING ELSE. Three formats were candidates for "a font the
+// engine can decode itself", and the choice is about how much of the format is
+// *not* about the glyphs:
+//
+//   * TrueType/OpenType rejected. A rasteriser is quadratic Beziers, a hinting
+//     VM, a `cmap` with six subtable formats and a scan converter with dropout
+//     control -- thousands of lines to end up rounding an outline back onto the
+//     8-pixel grid this engine draws on. The whole engine is 400 files; a font
+//     rasteriser must not be a tenth of it.
+//   * BDF rejected, and it was close. It is a real, standard, well-documented
+//     format with excellent faces (Terminus ships as BDF), and it is text, so
+//     it needs no byte-order care at all. What killed it is that a BDF glyph is
+//     *proportional*: each one carries its own BBX -- width, height and an x/y
+//     bearing off the origin -- so decoding it means compositing every glyph
+//     into a common cell, and the metrics that survive that are thrown away
+//     again by a blitter that advances by a fixed txt_cell(). Plus a tokeniser,
+//     a hex-digit scanner and a keyword table, all in a language with no
+//     substring. Paying for proportional metrics to discard them is the wrong
+//     trade at this size.
+//   * PSF chosen. It is the Linux console's font format, it is binary, and
+//     after a header of six little-endian fields the rest of the file *is* the
+//     table this engine already draws: fixed cell, one row per byte (or per two
+//     for a wide face), MSB leftmost, glyphs in code-point order. The decode is
+//     a bounds check and a copy. Real faces are everywhere -- kbd(1) ships 200
+//     of them, and the engine's own default face is one of them -- and the
+//     format is documented in the kernel tree (Documentation/admin-guide/,
+//     and `man 5 psf`... which does not exist, so: linux/tools/kbd).
+//
+// Both versions are read, because both are real: of the .psf files on the
+// machine this was written on, most are PSF2 and a good handful are still PSF1,
+// and a decoder that handled one would fail on half of them for no reason.
+//
+//   PSF1  magic 0x36 0x04, then mode and charsize, one byte each. Width is
+//         always 8, height is charsize, and there are 256 glyphs -- 512 if bit 0
+//         of mode is set.
+//   PSF2  magic 0x72 0xB5 0x4A 0x86, then version, header size, flags, glyph
+//         count, charsize, height and width, all 32-bit little-endian. The
+//         header size says where the glyphs start, so a future longer header
+//         reads correctly here without a change.
+//
+// WHAT IS IGNORED. The optional unicode table that follows the glyphs, in both
+// versions. This engine indexes glyphs by *byte*, because `charat` answers a
+// byte and there is no notion of UTF-8 anywhere in it; the unicode table maps
+// glyph index to code point, which is a question nothing here asks. A PSF's
+// glyph order for 32..126 is ASCII in every face that exists, which is the only
+// part that has to be true for the engine's text to be right.
+//
+// The decoded rows land in txt_glyphs, replacing whatever was there -- the
+// compiled-in default face, or a previously loaded one. There is one face at a
+// time on purpose: two would mean a handle in every text call.
+
+// Load `path` as the engine's font. Answers 1 if it was decoded and adopted, 0
+// if it was not, in which case the previous face is untouched -- a refused font
+// leaves a program with readable text, which is what a diagnostic needs.
+psf_load(string path) {
+  int n = asset_slurp(path);
+} return int psf_head(n);
+
+// Which of the two it is. The magic is compared byte by byte through asset_at
+// rather than as a word, because asset_at is the bounds-checked read and this
+// runs before anything about the file is trusted.
+psf_head(int n) {
+  int ok = 0;
+  if (n > 4 && asset_at(0) = 0x36 && asset_at(1) = 4) {
+    ok = psf_one(4, 256 * (1 + (asset_at(2) & 1)), asset_at(3), asset_at(3), 8);
+  } else if (n > 32 && asset_at(0) = 0x72 && asset_at(1) = 0xB5) {
+    ok = psf_two();
+  }
+} return int ok;
+
+// Validate, then copy. `sa` is where the glyphs start, `n` how many there are,
+// `cs` the bytes one glyph occupies and `h`/`w` its cell.
+//
+// The two are separate calls because nothing below psf_fit re-checks anything:
+// the copy walks `n` glyphs of `cs` bytes with no further test, so this is the
+// only line between a truncated font file and a run of out-of-range reads. Those
+// would not abort -- asset_at answers 0 past the end -- but they would silently
+// decode a font out of whatever the store held next, which is worse.
+psf_one(int sa, int n, int cs, int h, int w) {
+  int ok = psf_fit(sa, n, cs, h, w);
+  if (ok = 1) {
+    ok = psf_copy(sa, n, cs, h, w);
+  }
+} return int ok;

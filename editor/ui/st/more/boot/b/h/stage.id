@@ -1,0 +1,13 @@
+// The rest of the seam, and the previewed game's declared stage.
+
+g_init() {
+  lset((import ed_st), 8, (import ed_st)[8]);
+} return void;
+
+g_step(int dt) {
+  sim_step();
+} return void;
+
+g_draw() {
+  ed_draw();
+} return void;

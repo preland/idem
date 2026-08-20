@@ -1,0 +1,22 @@
+// ast_cur is the line a new node is stamped with: the parser writes the consumed
+// token's line into it on every advance, so a node gets its source line without
+// any production having to carry one.
+ast_init4() {
+  export int[][] ast_kids = [];
+  export int[] ast_cur = [0];
+  ast_kinit();
+} return void;
+
+// The printable kind names, split out of one literal rather than pushed one at a
+// time -- fifteen more functions of three pushes each would say nothing.
+ast_kinit() {
+  export string[] ast_kn = [];
+  ast_ksplit((import ast_kn), "nil file import palette pcol sprite model game scene entity template instance spawn comp var script on block if while repeat assign despawn goto play say stop bin un field call num str ident tuple args ui item dims vis ref cond define variant bad", 0);
+  ast_new_k(ast_k_nil(), "");
+} return void;
+
+ast_ksplit(string[] strs, string s, int i) {
+  while (charat(s, i) >= 0) {
+    i = ast_ktake(strs, s, i);
+  }
+} return void;

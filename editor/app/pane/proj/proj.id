@@ -1,0 +1,21 @@
+// One item in the project browser: a tile and the file's name under it.
+//
+// The tile is drawn rather than an icon because the engine's sprite table is
+// empty until a game's art is loaded, and a coloured rectangle that says what
+// kind of thing this is beats a missing-texture box.
+
+ed_proj_one(int x, int y, int i) {
+  int ok = ed_in(x, y, 72 * txt_ui(), 24 * txt_ui());
+  ed_proj_tile(x, y, i, ok);
+} return void;
+
+ed_proj_tile(int x, int y, int i, int ok) {
+  sf_rect(x, y, 72 * txt_ui(), 24 * txt_ui(), ed_col(7 - 6 * (ok = 0 && (import ed_st)[1] != i)));
+  d2_frame(x, y, 72 * txt_ui(), 24 * txt_ui(), ed_col(3));
+  ed_proj_txt(x, y, i, ok);
+} return void;
+
+ed_proj_txt(int x, int y, int i, int ok) {
+  txt_draw(ed_fit((import ed_dir)[i], 8), x + 4 * txt_ui(), y + 8 * txt_ui(), ed_col(4));
+  ed_proj_hit(x, y, i, ok);
+} return void;

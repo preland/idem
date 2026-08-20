@@ -1,0 +1,8 @@
+// The window is the declared display times the declared scale -- a request, since
+// the window manager decides and sys_ follows it. The surface is the window
+// (ARCHITECTURE.md §3), and the game's own units are the stage inside it.
+idem_open() {
+  sys_open((import scn_st)[0], (import scn_st)[1], (import scn_st)[3], "idem");
+  txt_init();
+  idem_open2();
+} return void;

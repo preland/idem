@@ -1,0 +1,25 @@
+// The coordinate extent, which is what "spans the entire int range" was.
+//
+// A showroom is a room: every coordinate belongs inside a box a few metres on a
+// side. Printing the extent rather than a checksum makes a regression legible --
+// a wrong pointer shows up as millions, not as a different hash.
+
+t_span() {
+  print("x extent exp -6525 9300 = " + t_lo(0) + " " + t_hi(0));
+  print("y extent exp -1000 4350 = " + t_lo(1) + " " + t_hi(1));
+  t_span2();
+} return void;
+
+t_span2() {
+  print("z extent exp -7118 4239 = " + t_lo(2) + " " + t_hi(2));
+  t_scene();
+} return void;
+
+t_lo(int k) {
+  int n = 2147483647;
+  int i = k;
+  while (i < len((import bl_v))) {
+    n = fx_min(n, (import bl_v)[i]);
+    i = i + 3;
+  }
+} return int n;

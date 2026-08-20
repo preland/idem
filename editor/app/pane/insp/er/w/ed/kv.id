@@ -1,0 +1,21 @@
+// A label/value row, and the rest of the inspector.
+
+// The value column is placed past the widest label this pane uses rather than at
+// a constant: "selected" is eight characters and used to run straight into its
+// own number. txt_width answers pixels at the current scale, so the two columns
+// stay apart when the text grows with the window.
+ed_kv(int x, int y, string s, string txt) {
+  txt_draw(s, x + 6 * txt_ui(), y, ed_col(5));
+  txt_draw(ed_fit(txt, 12), x + 12 * txt_ui() + txt_width("selected"), y, ed_col(4));
+} return void;
+
+ed_insp_more(int x, int y, int w, int i) {
+  ed_kv(x, y, "file", (import ed_fl)[i + 1]);
+  ed_kvn(x, y + ed_rowh() + 2, "line", (import ed_ln)[i]);
+  ed_insp_note(x, y + 3 * (ed_rowh() + 2), w);
+} return void;
+
+ed_kvn(int x, int y, string s, int v) {
+  txt_draw(s, x + 6 * txt_ui(), y, ed_col(5));
+  txt_number(v, x + 12 * txt_ui() + txt_width("selected"), y, ed_col(4));
+} return void;

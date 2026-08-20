@@ -1,0 +1,46 @@
+// FSE -- Finite State Entropy, the coder zstd uses for sequences and for Huffman
+// weights.
+//
+// Two bitstreams with opposite conventions meet here, and keeping them apart is
+// most of the work:
+//
+//   * the **table description** is read FORWARD, low bit first, like DEFLATE
+//     (zf_bits below)
+//   * the **data** is read BACKWARD, high bit first (zb_bits, code/bit/)
+//
+// A decoder that uses one reader for both decodes the accuracy log correctly and
+// then produces nonsense, which reads as a table bug and is not.
+//
+// The table description is a list of normalized counts, one per symbol, summing
+// to 2^accuracy_log. A count is stored biased by one so that -1 can mean "less
+// than one in 2^log" -- those symbols get a slot at the top of the table. A count
+// of zero is followed by a run-length of further zeroes, which is why the loop
+// carries a `previous was zero` flag.
+//
+// fse_st, the reader's and builder's shared state:
+//     0 log   accuracy log        1 rem   remaining probability mass
+//     2 thr   threshold           3 bc    bit count
+//     4 n     symbols read so far 5 prev0 whether the last count was zero
+//     6 base  where this role's table starts   7 size  1 << log
+//     8 high  the high threshold the spread must not cross
+
+fse_init() {
+  export int[] fse_st = [];
+  export int[] fse_ct = [];
+  fse_init2();
+} return void;
+
+fse_init2() {
+  lst_fill((import fse_ct), 256, 0);
+  fse_init3();
+} return void;
+
+// One decode table per role, sized for the largest accuracy log each may use:
+// literal lengths 9, offsets 8, match lengths 9. Three columns each -- symbol,
+// bit count, base state -- because a struct is not available and three parallel
+// lists indexed by state is what the language offers.
+fse_init3() {
+  export int[] fse_sy = [];
+  export int[] fse_nb = [];
+  fse_init4();
+} return void;

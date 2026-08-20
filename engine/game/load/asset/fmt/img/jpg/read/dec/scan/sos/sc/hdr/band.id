@@ -1,0 +1,6 @@
+// The scan header's band and precision fields.
+jpg_band(int p) {
+  m4_pair((import jpg_st), 13, 14, asset_at(p), asset_at(p + 1));
+  m4_pair((import jpg_st), 15, 16, asset_at(p + 2) / 16, asset_at(p + 2) % 16);
+  jpg_bset(p + 3);
+} return void;

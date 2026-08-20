@@ -1,0 +1,21 @@
+// Three readers over a sprite declaration's argument list.
+//
+// scn_txt2 answers the text of argument i, but only when that argument is a
+// string literal. `sprite bird from "art/bird.png" grid (1, 3)` puts the path
+// second -- but `from` is an ordinary identifier and nothing in the grammar
+// promises the position, so scn_str scans the first few arguments for the one
+// that is a string rather than counting to it.
+
+scn_txt2(int nd, int i) {
+  string s = "";
+  if (ast_kd(scn_arg(nd, i)) = ast_k_str()) { s = ast_tx(scn_arg(nd, i)); }
+} return string s;
+
+// `grid (cols, rows)` defaults to one by one: a whole image as a single frame.
+scn_gx(int nd, int k) {
+} return int scn_tup(nd, "grid", k, 1);
+
+// `cell (w, h)` defaults to 0, which spr_png reads as "the source cell's own
+// size" -- so a sprite declared with no cell loads at its natural resolution.
+scn_cx(int nd, int k) {
+} return int scn_tup(nd, "cell", k, 0);

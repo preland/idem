@@ -1,0 +1,25 @@
+// The document a New project starts as.
+//
+// Not an empty scene. An empty scene is a blank window and a person who has just
+// chosen New has learned nothing from it; a game that *runs* is something to
+// read, change and run again, which is what a starting point is for.
+//
+// Pong is the one that fits: two paddles, a ball and four walls of arithmetic,
+// with **no art at all**. Every visible thing is a `shape box`, which is why that
+// component exists -- a new project has no PNGs beside it and should not need any
+// to be playable.
+//
+// One component per line, because idml has no statement terminator and a
+// component's arguments run to the end of their line (par_comp).
+//
+// Four lines per function, and that is not fastidiousness: `bin/idc` is quadratic
+// in the size of a single expression, and a return clause concatenating forty
+// literals took the compiler out of memory and killed it. Short expressions,
+// chained.
+
+ed_pong() {
+} return string ed_pong_ln("") + ed_pg0();
+
+// One line of the document, newline included.
+ed_pong_ln(string s) {
+} return string s + chr(10);

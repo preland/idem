@@ -1,0 +1,18 @@
+// A source pixel's alpha.
+//
+// Three sources for it. An indexed image keeps its alphas in tRNS, one per
+// palette entry, so the index is looked up twice -- once for the colour and once
+// for the transparency. Colour types 4 (grey+alpha) and 6 (truecolour+alpha)
+// carry it inline, as the last byte of the pixel either way. Everything else is
+// opaque, which is what 255 says.
+
+spr_alpha(int r, int x) {
+  int a = png_palpha(png_samp(r, x));
+  if ((import png_st)[3] != 3) { a = spr_alpha2(r, x); }
+} return int a;
+
+spr_alpha2(int r, int x) {
+  int a = 255;
+  if ((import png_st)[4] = 2) { a = peek8(r + 2 + x * 2); }
+  else if ((import png_st)[4] = 4) { a = peek8(r + 4 + x * 4); }
+} return int a;

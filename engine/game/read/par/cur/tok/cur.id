@@ -1,0 +1,29 @@
+// par -- the cursor over the token store.
+//
+// This is the only threaded parameter in the parser: `pos` is a one-element int[]
+// passed by reference, so a production can both return a node id and advance the
+// cursor. That pair is how `id` gets two return values, and it is the whole
+// mechanism recursive descent needs.
+//
+// `pos[0] = ...` works because pos is a *parameter* -- a plain identifier, and so
+// an lvalue. The same write through an imported list would silently do nothing.
+//
+// Every accessor answers for an index past the end without a bounds test at the
+// call site: kind is eof, text is empty, line is -1. The -1 matters: a component
+// is one line (see par_lfill), and a line that can never match ends that loop at
+// end of input.
+
+par_kind(int[] pos) {
+  int kd = lex_k_eof();
+  if (pos[0] < len((import lex_kind))) { kd = (import lex_kind)[pos[0]]; }
+} return int kd;
+
+par_text(int[] pos) {
+  string s = "";
+  if (pos[0] < len((import lex_text))) { s = (import lex_text)[pos[0]]; }
+} return string s;
+
+par_line(int[] pos) {
+  int ln = -1;
+  if (pos[0] < len((import lex_line))) { ln = (import lex_line)[pos[0]]; }
+} return int ln;

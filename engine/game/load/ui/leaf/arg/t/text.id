@@ -1,0 +1,7 @@
+ui_tstr(int nd, int x, int y, int w, int h) {
+  txt_draw_sc(ui_sarg(nd, 0, ""), ui_tx(nd, x, w, txt_width_sc(ui_sarg(nd, 0, ""), (import ui_ts)[0])), ui_ty(y, h), ui_tc(nd), (import ui_ts)[0]);
+} return void;
+
+ui_tnum(int nd, int x, int y, int w, int h) {
+  txt_num_sc(scr_ev(ast_ia(ui_arg0(nd)), 0 - 1), ui_tx(nd, x, w, txt_num_wsc(scr_ev(ast_ia(ui_arg0(nd)), 0 - 1), (import ui_ts)[0])), ui_ty(y, h), ui_tc(nd), (import ui_ts)[0]);
+} return void;

@@ -1,0 +1,30 @@
+// A field's byte offset within a struct, and the nth string of a table.
+
+// bl_fwalk answers the struct's total SIZE -- it has to keep accumulating past
+// the match to compute it -- and leaves the field's offset in bl_st[3], which
+// bl_fdone reads out and clears. Two answers, one walk.
+bl_foff(int si, string name) {
+  int p = bl_soff(si);
+  bl_fwalk(p + 4, bl_le16(p + 2), name);
+} return int bl_fdone();
+
+// Fields are laid out in declaration order and Blender's own structs carry their
+// padding explicitly (`char _pad[4]`), so plain accumulation is exact. The proof
+// that it is exact is that the accumulated total equals TLEN's size for the
+// struct, and tests/unit/mesh asserts exactly that.
+bl_fwalk(int p, int n, string name) {
+  int o = 0;
+  int i = 0;
+  while (i < n) {
+    o = o + bl_fstep(p + i * 4, name, o);
+    i = i + 1;
+  }
+} return int o;
+
+bl_nth(int p, int i) {
+  int j = 0;
+  while (j < i) {
+    p = bl_zend(p);
+    j = j + 1;
+  }
+} return int p;

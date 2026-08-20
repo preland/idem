@@ -1,0 +1,21 @@
+// fill -- the four spans of one arc point.
+//
+// Rows y +- i are 2j + 1 wide, rows y +- j are 2i + 1 wide: the same swap that
+// gives the outline its eight-way symmetry gives the fill its two span families.
+// Four sf_spans do not fit in one block, so it is 2 + 2.
+//
+// Every extent is handed to sf_span unclipped on purpose. sf_span rejects a row
+// outside the surface and trims x0/x1 to it once, which is the only place a disc
+// needs to know about the edges -- so a disc centred off-screen draws its visible
+// part and nothing else, with no test here.
+
+d2_disc_spans(int x, int y, int i, int j, int c) {
+  sf_span(x - j, x + j, y + i, c);
+  sf_span(x - j, x + j, y - i, c);
+  d2_disc_spans2(x, y, i, j, c);
+} return void;
+
+d2_disc_spans2(int x, int y, int i, int j, int c) {
+  sf_span(x - i, x + i, y + j, c);
+  sf_span(x - i, x + i, y - j, c);
+} return void;

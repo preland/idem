@@ -1,0 +1,27 @@
+// The diagnostics, as rows you can act on.
+//
+// Each is the line number and the message, and clicking one **selects the file
+// it names in the project browser** -- which is the difference between being told
+// there is a problem and being taken to it. The engine kept the file and the line
+// as their own columns for exactly this; parsing them back out of a formatted
+// message would make this pane depend on the wording of an error.
+
+ed_insp_err(int x, int y, int w, int i) {
+  txt_draw(err_nmsg() + " diagnostics", x + 6 * txt_ui(), y, ed_col(10));
+  ed_err_rows(x, y + ed_rowh() + 2, w, i);
+} return void;
+
+ed_err_rows(int x, int y, int w, int i) {
+  while (i < err_nmsg()) {
+    ed_err_row(x, y + i * ed_rowh() * 2, w, i);
+    i = i + 1;
+  }
+} return void;
+
+// Two lines apiece: where, then what. A message is a sentence and a pane is a
+// fifth of the window, so one line would show a person the first four words of
+// every problem they have.
+ed_err_row(int x, int y, int w, int i) {
+  ed_err_where(x, y, w, i);
+  txt_draw(ed_fit((import err_ms)[i], (w - 12 * txt_ui()) / (txt_cell() * txt_ui())), x + 10 * txt_ui(), y + ed_rowh(), ed_col(4));
+} return void;

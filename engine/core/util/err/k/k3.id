@@ -1,0 +1,9 @@
+// One entry off the other two columns.
+
+err_drop2() {
+  pop((import err_ls));
+  pop((import err_ms));
+} return void;
+
+err_nmsg() {
+} return int len((import err_ms));

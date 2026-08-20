@@ -1,0 +1,29 @@
+// circ -- the midpoint circle, outline only.
+//
+// Integer only, no trig and no square root: the decision variable in slot 2
+// decides at every column whether the arc stays on this row or drops to the next
+// one, which is the whole algorithm. It walks one octant from (0, n) to the
+// 45-degree diagonal, and the other seven are mirrors (pts.id).
+//
+// Slots, same shape as the line walker: 0 x offset, 1 y offset, 2 decision.
+//
+// n is a radius in whole pixels. n = 0 draws the single centre pixel, n = 1 the
+// four pixels around it, and a negative n draws nothing at all (0 <= n fails on
+// the first test) rather than looping toward an abort.
+
+d2_circle(int x, int y, int n, int c) {
+  int[] st = [0, n, 1 - n];
+  d2_circ_run(st, x, y, c);
+} return void;
+
+d2_circ_run(int[] st, int x, int y, int c) {
+  while (st[0] <= st[1]) {
+    d2_circ_step(st, x, y, c);
+  }
+} return void;
+
+d2_circ_step(int[] st, int x, int y, int c) {
+  d2_circ_pts(x, y, st[0], st[1], c);
+  d2_circ_err(st);
+  st[0] = st[0] + 1;
+} return void;

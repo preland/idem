@@ -1,0 +1,28 @@
+// The three durations typing is made of, in milliseconds.
+//
+// NAMES.md section 5: a family of constants is `<prefix>_base() + n`, with one
+// bare literal in the family, because two zero-action functions returning the
+// same literal anywhere in the program are a duplicate-logic error and "pick
+// numbers that happen not to clash" is not a strategy across a dozen modules.
+// 400 is this family's, and it is registered there.
+
+// The base is also the caret's blink half-period: solid for 400 ms, dark for
+// 400 ms. It is deliberately the same number as the rest of the family rather
+// than a fourth constant -- one duration is what makes a field feel like one
+// thing, and a blink that beat against the repeat rate would look like a fault.
+tin_base() {
+} return int 400;
+
+// How long a key must be held before it starts repeating. Short enough that
+// holding Backspace to clear a field is a reflex rather than a wait, long enough
+// that a deliberate single tap never doubles: the range everything agrees on is
+// 400-600 ms, and X11's own default is 660.
+tin_delay() {
+} return int tin_base() + 20;
+
+// And how often it repeats after that: 30 ms, so 33 characters a second. A
+// frame at 60 fps is 16 ms, so this fires on every second frame at most -- which
+// matters, because tin_press fires a key at most once per call and a rate faster
+// than the frame would silently become the frame rate.
+tin_rate() {
+} return int tin_base() - 370;

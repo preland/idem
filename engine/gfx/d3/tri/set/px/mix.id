@@ -1,0 +1,30 @@
+// The interpolator, the winding test, and the one-slot exchange.
+//
+// d3_mix is fx_lerp with a 65536 denominator instead of 1000. The finer parameter
+// is not decoration: an edge 400 pixels tall stepped in per-mille advances 2.5
+// per-mille per scanline, and the inverse-depth key spans tens of millions, so
+// per-mille rounding would put a quarter of a percent of depth error into every
+// scanline -- enough to make two nearly-parallel surfaces stripe. 16 bits of
+// parameter puts the error below one key unit.
+
+d3_mix(int a, int b, int t) {
+  word wp = b;
+  wp = (wp - a) * t / 65536;
+} return int a + wp;
+
+// Twice the signed area of the screen triangle, as a sign: -1 front-facing, +1
+// back-facing, 0 degenerate. The two edge vectors reach 2 * 10^6 pixels after
+// d3_pclamp, and their product 4 * 10^12, so this is a word computation -- an int
+// one would wrap and report a random winding for exactly the huge off-screen
+// triangles a wall makes when the camera is close to it.
+d3_area(int[] verts) {
+  word wp = verts[6] - verts[0];
+  word sm = verts[7] - verts[1];
+  wp = wp * (verts[13] - verts[1]) - sm * (verts[12] - verts[0]);
+} return int (wp > 0) - (wp < 0);
+
+d3_swap1(int[] xs, int i, int j) {
+  int t = xs[i];
+  lset(xs, i, xs[j]);
+  lset(xs, j, t);
+} return void;

@@ -1,0 +1,24 @@
+// The File menu's five, in order.
+
+ed_mfile_do(int i) {
+  if (i = 0) {
+    ed_new();
+  } else {
+    ed_mfile_do2(i);
+  }
+} return void;
+
+ed_mfile_do2(int i) {
+  if (i = 1) {
+    ed_open();
+  } else {
+    ed_mfile_do3(i);
+  }
+} return void;
+
+// Export saves first, so what is packed is what is on screen.
+ed_mfile_do3(int i) {
+  if (i = 2) { ed_save(); }
+  else if (i = 3) { ed_export(); }
+  else { sys_quit(); }
+} return void;

@@ -1,0 +1,31 @@
+// Inflating the gathered stream, and undoing the filters.
+//
+// The output is exactly h rows of (1 + w * channels) bytes: the filter byte and
+// the filtered pixels. Sizing it from the header rather than from the stream is
+// what makes a lying length field harmless -- inf_put refuses to write past the
+// capacity, so a stream that claims more simply faults.
+
+png_inflate() {
+  int n = (import png_st)[1] * (import png_st)[8];
+  lset((import png_st), 7, alloc(fx_max(n, 1)));
+  lset((import png_st), 9, png_inf2(n));
+} return int (import png_st)[9];
+
+// asset_io[0] + offset: the walk speaks in offsets from the start of the file and
+// the store speaks in addresses. The +2 skips the zlib header.
+png_inf2(int n) {
+  int got = inf_run((import asset_io)[0] + (import png_st)[5] + 2, (import png_st)[6] - 2, (import png_st)[7], n);
+  int ok = got = n;
+} return int png_unfilt(ok);
+
+// Every scanline carries a filter byte saying how it was predicted from its
+// neighbours, and undoing it must happen top to bottom and left to right: the
+// prediction refers to bytes this loop has already corrected, so a row cannot be
+// unfiltered out of order.
+png_unfilt(int ok) {
+  int y = 0;
+  while (y < (import png_st)[1] && ok = 1) {
+    png_row(y, asset_row(y));
+    y = y + 1;
+  }
+} return int ok;

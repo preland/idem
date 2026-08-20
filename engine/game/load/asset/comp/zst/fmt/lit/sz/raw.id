@@ -1,0 +1,29 @@
+// Raw and RLE literals.
+//
+// Size_Format decides how many bytes the regenerated size occupies and how it is
+// packed against the header byte:
+//
+//     0 or 2   5 bits, in the header byte's top 5      (1 header byte)
+//     1        12 bits, spanning two bytes             (2 bytes)
+//     3        20 bits, spanning three bytes           (3 bytes)
+//
+// Format 0 and 2 mean the same thing for Raw and RLE -- the low bit of the format
+// is what distinguishes them, and both spellings occur.
+
+zst_lraw(int kd, int sf, int h) {
+  int n = zst_lsize(sf, h);
+  zst_lbuf(n);
+  zst_lfill(kd, n);
+} return void;
+
+zst_lsize(int sf, int h) {
+  int n = h / 8;
+  if (sf = 1) { n = zst_lsz2(h); }
+  else { n = zst_lsz4(sf, h, n); }
+} return int n;
+
+// 12 bits: the header's top 4 plus the whole of the next byte.
+zst_lsz2(int h) {
+  int n = h / 16 + zst_byte((import zst_st)[1] + 1) * 16;
+  lset((import zst_st), 1, (import zst_st)[1] + 2);
+} return int n;

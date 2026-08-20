@@ -1,0 +1,33 @@
+// Finding an attribute by name, and following it to its values.
+//
+// The Attribute record is 24 bytes: a name pointer, a 16-bit data type, a domain
+// byte, a storage byte, four of padding, then a pointer to the storage. Rather
+// than compute those offsets from the schema -- which would need a second walk per
+// field -- they are read directly, because this struct is small, stable, and its
+// layout is asserted by the test.
+//
+// storage 0 is AttributeArray (values, sharing info, then a 64-bit count);
+// storage 1 is AttributeSingle, one value broadcast to the whole domain. A single
+// is legitimate -- `sharp_face` is usually one `false` -- and is skipped here,
+// because nothing a mesh needs geometrically is ever stored that way.
+
+bl_afind(int p, int si, string name) {
+  int ap = bl_at(bl_lew(p + bl_foff(si, "attribute_storage")));
+  int n = bl_le32(p + bl_foff(si, "attribute_storage") + 8);
+} return int bl_awalk(ap, n, name);
+
+bl_awalk(int ap, int n, string name) {
+  int k = 0 - 1;
+  int i = 0;
+  while (i < n && k < 0) {
+    k = bl_apk((import bl_bp)[ap] + i * 24, name);
+    i = i + 1;
+  }
+} return int k;
+
+// Answers the block index of the VALUES, or -1. Two hops: the name has to match,
+// and the storage has to be an array rather than a single.
+bl_apk(int o, string name) {
+  int k = 0 - 1;
+  if (bl_aname(o, name) = 1 && asset_at(o + 11) = 0) { k = bl_adata(o); }
+} return int k;

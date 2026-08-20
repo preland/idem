@@ -1,0 +1,26 @@
+// fx_sqrt and fx_hyp. fx_sqrt is claimed exact over the whole non-negative int
+// range, so the ends of that range are checked explicitly: 2147395600 is
+// 46340^2 and 46340 is the largest root an int can hold, so 2147395599 must come
+// back one lower and 2147483647 must not come back one higher.
+//
+// fx_hyp's large cases are the point of it: 46000^2 + 46000^2 is 4.2e9, twice
+// the int range, and 65535^2 + 65535^2 is 8.6e9 -- both would wrap to a small or
+// negative radicand if the sum were not accumulated in a word.
+
+t_sqrt() {
+  print("fx_sqrt(0,1,2,3,4) exp 0 1 1 1 2 = " + fx_sqrt(0) + " " + fx_sqrt(1) + " " + fx_sqrt(2) + " " + fx_sqrt(3) + " " + fx_sqrt(4));
+  print("fx_sqrt(-5,9,10000) exp 0 3 100 = " + fx_sqrt(0 - 5) + " " + fx_sqrt(9) + " " + fx_sqrt(10000));
+  t_sqrtbig();
+} return void;
+
+t_sqrtbig() {
+  print("fx_sqrt(999999) exp 999 | (1000000) exp 1000 = " + fx_sqrt(999999) + " " + fx_sqrt(1000000));
+  print("fx_sqrt(2147395599) exp 46339 | (2147395600) exp 46340 | (2147483646) exp 46340 | (2147483647) exp 46340 = " + fx_sqrt(2147395599) + " " + fx_sqrt(2147395600) + " " + fx_sqrt(2147483646) + " " + fx_sqrt(2147483647));
+  t_hyp();
+} return void;
+
+t_hyp() {
+  print("fx_hyp(3,4) exp 5 | (0,0) exp 0 | (1,1) exp 1 | (-3,-4) exp 5 = " + fx_hyp(3, 4) + " " + fx_hyp(0, 0) + " " + fx_hyp(1, 1) + " " + fx_hyp(0 - 3, 0 - 4));
+  print("fx_hyp word intermediate (30000,40000) exp 50000 | (46000,46000) exp 65053 | (65535,65535) exp 92680 = " + fx_hyp(30000, 40000) + " " + fx_hyp(46000, 46000) + " " + fx_hyp(65535, 65535));
+  t_wide();
+} return void;

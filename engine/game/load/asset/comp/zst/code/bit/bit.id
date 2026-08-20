@@ -1,0 +1,34 @@
+// The backward bit reader -- zstd's entropy bitstream, and the piece most likely
+// to be subtly wrong.
+//
+// DEFLATE reads forwards from the first byte, low bit first. **zstd reads
+// backwards from the last byte, high bit first.** Nothing else about the two
+// formats differs so sharply, and a decoder that mixes the conventions produces
+// output that is right for a few symbols and then diverges -- which looks like a
+// table bug and is not.
+//
+// The last byte carries a marker: its highest set bit says where the real data
+// ends, and that bit is padding, not data. So reading starts one bit below it. A
+// last byte of zero is corrupt -- there is no marker -- and is a fault rather than
+// a silent start at bit 7.
+//
+// zb_st:  0 lo   lowest address, the first byte of the section
+//         1 bp   the byte being read, walking downwards
+//         2 bi   the bit within it, 7 down to 0
+//         3 err  0, or the first fault
+
+zb_init() {
+  export int[] zb_st = [0, 0, 0, 0];
+} return void;
+
+zb_start(int sa, int n) {
+  m4_pair((import zb_st), 0, 1, sa, sa + n - 1);
+  m4_pair((import zb_st), 2, 3, 0, 0);
+  zb_mark();
+} return void;
+
+zb_mark() {
+  int h = zb_hi(peek8((import zb_st)[1]));
+  lset((import zb_st), 3, h < 0);
+  zb_seek(h - 1);
+} return void;

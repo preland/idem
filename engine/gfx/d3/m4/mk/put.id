@@ -1,0 +1,29 @@
+// Writing entries: the two-slot store, translation, and uniform scale.
+//
+// m4_pair exists because a block holds three actions and almost every matrix
+// edit is an even number of writes -- a rotation is four, a translation three, a
+// scale three. It also keeps the slot numbers of each transform in exactly one
+// place, which is the only defence against a transposed matrix: a transposed
+// translate looks right on a static object and shears the moment anything
+// rotates.
+
+m4_pair(int[] mat, int i, int j, int a, int b) {
+  lset(mat, i, a);
+  lset(mat, j, b);
+} return void;
+
+// Translation is the fourth column, in millunits, because the point's w is 1000
+// and the entries are x1000 -- the two scales cancel exactly here.
+m4_translate(int x, int y, int z) {
+  int[] mat = m4_new();
+  m4_pair(mat, 3, 7, x, y);
+  lset(mat, 11, z);
+} return int[] mat;
+
+// Uniform scale, per-mille: 1000 is unscaled. The diagonal is already x1000, so
+// a per-mille factor is written straight in.
+m4_scale(int sc) {
+  int[] mat = m4_new();
+  m4_pair(mat, 0, 5, sc, sc);
+  lset(mat, 10, sc);
+} return int[] mat;

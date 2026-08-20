@@ -1,0 +1,30 @@
+// What the scene view puts in front of the camera.
+//
+// A loaded mesh if the project has one, and the editor's own furniture if it does
+// not. The furniture is not a placeholder for a missing feature -- a project with
+// no 3D content still needs a scene view that proves the camera works, and three
+// boxes on a grid do that better than an empty grey panel.
+
+ed_solid() {
+  ed_grid();
+  ed_model();
+} return void;
+
+ed_model() {
+  if (bl_ntri() > 0) {
+    ed_mesh(0);
+  } else {
+    ed_props();
+  }
+} return void;
+
+// Every triangle of the loaded mesh, through one scratch record. d3_wtri
+// transforms in place, so the record is refilled per triangle by contract -- and
+// reusing one record is why drawing a 1678-triangle showroom allocates nothing.
+ed_mesh(int i) {
+  int[] tri = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  while (i < bl_ntri()) {
+    ed_mtri(tri, i);
+    i = i + 1;
+  }
+} return void;

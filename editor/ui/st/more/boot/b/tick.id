@@ -1,0 +1,22 @@
+// The game's own frame, run inside the editor's. `play` holds it on and `step`
+// advances it once, and both go through exactly the simulation and the script
+// interpreter a packed game runs -- so what moves in the panel is the game
+// playing, not a preview of it.
+//
+// A step ends **stopped**, not running. Slot 16 is 2 for "one frame, then stop",
+// and clearing it means writing 0 rather than subtracting 1: `2 - 1` is 1, which
+// is the running state, so every press of `step` silently started the game
+// instead of advancing it. The multiply is the whole fix -- 2 becomes 0, 1 stays
+// 1, 0 stays 0 -- and it is written that way because a branch here would be a
+// fourth action.
+ed_tick() {
+  if ((import ed_st)[16] > 0) {
+    sim_step();
+  }
+  lset((import ed_st), 16, (import ed_st)[16] * ((import ed_st)[16] != 2));
+} return void;
+
+ed_show() {
+  ed_draw();
+  sys_present();
+} return void;

@@ -1,0 +1,24 @@
+// A decimal number in a stored name, and a string comparison against the store.
+
+bl_num(int p) {
+  int n = 0;
+  while (asset_at(p) >= 48 && asset_at(p) <= 57) {
+    n = n * 10 + asset_at(p) - 48;
+    p = p + 1;
+  }
+} return int n;
+
+// Bytes in the flat store against an `id` string. peek8 does not touch charat's
+// one-entry length memo, so this does not thrash it the way comparing two `id`
+// strings would (engine/core/util/str.id).
+bl_streq(int p, string name) {
+  int i = 0;
+  while (charat(name, i) >= 0 && asset_at(p + i) = charat(name, i)) {
+    i = i + 1;
+  }
+} return int bl_zeq(p, i, name);
+
+bl_zeq(int p, int i, string name) {
+  int ok = 0;
+  if (charat(name, i) < 0 && asset_at(p + i) = 0) { ok = 1; }
+} return int ok;

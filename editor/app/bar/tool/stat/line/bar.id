@@ -1,0 +1,6 @@
+// The status bar's rule and its text.
+
+ed_status() {
+  d2_hline(ed_rq(6, 0), ed_rq(6, 1), ed_rq(6, 2), ed_col(3));
+  ed_status_txt(ed_rq(6, 1) + 2);
+} return void;

@@ -1,0 +1,29 @@
+// The editor's document: what New made, Open read, and Save writes.
+//
+// ed_doc is the text of one .idml file and ed_path is where it belongs. They are
+// deliberately not the stream the editor was started with: that stream is every
+// document of a project concatenated with `#file` markers, and writing it back
+// would produce one file containing all of them. A project opened from the
+// command line therefore has no path until Open or New gives it one, and Save
+// does nothing -- which is better than saving the wrong thing.
+
+ed_io_init() {
+  export string[] ed_doc = [""];
+  export string[] ed_path = [""];
+} return void;
+
+// A string to a file. The bytes cross the seam as an int[], one byte a cell
+// (backends/fs), so the string is walked once into a buffer -- charat, never
+// concatenation, because building a string a character at a time in this language
+// allocates and never frees.
+ed_wr(string path, string s) {
+  int[] buf = [];
+  ed_wbuf(s, 0, buf);
+} return int ed_wput(path, buf);
+
+ed_wbuf(string s, int i, int[] buf) {
+  while (charat(s, i) >= 0) {
+    push(buf, charat(s, i));
+    i = i + 1;
+  }
+} return void;

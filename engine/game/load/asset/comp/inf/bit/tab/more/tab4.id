@@ -1,0 +1,7 @@
+// The last three.
+
+inf_tabs10() {
+  lst_fill((import inf_ds), 32, 0);
+  lst_fill((import inf_cc), 16, 0);
+  lst_fill((import inf_cs), 19, 0);
+} return void;

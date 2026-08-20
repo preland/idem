@@ -1,0 +1,9 @@
+// The horizontal part of the camera's up vector, times a drag.
+//
+// `up` leans by the pitch: looking straight ahead it is (0, 1, 0) and nothing
+// horizontal happens, and looking steeply down it acquires a component along the
+// view direction, so dragging down slides the centre away from the camera rather
+// than under the floor.
+
+ed_pup(int dy, int sv) {
+} return int 0 - fx_mul(fx_mul(dy, fx_sin((import ed_st)[3]), 1000), sv, 1000);

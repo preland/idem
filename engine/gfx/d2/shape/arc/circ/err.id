@@ -1,0 +1,23 @@
+// err -- the midpoint decision, shared by the outline and the filled disc.
+//
+// d = 1 - n at the start, and at each column either the arc stays on this row
+// (d < 0, add 2x + 3) or steps in one row (add 2(x - y) + 5 and drop y). Those
+// are the standard increments of the midpoint algorithm with the constants
+// pre-folded, and they are pure integer arithmetic -- which is the point, since
+// the alternative is a square root per column.
+//
+// d2_disc's stepper calls this too. That is deliberate: an outline and a fill
+// that disagreed about where the arc goes would be visibly different circles.
+
+d2_circ_err(int[] st) {
+  if (st[2] < 0) {
+    st[2] = st[2] + 2 * st[0] + 3;
+  } else {
+    d2_circ_in(st);
+  }
+} return void;
+
+d2_circ_in(int[] st) {
+  st[2] = st[2] + 2 * (st[0] - st[1]) + 5;
+  st[1] = st[1] - 1;
+} return void;

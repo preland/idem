@@ -1,0 +1,27 @@
+// An axis letter to a slot offset, and a guarded record read.
+
+// z is slot 2 of a triple the record does not have -- this engine's records are
+// two-dimensional -- so it answers -1 rather than reading the next field along.
+// A 3D game's `pos.z` is a real gap and reading `sx` for it would be worse than
+// reading nothing.
+scr_axis(string name, int k) {
+  int at = 0 - 1;
+  if (name = "x") { at = k; }
+  else if (name = "y") { at = k + 1; }
+} return int at;
+
+// Stage units out, millunits in. A script says `pos.y = 200` and means two
+// hundred of the units the game declared its display in; the record holds two
+// hundred thousand. Both directions convert here and nowhere else, so no script
+// ever sees the store's units and no store slot ever sees a script's.
+scr_slot(int e, int k) {
+  int v = 0;
+  if (k >= 0 && e >= 0) { v = ent_at(e, k) / 1000; }
+} return int v;
+
+// Writing one. The units are the store's -- millunits -- and a script says stage
+// units, so both directions scale by a thousand. `vel.y = -420` means 420 stage
+// units per second, and the record holds -420000.
+scr_pslot(int e, int k, int v) {
+  if (k >= 0 && e >= 0) { ent_put(e, k, v * 1000); }
+} return void;

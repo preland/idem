@@ -1,0 +1,59 @@
+// The 3D pipeline's state: five records, declared here and nowhere else.
+//
+// Everything below the camera works out of fixed-slot scratch lists rather than
+// allocating per triangle. A list is allocated once, at init, and reused for
+// every triangle of every frame -- `id` never frees, so a record allocated per
+// triangle would be a leak measured in megabytes per second.
+//
+//   d3_vts  18  three screen vertices, six slots each  (tri/set/proj.id)
+//   d3_spn  16  one scanline: two ends of six, then four steps  (tri/row/half.id)
+//   d3_gs    7  the Gouraud accumulator and the flat colour  (tri/row/sp/gs/)
+//   d3_clp  12  one clipped triangle, camera space  (clip/)
+//   d3_cam   9  the camera
+//   d3_env   9  the scene's lighting and fog
+//
+// The camera, slot by slot. Position is millunits, angles millidegrees:
+//
+//     0..2  eye x, y, z
+//     3     yaw     0 faces world -Z; positive turns left
+//     4     pitch   positive looks up
+//     5     near    clip plane, floored at 40 (tri/zb.id: 2^36/40 is the largest
+//                   depth key that still fits an int)
+//     6     far     clip plane
+//     7     fov     horizontal field of view
+//     8     focal   pixels x1000, derived from fov and the surface width
+//
+// The world is right-handed with +Y up and **-Z forward**; camera space is the
+// same handedness with **+Z ahead**, and d3_view_matrix performs that one flip so
+// that everything downstream tests `z >= near` rather than reasoning about signs.
+//
+// The environment:
+//
+//     0..2  light direction, x1000, pointing FROM the light
+//     3     light colour, packed        4  ambient colour, packed
+//     5     fog colour, packed          6  fog near      7  fog far  (millunits)
+//     8     flags: bit 0 cull back faces, bit 1 fog on, bit 2 light on
+//
+// d3_init requires sf_init and fx_trig_init to have run: it sizes the depth
+// buffer from the surface and derives the focal length through a cotangent.
+
+d3_init() {
+  export int[] d3_vts = [];
+  export int[] d3_spn = [];
+  d3_init2();
+} return void;
+
+d3_init2() {
+  export int[] d3_gs = [];
+  export int[] d3_clp = [];
+  d3_init3();
+} return void;
+
+// The defaults are a camera at the world origin looking along -Z, a 60-degree
+// lens from 0.04 to 40 world units, back faces culled, and no fog: a scene that
+// declares nothing still renders.
+d3_init3() {
+  export int[] d3_cam = [0, 0, 0, 0, 0, 40, 40000, 60000, 0];
+  export int[] d3_env = [0 - 300, 0 - 1000, 0 - 200, 0xFFFFFF, 0x404048, 0x101018, 8000, 40000, 1];
+  d3_fill();
+} return void;

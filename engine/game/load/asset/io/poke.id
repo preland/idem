@@ -1,0 +1,22 @@
+// Moving one chunk from the staging list into the store, and reading a byte back.
+
+asset_poke(int p, int n) {
+  int i = 0;
+  while (i < n) {
+    poke8((import asset_io)[0] + p + i, (import asset_buf)[i]);
+    i = i + 1;
+  }
+} return void;
+
+// A byte of the loaded file. Bounds are the caller's business everywhere in the
+// decoders below -- a bit reader that checked twice per bit would double the cost
+// of the whole decode -- so this is the one place that does check, and it exists
+// for the header walk where the file's own length fields are not yet trusted.
+asset_at(int p) {
+  int v = 0;
+  if (p >= 0 && p < (import asset_io)[1]) { v = peek8((import asset_io)[0] + p); }
+} return int v;
+
+// A big-endian 32-bit field, which is every length and every dimension in a PNG.
+asset_be32(int p) {
+} return int asset_at(p) * 16777216 + asset_at(p + 1) * 65536 + asset_at(p + 2) * 256 + asset_at(p + 3);

@@ -1,0 +1,21 @@
+// Adding five colours at a time, and reading one back.
+//
+// Five per call because a block holds three actions but a call takes as many
+// arguments as it likes -- the asymmetry most of this engine's shapes come from.
+
+ed_col_add(int a, int b, int c, int d, int e) {
+  push((import ed_pal), a);
+  push((import ed_pal), b);
+  ed_col3(c, d, e);
+} return void;
+
+ed_col3(int c, int d, int e) {
+  push((import ed_pal), c);
+  push((import ed_pal), d);
+  push((import ed_pal), e);
+} return void;
+
+// Clamped rather than trusted: a colour index is written by hand at every call
+// site, and an out-of-range list read aborts the process.
+ed_col(int i) {
+} return int (import ed_pal)[fx_clamp(i, 0, len((import ed_pal)) - 1)];

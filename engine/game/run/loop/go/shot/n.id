@@ -1,0 +1,28 @@
+// How many frames a shot is, out of the command line.
+//
+// The count is the first argument that parses as a positive number, so `--shot`,
+// `--shot 30` and `30 --shot` all mean what they look like and the flag itself
+// contributes nothing. Anything unparseable is 0 and falls through to the 1 the
+// caller floors it at -- a typo renders a frame rather than nothing.
+
+shot_n(int argc, string[] argv) {
+  int n = 0;
+  int i = 1;
+  n = shot_scan(argc, argv, i, n);
+} return int n;
+
+shot_scan(int argc, string[] argv, int i, int n) {
+  while (i < argc && n = 0) {
+    n = shot_val(argv[i], 0, 0);
+    i = i + 1;
+  }
+} return int n;
+
+// Digits only, and one non-digit anywhere abandons the whole argument: `--shot`
+// must not read as 0 followed by something, and `3x` is a mistake rather than 3.
+shot_val(string s, int i, int v) {
+  while (charat(s, i) >= 48 && charat(s, i) <= 57) {
+    v = v * 10 + charat(s, i) - 48;
+    i = i + 1;
+  }
+} return int shot_ok(s, i, v);

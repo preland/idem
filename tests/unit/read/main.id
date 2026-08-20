@@ -1,0 +1,16 @@
+main(int argc, string[] argv) {
+  err_init();
+  t_one("script { on start { vy = 0 } on key space { vy = -400 say \"flap\" } on update { if (pos.y > 480) { goto over } else if (a) { stop } else { despawn other } while (i < 3) { i = i + 1 } repeat 4 { spawn Pipe at (288, 0) } play beep } on timer 500 { pos.x = pos.x + 1 } }");
+} return int 0;
+
+t_one(string src) {
+  lex_init();
+  ast_init();
+  t_two(src);
+} return void;
+
+t_two(string src) {
+  int[] pos = [0];
+  lex_run(src);
+  ast_dump(par_script(pos));
+} return void;

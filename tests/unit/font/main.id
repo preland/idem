@@ -1,0 +1,35 @@
+// Unit tests for the font path: the compiled-in face, and psf_load reading a
+// real .psf off disk.
+//
+// EVERY EXPECTED VALUE HERE WAS COMPUTED INDEPENDENTLY, by a Python walk of the
+// same two files that does not share a line with the `id` decoder (the same walk
+// tools/mkfont.py uses to generate the built-in table). That is the whole point:
+// a decoder checked against its own output proves only that it is deterministic.
+// A decoder that agrees with a second implementation on the metrics, on a
+// scatter of glyph rows and on a hash of every row of every glyph is one that
+// works.
+//
+// The two files are real fonts, not fixtures:
+//
+//   test_assets/vga8x16.psf          PSF2, 256 glyphs, 8x16 -- the IBM VGA
+//                                    text-mode face, and the source of the
+//                                    engine's own default table
+//   test_assets/latgrkcyr8x16.psf    PSF1, 512 glyphs, 8x16 -- a different face
+//                                    (its 'A' is thin-stroked where the VGA
+//                                    one is bold), so a decode that quietly
+//                                    kept the previous table would show here
+//
+// Between them they cover both header formats, the 512-glyph mode bit, the cap
+// at one byte of code points, and a face whose bitmaps differ from the built-in
+// one.
+//
+// asset_io_init rather than png_init: the file reader is what psf_load needs,
+// and naming the real dependency is what keeps this suite from passing for the
+// wrong reason. txt_init before anything, because txt_cell() is a read of an
+// exported global now and an id export is NULL until its declarer has run.
+
+main(int argc, string[] argv) {
+  txt_init();
+  asset_io_init();
+  t_def();
+} return int 0;

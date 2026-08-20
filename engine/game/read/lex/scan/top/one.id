@@ -1,0 +1,20 @@
+// Ambiguous prefixes are tested first: '#' before anything else because a
+// comment, a #file marker or a hex colour may start anywhere a token may, and a
+// digit before an identifier because 0x70C5CE starts with one.
+lex_one2(string src, int i, int[] out) {
+  if (charat(src, i) = 35) { out[0] = lex_pound(src, i); }
+  else if (lex_is_digit(charat(src, i))) { out[0] = lex_num(src, i); }
+  else { lex_one3(src, i, out); }
+} return void;
+
+// 34 is a double quote. Everything left is punctuation: there is no whitelist,
+// which is why adding an operator to the language needs no change here.
+lex_one3(string src, int i, int[] out) {
+  if (lex_is_alpha(charat(src, i))) { out[0] = lex_ident(src, i); }
+  else if (charat(src, i) = 34) { out[0] = lex_string(src, i); }
+  else { out[0] = lex_punct(src, i); }
+} return void;
+
+lex_nl(string src, int i) {
+  lex_bump();
+} return int i + 1;

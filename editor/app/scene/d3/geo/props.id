@@ -1,0 +1,32 @@
+// The things standing on the grid.
+//
+// Three boxes, placed and coloured by hand. They are here because a scene view
+// needs something with volume in it to be a scene view at all -- the grid alone
+// proves the camera but not the depth buffer, and one box behind another is the
+// cheapest proof that a software z-buffer works.
+//
+// They are the editor's own furniture, not a loaded scene. Loading the game's own
+// models needs the declaration parser and the asset tables; when those land, this
+// function walks the model table instead and everything below it is unchanged.
+
+ed_props() {
+  ed_box(0, 0, 0, 700, 0xB9793F);
+  ed_box(0 - 2200, 0, 900, 500, 0x5E8C61);
+  ed_box(1900, 0, 0 - 1400, 900, 0x4A6E9B);
+} return void;
+
+// An axis-aligned box standing ON the grid: y runs from 0 to 2n, so the position
+// given is where it meets the ground rather than its centre. That is what a
+// person means when they put something down.
+ed_box(int x, int y, int z, int n, int c) {
+  ed_box_yz(x, y, z, n, c);
+  ed_box_x(x, y, z, n, c);
+  ed_box_top(x, y, z, n, c);
+} return void;
+
+// The two faces along +Z and -Z. Each is a quad wound counter-clockwise from
+// outside, so back-face culling keeps the inside of the box invisible.
+ed_box_yz(int x, int y, int z, int n, int c) {
+  ed_wall(x - n, y, z + n, x + n, y + 2 * n, z + n, c);
+  ed_wall(x + n, y, z - n, x - n, y + 2 * n, z - n, d2_shade(c, 700));
+} return void;

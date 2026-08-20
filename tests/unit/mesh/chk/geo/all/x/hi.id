@@ -1,0 +1,10 @@
+// The other end of the extent.
+
+t_hi(int k) {
+  int n = 0 - 2147483647;
+  int i = k;
+  while (i < len((import bl_v))) {
+    n = fx_max(n, (import bl_v)[i]);
+    i = i + 3;
+  }
+} return int n;

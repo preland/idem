@@ -1,0 +1,18 @@
+// Finding the mesh block and pulling its three arrays.
+
+bl_mesh2() {
+  int i = bl_find(1296367616);
+  int ok = 0;
+  if (i >= 0 && (import bl_st)[11] = 1) { ok = bl_mone(i); }
+} return int ok;
+
+// "ME\0\0" packed most significant byte first: 77*2^24 + 69*2^16 = 1296367616.
+bl_mesh3(int p) {
+  int si = bl_sfind("Mesh");
+  bl_verts(p, si);
+} return int bl_faces(p, si);
+
+// An int field of a struct, by name -- the field offset comes from the file's own
+// schema, so this reads the same field correctly in a file from any version.
+bl_mint(int p, int si, string name) {
+} return int bl_le32(p + bl_foff(si, name));

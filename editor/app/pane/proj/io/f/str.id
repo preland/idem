@@ -1,0 +1,20 @@
+// The bytes, as characters.
+
+ed_rstr(int[] buf, int i, int n, string s) {
+  while (i < n) {
+    s = s + chr(buf[i]);
+    i = i + 1;
+  }
+} return string s;
+
+// The directory a path is in, and the one above a directory. scn_dirof keeps the
+// trailing slash, so stepping up means dropping that slash first -- otherwise the
+// answer is the same directory again.
+ed_up(string path) {
+} return string scn_dirof(str_slice(path, 0, fx_max(len(path) - 1, 0)));
+
+// Where the toolchain is: the executable's own directory is `<root>/build/`, so
+// the root is one above it. That is how Export finds `tools/idem` without being
+// told where the project it is editing came from.
+ed_root() {
+} return string ed_up((import scn_dir)[1]);

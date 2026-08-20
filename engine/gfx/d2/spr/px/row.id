@@ -1,0 +1,54 @@
+// row -- the three inner loops of the whole 2D renderer.
+//
+// Everything above these functions exists to make them simple: by the time one is
+// called, the row is known to be on the surface and the horizontal extent has
+// already been clipped, so there is not one bounds test in here. Both lists
+// arrive as parameters, so `fb[j + k] = xs[i + k]` is a direct indexed store --
+// 4.3-5.0 Gpx/s, against 1.0 through lset and 0.5 through sf_pset
+// (ARCHITECTURE.md section 3.1). That 10x is the reason a software rasteriser is
+// viable here at all, and the reason no blit calls sf_pset.
+//
+// The transparency test is inside the loop and cannot be hoisted out of it: it is
+// per pixel by definition. It costs a compare and a branch that predicts well,
+// which is what -1 as the clear value buys over any masking scheme. d2_clear() is
+// a zero-action function and the whole program is one C translation unit, so it
+// inlines to that constant rather than costing a call per pixel.
+//
+// n <= 0 draws nothing, so a fully clipped row needs no test at the call site.
+
+d2_blit_row(int[] xs, int i, int[] fb, int j, int n) {
+  int k = 0;
+  while (k < n) {
+    if (xs[i + k] != d2_clear()) {
+      fb[j + k] = xs[i + k];
+    }
+    k = k + 1;
+  }
+} return void;
+
+// The mirrored row: the destination still runs left to right, the source runs
+// backwards from i. One operator apart from d2_blit_row, which is also what makes
+// them two legal functions rather than one duplicate.
+d2_flip_row(int[] xs, int i, int[] fb, int j, int n) {
+  int k = 0;
+  while (k < n) {
+    if (xs[i - k] != d2_clear()) {
+      fb[j + k] = xs[i - k];
+    }
+    k = k + 1;
+  }
+} return void;
+
+// Nearest neighbour: sc is per-mille, u is the destination column's offset within
+// the scaled sprite, so the source column is (u + k) * 1000 / sc. That is a
+// divide per pixel, which is why this is a separate loop from d2_blit_row rather
+// than the general case of it -- an unscaled blit must not pay for it.
+d2_scl_row(int[] xs, int i, int[] fb, int j, int n, int sc, int u) {
+  int k = 0;
+  while (k < n) {
+    if (xs[i + (u + k) * 1000 / sc] != d2_clear()) {
+      fb[j + k] = xs[i + (u + k) * 1000 / sc];
+    }
+    k = k + 1;
+  }
+} return void;

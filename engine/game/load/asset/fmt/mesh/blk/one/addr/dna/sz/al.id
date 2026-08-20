@@ -1,0 +1,11 @@
+// Four-byte alignment, measured from the SDNA payload's start.
+
+bl_al(int p) {
+} return int (import bl_st)[2] + ((p - (import bl_st)[2] + 3) / 4) * 4;
+
+bl_le16(int p) {
+} return int asset_at(p) + asset_at(p + 1) * 256;
+
+// The size of one type, from TLEN.
+bl_tlen(int i) {
+} return int bl_le16((import bl_st)[9] + i * 2);

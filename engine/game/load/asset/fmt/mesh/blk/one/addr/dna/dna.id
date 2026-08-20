@@ -1,0 +1,47 @@
+// dna -- the schema a .blend carries about itself.
+//
+// One block, coded DNA1, holds the SDNA: every struct Blender knew when it wrote
+// the file, with each field's type and name. A reader computes field offsets from
+// that rather than hard-coding them, which is the whole reason a .blend from a
+// version this code has never seen can still be read.
+//
+// Four tables, each preceded by a four-byte tag and a count, each padded to a
+// four-byte boundary **relative to the start of the SDNA payload**:
+//
+//     NAME   field names, NUL-terminated ("totvert", "*mvert", "loc[3]")
+//     TYPE   type names ("int", "float", "Mesh")
+//     TLEN   one 16-bit size per type
+//     STRC   per struct: a type index, a field count, then (type, name) pairs
+//
+// The names carry the pointer-ness and the array-ness: `*mvert` is a pointer
+// whatever its type says, and `loc[3]` is three floats. So a field's size is a
+// property of its NAME as much as its type, which is unusual and is the detail
+// that makes a naive reader compute every offset slightly wrong.
+
+bl_dna() {
+  int i = bl_find(1145979185);
+  int ok = 0;
+  if (i >= 0) { ok = bl_dna2((import bl_bp)[i]); }
+} return int ok;
+
+// "DNA1" packed most significant byte first:
+// 68*2^24 + 78*2^16 + 65*2^8 + 49 = 1145979185.
+// The FIRST block with this code. The branchless fold this started as had no
+// early exit -- every match overwrote the answer -- so it returned the last one
+// instead. Invisible on a file with a single mesh, wrong on one with 29: the
+// showroom's first mesh has 882 vertices and its last has 1874, and the reader
+// quietly loaded the wrong one. Guarding on `k < 0` is what makes it first-wins,
+// the same rule bl_at uses for addresses.
+bl_find(int kd) {
+  int k = 0 - 1;
+  int i = 0;
+  while (i < len((import bl_bc)) && k < 0) {
+    k = bl_fpick(i, kd);
+    i = i + 1;
+  }
+} return int k;
+
+bl_dna2(int p) {
+  lset((import bl_st), 2, p);
+  bl_names(p + 8);
+} return int 1;

@@ -1,0 +1,6 @@
+// The push itself, once the three indices are known good.
+bl_tpush3(int a, int b, int c) {
+  push((import bl_ti), a + (import bl_st)[12]);
+  push((import bl_ti), b + (import bl_st)[12]);
+  push((import bl_ti), c + (import bl_st)[12]);
+} return void;

@@ -1,0 +1,24 @@
+// One scanline.
+//
+//     0 none      1 sub    a = the byte `bpp` to the left
+//     2 up        b = the byte in the row above
+//     3 average   (a + b) / 2
+//     4 paeth     whichever of a, b, c is nearest a + b - c
+//
+// `bpp` is the pixel stride in bytes, and it is the *filter* stride too: sub
+// predicts from the same channel of the previous pixel, not the previous byte.
+
+asset_row(int y) {
+} return int (import png_st)[7] + y * (import png_st)[8];
+
+png_row(int y, int r) {
+  png_bytes(y, r + 1, peek8(r));
+} return void;
+
+png_bytes(int y, int r, int f) {
+  int i = 0;
+  while (i < (import png_st)[8] - 1) {
+    poke8(r + i, (peek8(r + i) + png_pred(y, r, i, f)) % 256);
+    i = i + 1;
+  }
+} return void;

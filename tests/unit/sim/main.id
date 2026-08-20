@@ -1,0 +1,37 @@
+// Unit tests for the entity store and the per-frame simulation.
+//
+// Every expected value is arithmetic that can be checked by hand and is written
+// out in its own label, so a failure names the rule that broke rather than a
+// number that moved. The units are the point of most of them: positions and
+// velocities are millunits and millunits per second, gravity is millunits per
+// second squared, and a frame is 1000/fps milliseconds.
+//
+// The store is exercised through ent_at/ent_put rather than through a scene,
+// because a scene would test the loader too and this is about what a frame does
+// to a record that is already there.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  ent_init();
+  t_boot();
+} return int 0;
+
+// scn_init too: sim_grav reads the scene's gravity, and an export does not exist
+// until its declaring function has run.
+t_boot() {
+  scn_init();
+  t_defs();
+} return void;
+
+// A fresh record is zero everywhere except the four fields whose zero is wrong.
+//
+// The two ent_add calls are two statements. Written as one expression -- `"" +
+// ent_add() + ent_add()` -- they print in whichever order the emitted C evaluates
+// them, and this test printed "1 0" until they were split. It is the trap
+// NAMES.md 6 names first, and a test is exactly as susceptible to it as anything
+// else.
+t_defs() {
+  print("ent_n on an empty store exp 0 = " + ent_n());
+  t_two(ent_add());
+  t_defs2();
+} return void;

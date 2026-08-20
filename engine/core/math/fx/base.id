@@ -1,0 +1,32 @@
+// fx base -- the three comparisons `id` does not ship.
+//
+// There is no abs/min/max builtin, and every one of the 30 builtins is listed in
+// research/id-language.md: none of them is arithmetic beyond the operators. So
+// these are the floor of the whole engine, and everything above them (clamping a
+// span to the surface, folding a quadrant, biasing a colour) is written in terms
+// of these rather than repeating an `if`.
+//
+// fx_min and fx_max coexist only because they differ by an operator -- two
+// functions whose bodies match up to renaming their own locals are a compile
+// error, so `<` versus `>` is what makes them two functions rather than one.
+
+// abs as max(a, -a): no local, no branch, and it reuses fx_max instead of
+// spelling a second comparison. Note that -2147483648 has no positive
+// counterpart in 32 bits and comes back unchanged; that input is out of range
+// for every fixed-point quantity in ARCHITECTURE.md §4.
+fx_abs(int a) {
+} return int fx_max(a, 0 - a);
+
+fx_min(int a, int b) {
+  int m = a;
+  if (b < a) {
+    m = b;
+  }
+} return int m;
+
+fx_max(int a, int b) {
+  int m = a;
+  if (b > a) {
+    m = b;
+  }
+} return int m;

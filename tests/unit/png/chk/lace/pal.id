@@ -1,0 +1,34 @@
+// Indexed and sub-byte PNGs -- the forms every pixel-art tool writes.
+//
+// Both fixtures are the game's own art rather than something built for the test:
+// bird.png is 4-bit indexed with a tRNS chunk, digits.png is 1-bit grey. Refusing
+// these is what made flappy render an empty sky, and a 16-colour sprite carrying
+// three bytes a pixel is not what any artist exports.
+//
+// Every expected value came out of python3 -- zlib for the stream, a hand-written
+// unfilter and bit unpack for the samples -- and not out of this decoder. The
+// hash is over every sample of the image, so it fails on a wrong stride, a wrong
+// bit order, a wrong filter stride or a single misplaced pixel; the spot checks
+// are there to say *which* when it does.
+
+t_pal() {
+  print("bird.png exp 1 = " + png_load("games/flappy/art/bird.png"));
+  print("  w/h/depth/colour/channels exp 17 36 4 3 1 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[2] + " " + (import png_st)[3] + " " + (import png_st)[4]);
+  t_pal2();
+} return void;
+
+// Filter stride 1 because a 4-bit pixel is smaller than a byte; row stride 10
+// because 17 four-bit samples are 8.5 bytes rounded up, plus the filter byte.
+// Five palette entries and one tRNS alpha -- the chunk stops after its last
+// non-opaque entry, so index 0 is the transparent one and 1..4 are opaque.
+t_pal2() {
+  print("  bpp/stride/palette/trns exp 1 10 5 1 = " + (import png_st)[11] + " " + (import png_st)[8] + " " + (import png_st)[13] + " " + (import png_st)[15]);
+  print("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = " + png_samp(asset_row(0), 0) + " " + png_samp(asset_row(6), 8) + " " + png_samp(asset_row(12), 3) + " " + png_samp(asset_row(20), 10) + " " + png_samp(asset_row(35), 16));
+  t_pal3();
+} return void;
+
+t_pal3() {
+  print("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = " + png_pcol(0) + " " + png_pcol(2) + " " + png_pcol(0) + " " + png_pcol(3) + " " + png_pcol(0));
+  print("  those alphas exp 0 255 0 255 0 = " + png_palpha(0) + " " + png_palpha(2) + " " + png_palpha(0) + " " + png_palpha(3) + " " + png_palpha(0));
+  t_grey();
+} return void;

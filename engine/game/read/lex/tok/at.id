@@ -1,0 +1,16 @@
+lex_push3() {
+  push((import lex_line), (import lex_st)[0]);
+  push((import lex_file), (import lex_cur)[0]);
+} return void;
+
+lex_bump() {
+  lset((import lex_st), 0, (import lex_st)[0] + 1);
+} return void;
+
+// A `#file` marker resets the line to 0, not 1: the newline that ends the marker
+// line is scanned next and bumps it to 1, so the first real line of the new file
+// is line 1.
+lex_setpath(string path) {
+  sset((import lex_cur), 0, path);
+  lset((import lex_st), 0, 0);
+} return void;

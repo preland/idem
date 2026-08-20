@@ -1,0 +1,13 @@
+// The named argument itself, when the name matches.
+//
+// `grid (1, 3)` is one argument, not two: an identifier followed by a bracket is
+// a *call*, and the parser builds it as one node whose children are the numbers.
+// Reading the argument after the name instead of the name's own node picked up
+// the *next* component -- `cell` for a `grid` lookup -- which is a wrong answer of
+// exactly the right shape, so every sprite loaded at the wrong size and none of
+// them reported anything.
+
+scn_ifname(int nd, string name, int i) {
+  int t = 0;
+  if (ast_tx(scn_arg(nd, i)) = name) { t = scn_arg(nd, i); }
+} return int t;

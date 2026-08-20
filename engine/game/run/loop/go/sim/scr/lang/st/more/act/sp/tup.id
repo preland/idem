@@ -1,0 +1,10 @@
+// One member of a spawn's position tuple, evaluated in the spawner's scope.
+//
+// A missing member is 0, so `spawn X at (340)` puts it at y = 0 rather than
+// refusing. A tuple that is not a tuple -- `spawn X at gap` -- has no children
+// and lands in the same place.
+
+scr_tup(int tup, int i, int e) {
+  int v = 0;
+  if (tup != 0 && i < len(ast_ks(tup))) { v = scr_ev(ast_ks(tup)[i], e); }
+} return int v;

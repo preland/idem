@@ -1,0 +1,23 @@
+// The rest of an entity's record: what it draws as and what it is tagged.
+
+ed_insp_art(int x, int y, int w, int e) {
+  ed_kvn(x, y, "sprite", ent_at(e, 6));
+  ed_kvn(x, y + ed_rowh() + 2, "frame", ent_at(e, 7));
+  ed_insp_tag(x, y + 2 * (ed_rowh() + 2), w, e);
+} return void;
+
+ed_insp_tag(int x, int y, int w, int e) {
+  ed_kvn(x, y, "layer", ent_at(e, 8));
+  ed_kv(x, y + ed_rowh() + 2, "tags", ed_tags(e, 0, ""));
+  d2_hline(x + 4 * txt_ui(), y + 2 * (ed_rowh() + 2), w - 8 * txt_ui(), ed_col(3));
+} return void;
+
+// The tag names an entity's bitset actually stands for, joined. The registry is
+// the interpreter's, so this is the same list `on hit deadly` matches against --
+// not a second copy that could disagree with it.
+ed_tags(int e, int i, string s) {
+  while (i < len((import scr_tn))) {
+    s = s + ed_tag1(e, i);
+    i = i + 1;
+  }
+} return string s;

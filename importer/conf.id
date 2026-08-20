@@ -1,0 +1,9 @@
+// The importer's only dependency: the string and list helpers, and err_ for
+// diagnostics.
+//
+// Deliberately NOT the graphics backend and not engine/gfx: this program reads
+// text on stdin and writes text on stdout, exactly like packer/, and attaching a
+// window seam would make an asset conversion need X11 headers. It is a separate
+// project for the same reason packer/ is.
+import "../engine/core/util"
+import "../engine/core/math"

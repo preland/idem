@@ -1,0 +1,28 @@
+// One line, kept only if it is an asset marker.
+
+ed_as_take(string src, int i, int e) {
+  if (str_eqat(src, i, "#asset ") = 1) {
+    push((import ed_as), str_slice(src, i + 7, e - i - 7));
+  }
+} return void;
+
+// The first .blend in the project, loaded at boot so the scene view has something
+// real in it.
+//
+// bl_scene: every mesh *object*, each placed through its own world matrix. A room
+// is fifty placed objects over a couple of dozen meshes -- the ceiling lights are
+// one mesh put in twenty places -- so loading meshes rather than objects shows the
+// room with its furniture stacked at the origin.
+ed_load_as(int i) {
+  while (i < len((import ed_as)) && bl_ntri() = 0) {
+    ed_try_as((import ed_as)[i]);
+    i = i + 1;
+  }
+} return void;
+
+// 6 characters back from the end is where ".blend" starts.
+ed_try_as(string path) {
+  if (str_eqat(path, len(path) - 6, ".blend") = 1) {
+    ed_fit_mesh(bl_scene(path));
+  }
+} return void;

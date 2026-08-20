@@ -1,0 +1,27 @@
+// edge -- recording a press and a release.
+//
+// The guard on the key code is not optional. An out-of-range list store aborts
+// the process, and while the seam's own codes stop at 280, nothing in the
+// contract promises a backend will never widen that range -- a game that dies
+// because someone's keyboard has a media key is not a trade worth making for
+// two comparisons.
+
+inp_kmax() {
+} return int 512;
+
+inp_dn(int key) {
+  if (key >= 0 && key < inp_kmax()) {
+    lset((import inp_keys), key, 1);
+    lset((import inp_hits), key, (import inp_st)[0]);
+  }
+} return void;
+
+// A press and a release inside one frame still reads as a hit for that frame:
+// the press stamped the ordinal and this only clears the held flag. That is the
+// right answer for a fast tap, and it is one the old timestamp scheme could not
+// give -- it had no idea the key had come back up at all.
+inp_up(int key) {
+  if (key >= 0 && key < inp_kmax()) {
+    lset((import inp_keys), key, 0);
+  }
+} return void;

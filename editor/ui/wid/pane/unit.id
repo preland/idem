@@ -1,0 +1,20 @@
+// The two measurements the chrome is built from, both in design pixels times the
+// UI scale.
+//
+// A pane header is 13 design pixels: an 8-pixel glyph with two above and three
+// below. A list row is 10: the glyph plus one either side. Naming them means a
+// change to the type size moves the chrome with it, and means neither number is
+// a bare literal at a dozen call sites (NAMES.md §5).
+
+// Both are the glyph's height plus padding, not a constant that happened to suit
+// an 8-pixel face. The face is loadable now and the default is 16 rows tall, so
+// a bar of 13 design pixels was shorter than the text in it and a row of 10 was
+// shorter than the row below it -- the hierarchy pane's lines overlapped.
+//
+// The padding is what is chosen here: five pixels of a bar, two of a list row,
+// both scaled with the type like everything else in the chrome.
+ed_hdr() {
+} return int (txt_cellh() + 5) * txt_ui();
+
+ed_rowh() {
+} return int (txt_cellh() + 2) * txt_ui();

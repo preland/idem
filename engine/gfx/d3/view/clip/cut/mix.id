@@ -1,0 +1,15 @@
+// Interpolating a packed colour, channel by channel.
+//
+// A packed 0xRRGGBB cannot be interpolated as one number: the carry out of blue
+// lands in green. So it is taken apart, each channel is mixed at the same 1/65536
+// parameter the coordinates use, and it is packed again. Both endpoints are real
+// colours, so every mixed channel is between two values in 0..255 and needs no
+// clamp -- unlike the Gouraud accumulator, which steps and can overshoot.
+
+d3_cmix(int a, int b, int t) {
+} return int d2_rgb(d3_chn(a / 65536, b / 65536, t), d3_chn(a / 256, b / 256, t), d3_chn(a, b, t));
+
+// One channel. The shift is the caller's, the mask is here: a / 65536 for red is
+// already the top byte, but a / 256 for green still carries red above it.
+d3_chn(int a, int b, int t) {
+} return int d3_mix(a % 256, b % 256, t);

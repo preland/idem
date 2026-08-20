@@ -1,0 +1,47 @@
+// The block walk.
+//
+// Every block is a 32-byte header and its payload:
+//
+//     0..3   code, four bytes ("DATA", "ME\0\0", "DNA1", "ENDB")
+//     4..7   index into the SDNA of the struct this block holds
+//     8..15  the address the data had in the writing process
+//     16..23 payload length
+//     24..31 how many structs are in it
+//
+// The address is what pointers between blocks are expressed in, so resolving one
+// means finding the block that was written from that address.
+//
+// **Addresses are not unique.** In the 16 247 blocks of a real showroom file, 42
+// addresses carry two blocks each (plus the sentinel 0x10, which REND and GLOB
+// share and which is not a pointer at all). Every one of those collisions is an
+// IDProperty -- Blender reuses the allocation while writing them -- and none is
+// ever the target of a mesh pointer.
+//
+// **The rule is first-wins**, verified against the file rather than assumed:
+// resolving `position` for all 29 meshes of the showroom gives an array whose
+// length equals that mesh's own totvert under first-wins, and does not under
+// last-wins. Blender's own loader builds its oldnewmap in write order and looks
+// up the earliest entry, which is the same thing.
+//
+// The address needs a `word` -- 0x5ff8352cd535dea0 does not fit an int -- so this
+// is the one column that is not an int[].
+
+bl_lists() {
+  export int[] bl_bc = [];
+  export int[] bl_bp = [];
+  bl_lists3();
+} return void;
+
+bl_lists3() {
+  export word[] bl_ba = [];
+  bl_lists2();
+} return void;
+
+// asset_io_init is called here as well as from png_init: an export declaration
+// re-assigns, so running it twice re-makes the staging buffer rather than growing
+// it, and a program that reads both a PNG and a .blend is safe either way.
+bl_lists2() {
+  export int[] bl_bn = [];
+  export int[] bl_bs = [];
+  asset_io_init();
+} return void;

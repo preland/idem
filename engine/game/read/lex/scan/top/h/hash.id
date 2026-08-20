@@ -1,0 +1,27 @@
+// '#' means two different things and the difference is **where on the line it
+// is**. Leading its line, it is a comment to the end of that line (or a `#file`
+// / `#root` marker, which the toolchain injects between concatenated sources).
+// Anywhere else it is a hex colour -- `fg: #f0e060` -- and idml's own parser is
+// explicit about this: it strips whole-line comments only, precisely so that
+// colours inside a style block survive.
+//
+// idem stripped it everywhere. A styled variant therefore lost its colour, the
+// property was left with no value, and the parse walked off the end of the
+// document -- which is why pong's page did not draw and why every `.idml` in the
+// reference corpus would have failed here.
+lex_pound(string src, int i) {
+  int e = 0;
+  if (lex_lead(src, i) = 1) {
+    e = lex_hash(src, i);
+  } else {
+    e = lex_pcol(src, i);
+  }
+} return int e;
+
+// Whether only blanks stand between this character and the start of its line.
+// A backward walk, bounded by the line, run once per '#' in a document.
+lex_lead(string src, int i) {
+  int ok = 1;
+  int j = i - 1;
+  ok = lex_lead2(src, j, ok);
+} return int ok;

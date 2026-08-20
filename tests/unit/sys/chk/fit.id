@@ -1,0 +1,24 @@
+// Resizing the surface, and what happens to the framebuffer underneath it.
+//
+// 320x200 = 64000 cells to begin with. Growing to 640x400 needs 256000; shrinking
+// back to 320x200 must keep the 256000 it already has, because a list only grows
+// in this language and pretending otherwise would mean reallocating.
+
+t_fit() {
+  t_show("opened 320x200 exp gw 320 gh 200 cells 64000", 0, 0);
+  t_show("resize to 640x400 exp gw 640 gh 400 cells 256000", 640, 400);
+  t_more();
+} return void;
+
+t_show(string msg, int w, int h) {
+  t_size(w, h);
+  print(msg + " = gw " + (import sf_gw) + " gh " + (import sf_gh) + " cells " + len((import sf_fb)));
+} return void;
+
+// 0 means "do not resize" -- the value gfx_width answers with no display, and the
+// case that keeps `--shot` working on a machine with no X server.
+t_size(int w, int h) {
+  if (w > 0) {
+    sf_init(w, h);
+  }
+} return void;

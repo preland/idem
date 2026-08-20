@@ -1,0 +1,29 @@
+// The transform, once every scan is in.
+//
+// Baseline reaches here with one scan decoded and progressive with several, and
+// neither knows the difference: the coefficient buffers are complete either way,
+// and this walks every block of every component, dequantises it, transforms it
+// and writes the samples into the component's pixel plane.
+//
+// Dequantisation happens here rather than at decode time because a progressive
+// coefficient is not final until the last scan that touches it -- scaling a
+// partial value by its quantiser would have to be undone by the next refinement.
+
+jpg_all() {
+  jpg_acomp(0);
+  jpg_out();
+} return void;
+
+jpg_acomp(int ci) {
+  while (ci < (import jpg_st)[2]) {
+    jpg_arows(ci, 0);
+    ci = ci + 1;
+  }
+} return void;
+
+jpg_arows(int ci, int by) {
+  while (by < (import jpg_c)[ci * 10 + 9]) {
+    jpg_arow(ci, by, 0);
+    by = by + 1;
+  }
+} return void;

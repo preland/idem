@@ -1,0 +1,9 @@
+// Half the box's diagonal, in millunits.
+//
+// fx_hyp is exact to 65535, and a room is tens of thousands of millunits across,
+// so the extents are halved before they are combined rather than after -- the
+// alternative overflows the helper's stated range on any scene bigger than a
+// small room.
+
+ed_diag(int[] bb) {
+} return int fx_hyp(fx_hyp((bb[3] - bb[0]) / 2, (bb[4] - bb[1]) / 2), (bb[5] - bb[2]) / 2);

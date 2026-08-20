@@ -1,0 +1,21 @@
+// TLEN and STRC, the end of a NUL-terminated string, and the alignment.
+
+// TLEN is the odd one out: NAME, TYPE and STRC each carry their own count, and
+// TLEN does not -- it has exactly one 16-bit size per TYPE entry and nothing
+// else. Skipping a count that is not there puts the STRC tag four bytes out and
+// the struct count reads as whatever the first two structs happen to encode.
+bl_tlens(int p) {
+  lset((import bl_st), 9, p + 4);
+  bl_strc(bl_al(p + 4 + (import bl_st)[5] * 2));
+} return void;
+
+bl_strc(int p) {
+  lset((import bl_st), 6, bl_le32(p + 4));
+  lset((import bl_st), 10, p + 8);
+} return void;
+
+bl_zend(int p) {
+  while (asset_at(p) != 0) {
+    p = p + 1;
+  }
+} return int p + 1;

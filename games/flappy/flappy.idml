@@ -1,0 +1,255 @@
+# flappy -- a Flappy Bird clone, entirely in idml.
+#
+# There is no `id` in this game. The manifest, the art (art.idml), the world, the
+# physics, the collision responses, the scoring and the whole screen layout are
+# declarations and scripts in this file; the engine is what runs them.
+#
+# The playfield is the original's 288 x 512: the ground is 112 px tall, a pipe is
+# 52 px wide with a 26 px cap, the gap is 100 px, gravity is 1500 px/s^2, a flap
+# is -420 px/s and the world scrolls at 120 px/s.
+#
+# Three conventions everything below depends on:
+#   * `pos` is an entity's *centre*, for both its sprite and its collider
+#   * y grows downward, so gravity is positive
+#   * `goto` a scene that is already current reloads it, which is how one tap
+#     restarts the run
+
+import "./art.idml"
+
+game flappy {
+  display (288, 512) "flappy"
+  fps 60
+  scale 2
+  start play
+  keys { space = press, enter = press, w = press, esc = quit }
+  persist { high = 0 }
+}
+
+# A pipe is four entities -- two shafts and two caps -- because a shaft is an
+# 8 px sprite stretched to 320 px (its pattern is constant down its length, so
+# stretching is exactly right) while a cap is a fixed 26 px and must not stretch.
+# They share a velocity, so they travel as one object without being one.
+#
+# Every pipe piece is tagged `deadly`, which is also what the ground is tagged,
+# so the bird needs one collision handler rather than one per hazard.
+
+template PipeShaft {
+  sprite pipe-shaft
+  scale (1000, 40000)
+  body (52, 320)
+  solid
+  vel (-120, 0)
+  layer 2
+  tag pipe deadly
+  script {
+    on offscreen { despawn }
+    on update { if (scene.mode = 2) { vel.x = 0 } }
+  }
+}
+
+template PipeCap {
+  sprite pipe-cap
+  body (52, 26)
+  solid
+  vel (-120, 0)
+  layer 3
+  tag pipe deadly
+  script {
+    on offscreen { despawn }
+    on update { if (scene.mode = 2) { vel.x = 0 } }
+  }
+}
+
+# The top shaft is also the scorer: it is one guaranteed entity per pipe, and
+# `scored` makes sure a pipe counts exactly once.
+template PipeLead {
+  sprite pipe-shaft
+  scale (1000, 40000)
+  body (52, 320)
+  solid
+  vel (-120, 0)
+  layer 2
+  tag pipe deadly
+  var scored = 0
+  script {
+    on offscreen { despawn }
+    on update {
+      if (scene.mode = 2) { vel.x = 0 }
+      if (scored = 0 && pos.x < 60) {
+        scored = 1
+        scene.score = scene.score + 1
+      }
+    }
+  }
+}
+
+scene play {
+  clear 0x4EC0CA
+  gravity (0, 1500)
+
+  # mode: 0 waiting for the first tap, 1 flying, 2 dead.
+  # ready and over are the flags the UI gates on, kept in step with mode.
+  var mode = 0
+  var ready = 1
+  var over = 0
+  var score = 0
+  var gap = 220
+
+  # A distant hill band at a fifth of the world speed. Parallax by velocity
+  # rather than by the `parallax` component, because this game has no camera to
+  # be parallax *to*.
+  entity hills {
+    pos (144, 392)
+    sprite ground
+    scale (12000, 1600)
+    vel (-24, 0)
+    wrap (-144, 432)
+    layer 1
+  }
+
+  # Two ground strips, each wrapping back to the right as it leaves on the left:
+  # an endless scroller with no spawning at all.
+  entity land-a {
+    pos (144, 456)
+    sprite ground
+    scale (12000, 933)
+    vel (-120, 0)
+    wrap (-144, 432)
+    layer 4
+  }
+
+  entity land-b {
+    pos (432, 456)
+    sprite ground
+    scale (12000, 933)
+    vel (-120, 0)
+    wrap (-144, 432)
+    layer 4
+  }
+
+  # The ground's collision: one static box, tagged like the pipes.
+  entity floor {
+    pos (144, 460)
+    body (288, 112)
+    solid
+    tag deadly
+  }
+
+  entity bird {
+    pos (60, 200)
+    sprite bird
+    anim (0, 2, 120)
+    body (12, 8)
+    layer 5
+    tag player
+    script {
+      # Before the first tap the bird bobs on a sine and ignores gravity.
+      on update {
+        if (scene.mode = 0) {
+          pos.y = 200 + sin(time * 240) * 9 / 1000
+          vel.y = 0
+        }
+      }
+      on press {
+        if (scene.mode = 0) { scene.mode = 1  scene.ready = 0 }
+        else if (scene.mode = 1) { vel.y = -420 }
+        else { goto play }
+      }
+      # A pipe, a cap or the ground -- all of them are `deadly`.
+      on hit deadly {
+        if (scene.mode = 1) { scene.mode = 2  scene.over = 1 }
+      }
+    }
+  }
+
+  # The spawner and the best-score bookkeeping are about the *run* rather than
+  # about any one object in it, so they live at the scene level.
+  script {
+    on timer 1400 {
+      if (mode = 1) {
+        gap = random(150, 300)
+        spawn PipeLead at (340, gap - 260)
+        spawn PipeCap at (340, gap - 113)
+        spawn PipeShaft at (340, gap + 260)
+        spawn PipeCap at (340, gap + 113)
+      }
+    }
+    on update {
+      if (mode = 2 && score > game.high) { game.high = score }
+    }
+  }
+
+  # The screen. Three out-of-flow layers, two of them gated on a scene flag, in
+  # back-to-front declaration order.
+  ui {
+    Stack()[100, 100, top-left] {
+      Layer()[100, 100, top-left] { ScoreBar()[100, 100, top-center]{} }
+      Layer()[100, 100, top-left] { ReadyPanel()[100, 100, center]?@ready{} }
+      Layer()[100, 100, top-left] { OverPanel()[100, 100, center]?@over{} }
+    }
+  }
+}
+
+# Every panel below obeys idml's two structural rules: children tile their
+# parent's main axis to exactly 100, and no item has more than three children --
+# which is why the game-over screen is four small components instead of one list
+# of eight. A `define` gets its own depth budget, so nesting them costs nothing.
+
+define ScoreBar() {
+  Col()[100, 100, top-center] {
+    Spacer()[8, 100, center]{}
+    Digits(@score, digits)[8, 100, center]{}
+    Spacer()[84, 100, center]{}
+  }
+}
+
+define ReadyPanel() {
+  Col()[100, 100, center] {
+    Spacer()[30, 100, center]{}
+    ReadyText()[18, 100, center]{}
+    Spacer()[52, 100, center]{}
+  }
+}
+
+define ReadyText() {
+  Col()[100, 100, center] {
+    Title("GET READY")[55, 100, center]{}
+    Hint("PRESS SPACE")[45, 100, center]{}
+  }
+}
+
+define OverPanel() {
+  Col()[100, 100, center] {
+    Spacer()[28, 100, center]{}
+    OverBody()[48, 100, center]{}
+    Spacer()[24, 100, center]{}
+  }
+}
+
+define OverBody() {
+  Col()[100, 100, center] {
+    Title("GAME OVER")[21, 100, center]{}
+    ScoreRows()[58, 100, center]{}
+    Hint("SPACE TO RETRY")[21, 100, center]{}
+  }
+}
+
+define ScoreRows() {
+  Col()[100, 100, center] {
+    Hint("SCORE")[16, 100, center]{}
+    Digits(@score, digits)[34, 100, center]{}
+    BestRow()[50, 100, center]{}
+  }
+}
+
+define BestRow() {
+  Col()[100, 100, center] {
+    Hint("BEST")[32, 100, center]{}
+    Digits(@game.high, digits)[68, 100, center]{}
+  }
+}
+
+# A variant carries non-geometry defaults -- colour here -- and never geometry.
+# That restriction is stock idml's, and it is what keeps layout in one place.
+Title:Text { colour: 0xFFFFFF }
+Hint:Text { colour: 0xF7E11C }

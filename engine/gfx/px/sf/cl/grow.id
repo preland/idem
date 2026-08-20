@@ -1,0 +1,16 @@
+// Sizing the framebuffer, and resetting the clip that depends on the size.
+
+sf_init2(int w, int h) {
+  sf_grow(w * h);
+  sf_unclip();
+} return void;
+
+// A negative count pushes nothing, which is precisely the "already big enough"
+// case, so no branch is needed to express it.
+sf_grow(int n) {
+  lst_fill((import sf_fb), n - len((import sf_fb)), 0);
+} return void;
+
+sf_clear(int c) {
+  lst_set_all((import sf_fb), (import sf_gw) * (import sf_gh), c);
+} return void;

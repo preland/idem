@@ -1,0 +1,46 @@
+// scl -- the scaled blit, nearest neighbour.
+//
+// sc is per-mille (ARCHITECTURE.md section 4): 1000 draws at native size, 2500
+// draws two and a half times as big, 500 draws half size. Two callers need it and
+// neither can use an integer factor -- a UI `Sprite(Name)` is scaled to whatever
+// rect the tiling resolved (IDML_GAME.md section 6), and a 3D billboard is scaled
+// by its distance, which is a ratio and never a whole number.
+//
+// Nearest neighbour, not filtered: a filtered upscale of pixel art looks like a
+// smear, and a filtered downscale costs a read per source pixel. What this does
+// cost is one divide per destination pixel (d2_scl_row), which is why the
+// unscaled path is a separate loop.
+//
+// The two axes scale independently. That is not generality for its own sake: a
+// pipe in a flappy-bird game is an 8-pixel sprite whose pattern is constant down
+// its length, stretched to 320 pixels tall and left alone horizontally, and a
+// ground strip is stretched twelve times across and not at all down. Forcing one
+// factor makes both of those impossible to declare.
+//
+// sc <= 0 draws nothing: the destination height goes to zero or negative, the row
+// loop does not run, and the per-pixel divide is never reached -- an int division
+// by zero in this language is a SIGFPE with no message, so that ordering matters.
+
+// The square case, which is most of them. d2_blit_xy is the general one.
+d2_blit_scaled(int p, int x, int y, int f, int sc) {
+  d2_blit_xy(p, x, y, f, sc, sc);
+} return void;
+
+// j is a DESTINATION row now, so the source row is j * 1000 / sy. The destination
+// height is floor(h * sy / 1000), which keeps that source row below h for every
+// j < n -- no clamp needed, and none wanted in a per-row loop.
+d2_scl_rows(int p, int x, int y, int i, int j, int n, int sx, int sy) {
+  while (j < n) {
+    d2_scl_clip(p, x, y + j, i + d2_spr_w(p) * (j * 1000 / sy), sx);
+    j = j + 1;
+  }
+} return void;
+
+// The extent is the SCALED width, and the left clip is passed on as u rather than
+// folded into the source index: the source column is a division of the
+// destination offset, so it cannot be pre-added.
+d2_scl_clip(int p, int x, int y, int i, int sc) {
+  int x0 = fx_max(x, (import sf_cl)[0]);
+  int x1 = fx_min(x + d2_spr_w(p) * sc / 1000 - 1, (import sf_cl)[2]);
+  d2_scl_row(d2_spr_px(p), i, (import sf_fb), sf_idx(x0, y), x1 - x0 + 1, sc, x0 - x);
+} return void;

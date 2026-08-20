@@ -1,0 +1,26 @@
+// The statements that do something to the world.
+
+scr_ex6(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_spawn()) {
+    scr_spawn(nd, e);
+  } else {
+    fin = scr_ex7(nd, e);
+  }
+} return int fin;
+
+// `despawn` clears the live flag and finishes the handler. The record is not
+// removed -- an id stays valid for the frame it died in, which is what makes
+// `other` safe in a collision handler that despawns both sides.
+scr_ex7(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_despawn()) {
+    fin = scr_kill(e);
+  } else {
+    fin = scr_ex8(nd, e);
+  }
+} return int fin;
+
+scr_kill(int e) {
+  if (e >= 0) { ent_put(e, 9, ent_at(e, 9) - ent_at(e, 9) % 2); }
+} return int 1;

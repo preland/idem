@@ -1,0 +1,23 @@
+// The sample hash, and the indexed image put through it too.
+
+t_phash(int y, int hv) {
+  while (y < (import png_st)[1]) {
+    hv = t_prow(y, hv, 0);
+    y = y + 1;
+  }
+} return int hv;
+
+t_prow(int y, int hv, int x) {
+  while (x < (import png_st)[0]) {
+    hv = t_pmix(hv, png_samp(asset_row(y), x));
+    x = x + 1;
+  }
+} return int hv;
+
+// The 4-bit indexed image through the same walk. Reloading it here rather than
+// hashing it above is deliberate: it proves png_load resets everything a second
+// image depends on, which is the bug class that made two-image pipelines fail.
+t_bhash() {
+  png_load("games/flappy/art/bird.png");
+  print("  bird.png every sample, hash exp 880280616 = " + t_phash(0, 0));
+} return void;

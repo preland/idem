@@ -1,0 +1,32 @@
+// The open menu's panel.
+//
+// Drawn after every pane and every bar, because it covers them: this is the whole
+// of the popup layer, and it is one rectangle deep. A second popup -- a submenu,
+// a dialog -- would need a stack; one does not.
+//
+// Clicking an item runs it and closes the menu. Clicking anywhere else closes it
+// too, which is the behaviour that stops a menu from being a trap: the way out of
+// an open menu is to click, anywhere.
+
+ed_menu_pop() {
+  if ((import ed_st)[15] >= 0) {
+    ed_pop_at((import ed_st)[15]);
+  }
+  ed_pop_off();
+} return void;
+
+ed_pop_at(int k) {
+  sf_rect(ed_mx(k) - 4 * txt_ui(), ed_hdr(), ed_pop_w(k, 0, 0), ed_mn(k) * ed_rowh() + 2, ed_col(2));
+  d2_frame(ed_mx(k) - 4 * txt_ui(), ed_hdr(), ed_pop_w(k, 0, 0), ed_mn(k) * ed_rowh() + 2, ed_col(3));
+  ed_pop_rows(k, 0);
+} return void;
+
+// The widest label decides the panel, so nothing is clipped and nothing floats in
+// space. Recomputed rather than stored: it is a handful of string widths once a
+// frame, and a stored one would go stale when the text scale changed.
+ed_pop_w(int k, int i, int w) {
+  while (i < ed_mn(k)) {
+    w = fx_max(w, txt_width(ed_mitem(k, i)));
+    i = i + 1;
+  }
+} return int w + 16 * txt_ui();

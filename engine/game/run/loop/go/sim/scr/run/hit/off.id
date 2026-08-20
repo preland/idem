@@ -1,0 +1,26 @@
+// `on offscreen`, and the deferred scene change.
+//
+// Offscreen is the *stage*, not the window: a game declares 288 by 512 and that
+// rectangle is what its objects leave, whatever size the window happens to be.
+// The margin is one whole stage width, so a pipe is not despawned the instant its
+// centre crosses the edge while half of it is still visible.
+
+scr_offs(int e) {
+  while (e < ent_n()) {
+    scr_off(e);
+    e = e + 1;
+  }
+} return void;
+
+scr_off(int e) {
+  if (ent_at(e, 9) % 2 = 1 && ent_at(e, 0) < 0 - (import scn_st)[0] * 1000) {
+    scr_fire(scr_sc(e), "offscreen", e, "");
+  }
+} return void;
+
+// The scene a handler asked for, applied now that every walk has finished.
+scr_jump() {
+  if ((import scr_st)[2] != 0) {
+    scn_enter((import scr_st)[2]);
+  }
+} return void;

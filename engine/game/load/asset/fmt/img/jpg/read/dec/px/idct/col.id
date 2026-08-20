@@ -1,0 +1,26 @@
+// One output of the column pass, and storing a finished block into its plane.
+
+jpg_csum(int x, int y) {
+  int v = 0;
+  word wp = 0;
+  while (v < 8) {
+    wp = wp + m4_wmul((import jpg_t)[v * 8 + y], (import jpg_tm)[v * 8 + x]);
+    v = v + 1;
+  }
+} return word wp;
+
+jpg_store(int ci, int ox, int oy) {
+  int yy = 0;
+  while (yy < 8) {
+    jpg_srow(ci, ox, oy + yy, yy);
+    yy = yy + 1;
+  }
+} return void;
+
+jpg_srow(int ci, int ox, int oy, int yy) {
+  int xx = 0;
+  while (xx < 8) {
+    poke8((import jpg_c)[ci * 10 + 7] + oy * (import jpg_c)[ci * 10 + 8] * 8 + ox + xx, (import jpg_f)[yy * 8 + xx]);
+    xx = xx + 1;
+  }
+} return void;

@@ -1,0 +1,19 @@
+// The frames themselves, and the digits-only check.
+
+// Every frame is a full step: input, simulation, draw. Only the last one survives
+// into the PPM, which is what makes `--shot 30` a picture of the world after half
+// a second rather than a picture of frame 30 drawn over frame 1.
+shot_frames(int n) {
+  int i = 0;
+  while (i < n) {
+    run_step();
+    i = i + 1;
+  }
+} return void;
+
+// i is where the digit scan stopped. It has to be the end of the string, and at
+// least one digit has to have been consumed.
+shot_ok(string s, int i, int v) {
+  int n = 0;
+  if (i > 0 && charat(s, i) < 0) { n = v; }
+} return int n;

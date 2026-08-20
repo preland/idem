@@ -1,0 +1,32 @@
+// esc -- a chunk of idml, spelled as an `id` string literal.
+//
+// Only four characters need touching: backslash, quote, newline and tab. Verified
+// by round-trip on idml-shaped text, everything else passes through a literal
+// exactly as written -- including #, {, }, @ and !, which is most of what idml is
+// made of and the reason this escape is four cases rather than a table.
+//
+// The pass is O(n) and allocates exactly once. Doing it with `+` instead would be
+// O(n^2) in time *and* in retained memory, because concatenation in this language
+// never frees: 200 KB of assets escaped that way is the 1.8 GB failure mode
+// described at the top of engine/core/util/str.id, not a slow build.
+
+pack_esc(string src, int p, int n) {
+  word ad = alloc(2 * n + 1);
+  int nxt = pack_esc_run(src, p, n, ad);
+} return string str_of_mem(ad, nxt);
+
+// j is the write cursor and runs ahead of the read cursor i, by one for every
+// character that needed a backslash.
+pack_esc_run(string src, int p, int n, word ad) {
+  int i = 0;
+  int j = 0;
+  while (i < n) {
+    j = j + pack_esc_ch(charat(src, p + i), ad + j);
+    i = i + 1;
+  }
+} return int j;
+
+pack_esc_ch(int ch, word ad) {
+  int esc = pack_esc_kd(ch);
+  int n = pack_esc_put(ch, esc, ad);
+} return int n;

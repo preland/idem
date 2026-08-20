@@ -1,0 +1,12 @@
+ui_tc(int nd) {
+} return int ui_arg(nd, 1, ui_vprop(ast_tx(nd), "colour", 0xC8C8C8));
+
+// A Text's first argument, and how wide a number drawn at a scale is.
+
+ui_arg0(int nd) {
+} return int scn_arg(nd, 0);
+
+// It has to agree with what txt_num_sc actually draws, or a centred score drifts
+// by half a digit as it crosses a power of ten.
+txt_num_wsc(int v, int sc) {
+} return int txt_cell() * sc / 1000 * (txt_num_dn(fx_abs(v)) + (v < 0));

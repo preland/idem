@@ -1,0 +1,25 @@
+// `?@ref` -- the visibility gate, and `{ children }`.
+//
+// A gated item may or may not render, which is why the tiling check excludes it
+// from the fill sum: two mutually exclusive panels each claiming 100% is correct
+// idml, and the reason flappy's ready/over screens are siblings rather than a
+// state machine.
+
+par_uvis(int[] pos) {
+  int nd = 0;
+  if (par_eat(pos, "?") = 1) {
+    nd = par_uref(pos);
+  }
+} return int nd;
+
+par_ukids(int[] pos) {
+  int[] kids = [];
+  par_ufill2(pos, kids);
+} return int[] kids;
+
+par_ufill2(int[] pos, int[] kids) {
+  if (par_eat(pos, "{") = 1) {
+    par_ufill3(pos, kids);
+    par_want(pos, "}");
+  }
+} return void;

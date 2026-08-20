@@ -1,0 +1,7 @@
+// Selecting a project item.
+
+ed_proj_hit(int x, int y, int i, int ok) {
+  if (ok * inp_mhit(1) = 1) {
+    lset((import ed_st), 1, i);
+  }
+} return void;

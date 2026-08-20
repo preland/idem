@@ -1,0 +1,18 @@
+// What a braced body holds, which depends on the declaration.
+//
+// `define Name() { … }` holds one UI item and nothing else -- it is a named
+// fragment of layout, and its body is the same grammar a `ui { }` block has.
+// Everything else holds members: components, nested declarations, scripts.
+//
+// Parsing a define's body as members is what produced four diagnostics per
+// component in flappy: `Col()[100, 100, top-center]` read as a component called
+// `Col` followed by a bracket nothing expected, so every panel in the game
+// reported its layout as a syntax error while the game itself still ran.
+
+par_dbraced(int[] pos, int kd, int[] kids) {
+  if (kd = ast_k_define()) {
+    push(kids, par_item(pos));
+  } else {
+    par_dinner(pos, kids);
+  }
+} return void;

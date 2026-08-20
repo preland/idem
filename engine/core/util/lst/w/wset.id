@@ -1,0 +1,6 @@
+// The same write, for a list of words. `id` has no generics, so a list of 64-bit
+// values needs its own setter -- and the three that exist here are the whole of
+// it: an imported list cannot be index-assigned directly, whatever it holds.
+wset(word[] ws, int i, word wv) {
+  ws[i] = wv;
+} return void;

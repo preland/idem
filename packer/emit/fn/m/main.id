@@ -1,0 +1,13 @@
+// The generated main.id.
+
+pack_main() {
+  print("@@FILE main.id");
+  pack_head();
+  pack_boot();
+} return void;
+
+pack_boot() {
+  print("");
+  print("main(int argc, string[] argv) {");
+  pack_boot2();
+} return void;

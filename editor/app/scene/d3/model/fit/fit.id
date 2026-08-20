@@ -1,0 +1,30 @@
+// Framing the view on what was loaded.
+//
+// A .blend is modelled wherever its artist worked, at whatever scale: this
+// showroom spans tens of metres and sits nowhere near the origin. A camera that
+// always orbits (0,0,0) at nine metres shows the inside of a wall, which reads as
+// "nothing loaded" and is the most misleading possible failure.
+//
+// So the bounds are measured and the orbit is set from them: the centre becomes
+// the point the camera looks at, and the distance is the half-diagonal with room
+// to spare, which frames any scene from anywhere without knowing anything about it.
+
+ed_fit_mesh(int ok) {
+  if (ok = 1) {
+    ed_bounds();
+  }
+} return void;
+
+ed_bounds() {
+  int[] bb = [2000000000, 2000000000, 2000000000, 0 - 2000000000, 0 - 2000000000, 0 - 2000000000];
+  ed_bwalk(bb, 0);
+  ed_bset(bb);
+} return void;
+
+ed_bwalk(int[] bb, int i) {
+  while (i < len((import bl_v))) {
+    lset(bb, i % 3, fx_min(bb[i % 3], (import bl_v)[i]));
+    ed_bmax(bb, i);
+    i = i + 1;
+  }
+} return void;

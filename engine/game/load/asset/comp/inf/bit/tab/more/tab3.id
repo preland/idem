@@ -1,0 +1,22 @@
+// Sizing the scratch. Every one of these is reused by every block of every
+// stream, so they are allocated once and never again -- a table per block would
+// be an allocation per few thousand bytes of image, in a language that frees
+// nothing.
+
+inf_tabs7() {
+  export int[] inf_cs = [];
+  lst_fill((import inf_ofs), 16, 0);
+  inf_tabs8();
+} return void;
+
+inf_tabs8() {
+  lst_fill((import inf_lens), 320, 0);
+  lst_fill((import inf_lc), 16, 0);
+  inf_tabs9();
+} return void;
+
+inf_tabs9() {
+  lst_fill((import inf_ls), 288, 0);
+  lst_fill((import inf_dc), 16, 0);
+  inf_tabs10();
+} return void;

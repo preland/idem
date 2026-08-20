@@ -1,0 +1,17 @@
+par_eat(int[] pos, string txt) {
+  int ok = par_is(pos, txt);
+  if (ok = 1) { par_next(pos); }
+} return int ok;
+
+// Report but do not consume on a mismatch. There is no recovery beyond that:
+// every collection loop carries an end-of-input guard, so a wrong token costs one
+// diagnostic and a misshapen subtree, never a hang.
+par_want(int[] pos, string txt) {
+  int ok = par_eat(pos, txt);
+  par_wchk(pos, txt, ok);
+} return void;
+
+// 39 is an apostrophe.
+par_wchk(int[] pos, string txt, int ok) {
+  if (ok = 0) { par_err(pos, "expected " + chr(39) + txt + chr(39) + ", found " + chr(39) + par_text(pos) + chr(39)); }
+} return void;

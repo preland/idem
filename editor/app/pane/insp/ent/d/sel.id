@@ -1,0 +1,23 @@
+// Counting the selection, finding its first member, and one tag's name.
+
+ed_nsel(int e, int n) {
+  while (e < ent_n()) {
+    n = n + (ent_at(e, 23) & 1);
+    e = e + 1;
+  }
+} return int n;
+
+// The lowest selected id. A band picks many and the inspector shows one, which is
+// what every editor does; the count beside it says how many more there are.
+ed_first(int e) {
+  int at = 0 - 1;
+  while (e < ent_n()) {
+    at = lst_pick(at, e, ent_at(e, 23) & 1);
+    e = e + 1;
+  }
+} return int at;
+
+ed_tag1(int e, int i) {
+  string s = "";
+  if (ent_at(e, 20) / inf_pow2(i) % 2 = 1) { s = (import scr_tn)[i] + " "; }
+} return string s;

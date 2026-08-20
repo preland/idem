@@ -1,0 +1,25 @@
+// Which remembered offset a repeat code names, and what it does to the history.
+//
+//   1  the most recent, and the history does not move
+//   2  the one before it, swapped to the front
+//   3  the one before that, rotated to the front
+//   4  (only reachable when the literal length is zero) the most recent minus one
+
+zst_srep2(int i) {
+  int off = (import zst_st)[11];
+  if (i = 2) { off = zst_sswap(); }
+  else { off = zst_srep3(i, off); }
+} return int off;
+
+zst_srep3(int i, int off) {
+  if (i = 3) { off = zst_snew((import zst_st)[13]); }
+  else if (i = 4) { off = zst_snew((import zst_st)[11] - 1); }
+} return int off;
+
+// Repeat 2 swaps the first two and leaves the third alone -- it is not a push, so
+// it cannot go through zst_snew.
+zst_sswap() {
+  int off = (import zst_st)[12];
+  lset((import zst_st), 12, (import zst_st)[11]);
+  lset((import zst_st), 11, off);
+} return int off;

@@ -1,0 +1,22 @@
+// Which title the pointer is on, what a click there does, and the walk.
+
+ed_menu_click(int x, int k, string s) {
+  if (ed_in(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1) = 1) {
+    ed_menu_pick(k);
+  }
+} return void;
+
+// A click toggles this menu; a hover switches to it, but only when a menu is
+// already open. `0 - 1 - (k + 1) * (…)` is -1 when the same title is clicked
+// again and k otherwise, without a second branch.
+ed_menu_pick(int k) {
+  if (inp_mhit(1) = 1) {
+    lset((import ed_st), 15, ed_mtog(k));
+  } else if ((import ed_st)[15] >= 0) {
+    lset((import ed_st), 15, k);
+  }
+} return void;
+
+ed_menu_items() {
+  ed_menu_run(0);
+} return void;

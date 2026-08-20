@@ -1,0 +1,8 @@
+// ed_dir is the distinct files, in the order the `#file` markers introduced them
+// -- the project browser's own list. ed_fl is per declaration and answers a
+// different question ("which file is this one in"); conflating the two put one
+// browser tile per declaration.
+ed_read4(string src) {
+  export string[] ed_dir = [];
+  ed_read3(src);
+} return void;

@@ -1,0 +1,27 @@
+// The document, and the world it declares.
+//
+// This is the same load the runtime performs -- par_doc, scn_load, scn_spawn --
+// and it is what puts a game's actual sprites in the scene panel rather than a
+// rectangle of its background colour. The editor used to pattern-match the token
+// stream for `ui` and `clear` and `display`; that heuristic still runs and still
+// feeds the panel's UI, and this sits beside it.
+
+ed_read7() {
+  ed_read5();
+  ed_load_as(0);
+  ed_world();
+} return void;
+
+// scn_load spawns the starting scene itself -- it ends in scn_start, which
+// enters that scene, and entering a scene is what fills the world. Spawning again
+// here put **every entity in the document into the world twice**: two birds, two
+// grounds, two of each pipe, exactly overlapping and therefore invisible until
+// one of them was pushed by a script and the pair came apart.
+//
+// It is the bug behind "pressing space duplicates the player". It was not the
+// press: the second bird had been there since load, and the flap is simply the
+// first moment anything moved.
+ed_world() {
+  int[] pos = [0];
+  scn_load(par_doc(pos));
+} return void;

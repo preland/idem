@@ -1,0 +1,21 @@
+// One bit, and the step that follows it.
+
+// The scan keeps the last bit found set, which is the highest.
+zb_pick(int h, int i, int ok) {
+  int n = h;
+  if (ok = 1) { n = i; }
+} return int n;
+
+zb_bit() {
+  int v = 0;
+  if ((import zb_st)[1] < (import zb_st)[0]) {
+    lset((import zb_st), 3, 1);
+  } else {
+    v = peek8((import zb_st)[1]) / inf_pow2((import zb_st)[2]) % 2;
+  }
+} return int zb_next(v);
+
+zb_next(int v) {
+  lset((import zb_st), 2, (import zb_st)[2] - 1);
+  zb_norm();
+} return int v;

@@ -1,0 +1,18 @@
+// Scanning a variant's properties.
+
+ui_pscan(int nd, string prop, int i, int dv) {
+  while (i < len(ast_ks(nd))) {
+    dv = ui_pone(ast_ks(nd)[i], prop, dv);
+    i = i + 1;
+  }
+} return int dv;
+
+// A property's value is the node hanging off the comp's `a` slot directly, not
+// an argument list: par_vprop builds `colour: 0xFFFFFF` with ast_new_a, whose
+// third argument *is* the value node. Reading it as an args list answers 0, and a
+// colour of 0 is black -- so every styled variant drew black text and looked like
+// a colour that had not been applied at all, which it had.
+ui_pone(int nd, string prop, int dv) {
+  int v = dv;
+  if (ast_tx(nd) = prop) { v = ast_ia(ast_ia(nd)); }
+} return int v;

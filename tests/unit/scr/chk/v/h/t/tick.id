@@ -1,0 +1,26 @@
+// Timers and the press.
+//
+// `on timer 100` at 20 ms a frame: four frames are not enough, the fifth is. What
+// is being checked is that the accumulator is milliseconds and not frames -- the
+// same script at 60 fps must fire after the same 100 ms, not after the same five
+// turns.
+
+t_tick() {
+  t_ticks(4, 20);
+  print("after 80ms: ticks exp 0 = " + scr_get(0 - 1, "ticks"));
+  t_tick2();
+} return void;
+
+t_ticks(int n, int dt) {
+  int i = 0;
+  while (i < n) {
+    scr_tick(dt);
+    i = i + 1;
+  }
+} return void;
+
+t_tick2() {
+  t_ticks(1, 20);
+  print("after 100ms: ticks exp 1 = " + scr_get(0 - 1, "ticks"));
+  t_press();
+} return void;

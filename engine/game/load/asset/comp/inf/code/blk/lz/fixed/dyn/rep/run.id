@@ -1,0 +1,14 @@
+// How long a repeat runs, and the extra bits that say so.
+
+inf_drun(int kd) {
+  int k = 0;
+  if (kd = 16) { k = 3 + inf_bits(2); }
+  else { k = inf_drun2(kd); }
+} return int k;
+
+// 17 and 18 are both runs of zeros; only the run's length differs.
+inf_drun2(int kd) {
+  int k = 0;
+  if (kd = 17) { k = 3 + inf_bits(3); }
+  else { k = 11 + inf_bits(7); }
+} return int k;

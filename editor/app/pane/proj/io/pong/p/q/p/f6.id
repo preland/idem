@@ -1,0 +1,7 @@
+// The scoreboard, as a define -- two numbers each taking half the width.
+
+ed_pg18() {
+} return string ed_pong_ln("define Scores() {") + ed_pong_ln("  Row()[100, 100, top-center] {") + ed_pong_ln("    Text(@game.lscore)[100, 50, top-center]{}") + ed_pg19();
+
+ed_pg19() {
+} return string ed_pong_ln("    Text(@game.rscore)[100, 50, top-center]{}") + ed_pong_ln("  }") + ed_pong_ln("}");

@@ -1,0 +1,34 @@
+// Styled variants -- `Title:Text { colour: 0xFFFFFF }`.
+//
+// A variant gives a component a name, a base to draw as, and a set of defaults.
+// It carries **no geometry**: dimensions and anchors stay in the layout where
+// they are written, which is the rule that keeps a screen's shape readable in one
+// place (IDML_GAME.md §6). What it does carry is everything a layout should not
+// have to repeat -- a colour, a font -- so that `Title("GAME OVER")` and
+// `Title("SCORE")` agree without either of them saying how.
+//
+// Two lookups, and they are separate on purpose. `ui_base` answers what to draw;
+// `ui_vprop` answers what to draw it with, and only when the item did not say. An
+// explicit argument always wins over a variant's default, which is what makes a
+// variant a default rather than an override.
+
+ui_vinit() {
+  export string[] ui_vn = [];
+  export int[] ui_ts = [1000];
+  ui_vinit2();
+} return void;
+
+// ui_ts is the scale a UI's text is drawn at, per-mille, and it belongs to
+// whoever is about to draw the UI: the runtime sets it to the stage's scale, the
+// editor's panel to the plane's, and the editor's own chrome to txt_ui. One slot
+// rather than a parameter threaded through every item, because the tiling walk
+// passes rects and nothing else, and a scale is not a rect.
+ui_vinit2() {
+  export int[] ui_vd = [];
+  ui_dinit();
+} return void;
+
+ui_vload(int nd) {
+  push((import ui_vn), ast_tx(nd));
+  push((import ui_vd), nd);
+} return void;

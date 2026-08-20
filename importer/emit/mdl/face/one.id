@@ -1,0 +1,12 @@
+// One face: three vertex indices and a packed colour.
+
+mdl_face(string src) {
+  int a = imp_int(src);
+  int b = imp_int(src);
+  mdl_f3(src, a, b);
+} return void;
+
+mdl_f3(string src, int a, int b) {
+  int c = imp_int(src);
+  print("    (" + a + ", " + b + ", " + c + ", 0x" + imp_hex6(imp_int(src)) + ")");
+} return void;

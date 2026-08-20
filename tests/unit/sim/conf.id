@@ -1,0 +1,7 @@
+// The simulation needs the whole engine: the entity store lives beside the
+// renderer, and gfx/fs are named by engine/core/sys whether or not this calls one.
+import "../../../engine"
+// The game seam as no-ops: this program links the engine but is not a game.
+import "../../../stub"
+import "../../../../id_development/backends/gfx"
+import "../../../../id_development/backends/fs"

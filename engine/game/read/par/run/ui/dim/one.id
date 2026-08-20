@@ -1,0 +1,16 @@
+// One dimension: a percentage, or a `@ref` resolved when the frame is drawn.
+//
+// A bare number *is* a percentage -- you never write `%` -- and it is scaled to
+// centipercent here, where the slot's meaning is known. par_snum owes the number
+// its remaining digits: `35.95` lexed as 3595 with two fractional digits is
+// already centipercent and is scaled by 1; `50` lexed as 50 with none becomes
+// 5000.
+
+par_dim(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, "@") = 1) {
+    nd = par_uref(pos);
+  } else {
+    nd = par_snum(pos, 2);
+  }
+} return int nd;

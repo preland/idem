@@ -1,0 +1,7 @@
+// Generating the tree.
+
+pack_run() {
+  pack_main();
+  pack_files(read_all(), 0, 0);
+} return void;
+

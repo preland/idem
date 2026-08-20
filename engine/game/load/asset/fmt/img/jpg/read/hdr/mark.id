@@ -1,0 +1,22 @@
+// Finding the next marker, and stepping over its segment.
+
+jpg_loop() {
+  while ((import jpg_st)[8] = 1 && (import jpg_st)[9] < (import asset_io)[1] - 1) {
+    jpg_seg();
+  }
+} return void;
+
+jpg_seg() {
+  int p = jpg_mark((import jpg_st)[9]);
+  jpg_kind(p, asset_at(p + 1));
+} return void;
+
+// A real marker is 0xFF followed by something that is neither 0x00 (a stuffed
+// data byte) nor 0xFF (fill). Scanning for one rather than trusting the cursor
+// is what lets the walk resume after an entropy-coded scan, whose length is not
+// written down anywhere.
+jpg_mark(int p) {
+  while (p < (import asset_io)[1] - 1 && (asset_at(p) != 255 || asset_at(p + 1) = 0 || asset_at(p + 1) = 255)) {
+    p = p + 1;
+  }
+} return int p;

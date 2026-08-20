@@ -1,0 +1,9 @@
+// The key map's two lists.
+
+// The manifest's key map: a code and the event name it raises, in step. A game
+// with no `keys` block gets an empty map and hears no input, which is the honest
+// reading of declaring none.
+scr_init4() {
+  export int[] scr_kk = [];
+  export string[] scr_ke = [];
+} return void;

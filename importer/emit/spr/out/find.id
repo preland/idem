@@ -1,0 +1,32 @@
+// Looking a colour up, adding one, and the character that stands for it.
+
+// -1 when absent. No early exit -- this language has no `break` -- so the whole
+// table is walked and the last match wins; since colours are unique in it, that
+// is the only match.
+spr_find(int c) {
+  int k = 0 - 1;
+  int i = 1;
+  while (i < len((import spr_p))) {
+    k = i * ((import spr_p)[i] = c) + k * ((import spr_p)[i] != c);
+    i = i + 1;
+  }
+} return int k;
+
+// 62 is the number of characters that can stand for a colour (see spr_char), so
+// a 63rd colour has nowhere to go. It is dropped and flagged rather than silently
+// aliased onto another one, and spr_over turns the flag into a diagnostic naming
+// the flag to pass -- an asset that quietly lost its highlights is worse than one
+// that refused to import.
+spr_push(int c) {
+  if (len((import spr_p)) < 63) {
+    push((import spr_p), c);
+  } else {
+    lset((import spr_d), 9, 1);
+  }
+} return void;
+
+spr_over() {
+  if ((import spr_d)[9] = 1) {
+    err_report("stdin", 1, "more than 62 distinct colours; re-run with a smaller --colors");
+  }
+} return void;

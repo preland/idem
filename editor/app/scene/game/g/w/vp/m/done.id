@@ -1,0 +1,8 @@
+// The world, then a marker on everything selected, then the stage handed back.
+// The markers are drawn after the whole world rather than per entity, so a
+// selected thing behind an unselected one still shows -- which is the point of a
+// marker.
+ed_pdone(int was) {
+  ed_marks(0);
+  ed_pset(0, 0, was);
+} return void;

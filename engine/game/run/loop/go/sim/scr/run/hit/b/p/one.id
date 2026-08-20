@@ -1,0 +1,7 @@
+// One entity's share of a key event.
+
+scr_pent(string evn, int e) {
+  if (ent_at(e, 9) % 2 = 1) {
+    scr_fire(scr_sc(e), evn, e, "");
+  }
+} return void;

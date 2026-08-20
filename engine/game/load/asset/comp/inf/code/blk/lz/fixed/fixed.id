@@ -1,0 +1,24 @@
+// The fixed tables.
+//
+// RFC 1951 defines them by their code lengths: literals 0..143 are 8 bits,
+// 144..255 are 9, 256..279 are 7, 280..287 are 8; every distance code is 5.
+// Building them through the same inf_build the dynamic path uses means there is
+// one canonical-table implementation and not two that could disagree.
+
+inf_fixed() {
+  inf_flens(0, 144, 8);
+  inf_flens(144, 256, 9);
+  inf_fix2();
+} return void;
+
+inf_fix2() {
+  inf_flens(256, 280, 7);
+  inf_flens(280, 288, 8);
+  inf_fix3();
+} return void;
+
+inf_fix3() {
+  inf_build((import inf_lc), (import inf_ls), (import inf_lens), 288);
+  inf_flens(0, 30, 5);
+  inf_fixd();
+} return void;

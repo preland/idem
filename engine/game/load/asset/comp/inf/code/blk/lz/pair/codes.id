@@ -1,0 +1,35 @@
+// The LZ77 loop -- the heart of it.
+//
+// Every symbol from the literal/length table is either a byte to emit (0..255),
+// the end of the block (256), or a length code (257..285) which is followed by a
+// distance code and copies from what has already been written.
+//
+// The copy is byte at a time and forwards, deliberately: DEFLATE allows a
+// distance shorter than the length, and the overlap is how it encodes a run --
+// `memcpy` would be wrong, and a backwards copy would be wrong differently.
+
+inf_codes() {
+  int kd = 0;
+  while (kd != 256 && (import inf_st)[7] = 0) {
+    kd = inf_decode((import inf_lc), (import inf_ls));
+    inf_one(kd);
+  }
+} return void;
+
+inf_one(int kd) {
+  if (kd < 256) {
+    inf_put(kd);
+  } else if (kd > 256) {
+    inf_pair(kd - 257);
+  }
+} return void;
+
+// A length code's base plus its extra bits, then the distance that follows it.
+// A code past the table is a corrupt stream, not an index off the end of a list.
+inf_pair(int k) {
+  if (k >= len((import inf_lb))) {
+    lset((import inf_st), 7, 1);
+  } else {
+    inf_dist((import inf_lb)[k] + inf_bits((import inf_le)[k]));
+  }
+} return void;

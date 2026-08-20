@@ -1,0 +1,25 @@
+// The three optional header fields.
+//
+// The window descriptor is read and discarded: it bounds how far back a match may
+// reach, which an encoder needs to decide how much history to keep. This decoder
+// keeps the entire output and is bounded by the caller's buffer instead, so the
+// number tells it nothing it does not already enforce.
+
+zst_win(int ss) {
+  if (ss = 0) {
+    zst_le(1);
+  }
+} return void;
+
+zst_did(int f) {
+  if (f > 0) {
+    zst_le(zst_dsz(f));
+  }
+} return void;
+
+// Flag 1, 2, 3 -> 1, 2, 4 bytes. Flag 0 means absent.
+zst_dsz(int f) {
+  int n = 1;
+  if (f = 3) { n = 4; }
+  else if (f = 2) { n = 2; }
+} return int n;

@@ -1,0 +1,38 @@
+// nclip -- the near plane, which is the only clip plane that has to be exact.
+//
+// A vertex behind the eye projects through the origin and lands on the *opposite*
+// side of the screen: a wall the camera has walked into does not disappear, it
+// smears across the frame. No amount of clamping downstream fixes that, because
+// the wrong answer is a legal coordinate. Left, right, top and bottom need no
+// such treatment -- a vertex off the side is merely somewhere the span clip will
+// not draw, and d3_pclamp bounds the arithmetic (tri/set/px/un.id).
+//
+// The input is a 12-slot camera-space triangle: three x,y,z triples, then the
+// three packed vertex colours. What comes out is 0, 1 or 2 triangles handed to
+// d3_tri, and the winding is preserved in every case, so back-face culling still
+// works on a clipped triangle.
+//
+// The three vertices' sides make one 3-bit mask, which turns the case analysis
+// into a single comparison chain: 0 is entirely behind the plane, 7 entirely in
+// front, one bit set is the corner case, two bits set is the quad case.
+
+d3_nclip(int[] tri) {
+  d3_ncase(tri, d3_side(tri, 0) + d3_side(tri, 1) * 2 + d3_side(tri, 2) * 4);
+} return void;
+
+d3_side(int[] tri, int i) {
+} return int tri[i * 3 + 2] >= (import d3_cam)[5];
+
+// m/2 is the index of the single set bit of 1, 2 or 4, and (7-m)/2 is the index
+// of the single *clear* bit of 3, 5 or 6 -- the arithmetic that would otherwise be
+// two more branches at the nesting limit. The callee names it, so the trick lives
+// in one place.
+d3_ncase(int[] tri, int m) {
+  if (m = 7) {
+    d3_tri(tri);
+  } else if (m = 1 || m = 2 || m = 4) {
+    d3_none(tri, m / 2);
+  } else if (m != 0) {
+    d3_ntwo(tri, (7 - m) / 2);
+  }
+} return void;

@@ -1,0 +1,19 @@
+// The two cases that actually cut.
+//
+// Both put the surviving geometry mostly off screen -- a vertex at the near plane
+// is 50 times closer than one two units away, so it projects 50 times further out
+// -- which is exactly the arithmetic the clip has to survive. What is being
+// checked is that a large, plausible area is lit and the process is still alive:
+// the coordinates involved reach thousands of pixels, the span steps are
+// re-interpolated rather than multiplied out for that reason, and an out-of-range
+// store would abort rather than misdraw.
+
+// Both counts were checked against the screen area the clipped shape covers,
+// summed row by row in python3 rather than accepted from a first run: the quad
+// clips to a trapezoid of about 42416 pixels and the corner to a triangle of
+// about 38080. Agreement to within 0.2% is what an integer rasteriser's edge
+// rule accounts for; a sign or an ordering error is not a 0.2% difference.
+t_raster2() {
+  t_case("two vertices in front, quad (exp ~42416)", 3000, 3000, 0 - 1000);
+  t_case("one vertex in front, corner (exp ~38080)", 0 - 1000, 0 - 1000, 3000);
+} return void;

@@ -1,0 +1,20 @@
+// Advancing to the next code length, and reading the symbol out.
+
+inf_dnext(int[] cnt, int[] st, int ok) {
+  if (ok = 0) {
+    lset(st, 2, st[2] + cnt[st[3]]);
+    lset(st, 1, (st[1] + cnt[st[3]]) * 2);
+  }
+} return int ok;
+
+// Past length 15 nothing matched: the stream is corrupt. Answering 0 rather than
+// indexing off the end matters -- an out-of-range list read aborts the process,
+// and a corrupt file must not be able to kill the program that opened it.
+inf_dsym(int[] sym, int[] st) {
+  int v = 0;
+  if (st[3] > 15) {
+    lset((import inf_st), 7, 1);
+  } else {
+    v = sym[st[2] + st[0] - st[1]];
+  }
+} return int v;

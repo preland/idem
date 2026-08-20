@@ -1,0 +1,26 @@
+// The selection band, and what it picks.
+//
+// Left-dragging in the scene view draws a rectangle and, when the button comes
+// up, selects every entity whose sprite lands inside it. Selection lives in the
+// entity record itself (slot 23, bit 0) rather than in a list the editor keeps,
+// which is what lets the scene view outline what is selected and the inspector
+// list it without either of them owning the answer.
+//
+// A band that is a single pixel is a *click*, and a click that hit nothing clears
+// the selection -- the behaviour every tool has, and the one that makes an
+// accidental drag recoverable.
+
+ed_band_take(int k) {
+  if (k = 3) {
+    ed_pick(0, ed_bx0(), ed_by0(), 0);
+  }
+} return void;
+
+// The band, normalised so that dragging up-left and dragging down-right give the
+// same rectangle. Four functions rather than one that answers a record, because
+// each is one expression and a record would have to be allocated or owned.
+ed_bx0() {
+} return int fx_min((import ed_st)[13], inp_mx());
+
+ed_bx1() {
+} return int fx_max((import ed_st)[13], inp_mx());

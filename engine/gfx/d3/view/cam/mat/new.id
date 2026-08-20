@@ -1,0 +1,30 @@
+// The four matrices the view transform works in, allocated once.
+//
+// d3_vm is the world-to-camera matrix every model vertex is put through; m0, m1
+// and m2 are the scratch it is composed in. m4_muli writes into a destination the
+// caller owns and must not be one of its operands, so the composition needs three
+// working matrices and no allocation at all once these exist.
+//
+// An export's initialiser may be a call, so each of these is one action.
+
+d3_mats() {
+  export int[] d3_vm = m4_new();
+  export int[] d3_m0 = m4_new();
+  d3_mats2();
+} return void;
+
+d3_mats2() {
+  export int[] d3_m1 = m4_new();
+  export int[] d3_m2 = m4_new();
+  d3_start();
+} return void;
+
+// The tail of the init chain: the depth buffer, which needs the surface, and the
+// focal length, which needs the trig table. Every export in this module is
+// reachable from d3_init through exactly this chain -- an exported list is NULL
+// until its declaring function has run, and a dropped link is a segfault at the
+// first read, not a diagnostic.
+d3_start() {
+  d3_zalloc();
+  d3_cam_fov((import d3_cam)[7]);
+} return void;

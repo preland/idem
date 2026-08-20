@@ -1,0 +1,18 @@
+// Reading the document, then opening a window sized by what it said.
+
+idem_read(string src) {
+  scn_root(src, 0);
+  lex_init();
+  idem_read1(src);
+} return void;
+
+idem_read1(string src) {
+  lex_run(src);
+  idem_read2();
+} return void;
+
+idem_read2() {
+  int[] pos = [0];
+  scn_load(par_doc(pos));
+  idem_open();
+} return void;

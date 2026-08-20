@@ -1,0 +1,37 @@
+// Panning, on the middle button.
+//
+// The orbit centre slides in the plane the camera is facing, so the world appears
+// to follow the pointer: drag right and the scene goes right, which means the
+// centre goes *left* along the camera's right vector, and drag down and the scene
+// goes down, which means the centre goes up. Both are the same inversion the
+// orbit has, and for the same reason -- the camera moves opposite to the thing.
+//
+// The rate scales with distance. A pan a hundred units out has to cover a hundred
+// times the ground a pan one unit out does, or the gesture is useless at one end
+// of the zoom and unusable at the other; dividing by the viewport width makes a
+// full drag across the panel move about a viewport's worth of world, at any zoom.
+//
+// The basis is the camera's own, derived from the same yaw and pitch d3_cam_aim
+// defines forward from -- so panning and orbiting cannot drift apart:
+//
+//     right = ( cos yaw,           0,       -sin yaw          )
+//     up    = ( sin yaw * sin pit, cos pit,  cos yaw * sin pit)
+
+ed_pan() {
+  if (ed_is2d() = 1) {
+    ed_pan2d();
+  } else {
+    ed_pan_by(ed_prate(inp_mx() - (import ed_st)[6]), ed_prate(inp_my() - (import ed_st)[7]));
+  }
+} return void;
+
+// One pixel of drag, in millunits of world. fx_max keeps a panel that has not
+// been laid out yet from dividing by zero.
+ed_prate(int d) {
+} return int d * (import ed_st)[4] / fx_max(ed_rq(3, 2), 1);
+
+ed_pan_by(int dx, int dy) {
+  lset((import ed_st), 10, (import ed_st)[10] - ed_pcx(dx, dy));
+  lset((import ed_st), 11, (import ed_st)[11] - ed_pcy(dy));
+  lset((import ed_st), 12, (import ed_st)[12] - ed_pcz(dx, dy));
+} return void;

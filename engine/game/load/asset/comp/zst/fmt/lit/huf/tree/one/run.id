@@ -1,0 +1,13 @@
+// The third and fourth streams.
+
+zst_l4c(int reg, int n, int seg, int l1, int l2, int l3) {
+  zst_l4run(2 * seg, seg, 6 + l1 + l2, l3);
+  zst_l4d(reg, n, seg, l1 + l2 + l3);
+} return void;
+
+// The fourth stream's length is the section's remainder after the jump table and
+// the three declared lengths, and its symbol count is the remainder of the output
+// after three whole segments.
+zst_l4d(int reg, int n, int seg, int lsum) {
+  zst_l4run(3 * seg, reg - 3 * seg, 6 + lsum, n - 6 - lsum);
+} return void;

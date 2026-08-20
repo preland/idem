@@ -1,0 +1,29 @@
+// The diagnostics, kept for something to show them.
+//
+// Bounded, and it keeps the **first** sixteen rather than the last. That is the
+// interesting choice here: a parser that loses its place produces a cascade, and
+// in a cascade the first message is the cause and the rest are the wreckage. A
+// ring that overwrote would show a person sixteen consequences of a problem it
+// had already discarded.
+//
+// Three parallel lists rather than one formatted string per entry, because the
+// editor needs the *file* to select it in the project browser and the *line* to
+// scroll to, and re-parsing a message to get them back is how a UI ends up
+// depending on the wording of an error.
+
+err_keep_init() {
+  export string[] err_fs = [];
+  export int[] err_ls = [];
+  err_keep_init2();
+} return void;
+
+err_keep_init2() {
+  export string[] err_ms = [];
+} return void;
+
+err_keep(string path, int ln, string msg) {
+  if (len((import err_ms)) < 16) {
+    push((import err_fs), path);
+    err_keep2(ln, msg);
+  }
+} return void;

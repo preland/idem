@@ -1,0 +1,24 @@
+// The `#asset` lines tools/idem appends to the source stream.
+//
+// They are scanned out of the raw text rather than the token stream, because `#`
+// is a comment to the lexer and these must stay invisible to every other reader.
+// One pass over the source, before it is lexed at all.
+//
+// `id` gained file I/O but not directory listing, so this list is the only way
+// the editor learns what assets a project has -- and, given a path, it can open
+// and decode them itself.
+
+ed_scan_as(string src, int i) {
+  while (charat(src, i) >= 0) {
+    i = ed_as_line(src, i);
+  }
+} return void;
+
+// scn_reol, not a second copy: finding the end of a line is one piece of logic
+// however many markers are being looked for, and the compiler rejects a duplicate
+// on sight. The engine owns it because the engine scans this same stream for its
+// own `#root` marker before it lexes anything.
+ed_as_line(string src, int i) {
+  int e = scn_reol(src, i);
+  ed_as_take(src, i, e);
+} return int e + 1;

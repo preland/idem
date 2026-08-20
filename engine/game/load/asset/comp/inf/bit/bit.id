@@ -1,0 +1,26 @@
+// The bit reader. DEFLATE packs bits least-significant first within a byte, and a
+// code may straddle any number of bytes, so the reader keeps a buffer rather than
+// addressing bits.
+//
+// Running off the end of the source is a fault, not a wrap: a truncated file
+// would otherwise read zeros forever and produce a plausible-looking image.
+
+inf_bits(int n) {
+  while ((import inf_st)[3] < n && (import inf_st)[7] = 0) {
+    inf_more();
+  }
+} return int inf_take(n);
+
+inf_more() {
+  if ((import inf_st)[1] >= (import inf_st)[8]) {
+    lset((import inf_st), 7, 1);
+  } else {
+    inf_more2();
+  }
+} return void;
+
+inf_more2() {
+  lset((import inf_st), 2, (import inf_st)[2] + peek8((import inf_st)[0] + (import inf_st)[1]) * inf_pow2((import inf_st)[3]));
+  lset((import inf_st), 1, (import inf_st)[1] + 1);
+  lset((import inf_st), 3, (import inf_st)[3] + 8);
+} return void;

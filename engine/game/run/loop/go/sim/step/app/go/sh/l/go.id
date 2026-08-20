@@ -1,0 +1,15 @@
+// The two ways of running.
+
+idem_ago(int argc, string[] argv) {
+  int n = err_count();
+  idem_ago2(argc, argv);
+} return int n;
+
+idem_ago2(int argc, string[] argv) {
+  if (argc > 1) {
+    idem_ashot(fx_max(shot_n(argc, argv), 1));
+  } else {
+    idem_aloop(1);
+  }
+  gfx_close();
+} return void;

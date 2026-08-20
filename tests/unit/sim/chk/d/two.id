@@ -1,0 +1,5 @@
+// The second append.
+
+t_two(int e) {
+  print("first id exp 0, second exp 1 = " + e + " " + ent_add());
+} return void;

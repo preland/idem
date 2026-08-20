@@ -1,0 +1,250 @@
+# arena -- a first-person shooter, entirely in idml.
+#
+# World geometry (level.idml), art (art.idml), the player's movement, the
+# enemies' behaviour, the shooting and the HUD are all declarations and scripts.
+#
+# Controls are keys, and that is now a choice rather than a platform limit. The
+# backend used to deliver no arrow keys and no mouse at all, which is why turning
+# sits on the comma/period keys next to the movement hand; arrows are bound
+# alongside them because they cost nothing and are what a player reaches for.
+# Mouse look waits on the loader growing a binding for an axis rather than a key.
+#
+#   W A S D   move          , . or arrows   turn      / '   look up/down
+#   space     shoot         esc             quit
+#
+# Nothing below spells out an axis sign or a handedness. `move (fwd, strafe)`,
+# `turn`, and `spawn … ahead` are the engine's own frame of reference, so this
+# game does not care which way the renderer thinks +z points.
+
+import "./art.idml"
+import "./level.idml"
+
+game arena {
+  display (320, 200) "arena"
+  fps 60
+  scale 3
+  start fight
+  keys {
+    w = fwd, s = back, a = left, d = right,
+    "," = turnl, "." = turnr, left = turnl, right = turnr,
+    "/" = lookd, "'" = looku, down = lookd, up = looku,
+    space = shoot, esc = quit
+  }
+  persist { best = 0 }
+}
+
+template Bullet {
+  model tracer
+  body (0.12, 0.12, 0.12)
+  drive 26
+  life 1400
+  layer 1
+  tag shot
+  script {
+    # A shot that reaches a wall stops existing; one that reaches a grunt takes
+    # 34 of its health with it.
+    on hit solid { spawn Spark at (pos.x, pos.y, pos.z)  despawn }
+    on hit foe {
+      other.health = other.health - 34
+      spawn Spark at (pos.x, pos.y, pos.z)
+      despawn
+    }
+  }
+}
+
+model tracer {
+  brush (-0.06, -0.06, -0.3) (0.06, 0.06, 0.3) 0xFFE066
+}
+
+template Spark {
+  sprite flash
+  emit (flash, 6, 220, 40)
+  life 220
+  tag fx
+}
+
+template Grunt {
+  sprite grunt
+  anim (0, 2, 180)
+  body (0.5, 1.1, 0.5)
+  solid
+  health 100
+  tag foe
+  var cool = 0
+  script {
+    # The whole of the AI: close the distance while further than 2 units, and
+    # nudge sideways so a group does not queue up in single file.
+    on update {
+      cool = cool - dt
+      if (dist(nearest(player)) > 2) {
+        turn toward nearest(player)
+        move (2600, 0)
+      } else { turn toward nearest(player) }
+    }
+    on timer 900 {
+      if (dist(nearest(player)) < 9 && cool <= 0) {
+        cool = 900
+        scene.hurt = scene.hurt + 1
+      }
+    }
+    on death {
+      scene.score = scene.score + 100
+      spawn Spark at (pos.x, pos.y, pos.z)
+      despawn
+    }
+  }
+}
+
+template Cell {
+  sprite cell
+  body (0.3, 0.3, 0.3)
+  trigger
+  tag pickup
+  script {
+    on trigger player {
+      other.ammo = other.ammo + 12
+      despawn
+    }
+  }
+}
+
+scene fight {
+  clear 0x1A1E24
+  light (-0.3, -1, -0.2) 0xFFFFFF ambient 0x3A3E48
+  fog 0x1A1E24 near 10 far 34
+
+  var score = 0
+  var hurt = 0        # damage the grunts have queued up for the player
+  var wave = 1
+
+  entity world {
+    pos (0, 0, 0)
+    model arena
+    solid
+  }
+
+  entity player {
+    pos (8, 0, 8)
+    rot 225
+    body (0.35, 1.7, 0.35)
+    camera (1.7, 70)
+    tag player
+    health 100
+    var ammo = 36
+    var gun = 0        # ms of muzzle flash left to draw
+    # A script block has no 3-action limit and no nesting limit -- those are
+    # rules of the `id` language the engine is written in, not of the language a
+    # game is written in. Handlers are as long as they need to be.
+    script {
+      on update {
+        move (key(fwd) * 4200 - key(back) * 3200, key(right) * 3400 - key(left) * 3400)
+        turn key(turnr) * 90000 - key(turnl) * 90000
+        aim key(lookd) * 60000 - key(looku) * 60000
+        gun = gun - dt
+        health = health - scene.hurt * 9
+        scene.hurt = 0
+      }
+      on key shoot {
+        if (ammo > 0 && gun <= 0) {
+          ammo = ammo - 1
+          gun = 90
+          spawn Bullet ahead 0.6
+        }
+      }
+      on death { goto over }
+    }
+  }
+
+  instance Grunt at (-4.5, 0, -4.5)
+  instance Grunt at (-5.5, 0, 5.5)
+  instance Grunt at (5.5, 0, -5.5)
+  instance Grunt at (9.8, 0, -6.5)
+  instance Cell at (0, 0.35, 0)
+  instance Cell at (7.1, 1.6, 0.4)
+
+  script {
+    # A new wave whenever the arena empties, one grunt more each time.
+    on update {
+      if (count(foe) = 0) {
+        wave = wave + 1
+        repeat wave {
+          spawn Grunt at (random(-10, 10), 0, random(-10, 10))
+        }
+        spawn Cell at (random(-9, 9), 0.35, random(-9, 9))
+      }
+      if (score > game.best) { game.best = score }
+    }
+  }
+
+  ui {
+    Stack()[100, 100, top-left] {
+      Layer()[100, 100, center] { Reticle()[100, 100, center]{} }
+      Layer()[100, 100, bottom-left] { Hud()[100, 100, bottom-left]{} }
+    }
+  }
+}
+
+scene over {
+  clear 0x101216
+
+  ui {
+    Col()[100, 100, center] {
+      Spacer()[36, 100, center]{}
+      OverText()[28, 100, center]{}
+      Spacer()[36, 100, center]{}
+    }
+  }
+
+  script {
+    on key shoot { goto fight }
+  }
+}
+
+define OverText() {
+  Col()[100, 100, center] {
+    Big("YOU DIED")[40, 100, center]{}
+    Label("SPACE TO FIGHT AGAIN")[30, 100, center]{}
+    Label("BEST")[30, 100, center]{}
+  }
+}
+
+define Reticle() {
+  Col()[100, 100, center] {
+    Spacer()[46, 100, center]{}
+    Sprite(crosshair)[8, 100, center]{}
+    Spacer()[46, 100, center]{}
+  }
+}
+
+define Hud() {
+  Col()[100, 100, bottom-left] {
+    Spacer()[86, 100, center]{}
+    HudRow()[14, 100, bottom-left]{}
+  }
+}
+
+define HudRow() {
+  Row()[100, 100, bottom-left] {
+    HealthBox()[100, 40, bottom-left]{}
+    Spacer()[100, 20, center]{}
+    AmmoBox()[100, 40, bottom-right]{}
+  }
+}
+
+define HealthBox() {
+  Col()[100, 100, bottom-left] {
+    Label("HEALTH")[40, 100, top-left]{}
+    Bar(@player.health, 100, 0xC0392B)[60, 100, center]{}
+  }
+}
+
+define AmmoBox() {
+  Col()[100, 100, bottom-right] {
+    Label("AMMO")[40, 100, top-right]{}
+    Count(@player.ammo)[60, 100, top-right]{}
+  }
+}
+
+Big:Text { colour: 0xE8503A }
+Label:Text { colour: 0xB9C2CC }
+Count:Text { colour: 0xFFE066 }

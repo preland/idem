@@ -1,0 +1,17 @@
+par_nchk(int[] pos) {
+  if (par_kind(pos) != lex_k_number()) { par_err(pos, "expected a number"); }
+  par_next(pos);
+} return void;
+
+// A number scaled to a slot whose unit the grammar knows: `35.95` in a UI
+// dimension is 3595 centipercent, `-0.5` in a vertex is -500 millunits. More
+// fractional digits than the slot holds is an error, never a silent rounding.
+par_snum(int[] pos, int sc) {
+  int sg = par_sign(pos);
+  int v = par_scale(par_val(pos), par_frac(pos), sc, pos);
+  par_nchk(pos);
+} return int ast_new_num(v * sg, 0);
+
+par_scale(int v, int fr, int sc, int[] pos) {
+  par_fchk(pos, fr, sc);
+} return int v * par_pow10(sc - fr);

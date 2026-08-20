@@ -1,0 +1,40 @@
+// Reading a leaf's arguments.
+//
+// `i` is the argument's position, and position decides kind -- idml's own
+// convention (research/idml-reference.md §4.1), which is why `Text("hi", 0xC8C8C8)`
+// needs no keywords. An absent argument answers the supplied default, so every
+// leaf has a sensible form with no arguments at all.
+
+ui_arg(int nd, int i, int v) {
+  int a = ast_ia(nd);
+  if (a != 0 && i < len(ast_ks(a))) {
+    v = ast_ia(ast_ks(a)[i]);
+  }
+} return int v;
+
+ui_sarg(int nd, int i, string s) {
+  int a = ast_ia(nd);
+  if (a != 0 && i < len(ast_ks(a))) {
+    s = ast_tx(ast_ks(a)[i]);
+  }
+} return string s;
+
+// Text is anchored inside its rect by the anchor word's horizontal half, which is
+// the one part of an anchor a single line of text can honour. `left` is the
+// default because an unrecognised anchor falls back to the start of both axes.
+// Drawn at the UI's own scale, not the window's. A game's interface belongs to
+// its *stage* -- the rect its declared units map onto -- so a label is exactly as
+// big relative to the game as the sprite beside it, at every window size and at
+// every zoom of the editor's panel. Asking txt_ui here instead is what made text
+// in a zoomed panel jump between whole steps while everything around it moved
+// smoothly, and what made a packed game's HUD shrink as its window grew.
+// A literal string, or a `@ref` drawn as its value. `Text("SCORE")` and
+// `Text(@score)` are the same item with a different first argument, which is what
+// lets a screen be laid out once and filled from the world every frame.
+ui_text(int nd, int x, int y, int w, int h) {
+  if (ast_kd(ui_arg0(nd)) = ast_k_ref()) {
+    ui_tnum(nd, x, y, w, h);
+  } else {
+    ui_tstr(nd, x, y, w, h);
+  }
+} return void;

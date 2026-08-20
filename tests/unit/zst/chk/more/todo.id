@@ -1,0 +1,32 @@
+// The fixtures the entropy stages will unlock.
+//
+// Listed rather than omitted so the golden records exactly how far the decoder
+// gets today; a -1 here turning into a hash is what progress looks like.
+// Not decodable yet: these need the entropy stages. They are listed rather than
+// omitted so the golden records exactly how far the decoder gets, and a -1 here
+// turning into a hash is what progress looks like.
+t_todo() {
+  t_one("txt   sequences, exp ret 3600 hash 3110509077", "tests/unit/zst/img/txt.zst", 3600);
+  t_one("mix   Huffman 1 stream, exp ret 23907 hash 394284743", "tests/unit/zst/img/mix.zst", 23907);
+  t_todo2();
+} return void;
+
+// Size_Format 3: four sub-streams behind a jump table, which is the form
+// showroom.blend uses and which one stream never exercises.
+t_todo2() {
+  t_one("four  Huffman 4 streams, exp ret 106031 hash 3593549333", "tests/unit/zst/img/four.zst", 106031);
+  t_todo3();
+} return void;
+
+// Eight blocks, one of them Treeless -- it reuses the previous block's Huffman
+// table rather than sending one. That path is a no-op in the code and so is
+// invisible until a file actually takes it; this is that file.
+//
+// Then the real thing: showroom.blend, 35 frames plus a skippable one, 23.2 MiB
+// of zstd decompressing to 37.7 MiB. Multi-frame at that scale is only exercised
+// here, and it is what found the per-frame repeat-offset reset and the RLE-mode
+// table bug -- neither of which any smaller fixture reaches.
+t_todo3() {
+  t_one("tree  Treeless block, exp ret 959607 hash 1827060101", "tests/unit/zst/img/tree.zst", 959607);
+  t_one("blend showroom.blend, exp ret 39481933 hash 1295999127", "test_assets/showroom.blend", 39481933);
+} return void;

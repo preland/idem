@@ -1,0 +1,22 @@
+// The prediction for one byte.
+//
+// A byte off the left edge or above the first row reads as zero, which is what
+// the specification says and is why the three accessors clamp rather than the
+// five filters each testing.
+
+png_pred(int y, int r, int i, int f) {
+  int v = 0;
+  if (f = 1) { v = png_left(r, i); }
+  else { v = png_pred2(y, r, i, f); }
+} return int v;
+
+png_pred2(int y, int r, int i, int f) {
+  int v = 0;
+  if (f = 2) { v = png_up(y, i); }
+  else { v = png_pred3(y, r, i, f); }
+} return int v;
+
+png_left(int r, int i) {
+  int v = 0;
+  if (i >= (import png_st)[11]) { v = peek8(r + i - (import png_st)[11]); }
+} return int v;

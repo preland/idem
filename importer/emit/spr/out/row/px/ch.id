@@ -1,0 +1,8 @@
+// The second half of the character map, split off because a file holds three
+// functions. 11..36 are 'a'..'z' (97 = 86 + 11) and 37..62 are 'A'..'Z'
+// (65 = 28 + 37); the offsets are written as sums so the range each one serves
+// is visible next to it.
+spr_char2(int k, int c) {
+  if (k >= 11 && k <= 36) { c = 86 + k; }
+  else if (k >= 37) { c = 28 + k; }
+} return int c;

@@ -1,0 +1,7 @@
+// Accessors, one line each. Every later pass -- the asset builder, the scene
+// loader, the UI tiler, the script interpreter -- touches only these.
+ast_kd(int nd) { } return int (import ast_kind)[nd];
+
+ast_tx(int nd) { } return string (import ast_text)[nd];
+
+ast_ia(int nd) { } return int (import ast_a)[nd];

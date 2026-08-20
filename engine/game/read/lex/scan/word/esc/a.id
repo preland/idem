@@ -1,0 +1,22 @@
+// Unescaping goes through the flat store, not string concatenation: `s = s + c`
+// in a loop is the single most expensive thing this language can do. One alloc,
+// one str_of_mem, and the escape sequence decides how far the source index moves
+// while the destination always moves one byte.
+lex_unesc(string src, int a, int b) {
+  word ad = alloc(b - a + 1);
+  int n = lex_unfill(src, a, b, ad);
+} return string str_of_mem(ad, n);
+
+lex_unfill(string src, int a, int b, word ad) {
+  int n = 0;
+  while (a < b) {
+    a = lex_unone(src, a, ad + n);
+    n = n + 1;
+  }
+} return int n;
+
+lex_unone(string src, int a, word ad) {
+  int nxt = a + 1;
+  poke8(ad, charat(src, a));
+  if (charat(src, a) = 92) { nxt = lex_unesc1(src, a, ad); }
+} return int nxt;

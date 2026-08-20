@@ -1,0 +1,10 @@
+// The digit count, as a power of ten.
+
+// The largest power of ten not greater than m; 1 for m = 0, and 1 for a negative m
+// (which txt_number never passes it). m / 10 keeps the test from overflowing.
+txt_num_pow(int m) {
+  int pw = 1;
+  while (pw <= m / 10) {
+    pw = pw * 10;
+  }
+} return int pw;

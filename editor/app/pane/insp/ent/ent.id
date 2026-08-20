@@ -1,0 +1,27 @@
+// The selected entity's live record.
+//
+// Read from ent_r every frame, not captured when the selection was made: with
+// `play` running, this pane is a debugger. Position and velocity are shown in the
+// game's own units -- the store keeps millunits and a person thinks in the
+// numbers they wrote in the document.
+
+ed_insp_ent(int x, int y, int w, int e) {
+  ed_kvn(x, y, "entity", e);
+  ed_kvn(x, y + ed_rowh() + 2, "selected", ed_nsel(0, 0));
+  ed_insp_pos(x, y + 2 * (ed_rowh() + 2), w, e);
+} return void;
+
+// Editable. A field a person can only read is a field they have to go and edit
+// somewhere else, and an editor that sends you to a text file for a coordinate is
+// a viewer with panes.
+ed_insp_pos(int x, int y, int w, int e) {
+  ed_kve(x, y, w, "pos x", e, 0);
+  ed_kve(x, y + ed_rowh() + 2, w, "pos y", e, 1);
+  ed_insp_vel(x, y + 2 * (ed_rowh() + 2), w, e);
+} return void;
+
+ed_insp_vel(int x, int y, int w, int e) {
+  ed_kve(x, y, w, "vel x", e, 2);
+  ed_kve(x, y + ed_rowh() + 2, w, "vel y", e, 3);
+  ed_insp_art(x, y + 2 * (ed_rowh() + 2), w, e);
+} return void;

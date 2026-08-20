@@ -1,0 +1,5 @@
+ast_k_instance() { } return int ast_kbase() + 11;
+
+ast_k_spawn() { } return int ast_kbase() + 12;
+
+ast_k_comp() { } return int ast_kbase() + 13;

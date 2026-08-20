@@ -1,0 +1,24 @@
+// The two ways a load fails, and the promise that failing changes nothing.
+//
+// That promise is the point of these two. A font that cannot be read has to
+// leave the program with readable text, because the first thing a program does
+// when something goes wrong is try to say so on screen -- and a decoder that
+// half-adopted a face before noticing it was corrupt would take the diagnostic
+// down with it.
+
+// A file that is not there. fs_size answers -1, so nothing is read at all and
+// psf_head sees a zero-length file.
+t_bad() {
+  print("psf_load of a missing file exp 0 = " + psf_load("test_assets/no-such-font.psf"));
+  print("  face untouched, hash still 485156385 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
+  t_bad2();
+} return void;
+
+// A file that is there and is not a font. tools/mkfont.py starts with '#!', so
+// it fails both magics -- and it is a file this repository is guaranteed to
+// have, which a purpose-built fixture would not be any better at proving.
+t_bad2() {
+  print("psf_load of a non-font file exp 0 = " + psf_load("tools/mkfont.py"));
+  print("  face untouched, hash still 485156385 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
+  print("  metrics untouched exp 8 16 8 224 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen());
+} return void;

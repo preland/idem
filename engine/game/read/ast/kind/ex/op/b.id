@@ -1,0 +1,5 @@
+ast_k_field() { } return int ast_kbase() + 29;
+
+ast_k_call() { } return int ast_kbase() + 30;
+
+ast_k_num() { } return int ast_kbase() + 31;

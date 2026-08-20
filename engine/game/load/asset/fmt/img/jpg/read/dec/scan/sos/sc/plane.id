@@ -1,0 +1,35 @@
+// Starting a scan.
+//
+// Ss, Se, Ah and Al follow the component list: which band of coefficients this
+// scan carries and at what precision. Baseline always sends 0..63 at full
+// precision; progressive splits the band and refines it across several scans.
+//
+// **Progressive is refused here, not decoded.** The band and approximation
+// fields are read so a caller can see what it was given, and then the load fails
+// rather than running a baseline decoder over a progressive scan -- which would
+// not error, it would produce a picture made of the first band only.
+
+jpg_cpick(int ci, int k, int cid) {
+  int n = ci;
+  if ((import jpg_c)[k * 10] = cid) { n = k; }
+} return int n;
+
+// Ss and Se name the band, Ah and Al its precision. Baseline writes 0, 63, 0, 0
+// and is decoded by the same machinery, which is why there is no separate
+// baseline path below this point.
+jpg_scan(int p) {
+  jpg_band(p);
+  jpg_sinit();
+  jpg_run();
+} return void;
+
+// **Every scan resets the DC predictors**, which the standard requires and which
+// is easy to miss because a single-scan baseline image decodes correctly without
+// it -- jpg_c is zeroed once at init, so the first image in a process is right
+// and the second inherits the first's DC history. It showed up as a whole image
+// uniformly too bright, only when two JPEGs were loaded in one run, which is
+// exactly what an asset pipeline does and what a one-image test would not catch.
+jpg_sinit() {
+  jpg_preds(0);
+  m4_pair((import jpg_st), 12, 17, 0, 0);
+} return void;

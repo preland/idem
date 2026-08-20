@@ -1,0 +1,7 @@
+// The zstd decoder needs the engine it lives in, and the file backend to read a
+// fixture off disk.
+import "../../../engine"
+// The game seam as no-ops: this program links the engine but is not a game.
+import "../../../stub"
+import "../../../../id_development/backends/fs"
+import "../../../../id_development/backends/gfx"

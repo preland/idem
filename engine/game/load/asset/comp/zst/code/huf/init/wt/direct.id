@@ -1,0 +1,21 @@
+// Weights written directly, four bits each, high nibble first.
+
+huf_direct(int p, int n) {
+  int i = 0;
+  while (i < n) {
+    huf_dpair(p, i, n);
+    i = i + 2;
+  }
+} return int n;
+
+huf_dpair(int p, int i, int n) {
+  lset((import huf_wt), i, peek8((import zst_st)[0] + p + i / 2) / 16);
+  huf_dodd(p, i, n);
+} return void;
+
+// The second nibble of the pair, unless the count is odd and this is the tail.
+huf_dodd(int p, int i, int n) {
+  if (i + 1 < n) {
+    lset((import huf_wt), i + 1, peek8((import zst_st)[0] + p + i / 2) % 16);
+  }
+} return void;

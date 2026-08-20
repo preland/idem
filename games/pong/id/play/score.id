@@ -1,0 +1,23 @@
+// Scoring, and the serve.
+
+g_serve() {
+  if ((import g_st)[4] < 2000) {
+    g_point(9);
+  } else if ((import g_st)[4] > 318000) {
+    g_point(8);
+  }
+} return void;
+
+// A point puts the ball back in the middle and leaves its direction alone, so
+// the next rally starts towards whoever just conceded.
+g_point(int k) {
+  lset((import g_st), k, (import g_st)[k] + 1);
+  lset((import g_st), 4, 160000);
+  lset((import g_st), 5, 100000);
+} return void;
+
+// The one input the game has, and its one meaning: begin. `press` is the name
+// idml would bind a Tap to; here it is called from g_act.
+g_press() {
+  lset((import g_st), 10, 0);
+} return void;

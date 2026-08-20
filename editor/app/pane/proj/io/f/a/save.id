@@ -1,0 +1,26 @@
+// Saving and packing.
+
+// The directory is made first: a new project's has never existed, and fs has no
+// mkdir -- which is what fs_run is for. `-p` so an existing one is not an error.
+ed_save() {
+  fs_run("mkdir -p " + chr(39) + ed_up((import ed_path)[0]) + chr(39));
+  lset((import ed_st), 17, 3 + (ed_wr((import ed_path)[0], (import ed_doc)[0]) != 1));
+} return void;
+
+// Save, then hand the directory to the packer. Packing reads what is *on disk*,
+// so an unsaved change would be packed as it was before it was made -- saving
+// first is not a convenience, it is what makes the button mean what it says.
+ed_export() {
+  ed_save();
+  lset((import ed_st), 17, 5 + (fs_run(ed_root() + "tools/idem pack " + chr(39) + ed_up((import ed_path)[0]) + chr(39) + " > /dev/null 2>&1") != 0));
+} return void;
+
+// Re-read the world from the document in memory. The editor's own reader takes
+// the stream format tools/idem feeds it -- a `#root` line and a `#file` marker --
+// so one document is wrapped in that shape rather than the reader learning a
+// second one.
+ed_reopen(int note) {
+  sset((import scn_dir), 0, ed_up((import ed_path)[0]));
+  ed_read6("#root " + ed_up((import ed_path)[0]) + chr(10) + "#file " + ed_base((import ed_path)[0]) + chr(10) + (import ed_doc)[0]);
+  lset((import ed_st), 17, note);
+} return void;

@@ -1,0 +1,12 @@
+ast_new_abc(int kd, string txt, int a, int b, int c) {
+  int[] kids = [];
+} return int ast_new(kd, txt, a, b, c, kids);
+
+ast_new_kids(int kd, string txt, int[] kids) {
+} return int ast_new(kd, txt, 0, 0, 0, kids);
+
+// The only node whose a/b are plain integers rather than node ids: the digits as
+// an integer, plus how many are still owed to a slot's scale (0 once scaled).
+ast_new_num(int v, int fr) {
+  int[] kids = [];
+} return int ast_new(ast_k_num(), "", v, fr, 0, kids);

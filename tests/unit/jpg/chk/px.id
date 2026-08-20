@@ -1,0 +1,20 @@
+// One image: load it, report its shape, three pixels and a checksum of all of
+// them.
+
+t_more() {
+  t_one("prog444 progressive 4:4:4", "tests/unit/jpg/img/prog444.jpg", 32, 24);
+  t_one("prog420 progressive 4:2:0", "tests/unit/jpg/img/prog420.jpg", 32, 24);
+  t_one("water progressive 4:2:0", "test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg", 357, 350);
+} return void;
+
+t_one(string msg, string path, int w, int h) {
+  print(msg + ": load exp 1 = " + jpg_load(path));
+  print("  size exp " + w + " " + h + " = " + (import png_st)[0] + " " + (import png_st)[1] + "  channels exp 3 = " + (import png_st)[4]);
+  t_px(w, h);
+} return void;
+
+t_px(int w, int h) {
+  t_at("  (0,0)", 0, 0);
+  t_at("  (mid)", w / 2, h / 2);
+  t_tail(w, h);
+} return void;

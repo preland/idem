@@ -1,0 +1,11 @@
+// Muting diagnostics, for a program whose stdout is an image.
+
+err_mute(int q) {
+  lset((import err_n), 1, q);
+} return void;
+
+err_say(string msg) {
+  if ((import err_n)[1] = 0) {
+    print(msg);
+  }
+} return void;

@@ -1,0 +1,25 @@
+// The distance half of a pair, and the copy itself.
+
+inf_dist(int n) {
+  int k = inf_decode((import inf_dc), (import inf_ds));
+  inf_dist2(n, k);
+} return void;
+
+inf_dist2(int n, int k) {
+  if (k >= len((import inf_db))) {
+    lset((import inf_st), 7, 1);
+  } else {
+    inf_copy(n, (import inf_db)[k] + inf_bits((import inf_de)[k]));
+  }
+} return void;
+
+// A distance further back than anything written is corrupt -- and would read
+// outside the output buffer, which the flat store would turn into an abort.
+inf_copy(int n, int d) {
+  int i = 0;
+  if (d > (import inf_st)[5]) { lset((import inf_st), 7, 1); }
+  while (i < n && (import inf_st)[7] = 0) {
+    inf_put(inf_back(d));
+    i = i + 1;
+  }
+} return void;

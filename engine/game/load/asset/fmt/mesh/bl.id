@@ -1,0 +1,53 @@
+// bl -- a .blend file, read by the engine.
+//
+// No conversion step: the file Blender wrote is the asset. `id` has file I/O now
+// (backends/fs) and asset_slurp puts any file in the flat store, so what is left
+// is the format -- and a .blend is unusually approachable for a binary format,
+// because it carries its own schema.
+//
+// The structure is three layers:
+//
+//   1. a header naming the pointer size, the endianness and the version
+//   2. a flat sequence of BLOCKS, each with a code ("ME\0\0", "DATA", "DNA1"),
+//      a length, the ADDRESS the data had in the writing process, and an index
+//      into the schema
+//   3. one block, DNA1, holding the SDNA -- every struct Blender knows, with its
+//      field names and types. A reader computes field offsets from that rather
+//      than hard-coding them, which is what lets one reader open files from
+//      versions it has never seen.
+//
+// **This file's header is 17 bytes, not the classic 12.** Blender 5.x writes
+// `BLENDER` followed by two ASCII digits giving the header's own length, so a
+// reader that assumes 12 lands mid-field and every block after it is noise. The
+// block header is 32 bytes, not 24: the length and count are 64-bit now.
+//
+// bl_st, the state:
+//     0 hlen   1 nblk   2 dna (offset of the SDNA payload)   3 dlen
+//     4 nname  5 ntype  6 nstrc
+//     7 pname  8 ptype  9 ptlen  10 pstrc   (offsets of the four SDNA tables)
+//     11 ok    12 vbase (where this mesh's vertices start in bl_v)
+//     13 lo    14 hi    the block range pointers resolve within -- see addr.id
+//     12 vb   vertex base of the mesh being read, so several meshes can be
+//              appended into one vertex list and keep their indices
+
+bl_init() {
+  export int[] bl_st = [];
+  lst_fill((import bl_st), 15, 0);
+  bl_lists();
+} return void;
+
+// A .blend may be compressed, and Blender has compressed by default since 3.0.
+// So the file is read, decompressed if it needs it, and only then parsed --
+// everything below this line sees a plain .blend either way and has no idea
+// whether one was ever compressed.
+bl_open(string path) {
+  lst_set_all((import bl_st), 13, 0);
+  asset_slurp(path);
+  bl_open2();
+} return int (import bl_st)[11];
+
+// `BLENDER`, then the header length as two ASCII digits. 66 is 'B', 82 is 'R'.
+bl_head() {
+  int ok = 0;
+  if (asset_at(0) = 66 && asset_at(6) = 82) { ok = bl_hlen(); }
+} return int ok;

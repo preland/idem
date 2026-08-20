@@ -1,0 +1,24 @@
+// Clearing the tables, and the loop over the blocks.
+
+bl_clear() {
+  while (len((import bl_bc)) > 0) {
+    pop((import bl_bc));
+    pop((import bl_bp));
+    bl_clear2();
+  }
+} return void;
+
+bl_clear2() {
+  pop((import bl_bn));
+  pop((import bl_bs));
+  pop((import bl_ba));
+} return void;
+
+// Stops at ENDB, or at the end of the file if the ENDB is missing -- a truncated
+// .blend then yields the blocks it does have rather than walking off the end.
+// 69 is 'E', 78 is 'N', 68 is 'D', 66 is 'B'.
+bl_walk(int p) {
+  while (p + 32 <= (import asset_io)[1] && bl_end(p) = 0) {
+    p = bl_block(p);
+  }
+} return int bl_dna();

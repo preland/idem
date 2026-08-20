@@ -1,0 +1,12 @@
+# 00-first.idml -- sorts before adversarial.idml, so this fixture also pins down
+# that `idem cat` walks the sources in one deterministic order. If the order ever
+# drifted, two packs of an unchanged game would produce different binaries and
+# every staleness check downstream would be a lie.
+
+persist { high = 0 }
+
+font tiny {
+	glyph "\\" = 0b00100_01000_10000
+	glyph "\"" = 0b01010_01010_00000
+	glyph "	" = 0b00000_00000_00000
+}

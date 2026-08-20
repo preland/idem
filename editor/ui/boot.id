@@ -1,0 +1,22 @@
+// The rest of the init chain, and the frame loop.
+
+ed_boot3() {
+  d2_spr_init();
+  d3_init();
+  ed_boot4();
+} return void;
+
+ed_boot4() {
+  inp_init();
+  err_init();
+  ed_boot5();
+} return void;
+
+ed_run(int argc, string[] argv) {
+  if (argc > 1) {
+    ed_shot(fx_max(shot_n(argc, argv), 1));
+  } else {
+    ed_loop(1);
+  }
+  gfx_close();
+} return void;

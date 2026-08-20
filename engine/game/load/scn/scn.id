@@ -1,0 +1,38 @@
+// scn -- the loaded document, as tables the runtime can index.
+//
+// The parser produces an AST; this turns it into the handful of lookups a frame
+// needs. Nothing here walks the tree during a frame -- an AST is a fine thing to
+// build a world from and a poor thing to run one out of.
+//
+// scn_st, the game's manifest:
+//
+//     0 w   1 h    the declared display, in stage units
+//     2 fps 3 sc   frame rate and the opening scale request
+//     4 doc        the document's root node
+//     5 cur        the current scene's node, 0 if none
+//     6 clear      the current scene's background colour
+//     7 gx  8 gy   the current scene's gravity, millunits per second squared
+//     9 script     the current scene's own `script` node, 0 for none
+//    10 vb 11 vn   its `var` block: base and count in scr_vv
+//    12 tmr        milliseconds accumulated toward its `on timer`
+
+scn_init() {
+  export int[] scn_st = [];
+  lst_fill((import scn_st), 13, 0);
+  scn_def();
+} return void;
+
+// A game that declares nothing still runs: 320x200, 60 fps, unscaled, sky blue.
+scn_def() {
+  m4_pair((import scn_st), 0, 1, 320, 200);
+  m4_pair((import scn_st), 2, 3, 60, 1);
+  lset((import scn_st), 6, 0x70C5CE);
+} return void;
+
+// Read the manifest and find the starting scene. `start NAME` names it; with no
+// `start`, the first scene declared is it, which is what a one-scene game means.
+scn_load(int doc) {
+  lset((import scn_st), 4, doc);
+  scn_walk(doc, 0);
+  scn_start(doc);
+} return void;

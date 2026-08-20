@@ -1,0 +1,25 @@
+// time -- the clock, and frame pacing.
+//
+// ticks() is a 32-bit millisecond counter, which is the only clock the language
+// has. Everything time-shaped in the engine is therefore integer milliseconds:
+// no sub-millisecond frames, and no smoothing beyond what the fixed simulation
+// step in run/ already provides.
+
+sys_now() {
+} return int ticks();
+
+sys_wait(int ms) {
+  if (ms > 0) {
+    sleep_ms(ms);
+  }
+} return void;
+
+// Sleep out whatever is left of a frame that began at t, for a target of n
+// frames per second. A frame that overran sleeps not at all rather than
+// negatively, which is sys_wait's job. n = 0 means "as fast as possible", and is
+// also what keeps `1000 / n` away from the division that would abort the process.
+sys_pace(int t, int n) {
+  if (n > 0) {
+    sys_wait(1000 / n - (ticks() - t));
+  }
+} return void;

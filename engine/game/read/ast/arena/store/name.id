@@ -1,0 +1,19 @@
+ast_ktake(string[] strs, string s, int i) {
+  int e = ast_kend(s, i);
+  push(strs, str_slice(s, i, e - i));
+} return int e + 1;
+
+// The `find` idiom that stands in for `break`: the loop bound is the result, so
+// assigning it on a hit ends the loop. 32 is a space. Missing separator yields
+// len(s), which is what a caller slicing the last field wants.
+ast_kend(string s, int i) {
+  int e = len(s);
+  while (i < e) {
+    if (charat(s, i) = 32) { e = i; }
+    i = i + 1;
+  }
+} return int e;
+
+ast_mark(int ln) {
+  lset((import ast_cur), 0, ln);
+} return void;

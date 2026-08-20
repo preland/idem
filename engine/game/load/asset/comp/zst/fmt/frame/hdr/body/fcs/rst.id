@@ -1,0 +1,17 @@
+// The repeat-offset history is reset at the start of every FRAME, not once per
+// file.
+//
+// zstd's three remembered offsets start at 1, 4 and 8 in each frame and persist
+// across the blocks within it. Initialising them once for the whole stream lets
+// one frame's offsets leak into the next, and a repeat code early in a later
+// frame then copies from the wrong distance -- which on this file was a single
+// wrong byte 68 bytes into frame 3, with the first three frames perfect.
+//
+// The table-repeat modes have the same scope, but a well-formed encoder cannot
+// use one in a frame's first block, so nothing else needs clearing here.
+
+zst_frst(int ck) {
+  m4_pair((import zst_st), 11, 12, 1, 4);
+  lset((import zst_st), 13, 8);
+  zst_blocks(ck);
+} return void;

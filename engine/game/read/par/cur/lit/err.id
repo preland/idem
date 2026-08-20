@@ -1,0 +1,16 @@
+// Diagnostics are accumulated, never thrown: err_report counts and prints, and
+// parsing carries on so that one run reports every problem a game has.
+par_err(int[] pos, string msg) {
+  err_report(par_pth(pos), par_line(pos), msg);
+} return void;
+
+par_badtok(int[] pos) {
+  string txt = par_text(pos);
+  par_err(pos, "unexpected " + chr(39) + txt + chr(39));
+  par_next(pos);
+} return int ast_new_k(ast_k_bad(), txt);
+
+par_ident(int[] pos) {
+  string name = par_text(pos);
+  par_next(pos);
+} return int ast_new_k(ast_k_ident(), name);

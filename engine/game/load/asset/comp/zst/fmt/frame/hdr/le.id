@@ -1,0 +1,27 @@
+// Little-endian fields, and the byte reader they are built from.
+//
+// Every length, size and identifier in a zstd frame header is little-endian, and
+// the entropy sections are the only part that is not plain bytes. So this is the
+// whole of the header's arithmetic.
+
+zst_le(int n) {
+  int v = 0;
+  int i = 0;
+  while (i < n) {
+    v = v + zst_byte((import zst_st)[1] + i) * zst_pow256(i);
+    i = i + 1;
+  }
+} return int zst_skip(v, n);
+
+zst_skip(int v, int n) {
+  lset((import zst_st), 1, (import zst_st)[1] + n);
+} return int v;
+
+// A source byte, bounds-checked once here so that nothing above has to. Reading
+// past the end is a fault rather than a zero: a truncated frame would otherwise
+// decode into plausible-looking rubbish.
+zst_byte(int p) {
+  int v = 0;
+  if (p >= 0 && p < (import zst_st)[2]) { v = peek8((import zst_st)[0] + p); }
+  else { lset((import zst_st), 6, 1); }
+} return int v;

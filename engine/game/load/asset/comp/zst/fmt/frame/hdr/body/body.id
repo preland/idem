@@ -1,0 +1,19 @@
+// The optional header fields, and skipping a frame that is not ours.
+
+zst_body() {
+  int fhd = zst_le(1);
+  zst_hdr2(fhd);
+  zst_frst(fhd / 4 % 2);
+} return void;
+
+zst_hdr2(int fhd) {
+  zst_win(fhd / 32 % 2);
+  zst_did(fhd % 4);
+  zst_fcs(fhd / 64, fhd / 32 % 2);
+} return void;
+
+// A skippable frame's payload belongs to whoever wrote it. showroom.blend has
+// one, so this is not hypothetical tidiness.
+zst_jump(int n) {
+  lset((import zst_st), 1, (import zst_st)[1] + n);
+} return void;

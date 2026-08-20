@@ -1,0 +1,13 @@
+// The second half of the keyword list, and the label a row shows.
+
+ed_is_decl2(string s) {
+  int ok = 0;
+  if (s = "entity" || s = "template" || s = "game" || s = "font") { ok = 1; }
+} return int ok;
+
+// "sprite runner" -- the kind and the name, which is what a hierarchy row is.
+// Concatenated once per visible row per frame, which is at most thirty short
+// strings a frame: nowhere near the loop that makes concatenation a disaster, and
+// the alternative (a flat-store build) would be unreadable for the saving.
+ed_label(int i) {
+} return string (import ed_kd)[i] + " " + (import ed_nm)[i];

@@ -1,0 +1,9 @@
+// Leaving it when the band runs out.
+// Running out of band during an advance ends the symbol loop too -- there is no
+// coefficient left to place. Phase 0 hands back to jpg_rsym, which sees k past Se
+// and finishes the block.
+jpg_rend() {
+  if ((import jpg_r)[3] = 3) {
+    lset((import jpg_r), 3, 0);
+  }
+} return void;

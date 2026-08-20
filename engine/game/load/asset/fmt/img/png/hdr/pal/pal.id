@@ -1,0 +1,33 @@
+// PLTE and tRNS -- the chunks an indexed PNG puts its colours in.
+//
+// Type 3 was refused here until now, and refusing it was the wrong call for a
+// game engine: indexed is what every pixel-art tool writes by default, because a
+// sixteen-colour sprite has no business carrying three bytes a pixel. Flappy's
+// own art is 4-bit indexed, and the refusal is why it drew nothing.
+//
+// PLTE is a flat run of r,g,b triples. tRNS, *for type 3*, is a parallel run of
+// alphas, one per palette entry, truncated after the last non-opaque one -- so an
+// index past its end is opaque, which is what png_palpha answers. For types 0 and
+// 2 tRNS means something else entirely (a single fully-transparent sample value)
+// and is ignored rather than misread.
+
+png_kind3(int p, int n, int a, int b) {
+  if (a = 76 && b = 84) {
+    png_plte(p, n);
+  } else if (a = 82 && b = 78 && (import png_st)[3] = 3) {
+    png_trns(p, n);
+  }
+} return void;
+
+// Stored as store *addresses*, not as offsets into the file. The chunk walk
+// speaks in offsets from byte zero of the file; the store speaks in addresses,
+// and asset_io[0] is where the two meet. png_inf2 does the same conversion for
+// the zlib stream, and getting it wrong here read a palette out of whatever
+// happened to be allocated before the file.
+png_plte(int p, int n) {
+  m4_pair((import png_st), 12, 13, (import asset_io)[0] + p, n / 3);
+} return void;
+
+png_trns(int p, int n) {
+  m4_pair((import png_st), 14, 15, (import asset_io)[0] + p, n);
+} return void;

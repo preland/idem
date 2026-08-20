@@ -1,0 +1,46 @@
+// trig table -- the 91 numbers the whole engine turns on.
+//
+// sin(0 deg) .. sin(90 deg), scaled x1000, computed offline (python3:
+// round(1000 * sin(radians(d))) for d in 0..90) and pasted as a literal. A
+// quarter wave is enough: fold.id derives the other three quadrants from it.
+//
+// It is exported once, by fx_trig_init, and read through fx_tab thereafter.
+// Both halves of that sentence are deliberate. The reference tree has two copies
+// of this table: demos/fpsmaze's table_at rebuilds the 91-element literal on
+// *every call*, which for a per-frame rotation is 91 allocations per angle;
+// demos/galaxy exports it once. This is galaxy's version.
+//
+// An export does not exist until its declaring function runs -- reading
+// fx_sintab before fx_trig_init has been called segfaults with no compile-time
+// warning -- so fx_trig_init belongs at the head of the engine's init chain.
+
+fx_trig_init() {
+  export int[] fx_sintab = [
+    0, 17, 35, 52, 70, 87, 105, 122, 139, 156,
+    174, 191, 208, 225, 242, 259, 276, 292, 309, 326,
+    342, 358, 375, 391, 407, 423, 438, 454, 469, 485,
+    500, 515, 530, 545, 559, 574, 588, 602, 616, 629,
+    643, 656, 669, 682, 695, 707, 719, 731, 743, 755,
+    766, 777, 788, 799, 809, 819, 829, 839, 848, 857,
+    866, 875, 883, 891, 899, 906, 914, 921, 927, 934,
+    940, 946, 951, 956, 961, 966, 970, 974, 978, 982,
+    985, 988, 990, 993, 995, 996, 998, 999, 999, 1000,
+    1000];
+} return void;
+
+// Entry i, with i clamped to the last one. The clamp is what lets the
+// interpolator in sin.id read entry i+1 unconditionally: at exactly 90 degrees
+// the fraction is 0, so the out-of-range neighbour contributes nothing -- but it
+// is still evaluated, and an out-of-bounds list read aborts the program.
+fx_tab(int i) {
+} return int (import fx_sintab)[fx_min(i, 90)];
+
+// Millidegrees into [0, 360000). `%` truncates toward zero here, so a negative
+// angle comes out negative and needs the fixup -- a plain `%` would make every
+// counter-clockwise rotation read a negative table index.
+fx_norm_deg(int deg) {
+  int ndg = deg % 360000;
+  if (ndg < 0) {
+    ndg = ndg + 360000;
+  }
+} return int ndg;

@@ -1,0 +1,7 @@
+// The rest of the defaults.
+
+t_defs2() {
+  print("defaults: scale exp 1000 1000, sprite exp -1, live exp 1 = " + ent_at(0, 4) + " " + ent_at(0, 5) + " " + ent_at(0, 6) + " " + ent_at(0, 9));
+  print("anim last exp -1, ms exp 100, pos exp 0 0 = " + ent_at(0, 15) + " " + ent_at(0, 16) + " " + ent_at(0, 0) + " " + ent_at(0, 1));
+  t_move();
+} return void;

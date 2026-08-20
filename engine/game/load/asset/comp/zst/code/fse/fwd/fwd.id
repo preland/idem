@@ -1,0 +1,26 @@
+// The forward bit reader, for table descriptions only.
+//
+// Low bit first within a byte, bytes in increasing order -- DEFLATE's convention,
+// and the opposite of the data stream's. It is a separate reader rather than a
+// mode flag on the other one because two conventions behind one interface is
+// exactly how they get mixed up.
+//
+// zf_st: 0 sa  base address   1 sp  byte cursor   2 buf   3 nbits   4 slen  5 err
+
+fse_init4() {
+  export int[] fse_bs = [];
+  export int[] zf_st = [];
+  fse_init5();
+} return void;
+
+fse_init5() {
+  lst_fill((import fse_sy), 1536, 0);
+  lst_fill((import fse_nb), 1536, 0);
+  fse_init6();
+} return void;
+
+fse_init6() {
+  lst_fill((import fse_bs), 1536, 0);
+  lst_fill((import zf_st), 6, 0);
+  fse_init7();
+} return void;

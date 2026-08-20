@@ -1,0 +1,26 @@
+// `on enter` for the scene and `on start` for each entity, after the world
+// exists. Both names are in IDML_GAME.md §5 and both mean "once, at the
+// beginning" -- the scene's because a run has a beginning, an entity's because a
+// spawned one does too and a script should not have to tell them apart.
+scn_enter4(int nd) {
+  scn_spawn(nd, 0);
+  scr_fire((import scn_st)[9], "enter", 0 - 1, "");
+  scn_starts(0);
+} return void;
+
+// `on start`, for every entity the scene declared.
+//
+// Fired after all of them exist, so a start handler may name a sibling. An entity
+// spawned later gets its own start from scr_spawn instead, which is what makes
+// the two cases indistinguishable to a script.
+
+scn_starts(int e) {
+  while (e < ent_n()) {
+    scn_start1(e);
+    e = e + 1;
+  }
+} return void;
+
+scn_start1(int e) {
+  scr_fire(scr_sc(e), "start", e, "");
+} return void;

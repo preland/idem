@@ -1,0 +1,18 @@
+// The comment itself, and the markers the toolchain hides in one.
+
+lex_hash(string src, int i) {
+  int e = lex_eol(src, i);
+  lex_marker(src, i, e);
+} return int e;
+
+lex_eol(string src, int i) {
+  while (charat(src, i) != 10 && charat(src, i) != -1) {
+    i = i + 1;
+  }
+} return int i;
+
+lex_marker(string src, int i, int e) {
+  if (str_eqat(src, i, "#file ")) {
+    lex_setpath(str_slice(src, i + 6, e - i - 6));
+  }
+} return void;

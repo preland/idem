@@ -1,0 +1,29 @@
+// Declaring a block of variables.
+//
+// A block is a contiguous run of the flat table, so declaring one is a series of
+// pushes and remembering where they started. Nothing is ever removed: a scene
+// load rebuilds the scene and entity runs by truncating back to the game's block,
+// which is the one thing in this engine that has to survive a `goto`.
+
+scr_push(string name, int v) {
+  push((import scr_vn), name);
+  push((import scr_vv), v);
+} return int len((import scr_vv)) - 1;
+
+// `var name = expr` inside a declaration. The initialiser is evaluated with no
+// entity, so it may name a game variable and may not name a sibling -- which is
+// the same rule a struct initialiser has in most languages and avoids an
+// ordering question nobody wants to answer.
+scr_dvar(int nd) {
+  scr_push(ast_tx(nd), scr_ev(ast_ia(nd), 0 - 1));
+} return void;
+
+// Everything after the game's own block, dropped. `id` frees nothing, so this
+// shortens the lists rather than reallocating them -- and the strings the names
+// point at are shared with the AST, so nothing is leaked by dropping the entry.
+scr_reset() {
+  while (len((import scr_vv)) > (import scr_st)[4]) {
+    pop((import scr_vn));
+    pop((import scr_vv));
+  }
+} return void;

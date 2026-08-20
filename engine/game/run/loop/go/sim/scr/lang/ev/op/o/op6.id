@@ -1,0 +1,24 @@
+// The closed comparison, the logical pair, and the two bitwise operators a game
+// has actually wanted.
+//
+// An operator this does not know answers 0. The parser only ever produces the
+// ones it can spell, so reaching the end means the table and the grammar have
+// drifted apart -- which is a bug here, not in the game.
+
+scr_op6(string op, int a, int b) {
+  int v = scr_op7(op, a, b);
+  if (op = ">=") { v = a >= b; }
+  else if (op = "&&") { v = a != 0 && b != 0; }
+} return int v;
+
+scr_op7(string op, int a, int b) {
+  int v = scr_op8(op, a, b);
+  if (op = "||") { v = a != 0 || b != 0; }
+  else if (op = "&") { v = a & b; }
+} return int v;
+
+scr_op8(string op, int a, int b) {
+  int v = 0;
+  if (op = "|") { v = a | b; }
+  else if (op = "^") { v = a ^ b; }
+} return int v;

@@ -1,0 +1,28 @@
+// Recording the last weight, ordering the symbols, and the rank starts.
+
+huf_last2(int n, int rest) {
+  lset((import huf_wt), n, fse_hib(rest) + 1);
+  lset((import huf_rk), fse_hib(rest) + 1, (import huf_rk)[fse_hib(rest) + 1] + 1);
+  lset((import huf_st), 1, n + 1);
+} return void;
+
+// rankStart[w] is where weight w's symbols begin in the ordered list; symbols are
+// then dropped into place in one pass, which is what makes the table fill below a
+// simple walk of consecutive runs.
+huf_rstart() {
+  int w = 0;
+  int p = 0;
+  while (w < (import huf_st)[0] + 1) {
+    lset((import huf_rs), w, p);
+    p = p + (import huf_rk)[w];
+    w = w + 1;
+  }
+} return void;
+
+huf_syms() {
+  int i = 0;
+  while (i < (import huf_st)[1]) {
+    huf_sput(i, (import huf_wt)[i]);
+    i = i + 1;
+  }
+} return void;

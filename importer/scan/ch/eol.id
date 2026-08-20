@@ -1,0 +1,20 @@
+// Character classes and the two "how far does this run" walks.
+
+imp_eol(string src, int i) {
+  while (charat(src, i) >= 0 && charat(src, i) != 10) {
+    i = i + 1;
+  }
+} return int i + 1;
+
+// 32 space, 10 newline, 13 carriage return, 9 tab. A stream that has been near
+// Windows is still a stream this has to read.
+imp_space(int c) {
+  int ok = 0;
+  if (c = 32 || c = 10 || c = 13 || c = 9) { ok = 1; }
+} return int ok;
+
+imp_end(string src, int i) {
+  while (charat(src, i) >= 0 && imp_space(charat(src, i)) = 0) {
+    i = i + 1;
+  }
+} return int i;

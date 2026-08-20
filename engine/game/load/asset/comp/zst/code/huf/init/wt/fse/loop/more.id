@@ -1,0 +1,14 @@
+// The second of the pair, and the same tail on the other side.
+
+huf_wc(int n) {
+  lset((import huf_wt), n, fse_dsym(3, (import huf_ab)[1]));
+  lset((import huf_ab), 1, fse_dnext(3, (import huf_ab)[1]));
+} return int huf_wd(n + 1);
+
+huf_wd(int n) {
+  int m = n;
+  if (zb_done() = 1) {
+    lset((import huf_wt), n, fse_dsym(3, (import huf_ab)[0]));
+    m = n + 1;
+  }
+} return int m;

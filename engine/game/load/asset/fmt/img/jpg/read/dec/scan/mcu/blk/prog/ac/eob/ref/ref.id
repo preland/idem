@@ -1,0 +1,42 @@
+// AC refinement -- one more bit for coefficients an earlier scan placed.
+//
+// This is the fiddliest procedure in JPEG. libjpeg writes it as a `for` with a
+// `break`, wrapping a `do/while` with its own `break`, and this language has
+// neither -- nor two levels of nesting to spend. So it is a small state machine
+// instead, and jpg_r is its whole state:
+//
+//     0 k      the coefficient being looked at
+//     1 rn     zeros still to skip before the new coefficient is placed
+//     2 sv     the value to place there: +p1, -p1, or 0 for a ZRL
+//     3 ph     0 reading symbols, 1 the end-of-band tail, 2 done,
+//              3 advancing over coefficients toward the next new one
+//
+// Three and zero must be distinct phases even though both are "inside the
+// symbol loop": placing a coefficient is what ends an advance and returns to
+// reading, and if the two shared a number the advance could not tell that it had
+// finished -- it ran on past the coefficient it had just placed.
+//
+// The rule the whole thing turns on: a refinement scan sends a correction bit for
+// **every already-nonzero coefficient it passes over**, and those bits are
+// interleaved with the run-length symbols. Miss one and the bitstream is a bit out
+// for the rest of the image, which does not fail -- it decodes noise.
+
+jpg_pacr(int ci, int a) {
+  m4_pair((import jpg_r), 0, 1, (import jpg_st)[13], 0);
+  m4_pair((import jpg_r), 2, 3, 0, 1 - ((import jpg_st)[17] = 0));
+  jpg_racr(ci, a);
+} return void;
+
+jpg_racr(int ci, int a) {
+  while ((import jpg_r)[3] != 2 && (import jpg_st)[8] = 1) {
+    jpg_rstep(ci, a);
+  }
+} return void;
+
+jpg_rstep(int ci, int a) {
+  if ((import jpg_r)[3] = 0) {
+    jpg_rsym(ci, a);
+  } else {
+    jpg_rtail(a);
+  }
+} return void;

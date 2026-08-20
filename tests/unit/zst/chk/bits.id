@@ -1,0 +1,29 @@
+// The backward bit reader, on its own, before anything depends on it.
+//
+// A byte of 0x8C is 1000 1100. Its highest set bit is bit 7, the padding marker,
+// so reading starts at bit 6 and proceeds downward: bits 6,5,4 are 0,0,0 and bits
+// 3,2,1 are 1,1,0. Most significant first, that is 0 then 6.
+//
+// Getting this backwards is the failure the whole module is arranged to avoid, so
+// it is asserted directly rather than inferred from a decode that happens to work.
+//
+// Each read is its own statement. Two side-effecting calls in one expression may
+// evaluate in either order in this language (NAMES.md §6), and putting both reads
+// in one `print` reported them swapped -- which looked exactly like a reader that
+// assembles bits the wrong way round.
+
+t_bits() {
+  word ad = alloc(4);
+  poke8(ad, 140);
+  t_bshow(ad);
+} return void;
+
+t_bshow(word ad) {
+  zb_start(ad, 1);
+  int a = zb_bits(3);
+  t_bshow2(a, zb_bits(3));
+} return void;
+
+t_bshow2(int a, int b) {
+  print("bit reader on 0x8C: exp 0 then 6 = " + a + " " + b);
+} return void;

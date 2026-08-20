@@ -1,0 +1,29 @@
+// Finding the game's view in its own source.
+//
+// ed_gu, three slots: the `ui` block's root item, the scene's clear colour, and
+// the display size packed as width * 65536 + height.
+//
+// All three are read from the token stream the hierarchy already lexed, by
+// looking for the keyword and taking what follows. That is the same heuristic the
+// hierarchy uses and it has the same standing: it is exactly as much structure as
+// this pane needs, and the declaration parser replaces it without changing what
+// is on screen.
+
+ed_gui() {
+  export int[] ed_gu = [0, 0x70C5CE, 288 * 65536 + 512];
+  ed_gscan(0);
+} return void;
+
+ed_gscan(int i) {
+  while (i < len((import lex_kind))) {
+    ed_gone(i);
+    i = i + 1;
+  }
+} return void;
+
+ed_gone(int i) {
+  if ((import lex_text)[i] = "ui" && (import lex_text)[i + 1] = "{") {
+    ed_gparse(i + 2);
+  }
+  ed_gclear(i);
+} return void;

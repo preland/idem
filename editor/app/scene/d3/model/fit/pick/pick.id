@@ -1,0 +1,22 @@
+// Which of the two the camera is pointed at.
+//
+// **A loaded mesh wins.** A project with real geometry in it is a 3D project,
+// whatever else it declares -- the FPS has both a `ui` block and a showroom, and
+// what someone opening it wants to see is the showroom. The flat plane is for a
+// game that is *only* 2D, which is what a UI and no geometry means.
+// Neither branch takes the panel rect any more: the 3D view has d3_viewport and
+// the 2D one reads ed_rq(3) through its own fit, so passing it here would be a
+// third copy of a number two places already agree on.
+ed_content() {
+  if (ed_is2d() = 1) {
+    ed_plane();
+  } else {
+    ed_solid();
+  }
+} return void;
+
+// Asked here and by the navigation, so that the wheel and the middle button move
+// whichever view is actually on screen. Two views with one set of bindings is the
+// point: a person should not have to know which renderer a project woke up.
+ed_is2d() {
+} return int bl_ntri() = 0 && (import ed_gu)[0] != 0;

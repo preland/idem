@@ -1,0 +1,3 @@
+ast_k_page() { } return int ast_kbase() + 44;
+
+ast_k_bad() { } return int ast_kbase() + 45;

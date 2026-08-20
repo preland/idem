@@ -1,0 +1,36 @@
+// surf -- the drawing surface.
+//
+// One flat int[] of sf_gw * sf_gh packed 0xRRGGBB pixels, row-major, top row
+// first. That layout is not a choice: it is exactly what backends/gfx's
+// id_gfx_present blits, so the engine's framebuffer and the window's are the
+// same object and presenting costs one copy in C.
+//
+// **The surface is the window, pixel for pixel.** It is re-sized to whatever
+// gfx_width/gfx_height report, every frame, and nothing is magnified on the way
+// out: one framebuffer cell is one screen pixel. What a game *declares* as its
+// display is no longer the size of this buffer -- it is the size of the stage
+// that gets mapped into it (sys_stage), which is the same relationship the 3D
+// pipeline already has to the world.
+//
+// Two rules of the language shape how a resize is possible at all:
+//
+//   * only the *declaring* function may assign an exported scalar, so sf_init --
+//     which declares sf_gw and sf_gh -- has to be the function a resize calls.
+//     Re-running an `export` declaration re-assigns it, which is exactly what is
+//     wanted here.
+//   * a list only ever grows, and `lst_fill` on an already-declared list grows it
+//     **in place**. So the framebuffer is declared once, by sf_alloc, and every
+//     later size only extends it. Re-declaring it per resize would abandon the
+//     old one, and `id` frees nothing: dragging a window across five hundred
+//     sizes would retain five hundred framebuffers.
+//
+// The buffer is therefore a high-water mark. A window grown to 3840x2160 keeps
+// 8.3 M cells for the rest of the run even if it is shrunk again; that is the
+// honest cost of a language without free, and it is bounded by the largest window
+// the user actually opened.
+
+sf_init(int w, int h) {
+  export int sf_gw = w;
+  export int sf_gh = h;
+  sf_init2(w, h);
+} return void;

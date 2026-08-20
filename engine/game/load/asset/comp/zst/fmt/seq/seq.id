@@ -1,0 +1,33 @@
+// The sequences section.
+//
+// A sequence is "copy this many literals, then copy this many bytes from this far
+// back". The section is a count, a byte saying how each of the three symbol
+// alphabets is coded, up to three FSE table descriptions, and then one backward
+// bitstream carrying all three interleaved.
+//
+// Number_of_Sequences is variable width, and the encoding is unusual enough to
+// state: a first byte below 128 is the count; below 255 it is the high bits of a
+// two-byte count; 255 means a two-byte count follows with 0x7F00 added.
+
+zst_seqs(int end) {
+  int b0 = zst_le(1);
+  zst_nseq(b0, end);
+} return void;
+
+zst_nseq(int b0, int end) {
+  if (b0 = 0) {
+    zst_lonly(end);
+  } else {
+    zst_nseq2(b0, end);
+  }
+} return void;
+
+zst_nseq2(int b0, int end) {
+  if (b0 < 128) {
+    zst_smode(b0, end);
+  } else if (b0 < 255) {
+    zst_smode((b0 - 128) * 256 + zst_le(1), end);
+  } else {
+    zst_smode(zst_le(2) + 32512, end);
+  }
+} return void;

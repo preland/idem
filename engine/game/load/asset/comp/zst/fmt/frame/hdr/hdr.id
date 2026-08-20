@@ -1,0 +1,45 @@
+// The frame header.
+//
+// Frame_Header_Descriptor, one byte, and every field in the header is optional
+// according to its bits:
+//
+//     7-6  Frame_Content_Size_flag   0,1,2,3 -> a 0/1, 2, 4 or 8 byte field
+//     5    Single_Segment_flag       when set there is no Window_Descriptor,
+//                                    and a content-size flag of 0 still means
+//                                    one byte
+//     2    Content_Checksum_flag     four bytes of xxhash after the last block
+//     1-0  Dictionary_ID_flag        0, 1, 2 or 4 bytes
+//
+// The window descriptor is read and discarded. It bounds how far back a match may
+// reach, which matters to an encoder deciding how much history to keep; this
+// decoder keeps the whole output and so is bounded by the output buffer instead.
+
+zst_pow256(int n) {
+  int m = 1;
+  while (n > 0) {
+    m = m * 256;
+    n = n - 1;
+  }
+} return int m;
+
+zst_frame(int mag) {
+  if (mag = 0 - 47205080) {
+    zst_body();
+  } else {
+    zst_other(mag);
+  }
+} return void;
+
+// 0xFD2FB528 does not fit an `int` -- it is above 2^31 -- so zst_le's accumulation
+// wraps and the constant is written as the negative it becomes, -47205080.
+// Skippable frames are 0x184D2A50 through ...5F, and every one of those sixteen
+// divided by 16 is 25481893; a four-byte length follows and the payload is not
+// ours. Both constants were computed, not guessed -- the first pair I wrote by
+// hand were both wrong, and a wrong magic number fails as "not a zstd file".
+zst_other(int mag) {
+  if (mag / 16 = 25481893) {
+    zst_jump(zst_le(4));
+  } else {
+    lset((import zst_st), 6, 1);
+  }
+} return void;

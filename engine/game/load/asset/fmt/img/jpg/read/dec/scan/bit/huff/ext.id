@@ -1,0 +1,25 @@
+// Receiving a value, sign-extending it, and decoding one Huffman symbol.
+
+jpg_recv(int n) {
+  int v = 0;
+  int k = 0;
+  while (k < n) {
+    v = v * 2 + jpg_bit();
+    k = k + 1;
+  }
+} return int v;
+
+// A coefficient is sent as a magnitude category and that many bits. The bits are
+// the value itself when the top one is set, and the value minus (2^n - 1) when it
+// is not -- which is how a symmetric range is packed without a sign bit.
+jpg_ext(int v, int n) {
+  int m = v;
+  if (n > 0 && v < inf_pow2(n - 1)) { m = v - inf_pow2(n) + 1; }
+} return int m;
+
+// The same canonical walk the inflate uses -- counts per length, symbols in
+// canonical order -- but over JPEG's sixteen lengths and its own bit reader.
+jpg_dec(int t) {
+  int[] st = [0, 0, 0, 1];
+  jpg_dwalk(t, st);
+} return int jpg_dsym(t, st);

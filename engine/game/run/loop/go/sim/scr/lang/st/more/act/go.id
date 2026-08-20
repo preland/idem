@@ -1,0 +1,28 @@
+// `goto`, `stop`, `say` and `play`.
+//
+// A `goto` is *recorded*, not performed. Reloading the world in the middle of the
+// loop that is walking it invalidates every index that loop is holding, and the
+// symptom is an entity handler running against a record from the scene before.
+// The frame finishes, then the scene changes.
+
+scr_ex8(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_goto()) {
+    fin = scr_goto(ast_tx(nd));
+  } else {
+    fin = scr_ex9(nd, e);
+  }
+} return int fin;
+
+scr_goto(string name) {
+  lset((import scr_st), 2, scn_byname(name));
+} return int 1;
+
+// `stop` ends the handler and nothing else. `say` and `play` are accepted and do
+// nothing: there is no console and no audio backend, and a statement that parses
+// and is silently ignored is better documented here than turned into an error a
+// game cannot avoid.
+scr_ex9(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_stop()) { fin = 1; }
+} return int fin;

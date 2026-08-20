@@ -1,0 +1,42 @@
+// The widget, drawn into an off-screen surface and counted.
+//
+// A drawing test that looked at the pixels would be a judgement call; this one
+// counts them, against a number worked out from the font file and the geometry
+// rather than from a previous run:
+//
+//   the frame      160 + 160 + 32 + 32 - 4 corners counted twice   = 380
+//   "hello"        the set bits of five glyphs of the VGA face     = 142
+//   the caret      one column, txt_cellh() tall                    =  16
+//                                                                   ---
+//                                                                   538
+//
+// None of the three overlaps another: the glyphs run x 2..41 and the caret sits
+// at x 42, both well inside a frame at x 0 and x 159. So the total is a sum, and
+// every way of getting the layout wrong -- an unscrolled caret, a glyph drawn
+// from the wrong row offset, a frame off by one -- moves it.
+//
+// 160x32 puts txt_ui() at 1: the scale is a round-to-nearest of the window
+// against 640x400 with a floor of 1, so anything smaller than half the reference
+// draws at 1:1 and the arithmetic above is in font pixels.
+
+t_draw() {
+  sf_open(160, 32);
+  tin_set("hello");
+  t_draw2();
+} return void;
+
+t_draw2() {
+  tin_draw(0, 0, 160, 32, 16777215, 5490);
+  print("field drawn: white pixels exp 538 (380 frame + 142 glyphs + 16 caret) = " + t_ink(0, 0, 160, 32));
+  t_draw3();
+} return void;
+
+// The clip has to come back. tin_body narrows it to the field's inside and there
+// is one clip in the engine (gfx/px/sf/cl/clip.id), so a widget that forgot to
+// restore it would leave every later draw call in the frame clipped to a text
+// box -- which looks like the rest of the UI vanishing, a long way from here.
+t_draw3() {
+  print("clip restored exp 0 0 159 31 = " + (import sf_cl)[0] + " " + (import sf_cl)[1] + " " + (import sf_cl)[2] + " " + (import sf_cl)[3]);
+  tin_set("0123456789ABCDEFGHIJ");
+  t_draw4();
+} return void;

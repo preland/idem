@@ -1,0 +1,26 @@
+// The third coordinate, and the faces.
+//
+// Each field is read into its own local before the line is printed. Two
+// side-effecting calls in one expression may evaluate in either order in this
+// language, so a `print(imp_int(src) + " " + imp_int(src))` would transpose a
+// mesh's coordinates on some builds and not others -- the worst kind of bug to
+// go looking for.
+
+mdl_v3(string src, int x, int y) {
+  print("    (" + x + ", " + y + ", " + imp_int(src) + ")");
+} return void;
+
+mdl_faces(string src) {
+  print("  faces {");
+  mdl_face_all(src);
+  print("  }");
+} return void;
+
+mdl_face_all(string src) {
+  int i = 0;
+  while (i < (import mdl_n)[1]) {
+    mdl_face(src);
+    i = i + 1;
+  }
+  print("}");
+} return void;

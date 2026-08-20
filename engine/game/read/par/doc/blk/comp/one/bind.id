@@ -1,0 +1,22 @@
+// One `name = value` binding.
+//
+// The value is a single token -- an identifier or a literal -- not an expression:
+// `space = press` binds an action name, and parsing it as an expression would make
+// `press, enter` a comma operator this language does not have.
+
+par_kv(int[] pos) {
+  string name = par_text(pos);
+  par_next(pos);
+} return int par_kv2(pos, name);
+
+par_kv2(int[] pos, string name) {
+  int[] kids = [];
+  par_eat(pos, "=");
+  par_kv3(pos, kids);
+} return int ast_new_kids(ast_k_comp(), name, kids);
+
+par_kv3(int[] pos, int[] kids) {
+  push(kids, ast_new_k(ast_k_ident(), par_text(pos)));
+  par_next(pos);
+  par_eat(pos, ",");
+} return void;

@@ -1,0 +1,30 @@
+// Setting the viewport, and re-deriving what depends on it.
+//
+// The rect is given the way every other rect in the engine is -- left, top,
+// width, height -- and stored as inclusive bounds, because that is what the span
+// and scanline clips compare against and converting once here beats converting
+// per pixel.
+//
+// It is clamped to the surface. A viewport wider than the framebuffer is not a
+// drawing that spills, it is an out-of-range store, and an out-of-range store
+// aborts the process.
+//
+// The focal length is derived from the viewport's width, not the surface's, so a
+// narrow scene-view panel shows the same field of view as a wide one rather than
+// a stretched slice of it. That is why this re-derives it: changing the viewport
+// changes the lens.
+
+d3_viewport(int x, int y, int w, int h) {
+  m4_pair((import d3_vp), 0, 1, fx_clamp(x, 0, (import sf_gw) - 1), fx_clamp(y, 0, (import sf_gh) - 1));
+  d3_vp_hi(x + w - 1, y + h - 1);
+  d3_vp_mid();
+} return void;
+
+d3_vp_hi(int x, int y) {
+  m4_pair((import d3_vp), 2, 3, fx_clamp(x, (import d3_vp)[0], (import sf_gw) - 1), fx_clamp(y, (import d3_vp)[1], (import sf_gh) - 1));
+} return void;
+
+d3_vp_mid() {
+  m4_pair((import d3_vp), 4, 5, ((import d3_vp)[0] + (import d3_vp)[2] + 1) / 2, ((import d3_vp)[1] + (import d3_vp)[3] + 1) / 2);
+  d3_cam_fov((import d3_cam)[7]);
+} return void;

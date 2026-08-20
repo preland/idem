@@ -1,0 +1,31 @@
+// Choosing the loop, and the per-pixel steps it walks.
+//
+// d3_gs slot 6 carries the triangle's flat colour, or -1 when the three vertices
+// disagree and the colour has to be interpolated. That is the whole difference
+// between the two inner loops, and it is decided once per triangle rather than
+// per pixel: the flat loop writes a list parameter with nothing in its body but a
+// depth test, which is the 4.3-5.0 Gpx/s path ARCHITECTURE.md §3.1 measures, and
+// the Gouraud loop pays a call per pixel to step three colour accumulators.
+//
+// Colour steps carry 8 fractional bits because a channel spans at most 255 and a
+// span may be hundreds of pixels wide: without the fraction, a gradient across a
+// wide triangle would move in visible bands, or not at all.
+
+d3_span5(int i, int n, int dz, int[] st) {
+  if ((import d3_gs)[6] >= 0) {
+    d3_row((import sf_fb), (import d3_zb), i, n, (import d3_gs)[6], dz, st[12]);
+  } else {
+    d3_row_g((import sf_fb), (import d3_zb), i, n, dz, st[12], (import d3_gs));
+  }
+} return void;
+
+d3_steps(int[] st, int n) {
+  lset(st, 12, (st[8] - st[2]) / n);
+  d3_steps_c(st, n);
+} return void;
+
+d3_steps_c(int[] st, int n) {
+  lset(st, 13, (st[9] - st[3]) * 256 / n);
+  lset(st, 14, (st[10] - st[4]) * 256 / n);
+  lset(st, 15, (st[11] - st[5]) * 256 / n);
+} return void;

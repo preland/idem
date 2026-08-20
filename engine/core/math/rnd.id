@@ -1,0 +1,40 @@
+// rnd -- Park-Miller, via Schrage, because there is no rand().
+//
+// The generator is x' = 16807 * x mod 2147483647, whose period is the full
+// 2147483646 and whose state is one int. The obvious implementation overflows:
+// 16807 * x reaches 3.6e13. Schrage's trick splits x at 127773 (= 2147483647 /
+// 16807) so that both partial products stay inside 32 bits, then folds the
+// difference back into range with a single add -- no word, no bitwise, no
+// division by anything that can be zero.
+//
+// The state is a one-element list because only the function that declares an
+// exported scalar may assign it; a mutable global scalar has to be a list
+// written through lset. Reading rnd_st before rnd_init has run segfaults.
+//
+// Seeding: 0 is a fixed point of the recurrence and would return 0 forever, so
+// the seed is folded into 1..2147483646 by taking it modulo the period and
+// shifting off zero. ticks() is the usual caller-side source.
+
+rnd_init(int seed) {
+  export int[] rnd_st = [fx_abs(seed % 2147483646) + 1];
+} return void;
+
+// The next value, 1..2147483646. The new state is stored inside the block and
+// read back by the free return clause, which is what keeps this to three
+// actions: `nx <= 0` is 0 or 1, so multiplying the period by it is the
+// branchless form of "add it back if the difference went negative".
+rnd_next() {
+  int sd = (import rnd_st)[0];
+  int nx = 16807 * (sd % 127773) - 2836 * (sd / 127773);
+  lset((import rnd_st), 0, nx + 2147483647 * (nx <= 0));
+} return int (import rnd_st)[0];
+
+// A uniform integer in [lo, hi], inclusive. Reversed bounds are treated as the
+// same interval rather than as an error, and lo = hi gives a span of 1 -- so the
+// modulus is never 0 and this can never be the SIGFPE. The low bits of a
+// Lehmer generator are the weak ones, but at game-logic magnitudes (a spawn
+// slot, a jitter in per-mille) that is invisible.
+rnd_range(int lo, int hi) {
+  int mn = fx_min(lo, hi);
+  int sp = fx_abs(hi - lo) + 1;
+} return int mn + rnd_next() % sp;

@@ -1,0 +1,28 @@
+// RLE, one output byte, and the result.
+
+// One byte on the wire, n bytes out. `n` is the output length here, not the
+// wire length -- the one asymmetry in the block header.
+zst_rle(int n) {
+  int v = zst_le(1);
+  int i = 0;
+  while (i < n && (import zst_st)[6] = 0) {
+    zst_put(v);
+    i = i + 1;
+  }
+} return void;
+
+// The capacity check is not optional: a stream claiming more output than the
+// caller sized for would poke past the allocation, and the flat store turns that
+// into an abort. A decoder must reject a bad file, not die on one.
+zst_put(int v) {
+  if ((import zst_st)[4] >= (import zst_st)[5]) {
+    lset((import zst_st), 6, 1);
+  } else {
+    zst_put2(v);
+  }
+} return void;
+
+zst_put2(int v) {
+  poke8((import zst_st)[3] + (import zst_st)[4], v);
+  lset((import zst_st), 4, (import zst_st)[4] + 1);
+} return void;

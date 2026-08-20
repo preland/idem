@@ -1,0 +1,11 @@
+// The document, four lines at a time.
+
+ed_pg6() {
+} return string ed_pong_ln("      on update {") + ed_pong_ln("        vel.y = 0") + ed_pong_ln("        if (key(119) = 1 && pos.y > 22) { vel.y = 0 - 260 }") + ed_pong_ln("        if (key(115) = 1 && pos.y < 178) { vel.y = 260 }") + ed_pg7();
+
+ed_pg7() {
+} return string ed_pong_ln("      }") + ed_pong_ln("    }") + ed_pong_ln("  }") + ed_pong_ln("") + ed_pg8();
+
+ed_pg8() {
+} return string ed_pong_ln("  entity right {") + ed_pong_ln("    pos (306, 100)") + ed_pong_ln("    shape box (6, 40) 0xF0F0F0") + ed_pong_ln("    body (6, 40)") + ed_pg9();
+

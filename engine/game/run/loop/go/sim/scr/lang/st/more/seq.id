@@ -1,0 +1,31 @@
+// A sequence of statements, and the control-flow forms.
+
+scr_seq(int nd, int e, int i) {
+  int fin = 0;
+  while (i < len(ast_ks(nd)) && fin = 0) {
+    fin = scr_ex(ast_ks(nd)[i], e);
+    i = i + 1;
+  }
+} return int fin;
+
+scr_ex3(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_if()) {
+    fin = scr_if(nd, e);
+  } else {
+    fin = scr_ex4(nd, e);
+  }
+} return int fin;
+
+// `while` carries the same guard every loop in this engine carries, and it is not
+// optional here: a script is written by someone who can trivially write
+// `while (1) { }`, and a game that hangs is worse than a game that stops early.
+// Ten thousand turns is far past any legitimate loop in a frame.
+scr_ex4(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = ast_k_while()) {
+    fin = scr_while(nd, e, 0);
+  } else {
+    fin = scr_ex5(nd, e);
+  }
+} return int fin;

@@ -1,0 +1,23 @@
+// fx_hyp above 2^31 -- the case that used to be silently wrong.
+//
+// fx_hypfix quarters the radicand and hands it to fx_sqrt, whose exactness holds
+// only below 2^31: above that fx_sqbit cannot start high enough and the root
+// comes back far too small, with no fault raised. One quartering covered
+// operands to 65535 and no further, which is what the header used to promise;
+// fx_hypfix now recurses instead, so the whole word is covered.
+//
+// This is not a hypothetical range. A surface normal built from two edges of a
+// thousand units has components in the millions, and the too-small magnitude made
+// every Lambert term saturate -- a lit room rendered exactly as flat as an unlit
+// one, with correct geometry and correct normals behind it. The values below are
+// python3's math.isqrt of the exact sum of squares.
+//
+// The ceiling is the *result*, not the operands: fx_hyp answers an int, so a
+// hypotenuse of 2^31 or more cannot come back however wide the radicand was. The
+// largest case here is a fifth of a percent under that.
+
+t_wide() {
+  print("fx_hyp(2e6,2e6) exp 2828427 | (710000,0) exp 710000 | (1004091,710000) exp 1229755 = " + fx_hyp(2000000, 2000000) + " " + fx_hyp(710000, 0) + " " + fx_hyp(1004091, 710000));
+  print("fx_hyp(1e9,1e9) exp 1414213562 | (1.5e9,1e9) exp 1802775637 | (2e9,0) exp 2000000000 = " + fx_hyp(1000000000, 1000000000) + " " + fx_hyp(1500000000, 1000000000) + " " + fx_hyp(2000000000, 0));
+  t_norm();
+} return void;

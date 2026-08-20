@@ -1,0 +1,23 @@
+// Reading, writing, and declaring.
+//
+// The scans next door fold through lst_pick, the engine-wide "first index that
+// matched" helper -- a second copy of those three lines is a duplicate-logic
+// error, and the compiler says so.
+
+scr_get(int e, string name) {
+  int i = scr_find(e, name);
+  int v = 0;
+  if (i >= 0) { v = (import scr_vv)[i]; }
+} return int v;
+
+// An assignment to a name nothing declared is a diagnostic and a no-op. `id`
+// itself has no implicit declaration and neither does this: a typo that silently
+// creates a variable is a bug that survives every test a game has.
+scr_set(int e, string name, int v) {
+  int i = scr_find(e, name);
+  if (i >= 0) {
+    lset((import scr_vv), i, v);
+  } else {
+    err_report("script", 0, "assignment to undeclared variable " + chr(39) + name + chr(39));
+  }
+} return void;

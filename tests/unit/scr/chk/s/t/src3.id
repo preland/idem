@@ -1,0 +1,4 @@
+// The bird: its own variable, its tag, and three handlers.
+
+t_src3() {
+} return string "  entity bird {" + chr(10) + "    pos (50, 50)" + chr(10) + "    body (10, 10)" + chr(10) + "    tag player" + chr(10) + "    var own = 5" + chr(10) + "    script {" + chr(10) + "      on update { n = 3 * 4 + 2  own = own + 1 }" + chr(10) + "      on press { taps = taps + 1 }" + chr(10) + "      on hit deadly { hits = hits + 1 }" + chr(10) + "    }" + chr(10) + "  }" + chr(10) + t_src4();

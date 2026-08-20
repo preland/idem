@@ -1,0 +1,25 @@
+// Starting the forward reader, and filling it.
+//
+// The count reader must **look before it consumes**: whether a count occupies
+// bitCount-1 or bitCount bits depends on the value of those bits. So this reader
+// separates peek from drop, unlike the backward one, where every read is a commit.
+
+zf_start(int sa, int slen) {
+  m4_pair((import zf_st), 0, 1, sa, 0);
+  m4_pair((import zf_st), 2, 3, 0, 0);
+  m4_pair((import zf_st), 4, 5, slen, 0);
+} return void;
+
+zf_fill(int n) {
+  while ((import zf_st)[3] < n && (import zf_st)[5] = 0) {
+    zf_more();
+  }
+} return void;
+
+zf_more() {
+  if ((import zf_st)[1] >= (import zf_st)[4]) {
+    lset((import zf_st), 5, 1);
+  } else {
+    zf_more2();
+  }
+} return void;

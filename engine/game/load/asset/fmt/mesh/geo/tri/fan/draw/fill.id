@@ -1,0 +1,18 @@
+// One vertex into the record, and the flat colour across all three.
+
+bl_tv(int[] tri, int k, int v) {
+  lset(tri, k, (import bl_v)[v * 3]);
+  lset(tri, k + 1, (import bl_v)[v * 3 + 1]);
+  lset(tri, k + 2, (import bl_v)[v * 3 + 2]);
+} return void;
+
+bl_tc(int[] tri, int c) {
+  lset(tri, 9, c);
+  lset(tri, 10, c);
+  lset(tri, 11, c);
+} return void;
+
+bl_in(int a, int n) {
+  int ok = 0;
+  if (a >= 0 && a < n) { ok = 1; }
+} return int ok;

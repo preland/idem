@@ -1,0 +1,18 @@
+// Reading a component's arguments.
+//
+// `nd` is a `comp` whose `a` is an `args` node; the i'th argument is its i'th
+// child. Absent answers 0, so every reader below has a sensible default without
+// testing for one.
+
+scn_arg(int nd, int i) {
+  int v = 0;
+  if (ast_ia(nd) != 0 && i < len(ast_ks(ast_ia(nd)))) {
+    v = ast_ks(ast_ia(nd))[i];
+  }
+} return int v;
+
+scn_num(int nd, int i) {
+} return int ast_ia(scn_arg(nd, i));
+
+scn_txt(int nd, int i) {
+} return string ast_tx(scn_arg(nd, i));

@@ -1,0 +1,14 @@
+// The fixture.
+//
+// One component per line, because idml has no statement terminator and a
+// component's arguments run to the end of its line -- so `pos (0, 0) body (10,
+// 10)` on one line is a single `pos` with four arguments and a stray brace after
+// it. That is the grammar working as documented (par_comp), and a fixture that
+// ignored it would be testing a language this engine does not have.
+//
+// `n` exercises precedence, `hits` a collision, `ticks` a timer, `taps` a press,
+// and the bird's `own` exercises shadowing: read from the entity it is the
+// entity's cell, read from the scene it does not exist.
+
+t_src() {
+} return string "game t {" + chr(10) + "  display (100, 100)" + chr(10) + "  fps 50" + chr(10) + "  persist { best = 7 }" + chr(10) + "  keys { space = press }" + chr(10) + "}" + chr(10) + t_src2();

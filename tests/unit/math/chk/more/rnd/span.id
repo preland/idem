@@ -1,0 +1,15 @@
+// The degenerate rnd_range arguments. lo = hi must not divide by zero -- the span
+// is 1, so the modulus is 1 and the answer is lo. Reversed bounds must not return
+// garbage either: the interval is taken as written, unordered, which is what a
+// caller passing rnd_range(x, x - jitter) wants.
+//
+// Both still consume one draw each, so the expected values below are fixed by the
+// draw order of the whole chain: draws 3 and 4 are the two rnd_range(7,7) calls
+// (either evaluation order gives 7 and leaves the same state), draw 5 is
+// 1168903461 and 1168903461 % 7 = 5, so -3 + 5 = 2.
+
+t_rndspan() {
+  print("rnd_range(7,7) twice exp 7 7 = " + rnd_range(7, 7) + " " + rnd_range(7, 7));
+  print("rnd_range(3,-3) reversed bounds exp 2 in -3..3 = " + rnd_range(3, 0 - 3));
+  t_rndloop();
+} return void;

@@ -1,0 +1,41 @@
+// Where the game's own files live.
+//
+// A document says `sprite bird from "art/bird.png"`, and that path is relative to
+// the game's directory -- not to wherever the executable happens to be started
+// from. Nothing in the source can say which directory that is: an author writes
+// `art/bird.png` precisely so they do not have to.
+//
+// So tools/idem puts it in the stream, as a `#root <dir>/` line ahead of the
+// first `#file`. It is a comment to the lexer, exactly like the `#asset` lines
+// the editor reads, and it is scanned out of the raw text for the same reason:
+// this has to be known before the source is lexed, let alone parsed.
+//
+// The line records an absolute path from the machine that packed the game, which
+// is right where it was packed and meaningless anywhere else. So it is a
+// *preference*, not an answer: scn_rfix keeps it if that directory still exists
+// and falls back to the executable's own directory if it does not, and
+// `tools/idem pack` writes a game's assets beside its executable so that
+// directory has them. A packed game therefore runs from the tree it was built in
+// and from a copy of its bundle somewhere else, with no flag either way.
+//
+// A stream with no `#root` leaves scn_dir empty, which resolves paths against the
+// working directory. That is what the unit tests and any hand-fed source get, and
+// it is the right default for them.
+
+scn_root(string src, int i) {
+  while (charat(src, i) >= 0 && (import scn_dir)[0] = "") {
+    i = scn_rline(src, i);
+  }
+  scn_rfix();
+} return void;
+
+scn_rline(string src, int i) {
+  int e = scn_reol(src, i);
+  scn_rtake(src, i, e);
+} return int e + 1;
+
+scn_reol(string src, int i) {
+  while (charat(src, i) >= 0 && charat(src, i) != 10) {
+    i = i + 1;
+  }
+} return int i;

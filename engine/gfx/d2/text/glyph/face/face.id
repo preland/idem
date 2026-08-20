@@ -1,0 +1,35 @@
+// face -- the metrics of whichever face is currently loaded.
+//
+// The default font used to be a constant: 8x8, so one number was the advance,
+// the row count and the column count, and txt_cell() answered all three. It is
+// now the IBM VGA 8x16 face (glyphs.gen.id), and a face a game loads through
+// psf_load may be 8x14 or 12x24, so those three numbers have come apart. They
+// live in txt_st, declared beside the table by txt_glyph_data so that the
+// metrics and the rows can never disagree:
+//
+//     txt_st[0]  cell width  -- the advance, and the columns a glyph draws
+//     txt_st[1]  cell height -- the rows a glyph draws
+//     txt_st[2]  bits per row in the table (the cell width rounded up to a byte)
+//     txt_st[3]  how many glyphs, from txt_first() upward
+//
+// Slot 2 is the one that is not obvious. A bitmap font pads each row out to a
+// whole byte, so a 12-wide glyph occupies 16 bits with four of them empty on the
+// *right*, and the leftmost column is therefore bit 15 rather than bit 11.
+// txt_px_sc shifts against this rather than against the width, which is why a
+// non-multiple-of-8 face draws at all.
+//
+// These read an exported global, so txt_init has to have run. Everything that
+// draws text already depended on that -- txt_glyphs had the same requirement --
+// and idem_boot's init chain calls it before anything else.
+
+// The rows a glyph occupies in the table, and the pixels it occupies on screen.
+txt_cellh() {
+} return int (import txt_st)[1];
+
+// The width of one packed row in bits: the shift base for column 0.
+txt_bit() {
+} return int (import txt_st)[2];
+
+// How many code points the face has, counting from txt_first().
+txt_facen() {
+} return int (import txt_st)[3];

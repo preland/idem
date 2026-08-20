@@ -1,0 +1,37 @@
+// Decoding the sequences.
+//
+// One backward bitstream carries all three alphabets interleaved. The three FSE
+// states are initialised in the order literal lengths, offsets, match lengths --
+// and that order is part of the format, not a choice.
+//
+// Per sequence the order is stricter still, and every part of it matters:
+//
+//   1. the three codes come from the three states (no bits are read)
+//   2. extra bits are read: offset, then match length, then literal length
+//   3. the states advance: literal length, then match length, then offset
+//
+// Any permutation of 2 or 3 decodes the first sequence correctly and then
+// diverges, which reads as a table bug and is not.
+
+zst_sdec(int n, int end) {
+  zb_start((import zst_st)[0] + (import zst_st)[1], end - (import zst_st)[1]);
+  zst_sinit();
+  zst_sloop(n, end);
+} return void;
+
+zst_sinit() {
+  lset((import zst_sq), 0, fse_dstart(0));
+  lset((import zst_sq), 1, fse_dstart(1));
+  lset((import zst_sq), 2, fse_dstart(2));
+} return void;
+
+// The last sequence does not advance the states -- there are no bits left for it
+// to read, and asking would fault on a stream that is exactly the right length.
+zst_sloop(int n, int end) {
+  int i = 0;
+  while (i < n && (import zst_st)[6] = 0 && (import zb_st)[3] = 0) {
+    zst_sone(i = n - 1);
+    i = i + 1;
+  }
+  zst_sfin(end);
+} return void;

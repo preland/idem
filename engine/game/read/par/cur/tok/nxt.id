@@ -1,0 +1,18 @@
+// Advancing stamps the consumed token's line into the arena, so every node built
+// afterwards carries a source line without any production mentioning one.
+par_next(int[] pos) {
+  ast_mark(par_line(pos));
+  pos[0] = pos[0] + 1;
+} return void;
+
+par_text2(int[] pos) {
+  string s = "";
+  if (pos[0] + 1 < len((import lex_text))) { s = (import lex_text)[pos[0] + 1]; }
+} return string s;
+
+// String tokens are excluded so that a sprite row or a `say "}"` can never be
+// mistaken for punctuation and close a block early.
+par_is(int[] pos, string txt) {
+  int ok = 0;
+  if (par_kind(pos) != lex_k_string() && par_text(pos) = txt) { ok = 1; }
+} return int ok;

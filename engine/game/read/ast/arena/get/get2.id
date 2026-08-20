@@ -1,0 +1,5 @@
+ast_ib(int nd) { } return int (import ast_b)[nd];
+
+ast_ic(int nd) { } return int (import ast_c)[nd];
+
+ast_ks(int nd) { } return int[] (import ast_kids)[nd];

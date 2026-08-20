@@ -1,0 +1,27 @@
+// The entropy-coded bit reader.
+//
+// Bits are most-significant first within a byte, which is the opposite of
+// DEFLATE, so this cannot reuse the inflate's reader. The other difference is
+// byte stuffing: a literal 0xFF in the data is written as 0xFF 0x00, so a 0x00
+// after 0xFF is consumed and anything else means a marker has been reached and
+// the entropy data is over.
+//
+// jpg_b: 0 the read cursor, 1 the bit buffer, 2 bits left in it, 3 marker hit.
+
+jpg_bset(int p) {
+  m4_pair((import jpg_b), 0, 1, p, 0);
+  m4_pair((import jpg_b), 2, 3, 0, 0);
+} return void;
+
+jpg_bit() {
+  if ((import jpg_b)[2] = 0) {
+    jpg_fill();
+  }
+  lset((import jpg_b), 2, (import jpg_b)[2] - 1);
+} return int (import jpg_b)[1] / inf_pow2((import jpg_b)[2]) % 2;
+
+jpg_fill() {
+  int v = asset_at((import jpg_b)[0]);
+  lset((import jpg_b), 0, (import jpg_b)[0] + 1);
+  jpg_fill2(v);
+} return void;

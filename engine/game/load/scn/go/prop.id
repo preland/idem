@@ -1,0 +1,29 @@
+// One manifest property.
+//
+// `display (288, 512) "flappy"` -- the tuple is the size and the string is the
+// window title. `fps 60`, `scale 2`, `start play`. Anything else is ignored here
+// rather than refused: a manifest may carry things this stage does not read yet
+// (`keys`, `persist`), and the loader that does read them will find them.
+
+scn_prop(int nd) {
+  if (ast_tx(nd) = "display") {
+    scn_disp(scn_arg(nd, 0));
+  } else {
+    scn_prop2(nd);
+  }
+} return void;
+
+scn_prop2(int nd) {
+  if (ast_tx(nd) = "fps") {
+    lset((import scn_st), 2, fx_max(scn_num(nd, 0), 1));
+  } else {
+    scn_prop3(nd);
+  }
+} return void;
+
+// A tuple node's two numbers are its first two children.
+scn_disp(int t) {
+  if (t != 0 && len(ast_ks(t)) >= 2) {
+    m4_pair((import scn_st), 0, 1, ast_ia(ast_ks(t)[0]), ast_ia(ast_ks(t)[1]));
+  }
+} return void;

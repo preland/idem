@@ -1,0 +1,31 @@
+// The anchor, as the two numbers a draw call wants: where along the rect the text
+// starts, and which end of the string that point is.
+//
+// It sits under lay/ rather than beside its caller in leaf/ because a directory
+// here holds three entries and leaf/ needed its third for in/, the text field.
+// Anchoring is placement, place.id next door is placement, and the compiler does
+// not care either way -- directory names exist for people and for the rule of 3
+// (ARCHITECTURE.md section 9).
+//
+// txt_draw_at takes align 0 left, 1 centre, 2 right and measures from x, so the
+// pair has to agree: a centred string is anchored at the middle of the rect with
+// align 1, a right-aligned one at the far edge with align 2.
+
+ui_ax(string name, int w) {
+  int n = 4;
+  if (ui_has(name, "center") = 1) { n = w / 2; }
+  else if (ui_has(name, "right") = 1) { n = w - 4; }
+} return int n;
+
+ui_al(string name) {
+  int k = 0;
+  if (ui_has(name, "center") = 1) { k = 1; }
+  else if (ui_has(name, "right") = 1) { k = 2; }
+} return int k;
+
+// An anchor is either one word or a `v-h` pair, so the horizontal half is a
+// substring test rather than an equality: `center` and `top-center` both centre.
+ui_has(string name, string txt) {
+  int ok = 0;
+  if (name = txt || str_eqat(name, len(name) - len(txt), txt) = 1) { ok = 1; }
+} return int ok;

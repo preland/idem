@@ -1,0 +1,31 @@
+// doc -- a whole idml document, as declarations.
+//
+// The parser already covered expressions, scripts and UI items; this is the
+// outermost layer, and it is what makes a `.idml` file loadable rather than
+// merely lexable. A document is a sequence of top-level declarations:
+//
+//     import "./art.idml"
+//     sprite bird from "art/bird.png" grid (1, 4) cell (17, 12)
+//     game flappy { display (288, 512) "flappy"  fps 60  start play }
+//     scene play { clear 0x70C5CE  entity bird { pos (144, 200) … } }
+//     template Pipe { … }
+//
+// **Sprites and models are references to files, not data.** idml is a layout and
+// world language (ARCHITECTURE.md §7.6); the pixels live in a PNG and the engine
+// decodes it. `sprite NAME from "path"` binds a name to a file, which is the one
+// thing idml still has to say about art.
+//
+// Every declaration has the same shape -- a keyword, a name, optional arguments,
+// an optional braced body -- so there is one parser for all of them and the
+// keyword only decides the node kind.
+
+par_doc(int[] pos) {
+  int[] kids = [];
+  par_dfill(pos, kids);
+} return int ast_new_kids(ast_k_file(), "", kids);
+
+par_dfill(int[] pos, int[] kids) {
+  while (par_kind(pos) != lex_k_eof()) {
+    push(kids, par_top(pos));
+  }
+} return void;

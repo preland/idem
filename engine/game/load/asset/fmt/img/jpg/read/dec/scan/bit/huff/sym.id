@@ -1,0 +1,15 @@
+// Reading the symbol out.
+//
+// Past sixteen bits nothing matched, which means the stream is not decodable.
+// Answering 0 and faulting rather than indexing is not politeness: an
+// out-of-range list read aborts the process, and a corrupt file must not be able
+// to kill the program that opened it.
+
+jpg_dsym(int t, int[] st) {
+  int v = 0;
+  if (st[3] > 16) {
+    lset((import jpg_st), 8, 0);
+  } else {
+    v = (import jpg_hs)[t * 256 + st[2] + st[0] - st[1]];
+  }
+} return int v;

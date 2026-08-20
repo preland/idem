@@ -1,0 +1,53 @@
+// cut -- where one chunk ends and the next begins.
+//
+// 4096 characters, which is the size ARCHITECTURE.md §8 says was verified to
+// compile, and it was 60000 here -- the doc described one size and the code used
+// one fifteen times larger.
+//
+// That gap was not cosmetic. **`bin/idc` uses memory quadratic in the length of a
+// single string literal**, measured on this machine:
+//
+//     4 000 chars ->   38 MB      32 000 ->  492 MB
+//    16 000       ->  124 MB      60 000 -> 1722 MB
+//
+// Doubling the literal quadruples the memory, and `id` frees nothing, so a packed
+// game of seven 60000-character chunks was costing over ten gigabytes to compile
+// and could take the machine down. At 4096 it sits in the flat region of that
+// table and a whole game costs less than one old chunk did.
+//
+// The real fix is upstream -- `id_development/docs/GAPS.md` §3 already names it:
+// the emitter builds each line of C with `+`, and wants poke8 + str_of_mem. Until
+// then the input has to stay in the size the compiler is comfortable with.
+//
+// 4096 still leaves room for the worst case of the escape, two bytes out for
+// every byte in.
+//
+// The cut prefers a newline so that a generated literal ends where a line ends,
+// which makes the generated files diffable and a compiler diagnostic about one of
+// them intelligible. It is only a preference: a single idml line longer than the
+// limit has no newline to cut at, and is then cut mid-line. That is safe rather
+// than merely tolerable, because escaping is per-character and independent of
+// where the boundaries fall -- the concatenation of the chunks is the input, byte
+// for byte, wherever they were split.
+
+pack_cut(string src, int p) {
+  int n = len(src);
+  int hi = p + 4096;
+  int nxt = pack_at(src, p, hi, n);
+} return int nxt;
+
+pack_at(string src, int p, int hi, int n) {
+  int nxt = n;
+  if (hi < n) { nxt = pack_nl(src, p, hi); }
+} return int nxt;
+
+// Walk back from hi to just after the last newline in [p, hi). If there was none,
+// j arrives at p and the branchless fixup returns the hard limit instead -- an
+// `if` would do as well, but a comparison is an int in this language and this is
+// the idiom the engine uses everywhere for exactly this shape.
+pack_nl(string src, int p, int hi) {
+  int j = hi;
+  while (j > p && charat(src, j - 1) != 10) {
+    j = j - 1;
+  }
+} return int j + (j = p) * (hi - p);

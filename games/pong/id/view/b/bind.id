@@ -1,0 +1,25 @@
+// The two seams idml reaches the game through.
+//
+// `@name` in the layout reads g_ref(name); a bare identifier as an item's
+// argument calls g_act(name). Both are string compares against names the game
+// itself chose -- there is no dynamic dispatch in `id`, and none is wanted.
+
+g_ref(string name) {
+  int v = 0;
+  if (name = "lscore") { v = (import g_st)[8]; }
+  else { v = g_ref2(name); }
+} return int v;
+
+g_ref2(string name) {
+  int v = 0;
+  if (name = "rscore") { v = (import g_st)[9]; }
+  else if (name = "waiting") { v = (import g_st)[10]; }
+} return int v;
+
+// One action, one meaning. A game with more would chain these the way g_ref
+// does; a game with none would still define it, because the engine calls it.
+g_act(string name) {
+  if (name = "press") {
+    g_press();
+  }
+} return void;

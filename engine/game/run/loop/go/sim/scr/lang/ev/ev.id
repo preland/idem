@@ -1,0 +1,37 @@
+// Evaluating an expression.
+//
+// Every node kind the expression grammar can produce, dispatched in the order
+// they actually occur in a game's scripts -- numbers and names first, because a
+// dispatch chain in this language is a chain of `else if` and the cheapest thing
+// to reach should be the most common.
+//
+// An unknown node answers 0 rather than faulting. A script that reached a node
+// this does not know is a script the *parser* accepted, so the honest failure is
+// a value, not a crash in the middle of a frame.
+
+scr_ev(int nd, int e) {
+  int v = 0;
+  if (ast_kd(nd) = ast_k_num()) {
+    v = ast_ia(nd);
+  } else {
+    v = scr_ev2(nd, e);
+  }
+} return int v;
+
+scr_ev2(int nd, int e) {
+  int v = 0;
+  if (ast_kd(nd) = ast_k_ident()) {
+    v = scr_name(nd, e);
+  } else {
+    v = scr_ev3(nd, e);
+  }
+} return int v;
+
+scr_ev3(int nd, int e) {
+  int v = 0;
+  if (ast_kd(nd) = ast_k_bin()) {
+    v = scr_bin(nd, e);
+  } else {
+    v = scr_ev4(nd, e);
+  }
+} return int v;

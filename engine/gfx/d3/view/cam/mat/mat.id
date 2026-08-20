@@ -1,0 +1,42 @@
+// The view matrix: world space to camera space, rebuilt once per frame.
+//
+//     d3_vm = F * Rx(-pitch) * Ry(-yaw) * T(-eye)
+//
+// read right to left -- bring the world to the eye, undo the camera's yaw, undo
+// its pitch, then flip Z. Each factor is the inverse of what the camera did,
+// because moving the camera one way is moving the world the other.
+//
+// F is the handedness flip, and it is why the whole engine downstream is free of
+// sign arguments: the world is -Z-forward (the convention every idml game and
+// every model file is written in) and camera space is +Z-ahead, so `z >= near` is
+// simply "in front of the eye" and a depth key is a positive number. Doing it
+// here costs one negated row, once a frame.
+//
+// Verified by construction rather than by eye: with pitch 0 and yaw t the world
+// forward vector (-sin t, 0, -cos t) comes out as (0, 0, +1), and with yaw 0 and
+// pitch p the vector (0, sin p, -cos p) does the same. Positive yaw therefore
+// turns left and positive pitch looks up.
+//
+// Nothing here allocates. m4_muli writes into a matrix that already exists, and
+// the three scratch matrices are the ones d3_mats made at init.
+
+d3_view_matrix() {
+  d3_view_rot();
+  d3_view_eye();
+  d3_view_fin();
+} return void;
+
+// m2 = Rx(-pitch) * Ry(-yaw). The slot quadruples are m4_rot_x's and m4_rot_y's,
+// used directly rather than through those builders because both of them allocate
+// a fresh matrix and this runs every frame.
+d3_view_rot() {
+  m4_ident((import d3_m0));
+  m4_rot4((import d3_m0), 5, 6, 9, 10, 0 - (import d3_cam)[4]);
+  d3_view_rot2();
+} return void;
+
+d3_view_rot2() {
+  m4_ident((import d3_m1));
+  m4_rot4((import d3_m1), 0, 8, 2, 10, 0 - (import d3_cam)[3]);
+  m4_muli((import d3_m2), (import d3_m0), (import d3_m1));
+} return void;

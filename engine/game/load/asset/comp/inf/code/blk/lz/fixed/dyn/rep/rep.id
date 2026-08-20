@@ -1,0 +1,18 @@
+// The three repeat forms, and the distance table the header ends with.
+
+// The extra bits are read by inf_drun, before anything else looks at the symbol:
+// they follow it immediately in the stream, and reading them in the wrong branch
+// -- or twice -- desynchronises everything after.
+inf_drep(int kd, int i, int n) {
+  int k = inf_drun(kd);
+  int v = 0;
+  if (kd = 16) { v = inf_prev(i); }
+} return int inf_dfill(i, n, k, v);
+
+// The previous length. A repeat as the very first symbol has nothing to repeat,
+// which is corrupt rather than zero.
+inf_prev(int i) {
+  int v = 0;
+  if (i = 0) { lset((import inf_st), 7, 1); }
+  else { v = (import inf_lens)[i - 1]; }
+} return int v;

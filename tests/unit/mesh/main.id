@@ -1,0 +1,32 @@
+// Unit tests for engine/game/load/asset/mesh -- the .blend container.
+//
+// The fixture is `cube.blend`, saved UNCOMPRESSED by Blender 5.1 (a default cube
+// in an empty scene). Uncompressed because Blender's default is zstd and this
+// engine has no zstd decoder; see the report in the module header.
+//
+// Every expected value below was computed independently, by a python reader
+// written against the format documentation rather than against this code -- the
+// same method the PNG decoder was verified with.
+//
+// The last check is the one that matters most: the field walk's accumulated size
+// for a struct must equal the size the file's own TLEN table records for it. That
+// is a self-check the format hands you for free, and it is what proves every
+// field offset in between is right rather than merely plausible.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  t_boot();
+  t_open();
+} return int 0;
+
+t_open() {
+  print("open cube.blend exp 1 = " + bl_open("tests/unit/mesh/cube.blend"));
+  print("header length exp 17 = " + (import bl_st)[0]);
+  t_blocks();
+} return void;
+
+t_blocks() {
+  print("blocks before the ENDB sentinel exp 1076 = " + (import bl_st)[1]);
+  print("DATA blocks exp 1046 = " + t_count(1145132097));
+  t_dna();
+} return void;

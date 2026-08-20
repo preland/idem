@@ -1,0 +1,37 @@
+// The two inner loops.
+//
+// Both walk an inclusive index range that is already inside the surface, so
+// neither tests a coordinate; the only test is the depth one, and it guards the
+// write rather than the loop, because a pixel that fails it still has to advance
+// every interpolant.
+//
+// `dz > zb[i]` and not `>=`: equal depths keep whatever was drawn first, which is
+// what makes two intersecting models render identically in either order -- a
+// `>=` would let the later one win every tie and make draw order visible along
+// the intersection.
+
+d3_row(int[] fb, int[] zb, int i, int n, int c, int dz, int dzs) {
+  while (i <= n) {
+    if (dz > zb[i]) {
+      fb[i] = c;
+      zb[i] = dz;
+    }
+    i = i + 1;
+    dz = dz + dzs;
+  }
+} return void;
+
+d3_row_g(int[] fb, int[] zb, int i, int n, int dz, int dzs, int[] xs) {
+  while (i <= n) {
+    d3_gpx(fb, zb, i, dz, xs);
+    i = i + 1;
+    dz = dz + dzs;
+  }
+} return void;
+
+d3_gpx(int[] fb, int[] zb, int i, int dz, int[] xs) {
+  if (dz > zb[i]) {
+    d3_gput(fb, zb, i, dz, xs);
+  }
+  d3_gstep(xs);
+} return void;

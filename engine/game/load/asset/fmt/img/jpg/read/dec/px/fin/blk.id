@@ -1,0 +1,25 @@
+// One row of blocks, and one block.
+
+jpg_arow(int ci, int by, int bx) {
+  while (bx < (import jpg_c)[ci * 10 + 8]) {
+    jpg_ablk(ci, bx, by);
+    bx = bx + 1;
+  }
+} return void;
+
+jpg_ablk(int ci, int bx, int by) {
+  jpg_deq(ci, jpg_bat(ci, bx, by));
+  jpg_idct();
+  jpg_store(ci, bx * 8, by * 8);
+} return void;
+
+// Coefficients into the working block, multiplied by their quantiser. The
+// quantisation table is in transmission order and the block is in natural order,
+// so the zigzag map joins them -- the same pairing the decoder used to store them.
+jpg_deq(int ci, int a) {
+  int k = 0;
+  while (k < 64) {
+    lset((import jpg_f), (import jpg_zz)[k], jpg_cget(a, (import jpg_zz)[k]) * (import jpg_q)[(import jpg_c)[ci * 10 + 3] * 64 + k]);
+    k = k + 1;
+  }
+} return void;

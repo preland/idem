@@ -1,0 +1,11 @@
+// The document, four lines at a time.
+
+ed_pg12() {
+} return string ed_pong_ln("    pos (160, 100)") + ed_pong_ln("    shape box (6, 6) 0xF0E060") + ed_pong_ln("    body (6, 6)") + ed_pong_ln("    vel (150, 95)") + ed_pg13();
+
+ed_pg13() {
+} return string ed_pong_ln("    tag ball") + ed_pong_ln("    script {") + ed_pong_ln("      on update {") + ed_pong_ln("        if (pos.y < 4 && vel.y < 0) { vel.y = 0 - vel.y }") + ed_pg14();
+
+ed_pg14() {
+} return string ed_pong_ln("        if (pos.y > 196 && vel.y > 0) { vel.y = 0 - vel.y }") + ed_pong_ln("        if (pos.x < 2) { game.rscore = game.rscore + 1  pos.x = 160  pos.y = 100 }") + ed_pong_ln("        if (pos.x > 318) { game.lscore = game.lscore + 1  pos.x = 160  pos.y = 100 }") + ed_pong_ln("      }") + ed_pg15();
+

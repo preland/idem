@@ -1,0 +1,5 @@
+ast_k_args() { } return int ast_kbase() + 35;
+
+ast_k_ui() { } return int ast_kbase() + 36;
+
+ast_k_item() { } return int ast_kbase() + 37;

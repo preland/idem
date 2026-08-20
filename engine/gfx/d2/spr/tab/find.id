@@ -1,0 +1,36 @@
+// find -- a name to a sprite id, and the transparency convention.
+//
+// THE TRANSPARENCY CONVENTION: a sprite pixel of -1 means "do not write".
+//
+// A packed colour is 0xRRGGBB, so every real colour is 0 .. 16777215 and -1
+// cannot collide with one -- which is the whole reason to pick it rather than,
+// say, magenta, the classic colour key that a game then cannot use. IDML_GAME.md
+// section 2's `. clear` in a palette decodes to this value; nothing else in the
+// engine treats any colour as special, and there is no alpha anywhere.
+//
+// It is a function rather than a literal so that every blit, the loader and the
+// tests all name the same thing (NAMES.md section 5: slot numbers and reserved
+// values are spoken by named zero-action functions, never as bare literals).
+//
+// Lookup is a linear scan, folded through the loop because there is no break.
+// It runs at load time -- a name is resolved to an id once and the id is what
+// the entity store carries -- so the cost is irrelevant and the code is three
+// lines.
+
+d2_clear() {
+} return int 0 - 1;
+
+d2_spr_find(string name) {
+} return int d2_spr_scan(name, 0, 0 - 1);
+
+// p walks the table; i carries the answer, -1 until a name matches. The `i < 0`
+// guard makes the FIRST declaration win if a game declares one name twice (the
+// loader reports that as an error, but this must not depend on it).
+d2_spr_scan(string name, int p, int i) {
+  while (p < len((import asset_sprn))) {
+    if (((import asset_sprn)[p] = name) && (i < 0)) {
+      i = p;
+    }
+    p = p + 1;
+  }
+} return int i;

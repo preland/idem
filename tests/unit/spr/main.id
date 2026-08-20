@@ -1,0 +1,36 @@
+// Unit tests for engine/game/load/asset/img/spr -- a decoded PNG becoming sprite
+// frames.
+//
+// Every expected value was computed independently, by decoding the same files
+// with python3's zlib and applying the specified sampling by hand; none of it was
+// read off a first run. Two of the numbers are cross-checks against work that was
+// already verified byte for byte: the sheet's frame 12 pixel (20,20) and the 8x8
+// thumbnail's pixel (4,4) both sample source pixel (1280, 1280), which the PNG
+// decoder's own suite pins at 238 233 205 255 -- so if the sampling arithmetic
+// drifts, those two disagree with a number that was checked against zlib.
+//
+// The four small fixtures exist because the big sheet cannot exercise everything:
+// it is one colour type at one size. They cover all four supported colour types
+// (grey, grey+alpha, truecolour, truecolour+alpha), the native-size path, and the
+// alpha threshold from both sides -- alpha 127 must vanish and alpha 128 must
+// draw. rgba.png's first pixel is 250 249 252 with alpha 0: a real colour that
+// must still become transparent, which is the case a loader keying on colour
+// rather than alpha gets exactly backwards. Its (0,1) is opaque black, which must
+// stay distinct from clear -- the reason d2_clear is -1 and not 0.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  t_start();
+} return int 0;
+
+t_start() {
+  d2_spr_init();
+  png_init();
+  t_init2();
+} return void;
+
+t_init2() {
+  inf_init();
+  export int[] t_st = [0, 0, 0, 0];
+  t_small();
+} return void;

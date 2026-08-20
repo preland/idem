@@ -1,0 +1,21 @@
+// Finding the scene to start in, and binding a sprite declaration to its file.
+
+scn_start(int doc) {
+  scn_pick(doc, 0);
+} return void;
+
+// The first scene declared. `start NAME` should select it; until the name lookup
+// exists, first-declared is the honest approximation and is what a one-scene game
+// means anyway.
+scn_pick(int doc, int i) {
+  while (i < len(ast_ks(doc)) && (import scn_st)[5] = 0) {
+    scn_take(ast_ks(doc)[i]);
+    i = i + 1;
+  }
+} return void;
+
+scn_take(int nd) {
+  if (ast_kd(nd) = ast_k_scene()) {
+    scn_enter(nd);
+  }
+} return void;

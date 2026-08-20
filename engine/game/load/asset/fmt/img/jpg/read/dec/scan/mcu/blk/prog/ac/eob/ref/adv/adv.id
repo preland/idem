@@ -1,0 +1,26 @@
+// Placing the sign, starting an end-of-band run, and the advance.
+
+// The sign bit is read into its own local before anything else happens: it must
+// be consumed immediately after the symbol, and two side-effecting reads in one
+// expression may evaluate in either order.
+jpg_rsign(int a) {
+  int bt = jpg_bit();
+  lset((import jpg_r), 2, inf_pow2((import jpg_st)[16]) * (2 * bt - 1));
+  jpg_rgo(a);
+} return void;
+
+// A run of 15 with size 0 is a ZRL: skip sixteen zero coefficients, placing
+// nothing. Anything else ends the band and starts a run over the blocks that
+// follow.
+jpg_rzrl(int a, int rn) {
+  if (rn = 15) {
+    jpg_rgo(a);
+  } else {
+    jpg_reob(rn);
+  }
+} return void;
+
+jpg_reob(int rn) {
+  int n = inf_pow2(rn);
+  jpg_reob2(n, rn);
+} return void;

@@ -1,0 +1,19 @@
+// Appending one entity, and counting them.
+//
+// A new record is all zeros except the four fields whose zero is wrong: an unset
+// sprite is -1 rather than sprite 0, an unset scale is 1000 rather than nothing,
+// and a new entity is live.
+
+ent_n() {
+} return int len((import ent_r)) / 28;
+
+ent_add() {
+  lst_fill((import ent_r), 28, 0);
+  ent_new(ent_n() - 1);
+} return int ent_n() - 1;
+
+ent_new(int e) {
+  m4_pair((import ent_r), e * 28 + 4, e * 28 + 5, 1000, 1000);
+  m4_pair((import ent_r), e * 28 + 6, e * 28 + 9, 0 - 1, 1);
+  m4_pair((import ent_r), e * 28 + 15, e * 28 + 16, 0 - 1, 100);
+} return void;

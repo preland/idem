@@ -1,0 +1,38 @@
+// put -- adopting a face that was decoded somewhere else.
+//
+// The decoder lives in engine/game/load/asset/fmt/font/ and this does not know
+// it exists. That direction is deliberate: nothing under engine/gfx/ may name a
+// function from engine/game/, because tests/unit/d3 compiles engine/gfx against
+// engine/core alone -- no loader, no backend, no display -- and a call the other
+// way would break that link. So the loader pushes rows in through these two,
+// rather than the font module pulling a file.
+//
+// The face a game loads always starts at txt_first(), code point 32. A PSF is
+// indexed by code point from 0, and its first 32 slots are the control
+// characters, which this engine draws as spaces and never stores; skipping them
+// keeps `first` a constant everywhere, which is what lets txt_num_sc go on
+// spelling '0' as txt_first() + 16 whatever face is loaded.
+
+// The metrics. n is the glyph count, `bits` the packed row width -- see
+// face.id for why that is not the same number as w.
+txt_face_set(int w, int h, int bits, int n) {
+  m4_pair((import txt_st), 0, 1, w, h);
+  m4_pair((import txt_st), 2, 3, bits, n);
+} return void;
+
+// One row of one glyph, written by index from 0 upward. It grows the table by a
+// push when it runs off the end and overwrites in place when it does not, so
+// loading a 224-glyph 8x16 face over the built-in 95-glyph one costs one pass
+// and no second buffer -- and loading a *smaller* face after a larger one leaves
+// the tail allocated but unread, because the glyph count in txt_st is what
+// bounds every read.
+//
+// xs is a parameter rather than an import for the reason NAMES.md section 3
+// gives: an imported list is not an lvalue, and `push` on one is the same trap.
+txt_face_put(int[] xs, int i, int v) {
+  if (i < len(xs)) {
+    xs[i] = v;
+  } else {
+    push(xs, v);
+  }
+} return void;

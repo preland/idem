@@ -1,0 +1,23 @@
+// The symbol loop.
+//
+// It ends when the remaining mass reaches one -- every later symbol is zero and is
+// already zero in the table -- or when the symbol number passes the maximum the
+// caller allows. The reader's own fault flag is in the condition too, so a
+// truncated description stops instead of spinning on an empty buffer.
+
+fse_rloop() {
+  while ((import fse_st)[1] > 1 && (import fse_st)[4] <= (import fse_st)[9] && (import zf_st)[5] = 0) {
+    fse_rone();
+  }
+} return void;
+
+fse_rone() {
+  fse_zrun();
+  fse_rval();
+} return void;
+
+fse_zrun() {
+  if ((import fse_st)[5] = 1) {
+    fse_zrun2();
+  }
+} return void;

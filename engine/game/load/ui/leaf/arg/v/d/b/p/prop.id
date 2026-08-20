@@ -1,0 +1,22 @@
+// Finding a variant, and one of its properties.
+
+ui_vfind(string name) {
+  int p = 0 - 1;
+  int i = 0;
+  p = ui_vscan(name, i, p);
+} return int p;
+
+ui_vscan(string name, int i, int p) {
+  while (i < len((import ui_vn))) {
+    p = lst_pick(p, i, (import ui_vn)[i] = name);
+    i = i + 1;
+  }
+} return int p;
+
+// A named property of a variant, or the caller's default. The variant's children
+// are its base name followed by one comp per property, so the scan starts at 1.
+ui_vprop(string name, string prop, int dv) {
+  int i = ui_vfind(name);
+  int v = dv;
+  if (i >= 0) { v = ui_pscan((import ui_vd)[i], prop, 1, dv); }
+} return int v;

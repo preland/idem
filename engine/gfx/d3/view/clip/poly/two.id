@@ -1,0 +1,17 @@
+// The two halves of the quad case. The cut between B and C is computed twice,
+// once per half, rather than being carried between them: it is two divides for a
+// triangle that is being clipped at all, and the alternative is a fifth slot in
+// the scratch record whose lifetime spans two calls -- the kind of state that is
+// wrong exactly once, in the frame nobody is looking at.
+
+d3_ntri1(int[] tri, int c) {
+  d3_ncopy(tri, (c + 1) % 3, 0);
+  d3_ncopy(tri, (c + 2) % 3, 1);
+  d3_nemit(tri, (c + 2) % 3, c);
+} return void;
+
+d3_ntri2(int[] tri, int c) {
+  d3_ncopy(tri, (c + 1) % 3, 0);
+  d3_ncut(tri, (c + 2) % 3, c, 1);
+  d3_nemit(tri, c, (c + 1) % 3);
+} return void;

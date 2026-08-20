@@ -1,0 +1,12 @@
+// The scaled blit with independent axes.
+//
+// The vertical scale decides how many destination rows there are and which source
+// row each of them samples; the horizontal scale decides how wide each row is and
+// which source column each pixel samples. They meet nowhere, which is why one
+// function covers both and the square case is a call to it.
+
+d2_blit_xy(int p, int x, int y, int f, int sx, int sy) {
+  int i = d2_spr_w(p) * d2_spr_h(p) * fx_clamp(f, 0, d2_spr_nf(p) - 1);
+  int n = fx_min(d2_spr_h(p) * sy / 1000, (import sf_cl)[3] + 1 - y);
+  d2_scl_rows(p, x, y, i, fx_max(0, (import sf_cl)[1] - y), n, sx, sy);
+} return void;

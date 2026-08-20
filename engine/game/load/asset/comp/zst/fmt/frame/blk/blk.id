@@ -1,0 +1,32 @@
+// The block loop and the block header.
+//
+// A block header is three little-endian bytes:
+//
+//     bit 0     Last_Block
+//     bits 1-2  Block_Type   0 Raw, 1 RLE, 2 Compressed, 3 reserved
+//     bits 3+   Block_Size   21 bits
+//
+// For a Raw or Compressed block the size is the bytes on the wire; for an RLE
+// block it is the *output* length and exactly one byte is on the wire. Conflating
+// those two meanings desynchronises the reader from the first RLE block onward.
+
+zst_blocks(int ck) {
+  int last = 0;
+  while (last = 0 && (import zst_st)[6] = 0) {
+    last = zst_block(zst_le(3));
+  }
+  zst_cksum(ck);
+} return void;
+
+zst_block(int bh) {
+  zst_kind(bh / 2 % 4, bh / 8);
+} return int bh % 2;
+
+// Four bytes of xxhash64's low half, when the frame asked for it. It is not
+// checked: computing xxhash to verify data this decoder is about to be told is
+// wrong by its own bounds checks would cost a pass over every output byte.
+zst_cksum(int ck) {
+  if (ck = 1) {
+    zst_le(4);
+  }
+} return void;

@@ -1,0 +1,31 @@
+// err -- diagnostics, accumulated.
+//
+// `id` has no stderr, no exceptions and no way to exit early, so an error cannot
+// unwind anything: it is counted. Every stage after the one that failed is
+// guarded by `if (err_count() = 0)`, so a game with a broken scene prints every
+// problem it has and exits nonzero -- rather than showing a black window, which
+// is the failure mode this arrangement exists to prevent.
+//
+// err_n is a one-element list because only a declaring function may assign an
+// exported scalar; a mutable global counter has to be a list written by lset.
+
+// Slot 1 is the mute. There is no stderr in this language, so a diagnostic and a
+// PPM screenshot go to the same place -- and one stray line corrupts the image
+// (NAMES.md §6). A program whose whole output is pixels therefore has to count its
+// errors without printing them, and report the count as its exit code instead.
+err_init() {
+  export int[] err_n = [0, 0];
+  err_keep_init();
+} return void;
+
+// Counted, said, and **kept**. A count tells a person that something is wrong; a
+// message tells them what, and an editor whose only output is pixels cannot show
+// them a stream it printed to nobody.
+err_report(string path, int ln, string msg) {
+  err_say(path + ":" + ln + ": error: " + msg);
+  lset((import err_n), 0, (import err_n)[0] + 1);
+  err_keep(path, ln, msg);
+} return void;
+
+err_count() {
+} return int (import err_n)[0];

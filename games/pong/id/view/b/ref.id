@@ -1,0 +1,21 @@
+// The two seams idml reaches the game through.
+//
+// `@name` in the layout reads g_ref(name); a bare identifier as an item's
+// argument calls g_act(name). Both are string compares against names the game
+// itself chose -- there is no dynamic dispatch in `id`, and none is wanted: the
+// set of things a screen may ask for is small, fixed, and worth writing down.
+
+// The stage: the size the game is authored in, the scale it asks the window for,
+// and the rate it runs at. Four facts and one function, because the engine asks
+// for them once and a game with four getters is four places to disagree.
+g_stage(int k) {
+  int v = 60;
+  if (k = 0) { v = 320; }
+  else { v = g_stage2(k); }
+} return int v;
+
+g_stage2(int k) {
+  int v = 60;
+  if (k = 1) { v = 200; }
+  else if (k = 2) { v = 2; }
+} return int v;

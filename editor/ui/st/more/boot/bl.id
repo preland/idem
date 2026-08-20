@@ -1,0 +1,31 @@
+// Everything the editor has to bring up before it can read a project.
+//
+// Two calls for the .blend reader because its halves declare different globals
+// and the compiler tracks each one's declaring function separately -- which is
+// what makes a missing link here a diagnostic rather than a segfault at the first
+// read. zstd too: a .blend has been compressed by default since Blender 3.0, so
+// the reader decompresses before it parses.
+//
+// The PNG decoder, the entity store and the scene tables are here because the
+// editor now loads a project the way the runtime does, rather than by pattern-
+// matching its token stream. It gets the game's sprites decoded and its entities
+// placed for free, and the scene panel shows the world instead of an empty
+// rectangle of the right colour.
+
+ed_boot6() {
+  zst_init();
+  bl_init();
+  ed_boot7();
+} return void;
+
+ed_boot7() {
+  bl_geo_init();
+  png_init();
+  ed_boot8();
+} return void;
+
+ed_boot8() {
+  inf_init();
+  ent_init();
+  ed_boot9();
+} return void;

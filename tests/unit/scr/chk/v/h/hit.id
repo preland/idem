@@ -1,0 +1,26 @@
+// Collisions.
+//
+// The bird is at (50, 50) with a 10x10 body and the wall at (55, 50) with the
+// same, so their centres are 5 apart and their half-widths sum to 10: they
+// overlap. Both are tagged `deadly`, and only the bird has an `on hit deadly`,
+// so one sweep produces exactly one increment -- not two, which is what a sweep
+// that visited each pair twice would give.
+
+t_hit() {
+  scr_hits(0);
+  print("one overlap: hits exp 1 = " + scr_get(0 - 1, "hits"));
+  t_hit2();
+} return void;
+
+// Moved apart by more than the boxes span, they no longer touch and the count
+// does not move.
+t_hit2() {
+  ent_put(1, 0, 61000);
+  scr_hits(0);
+  t_hit3();
+} return void;
+
+t_hit3() {
+  print("moved apart: hits exp 1 = " + scr_get(0 - 1, "hits"));
+  t_tick();
+} return void;

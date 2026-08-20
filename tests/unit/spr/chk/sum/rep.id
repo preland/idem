@@ -1,0 +1,16 @@
+// The channel sums of one opaque pixel.
+
+t_acc2(int c) {
+  lset((import t_st), 1, (import t_st)[1] + d2_cr(c));
+  lset((import t_st), 2, (import t_st)[2] + d2_cg(c));
+  lset((import t_st), 3, (import t_st)[3] + d2_cb(c));
+} return void;
+
+// The whole 2560x2560 sheet as ONE frame sampled down to 8x8 -- the cols = rows = 1
+// path at an extreme ratio. Its pixel (4,4) samples source (1280, 1280), the same
+// pixel frame 12 above lands on, so the two paths must agree on it.
+t_whole() {
+  int p = spr_png("thumb", "test_assets/spryte-run.png", 1, 1, 8, 8);
+  print("thumb: " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p) + " (4,4) exp 15657421 = " + d2_spr_at(p, 4 * 8 + 4));
+  t_report(p, 64, "thumb");
+} return void;

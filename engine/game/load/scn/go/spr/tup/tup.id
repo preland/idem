@@ -1,0 +1,24 @@
+// Finding `keyword (a, b)` among a component's arguments and taking one member.
+//
+// 0 for a missing cell size means "the source cell's own size", which is what
+// spr_png reads it as -- so a sprite declared with no `cell` is loaded at its
+// natural resolution.
+
+scn_tup(int nd, string name, int k, int dv) {
+  int t = scn_after(nd, name, 0);
+  int v = dv;
+  if (t != 0 && k < len(ast_ks(t))) { v = ast_ia(ast_ks(t)[k]); }
+} return int v;
+
+scn_after(int nd, string name, int i) {
+  int t = 0;
+  while (i < scn_nargs(nd) && t = 0) {
+    t = scn_ifname(nd, name, i);
+    i = i + 1;
+  }
+} return int t;
+
+scn_nargs(int nd) {
+  int n = 0;
+  if (ast_ia(nd) != 0) { n = len(ast_ks(ast_ia(nd))); }
+} return int n;

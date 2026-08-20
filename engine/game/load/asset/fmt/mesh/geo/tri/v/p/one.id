@@ -1,0 +1,5 @@
+// The third coordinate, and the three rows of the world transform.
+bl_vone2(int o, int x, int y) {
+  int z = bl_f32(o + 8);
+  bl_vpush(m4_pt((import bl_wm), 0, x, y, z), m4_pt((import bl_wm), 4, x, y, z), m4_pt((import bl_wm), 8, x, y, z));
+} return void;

@@ -1,0 +1,6 @@
+// The refusal gate on the frame header.
+jpg_sof3(int p) {
+  if ((import jpg_st)[8] = 1) {
+    jpg_comps(p, 0);
+  }
+} return void;

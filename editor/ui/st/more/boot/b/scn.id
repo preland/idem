@@ -1,0 +1,22 @@
+// The scene tables, and the diagnostics the editor does not print.
+//
+// err_mute is unconditional here and that is the point: a diagnostic printed by
+// an editor goes to a stream nobody is reading, and in `--shot` mode it goes into
+// the middle of a PPM. The count is what the status bar shows, which is the form
+// a diagnostic is useful in when the program's whole output is pixels.
+
+ed_boot9() {
+  scn_init();
+  scn_dir_init();
+  ed_boot10();
+} return void;
+
+ed_boot10() {
+  err_mute(1);
+  ed_io_init();
+  ed_boot11();
+} return void;
+
+ed_boot11() {
+  ed_init(read_all());
+} return void;

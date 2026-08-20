@@ -1,0 +1,36 @@
+// One destination row, and one source pixel.
+//
+// `r` is a row's address in the flat store and `x` a source column, matching the
+// PNG decoder's own spelling next door (png_row takes the same `r`). The filter
+// byte still occupies the first byte of every row -- unfiltering corrects the
+// pixels in place and leaves it there -- so pixel x starts at r + 1 + x * channels.
+
+spr_row(int p, int i, int r, int x, int cw, int sw) {
+  int dx = 0;
+  while (dx < cw) {
+    d2_spr_put(p, i + dx, spr_at(r, x + dx * sw / cw));
+    dx = dx + 1;
+  }
+} return void;
+
+// 128 is the alpha at which a pixel starts being drawn. The engine has no
+// blending -- a pixel is written or it is not (d2_clear) -- so a threshold is the
+// only choice available, and half is the one that puts a quantised edge where the
+// eye already sees it.
+spr_at(int r, int x) {
+  int c = d2_clear();
+  if (spr_alpha(r, x) >= 128) {
+    c = spr_col(r, x);
+  }
+} return int c;
+
+// Three ways a pixel can name a colour, and they are genuinely different: an
+// index looks the colour up, a grey sample *is* all three channels, and a
+// truecolour pixel carries them. The index case comes first because a palette
+// image is single-channel and would otherwise be read as grey -- and an image
+// whose brightnesses are palette indices looks like noise, not like a mistake.
+spr_col(int r, int x) {
+  int c = spr_grey(r, x);
+  if ((import png_st)[3] = 3) { c = png_pcol(png_samp(r, x)); }
+  else if ((import png_st)[4] >= 3) { c = spr_rgb(r, x); }
+} return int c;

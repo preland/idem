@@ -1,0 +1,24 @@
+// Starting an end-of-band run, and writing a first-pass coefficient.
+
+jpg_peob2(int rn) {
+  int n = inf_pow2(rn) - 1;
+  jpg_eobset(n, rn);
+} return int 0;
+
+// The extra bits are read only when there are any: recv(0) would be harmless but
+// the run length must be computed before them, and keeping the two apart is what
+// makes the order visible.
+jpg_eobset(int n, int rn) {
+  if (rn > 0) {
+    n = n + jpg_recv(rn);
+  }
+  lset((import jpg_st), 17, n);
+} return void;
+
+jpg_pacv(int ci, int a, int k, int sz) {
+  int nk = 0;
+  if (k <= (import jpg_st)[14]) {
+    jpg_cset(a, (import jpg_zz)[k], jpg_ext(jpg_recv(sz), sz) * inf_pow2((import jpg_st)[16]));
+    nk = k + 1;
+  }
+} return int nk;

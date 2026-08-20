@@ -1,0 +1,37 @@
+// Where each named item landed.
+//
+// idml decides the layout; code that has to be interactive needs to know what it
+// decided. So every item's resolved rect is recorded as the walk passes it, and
+// anything above can ask for one by the item's name.
+//
+// That is the whole seam between a declarative layout and an imperative widget: a
+// list of rows does not compute where it is, it asks where `Hierarchy` ended up
+// and fills it. Move the pane in the idml and the rows follow, with no code
+// changed anywhere.
+//
+// The table is cleared and refilled every frame, which costs one pass over a few
+// dozen entries and means a rect can never be stale -- the failure mode a
+// retained layout tree has and this does not.
+
+ui_rinit() {
+  export string[] ui_rn = [];
+  export int[] ui_rv = [];
+} return void;
+
+// A list only grows in this language; the one way back is pop. Clearing by
+// popping is O(n) in a table of a few dozen entries, once a frame.
+ui_rclear() {
+  while (len((import ui_rn)) > 0) {
+    pop((import ui_rn));
+    pop((import ui_rv));
+    pop((import ui_rv));
+  }
+} return void;
+
+// Four numbers per name, in one list, because parallel lists of four scalars
+// would be four exports to keep in step for no gain.
+ui_rput(string name, int x, int y, int w, int h) {
+  push((import ui_rn), name);
+  push((import ui_rv), x * 65536 + y);
+  push((import ui_rv), w * 65536 + h);
+} return void;

@@ -1,0 +1,31 @@
+// pal -- the palette, built by walking every pixel once.
+//
+// A linear find over at most 62 entries, per pixel, is 6 million comparisons on a
+// 320x320 sheet and takes no measurable time; a hash would be more code than the
+// whole importer saves. What matters is that the palette comes out in *first
+// appearance* order, which is stable: re-importing the same asset produces the
+// same characters, so the generated idml diffs cleanly against its predecessor
+// instead of reshuffling every row.
+//
+// Index 0 is `clear` and holds no colour. That is the one reserved entry, and it
+// is why spr_p starts as [-1] rather than empty.
+
+spr_out() {
+  spr_pal();
+  spr_over();
+  spr_emit();
+} return void;
+
+spr_pal() {
+  int i = 0;
+  while (i < len((import spr_px))) {
+    spr_add(i);
+    i = i + 1;
+  }
+} return void;
+
+spr_add(int i) {
+  if (spr_clear(i) = 0 && spr_find((import spr_px)[i]) < 0) {
+    spr_push((import spr_px)[i]);
+  }
+} return void;

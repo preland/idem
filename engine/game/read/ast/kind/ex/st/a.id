@@ -1,0 +1,5 @@
+ast_k_block() { } return int ast_kbase() + 17;
+
+ast_k_if() { } return int ast_kbase() + 18;
+
+ast_k_while() { } return int ast_kbase() + 19;

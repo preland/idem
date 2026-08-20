@@ -1,0 +1,30 @@
+// An AC band, first pass.
+//
+// Identical in shape to the baseline AC loop but for two things: the band runs
+// from Ss to Se rather than 1 to 63, and an end-of-block is an end-of-**band
+// run** -- one symbol can end this block and any number of blocks after it.
+//
+// The run is why EOBRUN is scan-global state rather than a local: a block that
+// starts with a run outstanding consumes one and reads no bits at all.
+
+jpg_pac(int ci, int a) {
+  if ((import jpg_st)[15] = 0) {
+    jpg_pacf(ci, a);
+  } else {
+    jpg_pacr(ci, a);
+  }
+} return void;
+
+jpg_pacf(int ci, int a) {
+  if ((import jpg_st)[17] > 0) {
+    lset((import jpg_st), 17, (import jpg_st)[17] - 1);
+  } else {
+    jpg_pacf2(ci, a, (import jpg_st)[13]);
+  }
+} return void;
+
+jpg_pacf2(int ci, int a, int k) {
+  while (k > 0 && k <= (import jpg_st)[14] && (import jpg_st)[8] = 1) {
+    k = jpg_pacf3(ci, a, k);
+  }
+} return void;

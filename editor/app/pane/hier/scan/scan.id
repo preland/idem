@@ -1,0 +1,27 @@
+// The token walk.
+//
+// A declaration is one of eight keywords immediately followed by an identifier.
+// That is a heuristic and it is a good one: it is the shape of every top-level
+// form in IDML_GAME.md, it cannot be confused with a use (`sprite bird-up` inside
+// an entity is a component, and its keyword list is disjoint), and being wrong
+// costs a spurious row rather than a wrong program.
+
+ed_scan(int i) {
+  while (i < len((import lex_kind))) {
+    ed_scan1(i);
+    i = i + 1;
+  }
+} return void;
+
+ed_scan1(int i) {
+  if (ed_is_decl((import lex_text)[i]) = 1 && (import lex_kind)[i + 1] = lex_k_ident()) {
+    ed_item(i);
+  }
+  ed_file(i);
+} return void;
+
+ed_item(int i) {
+  push((import ed_kd), (import lex_text)[i]);
+  push((import ed_nm), (import lex_text)[i + 1]);
+  ed_item2(i);
+} return void;

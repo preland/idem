@@ -1,0 +1,9 @@
+// One triangle of the loaded mesh.
+//
+// The colour is the engine's default clay. Per-face material colour is in the
+// file and not wired up yet; what makes the geometry readable in the meantime is
+// bl_lit's directional term, not the colour.
+
+ed_mtri(int[] tri, int i) {
+  bl_lit(i, tri, 0xB9A38A);
+} return void;

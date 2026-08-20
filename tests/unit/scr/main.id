@@ -1,0 +1,33 @@
+// Unit tests for the script interpreter.
+//
+// A whole document is lexed, parsed and loaded, and then handlers are fired at it
+// and the world is inspected -- rather than the evaluator being poked directly.
+// That is deliberate: almost every bug this can have lives in the seams between
+// the parser, the loader and the evaluator, and a test that reaches past them
+// would not have caught a single one of the four that this found.
+//
+// The source is one string so the fixture is visible where its expectations are.
+// Every expected value is arithmetic a reader can check: a script that sets
+// `n = 3 * 4 + 2` must leave 14 in the scene's variable table, and if it leaves
+// 18 the precedence is wrong.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  rnd_init(7);
+  t_boot();
+} return int 0;
+
+// The engine's own init chain, in the engine's own order. The interpreter reads
+// the scene tables and the entity store, so both have to exist before a document
+// is loaded into them.
+t_boot() {
+  err_init();
+  ast_init();
+  t_boot2();
+} return void;
+
+t_boot2() {
+  d2_spr_init();
+  ent_init();
+  t_boot3();
+} return void;

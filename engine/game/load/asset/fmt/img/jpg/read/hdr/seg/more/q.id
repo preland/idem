@@ -1,0 +1,22 @@
+// One quantisation table, and one of its entries.
+
+jpg_dqt1(int p) {
+  int pq = asset_at(p) / 16;
+  jpg_qfill(p + 1, asset_at(p) % 16, pq);
+} return int p + 1 + 64 * (pq + 1);
+
+jpg_qfill(int p, int tq, int pq) {
+  int k = 0;
+  while (k < 64) {
+    lset((import jpg_q), tq * 64 + k, jpg_q1(p, k, pq));
+    k = k + 1;
+  }
+} return void;
+
+// Precision 1 means 16-bit entries, which only appears in 12-bit images; it is
+// read correctly here so that such a file fails on its sample precision rather
+// than on a quantisation table read at half stride.
+jpg_q1(int p, int k, int pq) {
+  int v = asset_at(p + k);
+  if (pq = 1) { v = asset_at(p + k * 2) * 256 + asset_at(p + k * 2 + 1); }
+} return int v;

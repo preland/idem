@@ -1,0 +1,50 @@
+// inp -- input.
+//
+// The backend reports key presses AND key releases, over a code space wide
+// enough for the keys that make no character (backends/gfx/gfx.h):
+//
+//     0 .. 255      a key that makes a character: its byte. Printable ASCII,
+//                   Return 13, Esc 27, Backspace 8, Tab 9, ctrl+letter 1-26.
+//     256 .. 511    a key that makes none: arrows 256-259, Home/End/PgUp/PgDn
+//                   260-263, Insert/Delete 264-265, F1-F12 266-277, and the
+//                   bare modifiers Shift/Ctrl/Alt 278-280.
+//     + 65536       the same code, released rather than pressed.
+//
+// Auto-repeat is filtered by the backend, so a held key is one press and one
+// release with nothing in between. "Is this key down" is therefore a fact the
+// engine *knows* rather than infers, and the timestamp-and-timeout approximation
+// this module used to carry is gone along with the seam that forced it.
+//
+// Two lists, both indexed by key code:
+//
+//     inp_keys[key]   1 while the key is down, 0 while it is up
+//     inp_hits[key]   the frame ordinal of its most recent press
+//
+// The second answers the edge-triggered question ("was it pressed *this* frame")
+// exactly, by ordinal rather than by clock: two frames inside one millisecond
+// were indistinguishable to the old timestamp test, and a flap or a shot fired
+// twice for one tap.
+//
+// inp_st is one slot, the frame ordinal, bumped by inp_drain. It starts at 0 and
+// inp_hits starts at -1, so nothing reads as pressed before the first frame.
+
+inp_init() {
+  export int[] inp_keys = [];
+  export int[] inp_hits = [];
+  inp_init2();
+} return void;
+
+// The pointer record inp_mo, four slots: x, y in *surface* pixels (the backend
+// speaks window pixels, which is a different thing the moment the window is
+// scaled or letterboxed), then this frame's button mask and last frame's. Two
+// masks because a click is an edge and the seam reports state.
+inp_init2() {
+  export int[] inp_st = [0];
+  export int[] inp_mo = [0, 0, 0, 0];
+  inp_fill();
+} return void;
+
+inp_fill() {
+  lst_fill((import inp_keys), inp_kmax(), 0);
+  lst_fill((import inp_hits), inp_kmax(), 0 - 1);
+} return void;

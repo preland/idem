@@ -1,0 +1,17 @@
+// Where the weight bitstream starts inside the description.
+//
+// fse_read consumed the table description with the FORWARD reader; the bitstream
+// that follows is read BACKWARD from the end of the same section. zf_used reports
+// how many bytes the description took, and that is where the bitstream begins.
+
+huf_wskip() {
+} return int zf_used();
+
+huf_ab_init() {
+  export int[] huf_ab = [0, 0];
+} return void;
+
+huf_wstart() {
+  lset((import huf_ab), 0, fse_dstart(3));
+  lset((import huf_ab), 1, fse_dstart(3));
+} return void;

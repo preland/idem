@@ -1,0 +1,23 @@
+// `anim (0, 2, 120)`: frames 0, 1, 2, one every 120 ms, then round again.
+//
+// The clock is sim_st[0], in milliseconds, and the frame is
+// first + elapsed / ms mod the cycle length -- so 0 ms is frame 0, 120 is 1, 240
+// is 2 and 360 is back to 0. An entity with no anim has last = -1, which is below
+// first and holds whatever frame it has.
+
+t_anim() {
+  m4_pair((import ent_r), 14, 15, 0, 2);
+  ent_put(0, 16, 120);
+  t_anim2();
+} return void;
+
+t_anim2() {
+  print("frames at 0, 120, 240, 360 ms exp 0 1 2 0 = " + t_at(0) + " " + t_at(120) + " " + t_at(240) + " " + t_at(360));
+  t_anim3();
+} return void;
+
+t_anim3() {
+  ent_put(0, 15, 0 - 1);
+  ent_put(0, 7, 5);
+  print("no anim: frame held exp 5 = " + t_at(9999));
+} return void;

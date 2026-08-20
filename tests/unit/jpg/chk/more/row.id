@@ -1,0 +1,13 @@
+// One row of the checksum, and one pixel.
+
+t_row(int ra, int i, word wp) {
+  while (i < (import png_st)[0] * 3) {
+    wp = ((wp ^ peek8(ra + i)) * 16777619) & 4294967295;
+    i = i + 1;
+  }
+} return word wp;
+
+t_at(string msg, int x, int y) {
+  int p = asset_row(y) + 1 + x * 3;
+  print(msg + " = " + peek8(p) + " " + peek8(p + 1) + " " + peek8(p + 2));
+} return void;

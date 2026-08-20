@@ -1,0 +1,29 @@
+// The lens: the two clip planes, and the focal length the projection divides by.
+//
+// The near plane is floored at 40 millunits (0.04 world units) because the depth
+// key is 2^36/z and 2^36/40 is 1.7 * 10^9 against an int ceiling of 2.1 * 10^9
+// (tri/zb.id). A camera allowed closer would wrap the key and see through walls,
+// which looks like a rendering bug and is really a units bug -- so it is refused
+// here rather than diagnosed there.
+//
+// The far plane is floored one millunit beyond the near one, so the frustum is
+// never degenerate and `far - near` is never zero.
+
+d3_cam_lens(int near, int far) {
+  lset((import d3_cam), 5, fx_max(near, 40));
+  lset((import d3_cam), 6, fx_max(far, near + 1));
+} return void;
+
+// focal = (viewport width / 2) * cot(fov / 2), in pixels x1000.
+//
+// It is a horizontal field of view, so the half-width is what the tangent is
+// taken against; the vertical field then follows from the viewport's aspect ratio
+// with no second number to keep in step. m4_cot answers x1000 and a half-width is
+// whole pixels, so the product is pixels x1000 -- exactly what d3_pscale expects,
+// with no conversion at the call site.
+//
+// The *viewport's* width, so that a scene view in a panel shows the declared
+// field of view rather than a stretched slice of it. d3_viewport re-derives this
+// whenever the rect changes.
+d3_cam_focal() {
+} return int d3_vp_w() / 2 * m4_cot((import d3_cam)[7] / 2);

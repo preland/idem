@@ -1,0 +1,19 @@
+// The two sub-languages, and a plain component.
+
+par_mem2(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, "script") = 1) {
+    nd = par_script(pos);
+  } else {
+    nd = par_mem3(pos);
+  }
+} return int nd;
+
+par_mem3(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, "ui") = 1) {
+    nd = par_mui(pos);
+  } else {
+    nd = par_comp(pos);
+  }
+} return int nd;

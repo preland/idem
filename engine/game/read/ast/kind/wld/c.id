@@ -1,0 +1,5 @@
+ast_k_var() { } return int ast_kbase() + 14;
+
+ast_k_script() { } return int ast_kbase() + 15;
+
+ast_k_on() { } return int ast_kbase() + 16;

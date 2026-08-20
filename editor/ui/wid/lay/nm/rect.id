@@ -1,0 +1,7 @@
+// The rest of the pane names.
+
+ed_pname3(int p, string name) {
+  if (p = 4) { name = "Inspector"; }
+  else if (p = 5) { name = "Project"; }
+  else if (p = 6) { name = "StatusBar"; }
+} return string name;

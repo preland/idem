@@ -1,0 +1,24 @@
+// The translation, the product, and the flip.
+//
+// T(-eye) is the identity with the negated eye in the fourth column; because a
+// matrix entry is x1000 and a point's w is 1000, the two scales cancel there and
+// a translation entry is plain millunits (m4/mk/put.id).
+
+d3_view_eye() {
+  m4_ident((import d3_m0));
+  m4_pair((import d3_m0), 3, 7, 0 - (import d3_cam)[0], 0 - (import d3_cam)[1]);
+  lset((import d3_m0), 11, 0 - (import d3_cam)[2]);
+} return void;
+
+d3_view_fin() {
+  m4_muli((import d3_vm), (import d3_m2), (import d3_m0));
+  d3_view_flip();
+} return void;
+
+// F * M negates M's third row and nothing else, so the flip is four sign changes
+// in place rather than a fourth matrix and a fourth product. Row 3 (slots 12..15)
+// is untouched: this composition is affine and its w row stays (0, 0, 0, 1000).
+d3_view_flip() {
+  m4_pair((import d3_vm), 8, 9, 0 - (import d3_vm)[8], 0 - (import d3_vm)[9]);
+  m4_pair((import d3_vm), 10, 11, 0 - (import d3_vm)[10], 0 - (import d3_vm)[11]);
+} return void;

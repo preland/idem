@@ -1,0 +1,24 @@
+// The coefficient buffer, and the block dimensions a non-interleaved scan walks.
+// The coefficient buffer, and the block dimensions a NON-interleaved scan walks.
+//
+// A progressive image sends its coefficients across several scans, so a block
+// cannot be transformed when it is read -- nothing is complete until the last
+// scan is in. Every block's 64 coefficients are therefore kept, quantised, two
+// bytes each, and the whole image is transformed once at the end. For the 357x350
+// target that is 194 304 coefficients, 389 KB; libjpeg keeps them the same way
+// and for the same reason.
+//
+// nbw and nbh are NOT the MCU-padded bw and bh. A non-interleaved scan walks the
+// component's own blocks -- ceil(samples/8) of them -- and for a 2x2-sampled luma
+// 357 pixels wide that is 45 columns where the MCU grid has 46. Walking 46 reads
+// one block too many per row and every row after the first is displaced.
+jpg_coefs(int ci) {
+  lset((import jpg_ca), ci, alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 128, 2)));
+  lset((import jpg_nb), ci * 2, jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]));
+  lset((import jpg_nb), ci * 2 + 1, jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]));
+} return void;
+
+// ceil(ceil(n * s / smax) / 8) -- the component's own size in samples, rounded
+// up to whole blocks.
+jpg_cdim(int n, int sf, int smax) {
+} return int ((n * sf + smax - 1) / fx_max(smax, 1) + 7) / 8;

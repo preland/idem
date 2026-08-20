@@ -1,0 +1,11 @@
+ent_n on an empty store exp 0 = 0
+first id exp 0, second exp 1 = 0 1
+defaults: scale exp 1000 1000, sprite exp -1, live exp 1 = 1000 1000 -1 1
+anim last exp -1, ms exp 100, pos exp 0 0 = -1 100 0 0
+x after one 16ms step at -120/s exp -1920 = -1920
+dynamic body: vy after 16ms of 1500/s^2 exp 24000 = 24000
+solid body: vy unchanged exp 24000 = 24000
+past the left bound: x exp 432000 = 432000
+inside it: x unchanged exp -143000 = -143000
+frames at 0, 120, 240, 360 ms exp 0 1 2 0 = 0 1 2 0
+no anim: frame held exp 5 = 5

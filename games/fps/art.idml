@@ -1,0 +1,137 @@
+# The FPS's art. Enemies are billboards -- a sprite that always faces the
+# camera, depth-tested against the world so it is correctly hidden behind a wall
+# -- which is how a software renderer with no textures still gets a convincing
+# opponent.
+
+palette foe {
+  . clear
+  k 0x1B1B1F
+  r 0x7A2222
+  g 0x3C8C46
+  w 0xD8E0D0
+  b 0x2E3A46
+}
+
+palette fire {
+  . clear
+  k 0x2A2A2A
+  y 0xFFE066
+  o 0xFF9A2E
+  W 0xFFFFFF
+  g 0x3C8C46
+}
+
+palette ink {
+  . clear
+  w 0xFFFFFF
+}
+
+sprite grunt(16, 24, 3) using foe {
+  "......rrrr......"
+  ".....rggggr....."
+  "....rgwwwwgr...."
+  "....rgwkkwgr...."
+  "....rgwkkwgr...."
+  ".....rgwwgr....."
+  "......rggr......"
+  "....rrggggrr...."
+  "...rggggggggr..."
+  "..rgggwwwwgggr.."
+  "..rggwwwwwwggr.."
+  "..rggwwwwwwggr.."
+  "..rgggwwwwgggr.."
+  "...rggggggggr..."
+  "....rgg..ggr...."
+  "....rgg..ggr...."
+  "....rgg..ggr...."
+  "....bgg..ggb...."
+  "....bbg..gbb...."
+  "....bbg..gbb...."
+  "...bbb....bbb..."
+  "...bbb....bbb..."
+  "..kkk......kkk.."
+  "..kk........kk.."
+  "......rrrr......"
+  ".....rggggr....."
+  "....rgwwwwgr...."
+  "....rgwkkwgr...."
+  "....rgwkkwgr...."
+  ".....rgwwgr....."
+  "......rggr......"
+  "....rrggggrr...."
+  "...rggggggggr..."
+  "..rgggwwwwgggr.."
+  "..rggwwwwwwggr.."
+  "..rggwwwwwwggr.."
+  "..rgggwwwwgggr.."
+  "...rggggggggr..."
+  "...rgg...ggr...."
+  "....rgg..ggr...."
+  "....rgg..ggr...."
+  "...bgg....ggb..."
+  "....bbg..gbb...."
+  "....bbg..gbb...."
+  "...bbb....bbb..."
+  "...bbb....bbb..."
+  ".kkk........kkk."
+  "..kk........kk.."
+  "......rrrr......"
+  ".....rggggr....."
+  "....rgwwwwgr...."
+  "....rgwkkwgr...."
+  "....rgwkkwgr...."
+  ".....rgwwgr....."
+  "......rggr......"
+  "....rrggggrr...."
+  "...rggggggggr..."
+  "..rgggwwwwgggr.."
+  "..rggwwwwwwggr.."
+  "..rggwwwwwwggr.."
+  "..rgggwwwwgggr.."
+  "...rggggggggr..."
+  "....rgg...ggr..."
+  "....rgg..ggr...."
+  "....rgg..ggr...."
+  "...bgg....ggb..."
+  "....bbg..gbb...."
+  "....bbg..gbb...."
+  "...bbb....bbb..."
+  "...bbb....bbb..."
+  ".kkk........kkk."
+  "..kk........kk.."
+}
+
+sprite flash(9, 9) using fire {
+  "....y...."
+  "..y.o.y.."
+  ".y.ooo.y."
+  "..ooWoo.."
+  "yooWWWooy"
+  "..ooWoo.."
+  ".y.ooo.y."
+  "..y.o.y.."
+  "....y...."
+}
+
+sprite crosshair(9, 9) using ink {
+  "....w...."
+  "....w...."
+  "....w...."
+  "........."
+  "ww.....ww"
+  "........."
+  "....w...."
+  "....w...."
+  "....w...."
+}
+
+sprite cell(8, 8) using fire {
+  "..kkkk.."
+  ".kyyyyk."
+  "kyWWWWyk"
+  "kyWggWyk"
+  "kyWggWyk"
+  "kyWWWWyk"
+  ".kyyyyk."
+  "..kkkk.."
+}

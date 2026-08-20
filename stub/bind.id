@@ -1,0 +1,12 @@
+// The binding half.
+//
+// A layout that binds `@name` against a program with no game reads 0 -- which
+// hides every gated item and shows every number as zero, and is the honest
+// answer for a screen whose data source is not there.
+
+g_ref(string name) {
+} return int 0;
+
+g_act(string name) {
+  lset((import g_stub), 3, (import g_stub)[3] + 1);
+} return void;

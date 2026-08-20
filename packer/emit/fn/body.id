@@ -1,0 +1,31 @@
+// body -- the two lines that are a chunk function.
+//
+//     data_s3(string[] chunks) {
+//       push(chunks, "...escaped...");
+//       data_s4(chunks);
+//     } return void;
+//
+// Two actions, so it is within the 3-action rule with a whole action to spare, and
+// there is no arithmetic, no loop and no list indexing anywhere in the generated
+// code -- the chunk list is built by 3-per-file straight-line pushes and joined
+// once by the engine.
+
+pack_sig(int k) {
+  print("");
+  print(pack_name(k) + "(string[] chunks) {");
+} return void;
+
+// The literal goes out with put, in one piece, straight from the escape buffer.
+// Wrapping it in a `"  push(chunks, \"" + esc + "\");"` concatenation would copy a
+// 120 KB string twice for the sake of one print.
+pack_body(string src, int p, int nxt, int k) {
+  put("  push(chunks, \"");
+  put(pack_esc(src, p, nxt - p));
+  pack_tail(src, nxt, k);
+} return void;
+
+pack_tail(string src, int nxt, int k) {
+  print("\");");
+  pack_next(src, nxt, k);
+  print("} return void;");
+} return void;

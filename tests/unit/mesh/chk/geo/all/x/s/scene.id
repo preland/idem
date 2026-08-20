@@ -1,0 +1,11 @@
+// The whole scene: every OBJECT placing its mesh with its own world matrix.
+//
+// 49 mesh objects over 29 meshes -- the ceiling lights share one, placed twenty
+// times -- so the vertex total is larger than the meshes' own, and the bounding
+// box is the room rather than one mesh's local space. Both come from Blender's
+// own reading of the file, transforms included.
+t_scene() {
+  print("bl_scene showroom exp 1 = " + bl_scene("games/fps/showroom.blend"));
+  print("scene verts exp 130657, triangles exp 233552 = " + len((import bl_v)) / 3 + " " + bl_ntri());
+  t_sbox();
+} return void;

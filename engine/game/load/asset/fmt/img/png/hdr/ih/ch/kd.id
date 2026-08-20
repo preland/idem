@@ -1,0 +1,14 @@
+// The colour types with alpha.
+
+// 4 is grey plus alpha, 6 is truecolour plus alpha, 3 is a palette -- one sample
+// per pixel, and that sample is an index.
+png_chan3(int kd) {
+  int n = png_chan4(kd);
+  if (kd = 4) { n = 2; }
+  else if (kd = 6) { n = 4; }
+} return int n;
+
+png_chan4(int kd) {
+  int n = 0;
+  if (kd = 3) { n = 1; }
+} return int n;

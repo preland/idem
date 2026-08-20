@@ -1,0 +1,44 @@
+// step -- one frame of typing, and the key repeat the backend does not do.
+//
+// **The engine has to implement repeat itself.** backends/gfx filters
+// auto-repeat out (engine/core/sys/inp/inp.id: "a held key is one press and one
+// release with nothing in between"), which is exactly right for a game -- a held
+// jump key must not fire sixty times a second -- and exactly wrong for a text
+// field, where holding Backspace has to delete more than one character. So the
+// repeat is synthesised from the level state: fire on the press, wait
+// tin_delay(), then fire every tin_rate() until the key comes up.
+//
+// Only the most recently pressed key repeats. That is not a simplification, it
+// is the behaviour every text field has: rolling from one key onto another stops
+// the first one dead rather than leaving two streams running, and it means the
+// repeat state is one key and one deadline rather than a table of 512.
+
+// Call once a frame, with the clock in ms. Answers what the frame's typing came
+// to: 0 nothing, 1 Enter, 2 Escape -- the two keys a caller has to act on, since
+// only the caller knows what committing or cancelling means.
+tin_step(int t) {
+  lset((import tin_st), 4, 0);
+  tin_scan(0, t);
+} return int (import tin_st)[4];
+
+// Every code, not just the printable ones: the arrows, Home, End and Delete are
+// all above 255 (inp/inp.id), and asking inp_hit about a code no keyboard has is
+// two list reads that answer 0. 512 of those is nothing next to one glyph.
+tin_scan(int key, int t) {
+  while (key < inp_kmax()) {
+    tin_press(key, t);
+    key = key + 1;
+  }
+} return void;
+
+// A press, or the repeat of the key that is already held. The `else if` order
+// matters: a fresh press of the repeating key resets its deadline to the long
+// delay rather than the short rate, which is what stops a re-tap from arriving
+// as a burst.
+tin_press(int key, int t) {
+  if (inp_hit(key) = 1) {
+    tin_fire(key, t, t + tin_delay());
+  } else if (key = (import tin_st)[1] && inp_down(key) = 1 && t >= (import tin_st)[2]) {
+    tin_fire(key, t, t + tin_rate());
+  }
+} return void;

@@ -1,0 +1,10 @@
+// Which component a name actually draws as.
+
+// The base a name draws as, or the name itself. A variant of a variant is not
+// followed: one level is what the grammar produces and chasing further would need
+// a cycle guard for a case nothing has written.
+ui_base(string name) {
+  int i = ui_vfind(name);
+  string bn = name;
+  if (i >= 0) { bn = ast_tx(ast_ks((import ui_vd)[i])[0]); }
+} return string bn;

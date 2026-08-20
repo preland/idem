@@ -1,0 +1,12 @@
+// Inside the bound, nothing moves.
+
+t_wrap3() {
+  ent_put(0, 0, 0 - 143000);
+  sim_wrap(0);
+  t_wrap3b();
+} return void;
+
+t_wrap3b() {
+  print("inside it: x unchanged exp -143000 = " + ent_at(0, 0));
+  t_anim();
+} return void;

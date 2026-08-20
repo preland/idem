@@ -1,0 +1,40 @@
+// Field access: `pos.y`, `vel.x`, `scene.mode`, `game.high`.
+//
+// Four bases, and they are genuinely four different things rather than one
+// mechanism with four names:
+//
+//   pos, vel     slots of the *self* entity's record
+//   scene        the scene's variable block, by name
+//   game         the game's `persist` block, by name
+//
+// So the base is matched as a bare identifier and never evaluated. `pos` is not a
+// value that could be assigned to a variable and then dereferenced; it is a
+// syntax, and treating it as one is what keeps `pos.y` a two-slot lookup instead
+// of an object model.
+//
+// An unknown base answers 0. `nearest(enemy).pos.x` parses and lands here with a
+// call as its base, which this does not implement -- and answering 0 is what lets
+// the rest of a script that does not use it run.
+
+scr_fld(int nd, int e) {
+  int v = 0;
+  if (ast_kd(ast_ia(nd)) = ast_k_ident()) {
+    v = scr_fld2(ast_tx(ast_ia(nd)), ast_tx(nd), e);
+  }
+} return int v;
+
+scr_fld2(string bn, string name, int e) {
+  int v = 0;
+  if (bn = "scene" || bn = "game") {
+    v = scr_get(e, name);
+  } else {
+    v = scr_slot(e, scr_fk(bn, name));
+  }
+} return int v;
+
+// -1 for a base or a field this does not know, which scr_slot reads as "no slot".
+scr_fk(string bn, string name) {
+  int k = 0 - 1;
+  if (bn = "pos") { k = scr_axis(name, 0); }
+  else if (bn = "vel") { k = scr_axis(name, 2); }
+} return int k;

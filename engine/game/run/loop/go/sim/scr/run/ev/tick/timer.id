@@ -1,0 +1,23 @@
+// Firing the timers of one script.
+//
+// The handler's own argument is its period, so a script with two `on timer`
+// blocks of different periods keeps one accumulator between them -- which is a
+// real limitation and the honest one to have: two accumulators would need two
+// slots and no game has yet wanted the second.
+
+scr_tfire(int e, int acc) {
+  scr_tscan2(scr_sc(e), e, acc, 0);
+} return void;
+
+scr_tscan2(int sc, int e, int acc, int i) {
+  while (sc != 0 && i < len(ast_ks(sc))) {
+    scr_tone(ast_ks(sc)[i], e, acc);
+    i = i + 1;
+  }
+} return void;
+
+scr_tone(int h, int e, int acc) {
+  if (ast_kd(h) = ast_k_on() && ast_tx(h) = "timer" && scr_tdue(h, e, acc) = 1) {
+    scr_hrun(h, e);
+  }
+} return void;

@@ -1,0 +1,6 @@
+// Sizing them.
+jpg_init7b() {
+  lst_fill((import jpg_ca), 4, 0);
+  lst_fill((import jpg_nb), 8, 0);
+  jpg_init8();
+} return void;

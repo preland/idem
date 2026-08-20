@@ -1,0 +1,35 @@
+// Reading one count.
+//
+// The count occupies bitCount-1 bits when its low bits fall below `max`, and
+// bitCount bits otherwise -- so the reader has to look at the value before it
+// knows how much of it to consume. That is the whole reason the forward reader
+// separates peek from drop.
+//
+//     max = (2 * threshold - 1) - remaining
+//
+// `threshold` is always a power of two, so `& (threshold - 1)` is `% threshold`
+// and the low bitCount-1 bits are exactly what that masks.
+
+fse_rval() {
+  int mx = 2 * (import fse_st)[2] - 1 - (import fse_st)[1];
+  int c = fse_rcnt(mx);
+  fse_rput(c - 1);
+} return void;
+
+fse_rcnt(int mx) {
+  int c = zf_peek((import fse_st)[3] - 1);
+  if (c < mx) {
+    zf_drop((import fse_st)[3] - 1);
+  } else {
+    c = fse_rbig(mx);
+  }
+} return int c;
+
+// The wide form. A comparison is an int here, so subtracting `max` only when the
+// value reached the threshold needs no branch -- the idiom this engine uses
+// wherever a condition is arithmetic rather than control flow.
+fse_rbig(int mx) {
+  int c = zf_peek((import fse_st)[3]);
+  zf_drop((import fse_st)[3]);
+  c = c - mx * (c >= (import fse_st)[2]);
+} return int c;

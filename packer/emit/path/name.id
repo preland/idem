@@ -1,0 +1,16 @@
+// name -- what a chunk function is called, and who calls the next one.
+
+// data_src is the head of the chain and the one name a packed game's main.id
+// knows; every later chunk is data_s<k>. `data_` is the prefix NAMES.md reserves
+// for generated per-game source, so nothing hand-written can collide with it.
+pack_name(int k) {
+  string s = "data_src";
+  if (k > 0) { s = "data_s" + k; }
+} return string s;
+
+// The chain itself. A chunk function calls its successor only if there is input
+// left after it, which is what terminates the recursion at boot without needing a
+// count of the chunks anywhere.
+pack_next(string src, int nxt, int k) {
+  if (nxt < len(src)) { print("  " + pack_name(k + 1) + "(chunks);"); }
+} return void;

@@ -1,0 +1,22 @@
+// One weight's run of table entries.
+
+huf_fill1(int w, int p, int s0) {
+  int i = 0;
+  while (i < (import huf_rk)[w]) {
+    p = huf_frun(p, (import huf_sm)[s0 + i], (import huf_st)[0] + 1 - w, inf_pow2(w) / 2);
+    i = i + 1;
+  }
+} return int p;
+
+huf_frun(int p, int kd, int nb, int n) {
+  int i = 0;
+  while (i < n) {
+    huf_fput(p + i, kd, nb);
+    i = i + 1;
+  }
+} return int p + n;
+
+huf_fput(int p, int kd, int nb) {
+  lset((import huf_sy), p, kd);
+  lset((import huf_nb), p, nb);
+} return void;

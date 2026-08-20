@@ -1,0 +1,20 @@
+// fn -- one file's worth of chunk functions.
+
+// Three, because three is the limit on functions in a file. A group that runs out
+// of input part way through simply emits fewer, and pack_files then stops.
+pack_three(string src, int p, int k) {
+  p = pack_one(src, p, k);
+  p = pack_one(src, p, k + 1);
+  p = pack_one(src, p, k + 2);
+} return int p;
+
+pack_one(string src, int p, int k) {
+  int nxt = p;
+  if (p < len(src) || k = 0) { nxt = pack_fn(src, p, k); }
+} return int nxt;
+
+pack_fn(string src, int p, int k) {
+  int nxt = pack_cut(src, p);
+  pack_sig(k);
+  pack_body(src, p, nxt, k);
+} return int nxt;

@@ -1,0 +1,20 @@
+// The grid lines, and the two coloured axes through the origin.
+
+ed_grid_run(int i) {
+  while (i <= 5) {
+    ed_grid_pair(i * 1000);
+    i = i + 1;
+  }
+} return void;
+
+ed_grid_pair(int n) {
+  ed_gline(n, 0 - 5000, n, 5000, ed_col(9));
+  ed_gline(0 - 5000, n, 5000, n, ed_col(9));
+} return void;
+
+// X red, Z blue -- the convention every 3D tool shares, and the fastest way to
+// know which way you are looking when the camera has been spun.
+ed_axis() {
+  ed_gline(0 - 5000, 0, 5000, 0, ed_col(10));
+  ed_gline(0, 0 - 5000, 0, 5000, ed_col(11));
+} return void;

@@ -1,0 +1,9 @@
+// One mesh, scoped.
+//
+// Scope first, then read: every pointer inside this mesh resolves against its own
+// run of DATA blocks and nothing else (blk/one/addr/addr.id).
+// Scope first, then read: every pointer inside this mesh resolves against its own
+// run of DATA blocks and nothing else (blk/one/addr/addr.id).
+bl_mone(int i) {
+  bl_scope(i);
+} return int bl_mesh3((import bl_bp)[i]);

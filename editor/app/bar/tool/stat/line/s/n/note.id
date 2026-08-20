@@ -1,0 +1,14 @@
+// What Help puts on the status line.
+//
+// The controls are worth stating in the program rather than only in a document,
+// because the bindings changed: left used to orbit and now selects. Somebody who
+// learned the old ones needs one line, in the place they are already looking.
+
+ed_note(int y) {
+  ed_sdraw(6 * txt_ui(), y, ed_ntxt(), ed_col(13));
+} return void;
+
+ed_ntxt() {
+  string s = "idem editor -- the engine drawing itself, in id";
+  if ((import ed_st)[17] = 1) { s = "left drag: select   middle: pan   right: orbit   wheel: zoom"; }
+} return string s;

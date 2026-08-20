@@ -1,0 +1,31 @@
+// `spawn Template at (x, y)`.
+//
+// The template is a `template` declaration somewhere in the document, found by
+// name at the moment the statement runs rather than resolved at load -- because a
+// spawn inside a handler inside a template can name a template declared after it,
+// and a game should not have to care about declaration order.
+//
+// The new entity is filled from the template exactly as a scene's `entity` is
+// filled from its own body, so a template is not a second kind of thing: it is an
+// entity declaration that nothing instantiated yet. Its position comes from the
+// tuple, evaluated in the *spawning* entity's scope -- which is what makes
+// `spawn PipeCap at (340, gap + 113)` read `gap` from the scene that owns it.
+
+scr_spawn(int nd, int e) {
+  int t = scr_tpl(ast_tx(nd));
+  if (t != 0) {
+    scr_spawn2(t, ast_ia(nd), e);
+  }
+} return void;
+
+scr_spawn2(int t, int tup, int e) {
+  int ne = ent_add();
+  scn_efill(ne, t, 0);
+  scr_place(ne, tup, e);
+} return void;
+
+scr_place(int ne, int tup, int e) {
+  ent_put(ne, 0, scr_tup(tup, 0, e) * 1000);
+  ent_put(ne, 1, scr_tup(tup, 1, e) * 1000);
+  scr_fire(scr_sc(ne), "start", ne, "");
+} return void;

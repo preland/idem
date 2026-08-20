@@ -1,0 +1,16 @@
+// One byte into the buffer, and the peek/drop pair.
+
+zf_more2() {
+  lset((import zf_st), 2, (import zf_st)[2] + peek8((import zf_st)[0] + (import zf_st)[1]) * inf_pow2((import zf_st)[3]));
+  lset((import zf_st), 1, (import zf_st)[1] + 1);
+  lset((import zf_st), 3, (import zf_st)[3] + 8);
+} return void;
+
+zf_peek(int n) {
+  zf_fill(n);
+} return int (import zf_st)[2] % inf_pow2(n);
+
+zf_drop(int n) {
+  lset((import zf_st), 2, (import zf_st)[2] / inf_pow2(n));
+  lset((import zf_st), 3, (import zf_st)[3] - n);
+} return void;

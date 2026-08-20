@@ -1,0 +1,31 @@
+// trig -- sin and cos of an angle in millidegrees.
+//
+// Angles are millidegrees (degree x 1000) everywhere above this file, per
+// ARCHITECTURE.md §4, and the results are x1000, so fx_sin returns -1000..1000.
+//
+// The table has one entry per whole degree, which is a 1-degree step -- visible
+// as a stutter on anything that rotates slowly, and as a 17-per-mille jump in a
+// velocity vector near zero. So the sub-degree remainder is used to interpolate
+// between neighbouring entries instead of being thrown away. Between two entries
+// the sine is near enough linear that the error stays under one part in a
+// thousand, which is the whole precision of the scale.
+
+fx_sin(int deg) {
+  int ndg = fx_norm_deg(deg);
+  int q = ndg / 90000;
+  int rm = ndg % 90000;
+} return int fx_sin_q(q, rm);
+
+// cos is sin a quarter turn ahead. The normalise happens first because deg may
+// be anywhere in the int range and deg + 90000 would wrap.
+fx_cos(int deg) {
+  int ndg = fx_norm_deg(deg);
+} return int fx_sin(ndg + 90000);
+
+// The first quadrant only: deg in 0..90000, result 0..1000. i is the whole
+// degree, t the leftover in per-mille of a degree.
+fx_sin_lin(int deg) {
+  int i = deg / 1000;
+  int t = deg % 1000;
+  int sv = fx_tab(i);
+} return int sv + (fx_tab(i + 1) - sv) * t / 1000;

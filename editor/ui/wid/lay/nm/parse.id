@@ -1,0 +1,7 @@
+// Lexing the layout document and parsing one item out of it.
+
+ed_parse2() {
+  int[] pos = [0];
+  lex_run(ed_src());
+  lset((import ed_ui), 0, par_item(pos));
+} return void;

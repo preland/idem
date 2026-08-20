@@ -1,0 +1,777 @@
+#!/usr/bin/env bash
+# idem -- the build / pack / run driver.
+#
+# This script is thin on purpose, for exactly the reason id_development's bin/idc
+# is thin: `id` cannot walk a directory and cannot spawn a process. Everything
+# above the filesystem -- the escaping, the chunking, the layout of the generated
+# tree, the diagnostics -- happens in `id`. What is left over is what a shell is
+# for: find the .idml files, make directories, move bytes between two programs,
+# and call the compiler.
+#
+#   idem build-packer                 build packer/ (needed before pack/run)
+#   idem cat   <gamedir>              the concatenated sources, with #file markers
+#   idem check <gamedir>              run the engine's idml checker over them
+#   idem pack  <gamedir> [-o OUT]     generate + compile a standalone executable
+#   idem run   <gamedir> [args...]    pack if stale, then run, passing args through
+#
+# The compiler is bin/idc, the self-hosted one. That was not always possible: it
+# emitted no `extern` declarations, so a project importing backends/gfx -- which
+# every packed game does -- could not be linked with it at all, and this script
+# used idc.py for that one reason. It now links native backends, checks call
+# arity and argument types, reports every violation in one pass instead of
+# stopping at the first, and builds this engine in 0.1 s. idc.py stays reachable
+# through IDEM_COMPILER for the two things only it does (--target llvm|wasm) and
+# as the bootstrap that builds bin/idc's own stages on a cold cache.
+
+set -u -o pipefail
+
+PROG="idem"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+
+# ---------------------------------------------------------------------------
+# talking
+
+say()  { printf '%s: %s\n' "$PROG" "$*" >&2; }
+step() { printf '%s: == %s\n' "$PROG" "$*" >&2; }
+cmd()  { printf '%s: + %s\n' "$PROG" "$*" >&2; }
+die()  { printf '%s: error: %s\n' "$PROG" "$*" >&2; exit 1; }
+
+# The failing command, printed verbatim, because a build that fails inside a Nix
+# dev shell inside a python compiler is not something anyone should have to
+# reconstruct from a exit status.
+failed() {
+    printf '%s: error: command failed: %s\n' "$PROG" "$*" >&2
+    exit 1
+}
+
+usage() {
+    cat <<'EOF'
+idem -- build, check, pack and run idem games.
+
+usage:
+  idem build-packer [--force]
+  idem import <file> [options]
+  idem cat    <gamedir>
+  idem check  <gamedir>
+  idem pack   <gamedir> [options]
+  idem run    <gamedir> [args...]
+  idem edit   <gamedir> [--shot]
+  idem --help
+
+commands:
+  build-packer      Compile packer/ to build/packer. pack and run do this for you
+                    whenever packer's own sources are newer than the binary; the
+                    command exists so the bootstrap can be done, and inspected,
+                    on its own.
+
+  import <file>     Convert a real-world asset into idml: a PNG or JPEG sprite
+                    sheet into a `palette` plus a `sprite`, a .blend into a
+                    `model`. The result is ordinary idml source -- editable,
+                    diffable, and read by the same lexer as hand-drawn art -- so
+                    an imported asset is not a second kind of thing.
+
+                    ImageMagick decodes and quantises; Blender evaluates,
+                    triangulates and decimates. Everything above that -- the
+                    palette, the transparency decision, the frame slicing, the
+                    emission -- happens in `id`, in importer/.
+
+  cat <gamedir>     Print every *.idml file under <gamedir> to stdout in sorted
+                    order, each preceded by a line `#file <path-relative-to-gamedir>`.
+                    This is exactly the byte stream that check and pack feed to
+                    the engine and the packager, so it is also the reference for
+                    the round-trip test.
+
+  check <gamedir>   Run the engine's idml checker (idem_check) over those bytes,
+                    print its diagnostics and exit nonzero if there were any.
+                    The checker lives in engine/; if it is not there yet this
+                    command says so and fails, rather than reporting success it
+                    cannot vouch for.
+
+  pack <gamedir>    Generate build/<game>/ from the sources with packer, write its
+                    import.id, and compile it to a standalone executable with
+                    idc.py. The result embeds the engine and every asset; nothing
+                    in it refers back to the source tree.
+
+  run <gamedir>     pack if anything is stale, then exec the executable. Every
+                    argument after <gamedir> is passed to the game untouched, so
+                    `idem run g --shot 30` works.
+
+import options:
+  -o, --output F    Write here instead of stdout.
+      --name N      Asset name in the generated idml.  default: the file's stem
+      --grid CxR    Sprite-sheet grid, in cells.       default: 1x1
+      --cell WxH    Pixel size of one cell after resizing.  default: 32x32
+      --colors N    Palette size, at most 62.          default: 24
+      --key HEX     A background colour that becomes transparent, e.g. 0A1F3C.
+      --tol N       How far from --key still counts, summed over R+G+B. default: 40
+      --tris N      Triangle budget for a mesh.        default: 2000
+      --object NAME Export only this object from a .blend, not the whole scene.
+
+  edit <gamedir>    Open the scene editor on a game. The sources are handed to it
+                    on stdin exactly as `pack` and `check` receive them -- `id`
+                    has no file I/O, so a program that wants to see a project is
+                    given one -- and the editor lexes them with the engine's own
+                    lexer. `--shot` renders one frame to stdout as a PPM instead
+                    of opening a window, which is how the editor is tested with
+                    no display.
+
+pack options:
+  -o, --output OUT  Executable to write.               default: dist/<game>
+      --build-dir D Where to generate the id project.  default: build/<game>
+      --import DIR  Use DIR as a dependency of the generated project instead of
+                    the default (the engine + backends/gfx). Repeatable. Mostly
+                    for tests/pack/roundtrip.sh, which links a stub idem_boot.
+      --gen-only    Generate and write the tree, do not compile it.
+      --force       Regenerate even if the output looks up to date.
+
+environment:
+  IDEM_IDC          Path to id_development, or directly to its idc.py.
+  ID_DEV            Path to id_development. Used if IDEM_IDC is unset.
+                    Default: ../id_development beside the idem checkout.
+  IDEM_COMPILER     Which compiler to build with: `idc` (the self-hosted bin/idc,
+                    the default) or `idc.py` (the reference implementation).
+                    They emit byte-identical C; idc.py is the escape hatch if a
+                    self-hosted build ever disagrees, and the way to reach
+                    --target llvm|wasm.
+EOF
+}
+
+# ---------------------------------------------------------------------------
+# the toolchain
+#
+# IDEM_IDC may name either id_development itself or its idc.py, because both are
+# things a person plausibly has on hand and guessing wrong is a confusing failure.
+
+resolve_toolchain() {
+    local cand=""
+    if [ -n "${IDEM_IDC:-}" ]; then
+        if [ -f "$IDEM_IDC" ]; then
+            IDC_PY="$IDEM_IDC"
+            ID_DEV_DIR="$(cd -- "$(dirname -- "$IDEM_IDC")" && pwd)"
+        else
+            cand="$IDEM_IDC"
+        fi
+    elif [ -n "${ID_DEV:-}" ]; then
+        cand="$ID_DEV"
+    else
+        cand="$ROOT/../id_development"
+    fi
+
+    if [ -n "$cand" ]; then
+        [ -d "$cand" ] || die "id_development not found at '$cand'
+  Set IDEM_IDC to id_development (or to its idc.py), or ID_DEV to id_development."
+        ID_DEV_DIR="$(cd -- "$cand" && pwd)"
+        IDC_PY="$ID_DEV_DIR/idc.py"
+    fi
+
+    IDC_BIN="$ID_DEV_DIR/bin/idc"
+    DEVSHELL="$ID_DEV_DIR/tools/devshell.sh"
+    GFX_DIR="$ID_DEV_DIR/backends/gfx"
+    FS_DIR="$ID_DEV_DIR/backends/fs"
+
+    # bin/idc is the compiler; idc.py has to be present anyway, because bin/idc
+    # bootstraps its own two stages with it on a cold cache. So both are checked
+    # here rather than one being discovered missing halfway through a build.
+    case "${IDEM_COMPILER:-idc}" in
+        idc)     [ -x "$IDC_BIN" ] || die "no bin/idc at '$IDC_BIN'" ;;
+        idc.py)  IDC_BIN="" ;;
+        *)       die "IDEM_COMPILER must be 'idc' or 'idc.py', not '${IDEM_COMPILER}'" ;;
+    esac
+    [ -f "$IDC_PY" ] || die "no idc.py at '$IDC_PY'
+  It is still needed even when building with bin/idc: bin/idc bootstraps its own
+  lexer and parser with it the first time it runs."
+    command -v python3 >/dev/null 2>&1 || die "python3 is required to run idc.py"
+}
+
+# Are the X11 development headers on the default compiler search path? On NixOS
+# they are not -- they come from the flake dev shell, which sets NIX_CFLAGS_COMPILE
+# so the wrapped cc finds them. Without it every graphics build dies on
+# `X11/Xlib.h: No such file or directory`, so this is checked rather than assumed.
+X11_OK=""
+x11_ok() {
+    if [ -z "$X11_OK" ]; then
+        if printf '#include <X11/Xlib.h>\nint main(void) { return 0; }\n' \
+             | "${CC:-cc}" -fsyntax-only -x c - >/dev/null 2>&1; then
+            X11_OK=yes
+        else
+            X11_OK=no
+        fi
+    fi
+    [ "$X11_OK" = yes ]
+}
+
+# Does this project link a native backend? Anything with a backend.json does, and
+# that is the only thing that needs the dev shell.
+project_needs_devshell() {
+    local proj="$1" dep
+    [ -f "$proj/import.id" ] || return 1
+    while IFS= read -r dep; do
+        [ -f "$dep/backend.json" ] && return 0
+    done < <(manifest_dirs "$proj")
+    return 1
+}
+
+manifest_dirs() {
+    local proj="$1"
+    sed -n 's|^[[:space:]]*import[[:space:]]*"\(.*\)"[[:space:]]*$|\1|p' "$proj/import.id" \
+      | while IFS= read -r rel; do
+            ( cd -- "$proj" && cd -- "$rel" 2>/dev/null && pwd )
+        done
+}
+
+# The compile command for a project, as a single shell word-safe string, so that
+# the dev-shell and the direct paths run exactly the same thing.
+idc_cmdline() {
+    local proj="$1" out="$2"
+    if [ -n "$IDC_BIN" ]; then
+        printf 'cd %q && %q . -o %q' "$proj" "$IDC_BIN" "$out"
+    else
+        printf 'cd %q && python3 %q . -o %q' "$proj" "$IDC_PY" "$out"
+    fi
+}
+
+# Compile a project, inside the dev shell when it needs one.
+idc_build() {
+    local proj="$1" out="$2" line
+    mkdir -p -- "$(dirname -- "$out")"
+    line="$(idc_cmdline "$proj" "$out")"
+    if project_needs_devshell "$proj" && ! x11_ok; then
+        [ -x "$DEVSHELL" ] || die "this project links a graphics backend, the X11
+  headers are not on the compiler's search path, and there is no dev shell at
+  '$DEVSHELL' to provide them."
+        cmd "$DEVSHELL $(printf '%q' "$line")"
+        "$DEVSHELL" "$line" || failed "$DEVSHELL $(printf '%q' "$line")"
+    else
+        cmd "$line"
+        ( eval "$line" ) || failed "$line"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# staleness -- is anything under these paths newer than this file?
+
+stale() {
+    local out="$1"; shift
+    [ -e "$out" ] || return 0
+    local d
+    for d in "$@"; do
+        [ -e "$d" ] || continue
+        if [ -n "$(find "$d" -newer "$out" -print -quit 2>/dev/null)" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# A path relative to another, so a generated import.id reads like a hand-written
+# one instead of hard-coding somebody's home directory.
+relpath() {
+    python3 -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$1" "$2"
+}
+
+# ---------------------------------------------------------------------------
+# build-packer
+
+PACKER_SRC="$ROOT/packer"
+PACKER_BIN="$ROOT/build/packer"
+
+cmd_build_packer() {
+    local force=0
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --force) force=1; shift ;;
+            *) die "build-packer: unexpected argument '$1'" ;;
+        esac
+    done
+    [ -d "$PACKER_SRC" ] || die "no packer sources at '$PACKER_SRC'"
+    if [ "$force" = 0 ] && ! stale "$PACKER_BIN" "$PACKER_SRC" "$ROOT/engine/core/util"; then
+        say "packer is up to date ($PACKER_BIN)"
+        return 0
+    fi
+    step "building packer"
+    idc_build "$PACKER_SRC" "$PACKER_BIN"
+}
+
+ensure_packer() { cmd_build_packer; }
+
+# ---------------------------------------------------------------------------
+# import -- a real asset becomes idml
+#
+# Two normalisers, both doing the one thing `id` cannot: decoding a format whose
+# specification is somebody else's C. What they hand over is plain ASCII integers,
+# and importer/ does the rest.
+#
+# For images that is ImageMagick, in three passes. Resize to exactly the frame
+# grid; quantise to a palette small enough to spell with one character per colour;
+# then write the colour plane and the coverage plane separately, because
+# `-alpha extract` is the only way to get alpha out as text without arguing.
+#
+# For meshes it is Blender, driven by tools/blend_mesh.py.
+
+IMPORTER_SRC="$ROOT/importer"
+IMPORTER_BIN="$ROOT/build/importer"
+
+ensure_importer() {
+    if stale "$IMPORTER_BIN" "$IMPORTER_SRC" "$ROOT/engine/core"; then
+        step "building importer"
+        idc_build "$IMPORTER_SRC" "$IMPORTER_BIN"
+    fi
+}
+
+# WxH or CxR -> two shell variables, because `id` should not have to parse an
+# option format and the shell already has the string.
+split_pair() {
+    case "$1" in
+        *[!0-9x]*|x*|*x) die "$2: expected NxM, got '$1'" ;;
+    esac
+    PAIR_A="${1%%x*}"; PAIR_B="${1##*x}"
+    [ -n "$PAIR_A" ] && [ -n "$PAIR_B" ] || die "$2: expected NxM, got '$1'"
+}
+
+# 0A1F3C or 0x0A1F3C -> three decimal channels. -1 -1 -1 when no key was given,
+# which is what the importer reads as "this asset has no chroma key".
+key_channels() {
+    local h="${1#0x}"
+    if [ -z "$h" ]; then printf -- '-1 -1 -1'; return 0; fi
+    [ "${#h}" = 6 ] || die "import: --key wants six hex digits, got '$1'"
+    printf '%d %d %d' "0x${h:0:2}" "0x${h:2:2}" "0x${h:4:2}"
+}
+
+cmd_import() {
+    local src="" out="" name="" grid="1x1" cell="32x32" colors=24 key="" tol=40
+    local tris=2000 object=""
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -o|--output) out="${2:?-o needs an argument}"; shift 2 ;;
+            --name)      name="${2:?}"; shift 2 ;;
+            --grid)      grid="${2:?}"; shift 2 ;;
+            --cell)      cell="${2:?}"; shift 2 ;;
+            --colors|--colours) colors="${2:?}"; shift 2 ;;
+            --key)       key="${2:?}"; shift 2 ;;
+            --tol)       tol="${2:?}"; shift 2 ;;
+            --tris)      tris="${2:?}"; shift 2 ;;
+            --object)    object="${2:?}"; shift 2 ;;
+            -h|--help)   usage; exit 0 ;;
+            -*)          die "import: unknown option '$1'" ;;
+            *)           [ -z "$src" ] || die "import: unexpected argument '$1'"
+                         src="$1"; shift ;;
+        esac
+    done
+    [ -n "$src" ] || die "which file? usage: $PROG import <file> [options]"
+    [ -f "$src" ] || die "no such file: '$src'"
+    [ "$colors" -ge 2 ] && [ "$colors" -le 62 ] || die "import: --colors must be 2..62 (62 characters can stand for a colour)"
+
+    if [ -z "$name" ]; then
+        name="$(basename -- "$src")"; name="${name%.*}"
+        # An idml identifier is [A-Za-z_][A-Za-z0-9_-]*, and a real filename is
+        # not: "water-motion-sprite-sheet…vector.jpg" has to become a name a game
+        # can actually write.
+        name="$(printf '%s' "$name" | tr -c 'A-Za-z0-9_-' '-' | sed 's/^[^A-Za-z_]*//; s/--*/-/g; s/-$//')"
+        [ -n "$name" ] || name="asset"
+    fi
+
+    ensure_importer
+    local rc=0
+    case "$src" in
+        *.blend) import_mesh "$src" "$name" "$tris" "$object" "$out" || rc=$? ;;
+        *)       import_image "$src" "$name" "$grid" "$cell" "$colors" "$key" "$tol" "$out" || rc=$? ;;
+    esac
+    return "$rc"
+}
+
+import_image() {
+    local src="$1" name="$2" grid="$3" cell="$4" colors="$5" key="$6" tol="$7" out="$8"
+    split_pair "$grid" "--grid"; local cols="$PAIR_A" rows="$PAIR_B"
+    split_pair "$cell" "--cell"; local fw="$PAIR_A" fh="$PAIR_B"
+    local w=$((fw * cols)) h=$((fh * rows))
+
+    command -v magick >/dev/null 2>&1 || die "import: ImageMagick (magick) is required to read '$src'"
+
+    local tmp; tmp="$(mktemp -d "${TMPDIR:-/tmp}/idem-import.XXXXXX")"
+    # shellcheck disable=SC2064
+    trap "rm -rf -- '$tmp'" RETURN
+
+    step "normalising $src -> ${w}x${h}, $colors colours, ${cols}x${rows} frames"
+    # `-resize WxH!` forces the exact size: a sheet's cells must stay a grid, and
+    # preserving the aspect ratio would leave the last column half a pixel wide.
+    # `-dither None` because dithering a 24-colour palette produces a checkerboard
+    # that a character-per-pixel format records faithfully and no one wants.
+    cmd "magick $src -resize ${w}x${h}! -colors $colors -dither None (quantised)"
+    magick "$src" -resize "${w}x${h}!" -colors "$colors" -dither None "$tmp/q.png" \
+      || failed "magick (resize/quantise)"
+
+    {
+        printf 'sprite %s %d %d %d %d %s %d\n' "$name" "$fw" "$fh" "$cols" "$rows" "$(key_channels "$key")" "$tol"
+        magick "$tmp/q.png" -compress none ppm:- || exit 1
+        magick "$tmp/q.png" -alpha extract -compress none pgm:- || exit 1
+    } > "$tmp/stream" || failed "magick (planes)"
+
+    import_run "$tmp/stream" "$out"
+}
+
+import_mesh() {
+    local src="$1" name="$2" tris="$3" object="$4" out="$5"
+    command -v blender >/dev/null 2>&1 || die "import: Blender is required to read '$src'"
+    local tmp; tmp="$(mktemp -d "${TMPDIR:-/tmp}/idem-import.XXXXXX")"
+    # shellcheck disable=SC2064
+    trap "rm -rf -- '$tmp'" RETURN
+
+    step "exporting $src (triangle budget $tris)"
+    cmd "blender --background $src --python tools/blend_mesh.py -- … $tris"
+    blender --background "$src" --python "$SCRIPT_DIR/blend_mesh.py" -- \
+            "$tmp/stream" "$tris" "$object" "$name" >"$tmp/log" 2>&1 \
+      || { sed -n '1,20p' "$tmp/log" >&2; failed "blender (mesh export)"; }
+    grep -E '^blend_mesh:' "$tmp/log" >&2 || true
+
+    import_run "$tmp/stream" "$out"
+}
+
+import_run() {
+    local stream="$1" out="$2"
+    if [ -n "$out" ]; then
+        mkdir -p -- "$(dirname -- "$out")"
+        "$IMPORTER_BIN" < "$stream" > "$out" || failed "$IMPORTER_BIN"
+        say "wrote $out ($(wc -l < "$out") lines)"
+    else
+        "$IMPORTER_BIN" < "$stream" || failed "$IMPORTER_BIN"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# cat -- the concatenated sources
+#
+# The `#file <path>` marker is the id compiler's own convention and the engine's
+# idml lexer consumes it, which is the only reason a diagnostic in a packed game
+# can name flappy.idml rather than "chunk 2, character 41103".
+
+game_dir() {
+    local d="${1:-}"
+    [ -n "$d" ] || die "which game? usage: $PROG $SUB <gamedir>"
+    [ -d "$d" ] || die "no such directory: '$d'"
+    ( cd -- "$d" && pwd )
+}
+
+idml_files() {
+    find "$1" -type f -name '*.idml' | LC_ALL=C sort
+}
+
+cmd_cat() {
+    local dir; dir="$(game_dir "${1:-}")"
+    local f rel n
+    n=0
+    # Where the game's own files live, so `from "art/bird.png"` resolves. A
+    # comment to the idml lexer, like the `#asset` lines below; the engine scans
+    # it out of the raw text before lexing, because asset paths are resolved
+    # while the document is being loaded. Absolute: the executable does not know
+    # where it was started from and must not have to guess.
+    printf '#root %s/\n' "$dir"
+    while IFS= read -r f; do
+        rel="${f#"$dir"/}"
+        printf '#file %s\n' "$rel"
+        cat -- "$f"
+        # A file that does not end in a newline would glue itself to the next
+        # #file marker, and the lexer would see one very odd line.
+        if [ -s "$f" ] && [ "$(tail -c 1 -- "$f" | wc -l)" -eq 0 ]; then
+            printf '\n'
+        fi
+        n=$((n + 1))
+    done < <(idml_files "$dir")
+    [ "$n" -gt 0 ] || say "warning: no .idml files under '$dir'"
+}
+
+# ---------------------------------------------------------------------------
+# check
+#
+# The checker is engine-side: `idem_check(string src) -> int` lexes and parses the
+# concatenated sources, reports every diagnostic through err_report, and returns
+# the count. All this command does is give it a main and a project to live in.
+
+CHECK_ENTRY="idem_check"
+
+engine_has_check() {
+    grep -rslE "^[[:space:]]*${CHECK_ENTRY}[[:space:]]*\(" \
+         --include='*.id' -- "$ROOT/engine" >/dev/null 2>&1
+}
+
+cmd_check() {
+    local dir; dir="$(game_dir "${1:-}")"
+    if ! engine_has_check; then
+        printf '%s: error: the engine has no checker yet.\n' "$PROG" >&2
+        cat >&2 <<EOF
+  '$PROG check' needs a function
+
+      $CHECK_ENTRY(string src) -> int
+
+  somewhere under engine/ (it is engine/game/read/'s to write). It should lex and
+  parse the concatenated sources, report each problem with err_report, and return
+  the number of diagnostics.
+
+  Nothing was checked. Failing rather than reporting a pass that is not one.
+EOF
+        exit 2
+    fi
+
+    local proj="$ROOT/build/check" bin="$ROOT/build/check.bin"
+    step "generating the checker project in $proj"
+    rm -rf -- "$proj"
+    mkdir -p -- "$proj"
+    write_manifest "$proj" "$ROOT/engine" "$GFX_DIR" "$FS_DIR"
+    {
+        printf '// GENERATED by tools/idem -- the checker needs a main; the engine has none.\n'
+        printf 'main(int argc, string[] argv) {\n'
+        printf '} return int %s(read_all());\n' "$CHECK_ENTRY"
+    } > "$proj/main.id"
+    idc_build "$proj" "$bin"
+
+    step "checking $dir"
+    local rc=0
+    cmd_cat "$dir" | "$bin" || rc=$?
+    if [ "$rc" != 0 ]; then
+        say "check FAILED ($dir)"
+    else
+        say "check ok ($dir)"
+    fi
+    return "$rc"
+}
+
+# ---------------------------------------------------------------------------
+# the generated project's manifest
+#
+# Imports are not transitive -- only the built project's own manifest is read --
+# so a game names the engine *and* the backend itself. Which is why no author
+# writes this file: it is generated, here, from paths this script already knows.
+
+write_manifest() {
+    local proj="$1"; shift
+    local dep
+    {
+        printf '// GENERATED by tools/idem -- do not edit; `idem pack` rewrites it.\n'
+        printf '//\n'
+        printf '// Imports are not transitive: only this project'"'"'s manifest is read, so the\n'
+        printf '// engine and the native seam are both named here rather than inherited.\n'
+        for dep in "$@"; do
+            printf 'import "%s"\n' "$(relpath "$dep" "$proj")"
+        done
+    } > "$proj/import.id"
+}
+
+# ---------------------------------------------------------------------------
+# pack
+
+cmd_pack() {
+    local dir="" out="" gendir="" gen_only=0 force=0
+    local -a imports=()
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -o|--output)   out="${2:?-o needs an argument}"; shift 2 ;;
+            --build-dir)   gendir="${2:?--build-dir needs an argument}"; shift 2 ;;
+            --import)      imports+=("${2:?--import needs an argument}"); shift 2 ;;
+            --gen-only)    gen_only=1; shift ;;
+            --force)       force=1; shift ;;
+            -h|--help)     usage; exit 0 ;;
+            -*)            die "pack: unknown option '$1'" ;;
+            *)             [ -z "$dir" ] || die "pack: unexpected argument '$1'"
+                           dir="$1"; shift ;;
+        esac
+    done
+    dir="$(game_dir "$dir")"
+    local game; game="$(basename -- "$dir")"
+    [ -n "$gendir" ] || gendir="$ROOT/build/$game"
+    # A bundle, not a bare executable: `dist/<game>/<game>` with the game's own
+    # asset files copied in beside it. That is what makes a packed game runnable
+    # somewhere other than the tree it was built in -- the `#root` line in its
+    # source records an absolute build-time path, and the engine falls back to
+    # the executable's own directory when that path is gone (scn_rfix).
+    [ -n "$out" ]    || out="$ROOT/dist/$game/$game"
+
+    if [ "${#imports[@]}" -eq 0 ]; then
+        imports=("$ROOT/engine" "$GFX_DIR" "$FS_DIR")
+        # A game's own `id` is imported where it lives, not copied: the generated
+        # tree stays purely generated, and its `g_` functions land in the same
+        # flat namespace as the engine's.
+        #
+        # A game that has none still has to *supply* the seam, because the engine
+        # calls it -- exactly as every program supplies a graphics backend. So it
+        # gets the no-ops from stub/. Without this a document-model game does not
+        # link at all: the app runner is compiled into every program whether or
+        # not that program enters through it.
+        if [ -d "$dir/id" ]; then
+            imports+=("$dir/id")
+        else
+            imports+=("$ROOT/stub")
+        fi
+    fi
+    local dep
+    for dep in "${imports[@]}"; do
+        [ -d "$dep" ] || die "pack: dependency '$dep' is not a directory"
+    done
+
+    ensure_packer
+
+    if [ "$force" = 0 ] && [ "$gen_only" = 0 ] \
+       && ! stale "$out" "$dir" "$PACKER_BIN" "${imports[@]}"; then
+        say "$game is up to date ($out)"
+        printf '%s\n' "$out"
+        return 0
+    fi
+
+    step "generating $gendir from $dir"
+    local stream; stream="$(mktemp)"
+    # shellcheck disable=SC2064
+    trap "rm -f -- '$stream'" RETURN
+    # A game with its own `id/` owns its state and rules and enters through
+    # idem_app; one without is a document the engine interprets (docs/IDML.md).
+    local mode=doc
+    [ -d "$dir/id" ] && mode=app
+    cmd_cat "$dir" | "$PACKER_BIN" "$mode" > "$stream" \
+      || failed "$PROG cat $dir | $PACKER_BIN $mode"
+
+    rm -rf -- "$gendir"
+    mkdir -p -- "$gendir"
+    split_stream "$stream" "$gendir"
+
+    step "writing $gendir/import.id"
+    write_manifest "$gendir" "${imports[@]}"
+
+    if [ "$gen_only" = 1 ]; then
+        say "generated only, not compiled: $gendir"
+        printf '%s\n' "$gendir"
+        return 0
+    fi
+
+    step "compiling $gendir -> $out"
+    mkdir -p -- "$(dirname -- "$out")"
+    idc_build "$gendir" "$out"
+    copy_assets "$dir" "$(dirname -- "$out")"
+    say "packed $game -> $out"
+    printf '%s\n' "$out"
+}
+
+# A game's own files, beside its executable.
+#
+# Everything except the `.idml` sources, which are already inside the program as
+# chunks, and the hand-written `id/` hooks, which are compiled in. What is left is
+# what the engine opens at runtime: PNGs, JPEGs, .blend files, whatever a document
+# names with `from`. Paths are preserved relative to the game directory, because
+# that is exactly how a document spells them.
+#
+# rsync is not assumed. `find | cpio` would do it in one line and is not
+# everywhere either; a loop over `find` is the portable shape and a game has tens
+# of files, not thousands.
+copy_assets() {
+    local dir="$1" dest="$2" f rel
+    [ "$dir" = "$dest" ] && return 0
+    while IFS= read -r f; do
+        rel="${f#"$dir"/}"
+        mkdir -p -- "$dest/$(dirname -- "$rel")"
+        cp -p -- "$f" "$dest/$rel"
+    done < <(find "$dir" -type f ! -name '*.idml' ! -path "$dir/id/*")
+}
+
+# Split packer's output stream into files.
+#
+# A line `@@FILE <path>` opens a file; everything up to the next such line is its
+# contents. No generated content line can be mistaken for a marker: every chunk is
+# one single line whose newlines are escaped, and it starts with `  push(`.
+split_stream() {
+    local stream="$1" out="$2" rel
+    while IFS= read -r rel; do
+        case "$rel" in
+            /*|*..*) die "packer proposed an unsafe path: '$rel'" ;;
+        esac
+        mkdir -p -- "$out/$(dirname -- "$rel")"
+    done < <(sed -n 's/^@@FILE //p' "$stream")
+
+    awk -v out="$out" '
+        sub(/^@@FILE /, "") { f = out "/" $0; next }
+        f { print > f }
+    ' "$stream" || failed "awk (splitting the generated stream)"
+
+    local n; n="$(grep -c '^@@FILE ' "$stream" || true)"
+    say "wrote $n generated files under $out"
+}
+
+# ---------------------------------------------------------------------------
+# edit -- the scene editor
+#
+# The editor is an ordinary project that imports the engine, so this builds it the
+# way everything else is built and then does the one thing `id` cannot: hand it a
+# directory's worth of source.
+
+EDITOR_SRC="$ROOT/editor"
+EDITOR_BIN="$ROOT/build/editor"
+
+cmd_edit() {
+    local dir="" shot="" frames=""
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --shot) shot=1; shift
+                    # An optional frame count: `edit g --shot 120` runs 120 of
+                    # them and writes the last, which is the only way to check
+                    # anything that takes time -- the game running under `play`.
+                    case "${1:-}" in [0-9]*) frames="$1"; shift ;; esac ;;
+            -h|--help) usage; exit 0 ;;
+            -*) die "edit: unknown option '$1'" ;;
+            *)  [ -z "$dir" ] || die "edit: unexpected argument '$1'"; dir="$1"; shift ;;
+        esac
+    done
+    dir="$(game_dir "$dir")"
+
+    if stale "$EDITOR_BIN" "$EDITOR_SRC" "$ROOT/engine"; then
+        step "building the editor"
+        idc_build "$EDITOR_SRC" "$EDITOR_BIN"
+    fi
+
+    step "opening $dir"
+    if [ -n "$shot" ]; then
+        { cmd_cat "$dir"; asset_lines "$dir"; } | "$EDITOR_BIN" --shot $frames
+    else
+        { cmd_cat "$dir"; asset_lines "$dir"; } | "$EDITOR_BIN"
+    fi
+}
+
+# The engine reads assets itself now, but `backends/fs` has open/read/size/exists
+# and no directory listing -- so the one thing `id` still cannot do is find out
+# what is in a folder. The shell says so, as `#asset <path>` lines appended to the
+# source stream. Absolute, because the editor opens them itself and does not know
+# where it was run from.
+#
+# `#` starts a comment in idml, so these are invisible to the parser and to any
+# game; only the editor looks for them.
+asset_lines() {
+    local dir="$1" f
+    while IFS= read -r f; do
+        printf '#asset %s\n' "$f"
+    done < <(find "$dir" -type f \( -name '*.blend' -o -name '*.png' -o -name '*.jpg' \) | LC_ALL=C sort)
+}
+
+# ---------------------------------------------------------------------------
+# run
+
+cmd_run() {
+    local dir="${1:-}"
+    [ -n "$dir" ] || die "which game? usage: $PROG run <gamedir> [args...]"
+    shift
+    local out
+    out="$(cmd_pack "$dir" | tail -n 1)" || exit $?
+    step "running $out"
+    cmd "$out $*"
+    exec "$out" "$@"
+}
+
+# ---------------------------------------------------------------------------
+
+SUB="${1:-}"
+[ $# -gt 0 ] && shift
+case "$SUB" in
+    -h|--help|help|"") usage; [ -n "$SUB" ] && exit 0; exit 1 ;;
+    build-packer) resolve_toolchain; cmd_build_packer "$@" ;;
+    import)       resolve_toolchain; cmd_import "$@" ;;
+    cat)          cmd_cat "$@" ;;
+    check)        resolve_toolchain; cmd_check "$@" ;;
+    pack)         resolve_toolchain; cmd_pack "$@" ;;
+    run)          resolve_toolchain; cmd_run "$@" ;;
+    edit)         resolve_toolchain; cmd_edit "$@" ;;
+    *)            die "unknown command '$SUB' (try $PROG --help)" ;;
+esac

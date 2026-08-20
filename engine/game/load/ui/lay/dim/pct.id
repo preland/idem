@@ -1,0 +1,30 @@
+// Centipercent of an extent, and the visibility gate.
+//
+// The multiply happens before the divide, always: the other order throws away
+// every bit of the fraction and a 33.33% column becomes 0. The product reaches
+// 10000 * a few thousand pixels, comfortably inside an int.
+
+ui_cent(int v, int n) {
+} return int v * n / 10000;
+
+// A `?@ref` gate: the item renders when the variable the ref names is non-zero.
+//
+// The ref is resolved against the scene's variables, not an entity's -- a panel
+// belongs to the screen and there is no entity whose scope it would be in. That
+// is what makes flappy's ready and over panels siblings claiming 100% each rather
+// than a state machine: `?@ready` and `?@over` are never both true, and the
+// tiling check excludes gated items from the fill sum for exactly this reason.
+//
+// The gate's *name* is not in the ref node's text -- that slot holds idml's
+// trailing `!` live marker. The name is on the path node hanging off it, and it
+// is asked of the **game**: idml reads values, it does not compute them
+// (docs/IDML.md).
+//
+// An item with no gate has node 0 in slot c and is always visible. A gate naming
+// a variable nothing declared reads as 0 and hides the item, which is the safe
+// direction: a panel that should be there and is not is a visible bug, and one
+// that should not be there and is looks like a broken game.
+ui_vis(int nd) {
+  int ok = 1;
+  if (ast_ic(nd) != 0) { ok = ui_val(ast_ic(nd)) != 0; }
+} return int ok;

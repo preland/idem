@@ -1,0 +1,33 @@
+// flat -- the axis-aligned lines, and a 1px outline.
+//
+// A horizontal line is a span, so d2_hline is one call into the fast path and
+// costs nothing per pixel. A vertical line is not: consecutive pixels are
+// sf_gw apart, so there is no run to write flat and sf_pset per pixel is the
+// right shape. That asymmetry is why these are two functions rather than one
+// with an axis flag.
+//
+// Both return their length, and d2_frame's return clause spends that: an
+// outline is four edges, a block holds three actions, and the return clause
+// after the closing brace is free. So the fourth edge is drawn there. Callers
+// ignore the value; it exists to make the fourth call legal.
+
+d2_hline(int x, int y, int n, int c) {
+  sf_span(x, x + n - 1, y, c);
+} return int n;
+
+d2_vline(int x, int y, int n, int c) {
+  int j = 0;
+  while (j < n) {
+    sf_pset(x, y + j, c);
+    j = j + 1;
+  }
+} return int n;
+
+// A 1px outline of the rect (x, y, w, h), corners included. The verticals run
+// the full height, so the corner pixels are written twice -- cheaper than four
+// edges that each avoid the corners, and identical on screen.
+d2_frame(int x, int y, int w, int h, int c) {
+  d2_hline(x, y, w, c);
+  d2_hline(x, y + h - 1, w, c);
+  d2_vline(x, y, h, c);
+} return int d2_vline(x + w - 1, y, h, c);

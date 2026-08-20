@@ -1,0 +1,27 @@
+// fx_norm_deg and fx_sin, in millidegrees.
+//
+// The negative angles are the reason fx_norm_deg exists: `%` truncates toward
+// zero here, so -450000 % 360000 is -90000 and a plain modulo would index the
+// table backwards. Every quadrant boundary is checked because the quadrant fold
+// is where an off-by-one shows up as a mirrored world.
+//
+// The last line is the interpolation proof: a table-only lookup would return 500
+// for both 30000 and 30500, because both fall on whole degree 30.
+
+t_norm() {
+  print("fx_norm_deg(-450000,-1,0) exp 270000 359999 0 = " + fx_norm_deg(0 - 450000) + " " + fx_norm_deg(0 - 1) + " " + fx_norm_deg(0));
+  print("fx_norm_deg(360000,725000,-360000,-725000) exp 0 5000 0 355000 = " + fx_norm_deg(360000) + " " + fx_norm_deg(725000) + " " + fx_norm_deg(0 - 360000) + " " + fx_norm_deg(0 - 725000));
+  t_sin();
+} return void;
+
+t_sin() {
+  print("fx_sin(0,30000,45000,60000) exp 0 500 707 866 = " + fx_sin(0) + " " + fx_sin(30000) + " " + fx_sin(45000) + " " + fx_sin(60000));
+  print("fx_sin(90000,180000,270000,359999) exp 1000 0 -1000 0 = " + fx_sin(90000) + " " + fx_sin(180000) + " " + fx_sin(270000) + " " + fx_sin(359999));
+  t_sinmore();
+} return void;
+
+t_sinmore() {
+  print("fx_sin(120000,225000,-90000,450000) exp 866 -707 -1000 1000 = " + fx_sin(120000) + " " + fx_sin(225000) + " " + fx_sin(0 - 90000) + " " + fx_sin(450000));
+  print("fx_sin interpolates (30000,30500,31000) exp 500 507 515 = " + fx_sin(30000) + " " + fx_sin(30500) + " " + fx_sin(31000));
+  t_cos();
+} return void;

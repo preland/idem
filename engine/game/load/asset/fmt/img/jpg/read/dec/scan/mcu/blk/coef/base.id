@@ -1,0 +1,5 @@
+// The baseline block: DC then the whole AC band, in one visit.
+jpg_bblk(int ci, int a) {
+  jpg_dc(ci, a);
+  jpg_ac(ci, a, 1);
+} return void;

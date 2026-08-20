@@ -1,0 +1,13 @@
+// The File menu's labels.
+
+ed_mfile(int i) {
+  string s = ed_mfile2(i);
+  if (i = 0) { s = "New Pong"; }
+  else if (i = 1) { s = "Open"; }
+} return string s;
+
+ed_mfile2(int i) {
+  string s = "Quit";
+  if (i = 2) { s = "Save"; }
+  else if (i = 3) { s = "Export"; }
+} return string s;

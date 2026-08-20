@@ -1,0 +1,57 @@
+# adversarial.idml -- a byte-fidelity fixture for the packager.
+#
+# This file is NOT valid idml and is not meant to be. It exists to be carried
+# through packer/ unchanged, so every character that has to survive the trip into
+# an `id` string literal appears here at least once:
+#
+#   "  quotes, including "" doubled and an empty one
+#   \  backslashes, including \\ doubled and one at end of line              \
+#   	tabs, both leading and interior
+#   #  hashes, which look like comments to idml and like nothing to `id`
+#   @  value refs, which are a token in idml and plain text in a literal
+#   {} braces, ! bangs, ~ model refs, ` class blocks
+#   and a single line far longer than any real idml line is allowed to be.
+#
+# The escape only touches four characters -- backslash, quote, newline, tab --
+# and everything else here is present to prove that claim rather than assume it.
+
+game {
+	title = "flappy \"quoted\" bird"
+	subtitle = "a path: C:\\games\\flappy\\bird.idml"
+	empty = ""
+	trailing_backslash = "ends here \\"
+	hash_not_a_comment = "#ff8800 is a colour, # is not"
+	display = (288, 512)
+	scale = 2
+}
+
+palette {
+	sky      = #8ec5ff
+	pipe     = #4caf50
+	ink      = #101014
+}
+
+sprite bird-up(17, 12) {
+	........@@@......
+	.....@@@####@@...
+	...@@##"##\\#@@..
+	..@#####		##@.
+	.@###@@@@@###@@..
+	.@##@..@..@##@...
+	..@@@@@@@@@@@....
+}
+
+scene play {
+	spawn bird at (@start.x, @start.y) with ~physics
+	on hit {
+		if (@other.tag != "pipe") { say "boop" } else { despawn self }
+	}
+	on update { @self.vy = @self.vy + 12 ! clamp(-400, 400) }
+}
+
+ui root {
+	Panel(~score, "Score: \t@score")[100,20,center-left]{ bg = @pal.ink }
+	Row `gap-8 pad-4` { Label("{braces}") Label("a\tb\tc") }
+}
+
+longline = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\tbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd#eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee@fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff{ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg}hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh!end"

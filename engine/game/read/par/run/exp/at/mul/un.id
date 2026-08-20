@@ -1,0 +1,10 @@
+// Unary is right-recursive, so the fold recurses into itself rather than looping.
+par_unary(int[] pos) {
+  int nd = 0;
+  if (par_is_unop(pos)) { nd = par_un_f(pos); } else { nd = par_post(pos); }
+} return int nd;
+
+par_un_f(int[] pos) {
+  string txt = par_text(pos);
+  par_next(pos);
+} return int ast_new_a(ast_k_un(), txt, par_unary(pos));

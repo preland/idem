@@ -1,0 +1,27 @@
+// `on press`, and the manifest's key map.
+//
+// `keys { space = press, enter = press, w = press, esc = quit }` says which keys
+// a game cares about and what each one *means*. A script then says `on press`
+// and never names a key -- which is why three different keys can flap a bird
+// without the bird's script knowing there are three.
+//
+// The map is a parallel pair of lists: a key code and the event name it raises.
+// `quit` is handled here rather than being an event a script could receive,
+// because no game should have to write a handler to be closable.
+
+scr_press() {
+  scr_pscan(0);
+} return void;
+
+scr_pscan(int i) {
+  while (i < len((import scr_kk))) {
+    scr_pkey(i);
+    i = i + 1;
+  }
+} return void;
+
+scr_pkey(int i) {
+  if (inp_hit((import scr_kk)[i]) = 1) {
+    scr_pev((import scr_ke)[i]);
+  }
+} return void;

@@ -1,0 +1,16 @@
+// The base state, and the highest set bit it needs.
+
+fse_bbase(int u, int ns) {
+  lset((import fse_bs), (import fse_st)[6] + u, ns * inf_pow2((import fse_nb)[(import fse_st)[6] + u]) - (import fse_st)[7]);
+} return void;
+
+// The index of the highest set bit: 0 for 1, 1 for 2-3, 2 for 4-7. A loop rather
+// than a table because it runs once per table slot at build time, never per
+// symbol at decode time.
+fse_hib(int v) {
+  int b = 0;
+  while (v > 1) {
+    v = v / 2;
+    b = b + 1;
+  }
+} return int b;

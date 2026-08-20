@@ -1,0 +1,31 @@
+// Decompressing a .blend in place.
+//
+// Blender has compressed saves with zstd by default since 3.0, so the file on
+// disk usually does not start with `BLENDER` at all -- it starts with a zstd
+// frame. `asset_io` is repointed at the decompressed bytes, and the block walk
+// above is untouched: it reads a .blend, and whether one arrived compressed is
+// this file's business and nobody else's.
+//
+// 28 B5 2F FD is the zstd frame magic, little-endian in the file. A skippable
+// frame (magic 50..5F B5 2F FD) can come first, which is why the check is on the
+// low byte's *range* rather than one value -- Blender writes one.
+
+bl_open2() {
+  bl_unz();
+  lset((import bl_st), 11, bl_head());
+} return void;
+
+bl_unz() {
+  if (asset_at(1) = 181 && asset_at(2) = 47 && asset_at(3) = 253) {
+    bl_unz2();
+  }
+} return void;
+
+// Four times the compressed size, plus a floor. zstd carries a content size per
+// frame and a .blend has dozens of them, so summing it would need a pre-pass over
+// the whole file; 4x is well clear of the ~1.6x this format actually achieves,
+// and zst_run refuses to write past whatever it is given rather than trusting it.
+bl_unz2() {
+  int n = (import asset_io)[1] * 4 + 65536;
+  bl_unz3(alloc(n), n);
+} return void;

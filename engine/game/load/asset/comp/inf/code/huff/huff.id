@@ -1,0 +1,32 @@
+// Canonical Huffman: build a table from code lengths, and decode one symbol.
+//
+// A table is two lists: `cnt`, how many codes there are of each length 1..15, and
+// `sym`, the symbols in canonical order -- sorted by code length, and by symbol
+// within a length. That is enough to decode without ever materialising a code:
+// walk the lengths, and at each one ask whether the bits read so far fall inside
+// that length's block of codes.
+//
+// This is `puff`'s decoder. It is one comparison and two additions per bit, which
+// is slower than a lookup table and is the version that can be checked by reading
+// it -- and the table build is where a fast decoder goes wrong silently.
+
+inf_build(int[] cnt, int[] sym, int[] lens, int n) {
+  inf_count(cnt, lens, n);
+  inf_offs(cnt, sym, lens, n);
+} return void;
+
+inf_count(int[] cnt, int[] lens, int n) {
+  int i = 0;
+  lst_set_all(cnt, 16, 0);
+  while (i < n) {
+    lset(cnt, lens[i], cnt[lens[i]] + 1);
+    i = i + 1;
+  }
+} return void;
+
+// Symbols, sorted by length then by symbol. `inf_ofs` holds the running start of
+// each length's run, so this is one pass over the lengths rather than a sort.
+inf_offs(int[] cnt, int[] sym, int[] lens, int n) {
+  inf_ofill(cnt);
+  inf_osort(sym, lens, n);
+} return void;

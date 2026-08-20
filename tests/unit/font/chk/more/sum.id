@@ -1,0 +1,30 @@
+// The whole-table checks, and the walk that makes them.
+
+// 3584 rows, every one of them: the spot checks above say the glyphs landed in
+// the right places, and this says nothing else moved. A wrong charsize, a
+// mirrored row, a glyph read from the unicode table past the end of the bitmaps
+// -- all of them change this and none of them need change 'A'.
+t_sum() {
+  print("  PSF2 face, FNV-1a of all 3584 rows, exp 3575843923 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
+  t_psf1();
+} return void;
+
+// The PSF1 face's own 'A': 00 18 24 24 42 42 7E, a thin two-stroke letter,
+// against the VGA face's bold 10 38 6C C6 C6 FE. Reading rows 3, 4 and 8 of it
+// is the check that this is a different font and not the last one still in the
+// table.
+t_psf1r() {
+  print("  'A' rows 3,4,8 exp 24 36 126 = " + (import txt_glyphs)[txt_glyph_at(65) + 3] + " " + (import txt_glyphs)[txt_glyph_at(65) + 4] + " " + (import txt_glyphs)[txt_glyph_at(65) + 8]);
+  print("  PSF1 face, FNV-1a of all 3584 rows, exp 485156385 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
+  t_bad();
+} return void;
+
+// FNV-1a over the row table, in a word: the multiply overflows an int on the
+// first byte, and the mask is what keeps it to 32 bits so the value matches what
+// any other implementation of FNV-1a computes.
+t_hash(int i, int n, word wp) {
+  while (i < n) {
+    wp = ((wp ^ (import txt_glyphs)[i]) * 16777619) & 4294967295;
+    i = i + 1;
+  }
+} return word wp;

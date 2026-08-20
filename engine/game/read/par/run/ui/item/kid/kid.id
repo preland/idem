@@ -1,0 +1,13 @@
+// The child list itself.
+//
+// A child is an item, which is the whole grammar: there is one syntactic form and
+// everything -- container, leaf, definition call -- is spelled with it. The three
+// children per container cap that idml enforces is a *checking* rule, not a
+// parsing one, so it is not applied here; the loader reports it with a line
+// number rather than the parser losing the fourth child.
+
+par_ufill3(int[] pos, int[] kids) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_item(pos));
+  }
+} return void;

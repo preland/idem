@@ -1,0 +1,27 @@
+// Copying literals into the buffer.
+
+zst_lfill(int kd, int n) {
+  if (kd = 1) {
+    zst_lrle(n);
+  } else {
+    zst_lcopy(n);
+  }
+} return void;
+
+zst_lrle(int n) {
+  int v = zst_le(1);
+  int i = 0;
+  while (i < n) {
+    poke8((import zst_st)[8] + i, v);
+    i = i + 1;
+  }
+} return void;
+
+zst_lcopy(int n) {
+  int i = 0;
+  while (i < n && (import zst_st)[6] = 0) {
+    poke8((import zst_st)[8] + i, zst_byte((import zst_st)[1] + i));
+    i = i + 1;
+  }
+  lset((import zst_st), 1, (import zst_st)[1] + n);
+} return void;

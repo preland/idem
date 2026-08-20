@@ -1,0 +1,22 @@
+// st -- whether we still have a window, and whether we should still be running.
+//
+// Three slots: 0 = the window opened, 1 = something asked us to quit, 2 = spare
+// (frames presented). It is a list rather than three exported scalars because
+// only a declaring function may assign an exported scalar, so a mutable global
+// has to be a cell someone else can lset.
+//
+// Slot 0 matters more than it looks. With no display at all gfx_open returns 0,
+// and a frame loop that ignores that runs forever presenting nothing --
+// demos/gfxdemo hangs exactly this way (rc 124 under a timeout). Threading the
+// open result into the loop's exit condition is the whole fix.
+
+sys_st_init(int ok) {
+  export int[] sys_st = [ok, 0, 0];
+} return void;
+
+sys_alive() {
+} return int ((import sys_st)[0] = 1) && ((import sys_st)[1] = 0);
+
+sys_quit() {
+  lset((import sys_st), 1, 1);
+} return void;

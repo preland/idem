@@ -1,0 +1,32 @@
+// `if`, `while` and `repeat`.
+//
+// The parser builds `if` as condition, then-block, else-block in a/b/c -- and an
+// `else if` chain is an `if` nested in the else, which is why one function
+// handles both shapes.
+
+scr_if(int nd, int e) {
+  int fin = 0;
+  if (scr_ev(ast_ia(nd), e) != 0) {
+    fin = scr_ex(ast_ib(nd), e);
+  } else {
+    fin = scr_else(ast_ic(nd), e);
+  }
+} return int fin;
+
+// No else is node 0, which is not a statement and must not be executed as one.
+scr_else(int nd, int e) {
+  int fin = 0;
+  if (nd != 0) { fin = scr_ex(nd, e); }
+} return int fin;
+
+// The turn count is the guard, and it is deliberately generous: ten thousand
+// iterations is more than any legitimate per-frame loop and far short of a hang.
+// A script is written by someone who can write `while (1) { }` in one line, and
+// a game that freezes says less about what went wrong than a game that carries on.
+scr_while(int nd, int e, int n) {
+  int fin = 0;
+  while (fin = 0 && n < 10000 && scr_ev(ast_ia(nd), e) != 0) {
+    fin = scr_ex(ast_ib(nd), e);
+    n = n + 1;
+  }
+} return int fin;

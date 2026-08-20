@@ -1,0 +1,51 @@
+// ent -- the entity store.
+//
+// One flat list of 28-slot records, `e` being both an entity's id and its
+// index. It was four parallel lists (x, y, sprite, frame) until the components
+// they had to carry went from four to twenty: fifteen parallel `export`s cost
+// five init functions to declare and a five-argument append to fill, and every
+// new component would have cost another of each. A record has one of each,
+// forever, and `id`'s only aggregate is a list either way.
+//
+//     0 x    1 y     position of the entity's CENTRE, in millunits
+//     2 vx   3 vy    velocity, millunits per second
+//     4 sx   5 sy    scale, per-mille (1000 is unscaled)
+//     6 spr  7 frame sprite table index (-1 for none), current frame
+//     8 layer        2D draw order, low to high
+//     9 flags        1 live, 2 solid, 4 has a body, 8 wraps
+//    10 wa  11 wb    wrap bounds, millunits
+//    12 bw  13 bh    body size, millunits
+//    14 af  15 al  16 ams   anim first frame, last frame, ms per frame
+//    17 vb  18 vn    this entity's `var` block: base and count in scr_vv
+//    19 scr          its `script` node, 0 for none
+//    20 tags         a bitset over the tag registry, one bit per declared tag
+//    21 tmr          milliseconds accumulated toward its `on timer`
+//    22 age          milliseconds since it was spawned
+//    23 sel          1 while the editor has this entity selected
+//    24 shape        0 none, 1 box -- what to draw when there is no sprite
+//    25 sw  26 sh    the shape's size, millunits
+//    27 scol         the shape's colour
+//
+// Millunits, not stage units, because velocity is per *second* and a frame is a
+// sixtieth of one: at 120 px/s an integer stage coordinate advances by 2 with a
+// remainder of 0, which happens to work, and at 24 px/s it advances by 0 forever.
+// Sub-unit motion has to be representable or half the scrolling in a game stops.
+//
+// Deletion clears the live flag rather than compacting, so an id stays valid for
+// the frame it died in -- which is what makes `on death` and `other` safe.
+
+// sim_init here rather than a link of its own in the boot chain: the store and
+// the clock that advances it are one thing to bring up, and the chain has no room
+// for a link that does nothing but forward.
+ent_init() {
+  export int[] ent_r = [];
+  sim_init();
+  scr_init();
+} return void;
+
+ent_at(int e, int k) {
+} return int (import ent_r)[e * 28 + k];
+
+ent_put(int e, int k, int v) {
+  lset((import ent_r), e * 28 + k, v);
+} return void;

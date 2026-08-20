@@ -1,0 +1,50 @@
+// zst -- Zstandard (RFC 8878) decompression, in `id`.
+//
+// This exists because a real `.blend` is zstd: `test_assets/showroom.blend` is 36
+// zstd frames, 23.2 MiB compressed, and every data block is a Compressed_Block
+// with Huffman literals -- there is no raw-block shortcut to sneak through.
+//
+// It is a much bigger format than DEFLATE and the shape is different in a way
+// worth stating before reading any of it: **zstd's entropy bitstream is read
+// backwards**, from the last byte of a section towards the first, and within each
+// byte from the high bit down. DEFLATE reads forwards, low bit first. Everything
+// in code/bit/ exists to serve that one inversion, and mixing the two conventions
+// is the single easiest way to produce a decoder that works on small inputs and
+// fails on real ones.
+//
+// The state, zst_st:
+//
+//     0 sa    source address        1 sp   read cursor      2 slen source length
+//     3 da    output address        4 dp   write cursor     5 cap  output capacity
+//     6 err   0, or the first fault
+//     7 fcs   the frame's declared content size, when it declared one
+//     8 lita  literals buffer address   9 litn its length  10 litp its cursor
+//    11 o1   12 o2   13 o3   the three most recent match offsets
+//    14 lcmp  the literals section's compressed size, while it is being read
+//
+// Addresses are flat-store addresses, never file offsets -- the same distinction
+// that cost an hour in the inflate.
+//
+// A fault is recorded, not thrown: there is no early exit in this language, so
+// every loop below carries the flag in its condition and a corrupt stream stops
+// rather than spinning.
+
+zst_init() {
+  export int[] zst_st = [];
+  lst_fill((import zst_st), 16, 0);
+  zst_tabs();
+} return void;
+
+// Decompress the bytes at `sa` into `cap` bytes at `da`. Answers the number of
+// bytes produced, or -1. Mirrors inf_run exactly, so a caller can pick a codec by
+// name and nothing else changes.
+zst_run(int sa, int slen, int da, int cap) {
+  zst_reset(sa, slen, da, cap);
+  zst_frames();
+} return int zst_out();
+
+zst_reset(int sa, int slen, int da, int cap) {
+  m4_pair((import zst_st), 0, 1, sa, 0);
+  m4_pair((import zst_st), 2, 3, slen, da);
+  zst_reset2(cap);
+} return void;

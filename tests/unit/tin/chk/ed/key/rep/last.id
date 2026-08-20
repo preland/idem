@@ -1,0 +1,27 @@
+// The second repeat, the release that ends it, and the caret's blink.
+
+t_rep6() {
+  t_hold(5490);
+  print("second repeat exp 123456 = " + tin_text());
+  t_rep7();
+} return void;
+
+// The release, and then a frame nearly four seconds later. The deadline is long
+// past by then, so this is the check that the repeat is gated on the key still
+// being *down* and not only on the clock -- the failure it catches is a field
+// that keeps deleting after the key comes up.
+t_rep7() {
+  t_up(8, 5600);
+  t_hold(9000);
+  t_rep8();
+} return void;
+
+// The blink is phased from the last edit rather than from a free-running clock,
+// so it is solid at the instant of the keystroke, dark 400 ms later and solid
+// again after 800. tin_blink is pure -- it reads the clock it is handed -- so
+// three calls at three times is the whole of it.
+t_rep8() {
+  print("released, three seconds later exp 123456 = " + tin_text());
+  print("blink at the last edit, +400, +800 exp 1 0 1 = " + tin_blink(5490) + " " + tin_blink(5890) + " " + tin_blink(6290));
+  t_draw();
+} return void;

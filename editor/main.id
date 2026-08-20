@@ -1,0 +1,50 @@
+// idem editor -- a scene editor for idem games, in `id`, drawn by idem.
+//
+//   tools/idem edit <gamedir>
+//
+// The game's sources arrive on stdin, concatenated with `#file` markers, exactly
+// as `idem pack` and `idem check` receive them -- `id` has no file I/O, so a
+// program that wants to see a project is handed one. They are lexed with the
+// engine's own lexer, and the panes are built from the token stream: the project
+// browser lists the files the markers name, and the hierarchy lists every
+// declaration the lexer found.
+//
+// The layout is the one every 3D editor has settled on and Unity made standard:
+// a menu bar, a toolbar, a hierarchy on the left, an inspector on the right, a
+// project browser along the bottom, and the scene view in the middle with an
+// orbit camera on the mouse. It is a familiar arrangement because it is a good
+// one, and because an editor that has to be learned is an editor that is not used.
+//
+// The init chain is the engine's own and its order is not negotiable: an exported
+// global does not exist until its declaring function has run, so trigonometry
+// before anything that takes a sine, a surface before anything that measures
+// itself against one, and the window before either.
+
+// One argument of any kind means `--shot`: render frames and write the last one
+// to stdout as a PPM instead of opening a loop. That is the engine's own
+// verification path (ARCHITECTURE.md §10) and it needs no display at all, which
+// is what lets an editor -- a program whose entire output is pixels -- be checked
+// by a script.
+//
+// `--shot 120` runs 120 of them, which is the only way to check something that
+// takes time: the game running under `play`, an animation advancing, a drag. It
+// is the same shot_n the runtime uses, so the two spell it identically.
+main(int argc, string[] argv) {
+  ed_boot();
+  ed_run(argc, argv);
+} return int 0;
+
+ed_boot() {
+  fx_trig_init();
+  rnd_init(20260730);
+  ed_boot2();
+} return void;
+
+// 640x400 at scale 2. The window manager gets the last word on the size of the
+// window and sys_present re-fits every frame, so this is a request, not a layout
+// assumption -- ed_lay recomputes every rect from the surface each frame.
+ed_boot2() {
+  sys_open(640, 400, 2, "idem editor");
+  txt_init();
+  ed_boot3();
+} return void;

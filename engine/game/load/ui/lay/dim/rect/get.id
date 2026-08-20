@@ -1,0 +1,20 @@
+// Reading a rect back: `i` is 0 x, 1 y, 2 w, 3 h.
+//
+// A name that was never drawn answers 0, so a widget whose pane has been removed
+// from the layout collapses to nothing rather than indexing off the end of the
+// table -- which would abort the process.
+
+ui_rect(string name, int i) {
+  int p = ui_rfind(name);
+  int v = 0;
+  if (p >= 0) { v = ui_rpair(p, i); }
+} return int v;
+
+ui_rpair(int p, int i) {
+  int v = (import ui_rv)[p * 2 + i / 2];
+} return int ui_half(v, i % 2);
+
+ui_half(int v, int k) {
+  int n = v / 65536;
+  if (k = 1) { n = v % 65536; }
+} return int n;

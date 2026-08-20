@@ -1,0 +1,49 @@
+// win -- opening the window, and the stage inside it.
+//
+// **The surface is the window, pixel for pixel.** There is no second buffer and
+// no magnification: sf_fb is exactly the size gfx_width/gfx_height report, and
+// gfx_present blits it 1:1 because that is now the right size to blit.
+//
+// What a game declares -- `display (288, 512)` and `scale 2` -- still means
+// something, but it means two different things and they were previously
+// conflated:
+//
+//   * `display x scale` is the size the window is **asked for** at gfx_open. The
+//     window manager has the last word (a tiling WM resizes on map, before the
+//     first frame), so it is a request, not a fact.
+//   * `display` is the size of the **stage**: the rectangle the game draws its
+//     world in. It is mapped into the surface, aspect preserved and centred, by
+//     sys_stage. A 2D game is the camera looking straight at a plane that fills
+//     its view, and the stage is that plane measured in the units the game's art
+//     is drawn in.
+//
+// So the game keeps its 288x512 coordinate system and the engine keeps a
+// window-sized framebuffer, which is what makes text and UI sharp at the
+// window's real resolution instead of being blown up from a quarter of it.
+//
+// sys_vp, the stage record:
+//
+//     0  sc   stage units to surface pixels, per-mille (1000 = 1:1)
+//     1  ox   left edge of the stage inside the surface, in pixels
+//     2  oy   top edge
+//     3  dw   the declared display width, in stage units
+//     4  dh   the declared display height
+
+// The window is opened *before* the stage is set up, so gfx_width already
+// answers the size the window manager chose and the very first frame is drawn at
+// it. Fitting afterwards would render one frame at the requested size and then
+// jump.
+sys_open(int w, int h, int sc, string title) {
+  sf_open(w, h);
+  sys_st_init(gfx_open(w * sc, h * sc, title));
+  sys_vp_init(w, h);
+} return int sys_alive();
+
+// Callable without a window at all -- a test sets a surface size and a stage and
+// asks where the stage lands, with nothing native involved. That is why the
+// window state lives in sys_st and not here.
+sys_vp_init(int w, int h) {
+  export int[] sys_vp = [1000, 0, 0, w, h];
+  sys_stage();
+  sys_fit(gfx_width(), gfx_height());
+} return void;

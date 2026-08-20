@@ -1,0 +1,45 @@
+// in -- typing. A buffer, a caret, and the keys that move them.
+//
+// The engine had no way to read text at all: inp_ reports which keys are down
+// and which went down this frame, and everything above it turned that into
+// movement or a jump. A name for a scene, a search box, a value typed into an
+// inspector -- all of them need the other thing a keyboard is for, and this is
+// it, in one place rather than once per caller.
+//
+// The state is two exports and nothing else:
+//
+//     tin_s[0]      the buffer, a string
+//     tin_st[0]     the caret, an index into it, 0..len
+//     tin_st[1]     the key that is repeating, 0 for none
+//     tin_st[2]     the ms at which that key fires again
+//     tin_st[3]     the ms of the last edit -- the caret's blink phase
+//     tin_st[4]     what happened this frame: 0 nothing, 1 Enter, 2 Escape
+//
+// There is ONE of these, not one per field. A program has one keyboard and one
+// focused thing to type into, so a second buffer would be a second thing the
+// keystrokes could go to and a focus rule to decide between them; a caller that
+// wants several fields calls tin_set with the one it is editing and reads
+// tin_text back when tin_step answers 1. That is the whole ownership model.
+//
+// **Strings are built by concatenation here, and that is deliberate.** The
+// engine's rule is that nothing formats a string per frame -- `s = s + c`
+// allocates and never frees, and a thousand frames of one line cost 667 ms and
+// 1.8 GB (research/id-language.md section 3). A keystroke is not a frame: it
+// happens at human speed, at most a few per second and only while someone is
+// typing, so an insert costs two str_slice allocations and a concat and nobody
+// will ever measure it. The per-frame path here -- tin_step, and the drawing --
+// builds no string at all.
+
+tin_init() {
+  export int[] tin_st = [0, 0, 0, 0, 0];
+  export string[] tin_s = [""];
+} return void;
+
+// Put text in the field and drop the caret at its end, which is where someone
+// who has just been handed a value to edit expects it.
+tin_set(string s) {
+  tin_put(s, len(s));
+} return void;
+
+tin_text() {
+} return string (import tin_s)[0];

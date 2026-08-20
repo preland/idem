@@ -1,0 +1,18 @@
+// Reading a built table back: the decoder's three operations.
+//
+// A role is 0 literal lengths, 1 offsets, 2 match lengths, and fse_rl holds its
+// (base, log) pair -- set when the table was built, so decoding needs none of the
+// builder's scratch.
+//
+// Initialising a state reads `log` bits; decoding a symbol is a lookup; advancing
+// reads that slot's own bit count and adds the result to its base state. The
+// bits come from the BACKWARD reader, unlike the table description above.
+
+fse_dstart(int r) {
+} return int zb_bits((import fse_rl)[r * 2 + 1]);
+
+fse_dsym(int r, int fs) {
+} return int (import fse_sy)[(import fse_rl)[r * 2] + fs];
+
+fse_dnext(int r, int fs) {
+} return int (import fse_bs)[(import fse_rl)[r * 2] + fs] + zb_bits((import fse_nb)[(import fse_rl)[r * 2] + fs]);

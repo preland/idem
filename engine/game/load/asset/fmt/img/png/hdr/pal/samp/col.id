@@ -1,0 +1,18 @@
+// A palette entry, as a colour and as an alpha.
+//
+// An index past the palette is black rather than a fault. A file can be wrong;
+// a decoder that aborts the process over one bad index is worse than one that
+// draws a hole, and the hole is visible.
+
+png_pcol(int idx) {
+  int i = (import png_st)[12] + idx * 3;
+  int c = 0;
+  if (idx < (import png_st)[13]) { c = d2_rgb(peek8(i), peek8(i + 1), peek8(i + 2)); }
+} return int c;
+
+// Past the end of tRNS is opaque -- the chunk is truncated after its last
+// non-opaque entry, and that truncation is the format's, not a corruption.
+png_palpha(int idx) {
+  int a = 255;
+  if (idx < (import png_st)[15]) { a = peek8((import png_st)[14] + idx); }
+} return int a;

@@ -1,0 +1,28 @@
+// Yaw, pitch and translation -- the three places a sign error hides.
+//
+// Positive yaw turns LEFT: at 90 degrees the camera faces world -X, so the point
+// one unit along -X is one unit straight ahead of it. Positive pitch looks UP: at
+// 90 degrees the camera faces world +Y, so the point one unit above the origin is
+// one unit ahead. Both answers are (0, 0, 1000); either sign backwards gives
+// (0, 0, -1000), a world that renders nothing rather than one that renders wrong,
+// which is at least a loud failure.
+
+t_yaw() {
+  t_pose(0, 0, 90000, 0);
+  t_pt("yaw +90 deg: world (-1000,0,0) is ahead, exp 0 0 1000", 0 - 1000, 0, 0);
+  t_pitch();
+} return void;
+
+t_pitch() {
+  t_pose(0, 0, 0, 90000);
+  t_pt("pitch +90 deg: world (0,1000,0) is ahead, exp 0 0 1000", 0, 1000, 0);
+  t_back();
+} return void;
+
+// Moving the eye back along +Z pushes the world forward by the same amount: the
+// origin is five units ahead of a camera standing at z = 5000.
+t_back() {
+  t_pose(0, 5000, 0, 0);
+  t_pt("cam at z 5000: world origin exp 0 0 5000", 0, 0, 0);
+  t_cut();
+} return void;

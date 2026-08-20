@@ -1,0 +1,42 @@
+// tab -- the sprite table.
+//
+// Five parallel exported lists indexed by a sprite id `p`, the shape from
+// ARCHITECTURE.md section 5 and the names from NAMES.md section 4:
+//
+//   asset_sprw[p]   width in pixels
+//   asset_sprh[p]   height in pixels of ONE frame
+//   asset_sprf[p]   frame count
+//   asset_sprpx[p]  w * h * frames packed pixels, frame after frame, row-major
+//   asset_sprn[p]   the name it was declared with
+//
+// A sprite is authored as characters against a palette (IDML_GAME.md section 2)
+// and decoded once, at load, into that flat pixel list. Nothing at draw time
+// looks at a character or a palette: the loader resolves both, so a blit is
+// arithmetic and stores.
+//
+// The declaration is a chain because a block holds three actions and an export
+// is one of them -- two exports plus the call to the next link is the most any
+// one function can do. Every link must run: an id export is a C global whose
+// initialiser lives inside its declaring function, so an unreached link leaves a
+// NULL list and the first read segfaults with no warning. d2_spr_init is the
+// only entry point, and idem_boot's init chain calls it.
+//
+// The `p` here is a sprite id, not `e`: NAMES.md reserves `e` for an entity id,
+// and an entity carries a sprite id in ent_spr[e], so the two are different
+// numbers that would otherwise share a name.
+
+d2_spr_init() {
+  export int[] asset_sprw = [];
+  export int[] asset_sprh = [];
+  d2_spr_init2();
+} return void;
+
+d2_spr_init2() {
+  export int[] asset_sprf = [];
+  export int[][] asset_sprpx = [];
+  d2_spr_init3();
+} return void;
+
+d2_spr_init3() {
+  export string[] asset_sprn = [];
+} return void;

@@ -1,0 +1,17 @@
+// One member of the shape's size.
+//
+// `box (6, 40)` is not a keyword and a tuple: an identifier immediately followed
+// by a bracket is a **call**, so the parser builds one node named "box" whose
+// children are the two numbers. The size is therefore *inside* the first
+// argument, and the colour is the second argument rather than the third.
+//
+// Reading it as a name plus a separate tuple found the name, set the shape kind,
+// and left the size at zero -- so every paddle and ball in the first pong the
+// editor generated was a correctly-placed rectangle of no width at all.
+
+// scn_mtup2 is exactly this walk -- a component's first argument, member k --
+// and the compiler rejects a second copy of it. That the two arrived at the same
+// shape from different directions is the rule working: a `gravity (0, 1500)` and
+// a `box (6, 40)` really are the same question asked of different components.
+scn_smem(int nd, int k) {
+} return int scn_mtup2(nd, k);

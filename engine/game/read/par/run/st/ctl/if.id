@@ -1,0 +1,16 @@
+// A production that needs more than three steps becomes a staircase, each
+// function consuming one piece and passing the rest forward.
+par_if(int[] pos) {
+  par_next(pos);
+  par_want(pos, "(");
+} return int par_if2(pos, par_expr(pos));
+
+par_if2(int[] pos, int cond) {
+  par_want(pos, ")");
+  int thn = par_block(pos);
+} return int par_if3(pos, cond, thn);
+
+par_if3(int[] pos, int cond, int thn) {
+  int els = 0;
+  if (par_is(pos, "else")) { els = par_else(pos); }
+} return int ast_new_abc(ast_k_if(), "", cond, thn, els);

@@ -1,0 +1,24 @@
+// A scene's script node, and a scene by name.
+
+// The scene's own `script { }`, as opposed to an entity's. A scene may have at
+// most one; the first is taken and a second ignored rather than diagnosed,
+// because nothing in the grammar forbids writing two and first-wins is the
+// obvious reading.
+scn_sscript(int nd, int i) {
+  int sc = 0;
+  while (i < len(ast_ks(nd)) && sc = 0) {
+    sc = scn_ifscript(ast_ks(nd)[i]);
+    i = i + 1;
+  }
+} return int sc;
+
+scn_ifscript(int nd) {
+  int sc = 0;
+  if (ast_kd(nd) = ast_k_script()) { sc = nd; }
+} return int sc;
+
+// `goto over` names a scene declared somewhere in the document. Answering 0 for
+// an unknown name means the jump does not happen, which leaves the game where it
+// was rather than in a scene with no entities in it.
+scn_byname(string name) {
+} return int scn_bfind((import scn_st)[4], name, 0);

@@ -1,0 +1,25 @@
+# pong's screen. Nothing here decides anything.
+#
+# The playfield itself is drawn by id (id/view/draw.id) into the framebuffer;
+# what this file lays out is the furniture over it -- the two scores, and the
+# hint that shows only before the first serve.
+#
+# @lscore, @rscore and @waiting are read from id every frame. Which key moves a
+# paddle, when the ball bounces and who scored are facts about the game, and a
+# layout language never learns them.
+
+import "./ui/style.idml"
+
+./
+Page()[100,100,top-left] {
+  Scores()[12,100,top-center]{}
+  Spacer()[76,100,center]{}
+  Hint("PRESS SPACE")[12,100,bottom-center]?@waiting{}
+}
+
+define Scores() {
+  Row()[100,100,top-center] {
+    Text(@lscore)[100,50,top-center]{}
+    Text(@rscore)[100,50,top-center]{}
+  }
+}

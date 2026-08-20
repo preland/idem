@@ -1,0 +1,16 @@
+// The two lists the coefficient buffers need.
+// jpg_ca is each component's coefficient buffer address; jpg_nb its block
+// dimensions for a non-interleaved scan, two per component.
+jpg_init4b() {
+  export int[] jpg_ca = [];
+  export int[] jpg_nb = [];
+  jpg_init4c();
+} return void;
+
+// jpg_r is the AC-refinement state machine's record: the coefficient index, the
+// zero run still to skip, the value waiting to be placed, and the phase.
+jpg_init4c() {
+  export int[] jpg_r = [];
+  lst_fill((import jpg_r), 4, 0);
+  jpg_init5();
+} return void;

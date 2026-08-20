@@ -1,0 +1,14 @@
+// Filling a run of the scratch length array, and finishing the fixed build.
+
+inf_flens(int a, int b, int n) {
+  int i = a;
+  while (i < b) {
+    lset((import inf_lens), i, n);
+    i = i + 1;
+  }
+} return void;
+
+inf_fixd() {
+  inf_build((import inf_dc), (import inf_ds), (import inf_lens), 30);
+  inf_codes();
+} return void;

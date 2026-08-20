@@ -1,0 +1,11 @@
+// One field of the status line, and the guard that drops it off the edge.
+
+ed_slab(int x, int y, string s) {
+  ed_sdraw(x, y, s, ed_col(5));
+} return int x + txt_width(s) + 8 * txt_ui();
+
+ed_sdraw(int x, int y, string s, int c) {
+  if (x < (import sf_gw)) {
+    txt_draw(s, x, y, c);
+  }
+} return void;

@@ -1,0 +1,57 @@
+// The depth buffer, and the depth key it holds.
+//
+// One entry per pixel, the same index as the framebuffer (sf_idx), so a pixel's
+// colour and its depth are one index apart in two lists and the inner loop needs
+// no second address calculation.
+//
+// **What is stored is 1/z, not z.** A triangle's z is not linear in screen space
+// but its reciprocal is, so interpolating z across a scanline would bend every
+// surface and make two crossing walls fight along a curve. The key is
+//
+//     dz = 2^36 / z          z in millunits, dz an int, LARGER MEANS NEARER
+//
+// and the test is `dz > zb[i]`, with the buffer cleared to 0 = infinitely far.
+// 2^36 is the largest constant that keeps the key inside 32 bits for a near plane
+// of 40 millunits (0.04 world units): 2^36/40 is 1.7 * 10^9 against an int
+// ceiling of 2.1 * 10^9. A camera with a near plane closer than that would wrap
+// the key and see through walls, which is why d3_cam_set floors it.
+//
+// The choice of 2^36 is also what makes the span loop cheap. The key is stored
+// and interpolated in the same units, so the inner loop compares an accumulator
+// against a buffer entry with no shift and no scaling -- three actions in the
+// loop body, which is exactly the budget a block has. The cost is that the
+// per-pixel step is truncated to a whole key unit, so depth drifts by up to one
+// unit per pixel: 0.02% of the key at a 40-unit far plane, 0.5% at 1000 units.
+//
+// Resolution, for the record: at 1 world unit the key is 6.7 * 10^7 and one
+// millunit of z is 67000 units of key; at 40 units it is 1.7 * 10^6 and one
+// millunit is 42. Nothing a game builds will z-fight from lack of precision.
+
+d3_zalloc() {
+  export int[] d3_zb = [];
+  lst_fill((import d3_zb), (import sf_gw) * (import sf_gh), 0);
+} return void;
+
+// Grown before it is cleared, because the surface is the window and the window
+// can change size between any two frames. Clearing a buffer that is one resize
+// behind would write past its end, which aborts the process rather than drawing
+// something slightly wrong.
+//
+// Grown, never re-declared: `lst_fill` extends the existing list in place, and a
+// fresh `export int[] d3_zb = []` per resize would abandon the old one -- `id`
+// frees nothing, so a dragged window would retain a depth buffer per size it
+// passed through. A negative count pushes nothing, so this is free once the
+// buffer is big enough.
+d3_zclear() {
+  lst_fill((import d3_zb), (import sf_gw) * (import sf_gh) - len((import d3_zb)), 0);
+  lst_set_all((import d3_zb), (import sf_gw) * (import sf_gh), 0);
+} return void;
+
+// 2^36 is written as a literal because any integer literal above 0x7fffffff types
+// as `word` in this language, so the division is 64-bit without a declaration
+// saying so. z is floored at 1 rather than trusted: a word division by zero is a
+// clean abort, but an abort is still a dead frame.
+d3_dkey(int z) {
+  word wp = 68719476736;
+  wp = wp / fx_max(z, 1);
+} return int wp;

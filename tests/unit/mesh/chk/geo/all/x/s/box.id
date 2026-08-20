@@ -1,0 +1,13 @@
+// The placed scene's bounding box, which is what a transform is for: with every
+// mesh left in local space these all collapse toward one mesh's extent.
+
+t_sbox() {
+  print("scene x exp -6525 9300 = " + t_lo(0) + " " + t_hi(0));
+  print("scene y exp -1000 4350 = " + t_lo(1) + " " + t_hi(1));
+  t_sbox2();
+} return void;
+
+t_sbox2() {
+  print("scene z exp -6719 4239 = " + t_lo(2) + " " + t_hi(2));
+  print("scene triangle indices out of range exp 0 = " + t_oob());
+} return void;

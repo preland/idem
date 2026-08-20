@@ -1,0 +1,14 @@
+// Orbiting, on the right button.
+//
+// Yaw and pitch in millidegrees, 500 per pixel: a 360-degree turn is 720 pixels
+// of travel, about a screen's width, and that is the rate that feels like turning
+// an object rather than flinging it.
+//
+// Dragging right turns the scene right, which means the *camera* goes the other
+// way -- hence the minus. Getting this backwards is not subtle to use and is very
+// easy to write: the eye orbits opposite to the thing it is looking at.
+
+ed_turn() {
+  lset((import ed_st), 2, (import ed_st)[2] - (inp_mx() - (import ed_st)[6]) * 500);
+  ed_pitch();
+} return void;

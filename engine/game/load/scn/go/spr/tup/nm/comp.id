@@ -1,0 +1,17 @@
+// A component whose single argument is a tuple.
+//
+// `gravity (0, 1500)` is a component whose first argument *is* the tuple, unlike
+// `grid (1, 3)` inside a sprite declaration, which is one named call among
+// several arguments. Two shapes, two readers; scn_mtup finds the named one.
+
+scn_mtup2(int nd, int k) {
+  int t = scn_arg(nd, 0);
+  int v = 0;
+  if (t != 0 && k < len(ast_ks(t))) { v = ast_ia(ast_ks(t)[k]); }
+} return int v;
+
+// The scene's gravity, declared in stage units per second squared and kept as
+// millunits like every other rate the store holds.
+scn_grav(int nd) {
+  m4_pair((import scn_st), 7, 8, scn_mtup2(nd, 0) * 1000, scn_mtup2(nd, 1) * 1000);
+} return void;

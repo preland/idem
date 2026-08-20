@@ -1,0 +1,29 @@
+// The zero run.
+//
+// After a count of zero, the stream says how many more symbols are also zero, in
+// a three-part code: any number of 0xFFFF groups worth 24 each, then any number
+// of 2-bit 0b11 groups worth 3 each, then a final 2-bit remainder. Each part is
+// its own statement because two side-effecting reads in one expression may
+// evaluate in either order, which here would consume the stream out of order.
+
+fse_zrun2() {
+  int a = fse_z16();
+  int b = fse_z2();
+  fse_zfill((import fse_st)[4] + a + b);
+} return void;
+
+fse_z16() {
+  int n = 0;
+  while (zf_peek(16) = 65535 && (import zf_st)[5] = 0) {
+    zf_drop(16);
+    n = n + 24;
+  }
+} return int n;
+
+fse_z2() {
+  int n = 0;
+  while (zf_peek(2) = 3 && (import zf_st)[5] = 0) {
+    zf_drop(2);
+    n = n + 3;
+  }
+} return int n + fse_z2b();

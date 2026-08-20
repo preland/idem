@@ -1,0 +1,28 @@
+// The frame, and the two ways of running it.
+//
+// Input, then the game's own step, then drawing: a frame that drew first would
+// show the world as it was before its own input was applied.
+//
+// dt is the declared frame time rather than the measured one, so a run is
+// reproducible and `--shot 60` is comparable between builds. sys_pace sleeps out
+// the difference; a game that misses its budget goes slow rather than teleports.
+
+idem_astep() {
+  sys_sync();
+  run_quit(inp_drain());
+  idem_adraw();
+} return void;
+
+idem_adraw() {
+  g_step(1000 / fx_max(g_stage(3), 1));
+  g_draw();
+  idem_aui();
+} return void;
+
+// The game draws the world; the layout draws the screen over it, at the stage's
+// own scale so a label is as big relative to the game as the thing it labels.
+idem_aui() {
+  lset((import ui_ts), 0, (import sys_vp)[0]);
+  ui_rclear();
+  ui_draw((import ui_pg)[0], sys_sx(), sys_sy(), sys_sw(), sys_sh());
+} return void;

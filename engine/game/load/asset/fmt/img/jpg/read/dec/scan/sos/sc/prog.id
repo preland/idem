@@ -1,0 +1,30 @@
+// Which way a scan walks its blocks.
+//
+// A scan naming more than one component is interleaved and walks the MCU grid. A
+// scan naming exactly one walks that component's OWN blocks, in its own raster
+// order, and there are ceil(samples/8) of them per row -- not the MCU-padded
+// count. For a 2x2-sampled luma 357 pixels wide that is 45 columns against the
+// grid's 46: walking 46 reads one block too many per row and displaces every row
+// after the first.
+
+jpg_run() {
+  if ((import jpg_st)[11] = 1) {
+    jpg_nint((import jpg_st)[18], 0);
+  } else {
+    jpg_mcus2();
+  }
+} return void;
+
+jpg_nint(int ci, int by) {
+  while (by < (import jpg_nb)[ci * 2 + 1] && (import jpg_st)[8] = 1) {
+    jpg_nrow(ci, by, 0);
+    by = by + 1;
+  }
+} return void;
+
+jpg_nrow(int ci, int by, int bx) {
+  while (bx < (import jpg_nb)[ci * 2] && (import jpg_st)[8] = 1) {
+    jpg_nblk(ci, bx, by);
+    bx = bx + 1;
+  }
+} return void;

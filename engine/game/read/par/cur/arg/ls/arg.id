@@ -1,0 +1,19 @@
+// One argument, classified by its syntactic form exactly as idml classifies them
+// -- position decides meaning, so a component or an item can gain an argument
+// without any change here.
+par_arg(int[] pos) {
+  int[] out = [0];
+  par_arg2(pos, out);
+} return int out[0];
+
+par_arg2(int[] pos, int[] out) {
+  if (par_kind(pos) = lex_k_number()) { out[0] = par_num(pos); }
+  else if (par_kind(pos) = lex_k_string()) { out[0] = par_str(pos); }
+  else { par_arg3(pos, out); }
+} return void;
+
+par_arg3(int[] pos, int[] out) {
+  if (par_is(pos, "(")) { out[0] = par_tuple(pos); }
+  else if (par_is(pos, "@")) { out[0] = par_uref(pos); }
+  else { par_arg4(pos, out); }
+} return void;

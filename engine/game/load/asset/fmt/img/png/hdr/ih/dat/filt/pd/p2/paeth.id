@@ -1,0 +1,20 @@
+// The two neighbours in the row above, and the Paeth predictor.
+
+png_up(int y, int i) {
+  int v = 0;
+  if (y > 0) { v = peek8(asset_row(y - 1) + 1 + i); }
+} return int v;
+
+png_ul(int y, int i) {
+  int v = 0;
+  if (y > 0 && i >= (import png_st)[11]) { v = peek8(asset_row(y - 1) + 1 + i - (import png_st)[11]); }
+} return int v;
+
+// Whichever of left, above and above-left is closest to a + b - c. Ties go to
+// left, then above -- the order is part of the specification, not a preference,
+// and getting it wrong produces an image that is right except along edges.
+png_paeth(int a, int b, int c) {
+  int v = c;
+  if (fx_abs(b + a - c - a) <= fx_abs(b + a - c - b) && fx_abs(b + a - c - a) <= fx_abs(b + a - c - c)) { v = a; }
+  else if (fx_abs(b + a - c - b) <= fx_abs(b + a - c - c)) { v = b; }
+} return int v;

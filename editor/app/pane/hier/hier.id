@@ -1,0 +1,31 @@
+// The hierarchy: every declaration the lexer found in the game's sources.
+//
+// This is not a mock-up of a hierarchy. The editor is handed the project's idml
+// on stdin, lexes it with the engine's own lexer, and lists what is actually
+// there -- so a game with fourteen sprites shows fourteen sprites, named as their
+// author named them, at the line they were written on.
+//
+// It is built from the *token stream* rather than from a parse tree because the
+// declaration parser is not written yet (engine/game/read/par/ covers expressions
+// and scripts). A keyword followed by an identifier is a declaration, which is
+// true of every form in IDML_GAME.md §2-§4 and is exactly as much as this pane
+// needs. When the parser lands, this pane reads the AST and gets nesting for free.
+
+ed_hier(int x, int y, int w, int h) {
+  ed_pane(x, y, w, h, "Hierarchy");
+  ed_hier_rows(x, y + ed_hdr() + 1, w, (h - ed_hdr() - 3) / ed_rowh());
+} return void;
+
+ed_hier_rows(int x, int y, int w, int n) {
+  int i = 0;
+  while (i < n && i < len((import ed_nm))) {
+    ed_hier_row(x, y + i * ed_rowh(), w, i);
+    i = i + 1;
+  }
+} return void;
+
+ed_hier_row(int x, int y, int w, int i) {
+  if (ed_row(x + 1, y, w - 2, ed_label(i), (import ed_st)[0] = i) = 1) {
+    lset((import ed_st), 0, i);
+  }
+} return void;

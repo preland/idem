@@ -1,0 +1,29 @@
+// Assignment: what a target names.
+//
+// Two shapes and no more. A bare name is a variable, in whichever of the three
+// scopes declared it; a field is a record slot or a named variable of the scene
+// or the game. Anything else -- `random(3) = 1` -- parses, because the parser
+// takes any postfix expression as a target, and lands here as a silent no-op.
+// That is the right failure: the alternative is a diagnostic per frame.
+
+scr_asg(int tgt, int v, int e) {
+  if (ast_kd(tgt) = ast_k_ident()) {
+    scr_set(e, ast_tx(tgt), v);
+  } else {
+    scr_asgf(tgt, v, e);
+  }
+} return void;
+
+scr_asgf(int tgt, int v, int e) {
+  if (ast_kd(tgt) = ast_k_field() && ast_kd(ast_ia(tgt)) = ast_k_ident()) {
+    scr_asgf2(ast_tx(ast_ia(tgt)), ast_tx(tgt), v, e);
+  }
+} return void;
+
+scr_asgf2(string bn, string name, int v, int e) {
+  if (bn = "scene" || bn = "game") {
+    scr_set(e, name, v);
+  } else {
+    scr_pslot(e, scr_fk(bn, name), v);
+  }
+} return void;

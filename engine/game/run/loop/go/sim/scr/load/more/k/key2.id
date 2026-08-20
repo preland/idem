@@ -1,0 +1,22 @@
+// The rest of the named keys.
+//
+// An unrecognised name is code 0, which no key reports -- so a typo binds nothing
+// rather than binding something arbitrary.
+
+scr_knamed2(string name) {
+  int c = scr_knamed3(name);
+  if (name = "esc" || name = "escape") { c = 27; }
+  else if (name = "tab") { c = 9; }
+} return int c;
+
+scr_knamed3(string name) {
+  int c = scr_knamed4(name);
+  if (name = "left") { c = 256; }
+  else if (name = "right") { c = 257; }
+} return int c;
+
+scr_knamed4(string name) {
+  int c = 0;
+  if (name = "up") { c = 258; }
+  else if (name = "down") { c = 259; }
+} return int c;

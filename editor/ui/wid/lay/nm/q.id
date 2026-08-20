@@ -1,0 +1,20 @@
+// A pane's rect, by pane number, read out of what idml decided.
+//
+// The numbers the rest of the editor uses are unchanged -- 0 menu, 1 toolbar,
+// 2 hierarchy, 3 scene view, 4 inspector, 5 project, 6 status -- so this is the
+// only place that knows the layout is a document rather than arithmetic.
+
+ed_rq(int p, int i) {
+} return int ui_rect(ed_pname(p), i);
+
+ed_pname(int p) {
+  string name = "MenuBar";
+  if (p = 1) { name = "ToolBar"; }
+  else { name = ed_pname2(p, name); }
+} return string name;
+
+ed_pname2(int p, string name) {
+  if (p = 2) { name = "Hierarchy"; }
+  else if (p = 3) { name = "SceneView"; }
+  else { name = ed_pname3(p, name); }
+} return string name;

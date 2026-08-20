@@ -1,0 +1,23 @@
+// The toolbar, and the status line.
+//
+// The four tools are the ones every scene editor has, and the selected one is
+// held in ed_st slot 9 rather than in the button, because the button is redrawn
+// from nothing every frame. Clicking one selects it; what a tool *does* is the
+// gizmo work that comes with a scene model to manipulate.
+
+ed_tools() {
+  d2_hline(ed_rq(1, 0), ed_rq(1, 1) + ed_rq(1, 3) - 1, ed_rq(1, 2), ed_col(3));
+  ed_tool_row();
+} return void;
+
+ed_tool_row() {
+  ed_tool(6 * txt_ui(), 0, "pan");
+  ed_tool(44 * txt_ui(), 1, "move");
+  ed_tool2();
+} return void;
+
+ed_tool2() {
+  ed_tool(90 * txt_ui(), 2, "turn");
+  ed_tool(132 * txt_ui(), 3, "size");
+  ed_play();
+} return void;

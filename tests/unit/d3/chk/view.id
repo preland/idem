@@ -1,0 +1,22 @@
+// One camera pose, one world point, one printed answer.
+
+t_ahead() {
+  t_pt("origin cam: world (1000,2000,-3000) exp 1000 2000 3000", 1000, 2000, 0 - 3000);
+  t_pt("origin cam: world (0,0,3000) is BEHIND, exp 0 0 -3000", 0, 0, 3000);
+  t_yaw();
+} return void;
+
+// Everything a pose is: where the eye is, where it points, and the matrix that
+// follows. One function so that no case restates the half it did not change, and
+// so that each case below is exactly three actions.
+t_pose(int x, int z, int deg, int pit) {
+  d3_cam_set(x, 0, z);
+  d3_cam_aim(deg, pit);
+  d3_view_matrix();
+} return void;
+
+t_pt(string msg, int x, int y, int z) {
+  int[] tri = [x, y, z];
+  m4_apply((import d3_vm), tri, 0);
+  print(msg + " = " + tri[0] + " " + tri[1] + " " + tri[2]);
+} return void;

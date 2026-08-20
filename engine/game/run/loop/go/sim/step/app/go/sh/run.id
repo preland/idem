@@ -1,0 +1,18 @@
+// The window loop and the headless shot.
+
+idem_aloop(int alive) {
+  while (alive = 1) {
+    alive = idem_aframe();
+  }
+} return void;
+
+idem_aframe() {
+  int t = sys_now();
+  idem_astep();
+  idem_apace(t);
+} return int sys_alive();
+
+idem_apace(int t) {
+  sys_present();
+  sys_pace(t, fx_max(g_stage(3), 1));
+} return void;

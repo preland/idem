@@ -1,0 +1,6 @@
+// The viewport's width in pixels, which is what the lens is derived from. Its own
+// file because a file holds three functions and d3_viewport needs all three of
+// its neighbours.
+
+d3_vp_w() {
+} return int (import d3_vp)[2] - (import d3_vp)[0] + 1;

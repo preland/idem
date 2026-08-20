@@ -1,0 +1,5 @@
+// The Huffman tables, last of the one-time setup.
+zst_tabs3() {
+  huf_init();
+  huf_ab_init();
+} return void;

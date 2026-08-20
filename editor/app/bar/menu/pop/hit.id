@@ -1,0 +1,23 @@
+// Drawing one item's label, running it, and closing the menu.
+
+ed_pop_hit(int k, int i, int ok) {
+  txt_draw(ed_mitem(k, i), ed_mx(k) + 4 * txt_ui(), ed_hdr() + 1 + i * ed_rowh() + txt_ui(), ed_col(4 + 1 * (ed_mon(k, i) = 0)));
+  ed_pop_go(k, i, ok * inp_mhit(1));
+} return void;
+
+ed_pop_go(int k, int i, int go) {
+  if (go = 1) {
+    ed_mdo(k, i);
+    lset((import ed_st), 15, 0 - 1);
+  }
+} return void;
+
+// A click that was not on an item closes the menu. It runs after the items have
+// had their chance, so an item's own click is consumed before this sees it -- and
+// it is why the menu closes on the frame you choose something rather than the one
+// after.
+ed_pop_off() {
+  if (inp_mhit(1) = 1 && (import ed_st)[15] >= 0 && ed_in(0, 0, (import sf_gw), ed_hdr() - 1) = 0) {
+    lset((import ed_st), 15, 0 - 1);
+  }
+} return void;

@@ -1,0 +1,18 @@
+par_call(int[] pos) {
+  int[] kids = [];
+  string name = par_text(pos);
+  par_next(pos);
+} return int par_call2(pos, name, kids);
+
+par_call2(int[] pos, string name, int[] kids) {
+  par_want(pos, "(");
+  par_efill(pos, kids);
+} return int ast_new_kids(ast_k_call(), name, kids);
+
+par_efill(int[] pos, int[] kids) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_expr(pos));
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;

@@ -1,0 +1,11 @@
+// One step of the hash, in a word.
+//
+// `hv * 31` reaches 3.1e10 while the accumulator is still under the modulus, and
+// an int is 32 bits -- so the product overflows and the hash comes back negative.
+// It is a test, and a test that quietly computes something other than what it
+// says is worse than no test at all.
+
+t_pmix(int hv, int v) {
+  word wp = hv;
+  wp = (wp * 31 + v) % 1000000007;
+} return int wp;

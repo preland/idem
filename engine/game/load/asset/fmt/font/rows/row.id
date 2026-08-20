@@ -1,0 +1,17 @@
+// One row of one glyph, packed into an int.
+
+// nb bytes, most significant byte first, so the leftmost column of the glyph
+// ends up at bit nb*8-1 -- which is the bit txt_px_sc shifts against, because
+// txt_bit() is that same nb*8. The byte order inside a row is NOT the file's
+// little-endian field order: the fields are numbers and the rows are pixels, and
+// pixels are always drawn left to right from the top bit. Reading the rows
+// little-endian mirrors every wide glyph, which on an 8-wide face is invisible
+// and on a 12-wide one is the only visible symptom.
+psf_row(int sa, int nb) {
+  int v = 0;
+  int i = 0;
+  while (i < nb) {
+    v = v * 256 + asset_at(sa + i);
+    i = i + 1;
+  }
+} return int v;

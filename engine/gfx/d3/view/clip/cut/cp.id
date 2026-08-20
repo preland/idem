@@ -1,0 +1,17 @@
+// Copying a vertex that survived the clip unchanged, from the source triangle
+// into slot j of the working one. Two functions because a vertex is four values
+// -- three coordinates and a colour -- and a block holds three actions.
+//
+// The colours live in slots 9, 10, 11, one per vertex, which is why the colour
+// copy indexes by the vertex number and the coordinates by three times it.
+
+d3_ncopy(int[] tri, int i, int j) {
+  lset((import d3_clp), j * 3, tri[i * 3]);
+  lset((import d3_clp), j * 3 + 1, tri[i * 3 + 1]);
+  d3_ncopy2(tri, i, j);
+} return void;
+
+d3_ncopy2(int[] tri, int i, int j) {
+  lset((import d3_clp), j * 3 + 2, tri[i * 3 + 2]);
+  lset((import d3_clp), 9 + j, tri[9 + i]);
+} return void;

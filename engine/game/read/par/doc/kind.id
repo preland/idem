@@ -1,0 +1,25 @@
+// Which node kind a top-level keyword makes.
+//
+// `int kd = 0` plus a three-way branch is four actions, so each of these carries
+// its default in the parameter and the chain falls through it -- the shape the
+// whole parser uses for a dispatch wider than a block allows.
+
+par_dk(string name) {
+  int kd = par_dk2(name);
+  if (name = "game") { kd = ast_k_game(); }
+  else if (name = "scene") { kd = ast_k_scene(); }
+} return int kd;
+
+par_dk2(string name) {
+  int kd = par_dk3(name);
+  if (name = "template") { kd = ast_k_template(); }
+  else if (name = "entity") { kd = ast_k_entity(); }
+} return int kd;
+
+// `sprite` and `model` are references to files now, and `import` pulls in another
+// document. Anything else is 0, which par_dkind turns into one diagnostic.
+par_dk3(string name) {
+  int kd = 0;
+  if (name = "sprite" || name = "model" || name = "font") { kd = ast_k_sprite(); }
+  else if (name = "import" || name = "define") { kd = ast_k_define(); }
+} return int kd;

@@ -1,0 +1,24 @@
+// The per-entity walks.
+//
+// Every one of these takes the entity count *at the top of the loop*, which in
+// this language means re-asking ent_n() each turn: tg handler may spawn, and tg
+// spawn appends. An entity created during step 2 therefore gets its own update in
+// the same frame, one turn later. That is tg choice and it is the forgiving one --
+// the alternative is tg pipe that exists but does not move until the next frame.
+
+scr_upd(int e) {
+  scr_fire(scr_sc(e), "update", e, "");
+} return void;
+
+scr_ents(int e) {
+  while (e < ent_n()) {
+    scr_alive(e);
+    e = e + 1;
+  }
+} return void;
+
+scr_alive(int e) {
+  if (ent_at(e, 9) % 2 = 1) {
+    scr_upd(e);
+  }
+} return void;

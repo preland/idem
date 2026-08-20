@@ -1,0 +1,19 @@
+// n bits.
+//
+// The powers of two come from `inf_pow2` next door rather than a second copy: the
+// compiler rejects two functions with the same signature and logic, and it is
+// right to -- a power of two is a power of two, whichever codec wants one.
+//
+// The FIRST bit read is the MOST significant of the result. That follows from the
+// stream being written backwards: the encoder wrote the value's high bit last, so
+// reading backwards meets it first. Assembling them the other way round is the
+// classic way to get a decoder that works on 1-bit reads and nothing else.
+
+zb_bits(int n) {
+  int v = 0;
+  int i = 0;
+  while (i < n && (import zb_st)[3] = 0) {
+    v = v * 2 + zb_bit();
+    i = i + 1;
+  }
+} return int v;

@@ -1,0 +1,23 @@
+// The rest of the init chain, and joining the source.
+
+idem_init2() {
+  err_init();
+  ast_init();
+  idem_init4();
+} return void;
+
+idem_init4() {
+  png_init();
+  inf_init();
+  idem_init3();
+} return void;
+
+// One string from many, built by repeated concatenation -- which is the expensive
+// shape in this language, and is correct here: it happens once, over a handful of
+// chunks, at load. The packer's chunking is what keeps the count small.
+run_join(string[] chunks, int i, string s) {
+  while (i < len(chunks)) {
+    s = s + chunks[i];
+    i = i + 1;
+  }
+} return string s;

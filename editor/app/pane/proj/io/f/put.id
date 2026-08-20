@@ -1,0 +1,20 @@
+// Opening, writing and closing. Answers 1 on success.
+//
+// The three calls are three statements because fs_error reads state the failing
+// one set, and operands of a single expression are not ordered -- the backend's
+// README is explicit about it, having been caught by exactly that.
+
+ed_wput(string path, int[] buf) {
+  int h = fs_open(path, "w");
+  int n = ed_wnow(h, buf);
+} return int n = len(buf);
+
+ed_wnow(int h, int[] buf) {
+  int n = 0 - 1;
+  if (h >= 0) { n = fs_write(h, buf, len(buf)); }
+  ed_wshut(h);
+} return int n;
+
+ed_wshut(int h) {
+  if (h >= 0) { fs_close(h); }
+} return void;

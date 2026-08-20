@@ -1,0 +1,29 @@
+// `[height, width, anchor]` -- the dimension slot.
+//
+// Height first (research/idml-reference.md §4.2), both required, and both are
+// **percentages of the parent**: idml has no notion of a pixel in a dimension
+// slot, which is what makes a layout resolution independent for free.
+//
+// They are stored in **centipercent** -- hundredths of a percent, so `35.95`
+// is 3595 -- because the tiling invariant is an exact-sum check and summing
+// floating point rejects about a tenth of the legal three-way splits. `2810 +
+// 3595 + 3595 = 10000` exactly, always. IDML_GAME.md §1.1 fixed this defect of
+// stock idml and this is where the fix lives.
+//
+// The node: kind `dims`, a = height, b = width, text = the anchor word.
+
+par_dims(int[] pos) {
+  int nd = 0;
+  if (par_eat(pos, "[") = 1) {
+    nd = par_dims2(pos);
+  }
+} return int nd;
+
+par_dims2(int[] pos) {
+  int a = par_dim(pos);
+  int b = par_dims3(pos);
+} return int par_dims4(pos, a, b);
+
+par_dims3(int[] pos) {
+  par_want(pos, ",");
+} return int par_dim(pos);

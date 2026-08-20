@@ -1,0 +1,30 @@
+// Sample to 0..255, and the two transparency tests.
+//
+// A pixel is transparent if its coverage is below half, or if it matches the key
+// colour within the tolerance. Half rather than "not fully opaque" because a
+// quantised edge is a band of partial coverage several pixels wide and the
+// rasteriser has no blending: every pixel is either drawn or not, so the question
+// is which side of the edge each one belongs to.
+
+spr_scale(int v, int m) {
+  int n = v;
+  if (m != 255) {
+    n = fx_div(v, fx_max(m, 1), 255);
+  }
+} return int n;
+
+spr_clear(int i) {
+  int ok = 0;
+  if ((import spr_al)[i] < 128 || spr_key((import spr_px)[i]) = 1) { ok = 1; }
+} return int ok;
+
+// Manhattan distance in RGB against the key, which is the right shape for
+// "the background is this flat colour, plus JPEG ringing around its edges" --
+// the case it exists for. keyR < 0 means no key was given, and then no amount of
+// tolerance makes anything transparent.
+spr_key(int c) {
+  int ok = 0;
+  if ((import spr_d)[4] >= 0) {
+    ok = fx_abs(c / 65536 - (import spr_d)[4]) + fx_abs(c / 256 % 256 - (import spr_d)[5]) + fx_abs(c % 256 - (import spr_d)[6]) <= (import spr_d)[7];
+  }
+} return int ok;

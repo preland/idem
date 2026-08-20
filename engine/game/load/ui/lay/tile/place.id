@@ -1,0 +1,26 @@
+// Placing one child inside its parent's rect.
+//
+// A stacked child (k = -1) takes the whole rect and advances nothing. A tiled
+// child takes its percentage of the main axis at the running offset, and the
+// parent's full extent across.
+
+ui_place(int nd, int x, int y, int w, int h, int k, int p) {
+  int n = ui_main(nd, w, h, k);
+  ui_at(nd, x, y, w, h, k, p, n);
+} return int n;
+
+ui_at(int nd, int x, int y, int w, int h, int k, int p, int n) {
+  if (k = 1) {
+    ui_draw(nd, x + p, y, n, h);
+  } else {
+    ui_row(nd, x, y, w, h, k, p, n);
+  }
+} return void;
+
+ui_row(int nd, int x, int y, int w, int h, int k, int p, int n) {
+  if (k = 0) {
+    ui_draw(nd, x, y + p, w, n);
+  } else {
+    ui_draw(nd, x, y, w, h);
+  }
+} return void;

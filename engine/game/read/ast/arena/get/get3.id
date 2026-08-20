@@ -1,0 +1,5 @@
+ast_lnof(int nd) { } return int (import ast_line)[nd];
+
+ast_n() { } return int len((import ast_kind));
+
+ast_kname(int kd) { } return string (import ast_kn)[kd - ast_kbase()];

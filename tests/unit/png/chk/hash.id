@@ -1,0 +1,15 @@
+// The hash walk: every row, every byte, filter bytes excluded.
+
+t_hash(int y, word wp) {
+  while (y < (import png_st)[1]) {
+    wp = t_row(asset_row(y) + 1, 0, wp);
+    y = y + 1;
+  }
+} return word wp;
+
+t_row(int r, int i, word wp) {
+  while (i < (import png_st)[0] * 4) {
+    wp = ((wp ^ peek8(r + i)) * 16777619) & 4294967295;
+    i = i + 1;
+  }
+} return word wp;

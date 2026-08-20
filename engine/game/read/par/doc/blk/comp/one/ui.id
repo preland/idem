@@ -1,0 +1,23 @@
+// `ui { item }` -- one item, wrapped so the loader can find it by kind.
+
+par_mui(int[] pos) {
+  par_next(pos);
+  par_want(pos, "{");
+} return int par_mui2(pos);
+
+par_mui2(int[] pos) {
+  int[] kids = [par_item(pos)];
+  par_want(pos, "}");
+} return int ast_new_kids(ast_k_ui(), "", kids);
+
+// A component: a name and its arguments, to the end of its line. `pos (144, 200)`,
+// `body (12, 8)`, `tag player`, `anim (0, 24, 40)`.
+//
+// The line is what delimits it. idml has no statement terminator and whitespace
+// carries no meaning, so without the lexer's per-token line there would be no way
+// to tell `tag player` followed by `solid` from `tag player solid`.
+par_comp(int[] pos) {
+  string name = par_text(pos);
+  int ln = par_line(pos);
+  par_next(pos);
+} return int par_comp2(pos, name, ln);

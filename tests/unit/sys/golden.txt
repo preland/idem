@@ -1,0 +1,9 @@
+opened 320x200 exp gw 320 gh 200 cells 64000 = gw 320 gh 200 cells 64000
+resize to 640x400 exp gw 640 gh 400 cells 256000 = gw 640 gh 400 cells 256000
+shrink to 320x200 exp gw 320 gh 200 cells still 256000 = gw 320 gh 200 cells 256000
+288x512 game in a 640x400 surface exp sc 781 x 208 y 0 w 224 h 399 = sc 781 x 208 y 0 w 224 h 399
+frame 0, W and UP pressed: exp W 1 1, UP 1 1, S 0 0 = 1 1 1 1 0 0
+frame 1, nothing sent, W still held: exp down 1 hit 0 = 1 0
+W released: exp down 0 hit 0 = 0 0
+W tapped inside one frame: exp down 0 hit 1 = 0 1
+out of range: inp_down(-1), inp_down(512), inp_hit(99999) exp 0 0 0 = 0 0 0

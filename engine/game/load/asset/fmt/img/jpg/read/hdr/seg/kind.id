@@ -1,0 +1,27 @@
+// Dispatching one segment.
+
+jpg_kind(int p, int m) {
+  if (m = 217) {
+    lset((import jpg_st), 9, (import asset_io)[1]);
+  } else {
+    jpg_kind2(p, m, asset_at(p + 2) * 256 + asset_at(p + 3));
+  }
+} return void;
+
+// The cursor is advanced past the segment *before* dispatching, so that a scan
+// -- whose entropy data runs past its own header -- can overwrite it with where
+// it actually finished.
+jpg_kind2(int p, int m, int ln) {
+  lset((import jpg_st), 9, p + 2 + ln);
+  jpg_disp(p + 4, m);
+} return void;
+
+jpg_disp(int p, int m) {
+  if (m = 219) {
+    jpg_dqt(p, jpg_end(p));
+  } else if (m = 196) {
+    jpg_dht(p, jpg_end(p));
+  } else {
+    jpg_disp2(p, m);
+  }
+} return void;

@@ -1,0 +1,23 @@
+// The three walks over the game's source: the declarations the hierarchy lists,
+// the view the scene panel shows, and the document the world is built from.
+
+ed_read5() {
+  ed_scan(0);
+  ed_gui();
+} return void;
+
+// Assets are scanned out of the raw text first, then the idml is lexed over the
+// top of it, then the meshes and the world are built. scn_root has to happen
+// before anything is loaded: a sprite's `from "art/bird.png"` is resolved against
+// the game's own directory, and the `#root` line in the stream is the only place
+// that directory is written down.
+ed_read6(string src) {
+  scn_root(src, 0);
+  lex_init();
+  ed_read8(src);
+} return void;
+
+ed_read8(string src) {
+  lex_run(src);
+  ed_read7();
+} return void;

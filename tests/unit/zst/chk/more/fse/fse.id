@@ -1,0 +1,27 @@
+// The FSE table build, asserted directly.
+//
+// Everything else in this decoder rests on these tables, so they are checked
+// against an independent implementation of RFC 8878's three build steps rather
+// than inferred from a decode that happens to work -- the same reason the
+// backward bit reader is asserted on a known byte.
+//
+// Three predefined distributions, three columns each. The first cell, the last
+// cell, and the sum of every column: a wrong stride, a mislaid low-probability
+// symbol or an off-by-one in the next-state counter moves at least one of them.
+
+t_fse() {
+  zst_pre_init();
+  zst_pre_all();
+  t_ftab();
+} return void;
+
+t_ftab() {
+  t_frole("LL log 6 base 0  ", 0, 64);
+  t_frole("OF log 5 base 512", 512, 32);
+  t_ftab2();
+} return void;
+
+t_frole(string msg, int base, int n) {
+  print(msg + " first (" + (import fse_sy)[base] + "," + (import fse_nb)[base] + "," + (import fse_bs)[base] + ")" + " last (" + (import fse_sy)[base + n - 1] + "," + (import fse_nb)[base + n - 1] + "," + (import fse_bs)[base + n - 1] + ")");
+  t_fsum(base, n);
+} return void;

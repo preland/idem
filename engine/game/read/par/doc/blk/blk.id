@@ -1,0 +1,26 @@
+// A declaration: name, arguments, and an optional body.
+
+par_dkind(int[] pos, string name, int kd, int ln) {
+  int nd = 0;
+  if (kd = 0) {
+    nd = par_dvar(pos, name, ln);
+  } else {
+    nd = par_dblock(pos, kd, ln);
+  }
+} return int nd;
+
+// An unknown keyword costs one diagnostic and one skipped token. Every collection
+// loop in this parser carries an end-of-input guard, so a malformed document
+// terminates rather than hanging -- and this is the production that would
+// otherwise spin, because it is the one that consumes nothing on failure.
+par_dbad(int[] pos, string name) {
+  par_err(pos, "unknown declaration " + chr(39) + name + chr(39));
+  par_next(pos);
+} return int ast_new_k(ast_k_bad(), name);
+
+// `import "path"` has a string where a name goes, which is the one exception --
+// so the name is whatever token follows, taken as text either way.
+par_dblock(int[] pos, int kd, int ln) {
+  string name = par_text(pos);
+  par_next(pos);
+} return int par_dbody(pos, kd, name, ln);

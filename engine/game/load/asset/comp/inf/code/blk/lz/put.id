@@ -1,0 +1,24 @@
+// One output byte.
+//
+// The capacity check is not optional: a stream that claims more output than the
+// caller sized for would otherwise poke past the end of the allocation, and the
+// flat store's own bounds check would abort the process. A decoder must be able
+// to reject a malicious or truncated file, not die on one.
+
+inf_put(int v) {
+  if ((import inf_st)[5] >= (import inf_st)[6]) {
+    lset((import inf_st), 7, 1);
+  } else {
+    inf_put2(v);
+  }
+} return void;
+
+inf_put2(int v) {
+  poke8((import inf_st)[4] + (import inf_st)[5], v);
+  lset((import inf_st), 5, (import inf_st)[5] + 1);
+} return void;
+
+// A byte already written, addressed backwards from the cursor -- what a
+// length/distance pair copies from.
+inf_back(int d) {
+} return int peek8((import inf_st)[4] + (import inf_st)[5] - d);

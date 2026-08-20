@@ -1,0 +1,21 @@
+// Unit tests for engine/core/util. Each check prints an expected/actual line;
+// tools/test.sh diffs the whole output against a golden file, so a regression is
+// a one-line diff rather than a judgement call.
+
+main(int argc, string[] argv) {
+  err_init();
+  t_str();
+  t_lst();
+} return int err_count();
+
+t_str() {
+  string s = "sprite bird-up(17, 12)";
+  print("slice bird-up = " + str_slice(s, 7, 7));
+  print("eqat 1,0,1 = " + str_eqat(s, 0, "sprite") + str_eqat(s, 0, "model") + str_eqat(s, 7, "bird"));
+} return void;
+
+t_lst() {
+  int[] xs = [];
+  lst_fill(xs, 5, 9);
+  t_lst_show(xs);
+} return void;

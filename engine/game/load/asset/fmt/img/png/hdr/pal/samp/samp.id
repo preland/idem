@@ -1,0 +1,22 @@
+// One sample out of a scanline, at any of the depths a PNG may use.
+//
+// At 8 bits a sample is a byte. Below 8 -- 1, 2 or 4, which the format allows
+// only for grey and indexed images, both single-channel -- samples are packed
+// several to a byte, most significant first, and rows are padded to a byte
+// boundary. That padding is why png_st[8] rounds up: a 17-pixel 4-bit row is nine
+// bytes, not eight and a half.
+//
+// One expression covers both, and it has to. The obvious shape -- read the byte
+// the 8-bit way, then correct it if the depth is smaller -- reads that byte
+// *unconditionally*, and at 4 bits the 8-bit address for the last pixel of a row
+// is seven bytes past the end of the image. An out-of-range store read aborts the
+// process (NAMES.md 6), so the correction never runs.
+//
+// Where the arithmetic degenerates at depth 8: `x * 8 * n / 8` is `x * n`, the
+// shift `8 - 8 - x * 8 % 8` is zero, and the mask is 256. The general case *is*
+// the special case, which is the only reason one line is honest here.
+
+png_samp(int r, int x) {
+  int d = (import png_st)[2];
+  int by = peek8(r + 1 + x * d * (import png_st)[4] / 8);
+} return int by / inf_pow2(8 - d - x * d % 8) % inf_pow2(d);

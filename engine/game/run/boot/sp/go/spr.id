@@ -1,0 +1,29 @@
+// An entity's sprite, resolved to a table index.
+//
+// `sprite bird` inside an entity is **not** a component. The parser maps the
+// keyword `sprite` to one node kind wherever it appears, and puts the name in the
+// node's own text -- so a reference inside an entity and a declaration at the top
+// of a document are the same kind of node, told apart by where they sit and by
+// whether they carry a `from`. Looking for a component called "sprite" therefore
+// finds nothing, silently, and every entity draws as a hole.
+//
+// An unknown name answers -1, which ent_draw skips: a missing sprite leaves a gap
+// rather than aborting, and the gap is visible.
+
+scn_espr(int nd) {
+} return int d2_spr_find(scn_sname(nd, 0));
+
+// The first sprite-kind child. A `""` name reaches d2_spr_find as a name nothing
+// is registered under, so an entity with no sprite needs no separate test.
+scn_sname(int nd, int i) {
+  string s = "";
+  while (i < len(ast_ks(nd)) && s = "") {
+    s = scn_ifspr(ast_ks(nd)[i]);
+    i = i + 1;
+  }
+} return string s;
+
+scn_ifspr(int nd) {
+  string s = "";
+  if (ast_kd(nd) = ast_k_sprite()) { s = ast_tx(nd); }
+} return string s;

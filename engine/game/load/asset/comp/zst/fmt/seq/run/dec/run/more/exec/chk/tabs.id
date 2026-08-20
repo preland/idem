@@ -1,0 +1,24 @@
+// The literal-length and match-length code tables, and the sequence state.
+//
+// A code below 16 (literal lengths) or below 32 (match lengths) is the value
+// itself with no extra bits; above that each code names a baseline and how many
+// bits are added to it. Written out because RFC 8878 writes them out -- a
+// generated approximation that differs in one entry decodes most files and
+// corrupts some.
+
+zst_stabs_init() {
+  export int[] zst_lb = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 28, 32, 40, 48, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536];
+  export int[] zst_lx = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  zst_stabs2();
+} return void;
+
+zst_stabs2() {
+  export int[] zst_mb = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 39, 41, 43, 47, 51, 59, 67, 83, 99, 131, 259, 515, 1027, 2051, 4099, 8195, 16387, 32771, 65539];
+  export int[] zst_mx = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  zst_stabs3();
+} return void;
+
+zst_stabs3() {
+  export int[] zst_sq = [0, 0, 0];
+  zst_pre_init();
+} return void;

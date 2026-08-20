@@ -1,0 +1,43 @@
+// fx wide -- the scaled operations, and the only place that owns the narrowing.
+//
+// A product of two x1000 quantities already reaches 10^6, a distance in
+// millunits squared reaches 10^9, and `int` is 32 bits and wraps *silently* --
+// no trap, no warning, just a wrong-looking frame. So every fixed-point multiply
+// and divide in the engine goes through here, computes in a `word` (64-bit), and
+// narrows exactly once on the way out. No caller repeats that reasoning.
+//
+// The guards answer 0 rather than dividing. Division by zero is now a clean
+// abort in both widths (`id: division by zero`, where an `int` one used to be a
+// bare SIGFPE core dump), but an abort is still a dead game: a scale slot that
+// happens to be 0 is a content bug, and a frame that renders wrong is a better
+// report of it than a process that vanishes.
+
+// (a * b) / sc, with sc the fixed-point scale (1000 for the engine's units).
+fx_mul(int a, int b, int sc) {
+  word wp = 0;
+  if (sc != 0) {
+    wp = a;
+    wp = wp * b / sc;
+  }
+} return int wp;
+
+// (a * sc) / b -- the inverse, so `fx_div(x, y, 1000)` is x/y in per-mille.
+fx_div(int a, int b, int sc) {
+  word wp = 0;
+  if (b != 0) {
+    wp = a;
+    wp = wp * sc / b;
+  }
+} return int wp;
+
+// sqrt(a*a + b*b), exact whenever the answer itself fits an int -- so up to
+// operands of about 1.5e9 together, or 2.1e9 alone. Both squares are accumulated
+// in words because a single 46000^2 is already within a rounding error of the int
+// range and their sum is twice over it, and fx_hypfix recurses down to fx_sqrt's
+// int domain from there. Past that ceiling the *result* is what overflows, and no
+// amount of width underneath helps.
+fx_hyp(int a, int b) {
+  word sm = a;
+  word hs = b;
+  sm = sm * a + hs * b;
+} return int fx_hypfix(sm);

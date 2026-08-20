@@ -1,0 +1,24 @@
+// The node kinds. Every one is a zero-action named function, so a bare literal
+// kind never appears at a call site and this file is the only place the numbers
+// live.
+//
+// Each is `ast_kbase() + n`, not a plain literal: `id` rejects two functions whose
+// bodies match up to renaming, and a zero-action function returning a bare
+// integer is distinguished by nothing but that integer -- so a literal 12 here
+// would collide with a literal 12 in any other module's constant. Naming the base
+// puts a called function into every fingerprint, and puts the family's origin in
+// one place.
+//
+// The order matters exactly once: ast_kn holds the printable name of each kind at
+// index (kind - ast_kbase()), filled from one space-separated string in ast_kinit.
+//
+// Field convention, obeyed by every kind so that the dumper needs no per-kind
+// knowledge: ast_a, ast_b and ast_c are always node ids (0 = absent), ast_kids is
+// always a list of node ids, and the only kind that stores a plain integer is
+// `num` (a = value, b = fractional digits still owed to a slot).
+
+ast_kbase() { } return int 100;
+
+ast_k_nil() { } return int ast_kbase() + 0;
+
+ast_k_file() { } return int ast_kbase() + 1;

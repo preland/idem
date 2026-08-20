@@ -1,0 +1,40 @@
+// One vertex in front: the triangle becomes a smaller triangle.
+//
+// `a` is that vertex, and the other two are (a+1)%3 and (a+2)%3 -- taken in that
+// cyclic order, which is what preserves the winding. Reordering them would flip
+// the sign of the screen area and turn a front face into a culled back face,
+// visible as walls that vanish only when the camera is close enough to clip them.
+//
+//         A                A
+//        / \      -->     / \
+//       /   \            i---j        i = cut(A,B)   j = cut(A,C)
+//      B-----C
+
+d3_none(int[] tri, int a) {
+  d3_ncopy(tri, a, 0);
+  d3_ncut(tri, a, (a + 1) % 3, 1);
+  d3_nemit(tri, a, (a + 2) % 3);
+} return void;
+
+// The last cut always lands in slot 2 and is always followed by the draw, so it
+// is one function and both cases call it. Two copies would be the same body up to
+// renaming, which is a compile error before it is a duplication.
+d3_nemit(int[] tri, int i, int k) {
+  d3_ncut(tri, i, k, 2);
+  d3_tri((import d3_clp));
+} return void;
+
+// Two vertices in front: the triangle becomes a quad, and a quad is two
+// triangles. `c` is the single vertex behind the plane.
+//
+//      A-----B          A-----B
+//       \   /    -->     \   |
+//        \ /              i--j        i = cut(C,A)   j = cut(B,C)
+//         C
+//
+// Emitted as (A, B, j) and (A, j, i), which is the quad A, B, j, i fanned from A
+// -- again in cyclic order, so both halves keep the original winding.
+d3_ntwo(int[] tri, int c) {
+  d3_ntri1(tri, c);
+  d3_ntri2(tri, c);
+} return void;

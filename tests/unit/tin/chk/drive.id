@@ -1,0 +1,27 @@
+// The driver: frames, presses and releases, as the backend delivers them.
+
+// A frame boundary. inp_drain does this before it stamps anything, so that every
+// press it sees belongs to the frame about to run; there is no backend here, so
+// the ordinal is bumped by hand and nothing else about a frame matters to the
+// field.
+t_next() {
+  lset((import inp_st), 0, (import inp_st)[0] + 1);
+} return void;
+
+// One frame in which `key` goes down and stays down. This is what a held key
+// looks like to the engine: ONE press event and nothing further until the
+// release, because the backend filters auto-repeat -- which is exactly why
+// tin_press has to synthesise the repeat itself.
+t_down(int key, int t) {
+  t_next();
+  inp_stamp(key);
+  tin_step(t);
+} return void;
+
+// A tap: down and up inside one frame. The release is stamped after tin_step
+// has run, which is the order a real frame has -- the queue is drained, the
+// frame runs, and the next drain sees the release.
+t_tap(int key, int t) {
+  t_down(key, t);
+  inp_stamp(key + 65536);
+} return void;

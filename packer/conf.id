@@ -1,0 +1,7 @@
+// The packager's only dependency: the engine's string and list helpers.
+//
+// Deliberately NOT the graphics backend. packer reads stdin and writes stdout
+// and has no window, so attaching backends/gfx would make it need X11 headers
+// (and therefore the Nix dev shell) for no reason at all. Keeping it backend-free
+// is also why the packager is its own project rather than a corner of engine/.
+import "../engine/core/util"

@@ -1,0 +1,22 @@
+// The arguments and the braced body.
+//
+// Arguments run to the end of the declaration's own line, which is how a
+// component is delimited in a whitespace-insensitive language: the lexer records
+// a line per token, so "the rest of this line" is a question that can be asked.
+// A `{` ends them whatever line it is on.
+
+par_dbody(int[] pos, int kd, string name, int ln) {
+  int a = par_dargs(pos, ln);
+  int[] kids = [];
+} return int par_dfin(pos, kd, name, a, kids);
+
+par_dargs(int[] pos, int ln) {
+  int[] kids = [];
+  par_dafill(pos, kids, ln);
+} return int ast_new_kids(ast_k_args(), "", kids);
+
+par_dafill(int[] pos, int[] kids, int ln) {
+  while (par_line(pos) = ln && par_is(pos, "{") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_darg(pos));
+  }
+} return void;

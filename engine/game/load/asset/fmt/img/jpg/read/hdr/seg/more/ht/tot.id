@@ -1,0 +1,20 @@
+// How many symbols a table has, and reading them in.
+
+jpg_htot(int t) {
+  int k = 1;
+  int n = 0;
+  while (k <= 16) {
+    n = n + (import jpg_hc)[t * 17 + k];
+    k = k + 1;
+  }
+} return int n;
+
+// Capped at 256 because that is the whole symbol space; a length field claiming
+// more would otherwise write past the table into the next one.
+jpg_hsym(int p, int t, int n) {
+  int k = 0;
+  while (k < n && k < 256) {
+    lset((import jpg_hs), t * 256 + k, asset_at(p + k));
+    k = k + 1;
+  }
+} return void;

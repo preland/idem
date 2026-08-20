@@ -1,0 +1,34 @@
+// The matrix product -- and the one place in the engine most likely to be
+// silently wrong.
+//
+// Two x1000 entries multiply to 10^6; a translation entry is millunits, so a
+// world coordinate 100 units out is already 10^5, and its product with a x1000
+// rotation entry is 10^8. Four of those accumulate per entry. `int` is 32 bits
+// and wraps with no trap and no warning, so the whole accumulation happens in a
+// `word` (m4_dot) and narrows exactly once. tests/unit/d3 `mat` checks this with
+// coordinates large enough that the 32-bit version visibly wraps.
+//
+// m4_muli writes into a destination the caller already owns, which is what the
+// per-frame path uses -- m4_mul allocates and is for setup. The destination must
+// not be one of the operands: entries are written as they are computed.
+
+m4_mul(int[] xs, int[] ys) {
+  int[] mat = m4_new();
+  m4_muli(mat, xs, ys);
+} return int[] mat;
+
+m4_muli(int[] mat, int[] xs, int[] ys) {
+  int i = 0;
+  while (i < 4) {
+    m4_row(mat, xs, ys, i);
+    i = i + 1;
+  }
+} return void;
+
+m4_row(int[] mat, int[] xs, int[] ys, int i) {
+  int j = 0;
+  while (j < 4) {
+    lset(mat, i * 4 + j, m4_dot(xs, ys, i, j));
+    j = j + 1;
+  }
+} return void;

@@ -1,0 +1,34 @@
+// The two ways the editor runs: a window, or one frame to stdout.
+//
+// The loop ends when the window closes or Esc is pressed, and sys_alive carries
+// both -- including the case where there was never a window at all, which is what
+// makes this exit cleanly with no display instead of spinning forever presenting
+// to nothing.
+
+// The AST arena, the .blend reader, then the document. The compiler catches a
+// missing link in this chain -- a reachable read of an export whose declaring
+// function nothing calls is an error rather than a segfault -- and it has now
+// caught exactly that twice here: once for the arena when the editor started
+// parsing idml, and once for bl_ when it started loading meshes.
+ed_boot5() {
+  ast_init();
+  ed_boot6();
+} return void;
+
+ed_loop(int alive) {
+  while (alive = 1) {
+    alive = ed_frame();
+  }
+} return void;
+
+// Input is drained before drawing even here, so that a shot taken with no display
+// goes through exactly the code path a frame does -- a screenshot that skipped
+// input would not be a screenshot of the editor.
+//
+// Nothing else may reach stdout in this mode: there is no stderr in this
+// language, so one stray print corrupts the image (NAMES.md §6).
+ed_shot(int n) {
+  ppm_init();
+  ed_shots(n, 0);
+  ppm_dump();
+} return void;

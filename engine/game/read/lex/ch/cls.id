@@ -1,0 +1,21 @@
+// Character classes are int -> int predicates over byte codes. There are no
+// character literals in `id`, so a byte is a decimal integer with a comment.
+// 32 is space, 9 tab, 13 carriage return; a newline (10) is not "space" here
+// because it has to bump the line counter.
+lex_is_space(int c) {
+  int ok = 0;
+  if (c = 32 || c = 9 || c = 13) { ok = 1; }
+} return int ok;
+
+// 48..57 are '0'..'9'
+lex_is_digit(int c) {
+  int ok = 0;
+  if (c >= 48 && c <= 57) { ok = 1; }
+} return int ok;
+
+// 65..90 'A'..'Z', 97..122 'a'..'z', 95 '_'. An identifier may start with any of
+// these.
+lex_is_alpha(int c) {
+  int ok = 0;
+  if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c = 95) { ok = 1; }
+} return int ok;

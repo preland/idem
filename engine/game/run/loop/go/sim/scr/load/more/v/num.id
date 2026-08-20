@@ -1,0 +1,37 @@
+// A binding's value, as a number.
+//
+// shot_val is the digits-only scan the shot count uses: one place that turns a
+// string of digits into an int, and a name that is not digits answers 0. A
+// `persist { high = 0 }` is the only place a game writes one of these.
+
+scr_kev2(int nd) {
+  int v = 0;
+  if (len(ast_ks(nd)) > 0) { v = shot_val(ast_tx(ast_ks(nd)[0]), 0, 0); }
+} return int v;
+
+// A member that declares a variable.
+//
+// `var n = 0` is not a binding node. It is a component *called* "var" whose one
+// argument is an **equality expression** -- because `var` is not a declaration
+// keyword, so the line reaches par_comp like any other, and a component's
+// arguments are parsed with par_expr, where `=` means equality (par_darg).
+//
+// So the declaration is two levels in and shaped like a comparison. Reading it as
+// anything else finds nothing, silently: every scene and entity variable was
+// missing, and the only symptom was an "undeclared variable" on every assignment
+// to one -- which reads as a scoping bug and is a shape bug.
+scr_dmem(int nd) {
+  if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = "var") {
+    scr_dbind(scn_arg(nd, 0));
+  }
+} return void;
+
+// The `=` expression, and the binding form the manifest's braced blocks produce.
+// Both spellings mean the same thing and a game may use either.
+scr_dbind(int nd) {
+  if (ast_kd(nd) = ast_k_bin() && ast_tx(nd) = "=" && ast_kd(ast_ia(nd)) = ast_k_ident()) {
+    scr_push(ast_tx(ast_ia(nd)), scr_ev(ast_ib(nd), 0 - 1));
+  } else if (ast_kd(nd) = ast_k_var()) {
+    scr_dvar(nd);
+  }
+} return void;

@@ -1,0 +1,27 @@
+// Sizing them.
+//
+// jpg_c is four components of ten slots:
+//
+//     +0 id   +1 h    +2 v    +3 tq   the quantisation table
+//     +4 td   +5 ta   the Huffman tables, set per scan
+//     +6 pred the DC predictor, reset at every restart
+//     +7 addr the component's own plane in the flat store
+//     +8 bw   +9 bh   its size in blocks, padded out to whole MCUs
+
+jpg_init5() {
+  export int[] jpg_tm = [];
+  lst_fill((import jpg_q), 256, 0);
+  jpg_init6();
+} return void;
+
+jpg_init6() {
+  lst_fill((import jpg_hc), 136, 0);
+  lst_fill((import jpg_hs), 2048, 0);
+  jpg_init7();
+} return void;
+
+jpg_init7() {
+  lst_fill((import jpg_c), 40, 0);
+  lst_fill((import jpg_b), 4, 0);
+  jpg_init7b();
+} return void;

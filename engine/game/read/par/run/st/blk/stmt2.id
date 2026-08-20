@@ -1,0 +1,18 @@
+par_stmt5(int[] pos, int[] out) {
+  if (par_is(pos, "play")) { out[0] = par_play(pos); }
+  else if (par_is(pos, "say")) { out[0] = par_say(pos); }
+  else { par_stmt6(pos, out); }
+} return void;
+
+par_stmt6(int[] pos, int[] out) {
+  if (par_is(pos, "stop")) { out[0] = par_stop(pos); }
+  else { out[0] = par_assign(pos); }
+} return void;
+
+// Anything that is not a keyword is an assignment. The target is a postfix
+// expression so that `vy = 0` and `pos.y = pos.y + 1` are one rule; the value is
+// a full expression, where a bare `=` would mean equality.
+par_assign(int[] pos) {
+  int tgt = par_post(pos);
+  par_want(pos, "=");
+} return int ast_new_ab(ast_k_assign(), "", tgt, par_expr(pos));

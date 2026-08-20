@@ -1,0 +1,17 @@
+// One component's sample under an output pixel.
+//
+// Nearest neighbour: the component's own resolution divided into the image's.
+// libjpeg interpolates instead ("fancy" upsampling, a triangle filter), and that
+// is the single largest source of difference between this decoder and it -- worth
+// up to about 32 levels on a chroma edge of a 4:2:0 image, and nothing at all on
+// a 4:4:4 one. Interpolating here is the obvious improvement and is not done.
+//
+// A component that does not exist answers 128 -- neutral chroma -- so a greyscale
+// JPEG comes out grey rather than needing a second path through the converter.
+
+jpg_samp(int ci, int x, int y) {
+  int v = 128;
+  if (ci < (import jpg_st)[2]) {
+    v = peek8((import jpg_c)[ci * 10 + 7] + (y * (import jpg_c)[ci * 10 + 2] / (import jpg_st)[4]) * (import jpg_c)[ci * 10 + 8] * 8 + x * (import jpg_c)[ci * 10 + 1] / (import jpg_st)[3]);
+  }
+} return int v;

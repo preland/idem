@@ -1,0 +1,34 @@
+// Drawing the world, back to front.
+//
+// `layer` is declared per entity, low first, and the whole scene is redrawn each
+// frame -- so the cheapest correct order is one pass per layer rather than a sort.
+// Eight passes over a few dozen entities is nothing next to the blits themselves,
+// and it needs no scratch list, which in a language that frees nothing is the
+// difference between a sort and a leak.
+//
+// A dead entity is skipped, not removed: its id stays valid for the frame it died
+// in.
+
+ent_draw(int i) {
+  while (i < 8) {
+    ent_layer(i, 0);
+    i = i + 1;
+  }
+} return void;
+
+ent_layer(int l, int e) {
+  while (e < ent_n()) {
+    ent_one(l, e);
+    e = e + 1;
+  }
+} return void;
+
+// A sprite if it has one, a shape if it has not. `shape` is what makes a game
+// expressible with no art at all -- a paddle, a ball, a debug marker -- and it is
+// the reason a new project the editor creates can be playable before anybody has
+// drawn anything.
+ent_one(int l, int e) {
+  if (ent_at(e, 8) = l && ent_at(e, 9) % 2 = 1) {
+    ent_show(e);
+  }
+} return void;

@@ -1,0 +1,7 @@
+// The game's logical size, unpacked.
+
+ed_gw() {
+} return int (import ed_gu)[2] / 65536;
+
+ed_gh() {
+} return int (import ed_gu)[2] % 65536;

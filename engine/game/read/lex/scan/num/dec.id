@@ -1,0 +1,19 @@
+// A leading '-' is never part of a number token: it is always punctuation, and
+// the parser folds it (par_sign for a slot-scaled literal, unary minus in an
+// expression). That keeps `pos.x-1` and `(-0.5, 0.5)` in one rule.
+lex_num(string src, int i) {
+  int nxt = 0;
+  if (lex_ishex0(src, i)) { nxt = lex_hex(src, i); } else { nxt = lex_dec(src, i); }
+} return int nxt;
+
+lex_dec(string src, int i) {
+  int e = lex_digend(src, i);
+  int fe = lex_fracend(src, e);
+} return int lex_dnum(src, i, e, fe);
+
+lex_digend(string src, int i) {
+  int e = i;
+  while (lex_is_digit(charat(src, e))) {
+    e = e + 1;
+  }
+} return int e;

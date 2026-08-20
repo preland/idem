@@ -1,0 +1,49 @@
+// jpg -- a JPEG, decoded by the engine.
+//
+// Same contract as the PNG decoder next door, and deliberately the same output:
+// rows of RGB in the flat store, addressed by asset_row(y), with png_st carrying
+// the dimensions. **png_st is shared, not copied.** It is the *decoded image*
+// record and PNG merely declared it first; sharing means spr_png2 samples a JPEG
+// into the sprite table with no second copy of the sampling, alpha and colour
+// logic -- which the compiler would reject as duplicate anyway. jpg_spr is the
+// join, and it lives here rather than in spr/ so that nothing about the sprite
+// loader had to change.
+//
+// A JPEG has no alpha, so channels is 3 and spr_alpha's "everything else is
+// opaque" branch answers 255 without knowing which decoder ran.
+//
+// png_init() must have run: it declares png_st and the file staging buffers.
+//
+// jpg_st, the frame:
+//
+//     0 w    1 h     2 nc    number of components
+//     3 hmax 4 vmax  the largest sampling factors, which define the MCU
+//     5 mcux 6 mcuy  MCUs across and down
+//     7 ri   restart interval, 0 for none
+//     8 ok   1 while everything has gone well
+//     9 p    the parse cursor, a file offset
+//    10 prog 1 if SOF2 (progressive)
+//    11 ns   components in the current scan
+//    12 mcu  MCUs decoded in this scan, for the restart interval
+//    13 Ss   14 Se   the band of coefficients this scan carries
+//    15 Ah   16 Al   the precision it carries them at
+//    17 eob  the end-of-band run still outstanding
+
+jpg_init() {
+  export int[] jpg_st = [];
+  lst_fill((import jpg_st), 20, 0);
+  jpg_init2();
+} return void;
+
+// Load `path`. Answers 1 on success; the pixels are then where a PNG's would be,
+// three bytes per pixel, one dummy byte at the head of each row (the place a
+// PNG's filter byte occupies, kept so one row-addressing rule serves both).
+jpg_load(string path) {
+  lst_set_all((import jpg_st), 20, 0);
+  lset((import jpg_st), 8, jpg_open(path));
+} return int (import jpg_st)[8];
+
+jpg_open(string path) {
+  int n = asset_slurp(path);
+  int ok = jpg_soi(n);
+} return int jpg_walk(ok);

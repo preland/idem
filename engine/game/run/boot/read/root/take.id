@@ -1,0 +1,27 @@
+// One line, kept only if it is the root marker.
+//
+// The scan stops at the first one -- scn_root's loop condition -- so a stream that
+// concatenates two games takes the first game's directory rather than the last.
+// Two games in one stream is not a thing tools/idem produces.
+
+scn_rtake(string src, int i, int e) {
+  if (str_eqat(src, i, "#root ") = 1) {
+    sset((import scn_dir), 0, str_slice(src, i + 6, e - i - 6));
+  }
+} return void;
+
+// The directory part of a path, including its trailing slash. `dist/flappy/flappy`
+// gives `dist/flappy/`, and a bare `flappy` gives `""` -- which is the current
+// directory, and the right answer for an executable invoked through PATH.
+scn_dirof(string pth) {
+} return string str_slice(pth, 0, scn_lastsep(pth, 0, 0 - 1) + 1);
+
+// The last separator, not the first, so the fold cannot go through lst_pick. The
+// update is branchless: `at + (i - at) * cond` is `i` when the character is a
+// slash and `at` when it is not (NAMES.md 6).
+scn_lastsep(string pth, int i, int at) {
+  while (charat(pth, i) >= 0) {
+    at = at + (i - at) * (charat(pth, i) = 47);
+    i = i + 1;
+  }
+} return int at;

@@ -1,0 +1,5 @@
+ast_k_str() { } return int ast_kbase() + 32;
+
+ast_k_ident() { } return int ast_kbase() + 33;
+
+ast_k_tuple() { } return int ast_kbase() + 34;

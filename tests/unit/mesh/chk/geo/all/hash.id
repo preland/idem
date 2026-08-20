@@ -1,0 +1,20 @@
+// One vertex into the checksum, and the drawable record.
+
+t_hv(word wp, int p) {
+  wp = ((wp ^ ((import bl_v)[p] & 4294967295)) * 16777619) & 4294967295;
+  wp = ((wp ^ ((import bl_v)[p + 1] & 4294967295)) * 16777619) & 4294967295;
+} return word ((wp ^ ((import bl_v)[p + 2] & 4294967295)) * 16777619) & 4294967295;
+
+// The form a caller draws with: twelve slots, ready for d3_wtri. Filling triangle
+// 0 must reproduce vertices 0, 1 and 3 in order, with the colour on all three.
+t_fill() {
+  int[] tri = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  bl_tfill(0, tri, 0xB9793F);
+  t_show(tri);
+} return void;
+
+t_show(int[] tri) {
+  print("tfill(0) v0 exp -1000 -1000 1000 = " + tri[0] + " " + tri[1] + " " + tri[2]);
+  print("tfill(0) colours exp 12155199 x3 = " + tri[9] + " " + tri[10] + " " + tri[11]);
+  t_all();
+} return void;

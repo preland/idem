@@ -1,0 +1,33 @@
+// Resolving an asset's path, and reading a sprite declaration's arguments.
+//
+// A path in a document is relative to the game's directory -- `art/bird.png` --
+// and the engine is not run from there. scn_dir holds the prefix, and it holds
+// two candidates for it:
+//
+//   0  where tools/idem said the game's files were when it packed the game
+//   1  the directory the executable itself is in
+//
+// The first is right during development and wrong the moment a packed game is
+// copied to another machine, because it is an absolute path from the machine that
+// built it. The second is right for a shipped game, whose assets travel beside
+// it. scn_rfix picks: the recorded root if it still exists, the executable's
+// directory otherwise -- so a game works in both places without being told which
+// one it is in.
+
+scn_dir_init() {
+  export string[] scn_dir = ["", ""];
+} return void;
+
+scn_path(string s) {
+} return string (import scn_dir)[0] + s;
+
+// The first string argument: the `from "path"` one. `from` lexes as an identifier
+// and is skipped by looking for the string rather than by counting.
+scn_str(int nd) {
+  string s = "";
+  int i = 0;
+  while (i < 4 && s = "") {
+    s = scn_txt2(nd, i);
+    i = i + 1;
+  }
+} return string s;

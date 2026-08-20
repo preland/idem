@@ -1,0 +1,25 @@
+// Every collection loop in this parser carries `par_kind(pos) != lex_k_eof()`.
+// That guard, not error recovery, is what makes malformed input terminate.
+par_tfill(int[] pos, int[] kids) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_arg(pos));
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;
+
+// The same tuple, with every number scaled to a known slot: this is what a vertex
+// list and a brush use.
+par_stuple(int[] pos, int sc) {
+  int[] kids = [];
+  par_want(pos, "(");
+  par_sfill(pos, kids, sc);
+} return int ast_new_kids(ast_k_tuple(), "", kids);
+
+par_sfill(int[] pos, int[] kids, int sc) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    push(kids, par_snum(pos, sc));
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;

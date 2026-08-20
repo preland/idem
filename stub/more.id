@@ -1,0 +1,17 @@
+// The rest of the seam.
+
+g_stage(int k) {
+  int v = 200;
+  if (k = 0) { v = 320; }
+  else { v = g_stage2(k); }
+} return int v;
+
+g_stage2(int k) {
+  int v = 200;
+  if (k = 2) { v = 1; }
+  else if (k = 3) { v = 60; }
+} return int v;
+
+g_step(int dt) {
+  lset((import g_stub), 2, (import g_stub)[2] + dt);
+} return void;

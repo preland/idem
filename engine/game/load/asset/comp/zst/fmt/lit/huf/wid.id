@@ -1,0 +1,31 @@
+// The header's own width, and reading it.
+
+zst_lwid(int sf) {
+  int w = 10;
+  if (sf = 2) { w = 14; }
+  else if (sf = 3) { w = 18; }
+} return int w;
+
+// 3, 4 or 5 bytes depending on the field width; the type and format occupy the
+// low four bits and the two sizes follow.
+//
+// The result is a **word**. Size_Format 3 puts two 18-bit sizes above a 4-bit
+// nibble -- forty bits -- which does not fit an `int`, and accumulating it in one
+// wrapped silently: the sizes came out as noise and the sequences section was then
+// read from the middle of the literals.
+zst_lval(int w) {
+  int n = (4 + 2 * w + 7) / 8;
+  word wp = zst_lbytes(n);
+  lset((import zst_st), 1, (import zst_st)[1] + n);
+} return word wp;
+
+// Built from the top byte down, so the accumulator is never multiplied by a power
+// of 256 that an `int` cannot hold.
+zst_lbytes(int n) {
+  word wp = 0;
+  int i = n;
+  while (i > 0) {
+    wp = wp * 256 + zst_byte((import zst_st)[1] + i - 1);
+    i = i - 1;
+  }
+} return word wp;

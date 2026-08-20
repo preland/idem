@@ -1,0 +1,31 @@
+// ppm -- a screenshot, with no display involved.
+//
+// This is the engine's primary verification path: there is no display in the
+// development environment, and it is how nativeapp's entire UI was built. A
+// game run with --shot N renders frame N, dumps the surface here, and
+// `magick f.ppm f.png` turns it into something a person can look at.
+//
+// Two constraints shape the format. It must be ASCII P3, because chr(0) emits
+// nothing at all in this language and a binary P6 file is therefore
+// unrepresentable. And it must not build strings: 256000 pixels of
+// `put(cr + " ")` would allocate three times per pixel, and concatenation in
+// this language allocates and never frees. So ppm_init builds a 256-entry table
+// of the decimal spellings once, and the dump does nothing but look up and put.
+
+ppm_init() {
+  export string[] ppm_num = [];
+  ppm_num_fill(0);
+} return void;
+
+ppm_num_fill(int i) {
+  while (i < 256) {
+    push((import ppm_num), "" + i);
+    i = i + 1;
+  }
+} return void;
+
+ppm_dump() {
+  print("P3");
+  print("" + (import sf_gw) + " " + (import sf_gh));
+  ppm_head();
+} return void;

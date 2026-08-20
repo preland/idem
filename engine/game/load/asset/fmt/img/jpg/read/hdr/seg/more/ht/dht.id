@@ -1,0 +1,30 @@
+// The Huffman tables.
+//
+// JPEG hands them over already in canonical form: sixteen counts, one per code
+// length, then the symbols in canonical order. That is exactly the (counts,
+// symbols) pair the decoder walks, so unlike DEFLATE -- where the lengths arrive
+// per symbol and a table has to be built -- there is nothing to build here.
+//
+// The table index folds class and id together: DC tables are 0..3 and AC tables
+// 4..7, so one number selects a table and a component's td and ta are stored
+// already offset.
+
+jpg_dht(int p, int end) {
+  while (p < end && (import jpg_st)[8] = 1) {
+    p = jpg_dht1(p);
+  }
+} return void;
+
+jpg_dht1(int p) {
+  int t = asset_at(p) % 16 + 4 * (asset_at(p) / 16);
+  jpg_hcnt(p + 1, t);
+  jpg_hsym(p + 17, t, jpg_htot(t));
+} return int p + 17 + jpg_htot(t);
+
+jpg_hcnt(int p, int t) {
+  int k = 1;
+  while (k <= 16) {
+    lset((import jpg_hc), t * 17 + k, asset_at(p + k - 1));
+    k = k + 1;
+  }
+} return void;

@@ -1,0 +1,29 @@
+// The camera's setters.
+//
+// Position and aim are two calls rather than one because they change for
+// different reasons -- walking moves the eye, looking moves the angles -- and a
+// combined setter would make every caller restate the half it did not touch.
+//
+// Nothing is normalised here. fx_sin folds any angle into its quadrant itself, so
+// a yaw that has been incremented past a full turn for an hour is still correct;
+// clamping pitch is the *game's* choice (a flight sim may want to loop) and the
+// engine does not make it.
+
+d3_cam_set(int x, int y, int z) {
+  lset((import d3_cam), 0, x);
+  lset((import d3_cam), 1, y);
+  lset((import d3_cam), 2, z);
+} return void;
+
+d3_cam_aim(int deg, int pit) {
+  lset((import d3_cam), 3, deg);
+  lset((import d3_cam), 4, pit);
+} return void;
+
+// Setting the field of view is what re-derives the focal length, so the two can
+// never disagree -- the rasteriser reads slot 8 every vertex and never asks what
+// the fov was.
+d3_cam_fov(int deg) {
+  lset((import d3_cam), 7, deg);
+  lset((import d3_cam), 8, d3_cam_focal());
+} return void;

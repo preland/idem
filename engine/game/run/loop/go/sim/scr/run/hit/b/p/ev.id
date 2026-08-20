@@ -1,0 +1,24 @@
+// What a pressed key raises.
+
+scr_pev(string evn) {
+  if (evn = "quit") {
+    sys_quit();
+  } else {
+    scr_pall(evn, 0 - 1);
+  }
+} return void;
+
+// The scene's script first, then every live entity's. A press is tg world event,
+// not an entity's: the bird flaps and the scene starts the run, and both are
+// written as `on press` in their own script.
+scr_pall(string evn, int e) {
+  scr_fire(scr_sc(e), evn, e, "");
+  scr_pents(evn, 0);
+} return void;
+
+scr_pents(string evn, int e) {
+  while (e < ent_n()) {
+    scr_pent(evn, e);
+    e = e + 1;
+  }
+} return void;

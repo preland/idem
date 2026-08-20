@@ -1,0 +1,22 @@
+// Expressions, with `id`'s own precedence -- deliberately, so that a person
+// moving between a game's script and the engine's source is never surprised.
+// Lowest to highest: || && (= == !=) (< <= > >=) | ^ & (<< >>) (+ -) (* / %)
+// unary(- ! ~) postfix(.field call). Note that bitwise binds *tighter* than
+// comparison, which is `id`'s rule and the opposite of C.
+//
+// One level is two functions. The fold is split out because capturing the
+// operator, advancing, recursing and building is four actions.
+
+par_expr(int[] pos) {
+} return int par_or(pos);
+
+par_or(int[] pos) {
+  int left = par_and(pos);
+  while (par_is(pos, "||")) {
+    left = par_or_f(pos, left);
+  }
+} return int left;
+
+par_or_f(int[] pos, int left) {
+  par_next(pos);
+} return int ast_new_ab(ast_k_bin(), "||", left, par_and(pos));

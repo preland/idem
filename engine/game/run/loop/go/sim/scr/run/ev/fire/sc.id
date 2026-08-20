@@ -1,0 +1,21 @@
+// Which script belongs to whom, and running one handler.
+
+// -1 is the scene. Its script node is in scn_st, an entity's in its record, and
+// this is the one place that difference is spoken -- everything above it says
+// "the script of e".
+scr_sc(int e) {
+  int nd = (import scn_st)[9];
+  if (e >= 0) { nd = ent_at(e, 19); }
+} return int nd;
+
+// self and the status are saved and restored around the body, because a handler
+// can spawn an entity whose own handler runs before this one has finished.
+scr_hrun(int h, int e) {
+  int was = (import scr_st)[0];
+  scr_hset(e, 0);
+  scr_hdone(h, e, was);
+} return void;
+
+scr_hset(int e, int fin) {
+  m4_pair((import scr_st), 0, 1, e, fin);
+} return void;

@@ -1,0 +1,20 @@
+// Drawing the playfield.
+//
+// The engine gives the game a stage -- the rect its 320x200 maps onto -- and
+// sys_sx/sys_sy/sys_vp place it. Everything here is a rect: pong has no art, and
+// a game that needs none should not have to invent any.
+
+g_draw() {
+  sf_rect(sys_sx(), sys_sy(), sys_sw(), sys_sh(), 0x101820);
+  g_pads();
+  g_dot();
+} return void;
+
+g_pads() {
+  g_box(14000, (import g_st)[0], 6000, 40000, 0xF0F0F0);
+  g_box(306000, (import g_st)[2], 6000, 40000, 0xF0F0F0);
+} return void;
+
+g_dot() {
+  g_box((import g_st)[4], (import g_st)[5], 6000, 6000, 0xF0E060);
+} return void;

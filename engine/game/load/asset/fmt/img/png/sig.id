@@ -1,0 +1,31 @@
+// The signature, and the chunk walk.
+//
+// 137 80 78 71 13 10 26 10 -- the eight bytes chosen so that a PNG that has been
+// through a text-mode transfer, or truncated, or line-ending-converted, fails
+// here rather than halfway through the pixels.
+
+png_sig(int n) {
+  int ok = 0;
+  if (n > 8 && asset_at(0) = 137 && asset_at(1) = 80 && asset_at(2) = 78 && asset_at(3) = 71) { ok = 1; }
+} return int ok;
+
+// Each chunk is a big-endian length, a four-byte type, the payload, and a CRC.
+// The CRC is not checked: it would cost a pass over every byte of the file to
+// detect a corruption that the inflate will reject anyway, and this decoder has
+// to be fast enough to open an asset while someone waits.
+png_walk(int ok, int p) {
+  while (ok = 1 && p + 8 <= (import asset_io)[1]) {
+    p = png_chunk(p, asset_be32(p));
+    ok = png_more(p);
+  }
+} return int png_done();
+
+// A refusal has to stop the walk, not merely be recorded. It was only recorded:
+// png_chk set slot 9 to -1, the walk carried on, and IEND then overwrote it with
+// 2 -- so the refusal was lost and the file decoded anyway. It happened to fail
+// later, because an unsupported layout also gets the inflate size wrong, but that
+// is luck standing in for a check.
+png_more(int p) {
+  int ok = 1;
+  if ((import png_st)[9] = 2 || (import png_st)[9] < 0 || p < 0) { ok = 0; }
+} return int ok;

@@ -1,0 +1,11 @@
+// Division and remainder, neither of which may fault.
+
+scr_div(int a, int b) {
+  int v = 0;
+  if (b != 0) { v = a / b; }
+} return int v;
+
+scr_mod(int a, int b) {
+  int v = 0;
+  if (b != 0) { v = a % b; }
+} return int v;

@@ -1,0 +1,5 @@
+ast_k_stop() { } return int ast_kbase() + 26;
+
+ast_k_bin() { } return int ast_kbase() + 27;
+
+ast_k_un() { } return int ast_kbase() + 28;

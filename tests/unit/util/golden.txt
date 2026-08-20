@@ -1,0 +1,6 @@
+slice bird-up = bird-up
+eqat 1,0,1 = 101
+fill 11199 = 11199
+lget 9 = 9 len 5 = 5
+fake.idml:7: error: a reported error is counted
+errs 1 = 1

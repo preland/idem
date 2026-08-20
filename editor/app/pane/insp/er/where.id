@@ -1,0 +1,22 @@
+// The file and line of one diagnostic, and what clicking it does.
+
+ed_err_where(int x, int y, int w, int i) {
+  ed_err_hit(x, y, w, i, ed_in(x, y, w, ed_rowh() * 2));
+  txt_draw(ed_fit((import err_fs)[i], 14) + ":" + (import err_ls)[i], x + 6 * txt_ui(), y, ed_col(10));
+} return void;
+
+// Selecting the file in the project browser is the whole action. There is no
+// code pane to jump into yet -- that is phase 2 of docs/EDITOR_PLAN.md -- and
+// when there is, this is where the line number it scrolls to comes from.
+ed_err_hit(int x, int y, int w, int i, int ok) {
+  if (ok * inp_mhit(1) = 1) {
+    lset((import ed_st), 1, ed_dirfind((import err_fs)[i], 0));
+  }
+  ed_err_bg(x, y, w, ok);
+} return void;
+
+ed_err_bg(int x, int y, int w, int ok) {
+  if (ok = 1) {
+    sf_rect(x, y, w, ed_rowh() * 2, ed_col(7));
+  }
+} return void;

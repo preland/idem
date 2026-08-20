@@ -1,0 +1,19 @@
+// The rest of the builtins.
+
+scr_fn2(string name, int a, int b) {
+  int v = 0;
+  if (name = "sin") { v = fx_sin(a); }
+  else { v = scr_fn3(name, a, b); }
+} return int v;
+
+scr_fn3(string name, int a, int b) {
+  int v = 0;
+  if (name = "cos") { v = fx_cos(a); }
+  else { v = scr_fn4(name, a, b); }
+} return int v;
+
+scr_fn4(string name, int a, int b) {
+  int v = 0;
+  if (name = "abs") { v = fx_abs(a); }
+  else { v = scr_fn5(name, a, b); }
+} return int v;

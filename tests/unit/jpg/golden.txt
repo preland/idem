@@ -1,0 +1,30 @@
+grad baseline 4:4:4: load exp 1 = 1
+  size exp 24 16 = 24 16  channels exp 3 = 3
+  (0,0) = 32 65 127
+  (mid) = 132 133 110
+  (last) = 224 193 97
+  FNV-1a of all pixels = 692581917
+plasma baseline 4:2:0: load exp 1 = 1
+  size exp 24 16 = 24 16  channels exp 3 = 3
+  (0,0) = 137 48 86
+  (mid) = 86 93 44
+  (last) = 248 233 167
+  FNV-1a of all pixels = 4108238003
+prog444 progressive 4:4:4: load exp 1 = 1
+  size exp 32 24 = 32 24  channels exp 3 = 3
+  (0,0) = 190 152 166
+  (mid) = 57 62 74
+  (last) = 42 237 74
+  FNV-1a of all pixels = 2206392243
+prog420 progressive 4:2:0: load exp 1 = 1
+  size exp 32 24 = 32 24  channels exp 3 = 3
+  (0,0) = 153 51 83
+  (mid) = 96 108 141
+  (last) = 51 159 190
+  FNV-1a of all pixels = 2095899621
+water progressive 4:2:0: load exp 1 = 1
+  size exp 357 350 = 357 350  channels exp 3 = 3
+  (0,0) = 30 46 80
+  (mid) = 1 17 51
+  (last) = 0 16 52
+  FNV-1a of all pixels = 974294144

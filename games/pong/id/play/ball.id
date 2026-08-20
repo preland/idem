@@ -1,0 +1,27 @@
+// The ball: it moves, it bounces, and it scores.
+//
+// Nothing moves until the first press, which is what `wait` is for -- a game that
+// starts the instant it is opened has already scored a point before anybody has
+// looked at it.
+
+g_ball(int dt) {
+  if ((import g_st)[10] = 0) {
+    g_fly(dt);
+  }
+  g_serve();
+} return void;
+
+g_fly(int dt) {
+  lset((import g_st), 4, (import g_st)[4] + (import g_st)[6] * dt / 1000);
+  lset((import g_st), 5, (import g_st)[5] + (import g_st)[7] * dt / 1000);
+  g_bounce();
+} return void;
+
+// The top and bottom walls, then the paddles. The vertical test checks the
+// *direction* as well as the position: a ball resting against the ceiling for
+// three frames would otherwise reverse three times and shiver there.
+g_bounce() {
+  g_wall();
+  g_hit(14000, 0);
+  g_hit(306000, 2);
+} return void;

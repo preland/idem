@@ -1,0 +1,20 @@
+par_prim2(int[] pos, int[] out) {
+  if (par_kind(pos) = lex_k_number()) { out[0] = par_num(pos); }
+  else if (par_kind(pos) = lex_k_string()) { out[0] = par_str(pos); }
+  else { par_prim3(pos, out); }
+} return void;
+
+par_prim3(int[] pos, int[] out) {
+  if (par_is(pos, "(")) { out[0] = par_paren(pos); }
+  else if (par_is(pos, "@")) { out[0] = par_uref(pos); }
+  else { par_prim4(pos, out); }
+} return void;
+
+// A call is an identifier immediately followed by '('. That covers random(0,100),
+// count(enemy), nearest(enemy) and every other engine builtin without a name list
+// here -- resolving the name is the interpreter's job, not the parser's.
+par_prim4(int[] pos, int[] out) {
+  if (par_kind(pos) != lex_k_ident()) { out[0] = par_badtok(pos); }
+  else if (par_text2(pos) = "(") { out[0] = par_call(pos); }
+  else { out[0] = par_ident(pos); }
+} return void;

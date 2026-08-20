@@ -1,0 +1,23 @@
+// Where a frame's pixel lives in the sheet, and which character stands for it.
+
+// Frames are numbered row-major across the grid, so frame f sits at column
+// f % cols and row f / cols, and its (x, y) is that cell's origin plus the offset.
+spr_at(int f, int y, int x) {
+  int i = (f / (import spr_d)[2] * (import spr_d)[1] + y) * (import spr_d)[8] + f % (import spr_d)[2] * (import spr_d)[0] + x;
+} return int spr_slot(i);
+
+spr_slot(int i) {
+  int k = 0;
+  if (spr_clear(i) = 0) {
+    k = fx_max(spr_find((import spr_px)[i]), 0);
+  }
+} return int k;
+
+// 0 is '.', the reserved transparent character. 1..10 are '0'..'9', 11..36 are
+// 'a'..'z', 37..62 are 'A'..'Z' -- 62 colours, all of them safe inside a quoted
+// idml row, none of them the backslash or the quote that would need escaping.
+spr_char(int k) {
+  int c = 46;
+  if (k >= 1 && k <= 10) { c = 47 + k; }
+  else { c = spr_char2(k, c); }
+} return int c;

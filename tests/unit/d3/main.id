@@ -1,0 +1,34 @@
+// Unit tests for engine/gfx/d3 -- the camera, the view matrix and the near clip.
+// Every line names the value it expects in its own label, so the whole output
+// diffs against golden.txt and a regression is a one-line diff. The expected
+// values were computed independently with python3, not read off a first run.
+//
+// The init order is the engine's own and is not optional: fx_trig_init before
+// anything that takes a sine, sf_init before d3_init (which sizes the depth
+// buffer from the surface and derives a focal length from its width).
+//
+// What is checked here is the part of the pipeline with no visible output to
+// judge by. A wrong sign in the view matrix does not crash and does not look
+// obviously wrong in a single frame -- it looks like a world that turns the wrong
+// way when the camera pitches, which is the hardest kind of bug to see and the
+// easiest to assert.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  sf_open(320, 200);
+  t_start();
+} return int 0;
+
+t_start() {
+  d3_init();
+  print("focal for fov 60 deg at width 320 exp 277120 = " + (import d3_cam)[8]);
+  t_view();
+} return void;
+
+// Camera at the origin, looking along world -Z. The flip is the whole point: a
+// point one unit in FRONT of that camera is at world z -1000 and must come out at
+// camera z +1000, because everything downstream tests `z >= near`.
+t_view() {
+  t_pose(0, 0, 0, 0);
+  t_ahead();
+} return void;

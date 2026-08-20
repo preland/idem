@@ -1,0 +1,29 @@
+// Decoding a Huffman stream, and the whole literals path.
+//
+// Each symbol is a table lookup on `tableLog` peeked bits followed by a skip of
+// only the bits that symbol occupies -- which is why the reader needed peek and
+// skip rather than a plain sequential read.
+//
+// The count is known in advance (the literals section says how many bytes it
+// regenerates), so the loop runs a fixed number of times and the bitstream's end
+// is not consulted. That matches the reference, which decodes to `oend` and only
+// then asks whether the stream came out even.
+
+huf_dec(int n) {
+  int i = 0;
+  while (i < n) {
+    huf_dec1();
+    i = i + 1;
+  }
+} return void;
+
+huf_dec1() {
+  int v = zb_look((import huf_st)[0]);
+  poke8((import zst_st)[8] + (import zst_st)[10], (import huf_sy)[v]);
+  huf_dec2(v);
+} return void;
+
+huf_dec2(int v) {
+  zb_skip((import huf_nb)[v]);
+  lset((import zst_st), 10, (import zst_st)[10] + 1);
+} return void;

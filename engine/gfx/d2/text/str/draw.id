@@ -1,0 +1,39 @@
+// draw -- a string of glyphs.
+//
+// x, y is the top-left of the first glyph and the string runs right at
+// txt_cell() pixels a character times the scale; nothing wraps, and a string
+// that runs off the surface is clipped by sf_rect a glyph at a time. The
+// *height* of what is drawn is txt_cellh(), which is twice the width for the
+// default face -- a caller centring a line in a box wants that one.
+//
+// The string is walked with charat and never copied, sliced or concatenated. That
+// is not a style preference: `s = s + c` in this language allocates and never
+// frees (667 ms and 1.8 GB for a thousand frames of one line), which is why the
+// engine formats nothing at draw time and why txt_number exists at all.
+
+// At the UI scale, so the editor's chrome keeps a constant ratio to the window as
+// it resizes (font/cell/ui.id). A caller drawing into something that is not the
+// window -- a game's UI inside a stage, a panel being zoomed -- asks for
+// txt_draw_sc with that thing's own scale.
+txt_draw(string s, int x, int y, int c) {
+  txt_draw_sc(s, x, y, c, txt_ui() * 1000);
+} return void;
+
+// sc is per-mille. The advance is `i * cell * sc / 1000` and not `i * (cell * sc
+// / 1000)`: rounding each glyph's width separately and then summing is how a
+// string ends up a pixel short of what it measured.
+txt_draw_sc(string s, int x, int y, int c, int sc) {
+  int i = 0;
+  while (charat(s, i) >= 0) {
+    txt_glyph_sc(charat(s, i), x + i * txt_cell() * sc / 1000, y, c, sc);
+    i = i + 1;
+  }
+} return void;
+
+// Anchored text, for the UI: align 0 puts the string's left edge at x, 1 centres
+// it on x, 2 puts its right edge at x. The UI's leaf drawing resolves an item's
+// rect to pixels and then anchors its Text inside it (IDML_GAME.md section 6),
+// which is exactly this call with the rect's left, middle or right edge.
+txt_draw_at(string s, int x, int y, int c, int align) {
+  txt_draw(s, x - txt_align(txt_width(s), align), y, c);
+} return void;

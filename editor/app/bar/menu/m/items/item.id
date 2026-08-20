@@ -1,0 +1,13 @@
+// How many items a menu has, and the first two levels of the label dispatch.
+
+ed_mn(int k) {
+  int n = 4;
+  if (k = 0) { n = 5; }
+  else { n = ed_mn2(k); }
+} return int n;
+
+ed_mn2(int k) {
+  int n = 4;
+  if (k = 2 || k = 3) { n = 3; }
+  else if (k = 4) { n = 2; }
+} return int n;

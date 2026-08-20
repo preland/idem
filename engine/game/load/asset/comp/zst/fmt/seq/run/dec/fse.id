@@ -1,0 +1,20 @@
+// An FSE-coded table: read the description, build, and skip what it consumed.
+
+zst_sfse(int r, int base) {
+  int used = fse_read((import zst_st)[0] + (import zst_st)[1], (import zst_st)[2] - (import zst_st)[1], zst_smax(r));
+  m4_pair((import fse_rl), r * 2, r * 2 + 1, base, (import fse_st)[0]);
+  zst_sfse2(base, used);
+} return void;
+
+zst_sfse2(int base, int used) {
+  fse_build(base, (import fse_st)[0], (import fse_st)[4] - 1);
+  lset((import zst_st), 1, (import zst_st)[1] + used);
+} return void;
+
+// The largest symbol each alphabet can carry: 35 literal-length codes, 31 offset
+// codes, 52 match-length codes.
+zst_smax(int r) {
+  int n = 35;
+  if (r = 1) { n = 31; }
+  else if (r = 2) { n = 52; }
+} return int n;

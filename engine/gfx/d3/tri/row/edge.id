@@ -1,0 +1,33 @@
+// Where one edge crosses one scanline, and the span's single clip test.
+//
+// The crossing parameter is computed with fx_div, which answers 0 instead of
+// dividing by zero -- and a horizontal edge really does reach here: a
+// flat-bottomed triangle's lower run is one scanline long and its short edge has
+// no vertical extent at all. Division by zero aborts the process with a message
+// these days rather than dying of SIGFPE without one, which makes it a diagnosis
+// instead of a mystery -- and still a dead game, for geometry that is perfectly
+// legal.
+//
+// d3_span is the only place a span is tested against the surface, once, at its
+// ends -- per ARCHITECTURE.md §3: "every span routine clips its span once at the
+// ends and then writes without testing". Everything above it may compute
+// coordinates freely, and an out-of-range list store aborts the process, so this
+// test is what stands between an off-screen wall and a dead game.
+
+d3_edge(int[] verts, int a, int b, int y, int[] st, int p) {
+  d3_edge6(verts, a, b, fx_div(y - verts[a + 1], verts[b + 1] - verts[a + 1], 65536), st, p);
+} return void;
+
+d3_edge6(int[] verts, int a, int b, int t, int[] st, int p) {
+  int k = 0;
+  while (k < 6) {
+    lset(st, p + k, d3_mix(verts[a + k], verts[b + k], t));
+    k = k + 1;
+  }
+} return void;
+
+d3_span(int y, int[] st) {
+  if (y >= (import d3_vp)[1] && y <= (import d3_vp)[3] && st[6] >= (import d3_vp)[0] && st[0] <= (import d3_vp)[2]) {
+    d3_span2(y, st);
+  }
+} return void;

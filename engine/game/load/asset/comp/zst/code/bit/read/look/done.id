@@ -1,0 +1,24 @@
+// The borrow, and whether the stream has been used up.
+
+zb_borrow() {
+  while ((import zb_st)[2] < 0) {
+    lset((import zb_st), 2, (import zb_st)[2] + 8);
+    lset((import zb_st), 1, (import zb_st)[1] - 1);
+  }
+} return void;
+
+// How many bits are still unread. Zero means the stream came out exactly even;
+// negative means a read has already gone past the end.
+zb_left() {
+} return int ((import zb_st)[1] - (import zb_st)[0]) * 8 + (import zb_st)[2] + 1;
+
+// Done means **past** the end, not *at* it. The distinction is the whole of an
+// FSE weight stream's termination: the reference keeps decoding while the stream
+// is exactly consumed and stops only once a read has overrun, so treating "exactly
+// consumed" as done loses the last symbol of each state -- four trailing weights
+// here, which shifts which symbol the implied final weight belongs to and
+// corrupts every code after it.
+zb_done() {
+  int ok = 0;
+  if (zb_left() < 0) { ok = 1; }
+} return int ok;

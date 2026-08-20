@@ -1,0 +1,27 @@
+// ast -- one node arena, parallel columns, a node id is an index.
+//
+// `id` has no structs, so an aggregate is either parallel lists indexed by an
+// integer id or one fixed-slot list; a tree is the former. Every ast_new* pushes
+// exactly one cell onto every column and returns len(...) - 1, which is the new
+// node's id.
+//
+// Node id 0 is the nil node, created by ast_kinit, so 0 can mean "absent" in any
+// of ast_a / ast_b / ast_c without a separate sentinel.
+
+ast_init() {
+  export int[] ast_kind = [];
+  export string[] ast_text = [];
+  ast_init2();
+} return void;
+
+ast_init2() {
+  export int[] ast_a = [];
+  export int[] ast_b = [];
+  ast_init3();
+} return void;
+
+ast_init3() {
+  export int[] ast_c = [];
+  export int[] ast_line = [];
+  ast_init4();
+} return void;

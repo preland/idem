@@ -1,0 +1,10 @@
+// One slot of an entity's record, or zero when there is no entity.
+//
+// The scene's own script runs with e = -1, and -1 is not an index: a record read
+// at minus one is an out-of-range store access, which aborts the process. Every
+// place that reads a record on behalf of a script goes through here.
+
+scr_eb(int e, int k) {
+  int v = 0;
+  if (e >= 0) { v = ent_at(e, k); }
+} return int v;

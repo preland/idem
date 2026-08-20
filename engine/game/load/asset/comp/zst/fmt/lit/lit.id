@@ -1,0 +1,36 @@
+// The compressed block: a literals section, then a sequences section.
+//
+// The two halves are not independent. Literals are the bytes that appear in the
+// output verbatim; sequences say how to interleave runs of them with matches
+// copied from earlier output. Neither is meaningful alone.
+//
+// The literals are decoded into their own buffer first, because a sequence
+// consumes them a run at a time and Huffman-coded literals cannot be produced on
+// demand -- they come out of up to four interleaved streams that must each be
+// decoded start to finish.
+
+zst_comp(int n) {
+  int end = (import zst_st)[1] + n;
+  zst_lits();
+  zst_seqs(end);
+} return void;
+
+// Literals_Section_Header: two bits of type, two of size format, then one to
+// three more bytes of sizes packed against them.
+//
+//     0 Raw        the bytes follow, uncompressed
+//     1 RLE        one byte, repeated
+//     2 Compressed Huffman, with a new tree
+//     3 Treeless   Huffman, reusing the previous block's tree
+zst_lits() {
+  int h = zst_byte((import zst_st)[1]);
+  zst_lkind(h % 4, h / 4 % 4, h);
+} return void;
+
+zst_lkind(int kd, int sf, int h) {
+  if (kd = 0 || kd = 1) {
+    zst_lraw(kd, sf, h);
+  } else {
+    zst_lhuf(kd, sf, h);
+  }
+} return void;

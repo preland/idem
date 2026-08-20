@@ -1,0 +1,16 @@
+// The two lengths, and advancing the states.
+
+zst_sllen(int ll) {
+  int v = (import zst_lb)[ll];
+} return int v + zb_bits((import zst_lx)[ll]);
+
+zst_smlen(int ml) {
+  int v = (import zst_mb)[ml];
+} return int v + zb_bits((import zst_mx)[ml]);
+
+zst_supd(int last) {
+  if (last = 0) {
+    lset((import zst_sq), 0, fse_dnext(0, (import zst_sq)[0]));
+    zst_supd2();
+  }
+} return void;

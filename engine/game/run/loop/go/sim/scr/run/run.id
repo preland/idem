@@ -1,0 +1,34 @@
+// Running a frame's scripts.
+//
+// The order is the frame's, and each step is where it is for a reason:
+//
+//   1. timers    accumulate first, so `on timer 1400` fires on the frame the
+//                budget is reached rather than the one after
+//   2. update    the scene's, then every live entity's
+//   3. press     if input said a mapped key went down this frame
+//   4. hit       after the simulation has moved everything, because a collision
+//                is between where things *are*, not where they were
+//   5. offscreen once positions are final
+//   6. goto      last, alone, after every walk over the entity list has finished
+//
+// A `goto` performed in the middle of step 2 would truncate the variable table
+// and rebuild the entity list underneath the loop still walking it. Deferring it
+// costs one slot and removes a whole class of bug.
+
+scr_frame(int dt) {
+  scr_tick(dt);
+  scr_upd(0 - 1);
+  scr_frame2();
+} return void;
+
+scr_frame2() {
+  scr_ents(0);
+  scr_press();
+  scr_frame3();
+} return void;
+
+scr_frame3() {
+  scr_hits(0);
+  scr_offs(0);
+  scr_jump();
+} return void;

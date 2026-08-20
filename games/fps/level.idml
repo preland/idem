@@ -1,0 +1,43 @@
+# The arena, as world geometry.
+#
+# A `brush` is an axis-aligned box named by two opposite corners plus a colour.
+# It is sugar for twelve triangles, and unlike a model built from raw verts and
+# faces it also contributes a collision box -- which is what makes this level
+# walkable with nothing else said about it anywhere.
+#
+# Coordinates are world units: the arena is 24 x 24 with 4-unit walls, the
+# player's eye is at 1.7, and a crate at 1.2 is chest height. y is up here (a 3D
+# scene is y-up; a 2D scene is y-down, because a screen is).
+
+model arena {
+  # floor and ceiling
+  brush (-12, -0.25, -12) ( 12,  0,    12) 0x3E4A3A
+  brush (-12,  4,    -12) ( 12,  4.25, 12) 0x23262B
+
+  # the outer wall, four slabs
+  brush (-12, 0, -12) ( 12, 4, -11.5) 0x6B5D4A
+  brush (-12, 0,  11.5) ( 12, 4,  12) 0x6B5D4A
+  brush (-12, 0, -12) (-11.5, 4, 12) 0x5F5241
+  brush ( 11.5, 0, -12) ( 12, 4, 12) 0x5F5241
+
+  # an inner room, open on its east side, to prove occlusion and near-clipping
+  brush (-7, 0, -7) (-2, 4, -6.5) 0x7A6A54
+  brush (-7, 0, -7) (-6.5, 4, -1) 0x7A6A54
+  brush (-7, 0, -1.5) (-2, 4, -1) 0x7A6A54
+
+  # pillars
+  brush (3, 0, 3) (4, 4, 4) 0x8A7A62
+  brush (3, 0, -4) (4, 4, -3) 0x8A7A62
+  brush (-4, 0, 5) (-3, 4, 6) 0x8A7A62
+
+  # crates, low enough to see over and high enough to stop a shot
+  brush (6.5, 0, -1) (7.7, 1.2, 0.2) 0x8B5A2B
+  brush (6.5, 0, 0.4) (7.7, 1.2, 1.6) 0x94612F
+  brush (6.5, 1.2, -0.3) (7.7, 2.4, 0.9) 0x8B5A2B
+  brush (-2, 0, 8) (-0.8, 1.2, 9.2) 0x8B5A2B
+
+  # a ramp, approximated as three steps -- there are no sloped brushes
+  brush (9, 0,    -8) (11, 0.5, -6) 0x55606B
+  brush (9, 0.5,  -6) (11, 1,   -4) 0x55606B
+  brush (9, 1,    -4) (11, 1.5, -2) 0x55606B
+}

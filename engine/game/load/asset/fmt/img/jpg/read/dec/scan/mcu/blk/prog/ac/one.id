@@ -1,0 +1,26 @@
+// One symbol of a first-pass AC band.
+//
+// The two calls are separate statements because both read bits and two
+// side-effecting calls in one expression may evaluate in either order -- which
+// here would read the run length out of the coefficient's own bits.
+
+jpg_pacf3(int ci, int a, int k) {
+  int rs = jpg_dec((import jpg_c)[ci * 10 + 5]);
+} return int jpg_pacf4(ci, a, k, rs / 16, rs % 16);
+
+jpg_pacf4(int ci, int a, int k, int rn, int sz) {
+  int nk = 0;
+  if (sz = 0) { nk = jpg_peob(k, rn); }
+  else { nk = jpg_pacv(ci, a, k + rn, sz); }
+} return int nk;
+
+// A run of 15 is sixteen zeros and the band continues; anything else ends the
+// band here and sets a run of (2^rn - 1) further blocks to skip, plus rn extra
+// bits. Answering 0 stops the caller's loop, which is how a language with no
+// `break` says "this block is done".
+jpg_peob(int k, int rn) {
+  int nk = k + 16;
+  if (rn != 15) {
+    nk = jpg_peob2(rn);
+  }
+} return int nk;

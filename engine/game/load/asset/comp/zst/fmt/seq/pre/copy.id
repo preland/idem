@@ -1,0 +1,22 @@
+// Copying one distribution into the shared count array.
+//
+// The array is cleared first: a previous table's counts left in the tail would be
+// spread into this one, which builds a table that decodes and is wrong.
+
+zst_pcopy(int[] xs) {
+  int i = 0;
+  lst_set_all((import fse_ct), 256, 0);
+  while (i < len(xs)) {
+    lset((import fse_ct), i, xs[i]);
+    i = i + 1;
+  }
+} return void;
+
+// The three roles, at the bases the decode tables are laid out in: literal
+// lengths at 0 (up to 512 slots), offsets at 512 (256), match lengths at 768
+// (512). 1280 of the 1536 allocated.
+zst_pre_all() {
+  zst_pload(0, (import zst_pll), 6, 0);
+  zst_pload(1, (import zst_pof), 5, 512);
+  zst_pload(2, (import zst_pml), 6, 768);
+} return void;

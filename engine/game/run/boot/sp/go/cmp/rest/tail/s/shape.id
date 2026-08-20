@@ -1,0 +1,24 @@
+// `shape box (10, 60) 0xFFFFFF` -- a kind, a size and a colour, in that order,
+// which is IDML_GAME.md's own spelling. Only `box` exists; a kind this does not
+// know leaves slot 24 at 0 and the entity draws nothing, which is the same thing
+// a missing sprite does.
+scn_efill9(int e, int nd) {
+  scn_eshape(e, scn_mem(nd, "shape", 0));
+  scr_evars(e, nd, 0);
+} return void;
+
+// -1 rather than 0 when there is no anim: frame 0 to frame 0 is a one-frame cycle
+// and would be indistinguishable from a still sprite anyway, but the ms default
+// would then divide a live counter for nothing.
+scn_manim(int nd, int k) {
+  int v = 0 - 1;
+  if (scn_mem(nd, "anim", 0) != 0) { v = scn_mtup(nd, "anim", k); }
+} return int v;
+
+// Reading a `shape` component into the record.
+
+scn_eshape(int e, int nd) {
+  if (nd != 0 && ast_tx(scn_arg(nd, 0)) = "box") {
+    scn_ebox(e, nd);
+  }
+} return void;

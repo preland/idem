@@ -1,0 +1,19 @@
+// A sequence may not ask for more literals than the block decoded.
+//
+// Reading past the end of the literals buffer does not abort -- the buffer is
+// sized for the worst case and the bytes beyond are whatever the last block left
+// -- so without this check the symptom is a run of plausible-looking wrong bytes
+// somewhere in the output, which is a far worse thing to debug than a refusal.
+
+zst_lchk2(int n) {
+  if ((import zst_st)[10] + n > (import zst_st)[9]) {
+    lset((import zst_st), 6, 4);
+  }
+} return void;
+
+zst_lrun2(int n, int i) {
+  while (i < n && (import zst_st)[6] = 0) {
+    zst_put(peek8((import zst_st)[8] + (import zst_st)[10] + i));
+    i = i + 1;
+  }
+} return void;

@@ -1,0 +1,30 @@
+// How many source bytes the description occupied, and the FSE-coded form.
+//
+// Direct weights take one header byte plus one byte per two weights; the FSE form
+// takes one header byte plus the compressed size the header names.
+
+huf_used(int b0, int p) {
+  int n = b0 + 1;
+  if (b0 >= 128) {
+    n = 1 + (b0 - 127 + 1) / 2;
+  }
+} return int n;
+
+// The weights are an FSE stream in their own right, with accuracy log at most 6,
+// decoded by two interleaved states -- a different use of FSE from the sequences,
+// which interleave three. Role 3 is its own table, at base 1280.
+huf_wfse(int p, int n) {
+  fse_read((import zst_st)[0] + p, n, 255);
+  fse_build(1280, (import fse_st)[0], (import fse_st)[4] - 1);
+  m4_pair((import fse_rl), 6, 7, 1280, (import fse_st)[0]);
+} return int huf_wrun(p, n);
+
+// The two initial states are read in SEPARATE statements. Both consume bits, and
+// two side-effecting calls in one expression may evaluate in either order in this
+// language -- which silently swaps the two states and decodes a different number
+// of weights. This is the third time that trap has cost time in this module.
+huf_wrun(int p, int n) {
+  zb_start((import zst_st)[0] + p + huf_wskip(), n - huf_wskip());
+  huf_wstart();
+} return int huf_wloop(0);
+

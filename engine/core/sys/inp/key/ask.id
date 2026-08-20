@@ -1,0 +1,29 @@
+// ask -- the two questions a game asks about a key.
+//
+// inp_down is level-triggered ("is it held now") and inp_hit is edge-triggered
+// ("did it go down this frame"). Movement wants the first, a flap or a shot
+// wants the second: holding space must not flap sixty times a second.
+//
+// Both are guarded, and both answer 0 for a code out of range rather than
+// aborting -- asking about a key that cannot exist is a game's business, not a
+// crash.
+
+inp_down(int key) {
+  int ok = 0;
+  if (key >= 0 && key < inp_kmax()) {
+    ok = (import inp_keys)[key];
+  }
+} return int ok;
+
+inp_hit(int key) {
+  int ok = 0;
+  if (key >= 0 && key < inp_kmax()) {
+    ok = (import inp_hits)[key] = (import inp_st)[0];
+  }
+} return int ok;
+
+// Did any of the keys bound to "action" fire this frame? Space, Return and W all
+// mean the same thing in a one-button game, and deciding which of them the
+// player used is not the game's business.
+inp_hit_any() {
+} return int inp_hit(32) || inp_hit(13) || inp_hit(119);

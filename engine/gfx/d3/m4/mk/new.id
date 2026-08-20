@@ -1,0 +1,37 @@
+// m4 -- a 4x4 matrix is 16 ints, row-major, every entry x1000.
+//
+// The convention, stated once because every other module depends on it:
+//
+//   * 16 entries, row-major: entry (row r, column c) is mat[r * 4 + c].
+//   * A point is a COLUMN vector on the right: p' = M * p. So the translation
+//     lives in the fourth column -- slots 3, 7, 11 -- and composing "first A,
+//     then B" is m4_mul(b, a), in that order.
+//   * Every entry is x1000, and a point is homogeneous with w = 1000, so a
+//     transformed coordinate is (sum of four products) / 1000 and the
+//     translation entries are plain millunits (ARCHITECTURE.md §4).
+//   * The identity is therefore 1000 down the diagonal, not 1.
+//
+// A matrix is allocated once and reused. These builders each allocate (they are
+// setup-time or a handful per frame); the per-frame path is m4_ident plus
+// m4_pair / m4_rot4 into a matrix that already exists, and m4_muli, which writes
+// into its destination instead of allocating one.
+
+m4_new() {
+  int[] mat = [];
+  lst_fill(mat, 16, 0);
+  m4_ident(mat);
+} return int[] mat;
+
+// Reset an existing matrix to the identity. Two functions only because a block
+// holds three actions and this is four writes.
+m4_ident(int[] mat) {
+  lst_set_all(mat, 16, 0);
+  lset(mat, 0, 1000);
+  m4_ident2(mat);
+} return void;
+
+m4_ident2(int[] mat) {
+  lset(mat, 5, 1000);
+  lset(mat, 10, 1000);
+  lset(mat, 15, 1000);
+} return void;

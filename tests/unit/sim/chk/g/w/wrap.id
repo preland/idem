@@ -1,0 +1,23 @@
+// Wrapping and animation.
+//
+// `wrap (-144, 432)` on something moving left means: once past -144, go back to
+// 432. Flag bit 8 says the entity has one; without it the bound is ignored, which
+// matters because slot 10 is 0 by default and every entity is at x >= 0 at some
+// point in its life.
+
+t_wrap() {
+  ent_put(0, 9, 1 + 8);
+  m4_pair((import ent_r), 10, 11, 0 - 144000, 432000);
+  t_wrap2();
+} return void;
+
+t_wrap2() {
+  ent_put(0, 0, 0 - 145000);
+  sim_wrap(0);
+  t_wrap2b();
+} return void;
+
+t_wrap2b() {
+  print("past the left bound: x exp 432000 = " + ent_at(0, 0));
+  t_wrap3();
+} return void;

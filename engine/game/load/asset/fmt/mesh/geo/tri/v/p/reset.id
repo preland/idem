@@ -1,0 +1,12 @@
+// The last scratch matrix, and clearing the output lists.
+
+bl_geo3() {
+  export int[] bl_m2 = m4_new();
+  bl_wm_init();
+  bl_lit_init();
+} return void;
+
+bl_reset() {
+  while (len((import bl_v)) > 0) { pop((import bl_v)); }
+  while (len((import bl_ti)) > 0) { pop((import bl_ti)); }
+} return void;

@@ -1,0 +1,31 @@
+// `./` introduces a **page**: the item tree the document lays out, as opposed to
+// the definitions above it. It is real idml -- every page in the reference corpus
+// begins with it -- and it is the one top-level form that is not a declaration,
+// so it is recognised here rather than through par_dk.
+par_top(int[] pos) {
+  int nd = 0;
+  if (par_is(pos, ".") = 1) {
+    nd = par_page(pos);
+  } else {
+    nd = par_decl(pos);
+  }
+} return int nd;
+
+par_page(int[] pos) {
+  par_next(pos);
+  par_want(pos, "/");
+} return int ast_new_a(ast_k_page(), "", par_item(pos));
+
+// An unknown keyword is reported and skipped rather than ending the parse: a
+// document with one unrecognised declaration should still yield the rest, because
+// the editor draws what it understood and the loader reports what it did not.
+// The line is taken at the **keyword**, before anything is consumed. Taking it
+// later is a real bug and a quiet one: a declaration whose name is the last token
+// on its line -- `import "./art.idml"` -- would then read its arguments from the
+// *next* line, and swallow the whole `game { … }` that followed as its own body.
+// The manifest simply disappeared, with no diagnostic, because everything parsed.
+par_decl(int[] pos) {
+  string name = par_text(pos);
+  int ln = par_line(pos);
+  par_next(pos);
+} return int par_dkind(pos, name, par_dk(name), ln);
