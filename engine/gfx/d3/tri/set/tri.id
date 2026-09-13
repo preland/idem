@@ -31,7 +31,7 @@
 d3_tri(int[] tri) {
   lset((import d3_gs), 6, d3_proj3(tri, (import d3_vts)));
   int m = d3_area((import d3_vts));
-  if (m < 0 || m > 0 && (import d3_env)[8] & 1 = 0) {
+  if (m < 0 || m > 0 && ((import d3_env)[8] & 1) = 0) {
     d3_tri2((import d3_vts));
   }
 } return void;

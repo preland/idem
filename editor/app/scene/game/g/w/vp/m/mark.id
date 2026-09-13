@@ -14,7 +14,7 @@ ed_marks(int e) {
 } return void;
 
 ed_mark1(int e) {
-  if (ent_at(e, 23) & 1 = 1) {
+  if ((ent_at(e, 23) & 1) = 1) {
     ed_cross(ed_epx(e, 0), ed_epy(e));
   }
 } return void;

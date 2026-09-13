@@ -11,7 +11,7 @@ jpg_rcorr(int a, int k) {
 } return void;
 
 jpg_rbump(int a, int k, int v) {
-  if (v & inf_pow2((import jpg_st)[16]) = 0) {
+  if ((v & inf_pow2((import jpg_st)[16])) = 0) {
     jpg_cset(a, k, v + inf_pow2((import jpg_st)[16]) * (2 * (v >= 0) - 1));
   }
 } return void;
