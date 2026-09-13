@@ -14,4 +14,4 @@ par_snum(int[] pos, int sc) {
 
 par_scale(int v, int fr, int sc, int[] pos) {
   par_fchk(pos, fr, sc);
-} return int v * par_pow10(sc - fr);
+} return int v * fx_pow(10, sc - fr);
