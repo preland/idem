@@ -42,7 +42,7 @@ d3_sort3(int[] verts) {
 d3_swapv(int[] xs, int p, int q) {
   int k = 0;
   while (k < 6) {
-    d3_swap1(xs, p + k, q + k);
+    lst_swap(xs, p + k, q + k);
     k = k + 1;
   }
 } return void;

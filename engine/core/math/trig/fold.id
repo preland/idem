@@ -10,25 +10,3 @@
 // differ in an operator and a literal, which is exactly what the
 // function-uniqueness rule looks at.
 
-fx_sin_q(int q, int rm) {
-  int sv = 0;
-  if (q < 2) {
-    sv = fx_sin_q01(q, rm);
-  } else {
-    sv = fx_sin_q23(q, rm);
-  }
-} return int sv;
-
-fx_sin_q01(int q, int rm) {
-  int sv = fx_sin_lin(rm);
-  if (q = 1) {
-    sv = fx_sin_lin(90000 - rm);
-  }
-} return int sv;
-
-fx_sin_q23(int q, int rm) {
-  int sv = 0 - fx_sin_lin(rm);
-  if (q = 3) {
-    sv = 0 - fx_sin_lin(90000 - rm);
-  }
-} return int sv;

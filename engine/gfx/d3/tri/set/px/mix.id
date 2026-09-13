@@ -23,8 +23,3 @@ d3_area(int[] verts) {
   wp = wp * (verts[13] - verts[1]) - sm * (verts[12] - verts[0]);
 } return int (wp > 0) - (wp < 0);
 
-d3_swap1(int[] xs, int i, int j) {
-  int t = xs[i];
-  lset(xs, i, xs[j]);
-  lset(xs, j, t);
-} return void;

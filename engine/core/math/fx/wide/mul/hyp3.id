@@ -1,19 +1,1 @@
-// The 3D magnitude.
 
-// sqrt(a*a + b*b + c*c) -- a 3D magnitude in one root rather than two.
-//
-// fx_hyp(fx_hyp(a, b), c) is the same number and costs a second digit-by-digit
-// square root, which is sixteen iterations of a loop with two calls in each. That
-// is nothing once and everything per triangle: the showroom shades a quarter of a
-// million faces a frame, and halving the roots halved the time the whole renderer
-// spent in this file.
-fx_hyp3(int a, int b, int c) {
-  word sm = a;
-  word hs = b;
-  sm = sm * a + hs * b + fx_sq(c);
-} return int fx_hypfix(sm);
-
-fx_sq(int a) {
-  word sm = a;
-  sm = sm * a;
-} return word sm;

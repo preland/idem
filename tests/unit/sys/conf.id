@@ -8,5 +8,5 @@
 import "../../../engine"
 // The game seam as no-ops: this program links the engine but is not a game.
 import "../../../stub"
-import "../../../../id_development/backends/gfx"
-import "../../../../id_development/backends/fs"
+import "../../../../idc/backends/gfx"
+import "../../../../idc/backends/fs"

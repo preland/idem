@@ -5,38 +5,3 @@
 // own function. The order inside fx_sqtake matters -- slot 0 is updated using the
 // old slot 1, so the remainder must be written before the root is.
 
-fx_sqstep(int[] sq, int bt) {
-  if (sq[0] >= sq[1] + bt) {
-    fx_sqtake(sq, bt);
-  } else {
-    lset(sq, 1, sq[1] / 2);
-  }
-} return void;
-
-fx_sqtake(int[] sq, int bt) {
-  lset(sq, 0, sq[0] - sq[1] - bt);
-  lset(sq, 1, sq[1] / 2 + bt);
-} return void;
-
-// The square root of a word too wide for fx_sqrt's int parameter.
-//
-// sqrt(n) is either 2*sqrt(n/4) or that plus one -- because (2k)^2 <= n whenever
-// k^2 <= n/4, and (2k+2)^2 = 4*(k+1)^2 >= 4*(n/4 + 1) > n. So one root of the
-// quartered value plus a single wide test gives the exact floor, and no 64-bit
-// square root has to exist.
-//
-// The identity is exact at every level, so it may be applied repeatedly: fx_wroot
-// quarters again whenever the value is still outside fx_sqrt's domain. That
-// matters more than it looks. fx_sqrt is exact only for a < 2^31 -- above that
-// fx_sqbit cannot start high enough and it silently returns a root that is far
-// too small, with no fault and no clue. A single quartering covers operands up to
-// 65535, which is what fx_hyp's header used to promise; recursing covers the
-// whole word. The engine hit this the first time a surface normal was measured:
-// components of two million made every Lambert term saturate at 1.0, and a lit
-// room came out as flat as an unlit one.
-
-fx_hypfix(word sm) {
-  int m = 2 * fx_wroot(sm / 4);
-  word hs = m + 1;
-  m = m + (hs * hs <= sm);
-} return int m;

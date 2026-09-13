@@ -3,10 +3,10 @@
 // This manifest is for building or testing the engine on its own. A *game* does
 // not use it -- imports are not transitive, so the packager writes each game's
 // manifest naming both the engine and this backend directly.
-import "../../id_development/backends/gfx"
+import "../../idc/backends/gfx"
 //
 // backends/fs is here because the engine reads assets itself now: png_load opens
 // a file. Imports are not transitive, so every project that imports the engine
 // names this too -- the packer generates a game's manifest, and the two test
 // suites and the editor say it here.
-import "../../id_development/backends/fs"
+import "../../idc/backends/fs"

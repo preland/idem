@@ -27,27 +27,3 @@
 //     line (`#file `) and wrong inside a per-token loop -- lex_op2 compares byte
 //     codes for exactly that reason.
 
-// The substring s[i .. i+n). One allocation, no concatenation.
-str_slice(string s, int i, int n) {
-  word ad = alloc(n + 1);
-  str_blit(s, i, n, ad);
-} return string str_of_mem(ad, n);
-
-str_blit(string s, int i, int n, word ad) {
-  int j = 0;
-  while (j < n) {
-    poke8(ad + j, charat(s, i + j));
-    j = j + 1;
-  }
-} return void;
-
-// Does `txt` appear in `s` starting at i? The whole point is to answer that
-// without materialising the substring, which is what makes the lexer's keyword
-// tests allocation-free. The return clause reads as an assignment but `=` in an
-// expression is equality, so this yields 1 only when every byte matched.
-str_eqat(string s, int i, string txt) {
-  int j = 0;
-  while (j < len(txt) && charat(s, i + j) = charat(txt, j)) {
-    j = j + 1;
-  }
-} return int j = len(txt);

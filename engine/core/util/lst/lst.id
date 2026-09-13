@@ -13,14 +13,3 @@
 // That is a better world to write in, and it changes nothing here: every write to
 // an exported list still goes through lset, defined once for the whole program (a
 // second copy anywhere would be a duplicate-logic error).
-
-lset(int[] xs, int i, int v) {
-  xs[i] = v;
-} return void;
-
-lget(int[] xs, int i) {
-} return int xs[i];
-
-sset(string[] strs, int i, string s) {
-  strs[i] = s;
-} return void;
