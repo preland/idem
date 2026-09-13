@@ -5,3 +5,18 @@ ui_ppage(int nd) {
     lset((import ui_pg), 0, ast_ia(nd));
   }
 } return void;
+
+// The frame's two seam calls, read once each. Kept here because loop.id
+// (app/go/loop.id), where idem_adraw calls this, is already at its 3-function
+// cap.
+eng_frame(int dt) {
+  func(int) return void gt = (import eng_step);
+  gt(dt);
+  eng_frame2();
+} return void;
+
+eng_frame2() {
+  func() return void gd = (import eng_draw);
+  gd();
+  idem_aui();
+} return void;

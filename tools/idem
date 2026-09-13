@@ -133,7 +133,9 @@ environment:
                     the default) or `idc.py` (the reference implementation).
                     They emit byte-identical C; idc.py is the escape hatch if a
                     self-hosted build ever disagrees, and the way to reach
-                    --target llvm|wasm.
+                    --target llvm|wasm. idc.py cannot build the app-model seam
+                    (docs/TODO.md 14): it has no function values, which
+                    games/pong's `id/` and the editor both use.
 EOF
 }
 
@@ -591,15 +593,13 @@ cmd_pack() {
         # tree stays purely generated, and its `g_` functions land in the same
         # flat namespace as the engine's.
         #
-        # A game that has none still has to *supply* the seam, because the engine
-        # calls it -- exactly as every program supplies a graphics backend. So it
-        # gets the no-ops from stub/. Without this a document-model game does not
-        # link at all: the app runner is compiled into every program whether or
-        # not that program enters through it.
+        # A document-model game supplies nothing here. idem_app's six functions
+        # are read back through exports (eng_seam, app.id), not called by a fixed
+        # name every program has to define, so a game whose main.id never calls
+        # idem_app never reaches them and links with no substitute at all
+        # (docs/TODO.md 14 -- this used to import stub/ for that reason).
         if [ -d "$dir/id" ]; then
             imports+=("$dir/id")
-        else
-            imports+=("$ROOT/stub")
         fi
     fi
     local dep

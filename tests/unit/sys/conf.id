@@ -6,7 +6,5 @@
 // the key-state machine are pure -- so it runs with no display, in CI, like every
 // other unit suite. Linking the backend is a build requirement, not a runtime one.
 import "../../../engine"
-// The game seam as no-ops: this program links the engine but is not a game.
-import "../../../stub"
 import "../../../../idc/backends/gfx"
 import "../../../../idc/backends/fs"

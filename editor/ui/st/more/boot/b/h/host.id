@@ -1,13 +1,13 @@
 // The editor's own half of the game seam.
 //
-// The engine asks a *game* for these (docs/IDML.md §2). The editor is not a game
-// -- it hosts other people's -- so it answers as a host: a `@name` in a previewed
+// The engine asks a *game* for these, as function values handed in through
+// eng_seam (docs/IDML.md §2, engine's app.id). The editor is not a game -- it
+// hosts other people's -- so it answers as a host: a `@name` in a previewed
 // document reads that document's own variable, which is what makes a gate like
-// `?@ready` mean anything in the panel.
-//
-// It is imported instead of `stub/`, whose g_ref answers 0 for everything. That
-// was correct for a unit test and wrong here: it hid every gated panel in every
-// game the editor opened, which looked like the UI having broken.
+// `?@ready` mean anything in the panel. ed_boot11 (scn.id) is what hands these
+// in; a program that answers 0 for everything, the way `stub/` once did, hid
+// every gated panel in every game the editor opened, which looked like the UI
+// having broken.
 //
 // The legacy reader is scr_get because the games the editor still opens are
 // documents the engine interprets. When they become `id`, this becomes a lookup

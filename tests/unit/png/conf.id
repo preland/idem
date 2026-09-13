@@ -1,6 +1,4 @@
 // The PNG decoder needs the file backend, and the engine it lives in.
 import "../../../engine"
-// The game seam as no-ops: this program links the engine but is not a game.
-import "../../../stub"
 import "../../../../idc/backends/fs"
 import "../../../../idc/backends/gfx"

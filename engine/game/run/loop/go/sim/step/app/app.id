@@ -4,7 +4,8 @@
 // it imports the engine as a library. Its `.idml` lays out a screen over the top
 // and decides nothing (docs/IDML.md). This is the loop that runs that
 // arrangement, and it is deliberately thin -- everything interesting is on the
-// game's side of six named functions:
+// game's side of six functions, passed in here as values (SPEC.md §1.1) rather
+// than called by a fixed name:
 //
 //     g_init()            bring the game's state into existence
 //     g_stage(k)          0 width, 1 height, 2 scale, 3 fps -- in the game's units
@@ -12,6 +13,14 @@
 //     g_draw()            draw the world into the stage
 //     g_ref(name)         what `@name` in the layout reads
 //     g_act(name)         what a bare identifier in the layout calls
+//
+// A program that links the engine without being a game does not define these:
+// idem_app cannot be called without six arguments of the right types, and
+// nothing downstream can read the exports eng_seam stores (open.id, loop.id,
+// sh/run.id, ui/leaf/arg/t/v/val.id) unless idem_app's first action put them
+// there. That is the whole answer to "what if a frame runs before the seam is
+// set" -- it cannot, because storing them is the first thing this does, and
+// everything that reads them is reachable only through here.
 //
 // There is no dynamic dispatch in `id` and none is wanted: g_ref and g_act are
 // string compares over names the game itself chose, which is a short list, fixed
@@ -26,10 +35,9 @@
 // That is the model docs/IDML_GAME.md described and docs/IDML.md withdraws; it
 // survives only until flappy and fps are converted, and then it goes.
 
-idem_app(string[] chunks, int argc, string[] argv) {
-  idem_init();
-  idem_pre(argc, argv);
-  idem_alay(run_join(chunks, 0, ""));
+idem_app(string[] chunks, int argc, string[] argv, func() return void gi, func(int) return int gs, func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
+  eng_seam(gi, gs, gt, gd, gr, ga);
+  idem_app2(chunks, argc, argv);
 } return int idem_ago(argc, argv);
 
 // The document is lexed and parsed for its *layout* -- definitions, variants and
