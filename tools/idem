@@ -225,7 +225,7 @@ manifest_dirs() {
 idc_cmdline() {
     local proj="$1" out="$2"
     if [ -n "$IDC_BIN" ]; then
-        printf 'cd %q && %q . -o %q' "$proj" "$IDC_BIN" "$out"
+        printf 'cd %q && %q . --allow-untested -o %q' "$proj" "$IDC_BIN" "$out"
     else
         printf 'cd %q && python3 %q . -o %q' "$proj" "$IDC_PY" "$out"
     fi
