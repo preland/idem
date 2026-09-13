@@ -201,13 +201,13 @@ x11_ok() {
     [ "$X11_OK" = yes ]
 }
 
-# Does this project link a native backend? Anything with a backend.json does, and
+# Does this project link a native backend? Anything with a backend.id does, and
 # that is the only thing that needs the dev shell.
 project_needs_devshell() {
     local proj="$1" dep
     [ -f "$proj/import.id" ] || return 1
     while IFS= read -r dep; do
-        [ -f "$dep/backend.json" ] && return 0
+        [ -f "$dep/backend.id" ] && return 0
     done < <(manifest_dirs "$proj")
     return 1
 }
