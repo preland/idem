@@ -4,10 +4,19 @@
 // state and it has to exist to be asked. The window is a *request*: the window
 // manager decides, sys_ follows it, and the stage maps the game's declared units
 // into whatever it gets.
+//
+// g_init and g_stage are read once, here, as the function values eng_seam
+// stored (app.id).
 
 idem_aopen() {
-  g_init();
-  sys_open(g_stage(0), g_stage(1), g_stage(2), "idem");
+  func() return void gi = (import eng_init);
+  func(int) return int gs = (import eng_stage);
+  idem_aopen1(gi, gs);
+} return void;
+
+idem_aopen1(func() return void gi, func(int) return int gs) {
+  gi();
+  sys_open(gs(0), gs(1), gs(2), "idem");
   idem_aopen2();
 } return void;
 

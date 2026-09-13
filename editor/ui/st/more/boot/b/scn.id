@@ -17,6 +17,10 @@ ed_boot10() {
   ed_boot11();
 } return void;
 
+// eng_seam last, and unconditional, so it has run before ed_run (main.id) can
+// call the first frame -- the editor's own g_ref (host.id) is what ui_val calls
+// while previewing a game, and nothing reachable from here runs before this.
 ed_boot11() {
   ed_init(read_all());
+  eng_seam(g_init, g_stage, g_step, g_draw, g_ref, g_act);
 } return void;

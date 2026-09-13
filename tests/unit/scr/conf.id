@@ -2,7 +2,5 @@
 // the scene tables and the sprite table, and gfx/fs are named by engine/core/sys
 // whether or not this calls one.
 import "../../../engine"
-// The game seam as no-ops: this program links the engine but is not a game.
-import "../../../stub"
 import "../../../../idc/backends/gfx"
 import "../../../../idc/backends/fs"

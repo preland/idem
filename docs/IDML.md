@@ -113,7 +113,7 @@ Recorded honestly, because the code does not yet match this document.
 | `idem_app`: the runner for a game written the right way round | **done** — `g_init` / `g_stage` / `g_step` / `g_draw` / `g_ref` / `g_act`, and the packer picks it when a game has an `id/` |
 | `./` page marker parsed | **done** |
 | `@ref` resolved by asking the game (`ui_val` → `g_ref`) rather than by interpreting | **done** |
-| `stub/` — the seam as no-ops, for programs that link the engine and are not games | **done** (the unit tests and the editor) |
+| the seam as function values (`SPEC.md` §1.1), so a program that links the engine and is not a game supplies nothing | **done** (`TODO.md` 14) — `idem_app` takes the six as arguments and stores them with `eng_seam`; the unit tests and the editor never import a stand-in, because nothing downstream can read one that was never stored |
 | **The lexer strips `#` anywhere, so `fg: #f0e060` loses its colour** | **found, not fixed** — real idml strips only *whole-line* comments and leaves inline `#` alone, precisely so hex colours work inside style blocks. It is why pong's page does not draw yet: its `ui/style.idml` fails to parse |
 | `games/flappy`, `games/fps` rewritten the same way | not started |
 | The invented declarations and script grammar removed from `engine/game/read/` | not started — it is what the two unconverted games still parse with |

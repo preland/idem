@@ -95,13 +95,15 @@ follow, and the third is the one that makes it clean:
    **not** imported by default — otherwise it collides with the project's.
 2. `tools/idem edit` imports `editor/` plus either `<game>/id` or
    `editor/host/`, exactly as `pack` already chooses between a game's `id/` and
-   `stub/`. Output goes to `build/editor-<game>`.
-3. **The editor then needs no mode flag.** It always calls `g_step` and `g_draw`
-   for the scene panel, borrowing the stage the way `ed_pworld` already borrows
-   it for entities. For a project, those are the game's. For the host build,
-   `g_step` is `sim_step` and `g_draw` is the legacy world-and-plane draw. One
-   code path, two link-time answers — which is the same shape as the graphics
-   backend, and the reason the seam was worth having.
+   nothing. Output goes to `build/editor-<game>`.
+3. **The editor then needs no mode flag.** It always hands `eng_seam` a
+   `g_step` and a `g_draw` for the scene panel, borrowing the stage the way
+   `ed_pworld` already borrows it for entities. For a project, those are the
+   game's own functions, passed by name from wherever the editor loads it. For
+   the host build, `g_step` is `sim_step` and `g_draw` is the legacy
+   world-and-plane draw (as they are today, host.id/stage.id) — one code path,
+   two functions handed to the same seam, the shape function values already
+   give `idem_app` (`TODO.md` 14).
 
 What this fixes visibly: opening `games/pong` currently shows the 3D placeholder
 props, because the editor's preview still pattern-matches the token stream for a

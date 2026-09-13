@@ -13,6 +13,7 @@ idem_aframe() {
 } return int sys_alive();
 
 idem_apace(int t) {
+  func(int) return int gs = (import eng_stage);
   sys_present();
-  sys_pace(t, fx_max(g_stage(3), 1));
+  sys_pace(t, fx_max(gs(3), 1));
 } return void;

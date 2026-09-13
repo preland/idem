@@ -31,7 +31,16 @@ pack_entry() {
 pack_boot2() {
   print("  string[] chunks = []");
   print("  data_src(chunks)");
-  print("} return int " + pack_entry() + "(chunks, argc, argv);");
+  pack_boot3();
+} return void;
+
+// idem_app takes its game's six functions as arguments (docs/TODO.md 14) --
+// idem_boot does not, so only "app" mode's call names them, by the fixed names
+// a game written the right way round defines (app.id).
+pack_boot3() {
+  string tail = "";
+  if ((import pack_mode)[0] = "app") { tail = ", g_init, g_stage, g_step, g_draw, g_ref, g_act"; }
+  print("} return int " + pack_entry() + "(chunks, argc, argv" + tail + ");");
 } return void;
 
 // One generated file per turn of this loop. The `|| k = 0` is not a special case

@@ -13,3 +13,13 @@ idem_ago2(int argc, string[] argv) {
   }
   gfx_close();
 } return void;
+
+// idem_app's own three actions, moved here because app.id -- its home file and
+// directory -- is already at the 3-function, 3-entry caps app.id's own header
+// describes as saturated. Unrelated to "the two ways of running" above; here
+// only because this file had a spare slot and the chain does not.
+idem_app2(string[] chunks, int argc, string[] argv) {
+  idem_init();
+  idem_pre(argc, argv);
+  idem_alay(run_join(chunks, 0, ""));
+} return void;

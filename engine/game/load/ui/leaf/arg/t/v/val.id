@@ -2,7 +2,8 @@
 //
 // The one direction data flows: the game publishes, the layout displays. idml
 // never computes a value and never holds one -- it names one, and the name is
-// resolved by g_ref, which every game defines (docs/IDML.md §2).
+// resolved by g_ref, the function value every game hands in through eng_seam
+// (app.id) and this reads back as eng_ref (docs/IDML.md §2).
 //
 // A ref node's own text is idml's trailing `!` live marker; the *name* is on the
 // path node hanging off it. A path of more than one segment -- `@item.top` inside
@@ -11,4 +12,5 @@
 ui_val(int nd) {
   string s = "";
   if (ast_ia(nd) != 0) { s = ast_tx(ast_ia(nd)); }
-} return int g_ref(s);
+  func(string) return int gr = (import eng_ref);
+} return int gr(s);
