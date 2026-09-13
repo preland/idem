@@ -3,8 +3,14 @@
 // A layout that binds `@name` against a program with no game reads 0 -- which
 // hides every gated item and shows every number as zero, and is the honest
 // answer for a screen whose data source is not there.
+//
+// A function that only returns 0 is a constant under a function's name, which
+// the compiler rejects -- and this one is not a constant but one half of a seam
+// every game fills in. So it does what the rest of stub.id does: touches a
+// counter nobody reads, slot 4 of g_stub.
 
 g_ref(string name) {
+  lset((import g_stub), 4, (import g_stub)[4] + 1);
 } return int 0;
 
 g_act(string name) {

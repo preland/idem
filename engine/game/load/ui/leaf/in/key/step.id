@@ -25,7 +25,7 @@ tin_step(int t) {
 // all above 255 (inp/inp.id), and asking inp_hit about a code no keyboard has is
 // two list reads that answer 0. 512 of those is nothing next to one glyph.
 tin_scan(int key, int t) {
-  while (key < inp_kmax()) {
+  while (key < (import inp_kmax)) {
     tin_press(key, t);
     key = key + 1;
   }

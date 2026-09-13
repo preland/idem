@@ -9,7 +9,7 @@ asset_take(string path, int n) {
 asset_loop(int h, int p, int n) {
   int m = 1;
   while (p < n && m > 0) {
-    m = asset_one(h, p, fx_min(asset_chunk(), n - p));
+    m = asset_one(h, p, fx_min((import asset_chunk), n - p));
     p = p + m;
   }
 } return int p;

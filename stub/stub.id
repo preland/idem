@@ -19,7 +19,7 @@
 // is inconvenient for.
 
 g_stub_init() {
-  export int[] g_stub = [0, 0, 0, 0];
+  export int[] g_stub = [0, 0, 0, 0, 0];
 } return void;
 
 g_init() {

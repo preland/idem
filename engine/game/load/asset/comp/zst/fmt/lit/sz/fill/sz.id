@@ -17,7 +17,7 @@ zst_lbuf(int n) {
 } return void;
 
 zst_lchk(int n) {
-  if (n > zst_lmax()) {
+  if (n > (import zst_lmax)) {
     lset((import zst_st), 6, 1);
   }
 } return void;

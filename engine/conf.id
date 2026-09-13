@@ -10,3 +10,28 @@ import "../../idc/backends/gfx"
 // names this too -- the packer generates a game's manifest, and the two test
 // suites and the editor say it here.
 import "../../idc/backends/fs"
+
+// The engine's constants. Each is a program global read with (import name).
+//
+// inp_kmax: key codes tracked, 0-255 character keys and 256-511 the rest. The
+// guard on a key code in core/sys/inp is not optional: an out-of-range list
+// store aborts the process, and nothing in the seam's contract promises a
+// backend will never widen its range.
+//
+// asset_chunk: 64 KB per read -- big enough that the per-call cost disappears,
+// small enough that the staging list is a rounding error against the file.
+//
+// zst_lmax: the zstd literals buffer's size. A block decompresses to at most
+// 128 KiB, so its literals cannot exceed that either; allocating for the worst
+// case once is 128 KB of store against an allocation per block, in a language
+// where nothing is ever given back.
+//
+// tin_base: text entry's base duration in ms (docs/NAMES.md), and itself the
+// caret's blink half-period: solid for 400 ms, dark for 400 ms. It is the same
+// number as the rest of the family on purpose -- one duration is what makes a
+// field feel like one thing, and a blink that beat against the repeat rate
+// would look like a fault.
+int inp_kmax = 512;
+int asset_chunk = 65536;
+int zst_lmax = 131072;
+int tin_base = 400;

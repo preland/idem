@@ -8,3 +8,8 @@
 import "../engine"
 import "../../idc/backends/gfx"
 import "../../idc/backends/fs"
+
+// The editor's own layout, as idml source (ui/wid/lay/src.id joins the parts):
+// the menu bar and everything under it, then the status bar.
+string ed_src2 = "MenuBar()[5.25, 100, top-left] { Fill(0x323232)[100, 100, top-left]{} } Col()[89.5, 100, top-left] { ToolBar()[5.72, 100, top-left] { Fill(0x3C3C3C)[100, 100, top-left]{} } Col()[94.28, 100, top-left] { Row()[87.43, 100, top-left] { Hierarchy()[100, 20, top-left] { Fill(0x3C3C3C)[100, 100, top-left]{} } SceneView()[100, 56.25, top-left] { Fill(0x393939)[100, 100, top-left]{} } Inspector()[100, 23.75, top-left] { Fill(0x3C3C3C)[100, 100, top-left]{} } } Project()[12.57, 100, top-left] { Fill(0x3C3C3C)[100, 100, top-left]{} } } }";
+string ed_src3 = "StatusBar()[5.25, 100, top-left] { Fill(0x323232)[100, 100, top-left]{} }";
