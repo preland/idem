@@ -51,5 +51,5 @@ sys_open_tail(int ok, int w, int h) {
 sys_vp_init(int w, int h) {
   export int[] sys_vp = [1000, 0, 0, w, h];
   sys_stage();
-  sys_vp_fit();
+  sys_sync();
 } return void;

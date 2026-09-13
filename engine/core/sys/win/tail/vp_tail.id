@@ -1,7 +1,0 @@
-// Tail function for sys_vp_init to stay under the 3-action limit
-
-sys_vp_fit() {
-  int fw = gfx_width();
-  int fh = gfx_height();
-  sys_fit(fw, fh);
-} return void;
