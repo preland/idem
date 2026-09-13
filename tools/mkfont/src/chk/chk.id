@@ -1,0 +1,39 @@
+// Whether the font can be the engine's default face. Each check answers a
+// message: "" when the font passes it, and otherwise the reason it does not.
+// psh is idstd's pcsf_head: [glyph offset, bytes per glyph, height, width,
+// glyph count], or empty for a file that is neither PSF header.
+
+mkf_out(string msg, string path, int[] xs, int[] psh) {
+  int rc = 1;
+  if (msg = "") {
+    mkf_emit(path, xs, psh);
+    rc = 0;
+  } else {
+    print(msg);
+  }
+} return int rc;
+("bad", "p.psf", [], []):(1)
+("", "q.psf", [0], [0, 0, 1, 8, 127]):(0)
+
+mkf_check(string path, int[] xs, int[] psh) {
+  string msg = mkf_magic(path, xs, psh);
+  if (msg = "") {
+    msg = mkf_fit(path, xs, psh);
+  }
+  if (msg = "") {
+    msg = mkf_glyph(xs, psh);
+  }
+} return string msg;
+("p.psf", [1, 2], []):("mkfont: p.psf is neither PSF1 nor PSF2 (magic 0102)")
+("q.psf", [0], [0, 0, 1, 8, 127]):("mkfont: q.psf: charsize 0 / count 127 do not fit 1 bytes")
+("r.psf", [0], [0, 0, 0, 8, 127]):("")
+
+// The checks on the glyphs themselves: enough of them, and code 32 blank.
+mkf_glyph(int[] xs, int[] psh) {
+  string msg = mkf_cover(psh);
+  if (msg = "") {
+    msg = mkf_blank(xs, psh);
+  }
+} return string msg;
+([0], [0, 0, 1, 8, 127]):("")
+([0], [0, 0, 1, 8, 50]):("mkfont: font covers 32..49, need 32..126")

@@ -14,11 +14,11 @@ t_bad() {
   t_bad2();
 } return void;
 
-// A file that is there and is not a font. tools/mkfont.py starts with '#!', so
+// A file that is there and is not a font. tools/mkfont.sh starts with '#!', so
 // it fails both magics -- and it is a file this repository is guaranteed to
 // have, which a purpose-built fixture would not be any better at proving.
 t_bad2() {
-  print("psf_load of a non-font file exp 0 = " + psf_load("tools/mkfont.py"));
+  print("psf_load of a non-font file exp 0 = " + psf_load("tools/mkfont.sh"));
   print("  face untouched, hash still 485156385 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
   print("  metrics untouched exp 8 16 8 224 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen());
 } return void;

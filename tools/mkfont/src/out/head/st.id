@@ -1,0 +1,29 @@
+// txt_st, and the table's rows under it.
+
+// txt_st is [cell width, cell height, bits per row, glyph count].
+mkf_st(string[] strs, int[] psh) {
+  int n = (import mkf_last) - (import mkf_first) + 1;
+  int bits = (psh[3] + 7) / 8 * 8;
+  push(strs, (import mkf_head3) + psh[3] + ", " + psh[2] + ", " + bits + ", " + n + "];\n  export int[] txt_glyphs = [\n");
+} return void;
+([], [0, 0, 16, 8, 256]):(["// txt_glyph_at computes.\n//\n// txt_st is emitted beside the table because the two must agree: it is\n// [cell width, cell height, bits per row, glyph count], and it is what\n// psf_load overwrites when a game loads a face of its own. Both are one\n// statement each, so a table of any size is legal inside the 3-action rule.\n\ntxt_glyph_data() {\n  export int[] txt_st = [8, 16, 8, 95];\n  export int[] txt_glyphs = [\n"], [0, 0, 16, 8, 256])
+([], [0, 0, 14, 16, 256]):(["// txt_glyph_at computes.\n//\n// txt_st is emitted beside the table because the two must agree: it is\n// [cell width, cell height, bits per row, glyph count], and it is what\n// psf_load overwrites when a game loads a face of its own. Both are one\n// statement each, so a table of any size is legal inside the 3-action rule.\n\ntxt_glyph_data() {\n  export int[] txt_st = [16, 14, 16, 95];\n  export int[] txt_glyphs = [\n"], [0, 0, 14, 16, 256])
+
+// One line per glyph, code points lo to hi.
+mkf_rows(string[] strs, int[] xs, int[] psh, int lo, int hi) {
+  int c = lo;
+  while (c <= hi) {
+    mkf_line(strs, xs, psh, c);
+    c = c + 1;
+  }
+} return void;
+([], [5], [0, 0, 1, 8, 127], 125, 126):(["    5, // }\n", "    5 // ~\n"], [5], [0, 0, 1, 8, 127], 125, 126)
+([], [], [0, 0, 1, 8, 127], 2, 1):([], [], [0, 0, 1, 8, 127], 2, 1)
+
+mkf_line(string[] strs, int[] xs, int[] psh, int c) {
+  string vals = mkf_vals(xs, psh, c);
+  string tail = mkf_end(c);
+  push(strs, "    " + vals + tail);
+} return void;
+([], [7], [0, 0, 1, 8, 127], 65):(["    7, // A\n"], [7], [0, 0, 1, 8, 127], 65)
+([], [3], [0, 0, 1, 8, 127], 126):(["    3 // ~\n"], [3], [0, 0, 1, 8, 127], 126)

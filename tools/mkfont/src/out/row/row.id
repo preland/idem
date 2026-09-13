@@ -1,0 +1,26 @@
+// Bytes out of the font.
+
+// One row: nb bytes, most significant first, so the leftmost column is the
+// top bit -- the order a PSF stores pixels in, and the one txt_px_sc reads.
+mkf_row(int[] xs, int at, int nb) {
+  int v = 0;
+  int i = 0;
+  while (i < nb) {
+    v = v * 256 + xs[at + i];
+    i = i + 1;
+  }
+} return int v;
+([1, 2], 0, 2):(258)
+([0, 255], 1, 1):(255)
+
+// n bytes from at, added: zero only when every one of them is.
+mkf_sum(int[] xs, int at, int n) {
+  int sum = 0;
+  int i = 0;
+  while (i < n) {
+    sum = sum + xs[at + i];
+    i = i + 1;
+  }
+} return int sum;
+([1, 2, 3], 1, 2):(5)
+([], 0, 0):(0)

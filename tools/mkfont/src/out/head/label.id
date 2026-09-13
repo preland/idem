@@ -1,0 +1,33 @@
+// The end of a glyph's line: a comma unless it is the last, and the character
+// it draws.
+
+mkf_end(int c) {
+  string lab = mkf_label(c);
+  string tail = " // " + lab + "\n";
+  if (c < (import mkf_last)) {
+    tail = "," + tail;
+  }
+} return string tail;
+(65):(", // A\n")
+(126):(" // ~\n")
+
+// `id` has // comments and no character literals, so the label is the
+// character itself -- except the four that would read badly at the end of a
+// comment, which are named.
+mkf_label(int c) {
+  string lab = chr(c);
+  int at = lst_index_of([32, 34, 39, 92], c);
+  if (at >= 0) {
+    lab = mkf_named(at);
+  }
+} return string lab;
+(65):("A")
+(32):("space")
+(92):("backslash")
+
+mkf_named(int at) {
+  string[] words = ["space", "quote", "apostrophe", "backslash"];
+  string lab = words[at];
+} return string lab;
+(1):("quote")
+(2):("apostrophe")
