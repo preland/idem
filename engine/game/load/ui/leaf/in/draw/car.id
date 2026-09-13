@@ -17,7 +17,7 @@ tin_car(int x, int y, int c, int t) {
 // difference between a caret that acknowledges a keystroke and one that can go
 // dark in the middle of one, which reads as a dropped character.
 tin_blink(int t) {
-} return int (t - (import tin_st)[3]) / tin_base() % 2 = 0;
+} return int (t - (import tin_st)[3]) / (import tin_base) % 2 = 0;
 
 // How far left the text is shifted so the caret stays inside a field n pixels
 // wide: zero until the caret would leave the right-hand edge, and after that

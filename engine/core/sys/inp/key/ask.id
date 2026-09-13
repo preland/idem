@@ -10,14 +10,14 @@
 
 inp_down(int key) {
   int ok = 0;
-  if (key >= 0 && key < inp_kmax()) {
+  if (key >= 0 && key < (import inp_kmax)) {
     ok = (import inp_keys)[key];
   }
 } return int ok;
 
 inp_hit(int key) {
   int ok = 0;
-  if (key >= 0 && key < inp_kmax()) {
+  if (key >= 0 && key < (import inp_kmax)) {
     ok = (import inp_hits)[key] = (import inp_st)[0];
   }
 } return int ok;

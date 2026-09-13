@@ -4,13 +4,10 @@
 // the process, and while the seam's own codes stop at 280, nothing in the
 // contract promises a backend will never widen that range -- a game that dies
 // because someone's keyboard has a media key is not a trade worth making for
-// two comparisons.
-
-inp_kmax() {
-} return int 512;
+// two comparisons. The bound, inp_kmax, is a constant in engine/conf.id.
 
 inp_dn(int key) {
-  if (key >= 0 && key < inp_kmax()) {
+  if (key >= 0 && key < (import inp_kmax)) {
     lset((import inp_keys), key, 1);
     lset((import inp_hits), key, (import inp_st)[0]);
   }
@@ -21,7 +18,7 @@ inp_dn(int key) {
 // right answer for a fast tap, and it is one the old timestamp scheme could not
 // give -- it had no idea the key had come back up at all.
 inp_up(int key) {
-  if (key >= 0 && key < inp_kmax()) {
+  if (key >= 0 && key < (import inp_kmax)) {
     lset((import inp_keys), key, 0);
   }
 } return void;

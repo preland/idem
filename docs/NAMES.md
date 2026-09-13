@@ -363,6 +363,16 @@ here, so that uniqueness is auditable rather than accidental:
 | `inp_kmax` | 512 | key codes tracked: 0-255 character keys, 256-511 the rest |
 | `txt_first` | 32 | the first code point any face here stores a glyph for. The last bare literal left in the `txt_` family — `txt_cell`, `txt_cellh`, `txt_bit` and `txt_last` all read `txt_st` now — because it is a fact about the *engine* rather than about the loaded face: a PSF is re-based to 32 on the way in, so digits stay at `txt_first() + 16` whatever is loaded |
 
+A function that only returns a constant is now itself a compile error in `id`
+(`id_development/docs/SPEC.md` §7.2): the constant belongs in a `conf.id`.
+`tin_base`, `inp_kmax`, `asset_chunk` and `zst_lmax` are constants in
+`engine/conf.id`, read as `(import tin_base)`. `ast_kbase`, `lex_kbase`,
+`d2_clear` and `txt_first` are still functions, and rejected: the unit tests
+under `tests/unit/d3` and `tests/unit/read` import engine subdirectories as
+dependencies of their own, and a subdirectory's build reads no `engine/conf.id`,
+so there is no single place those constants can be declared for every build
+that needs them yet.
+
 `inp_hold` (130) used to be here — the milliseconds after a press for which a key
 still counted as held, which was the best a seam with no release events allowed.
 The seam reports releases now, the state is exact, and the constant is gone. Its

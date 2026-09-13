@@ -17,13 +17,8 @@
 asset_io_init() {
   export int[] asset_io = [0, 0];
   export int[] asset_buf = [];
-  lst_fill((import asset_buf), asset_chunk(), 0);
+  lst_fill((import asset_buf), (import asset_chunk), 0);
 } return void;
-
-// 64 KB per read: big enough that the per-call cost disappears, small enough
-// that the staging list is a rounding error against the file itself.
-asset_chunk() {
-} return int 65536;
 
 // Slurp `path`. Answers the number of bytes read, and leaves the address in
 // asset_io[0] -- two values, one of which has to travel by a side channel.

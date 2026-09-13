@@ -45,7 +45,7 @@ inp_init2() {
 } return void;
 
 inp_fill() {
-  int kmax = inp_kmax();
+  int kmax = (import inp_kmax);
   lst_fill((import inp_keys), kmax, 0);
   lst_fill((import inp_hits), kmax, 0 - 1);
 } return void;
