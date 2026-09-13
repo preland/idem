@@ -185,9 +185,10 @@ Precedence, **lowest to highest** (from `Parser.parse_*`):
 ### Precedence surprises (verified)
 
 * **Bitwise binds TIGHTER than comparison** — the opposite of C.
-  `print(1 & 3 == 1)` → `1`, i.e. `(1&3) == 1`. In C it would be `1 & (3==1)` → 0.
-  So `flags & MASK != 0` means what you want. **But** it also means
-  `a < b & c` parses as `a < (b & c)`.
+  `1 & 3 == 1` groups as `(1&3) == 1`; in C it would be `1 & (3==1)` → 0.
+  Because the two disagree, `bin/idc` now rejects a comparison with an
+  unparenthesized bitwise operand: write `(flags & MASK) != 0` and
+  `a < (b & c)`.
 * `1 + 2 << 3` → `24` (`(1+2) << 3`): shifts bind *looser* than `+`, as in C.
 * `1 | 2 ^ 3` → `1` (`1 | (2^3)`).
 * `2 + 3 * 4` → `14`; `-2 * 3` → `-6`; `1 < 2 && 3 < 4` → `1`.
