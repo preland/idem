@@ -1,6 +1,6 @@
 // Adding the sprite, and walking the grid.
 //
-// d2_spr_add allocates w * h * frames pixels pre-filled with d2_clear(), so a
+// d2_spr_add allocates w * h * frames pixels pre-filled with (import d2_clear), so a
 // frame this loop never reaches is transparent rather than garbage -- which is
 // what makes a partially written sheet draw holes instead of noise.
 

@@ -1,11 +1,11 @@
 ast_k_cond() {
-  int v = ast_kbase() + 41;
+  int v = (import ast_kbase) + 41;
 } return int v;
 
 ast_k_define() {
-  int v = ast_kbase() + 42;
+  int v = (import ast_kbase) + 42;
 } return int v;
 
 ast_k_variant() {
-  int v = ast_kbase() + 43;
+  int v = (import ast_kbase) + 43;
 } return int v;

@@ -1,11 +1,11 @@
 ast_k_scene() {
-  int v = ast_kbase() + 8;
+  int v = (import ast_kbase) + 8;
 } return int v;
 
 ast_k_entity() {
-  int v = ast_kbase() + 9;
+  int v = (import ast_kbase) + 9;
 } return int v;
 
 ast_k_template() {
-  int v = ast_kbase() + 10;
+  int v = (import ast_kbase) + 10;
 } return int v;

@@ -1,11 +1,11 @@
 ast_k_import() {
-  int v = ast_kbase() + 2;
+  int v = (import ast_kbase) + 2;
 } return int v;
 
 ast_k_palette() {
-  int v = ast_kbase() + 3;
+  int v = (import ast_kbase) + 3;
 } return int v;
 
 ast_k_pcol() {
-  int v = ast_kbase() + 4;
+  int v = (import ast_kbase) + 4;
 } return int v;

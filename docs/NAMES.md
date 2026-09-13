@@ -361,7 +361,7 @@ here, so that uniqueness is auditable rather than accidental:
 | function | value | meaning |
 | --- | --- | --- |
 | `inp_kmax` | 512 | key codes tracked: 0-255 character keys, 256-511 the rest |
-| `txt_first` | 32 | the first code point any face here stores a glyph for. The last bare literal left in the `txt_` family — `txt_cell`, `txt_cellh`, `txt_bit` and `txt_last` all read `txt_st` now — because it is a fact about the *engine* rather than about the loaded face: a PSF is re-based to 32 on the way in, so digits stay at `txt_first() + 16` whatever is loaded |
+| `txt_first` | 32 | the first code point any face here stores a glyph for. The last bare literal left in the `txt_` family — `txt_cell`, `txt_cellh`, `txt_bit` and `txt_last` all read `txt_st` now — because it is a fact about the *engine* rather than about the loaded face: a PSF is re-based to 32 on the way in, so digits stay at `(import txt_first) + 16` whatever is loaded |
 
 A function that only returns a constant is now itself a compile error in `id`
 (`id_development/docs/SPEC.md` §7.2): the constant belongs in a `conf.id`.

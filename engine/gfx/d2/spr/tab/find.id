@@ -17,10 +17,6 @@
 // the entity store carries -- so the cost is irrelevant and the code is three
 // lines.
 
-d2_clear() {
-  int clear = 0 - 1;
-} return int clear;
-
 d2_spr_find(string name) {
   int clear_val = 0 - 1;
   int id = d2_spr_scan(name, 0, clear_val);

@@ -20,7 +20,7 @@ t_scan(int p, int n) {
 } return void;
 
 t_acc(int c) {
-  if (c = d2_clear()) {
+  if (c = (import d2_clear)) {
     lset((import t_st), 0, (import t_st)[0] + 1);
   } else {
     t_acc2(c);

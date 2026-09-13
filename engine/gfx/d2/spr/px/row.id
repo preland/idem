@@ -10,7 +10,7 @@
 //
 // The transparency test is inside the loop and cannot be hoisted out of it: it is
 // per pixel by definition. It costs a compare and a branch that predicts well,
-// which is what -1 as the clear value buys over any masking scheme. d2_clear() is
+// which is what -1 as the clear value buys over any masking scheme. (import d2_clear) is
 // a zero-action function and the whole program is one C translation unit, so it
 // inlines to that constant rather than costing a call per pixel.
 //
@@ -19,7 +19,7 @@
 d2_blit_row(int[] xs, int i, int[] fb, int j, int n) {
   int k = 0;
   while (k < n) {
-    if (xs[i + k] != d2_clear()) {
+    if (xs[i + k] != (import d2_clear)) {
       fb[j + k] = xs[i + k];
     }
     k = k + 1;
@@ -32,7 +32,7 @@ d2_blit_row(int[] xs, int i, int[] fb, int j, int n) {
 d2_flip_row(int[] xs, int i, int[] fb, int j, int n) {
   int k = 0;
   while (k < n) {
-    if (xs[i - k] != d2_clear()) {
+    if (xs[i - k] != (import d2_clear)) {
       fb[j + k] = xs[i - k];
     }
     k = k + 1;
@@ -46,7 +46,7 @@ d2_flip_row(int[] xs, int i, int[] fb, int j, int n) {
 d2_scl_row(int[] xs, int i, int[] fb, int j, int n, int sc, int u) {
   int k = 0;
   while (k < n) {
-    if (xs[i + (u + k) * 1000 / sc] != d2_clear()) {
+    if (xs[i + (u + k) * 1000 / sc] != (import d2_clear)) {
       fb[j + k] = xs[i + (u + k) * 1000 / sc];
     }
     k = k + 1;

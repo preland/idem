@@ -43,11 +43,11 @@ psf_fld(int p) {
 // padding, and refuses one that is smaller, because that is a file that would be
 // read past. The two ceilings on cs and n are there so that `sa + n * cs` cannot
 // overflow into a positive number smaller than the file -- 65536 * 256 is 2^24,
-// with seven bits of headroom left. The count has to clear txt_first(): a font
+// with seven bits of headroom left. The count has to clear (import txt_first): a font
 // with no printable ASCII is not one this engine can draw with.
 psf_fit(int sa, int n, int cs, int h, int w) {
   int ok = 0;
   if (w >= 1 && w <= 24 && h >= 1 && h <= 64 && cs >= h * ((w + 7) / 8) && cs <= 256 && n <= 65536) {
-    ok = n > txt_first() && sa > 0 && sa + n * cs <= (import asset_io)[1];
+    ok = n > (import txt_first) && sa > 0 && sa + n * cs <= (import asset_io)[1];
   }
 } return int ok;

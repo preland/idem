@@ -7,5 +7,5 @@ ast_n() {
 } return int cnt;
 
 ast_kname(int kd) {
-  string nm = (import ast_kn)[kd - ast_kbase()];
+  string nm = (import ast_kn)[kd - (import ast_kbase)];
 } return string nm;

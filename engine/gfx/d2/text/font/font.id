@@ -9,11 +9,11 @@
 //
 // THE FIRST CODE POINT IS ASSUMED TO BE 32. The sprite table has five columns
 // (NAMES.md section 4) and none of them holds a `from`, so the frame is
-// code - txt_first(). A
+// code - (import txt_first). A
 // font declared `from 48` is the loader's problem: it pads the frames it does not
 // have. Documented here because it is a convention two modules have to share.
 //
-// c is a tint, and d2_clear() means "no tint": pass -1 to draw the glyphs in
+// c is a tint, and (import d2_clear) means "no tint": pass -1 to draw the glyphs in
 // their own colours, or a colour to draw every non-transparent pixel in it. The
 // second form is what lets one white font be a white label, a red warning and a
 // grey disabled item without three copies of the art.
@@ -26,7 +26,7 @@ txt_spr_draw(string s, int x, int y, int p, int c) {
 // -- the frames are a grid, and a grid is monospaced by construction.
 txt_spr_run(string s, int x, int y, int p, int c, int i) {
   while (charat(s, i) >= 0) {
-    txt_spr_one(charat(s, i) - txt_first(), x + i * d2_spr_w(p), y, p, c);
+    txt_spr_one(charat(s, i) - (import txt_first), x + i * d2_spr_w(p), y, p, c);
     i = i + 1;
   }
 } return void;
@@ -35,7 +35,7 @@ txt_spr_run(string s, int x, int y, int p, int c, int i) {
 // index past the pixel list, because d2_blit and txt_tint both clamp. So a font of
 // ten digit frames asked for a letter draws the last digit: wrong, and alive.
 txt_spr_one(int f, int x, int y, int p, int c) {
-  if (c = d2_clear()) {
+  if (c = (import d2_clear)) {
     d2_blit(p, x, y, f);
   } else {
     txt_tint(p, x, y, f, c);

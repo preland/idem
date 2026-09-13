@@ -29,7 +29,7 @@ tin_fire(int key, int t, int due) {
 // without that one exclusion loading a font would turn a delete into a
 // character.
 tin_key(int key) {
-  if (key >= txt_first() && key <= txt_last() && key != 127) {
+  if (key >= (import txt_first) && key <= txt_last() && key != 127) {
     tin_ins(key);
   } else if (key = 8) {
     tin_del((import tin_st)[0] - 1);

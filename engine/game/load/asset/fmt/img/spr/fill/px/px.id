@@ -18,7 +18,7 @@ spr_row(int p, int i, int r, int x, int cw, int sw) {
 // only choice available, and half is the one that puts a quantised edge where the
 // eye already sees it.
 spr_at(int r, int x) {
-  int c = d2_clear();
+  int c = (import d2_clear);
   if (spr_alpha(r, x) >= 128) {
     c = spr_col(r, x);
   }

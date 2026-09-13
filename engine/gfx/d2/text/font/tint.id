@@ -27,7 +27,7 @@ txt_tint_rows(int p, int x, int y, int i, int c, int j) {
 txt_tint_row(int[] xs, int i, int x, int y, int c, int n) {
   int k = 0;
   while (k < n) {
-    if (xs[i + k] != d2_clear()) {
+    if (xs[i + k] != (import d2_clear)) {
       sf_pset(x + k, y, c);
     }
     k = k + 1;

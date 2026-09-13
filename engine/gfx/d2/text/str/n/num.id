@@ -25,7 +25,7 @@ txt_number(int v, int x, int y, int c) {
 txt_num_sc(int v, int x, int y, int c, int sc) {
   int m = fx_abs(v);
   if (v < 0) {
-    txt_glyph_sc(txt_first() + 13, x, y, c, sc);
+    txt_glyph_sc((import txt_first) + 13, x, y, c, sc);
   }
   txt_num_run(m, x + txt_cell() * sc / 1000 * (v < 0), y, c, txt_num_pw(txt_num_pow(m), sc));
 } return void;
@@ -37,7 +37,7 @@ txt_num_sc(int v, int x, int y, int c, int sc) {
 // most this loop can carry.
 txt_num_run(int m, int x, int y, int c, int pwsc) {
   while (pwsc / 65536 > 0) {
-    txt_glyph_sc(txt_first() + 16 + (m / (pwsc / 65536)) % 10, x, y, c, pwsc % 65536);
+    txt_glyph_sc((import txt_first) + 16 + (m / (pwsc / 65536)) % 10, x, y, c, pwsc % 65536);
     x = x + txt_cell() * (pwsc % 65536) / 1000;
     pwsc = pwsc / 65536 / 10 * 65536 + pwsc % 65536;
   }

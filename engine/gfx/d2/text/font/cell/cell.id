@@ -6,7 +6,7 @@
 // in txt_spr_run is indistinguishable from a literal 32 that happens to be a
 // margin, which is the failure this prevents.
 //
-// Code points are expressed as txt_first() + n for the same reason: the digits
+// Code points are expressed as (import txt_first) + n for the same reason: the digits
 // and the minus sign are at fixed offsets from the font's first glyph, and
 // writing them that way says WHICH table the number indexes.
 
@@ -19,23 +19,12 @@ txt_cell() {
   int cell = (import txt_st)[0];
 } return int cell;
 
-// The first code point any face here has a glyph for -- and, by convention, the
-// first frame of a sprite font (IDML_GAME.md section 2's `from 32`).
-//
-// This is still a bare literal while its neighbours read txt_st, and that is the
-// point: it is not a property of the loaded face but a fact about the engine. A
-// loaded PSF is stored from 32 upward whatever its own indexing was
-// (glyph/face/put.id), so txt_num_sc can go on spelling '0' as txt_first() + 16
-// and the sprite-font path can go on assuming frame 0 is a space.
-txt_first() {
-} return int 32;
-
 // The last one the loaded face can draw. 126 for the built-in table -- printable
 // ASCII and nothing above it, because a byte over 126 is a UTF-8 continuation and
 // this engine has no notion of one -- and 255 for a full code page loaded from a
 // .psf, which is where the box-drawing and accented glyphs come from.
 txt_last() {
-  int first = txt_first();
+  int first = (import txt_first);
   int facen = txt_facen();
   int last = first + facen - 1;
 } return int last;

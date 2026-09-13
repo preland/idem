@@ -15,7 +15,7 @@
 // frame.
 //
 // txt_init first: the printable range tin_key tests against is the loaded face's
-// (txt_first()/txt_last()), and those read an exported global.
+// ((import txt_first)/txt_last()), and those read an exported global.
 
 main(int argc, string[] argv) {
   txt_init();

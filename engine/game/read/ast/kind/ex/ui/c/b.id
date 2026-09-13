@@ -1,7 +1,7 @@
 ast_k_page() {
-  int v = ast_kbase() + 44;
+  int v = (import ast_kbase) + 44;
 } return int v;
 
 ast_k_bad() {
-  int v = ast_kbase() + 45;
+  int v = (import ast_kbase) + 45;
 } return int v;

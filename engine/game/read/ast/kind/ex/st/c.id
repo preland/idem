@@ -1,11 +1,11 @@
 ast_k_goto() {
-  int v = ast_kbase() + 23;
+  int v = (import ast_kbase) + 23;
 } return int v;
 
 ast_k_play() {
-  int v = ast_kbase() + 24;
+  int v = (import ast_kbase) + 24;
 } return int v;
 
 ast_k_say() {
-  int v = ast_kbase() + 25;
+  int v = (import ast_kbase) + 25;
 } return int v;

@@ -1,11 +1,11 @@
 ast_k_field() {
-  int v = ast_kbase() + 29;
+  int v = (import ast_kbase) + 29;
 } return int v;
 
 ast_k_call() {
-  int v = ast_kbase() + 30;
+  int v = (import ast_kbase) + 30;
 } return int v;
 
 ast_k_num() {
-  int v = ast_kbase() + 31;
+  int v = (import ast_kbase) + 31;
 } return int v;

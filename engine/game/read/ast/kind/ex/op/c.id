@@ -1,11 +1,11 @@
 ast_k_str() {
-  int v = ast_kbase() + 32;
+  int v = (import ast_kbase) + 32;
 } return int v;
 
 ast_k_ident() {
-  int v = ast_kbase() + 33;
+  int v = (import ast_kbase) + 33;
 } return int v;
 
 ast_k_tuple() {
-  int v = ast_kbase() + 34;
+  int v = (import ast_kbase) + 34;
 } return int v;

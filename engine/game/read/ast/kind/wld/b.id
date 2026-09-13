@@ -1,11 +1,11 @@
 ast_k_instance() {
-  int v = ast_kbase() + 11;
+  int v = (import ast_kbase) + 11;
 } return int v;
 
 ast_k_spawn() {
-  int v = ast_kbase() + 12;
+  int v = (import ast_kbase) + 12;
 } return int v;
 
 ast_k_comp() {
-  int v = ast_kbase() + 13;
+  int v = (import ast_kbase) + 13;
 } return int v;

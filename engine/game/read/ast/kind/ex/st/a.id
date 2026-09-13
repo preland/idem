@@ -1,11 +1,11 @@
 ast_k_block() {
-  int v = ast_kbase() + 17;
+  int v = (import ast_kbase) + 17;
 } return int v;
 
 ast_k_if() {
-  int v = ast_kbase() + 18;
+  int v = (import ast_kbase) + 18;
 } return int v;
 
 ast_k_while() {
-  int v = ast_kbase() + 19;
+  int v = (import ast_kbase) + 19;
 } return int v;

@@ -31,7 +31,37 @@ import "../../idc/backends/fs"
 // number as the rest of the family on purpose -- one duration is what makes a
 // field feel like one thing, and a blink that beat against the repeat rate
 // would look like a fault.
+//
+// ast_kbase: the AST node kind family's base (docs/NAMES.md), 100. Each kind is
+// `(import ast_kbase) + n`, not a plain literal: `id` rejects two functions
+// whose bodies match up to renaming, and a zero-action function returning a
+// bare integer is distinguished by nothing but that integer, so a literal 12
+// here would collide with a literal 12 in any other module's constant. Naming
+// the base keeps the family's origin in one place.
+//
+// lex_kbase: the token kind family's base (docs/NAMES.md), 11, for the same
+// reason as ast_kbase -- a zero-action function that only returns a bare
+// integer is indistinguishable from any other one returning the same integer,
+// so naming the base keeps this family's numbers out of everyone else's.
+//
+// d2_clear: the transparency convention. A sprite pixel of -1 means "do not
+// write". A packed colour is 0xRRGGBB, so every real colour is 0 .. 16777215
+// and -1 cannot collide with one -- which is the whole reason to pick it rather
+// than, say, magenta, the classic colour key that a game then cannot use.
+// IDML_GAME.md section 2's `. clear` in a palette decodes to this value.
+//
+// txt_first: the first code point any face here has a glyph for -- and, by
+// convention, the first frame of a sprite font (IDML_GAME.md section 2's `from
+// 32`). This is still a bare-looking literal while its neighbours read txt_st,
+// and that is the point: it is not a property of the loaded face but a fact
+// about the engine. A loaded PSF is stored from 32 upward whatever its own
+// indexing was (glyph/face/put.id), so txt_num_sc can go on spelling '0' as
+// (import txt_first) + 16 whatever face is loaded.
 int inp_kmax = 512;
 int asset_chunk = 65536;
 int zst_lmax = 131072;
 int tin_base = 400;
+int ast_kbase = 100;
+int lex_kbase = 11;
+int d2_clear = 0 - 1;
+int txt_first = 32;

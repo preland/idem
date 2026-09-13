@@ -5,7 +5,7 @@
 // directly, which is what makes the table usable before the loader exists.
 //
 // The pixel list is allocated at full size (w * h * frames) and pre-filled with
-// d2_clear(), so a sprite is fully transparent until something writes to it and a
+// (import d2_clear), so a sprite is fully transparent until something writes to it and a
 // half-decoded sprite draws holes rather than reading a cell that is not there.
 // Growing it later is not an option worth having: push is cheap but an
 // out-of-range index aborts the process, so the size is fixed here, once.
@@ -15,7 +15,7 @@
 
 d2_spr_add(string name, int w, int h, int n) {
   int[] xs = [];
-  lst_fill(xs, w * h * n, d2_clear());
+  lst_fill(xs, w * h * n, (import d2_clear));
   d2_spr_push(name, w, h, n, xs);
 } return int len((import asset_sprw)) - 1;
 

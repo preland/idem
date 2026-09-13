@@ -28,10 +28,10 @@ txt_init() {
 // kill the game.
 txt_glyph_at(int key) {
   int n = key;
-  if (key < txt_first() || key > txt_last()) {
-    n = txt_first();
+  if (key < (import txt_first) || key > txt_last()) {
+    n = (import txt_first);
   }
-  int offset = (n - txt_first()) * txt_cellh();
+  int offset = (n - (import txt_first)) * txt_cellh();
 } return int offset;
 
 txt_glyph(int key, int x, int y, int c) {

@@ -7,11 +7,11 @@
 // way would break that link. So the loader pushes rows in through these two,
 // rather than the font module pulling a file.
 //
-// The face a game loads always starts at txt_first(), code point 32. A PSF is
+// The face a game loads always starts at (import txt_first), code point 32. A PSF is
 // indexed by code point from 0, and its first 32 slots are the control
 // characters, which this engine draws as spaces and never stores; skipping them
 // keeps `first` a constant everywhere, which is what lets txt_num_sc go on
-// spelling '0' as txt_first() + 16 whatever face is loaded.
+// spelling '0' as (import txt_first) + 16 whatever face is loaded.
 
 // The metrics. n is the glyph count, `bits` the packed row width -- see
 // face.id for why that is not the same number as w.

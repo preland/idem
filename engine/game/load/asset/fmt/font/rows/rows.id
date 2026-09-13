@@ -6,7 +6,7 @@
 // rows. Nothing draws between these two statements, but "nothing draws here
 // today" is not a property worth depending on.
 //
-// The first txt_first() glyphs are skipped rather than stored: a PSF is indexed
+// The first (import txt_first) glyphs are skipped rather than stored: a PSF is indexed
 // from code point 0 and its first 32 slots are the control characters, which
 // this engine draws as spaces. See glyph/face/put.id for why every face starts
 // at 32.
@@ -16,8 +16,8 @@
 // 512-glyph PSF (its mode bit 0) has half of them for a keyboard this engine
 // cannot type on.
 psf_copy(int sa, int n, int cs, int h, int w) {
-  txt_face_set(w, h, (w + 7) / 8 * 8, fx_min(n, 256) - txt_first());
-  psf_glyphs(sa + txt_first() * cs, fx_min(n, 256) - txt_first(), cs, h, (w + 7) / 8);
+  txt_face_set(w, h, (w + 7) / 8 * 8, fx_min(n, 256) - (import txt_first));
+  psf_glyphs(sa + (import txt_first) * cs, fx_min(n, 256) - (import txt_first), cs, h, (w + 7) / 8);
 } return int 1;
 
 // One glyph after another. `cs` steps the source because a glyph may be padded;

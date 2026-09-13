@@ -2,7 +2,7 @@
 
 t_def() {
   print("built-in metrics exp w 8 h 16 bits 8 glyphs 95 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen());
-  print("built-in range exp first 32 last 126 = " + txt_first() + " " + txt_last());
+  print("built-in range exp first 32 last 126 = " + (import txt_first) + " " + txt_last());
   t_at();
 } return void;
 
