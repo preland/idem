@@ -1,0 +1,26 @@
+// The table: glyphs.gen.id, printed whole.
+
+mkf_emit(string path, int[] xs, int[] psh) {
+  string[] strs = [];
+  mkf_head(strs, path, psh);
+  mkf_body(strs, xs, psh, (import mkf_first), (import mkf_last));
+} return void;
+("p.psf", [0], [0, 0, 1, 8, 127]):("p.psf", [0], [0, 0, 1, 8, 127])
+("q.psf", [1, 2], [0, 0, 1, 16, 127]):("q.psf", [1, 2], [0, 0, 1, 16, 127])
+
+// One line per glyph from lo to hi, then the tail, then all of it at once:
+// joining once is one allocation, where printing per line is a call per line.
+mkf_body(string[] strs, int[] xs, int[] psh, int lo, int hi) {
+  mkf_rows(strs, xs, psh, lo, hi);
+  push(strs, (import mkf_tail));
+  mkf_put(strs);
+} return void;
+([], [5], [0, 0, 1, 8, 127], 2, 1):(["  ];\n} return void;\n"], [5], [0, 0, 1, 8, 127], 2, 1)
+([], [5], [0, 0, 1, 8, 127], 126, 126):(["    5 // ~\n", "  ];\n} return void;\n"], [5], [0, 0, 1, 8, 127], 126, 126)
+
+mkf_put(string[] strs) {
+  string s = str_join(strs, "");
+  put(s);
+} return void;
+([""]):([""])
+(["//\n"]):(["//\n"])

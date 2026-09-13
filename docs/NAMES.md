@@ -52,6 +52,7 @@ with no prefix is either a language-level shared helper (§3) or a bug.
 | `run_` | the frame loop and its stages | `engine/game/run/loop/` |
 | `pack_` | the packager: escaping, chunking, id-source generation | `packer/` |
 | `imp_` | the importer's stream reader and hex spelling | `importer/` |
+| `mkf_` | the default face's generator: PSF checks, the glyph table as `id` source | `tools/mkfont/` |
 | `spr_` | *(parked)* the importer's sprite path — see the note below | `importer/emit/spr/` |
 | `mdl_` | the importer's mesh path | `importer/emit/mdl/` |
 | `shot_` | `--shot N`: how many frames a headless render runs | `engine/game/run/loop/go/shot/` |

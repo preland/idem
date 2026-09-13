@@ -1,0 +1,48 @@
+// mkfont -- engine/gfx/d2/text/glyph/face/glyphs.gen.id from a PSF font.
+//
+//   mkfont [path/to/font.psf]        (default: test_assets/vga8x16.psf)
+//
+// The engine ships a default face so that a game need not declare one, and the
+// table this prints is that face compiled in. It is a second reading of the
+// font, independent of engine/game/load/asset/fmt/font/, which is what makes
+// tests/unit/font a check on that decoder rather than a restatement of it: the
+// compiled-in default and a font loaded at runtime are the same bytes decoded
+// twice. tools/mkfont.sh builds this, runs it from the repository root and
+// puts the table in place.
+//
+// WHY THE OUTPUT IS FORMATTED THE WAY IT IS. A deep binary expression is
+// quadratic to compile and a list literal is linear, so every element is
+// spelled as short as it can be -- a decimal 0..255, never hex, never
+// arithmetic -- and the rows are broken one glyph per line. If this ever has
+// to hold a 256-glyph face, do not tidy it into a concatenation or a computed
+// expression.
+//
+// A failure is printed on stdout, since `id` has no way to write to stderr,
+// and exits 1.
+main(int argc, string[] argv) {
+  string path = mkf_path(argc, argv);
+  int[] xs = file_bytes(path);
+  int rc = mkf_run(path, xs);
+} return int rc;
+(2, ["mkfont", "/nonexistent/mkfont/a.psf"]):(1)
+(3, ["mkfont", "/nonexistent/mkfont/b.psf", "extra"]):(1)
+
+// The one optional argument.
+mkf_path(int argc, string[] argv) {
+  string path = (import mkf_src);
+  if (argc > 1) {
+    path = argv[1];
+  }
+} return string path;
+(1, ["mkfont"]):("test_assets/vga8x16.psf")
+(2, ["mkfont", "f.psf"]):("f.psf")
+
+// The header, then the checks, in order. The first that fails is the message,
+// and an empty message is a font to print.
+mkf_run(string path, int[] xs) {
+  int[] psh = pcsf_head(xs);
+  string msg = mkf_check(path, xs, psh);
+  int rc = mkf_out(msg, path, xs, psh);
+} return int rc;
+("p.psf", [1, 2, 3]):(1)
+("q.psf", []):(1)

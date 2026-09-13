@@ -1,0 +1,26 @@
+// A file that is neither PSF header.
+
+mkf_magic(string path, int[] xs, int[] psh) {
+  string msg = "";
+  if (len(psh) != 5) {
+    msg = mkf_neither(path, xs);
+  }
+} return string msg;
+("p.psf", [], [4, 16, 16, 8, 256]):("")
+("p.psf", [54, 4], []):("mkfont: p.psf is neither PSF1 nor PSF2 (magic 3604)")
+
+// The magic is the file's first four bytes, or all of a shorter file, in hex.
+mkf_neither(string path, int[] xs) {
+  int n = len(xs);
+  int m = fx_min(n, 4);
+  string msg = mkf_neither2(path, xs, m);
+} return string msg;
+("f.psf", [114, 181, 74, 134, 0]):("mkfont: f.psf is neither PSF1 nor PSF2 (magic 72b54a86)")
+("g.psf", []):("mkfont: g.psf is neither PSF1 nor PSF2 (magic )")
+
+mkf_neither2(string path, int[] xs, int m) {
+  string hex = hex_of(xs, 0, m);
+  string msg = "mkfont: " + path + " is neither PSF1 nor PSF2 (magic " + hex + ")";
+} return string msg;
+("f.psf", [1, 2, 3], 2):("mkfont: f.psf is neither PSF1 nor PSF2 (magic 0102)")
+("g.psf", [255], 1):("mkfont: g.psf is neither PSF1 nor PSF2 (magic ff)")

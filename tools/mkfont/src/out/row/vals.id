@@ -1,0 +1,30 @@
+// One glyph's rows as decimal text, joined by ", ".
+
+mkf_vals(int[] xs, int[] psh, int c) {
+  string[] strs = [];
+  mkf_rowvals(strs, xs, psh, c);
+  string vals = str_join(strs, ", ");
+} return string vals;
+([7, 8, 9], [0, 1, 2, 8, 127], 1):("8, 9")
+([1, 2], [0, 0, 1, 16, 127], 40):("258")
+
+// Glyph c starts c glyphs past the glyph offset, and each of its rows is as
+// many bytes as the width needs.
+mkf_rowvals(string[] strs, int[] xs, int[] psh, int c) {
+  int at = psh[0] + c * psh[1];
+  int nb = (psh[3] + 7) / 8;
+  mkf_rowloop(strs, xs, at, nb, psh[2]);
+} return void;
+([], [7, 8], [0, 1, 1, 8, 127], 1):(["8"], [7, 8], [0, 1, 1, 8, 127], 1)
+([], [1, 2], [0, 0, 1, 16, 127], 5):(["258"], [1, 2], [0, 0, 1, 16, 127], 5)
+
+mkf_rowloop(string[] strs, int[] xs, int at, int nb, int n) {
+  int j = 0;
+  while (j < n) {
+    int v = mkf_row(xs, at + j * nb, nb);
+    push(strs, "" + v);
+    j = j + 1;
+  }
+} return void;
+([], [1, 2, 3, 4], 0, 2, 2):(["258", "772"], [1, 2, 3, 4], 0, 2, 2)
+([], [9], 0, 1, 0):([], [9], 0, 1, 0)

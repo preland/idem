@@ -418,7 +418,7 @@ header at `engine/game/load/asset/fmt/font/psf.id`. The unicode table is skipped
 this engine indexes glyphs by byte, because `charat` answers a byte.
 
 The compiled-in default face comes from the same path in reverse —
-`tools/mkfont.py` decodes `test_assets/vga8x16.psf` and writes the table as `id`
+`tools/mkfont.sh` decodes `test_assets/vga8x16.psf` and writes the table as `id`
 source — so the built-in face and a loaded one are the same bytes decoded by two
 independent implementations, and `tests/unit/font` diffs them against each other.
 
@@ -678,7 +678,7 @@ engine/
       spr/    d2_ blit, transparent blit, scaled blit
       text/   txt_ the loaded face and its metrics, glyph blit, number
               drawing; the default face is the IBM VGA 8x16, generated
-              into glyph/face/glyphs.gen.id by tools/mkfont.py
+              into glyph/face/glyphs.gen.id by tools/mkfont.sh
     d3/
       m4/     m4_ build, multiply, project (word intermediates)
       tri/    d3_ z-buffered triangle spans
@@ -934,7 +934,7 @@ and it buys a size that is right.
 
 **The cell is not square, and `txt_cell()` is only its width.** The default face
 is the IBM VGA 8×16 (decoded from `test_assets/vga8x16.psf` by
-`tools/mkfont.py`), a game may load an 8×14 or a 12×24 with `psf_load`, and the
+`tools/mkfont.sh`), a game may load an 8×14 or a 12×24 with `psf_load`, and the
 row count is `txt_cellh()`. Everything that *measures a string* wants the width
 and was already right; the four places that reserved a *line* wanted the height
 and were not — see NAMES.md §6.

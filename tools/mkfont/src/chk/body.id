@@ -1,0 +1,35 @@
+// The font's numbers against its file, and its glyphs against the table.
+
+// A glyph has to hold its rows, and every glyph has to be in the file.
+mkf_fit(string path, int[] xs, int[] psh) {
+  int size = len(xs);
+  string msg = "";
+  if (psh[1] < psh[2] * ((psh[3] + 7) / 8) || psh[0] + psh[4] * psh[1] > size) {
+    msg = "mkfont: " + path + ": charsize " + psh[1] + " / count " + psh[4] + " do not fit " + size + " bytes";
+  }
+} return string msg;
+("f.psf", [0, 0, 0, 0, 0, 0], [4, 1, 1, 8, 2]):("")
+("f.psf", [0, 0, 0, 0, 0, 0], [4, 1, 1, 8, 3]):("mkfont: f.psf: charsize 1 / count 3 do not fit 6 bytes")
+
+// Every code point the table covers has to be in the font.
+mkf_cover(int[] psh) {
+  int top = fx_min((import mkf_last), psh[4] - 1);
+  string msg = "";
+  if (top < (import mkf_last)) {
+    msg = "mkfont: font covers " + (import mkf_first) + ".." + top + ", need " + (import mkf_first) + ".." + (import mkf_last);
+  }
+} return string msg;
+([4, 1, 1, 8, 127]):("")
+([4, 1, 1, 8, 100]):("mkfont: font covers 32..99, need 32..126")
+
+// Code 32 is a space in ASCII order, so a font whose glyph 32 has ink is not
+// in that order, and every glyph in the table would be the wrong one.
+mkf_blank(int[] xs, int[] psh) {
+  int sum = mkf_sum(xs, psh[0] + (import mkf_first) * psh[1], psh[2] * ((psh[3] + 7) / 8));
+  string msg = "";
+  if (sum != 0) {
+    msg = "mkfont: code 32 is not blank -- the glyphs are not in ASCII order";
+  }
+} return string msg;
+([0], [0, 0, 1, 8, 127]):("")
+([5], [0, 0, 1, 8, 127]):("mkfont: code 32 is not blank -- the glyphs are not in ASCII order")

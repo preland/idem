@@ -3,7 +3,9 @@
 //
 // EVERY EXPECTED VALUE HERE WAS COMPUTED INDEPENDENTLY, by a Python walk of the
 // same two files that does not share a line with the `id` decoder (the same walk
-// tools/mkfont.py uses to generate the built-in table). That is the whole point:
+// tools/mkfont.py used to generate the built-in table, before it became the `id`
+// program tools/mkfont, which shares no line with that decoder either). That is
+// the whole point:
 // a decoder checked against its own output proves only that it is deterministic.
 // A decoder that agrees with a second implementation on the metrics, on a
 // scatter of glyph rows and on a hash of every row of every glyph is one that
