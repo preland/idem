@@ -10,8 +10,8 @@ t_cos() {
 } return void;
 
 t_lin() {
-  print("fx_sin_lin(0,45000,90000) exp 0 707 1000 = " + fx_sin_lin(0) + " " + fx_sin_lin(45000) + " " + fx_sin_lin(90000));
-  print("fx_tab(0,45,90) exp 0 707 1000 = " + fx_tab(0) + " " + fx_tab(45) + " " + fx_tab(90));
+  print("fx_sin_lin(0,45000,90000) exp 0 707 1000 = " + idstd_fx_sin_lin(0) + " " + idstd_fx_sin_lin(45000) + " " + idstd_fx_sin_lin(90000));
+  print("fx_tab(0,45,90) exp 0 707 1000 = " + idstd_fx_tab(0) + " " + idstd_fx_tab(45) + " " + idstd_fx_tab(90));
   t_rnd();
 } return void;
 
