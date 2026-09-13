@@ -9,7 +9,8 @@ idem_pre(int argc, string[] argv) {
 } return void;
 
 scn_exe(string[] argv) {
-  sset((import scn_dir), 1, scn_dirof(argv[0]));
+  string dir = scn_dirof(argv[0]);
+  sset((import scn_dir), 1, dir);
 } return void;
 
 // An empty root means no `#root` line was in the stream at all -- a unit test, or

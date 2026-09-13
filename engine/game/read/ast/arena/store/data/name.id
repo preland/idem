@@ -1,7 +1,7 @@
 ast_ktake(string[] strs, string s, int i) {
   int e = ast_kend(s, i);
-  push(strs, str_slice(s, i, e - i));
-} return int e + 1;
+  int v = ast_ktake_tail(strs, s, i, e);
+} return int v;
 
 // The `find` idiom that stands in for `break`: the loop bound is the result, so
 // assigning it on a hit ends the loop. 32 is a space. Missing separator yields

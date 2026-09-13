@@ -9,11 +9,14 @@ lex_num(string src, int i) {
 lex_dec(string src, int i) {
   int e = lex_digend(src, i);
   int fe = lex_fracend(src, e);
-} return int lex_dnum(src, i, e, fe);
+  int v = lex_dnum(src, i, e, fe);
+} return int v;
 
 lex_digend(string src, int i) {
   int e = i;
-  while (lex_is_digit(charat(src, e))) {
+  int c = charat(src, e);
+  while (lex_is_digit(c)) {
     e = e + 1;
+    c = charat(src, e);
   }
 } return int e;

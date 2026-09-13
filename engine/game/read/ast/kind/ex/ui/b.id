@@ -1,5 +1,11 @@
-ast_k_dims() { } return int ast_kbase() + 38;
+ast_k_dims() {
+  int v = ast_kbase() + 38;
+} return int v;
 
-ast_k_vis() { } return int ast_kbase() + 39;
+ast_k_vis() {
+  int v = ast_kbase() + 39;
+} return int v;
 
-ast_k_ref() { } return int ast_kbase() + 40;
+ast_k_ref() {
+  int v = ast_kbase() + 40;
+} return int v;

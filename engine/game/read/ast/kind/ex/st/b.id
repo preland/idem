@@ -1,5 +1,11 @@
-ast_k_repeat() { } return int ast_kbase() + 20;
+ast_k_repeat() {
+  int v = ast_kbase() + 20;
+} return int v;
 
-ast_k_assign() { } return int ast_kbase() + 21;
+ast_k_assign() {
+  int v = ast_kbase() + 21;
+} return int v;
 
-ast_k_despawn() { } return int ast_kbase() + 22;
+ast_k_despawn() {
+  int v = ast_kbase() + 22;
+} return int v;

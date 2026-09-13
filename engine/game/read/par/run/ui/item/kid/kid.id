@@ -8,6 +8,7 @@
 
 par_ufill3(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_item(pos));
+    int item = par_item(pos);
+    push(kids, item);
   }
 } return void;

@@ -1,5 +1,11 @@
-ast_k_stop() { } return int ast_kbase() + 26;
+ast_k_stop() {
+  int v = ast_kbase() + 26;
+} return int v;
 
-ast_k_bin() { } return int ast_kbase() + 27;
+ast_k_bin() {
+  int v = ast_kbase() + 27;
+} return int v;
 
-ast_k_un() { } return int ast_kbase() + 28;
+ast_k_un() {
+  int v = ast_kbase() + 28;
+} return int v;

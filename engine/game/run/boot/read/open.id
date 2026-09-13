@@ -6,3 +6,9 @@ idem_open() {
   txt_init();
   idem_open2();
 } return void;
+
+idem_read2_tail(int[] pos) {
+  int doc = par_doc(pos);
+  scn_load(doc);
+  idem_open();
+} return void;

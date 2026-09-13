@@ -12,11 +12,12 @@ ast_init4() {
 ast_kinit() {
   export string[] ast_kn = [];
   ast_ksplit((import ast_kn), "nil file import palette pcol sprite model game scene entity template instance spawn comp var script on block if while repeat assign despawn goto play say stop bin un field call num str ident tuple args ui item dims vis ref cond define variant bad", 0);
-  ast_new_k(ast_k_nil(), "");
 } return void;
 
 ast_ksplit(string[] strs, string s, int i) {
   while (charat(s, i) >= 0) {
     i = ast_ktake(strs, s, i);
   }
+  int kd = ast_k_nil();
+  ast_new_k(kd, "");
 } return void;

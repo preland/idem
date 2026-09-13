@@ -19,6 +19,10 @@
 
 ast_kbase() { } return int 100;
 
-ast_k_nil() { } return int ast_kbase() + 0;
+ast_k_nil() {
+  int v = ast_kbase() + 0;
+} return int v;
 
-ast_k_file() { } return int ast_kbase() + 1;
+ast_k_file() {
+  int v = ast_kbase() + 1;
+} return int v;

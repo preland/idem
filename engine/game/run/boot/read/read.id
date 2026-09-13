@@ -13,6 +13,5 @@ idem_read1(string src) {
 
 idem_read2() {
   int[] pos = [0];
-  scn_load(par_doc(pos));
-  idem_open();
+  idem_read2_tail(pos);
 } return void;

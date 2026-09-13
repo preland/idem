@@ -1,5 +1,11 @@
-ast_k_cond() { } return int ast_kbase() + 41;
+ast_k_cond() {
+  int v = ast_kbase() + 41;
+} return int v;
 
-ast_k_define() { } return int ast_kbase() + 42;
+ast_k_define() {
+  int v = ast_kbase() + 42;
+} return int v;
 
-ast_k_variant() { } return int ast_kbase() + 43;
+ast_k_variant() {
+  int v = ast_kbase() + 43;
+} return int v;

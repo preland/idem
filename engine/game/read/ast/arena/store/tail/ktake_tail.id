@@ -1,0 +1,5 @@
+ast_ktake_tail(string[] strs, string s, int i, int e) {
+  string v = str_slice(s, i, e - i);
+  push(strs, v);
+  int result = e + 1;
+} return int result;

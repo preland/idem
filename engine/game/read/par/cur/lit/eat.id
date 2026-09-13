@@ -13,5 +13,8 @@ par_want(int[] pos, string txt) {
 
 // 39 is an apostrophe.
 par_wchk(int[] pos, string txt, int ok) {
-  if (ok = 0) { par_err(pos, "expected " + chr(39) + txt + chr(39) + ", found " + chr(39) + par_text(pos) + chr(39)); }
+  if (ok = 0) {
+    string found = par_text(pos);
+    par_err(pos, "expected " + chr(39) + txt + chr(39) + ", found " + chr(39) + found + chr(39));
+  }
 } return void;

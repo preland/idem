@@ -1,0 +1,4 @@
+lex_unone_tail(string src, int a, int c, int nxt, word ad) {
+  poke8(ad, c);
+  if (c = 92) { nxt = lex_unesc1(src, a, ad); }
+} return int nxt;

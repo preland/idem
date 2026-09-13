@@ -3,17 +3,16 @@
 ast_new(int kd, string txt, int a, int b, int c, int[] kids) {
   push((import ast_kind), kd);
   push((import ast_text), txt);
-  ast_new2(a, b, c, kids);
-} return int len((import ast_kind)) - 1;
+  int result = ast_new2(a, b, c, kids);
+} return int result;
 
 ast_new2(int a, int b, int c, int[] kids) {
   push((import ast_a), a);
   push((import ast_b), b);
-  ast_new3(c, kids);
-} return void;
+  int result = ast_new3(c, kids);
+} return int result;
 
 ast_new3(int c, int[] kids) {
   push((import ast_c), c);
-  push((import ast_line), (import ast_cur)[0]);
-  push((import ast_kids), kids);
-} return void;
+  int v = ast_new3_tail(c, kids);
+} return int v;

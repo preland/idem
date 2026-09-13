@@ -1,5 +1,11 @@
-ast_k_sprite() { } return int ast_kbase() + 5;
+ast_k_sprite() {
+  int v = ast_kbase() + 5;
+} return int v;
 
-ast_k_model() { } return int ast_kbase() + 6;
+ast_k_model() {
+  int v = ast_kbase() + 6;
+} return int v;
 
-ast_k_game() { } return int ast_kbase() + 7;
+ast_k_game() {
+  int v = ast_kbase() + 7;
+} return int v;

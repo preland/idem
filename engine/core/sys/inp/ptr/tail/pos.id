@@ -2,7 +2,9 @@
 // so a cursor sprite is drawn at inp_mx(), inp_my() with no conversion.
 
 inp_mx() {
-} return int (import inp_mo)[0];
+  int r = (import inp_mo)[0];
+} return int r;
 
 inp_my() {
-} return int (import inp_mo)[1];
+  int r = (import inp_mo)[1];
+} return int r;

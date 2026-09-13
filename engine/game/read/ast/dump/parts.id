@@ -1,6 +1,7 @@
 ast_dtx(int nd) {
   string s = "";
-  if (len(ast_tx(nd)) > 0) { s = " " + ast_tx(nd); }
+  string tx = ast_tx(nd);
+  if (len(tx) > 0) { s = " " + tx; }
 } return string s;
 
 ast_dsp(int nd) {

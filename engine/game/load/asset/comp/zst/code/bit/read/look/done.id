@@ -10,7 +10,8 @@ zb_borrow() {
 // How many bits are still unread. Zero means the stream came out exactly even;
 // negative means a read has already gone past the end.
 zb_left() {
-} return int ((import zb_st)[1] - (import zb_st)[0]) * 8 + (import zb_st)[2] + 1;
+  int result = ((import zb_st)[1] - (import zb_st)[0]) * 8 + (import zb_st)[2] + 1;
+} return int result;
 
 // Done means **past** the end, not *at* it. The distinction is the whole of an
 // FSE weight stream's termination: the reference keeps decoding while the stream

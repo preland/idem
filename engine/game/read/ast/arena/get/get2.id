@@ -1,5 +1,11 @@
-ast_ib(int nd) { } return int (import ast_b)[nd];
+ast_ib(int nd) {
+  int b = (import ast_b)[nd];
+} return int b;
 
-ast_ic(int nd) { } return int (import ast_c)[nd];
+ast_ic(int nd) {
+  int c = (import ast_c)[nd];
+} return int c;
 
-ast_ks(int nd) { } return int[] (import ast_kids)[nd];
+ast_ks(int nd) {
+  int[] k = (import ast_kids)[nd];
+} return int[] k;

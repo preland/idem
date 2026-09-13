@@ -1,0 +1,5 @@
+inf_dstep_tail(int[] cnt, int[] st, int ok, int b) {
+  lset(st, 0, st[0] * 2 + b);
+  ok = st[0] - st[1] < cnt[st[3]];
+  int final_result = inf_dnext(cnt, st, ok);
+} return int final_result;

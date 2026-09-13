@@ -30,4 +30,5 @@ zb_soft() {
   if ((import zb_st)[1] >= (import zb_st)[0]) {
     v = peek8((import zb_st)[1]) / inf_pow2((import zb_st)[2]) % 2;
   }
-} return int zb_next(v);
+  int result = zb_next(v);
+} return int result;

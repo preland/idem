@@ -15,7 +15,10 @@ sys_stage() {
 } return void;
 
 sys_snap() {
-} return int fx_min((import sf_gw) * 1000 / fx_max((import sys_vp)[3], 1), (import sf_gh) * 1000 / fx_max((import sys_vp)[4], 1));
+  int denom1 = fx_max((import sys_vp)[3], 1);
+  int denom2 = fx_max((import sys_vp)[4], 1);
+  int snap = fx_min((import sf_gw) * 1000 / denom1, (import sf_gh) * 1000 / denom2);
+} return int snap;
 
 sys_soff() {
   lset((import sys_vp), 1, ((import sf_gw) - sys_sw()) / 2);

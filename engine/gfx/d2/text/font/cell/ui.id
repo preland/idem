@@ -27,11 +27,15 @@
 // can show; a wide, shallow window is the case that would otherwise overflow.
 
 txt_ui() {
-} return int fx_max(fx_min(txt_step((import sf_gw), 640), txt_step((import sf_gh), 400)), 1);
+  int step_w = txt_step((import sf_gw), 640);
+  int step_h = txt_step((import sf_gh), 400);
+  int ui = fx_max(fx_min(step_w, step_h), 1);
+} return int ui;
 
 // Round-to-nearest division: (n + ref/2) / ref.
 txt_step(int n, int ref) {
-} return int (n + ref / 2) / ref;
+  int step = (n + ref / 2) / ref;
+} return int step;
 
 // The screen extent of font pixel i at a per-mille scale: the distance between
 // its two rounded boundaries. Consecutive pixels therefore tile exactly, with no
@@ -39,4 +43,5 @@ txt_step(int n, int ref) {
 // Below a scale of 1000 some of them are zero, which is what shrinking a bitmap
 // font means -- strokes drop out rather than the glyph turning to mud.
 txt_ext(int i, int sc) {
-} return int (i + 1) * sc / 1000 - i * sc / 1000;
+  int ext = (i + 1) * sc / 1000 - i * sc / 1000;
+} return int ext;

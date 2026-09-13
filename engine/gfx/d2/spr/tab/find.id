@@ -18,10 +18,13 @@
 // lines.
 
 d2_clear() {
-} return int 0 - 1;
+  int clear = 0 - 1;
+} return int clear;
 
 d2_spr_find(string name) {
-} return int d2_spr_scan(name, 0, 0 - 1);
+  int clear_val = 0 - 1;
+  int id = d2_spr_scan(name, 0, clear_val);
+} return int id;
 
 // p walks the table; i carries the answer, -1 until a name matches. The `i < 0`
 // guard makes the FIRST declaration win if a game declares one name twice (the

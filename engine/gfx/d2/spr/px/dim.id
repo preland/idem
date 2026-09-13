@@ -10,13 +10,16 @@
 // with 3 frames reports 12, and its list holds 432 pixels.
 
 d2_spr_w(int p) {
-} return int (import asset_sprw)[p];
+  int w = (import asset_sprw)[p];
+} return int w;
 
 d2_spr_h(int p) {
-} return int (import asset_sprh)[p];
+  int h = (import asset_sprh)[p];
+} return int h;
 
 // The frame count. Blits clamp the frame index against it rather than trusting
 // a caller: an animation whose `anim(first, last, ms)` runs past the end would
 // otherwise index past the pixel list, and that aborts the process.
 d2_spr_nf(int p) {
-} return int (import asset_sprf)[p];
+  int nf = (import asset_sprf)[p];
+} return int nf;

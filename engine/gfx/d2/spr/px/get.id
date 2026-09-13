@@ -15,11 +15,14 @@
 // decoding art once and utterly the wrong one for drawing it every frame.
 
 d2_spr_px(int p) {
-} return int[] (import asset_sprpx)[p];
+  int[] px = (import asset_sprpx)[p];
+} return int[] px;
 
 d2_spr_put(int p, int i, int c) {
   lset(d2_spr_px(p), i, c);
 } return void;
 
 d2_spr_at(int p, int i) {
-} return int lget(d2_spr_px(p), i);
+  int[] px = d2_spr_px(p);
+  int c = lget(px, i);
+} return int c;

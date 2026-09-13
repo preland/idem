@@ -12,6 +12,10 @@
 
 lex_kbase() { } return int 11;
 
-lex_k_eof() { } return int lex_kbase() + 0;
+lex_k_eof() {
+  int v = lex_kbase() + 0;
+} return int v;
 
-lex_k_ident() { } return int lex_kbase() + 1;
+lex_k_ident() {
+  int v = lex_kbase() + 1;
+} return int v;

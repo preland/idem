@@ -26,4 +26,5 @@ inp_hit(int key) {
 // mean the same thing in a one-button game, and deciding which of them the
 // player used is not the game's business.
 inp_hit_any() {
-} return int inp_hit(32) || inp_hit(13) || inp_hit(119);
+  int r = inp_hit(32) || inp_hit(13) || inp_hit(119);
+} return int r;

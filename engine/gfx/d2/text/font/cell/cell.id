@@ -16,7 +16,8 @@
 // numbers. Everything that measures a string still asks this one; everything
 // that measures a line of them had to be found and changed to ask the other.
 txt_cell() {
-} return int (import txt_st)[0];
+  int cell = (import txt_st)[0];
+} return int cell;
 
 // The first code point any face here has a glyph for -- and, by convention, the
 // first frame of a sprite font (IDML_GAME.md section 2's `from 32`).
@@ -34,4 +35,7 @@ txt_first() {
 // this engine has no notion of one -- and 255 for a full code page loaded from a
 // .psf, which is where the box-drawing and accented glyphs come from.
 txt_last() {
-} return int txt_first() + txt_facen() - 1;
+  int first = txt_first();
+  int facen = txt_facen();
+  int last = first + facen - 1;
+} return int last;

@@ -15,7 +15,8 @@ sys_st_init(int ok) {
 } return void;
 
 sys_alive() {
-} return int ((import sys_st)[0] = 1) && ((import sys_st)[1] = 0);
+  int r = ((import sys_st)[0] = 1) && ((import sys_st)[1] = 0);
+} return int r;
 
 sys_quit() {
   lset((import sys_st), 1, 1);

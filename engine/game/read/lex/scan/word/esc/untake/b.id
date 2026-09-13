@@ -1,6 +1,9 @@
 lex_unesc1(string src, int a, word ad) {
-  poke8(ad, lex_escch(charat(src, a + 1)));
-} return int a + 2;
+  int c = charat(src, a + 1);
+  int v = lex_escch(c);
+  poke8(ad, v);
+  int result = a + 2;
+} return int result;
 
 // 110 is 'n', 116 is 't'. Anything else after a backslash is itself, which gives
 // \" and \\ for free.
@@ -11,5 +14,8 @@ lex_escch(int c) {
 
 lex_punct(string src, int i) {
   int n = lex_plen(src, i);
-  lex_push(lex_k_punct(), str_slice(src, i, n), 0, 0);
-} return int i + n;
+  int kd = lex_k_punct();
+  string s = str_slice(src, i, n);
+  lex_push(kd, s, 0, 0);
+  int res = i + n;
+} return int res;

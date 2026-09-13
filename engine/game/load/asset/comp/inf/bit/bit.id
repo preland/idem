@@ -9,7 +9,8 @@ inf_bits(int n) {
   while ((import inf_st)[3] < n && (import inf_st)[7] = 0) {
     inf_more();
   }
-} return int inf_take(n);
+  int result = inf_take(n);
+} return int result;
 
 inf_more() {
   if ((import inf_st)[1] >= (import inf_st)[8]) {

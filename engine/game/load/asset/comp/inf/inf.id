@@ -36,7 +36,8 @@ inf_init() {
 inf_run(int sa, int slen, int da, int cap) {
   inf_reset(sa, slen, da, cap);
   inf_blocks();
-} return int inf_out();
+  int result = inf_out();
+} return int result;
 
 inf_reset(int sa, int slen, int da, int cap) {
   m4_pair((import inf_st), 0, 1, sa, 0);

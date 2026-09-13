@@ -20,4 +20,6 @@ scn_ent(int nd) {
 // `pos (x, y)`: member k of the tuple its component carries, in stage units,
 // scaled to the millunits the store keeps.
 scn_ex(int nd, int k) {
-} return int scn_mtup(nd, "pos", k) * 1000;
+  int mtup = scn_mtup(nd, "pos", k);
+  int ex_val = mtup * 1000;
+} return int ex_val;

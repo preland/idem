@@ -1,0 +1,19 @@
+// Helper functions to extract channel blending logic and keep parent functions under 3 actions
+
+d2_blend_cr(int c, int b, int t) {
+  int cr0 = d2_cr(c);
+  int cr1 = d2_cr(b);
+  int cr = fx_lerp(cr0, cr1, t);
+} return int cr;
+
+d2_blend_cg(int c, int b, int t) {
+  int cg0 = d2_cg(c);
+  int cg1 = d2_cg(b);
+  int cg = fx_lerp(cg0, cg1, t);
+} return int cg;
+
+d2_blend_cb(int c, int b, int t) {
+  int cb0 = d2_cb(c);
+  int cb1 = d2_cb(b);
+  int cb = fx_lerp(cb0, cb1, t);
+} return int cb;

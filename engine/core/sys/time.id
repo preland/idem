@@ -6,7 +6,8 @@
 // step in run/ already provides.
 
 sys_now() {
-} return int ticks();
+  int t = ticks();
+} return int t;
 
 sys_wait(int ms) {
   if (ms > 0) {
@@ -20,6 +21,7 @@ sys_wait(int ms) {
 // also what keeps `1000 / n` away from the division that would abort the process.
 sys_pace(int t, int n) {
   if (n > 0) {
-    sys_wait(1000 / n - (ticks() - t));
+    int now = ticks();
+    sys_wait(1000 / n - (now - t));
   }
 } return void;

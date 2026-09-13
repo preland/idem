@@ -35,9 +35,15 @@
 // jump.
 sys_open(int w, int h, int sc, string title) {
   sf_open(w, h);
-  sys_st_init(gfx_open(w * sc, h * sc, title));
+  int ok = gfx_open(w * sc, h * sc, title);
+  sys_open_tail(ok, w, h);
+} return void;
+
+sys_open_tail(int ok, int w, int h) {
+  sys_st_init(ok);
   sys_vp_init(w, h);
-} return int sys_alive();
+  int r = sys_alive();
+} return int r;
 
 // Callable without a window at all -- a test sets a surface size and a stage and
 // asks where the stage lands, with nothing native involved. That is why the
@@ -45,5 +51,5 @@ sys_open(int w, int h, int sc, string title) {
 sys_vp_init(int w, int h) {
   export int[] sys_vp = [1000, 0, 0, w, h];
   sys_stage();
-  sys_fit(gfx_width(), gfx_height());
+  sys_vp_fit();
 } return void;

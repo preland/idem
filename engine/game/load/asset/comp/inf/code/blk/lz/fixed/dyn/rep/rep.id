@@ -6,8 +6,13 @@
 inf_drep(int kd, int i, int n) {
   int k = inf_drun(kd);
   int v = 0;
+  int result = inf_drep_tail(kd, i, n, k, v);
+} return int result;
+
+inf_drep_tail(int kd, int i, int n, int k, int v) {
   if (kd = 16) { v = inf_prev(i); }
-} return int inf_dfill(i, n, k, v);
+  int result = inf_dfill(i, n, k, v);
+} return int result;
 
 // The previous length. A repeat as the very first symbol has nothing to repeat,
 // which is corrupt rather than zero.

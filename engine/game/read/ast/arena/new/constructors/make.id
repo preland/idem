@@ -2,12 +2,15 @@
 // the function-logic uniqueness rule is satisfied without contrivance.
 ast_new_k(int kd, string txt) {
   int[] kids = [];
-} return int ast_new(kd, txt, 0, 0, 0, kids);
+  int v = ast_new(kd, txt, 0, 0, 0, kids);
+} return int v;
 
 ast_new_a(int kd, string txt, int a) {
   int[] kids = [];
-} return int ast_new(kd, txt, a, 0, 0, kids);
+  int v = ast_new(kd, txt, a, 0, 0, kids);
+} return int v;
 
 ast_new_ab(int kd, string txt, int a, int b) {
   int[] kids = [];
-} return int ast_new(kd, txt, a, b, 0, kids);
+  int v = ast_new(kd, txt, a, b, 0, kids);
+} return int v;

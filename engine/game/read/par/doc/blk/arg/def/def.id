@@ -11,7 +11,8 @@
 
 par_dbraced(int[] pos, int kd, int[] kids) {
   if (kd = ast_k_define()) {
-    push(kids, par_item(pos));
+    int item = par_item(pos);
+    push(kids, item);
   } else {
     par_dinner(pos, kids);
   }

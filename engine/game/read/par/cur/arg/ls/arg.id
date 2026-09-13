@@ -4,7 +4,8 @@
 par_arg(int[] pos) {
   int[] out = [0];
   par_arg2(pos, out);
-} return int out[0];
+  int v = out[0];
+} return int v;
 
 par_arg2(int[] pos, int[] out) {
   if (par_kind(pos) = lex_k_number()) { out[0] = par_num(pos); }

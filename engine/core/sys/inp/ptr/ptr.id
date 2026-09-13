@@ -32,11 +32,11 @@
 
 inp_sample() {
   lset((import inp_mo), 3, (import inp_mo)[2]);
-  lset((import inp_mo), 2, gfx_mouse_buttons());
-  inp_sample2(gfx_mouse_x(), gfx_mouse_y());
+  int b = gfx_mouse_buttons();
+  inp_sample_tail(b);
 } return void;
 
-inp_sample2(int x, int y) {
-  lset((import inp_mo), 0, fx_clamp(x, 0, (import sf_gw) - 1));
-  lset((import inp_mo), 1, fx_clamp(y, 0, (import sf_gh) - 1));
+inp_sample_tail(int b) {
+  lset((import inp_mo), 2, b);
+  inp_sample_get_xy();
 } return void;

@@ -1,5 +1,11 @@
-lex_k_number() { } return int lex_kbase() + 2;
+lex_k_number() {
+  int v = lex_kbase() + 2;
+} return int v;
 
-lex_k_string() { } return int lex_kbase() + 3;
+lex_k_string() {
+  int v = lex_kbase() + 3;
+} return int v;
 
-lex_k_punct() { } return int lex_kbase() + 4;
+lex_k_punct() {
+  int v = lex_kbase() + 4;
+} return int v;

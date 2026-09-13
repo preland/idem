@@ -1,0 +1,18 @@
+// Tail functions to reduce statement count in inp_sample_tail
+
+inp_sample_get_xy() {
+  int x = gfx_mouse_x();
+  int y = gfx_mouse_y();
+  inp_sample2(x, y);
+} return void;
+
+inp_sample2(int x, int y) {
+  int cx = fx_clamp(x, 0, (import sf_gw) - 1);
+  int cy = fx_clamp(y, 0, (import sf_gh) - 1);
+  inp_sample2_store(cx, cy);
+} return void;
+
+inp_sample2_store(int cx, int cy) {
+  lset((import inp_mo), 0, cx);
+  lset((import inp_mo), 1, cy);
+} return void;

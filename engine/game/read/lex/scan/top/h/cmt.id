@@ -13,6 +13,7 @@ lex_eol(string src, int i) {
 
 lex_marker(string src, int i, int e) {
   if (str_eqat(src, i, "#file ")) {
-    lex_setpath(str_slice(src, i + 6, e - i - 6));
+    string path = str_slice(src, i + 6, e - i - 6);
+    lex_setpath(path);
   }
 } return void;

@@ -1,0 +1,16 @@
+// Tail functions for d2_blend
+
+d2_blend_impl(int c, int b, int t) {
+  int cr = d2_blend_cr(c, b, t);
+  int result = d2_blend_2(cr, c, b, t);
+} return int result;
+
+d2_blend_2(int cr, int c, int b, int t) {
+  int cg = d2_blend_cg(c, b, t);
+  int result = d2_blend_3(cr, cg, c, b, t);
+} return int result;
+
+d2_blend_3(int cr, int cg, int c, int b, int t) {
+  int cb = d2_blend_cb(c, b, t);
+  int rgb = d2_rgb(cr, cg, cb);
+} return int rgb;

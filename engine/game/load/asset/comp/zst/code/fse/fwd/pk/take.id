@@ -10,4 +10,5 @@ zf_bits(int n) {
 // `nbits` how many of them are still unread, so the bits actually consumed are
 // sp*8 - nbits, rounded up to a byte.
 zf_used() {
-} return int ((import zf_st)[1] * 8 - (import zf_st)[3] + 7) / 8;
+  int result = ((import zf_st)[1] * 8 - (import zf_st)[3] + 7) / 8;
+} return int result;

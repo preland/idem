@@ -24,12 +24,15 @@
 
 // The rows a glyph occupies in the table, and the pixels it occupies on screen.
 txt_cellh() {
-} return int (import txt_st)[1];
+  int h = (import txt_st)[1];
+} return int h;
 
 // The width of one packed row in bits: the shift base for column 0.
 txt_bit() {
-} return int (import txt_st)[2];
+  int b = (import txt_st)[2];
+} return int b;
 
 // How many code points the face has, counting from txt_first().
 txt_facen() {
-} return int (import txt_st)[3];
+  int n = (import txt_st)[3];
+} return int n;

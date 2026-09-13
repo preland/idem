@@ -21,4 +21,5 @@ inf_put2(int v) {
 // A byte already written, addressed backwards from the cursor -- what a
 // length/distance pair copies from.
 inf_back(int d) {
-} return int peek8((import inf_st)[4] + (import inf_st)[5] - d);
+  int result = peek8((import inf_st)[4] + (import inf_st)[5] - d);
+} return int result;

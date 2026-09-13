@@ -1,0 +1,5 @@
+ast_new3_tail(int c, int[] kids) {
+  push((import ast_line), (import ast_cur)[0]);
+  push((import ast_kids), kids);
+  int v = len((import ast_kind)) - 1;
+} return int v;

@@ -1,14 +1,17 @@
 lex_hexend(string src, int i) {
   int e = i;
-  while (lex_is_hex(charat(src, e))) {
+  int c = charat(src, e);
+  while (lex_is_hex(c)) {
     e = e + 1;
+    c = charat(src, e);
   }
 } return int e;
 
 lex_hexval(string src, int a, int b) {
   int v = 0;
   while (a < b) {
-    v = v * 16 + lex_hdig(charat(src, a));
+    int c = charat(src, a);
+    v = v * 16 + lex_hdig(c);
     a = a + 1;
   }
 } return int v;

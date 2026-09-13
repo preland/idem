@@ -6,7 +6,8 @@
 
 scn_rtake(string src, int i, int e) {
   if (str_eqat(src, i, "#root ") = 1) {
-    sset((import scn_dir), 0, str_slice(src, i + 6, e - i - 6));
+    string slice = str_slice(src, i + 6, e - i - 6);
+    sset((import scn_dir), 0, slice);
   }
 } return void;
 
@@ -14,7 +15,9 @@ scn_rtake(string src, int i, int e) {
 // gives `dist/flappy/`, and a bare `flappy` gives `""` -- which is the current
 // directory, and the right answer for an executable invoked through PATH.
 scn_dirof(string pth) {
-} return string str_slice(pth, 0, scn_lastsep(pth, 0, 0 - 1) + 1);
+  int sep = scn_lastsep(pth, 0, 0 - 1);
+  string path_dir = str_slice(pth, 0, sep + 1);
+} return string path_dir;
 
 // The last separator, not the first, so the fold cannot go through lst_pick. The
 // update is branchless: `at + (i - at) * cond` is `i` when the character is a

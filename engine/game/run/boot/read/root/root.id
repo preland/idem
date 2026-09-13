@@ -32,7 +32,8 @@ scn_root(string src, int i) {
 scn_rline(string src, int i) {
   int e = scn_reol(src, i);
   scn_rtake(src, i, e);
-} return int e + 1;
+  int next_i = e + 1;
+} return int next_i;
 
 scn_reol(string src, int i) {
   while (charat(src, i) >= 0 && charat(src, i) != 10) {

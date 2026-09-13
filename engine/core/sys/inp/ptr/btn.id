@@ -8,7 +8,9 @@
 // frame, so inp_mhit(8) is one notch up however the platform delivers it.
 
 inp_mdown(int b) {
-} return int ((import inp_mo)[2] & b) != 0;
+  int r = ((import inp_mo)[2] & b) != 0;
+} return int r;
 
 inp_mhit(int b) {
-} return int ((import inp_mo)[2] & b) != 0 && ((import inp_mo)[3] & b) = 0;
+  int r = ((import inp_mo)[2] & b) != 0 && ((import inp_mo)[3] & b) = 0;
+} return int r;

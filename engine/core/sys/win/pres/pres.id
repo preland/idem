@@ -18,7 +18,9 @@
 // A dropped frame during a drag is invisible; a sheared one is not.
 
 sys_sync() {
-  sys_fit(gfx_width(), gfx_height());
+  int w = gfx_width();
+  int h = gfx_height();
+  sys_fit(w, h);
 } return void;
 
 sys_present() {

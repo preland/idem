@@ -1,7 +1,8 @@
 // Advancing stamps the consumed token's line into the arena, so every node built
 // afterwards carries a source line without any production mentioning one.
 par_next(int[] pos) {
-  ast_mark(par_line(pos));
+  int ln = par_line(pos);
+  ast_mark(ln);
   pos[0] = pos[0] + 1;
 } return void;
 

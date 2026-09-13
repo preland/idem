@@ -4,9 +4,17 @@
 // one divide at the end -- so a shape an odd number of units across lands where
 // it should rather than half a unit off.
 ent_bx(int e, int k, int sk) {
-} return int (ent_at(e, k) - ent_at(e, sk) / 2) * (import sys_vp)[0] / 1000000;
+  int center = ent_at(e, k);
+  int half_sz = ent_at(e, sk) / 2;
+  int vp_x = (import sys_vp)[0];
+  int bx_val = (center - half_sz) * vp_x / 1000000;
+} return int bx_val;
 
 // Floored at one pixel: a shape thinner than a pixel is still a thing the author
 // asked to see, and a zero-width rect draws nothing at all.
 ent_bs(int e, int sk) {
-} return int fx_max(ent_at(e, sk) * (import sys_vp)[0] / 1000000, 1);
+  int at_val = ent_at(e, sk);
+  int vp_x = (import sys_vp)[0];
+  int sz_px = at_val * vp_x / 1000000;
+  int bs_val = fx_max(sz_px, 1);
+} return int bs_val;

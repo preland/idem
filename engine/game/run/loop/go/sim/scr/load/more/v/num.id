@@ -6,7 +6,13 @@
 
 scr_kev2(int nd) {
   int v = 0;
-  if (len(ast_ks(nd)) > 0) { v = shot_val(ast_tx(ast_ks(nd)[0]), 0, 0); }
+  int[] ks = ast_ks(nd);
+  int len_ks = len(ks);
+  if (len_ks > 0) {
+    int fst = ks[0];
+    string txt = ast_tx(fst);
+    v = shot_val(txt, 0, 0);
+  }
 } return int v;
 
 // A member that declares a variable.
@@ -22,15 +28,23 @@ scr_kev2(int nd) {
 // to one -- which reads as a scoping bug and is a shape bug.
 scr_dmem(int nd) {
   if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = "var") {
-    scr_dbind(scn_arg(nd, 0));
+    int arg = scn_arg(nd, 0);
+    scr_dbind(arg);
   }
 } return void;
 
 // The `=` expression, and the binding form the manifest's braced blocks produce.
 // Both spellings mean the same thing and a game may use either.
 scr_dbind(int nd) {
-  if (ast_kd(nd) = ast_k_bin() && ast_tx(nd) = "=" && ast_kd(ast_ia(nd)) = ast_k_ident()) {
-    scr_push(ast_tx(ast_ia(nd)), scr_ev(ast_ib(nd), 0 - 1));
+  if (ast_kd(nd) = ast_k_bin() && ast_tx(nd) = "=") {
+    int ia = ast_ia(nd);
+    int ia_kd = ast_kd(ia);
+    if (ia_kd = ast_k_ident()) {
+      string ia_tx = ast_tx(ia);
+      int ib = ast_ib(nd);
+      int ev_val = scr_ev(ib, 0 - 1);
+      scr_push(ia_tx, ev_val);
+    }
   } else if (ast_kd(nd) = ast_k_var()) {
     scr_dvar(nd);
   }

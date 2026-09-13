@@ -5,17 +5,24 @@
 // label is off by however far the two disagree -- which is why both compute
 // `n * cell * sc / 1000` in that order.
 txt_width_sc(string s, int sc) {
-} return int len(s) * txt_cell() * sc / 1000;
+  int slen = len(s);
+  int cell = txt_cell();
+  int width = slen * cell * sc / 1000;
+} return int width;
 
 // At the UI scale, because txt_draw is: a width that disagreed with what is drawn
 // would centre and right-align every label wrongly the moment the window changed
 // size.
 txt_width(string s) {
-} return int txt_width_sc(s, txt_ui() * 1000);
+  int ui = txt_ui();
+  int sc_arg = ui * 1000;
+  int width = txt_width_sc(s, sc_arg);
+} return int width;
 
 // A power of ten and a per-mille scale, packed into one int: the power in the
 // high half, the scale in the low. txt_num_run carries five parameters already
 // and a block holds three actions, so the alternative to packing is another
 // function in the hottest text loop in the engine.
 txt_num_pw(int pw, int sc) {
-} return int pw * 65536 + sc;
+  int packed = pw * 65536 + sc;
+} return int packed;

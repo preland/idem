@@ -13,18 +13,19 @@
 // matrix math in d3, which does need one.
 
 d2_cb(int c) {
-} return int c % 256;
+  int b = c % 256;
+} return int b;
 
 // Scale every channel by n per-mille: the lighting and fog term, and the way a
 // palette gets a darker variant of itself without a second palette.
 d2_shade(int c, int n) {
   int cr = d2_cr(c) * n / 1000;
   int cg = d2_cg(c) * n / 1000;
-} return int d2_rgb(cr, cg, d2_cb(c) * n / 1000);
+  int cb = d2_cb(c) * n / 1000;
+} return int d2_rgb(cr, cg, cb);
 
 // Mix c towards b: t = 0 is c, t = 1000 is b. Per channel through fx_lerp, so
 // the rounding rule is the same one the rest of the engine interpolates with.
 d2_blend(int c, int b, int t) {
-  int cr = fx_lerp(d2_cr(c), d2_cr(b), t);
-  int cg = fx_lerp(d2_cg(c), d2_cg(b), t);
-} return int d2_rgb(cr, cg, fx_lerp(d2_cb(c), d2_cb(b), t));
+  int result = d2_blend_impl(c, b, t);
+} return int result;

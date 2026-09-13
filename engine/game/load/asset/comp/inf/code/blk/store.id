@@ -2,7 +2,9 @@
 
 inf_word() {
   int lo = inf_bits(8);
-} return int lo + inf_bits(8) * 256;
+  int hi = inf_bits(8);
+  int result = lo + hi * 256;
+} return int result;
 
 inf_stored2(int n, int inv) {
   if (n + inv != 65535) {
@@ -15,7 +17,8 @@ inf_stored2(int n, int inv) {
 inf_scopy(int n) {
   int i = 0;
   while (i < n && (import inf_st)[7] = 0) {
-    inf_put(inf_bits(8));
+    int v = inf_bits(8);
+    inf_put(v);
     i = i + 1;
   }
 } return void;

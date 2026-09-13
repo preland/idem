@@ -17,13 +17,18 @@
 // compute channels freely and let the pack be the one place that worries.
 
 d2_rgb(int cr, int cg, int cb) {
-} return int fx_clamp(cr, 0, 255) * 65536 + fx_clamp(cg, 0, 255) * 256 + fx_clamp(cb, 0, 255);
+  int cr_clamped = fx_clamp(cr, 0, 255);
+  int cg_clamped = fx_clamp(cg, 0, 255);
+  int cb_clamped = fx_clamp(cb, 0, 255);
+} return int cr_clamped * 65536 + cg_clamped * 256 + cb_clamped;
 
 // The channel extractors mask with % 256 on every channel, including the top
 // one, so a colour carrying junk above bit 24 still yields three legal channels
 // instead of a red value in the thousands.
 d2_cr(int c) {
-} return int (c / 65536) % 256;
+  int r = (c / 65536) % 256;
+} return int r;
 
 d2_cg(int c) {
-} return int (c / 256) % 256;
+  int g = (c / 256) % 256;
+} return int g;
