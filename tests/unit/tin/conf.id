@@ -1,5 +1,3 @@
 // The text field is engine/game/load/ui/leaf/in/, so it needs the whole engine:
 // the buffer is edited from inp_ and drawn with txt_.
 import "../../../engine"
-import "../../../../idc/backends/fs"
-import "../../../../idc/backends/gfx"

@@ -1,5 +1,3 @@
 // The simulation needs the whole engine: the entity store lives beside the
-// renderer, and gfx/fs are named by engine/core/sys whether or not this calls one.
+// renderer.
 import "../../../engine"
-import "../../../../idc/backends/gfx"
-import "../../../../idc/backends/fs"

@@ -1,4 +1,2 @@
-// Reading a .blend needs the file backend and the engine it lives in.
+// Reading a .blend needs the engine it lives in; the file backend is idstd's.
 import "../../../engine"
-import "../../../../idc/backends/fs"
-import "../../../../idc/backends/gfx"

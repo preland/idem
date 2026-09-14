@@ -1,10 +1,5 @@
-// The whole engine, plus the native seam.
-//
-// The seam is here because engine/core/sys/ *names* gfx_open, gfx_poll and
-// gfx_present, and a named function has to resolve at link time whether or not it
-// is ever called. Nothing in this test calls one -- the viewport arithmetic and
-// the key-state machine are pure -- so it runs with no display, in CI, like every
-// other unit suite. Linking the backend is a build requirement, not a runtime one.
+// The whole engine. engine/core/sys/ names gfx_open, gfx_poll and gfx_present,
+// which idstd declares; nothing in this test reaches one -- the viewport
+// arithmetic and the key-state machine are pure -- so no backend is linked and
+// it runs with no display, in CI, like every other unit suite.
 import "../../../engine"
-import "../../../../idc/backends/gfx"
-import "../../../../idc/backends/fs"

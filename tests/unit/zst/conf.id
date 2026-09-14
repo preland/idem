@@ -1,5 +1,3 @@
-// The zstd decoder needs the engine it lives in, and the file backend to read a
-// fixture off disk.
+// The zstd decoder needs the engine it lives in, and idstd's file backend to
+// read a fixture off disk.
 import "../../../engine"
-import "../../../../idc/backends/fs"
-import "../../../../idc/backends/gfx"

@@ -1,15 +1,6 @@
-// The engine's own dependency: the native window / present / input seam.
-//
-// This manifest is for building or testing the engine on its own. A *game* does
-// not use it -- imports are not transitive, so the packager writes each game's
-// manifest naming both the engine and this backend directly.
-import "../../idc/backends/gfx"
-//
-// backends/fs is here because the engine reads assets itself now: png_load opens
-// a file. Imports are not transitive, so every project that imports the engine
-// names this too -- the packer generates a game's manifest, and the two test
-// suites and the editor say it here.
-import "../../idc/backends/fs"
+// The engine's native seams -- the window, present and input (gfx), and the
+// files assets are read from (fs) -- are the standard library's backends, so
+// this manifest imports nothing, and neither does a project using the engine.
 
 // The engine's constants. Each is a program global read with (import name).
 //

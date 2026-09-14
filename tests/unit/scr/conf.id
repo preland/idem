@@ -1,6 +1,3 @@
 // The interpreter needs the whole engine: it evaluates against the entity store,
-// the scene tables and the sprite table, and gfx/fs are named by engine/core/sys
-// whether or not this calls one.
+// the scene tables and the sprite table.
 import "../../../engine"
-import "../../../../idc/backends/gfx"
-import "../../../../idc/backends/fs"

@@ -1,13 +1,11 @@
 // The editor is a program that uses the engine, exactly the way a game does: the
-// whole engine as source, plus the native window/input seam. Nothing here is
+// whole engine as source, and idstd's native window/input seam. Nothing here is
 // privileged -- the editor draws with the same rasteriser, reads input through
 // the same key state, and lexes idml with the same lexer a packed game does.
 //
 // That is the point. An editor built on a private code path is an editor that
 // shows you something the game will not do.
 import "../engine"
-import "../../idc/backends/gfx"
-import "../../idc/backends/fs"
 
 // The editor's own layout, as idml source (ui/wid/lay/src.id joins the parts):
 // the menu bar and everything under it, then the status bar.

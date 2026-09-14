@@ -1,5 +1,2 @@
-// The sprite loader needs the file backend (it opens a PNG), and the window seam
-// because engine/core/sys names gfx_* whether or not this test calls one.
+// The sprite loader needs the file backend (it opens a PNG); fs is idstd's.
 import "../../../engine"
-import "../../../../idc/backends/gfx"
-import "../../../../idc/backends/fs"

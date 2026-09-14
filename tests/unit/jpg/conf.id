@@ -1,4 +1,2 @@
-// The JPEG decoder needs the file backend and the engine it lives in.
+// The JPEG decoder needs the engine it lives in; the file backend is idstd's.
 import "../../../engine"
-import "../../../../idc/backends/fs"
-import "../../../../idc/backends/gfx"

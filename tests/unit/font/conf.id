@@ -1,5 +1,3 @@
-// The font decoder opens a file, so it needs the engine it lives in and the
-// file backend under it.
+// The font decoder opens a file, so it needs the engine it lives in; the file
+// backend is idstd's.
 import "../../../engine"
-import "../../../../idc/backends/fs"
-import "../../../../idc/backends/gfx"
