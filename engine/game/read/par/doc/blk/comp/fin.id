@@ -10,11 +10,13 @@ par_dfin(int[] pos, int kd, string name, int a, int[] kids) {
     par_dbraced(pos, kd, kids);
     par_want(pos, "}");
   }
-} return int ast_new(kd, name, a, 0, 0, kids);
+  int ret_i = ast_new(kd, name, a, 0, 0, kids);
+} return int ret_i;
 
 par_dinner(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_member(pos));
+    int par_member_v = par_member(pos);
+    push(kids, par_member_v);
   }
 } return void;
 
@@ -22,7 +24,8 @@ par_dinner(int[] pos, int[] kids) {
 // if it is one of those, and an ordinary component otherwise.
 par_member(int[] pos) {
   int nd = 0;
-  if (par_dk(par_text(pos)) != 0) {
+  string par_text_v = par_text(pos);
+  if (par_dk(par_text_v) != 0) {
     nd = par_decl(pos);
   } else {
     nd = par_mem2(pos);

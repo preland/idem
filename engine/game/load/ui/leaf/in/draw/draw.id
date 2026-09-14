@@ -24,7 +24,10 @@ tin_draw(int x, int y, int w, int h, int c, int t) {
 // the engine and callers restore it (gfx/px/sf/cl/clip.id).
 tin_body(int x, int y, int w, int h, int c, int t) {
   sf_clip(x, y, x + w - 1, y + h - 1);
-  tin_txy(x - tin_off(w), y + (h - txt_cellh() * txt_ui()) / 2, c, t);
+  int tin_off_v = tin_off(w);
+  int txt_cellh_v = txt_cellh();
+  int txt_ui_v = txt_ui();
+  tin_txy(x - tin_off_v, y + (h - txt_cellh_v * txt_ui_v) / 2, c, t);
   sf_unclip();
 } return void;
 
@@ -34,6 +37,10 @@ tin_body(int x, int y, int w, int h, int c, int t) {
 // caret computed from its own copy of the layout drifts a pixel per rounding and
 // ends up between two characters instead of in front of one.
 tin_txy(int x, int y, int c, int t) {
-  txt_draw(tin_text(), x, y, c);
-  tin_car(x + (import tin_st)[0] * txt_cell() * txt_ui(), y, c, t);
+  string tin_text_v = tin_text();
+  txt_draw(tin_text_v, x, y, c);
+  int tin_st_v = (import tin_st)[0];
+  int txt_cell_v = txt_cell();
+  int txt_ui_v = txt_ui();
+  tin_car(x + tin_st_v * txt_cell_v * txt_ui_v, y, c, t);
 } return void;

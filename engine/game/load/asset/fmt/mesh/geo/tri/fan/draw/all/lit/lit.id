@@ -34,12 +34,15 @@ bl_lit(int i, int[] tri, int c) {
 } return void;
 
 bl_face(int[] tri) {
-  wset((import bl_e), 0, bl_cross(tri[4] - tri[1], tri[5] - tri[2], tri[7] - tri[1], tri[8] - tri[2]));
-  wset((import bl_e), 1, bl_cross(tri[5] - tri[2], tri[3] - tri[0], tri[8] - tri[2], tri[6] - tri[0]));
+  word bl_cross_v = bl_cross(tri[4] - tri[1], tri[5] - tri[2], tri[7] - tri[1], tri[8] - tri[2]);
+  wset((import bl_e), 0, bl_cross_v);
+  word bl_cross_v2 = bl_cross(tri[5] - tri[2], tri[3] - tri[0], tri[8] - tri[2], tri[6] - tri[0]);
+  wset((import bl_e), 1, bl_cross_v2);
   bl_face2(tri);
 } return void;
 
 bl_face2(int[] tri) {
-  wset((import bl_e), 2, bl_cross(tri[3] - tri[0], tri[4] - tri[1], tri[6] - tri[0], tri[7] - tri[1]));
+  word bl_cross_v = bl_cross(tri[3] - tri[0], tri[4] - tri[1], tri[6] - tri[0], tri[7] - tri[1]);
+  wset((import bl_e), 2, bl_cross_v);
   bl_vis(tri);
 } return void;

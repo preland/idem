@@ -11,7 +11,8 @@ zst_le(int n) {
     v = v + zst_byte((import zst_st)[1] + i) * zst_pow256(i);
     i = i + 1;
   }
-} return int zst_skip(v, n);
+  int ret_i = zst_skip(v, n);
+} return int ret_i;
 
 zst_skip(int v, int n) {
   lset((import zst_st), 1, (import zst_st)[1] + n);

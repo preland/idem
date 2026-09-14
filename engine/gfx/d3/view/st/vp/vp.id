@@ -15,13 +15,17 @@
 // changes the lens.
 
 d3_viewport(int x, int y, int w, int h) {
-  m4_pair((import d3_vp), 0, 1, fx_clamp(x, 0, (import sf_gw) - 1), fx_clamp(y, 0, (import sf_gh) - 1));
+  int fx_clamp_v = fx_clamp(x, 0, (import sf_gw) - 1);
+  int fx_clamp_v2 = fx_clamp(y, 0, (import sf_gh) - 1);
+  m4_pair((import d3_vp), 0, 1, fx_clamp_v, fx_clamp_v2);
   d3_vp_hi(x + w - 1, y + h - 1);
   d3_vp_mid();
 } return void;
 
 d3_vp_hi(int x, int y) {
-  m4_pair((import d3_vp), 2, 3, fx_clamp(x, (import d3_vp)[0], (import sf_gw) - 1), fx_clamp(y, (import d3_vp)[1], (import sf_gh) - 1));
+  int fx_clamp_v = fx_clamp(x, (import d3_vp)[0], (import sf_gw) - 1);
+  int fx_clamp_v2 = fx_clamp(y, (import d3_vp)[1], (import sf_gh) - 1);
+  m4_pair((import d3_vp), 2, 3, fx_clamp_v, fx_clamp_v2);
 } return void;
 
 d3_vp_mid() {

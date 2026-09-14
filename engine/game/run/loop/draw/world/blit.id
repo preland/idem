@@ -12,15 +12,26 @@
 // sprite off by however much it grew.
 
 ent_blit(int p, int e) {
-  d2_blit_xy(p, sys_sx() + ent_off(e, d2_spr_w(p), 0, 4), sys_sy() + ent_off(e, d2_spr_h(p), 1, 5), ent_at(e, 7), ent_sc(e, 4), ent_sc(e, 5));
+  int sys_sx_v = sys_sx();
+  int d2_spr_w_v = d2_spr_w(p);
+  int ent_off_v = ent_off(e, d2_spr_w_v, 0, 4);
+  int sys_sy_v = sys_sy();
+  int d2_spr_h_v = d2_spr_h(p);
+  int ent_off_v2 = ent_off(e, d2_spr_h_v, 1, 5);
+  int ent_at_v = ent_at(e, 7);
+  int ent_sc_v = ent_sc(e, 4);
+  int ent_sc_v2 = ent_sc(e, 5);
+  d2_blit_xy(p, sys_sx_v + ent_off_v, sys_sy_v + ent_off_v2, ent_at_v, ent_sc_v, ent_sc_v2);
 } return void;
 
 ent_sc(int e, int k) {
-} return int (import sys_vp)[0] * ent_at(e, k) / 1000;
+  int ret_i = (import sys_vp)[0] * ent_at(e, k) / 1000;
+} return int ret_i;
 
 // Millunits to surface pixels, less half the scaled sprite. One divide by 1000 at
 // the end and not two along the way: the position is in millunits and the stage
 // scale is per-mille, so the product is in milli-pixels, and the half-sprite term
 // is already at surface scale.
 ent_off(int e, int n, int k, int sk) {
-} return int (ent_at(e, k) * (import sys_vp)[0] / 1000 - n * ent_sc(e, sk) / 2) / 1000;
+  int ret_i = (ent_at(e, k) * (import sys_vp)[0] / 1000 - n * ent_sc(e, sk) / 2) / 1000;
+} return int ret_i;

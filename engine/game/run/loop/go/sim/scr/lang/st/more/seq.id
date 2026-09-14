@@ -3,7 +3,8 @@
 scr_seq(int nd, int e, int i) {
   int fin = 0;
   while (i < len(ast_ks(nd)) && fin = 0) {
-    fin = scr_ex(ast_ks(nd)[i], e);
+    int[] ast_ks_v = ast_ks(nd);
+    fin = scr_ex(ast_ks_v[i], e);
     i = i + 1;
   }
 } return int fin;

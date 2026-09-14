@@ -8,7 +8,13 @@
 // The header size is taken from the file rather than assumed to be 32, which is
 // the one piece of forward compatibility PSF2 has and it costs nothing to honour.
 psf_two() {
-} return int psf_one(psf_fld(8), psf_fld(16), psf_fld(20), psf_fld(24), psf_fld(28));
+  int psf_fld_v = psf_fld(8);
+  int psf_fld_v2 = psf_fld(16);
+  int psf_fld_v3 = psf_fld(20);
+  int psf_fld_v4 = psf_fld(24);
+  int psf_fld_v5 = psf_fld(28);
+  int ret_i = psf_one(psf_fld_v, psf_fld_v2, psf_fld_v3, psf_fld_v4, psf_fld_v5);
+} return int ret_i;
 
 // One header field: 32-bit little-endian, of which only the low three bytes are
 // taken -- a fourth byte that is not zero answers -1 and refuses the file.

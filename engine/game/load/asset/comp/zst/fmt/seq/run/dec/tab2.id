@@ -15,6 +15,7 @@ zst_plog(int r) {
 // decode of this table answer the same symbol and consume nothing.
 zst_srle(int r, int base) {
   m4_pair((import fse_rl), r * 2, r * 2 + 1, base, 0);
-  lset((import fse_sy), base, zst_le(1));
+  int zst_le_v = zst_le(1);
+  lset((import fse_sy), base, zst_le_v);
   zst_srle2(base);
 } return void;

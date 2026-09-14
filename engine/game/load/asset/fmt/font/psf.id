@@ -56,7 +56,8 @@
 // leaves a program with readable text, which is what a diagnostic needs.
 psf_load(string path) {
   int n = asset_slurp(path);
-} return int psf_head(n);
+  int ret_i = psf_head(n);
+} return int ret_i;
 
 // Which of the two it is. The magic is compared byte by byte through asset_at
 // rather than as a word, because asset_at is the bounds-checked read and this
@@ -64,7 +65,10 @@ psf_load(string path) {
 psf_head(int n) {
   int ok = 0;
   if (n > 4 && asset_at(0) = 0x36 && asset_at(1) = 4) {
-    ok = psf_one(4, 256 * (1 + (asset_at(2) & 1)), asset_at(3), asset_at(3), 8);
+    int asset_at_v = asset_at(2);
+    int asset_at_v2 = asset_at(3);
+    int asset_at_v3 = asset_at(3);
+    ok = psf_one(4, 256 * (1 + (asset_at_v & 1)), asset_at_v2, asset_at_v3, 8);
   } else if (n > 32 && asset_at(0) = 0x72 && asset_at(1) = 0xB5) {
     ok = psf_two();
   }

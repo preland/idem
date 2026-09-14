@@ -20,7 +20,8 @@ t_bits() {
 
 t_bshow(word ad) {
   int a = t_bstart(ad);
-  t_bshow2(a, zb_bits(3));
+  int zb_bits_v = zb_bits(3);
+  t_bshow2(a, zb_bits_v);
 } return void;
 
 t_bshow2(int a, int b) {

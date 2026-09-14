@@ -28,12 +28,14 @@ bl_f32(int p) {
   int b = asset_at(p + 2) + asset_at(p + 3) * 256;
   int e = b / 128 % 256;
   int m = (b % 128) * 65536 + asset_at(p) + asset_at(p + 1) * 256;
-} return int bl_fsc(e, m + 8388608 * (e > 0), 1 - 2 * (b / 32768));
+  int ret_i = bl_fsc(e, m + 8388608 * (e > 0), 1 - 2 * (b / 32768));
+} return int ret_i;
 
 bl_fsc(int e, int m, int sg) {
   word wp = m;
   wp = bl_fshift(wp * 1000, e - 150);
-} return int sg * wp;
+  int ret_i = sg * wp;
+} return int ret_i;
 
 // A signed binary shift by whatever the exponent asks for. Positive shifts up,
 // negative shifts down; beyond the range of the quantity either way the answer

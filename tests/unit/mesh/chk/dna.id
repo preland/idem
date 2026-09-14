@@ -12,12 +12,20 @@ t_count(int kd) {
 
 t_dna() {
   print("SDNA names/types/structs exp 5225 1131 981 = " + (import bl_st)[4] + " " + (import bl_st)[5] + " " + (import bl_st)[6]);
-  print("struct index of Mesh exp 322, of Object exp 692 = " + bl_sfind("Mesh") + " " + bl_sfind("Object"));
+  int bl_sfind_v = bl_sfind("Mesh");
+  int bl_sfind_v2 = bl_sfind("Object");
+  print("struct index of Mesh exp 322, of Object exp 692 = " + bl_sfind_v + " " + bl_sfind_v2);
   t_fields();
 } return void;
 
 t_fields() {
-  print("Mesh.totvert offset exp 432, Mesh.totpoly exp 440 = " + bl_foff(bl_sfind("Mesh"), "totvert") + " " + bl_foff(bl_sfind("Mesh"), "totpoly"));
-  print("Mesh.*poly_offset_indices offset exp 448 = " + bl_foff(bl_sfind("Mesh"), "*poly_offset_indices"));
+  int bl_sfind_v = bl_sfind("Mesh");
+  int bl_foff_v = bl_foff(bl_sfind_v, "totvert");
+  int bl_sfind_v2 = bl_sfind("Mesh");
+  int bl_foff_v2 = bl_foff(bl_sfind_v2, "totpoly");
+  print("Mesh.totvert offset exp 432, Mesh.totpoly exp 440 = " + bl_foff_v + " " + bl_foff_v2);
+  int bl_sfind_v3 = bl_sfind("Mesh");
+  int bl_foff_v3 = bl_foff(bl_sfind_v3, "*poly_offset_indices");
+  print("Mesh.*poly_offset_indices offset exp 448 = " + bl_foff_v3);
   t_size();
 } return void;

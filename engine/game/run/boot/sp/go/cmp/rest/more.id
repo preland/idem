@@ -6,19 +6,28 @@
 // the pipes have bodies and are solid, the hills and the ground strips have no
 // body at all and scroll under their own velocity.
 scn_efill4(int e, int nd) {
-  ent_put(e, 6, scn_espr(nd));
-  ent_put(e, 8, fx_clamp(scn_mnum(nd, "layer"), 0, 7));
+  int scn_espr_v = scn_espr(nd);
+  ent_put(e, 6, scn_espr_v);
+  int scn_mnum_v = scn_mnum(nd, "layer");
+  int fx_clamp_v = fx_clamp(scn_mnum_v, 0, 7);
+  ent_put(e, 8, fx_clamp_v);
   scn_efill5(e, nd);
 } return void;
 
 scn_efill5(int e, int nd) {
-  ent_put(e, 9, 1 + 2 * (scn_mem(nd, "solid", 0) != 0) + 4 * (scn_mem(nd, "body", 0) != 0) + 8 * (scn_mem(nd, "wrap", 0) != 0));
-  ent_put(e, 12, scn_mtup(nd, "body", 0) * 1000);
+  int scn_mem_v = scn_mem(nd, "solid", 0);
+  int scn_mem_v2 = scn_mem(nd, "body", 0);
+  int scn_mem_v3 = scn_mem(nd, "wrap", 0);
+  ent_put(e, 9, 1 + 2 * (scn_mem_v != 0) + 4 * (scn_mem_v2 != 0) + 8 * (scn_mem_v3 != 0));
+  int scn_mtup_v = scn_mtup(nd, "body", 0);
+  ent_put(e, 12, scn_mtup_v * 1000);
   scn_efill6(e, nd);
 } return void;
 
 scn_efill6(int e, int nd) {
-  ent_put(e, 13, scn_mtup(nd, "body", 1) * 1000);
-  ent_put(e, 10, scn_mtup(nd, "wrap", 0) * 1000);
+  int scn_mtup_v = scn_mtup(nd, "body", 1);
+  ent_put(e, 13, scn_mtup_v * 1000);
+  int scn_mtup_v2 = scn_mtup(nd, "wrap", 0);
+  ent_put(e, 10, scn_mtup_v2 * 1000);
   scn_efill7(e, nd);
 } return void;

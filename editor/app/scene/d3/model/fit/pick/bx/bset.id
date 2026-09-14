@@ -1,7 +1,8 @@
 // The upper bound, and turning the box into an orbit.
 
 ed_bmax(int[] bb, int i) {
-  lset(bb, 3 + i % 3, fx_max(bb[3 + i % 3], (import bl_v)[i]));
+  int fx_max_v = fx_max(bb[3 + i % 3], (import bl_v)[i]);
+  lset(bb, 3 + i % 3, fx_max_v);
 } return void;
 
 // The centre is the box's middle. The distance is **half** the half-diagonal, not
@@ -17,5 +18,7 @@ ed_bset(int[] bb) {
 
 ed_bset2(int[] bb) {
   lset((import ed_st), 12, (bb[2] + bb[5]) / 2);
-  lset((import ed_st), 4, fx_max(ed_diag(bb) / 2, 1000));
+  int ed_diag_v = ed_diag(bb);
+  int fx_max_v = fx_max(ed_diag_v / 2, 1000);
+  lset((import ed_st), 4, fx_max_v);
 } return void;

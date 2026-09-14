@@ -21,7 +21,8 @@
 // Anything else is a leaf: it paints itself and its children are its own business.
 
 ui_draw(int nd, int x, int y, int w, int h) {
-  ui_rput(ast_tx(nd), x, y, w, h);
+  string ast_tx_v = ast_tx(nd);
+  ui_rput(ast_tx_v, x, y, w, h);
   ui_walk(nd, x, y, w, h);
 } return void;
 
@@ -34,7 +35,9 @@ ui_draw(int nd, int x, int y, int w, int h) {
 // percentages ignored. The paint dispatch already went through ui_base; this did
 // not, and the two disagreeing is the whole defect.
 ui_walk(int nd, int x, int y, int w, int h) {
-  if (ui_tiles(ui_base(ast_tx(nd))) = 1) {
+  string ast_tx_v = ast_tx(nd);
+  string ui_base_v = ui_base(ast_tx_v);
+  if (ui_tiles(ui_base_v) = 1) {
     ui_tile(nd, x, y, w, h);
   } else {
     ui_leaf(nd, x, y, w, h);

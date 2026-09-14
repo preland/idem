@@ -1,11 +1,14 @@
 // The document, four lines at a time.
 
 ed_pg3() {
-} return string ed_pong_ln("}") + ed_pong_ln("") + ed_pong_ln("scene play {") + ed_pong_ln("  clear 0x101820") + ed_pg4();
+  string ret_s = ed_pong_ln("}") + ed_pong_ln("") + ed_pong_ln("scene play {") + ed_pong_ln("  clear 0x101820") + ed_pg4();
+} return string ret_s;
 
 ed_pg4() {
-} return string ed_pong_ln("") + ed_pong_ln("  entity left {") + ed_pong_ln("    pos (14, 100)") + ed_pong_ln("    shape box (6, 40) 0xF0F0F0") + ed_pg5();
+  string ret_s = ed_pong_ln("") + ed_pong_ln("  entity left {") + ed_pong_ln("    pos (14, 100)") + ed_pong_ln("    shape box (6, 40) 0xF0F0F0") + ed_pg5();
+} return string ret_s;
 
 ed_pg5() {
-} return string ed_pong_ln("    body (6, 40)") + ed_pong_ln("    solid") + ed_pong_ln("    tag paddle") + ed_pong_ln("    script {") + ed_pg6();
+  string ret_s = ed_pong_ln("    body (6, 40)") + ed_pong_ln("    solid") + ed_pong_ln("    tag paddle") + ed_pong_ln("    script {") + ed_pg6();
+} return string ret_s;
 

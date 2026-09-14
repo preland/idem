@@ -9,7 +9,8 @@ ed_frame() {
   int t = sys_now();
   ed_step();
   sys_pace(t, 60);
-} return int sys_alive();
+  int ret_i = sys_alive();
+} return int ret_i;
 
 // Input, then drawing, then present. Input first so that a click is acted on in
 // the frame it happened rather than the one after -- an editor that lags its own

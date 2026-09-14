@@ -22,8 +22,10 @@ par_dims(int[] pos) {
 par_dims2(int[] pos) {
   int a = par_dim(pos);
   int b = par_dims3(pos);
-} return int par_dims4(pos, a, b);
+  int ret_i = par_dims4(pos, a, b);
+} return int ret_i;
 
 par_dims3(int[] pos) {
   par_want(pos, ",");
-} return int par_dim(pos);
+  int ret_i = par_dim(pos);
+} return int ret_i;

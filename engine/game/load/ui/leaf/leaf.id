@@ -24,8 +24,11 @@
 // them draws nothing and walks its children, so an item this engine has not
 // learned degrades to a transparent container.
 ui_leaf(int nd, int x, int y, int w, int h) {
-  if (ui_def(ast_tx(nd)) != 0) {
-    ui_expand(ui_def(ast_tx(nd)), x, y, w, h);
+  string ast_tx_v = ast_tx(nd);
+  if (ui_def(ast_tx_v) != 0) {
+    string ast_tx_v2 = ast_tx(nd);
+    int ui_def_v = ui_def(ast_tx_v2);
+    ui_expand(ui_def_v, x, y, w, h);
   } else {
     ui_leaf2(nd, x, y, w, h);
   }
@@ -33,7 +36,10 @@ ui_leaf(int nd, int x, int y, int w, int h) {
 
 ui_paint(string name, int nd, int x, int y, int w, int h) {
   if (name = "Fill") {
-    sf_rect(x, y, w, h, ui_arg(nd, 0, ui_vprop(ast_tx(nd), "colour", 0)));
+    string ast_tx_v = ast_tx(nd);
+    int ui_vprop_v = ui_vprop(ast_tx_v, "colour", 0);
+    int ui_arg_v = ui_arg(nd, 0, ui_vprop_v);
+    sf_rect(x, y, w, h, ui_arg_v);
   } else {
     ui_paint2(name, nd, x, y, w, h);
   }
@@ -41,7 +47,10 @@ ui_paint(string name, int nd, int x, int y, int w, int h) {
 
 ui_paint2(string name, int nd, int x, int y, int w, int h) {
   if (name = "Frame") {
-    d2_frame(x, y, w, h, ui_arg(nd, 0, ui_vprop(ast_tx(nd), "colour", 0)));
+    string ast_tx_v = ast_tx(nd);
+    int ui_vprop_v = ui_vprop(ast_tx_v, "colour", 0);
+    int ui_arg_v = ui_arg(nd, 0, ui_vprop_v);
+    d2_frame(x, y, w, h, ui_arg_v);
   } else if (name = "Text") {
     ui_text(nd, x, y, w, h);
   }

@@ -7,7 +7,10 @@ par_bor(int[] pos) {
 
 par_bor_f(int[] pos, int left) {
   par_next(pos);
-} return int ast_new_ab(ast_k_bin(), "|", left, par_bxor(pos));
+  int ast_k_bin_v = ast_k_bin();
+  int par_bxor_v = par_bxor(pos);
+  int ret_i = ast_new_ab(ast_k_bin_v, "|", left, par_bxor_v);
+} return int ret_i;
 
 par_bxor(int[] pos) {
   int left = par_band(pos);

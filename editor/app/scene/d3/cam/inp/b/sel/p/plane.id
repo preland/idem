@@ -7,13 +7,23 @@
 // The fit, times the view's magnification. Floored at 1 so a scale of zero can
 // never reach the blitter, where it would draw nothing and divide by nothing.
 ed_psc() {
-} return int fx_max(fx_min(ed_rq(3, 2) * 1000 / fx_max(ed_gw(), 1), ed_rq(3, 3) * 1000 / fx_max(ed_gh(), 1)) * (import ed_st)[18] / 1000, 1);
+  int ed_rq_v = ed_rq(3, 2);
+  int ed_gw_v = ed_gw();
+  int fx_max_v = fx_max(ed_gw_v, 1);
+  int ed_rq_v2 = ed_rq(3, 3);
+  int ed_gh_v = ed_gh();
+  int fx_max_v2 = fx_max(ed_gh_v, 1);
+  int fx_min_v = fx_min(ed_rq_v * 1000 / fx_max_v, ed_rq_v2 * 1000 / fx_max_v2);
+  int ret_i = fx_max(fx_min_v * (import ed_st)[18] / 1000, 1);
+} return int ret_i;
 
 // Centred in the panel, then displaced by the pan. Centring on the *scaled* size
 // is what keeps a zoom growing about the middle of the view rather than about its
 // top-left corner.
 ed_pl0() {
-} return int ed_rq(3, 0) + (ed_rq(3, 2) - ed_gw() * ed_psc() / 1000) / 2 + (import ed_st)[19];
+  int ret_i = ed_rq(3, 0) + (ed_rq(3, 2) - ed_gw() * ed_psc() / 1000) / 2 + (import ed_st)[19];
+} return int ret_i;
 
 ed_pt0() {
-} return int ed_rq(3, 1) + (ed_rq(3, 3) - ed_gh() * ed_psc() / 1000) / 2 + (import ed_st)[20];
+  int ret_i = ed_rq(3, 1) + (ed_rq(3, 3) - ed_gh() * ed_psc() / 1000) / 2 + (import ed_st)[20];
+} return int ret_i;

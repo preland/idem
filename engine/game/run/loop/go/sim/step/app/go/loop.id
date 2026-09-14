@@ -9,7 +9,8 @@
 
 idem_astep() {
   sys_sync();
-  run_quit(inp_drain());
+  int inp_drain_v = inp_drain();
+  run_quit(inp_drain_v);
   idem_adraw();
 } return void;
 
@@ -18,7 +19,8 @@ idem_astep() {
 // this function is already at its own 3-action cap without room for either read.
 idem_adraw() {
   func(int) return int gs = (import eng_stage);
-  int dt = 1000 / fx_max(gs(3), 1);
+  int gs_v = gs(3);
+  int dt = 1000 / fx_max(gs_v, 1);
   eng_frame(dt);
 } return void;
 
@@ -27,5 +29,10 @@ idem_adraw() {
 idem_aui() {
   lset((import ui_ts), 0, (import sys_vp)[0]);
   ui_rclear();
-  ui_draw((import ui_pg)[0], sys_sx(), sys_sy(), sys_sw(), sys_sh());
+  int ui_pg_v = (import ui_pg)[0];
+  int sys_sx_v = sys_sx();
+  int sys_sy_v = sys_sy();
+  int sys_sw_v = sys_sw();
+  int sys_sh_v = sys_sh();
+  ui_draw(ui_pg_v, sys_sx_v, sys_sy_v, sys_sw_v, sys_sh_v);
 } return void;

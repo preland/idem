@@ -38,7 +38,8 @@
 idem_app(string[] chunks, int argc, string[] argv, func() return void gi, func(int) return int gs, func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
   eng_seam(gi, gs, gt, gd, gr, ga);
   idem_app2(chunks, argc, argv);
-} return int idem_ago(argc, argv);
+  int ret_i = idem_ago(argc, argv);
+} return int ret_i;
 
 // The document is lexed and parsed for its *layout* -- definitions, variants and
 // the `./` page -- and nothing is looked for in it beyond that. Then the game is

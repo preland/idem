@@ -10,7 +10,9 @@ imp_hex6(int c) {
   string s = "";
   int i = 5;
   while (i >= 0) {
-    s = s + chr(imp_hexd(c / imp_pow16(i) % 16));
+    int imp_pow16_v = imp_pow16(i);
+    int imp_hexd_v = imp_hexd(c / imp_pow16_v % 16);
+    s = s + chr(imp_hexd_v);
     i = i - 1;
   }
 } return string s;

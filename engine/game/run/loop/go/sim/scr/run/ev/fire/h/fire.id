@@ -1,7 +1,8 @@
 // Firing every handler of one event.
 
 scr_hdone(int h, int e, int was) {
-  scr_ex(ast_ib(h), e);
+  int ast_ib_v = ast_ib(h);
+  scr_ex(ast_ib_v, e);
   scr_hset(was, 0);
 } return void;
 
@@ -13,7 +14,8 @@ scr_fire(int sc, string evn, int e, string tg) {
 
 scr_floop(int sc, string evn, int e, string tg, int i) {
   while (i < len(ast_ks(sc))) {
-    scr_fone(ast_ks(sc)[i], evn, e, tg);
+    int[] ast_ks_v = ast_ks(sc);
+    scr_fone(ast_ks_v[i], evn, e, tg);
     i = i + 1;
   }
 } return void;

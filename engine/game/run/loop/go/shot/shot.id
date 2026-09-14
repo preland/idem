@@ -17,7 +17,9 @@ idem_go(int argc, string[] argv) {
 
 idem_go2(int argc, string[] argv) {
   if (argc > 1) {
-    idem_shot(fx_max(shot_n(argc, argv), 1));
+    int shot_n_v = shot_n(argc, argv);
+    int fx_max_v = fx_max(shot_n_v, 1);
+    idem_shot(fx_max_v);
   } else {
     idem_run();
   }

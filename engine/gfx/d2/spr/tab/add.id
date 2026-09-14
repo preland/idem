@@ -17,7 +17,8 @@ d2_spr_add(string name, int w, int h, int n) {
   int[] xs = [];
   lst_fill(xs, w * h * n, (import d2_clear));
   d2_spr_push(name, w, h, n, xs);
-} return int len((import asset_sprw)) - 1;
+  int ret_i = len((import asset_sprw)) - 1;
+} return int ret_i;
 
 // Five pushes in lockstep, split 2 + 3 by the action limit. Every column must be
 // pushed exactly once per sprite or every later index is off by one, which is why

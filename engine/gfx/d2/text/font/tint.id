@@ -12,12 +12,19 @@
 // still goes through spans; this is not area.
 
 txt_tint(int p, int x, int y, int f, int c) {
-  txt_tint_rows(p, x, y, d2_spr_w(p) * d2_spr_h(p) * fx_clamp(f, 0, d2_spr_nf(p) - 1), c, 0);
+  int d2_spr_w_v = d2_spr_w(p);
+  int d2_spr_h_v = d2_spr_h(p);
+  int d2_spr_nf_v = d2_spr_nf(p);
+  int fx_clamp_v = fx_clamp(f, 0, d2_spr_nf_v - 1);
+  txt_tint_rows(p, x, y, d2_spr_w_v * d2_spr_h_v * fx_clamp_v, c, 0);
 } return void;
 
 txt_tint_rows(int p, int x, int y, int i, int c, int j) {
   while (j < d2_spr_h(p)) {
-    txt_tint_row(d2_spr_px(p), i + d2_spr_w(p) * j, x, y + j, c, d2_spr_w(p));
+    int[] d2_spr_px_v = d2_spr_px(p);
+    int d2_spr_w_v = d2_spr_w(p);
+    int d2_spr_w_v2 = d2_spr_w(p);
+    txt_tint_row(d2_spr_px_v, i + d2_spr_w_v * j, x, y + j, c, d2_spr_w_v2);
     j = j + 1;
   }
 } return void;

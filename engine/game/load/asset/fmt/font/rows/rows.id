@@ -16,8 +16,10 @@
 // 512-glyph PSF (its mode bit 0) has half of them for a keyboard this engine
 // cannot type on.
 psf_copy(int sa, int n, int cs, int h, int w) {
-  txt_face_set(w, h, (w + 7) / 8 * 8, fx_min(n, 256) - (import txt_first));
-  psf_glyphs(sa + (import txt_first) * cs, fx_min(n, 256) - (import txt_first), cs, h, (w + 7) / 8);
+  int fx_min_v = fx_min(n, 256);
+  txt_face_set(w, h, (w + 7) / 8 * 8, fx_min_v - (import txt_first));
+  int fx_min_v2 = fx_min(n, 256);
+  psf_glyphs(sa + (import txt_first) * cs, fx_min_v2 - (import txt_first), cs, h, (w + 7) / 8);
 } return int 1;
 
 // One glyph after another. `cs` steps the source because a glyph may be padded;
@@ -33,7 +35,8 @@ psf_glyphs(int sa, int n, int cs, int h, int nb) {
 psf_glyph(int sa, int p, int h, int nb) {
   int j = 0;
   while (j < h) {
-    txt_face_put((import txt_glyphs), p + j, psf_row(sa + j * nb, nb));
+    int psf_row_v = psf_row(sa + j * nb, nb);
+    txt_face_put((import txt_glyphs), p + j, psf_row_v);
     j = j + 1;
   }
 } return void;

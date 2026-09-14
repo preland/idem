@@ -23,7 +23,11 @@
 // stays true of the ones written later.
 sf_span(int x0, int x1, int y, int c) {
   if (y >= (import sf_cl)[1] && y <= (import sf_cl)[3] && x1 >= (import sf_cl)[0] && x0 <= (import sf_cl)[2]) {
-    sf_span_row((import sf_fb), sf_idx(fx_max(x0, (import sf_cl)[0]), y), sf_idx(fx_min(x1, (import sf_cl)[2]), y), c);
+    int fx_max_v = fx_max(x0, (import sf_cl)[0]);
+    int sf_idx_v = sf_idx(fx_max_v, y);
+    int fx_min_v = fx_min(x1, (import sf_cl)[2]);
+    int sf_idx_v2 = sf_idx(fx_min_v, y);
+    sf_span_row((import sf_fb), sf_idx_v, sf_idx_v2, c);
   }
 } return void;
 

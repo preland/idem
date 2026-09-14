@@ -22,7 +22,8 @@ d2_shade(int c, int n) {
   int cr = d2_cr(c) * n / 1000;
   int cg = d2_cg(c) * n / 1000;
   int cb = d2_cb(c) * n / 1000;
-} return int d2_rgb(cr, cg, cb);
+  int ret_i = d2_rgb(cr, cg, cb);
+} return int ret_i;
 
 // Mix c towards b: t = 0 is c, t = 1000 is b. Per channel through fx_lerp, so
 // the rounding rule is the same one the rest of the engine interpolates with.

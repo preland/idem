@@ -6,13 +6,16 @@
 
 jpg_rcorr(int a, int k) {
   if (jpg_bit() = 1) {
-    jpg_rbump(a, (import jpg_zz)[k], jpg_cget(a, (import jpg_zz)[k]));
+    int jpg_zz_v = (import jpg_zz)[k];
+    int jpg_cget_v = jpg_cget(a, (import jpg_zz)[k]);
+    jpg_rbump(a, jpg_zz_v, jpg_cget_v);
   }
 } return void;
 
 jpg_rbump(int a, int k, int v) {
   if ((v & inf_pow2((import jpg_st)[16])) = 0) {
-    jpg_cset(a, k, v + inf_pow2((import jpg_st)[16]) * (2 * (v >= 0) - 1));
+    int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+    jpg_cset(a, k, v + inf_pow2_v * (2 * (v >= 0) - 1));
   }
 } return void;
 

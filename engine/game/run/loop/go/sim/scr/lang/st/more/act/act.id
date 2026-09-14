@@ -22,5 +22,5 @@ scr_ex7(int nd, int e) {
 } return int fin;
 
 scr_kill(int e) {
-  if (e >= 0) { ent_put(e, 9, ent_at(e, 9) - ent_at(e, 9) % 2); }
+  if (e >= 0) { int ent_at_v = ent_at(e, 9); int ent_at_v2 = ent_at(e, 9); ent_put(e, 9, ent_at_v - ent_at_v2 % 2); }
 } return int 1;

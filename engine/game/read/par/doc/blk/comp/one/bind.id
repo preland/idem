@@ -7,16 +7,22 @@
 par_kv(int[] pos) {
   string name = par_text(pos);
   par_next(pos);
-} return int par_kv2(pos, name);
+  int ret_i = par_kv2(pos, name);
+} return int ret_i;
 
 par_kv2(int[] pos, string name) {
   int[] kids = [];
   par_eat(pos, "=");
   par_kv3(pos, kids);
-} return int ast_new_kids(ast_k_comp(), name, kids);
+  int ast_k_comp_v = ast_k_comp();
+  int ret_i = ast_new_kids(ast_k_comp_v, name, kids);
+} return int ret_i;
 
 par_kv3(int[] pos, int[] kids) {
-  push(kids, ast_new_k(ast_k_ident(), par_text(pos)));
+  int ast_k_ident_v = ast_k_ident();
+  string par_text_v = par_text(pos);
+  int ast_new_k_v = ast_new_k(ast_k_ident_v, par_text_v);
+  push(kids, ast_new_k_v);
   par_next(pos);
   par_eat(pos, ",");
 } return void;

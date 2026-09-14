@@ -1,6 +1,7 @@
 par_else(int[] pos) {
   par_next(pos);
-} return int par_else2(pos);
+  int ret_i = par_else2(pos);
+} return int ret_i;
 
 // `else if` chains by making the else arm another `if` node rather than a block,
 // so the tree has no special case and neither does the interpreter.
@@ -12,4 +13,6 @@ par_else2(int[] pos) {
 par_while(int[] pos) {
   par_next(pos);
   par_want(pos, "(");
-} return int par_while2(pos, par_expr(pos));
+  int par_expr_v = par_expr(pos);
+  int ret_i = par_while2(pos, par_expr_v);
+} return int ret_i;

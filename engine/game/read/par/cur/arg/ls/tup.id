@@ -2,7 +2,8 @@
 // That guard, not error recovery, is what makes malformed input terminate.
 par_tfill(int[] pos, int[] kids) {
   while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_arg(pos));
+    int par_arg_v = par_arg(pos);
+    push(kids, par_arg_v);
     par_eat(pos, ",");
   }
   par_eat(pos, ")");
@@ -14,11 +15,14 @@ par_stuple(int[] pos, int sc) {
   int[] kids = [];
   par_want(pos, "(");
   par_sfill(pos, kids, sc);
-} return int ast_new_kids(ast_k_tuple(), "", kids);
+  int ast_k_tuple_v = ast_k_tuple();
+  int ret_i = ast_new_kids(ast_k_tuple_v, "", kids);
+} return int ret_i;
 
 par_sfill(int[] pos, int[] kids, int sc) {
   while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_snum(pos, sc));
+    int par_snum_v = par_snum(pos, sc);
+    push(kids, par_snum_v);
     par_eat(pos, ",");
   }
   par_eat(pos, ")");

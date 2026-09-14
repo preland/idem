@@ -14,7 +14,9 @@
 // The padding is what is chosen here: five pixels of a bar, two of a list row,
 // both scaled with the type like everything else in the chrome.
 ed_hdr() {
-} return int (txt_cellh() + 5) * txt_ui();
+  int ret_i = (txt_cellh() + 5) * txt_ui();
+} return int ret_i;
 
 ed_rowh() {
-} return int (txt_cellh() + 2) * txt_ui();
+  int ret_i = (txt_cellh() + 2) * txt_ui();
+} return int ret_i;

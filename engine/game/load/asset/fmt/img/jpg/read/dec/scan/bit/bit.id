@@ -18,7 +18,8 @@ jpg_bit() {
     jpg_fill();
   }
   lset((import jpg_b), 2, (import jpg_b)[2] - 1);
-} return int (import jpg_b)[1] / inf_pow2((import jpg_b)[2]) % 2;
+  int ret_i = (import jpg_b)[1] / inf_pow2((import jpg_b)[2]) % 2;
+} return int ret_i;
 
 jpg_fill() {
   int v = asset_at((import jpg_b)[0]);

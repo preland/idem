@@ -3,7 +3,9 @@
 par_dims4(int[] pos, int a, int b) {
   string name = par_anchor(pos);
   par_want(pos, "]");
-} return int ast_new_ab(ast_k_dims(), name, a, b);
+  int ast_k_dims_v = ast_k_dims();
+  int ret_i = ast_new_ab(ast_k_dims_v, name, a, b);
+} return int ret_i;
 
 // The third slot is one identifier -- `top-left`, `center`, `bottom-right`. An
 // unrecognised word is not an error here: stock idml falls back to the start of

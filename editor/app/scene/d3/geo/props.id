@@ -28,5 +28,6 @@ ed_box(int x, int y, int z, int n, int c) {
 // outside, so back-face culling keeps the inside of the box invisible.
 ed_box_yz(int x, int y, int z, int n, int c) {
   ed_wall(x - n, y, z + n, x + n, y + 2 * n, z + n, c);
-  ed_wall(x + n, y, z - n, x - n, y + 2 * n, z - n, d2_shade(c, 700));
+  int d2_shade_v = d2_shade(c, 700);
+  ed_wall(x + n, y, z - n, x - n, y + 2 * n, z - n, d2_shade_v);
 } return void;

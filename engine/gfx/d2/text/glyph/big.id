@@ -30,7 +30,8 @@
 txt_glyph_sc(int key, int x, int y, int c, int sc) {
   int j = 0;
   while (j < txt_cellh()) {
-    txt_row_sc((import txt_glyphs)[txt_glyph_at(key) + j], x, y, c, sc, j);
+    int txt_glyph_at_v = txt_glyph_at(key);
+    txt_row_sc((import txt_glyphs)[txt_glyph_at_v + j], x, y, c, sc, j);
     j = j + 1;
   }
 } return void;
@@ -51,6 +52,8 @@ txt_row_sc(int bits, int x, int y, int c, int sc, int j) {
 // any face taller than 64.
 txt_px_sc(int bits, int x, int y, int c, int sc, int jk) {
   if (((bits >> (txt_bit() - 1 - jk % 256)) & 1) = 1) {
-    sf_rect(x + jk % 256 * sc / 1000, y + jk / 256 * sc / 1000, txt_ext(jk % 256, sc), txt_ext(jk / 256, sc), c);
+    int txt_ext_v = txt_ext(jk % 256, sc);
+    int txt_ext_v2 = txt_ext(jk / 256, sc);
+    sf_rect(x + jk % 256 * sc / 1000, y + jk / 256 * sc / 1000, txt_ext_v, txt_ext_v2, c);
   }
 } return void;

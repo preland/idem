@@ -9,7 +9,8 @@
 // what keeps a resize from shearing the frame it happened in.
 ed_input() {
   sys_sync();
-  run_quit(inp_drain());
+  int inp_drain_v = inp_drain();
+  run_quit(inp_drain_v);
   ed_orbit();
 } return void;
 

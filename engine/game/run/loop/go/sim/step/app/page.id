@@ -4,12 +4,14 @@
 // is legal and lays out nothing -- a game may draw everything itself.
 idem_apage() {
   int[] pos = [0];
-  ui_pgset(par_doc(pos), 0);
+  int par_doc_v = par_doc(pos);
+  ui_pgset(par_doc_v, 0);
 } return void;
 
 ui_pgset(int doc, int i) {
   while (i < len(ast_ks(doc))) {
-    ui_pgone(ast_ks(doc)[i]);
+    int[] ast_ks_v = ast_ks(doc);
+    ui_pgone(ast_ks_v[i]);
     i = i + 1;
   }
 } return void;

@@ -2,7 +2,8 @@
 
 scn_bg(int nd, int i) {
   while (i < len(ast_ks(nd))) {
-    scn_bg1(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    scn_bg1(ast_ks_v[i]);
     i = i + 1;
   }
 } return void;
@@ -12,7 +13,8 @@ scn_bg(int nd, int i) {
 // other rate in the store.
 scn_bg1(int nd) {
   if (ast_tx(nd) = "clear") {
-    lset((import scn_st), 6, scn_num(nd, 0));
+    int scn_num_v = scn_num(nd, 0);
+    lset((import scn_st), 6, scn_num_v);
   } else if (ast_tx(nd) = "gravity") {
     scn_grav(nd);
   }
@@ -22,5 +24,12 @@ scn_bg1(int nd) {
 // engine. The path is relative to the game's directory, which the runtime knows
 // and this does not, so it is resolved by the caller through scn_dir.
 scn_sprite(int nd) {
-  spr_png(ast_tx(nd), scn_path(scn_str(nd)), scn_gx(nd, 0), scn_gx(nd, 1), scn_cx(nd, 0), scn_cx(nd, 1));
+  string ast_tx_v = ast_tx(nd);
+  string scn_str_v = scn_str(nd);
+  string scn_path_v = scn_path(scn_str_v);
+  int scn_gx_v = scn_gx(nd, 0);
+  int scn_gx_v2 = scn_gx(nd, 1);
+  int scn_cx_v = scn_cx(nd, 0);
+  int scn_cx_v2 = scn_cx(nd, 1);
+  spr_png(ast_tx_v, scn_path_v, scn_gx_v, scn_gx_v2, scn_cx_v, scn_cx_v2);
 } return void;

@@ -18,8 +18,12 @@
 
 d3_tri2(int[] verts) {
   d3_sort3(verts);
-  d3_half(verts, fx_max(verts[1], (import d3_vp)[1]), fx_min(verts[7] - 1, (import d3_vp)[3]), 0, 12, 0, 6);
-  d3_half(verts, fx_max(verts[7], (import d3_vp)[1]), fx_min(verts[13], (import d3_vp)[3]), 0, 12, 6, 12);
+  int fx_max_v = fx_max(verts[1], (import d3_vp)[1]);
+  int fx_min_v = fx_min(verts[7] - 1, (import d3_vp)[3]);
+  d3_half(verts, fx_max_v, fx_min_v, 0, 12, 0, 6);
+  int fx_max_v2 = fx_max(verts[7], (import d3_vp)[1]);
+  int fx_min_v2 = fx_min(verts[13], (import d3_vp)[3]);
+  d3_half(verts, fx_max_v2, fx_min_v2, 0, 12, 6, 12);
 } return void;
 
 // A three-element sort is three conditional swaps: compare the first pair, the

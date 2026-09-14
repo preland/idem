@@ -8,13 +8,17 @@ ed_grid_run(int i) {
 } return void;
 
 ed_grid_pair(int n) {
-  ed_gline(n, 0 - 5000, n, 5000, ed_col(9));
-  ed_gline(0 - 5000, n, 5000, n, ed_col(9));
+  int ed_col_v = ed_col(9);
+  ed_gline(n, 0 - 5000, n, 5000, ed_col_v);
+  int ed_col_v2 = ed_col(9);
+  ed_gline(0 - 5000, n, 5000, n, ed_col_v2);
 } return void;
 
 // X red, Z blue -- the convention every 3D tool shares, and the fastest way to
 // know which way you are looking when the camera has been spun.
 ed_axis() {
-  ed_gline(0 - 5000, 0, 5000, 0, ed_col(10));
-  ed_gline(0, 0 - 5000, 0, 5000, ed_col(11));
+  int ed_col_v = ed_col(10);
+  ed_gline(0 - 5000, 0, 5000, 0, ed_col_v);
+  int ed_col_v2 = ed_col(11);
+  ed_gline(0, 0 - 5000, 0, 5000, ed_col_v2);
 } return void;

@@ -5,12 +5,31 @@
 // the panel and the intersection is the plane; zoomed in it is the panel.
 
 ed_clip_pane() {
-  sf_clip(ed_rq(3, 0), ed_rq(3, 1), ed_rq(3, 0) + ed_rq(3, 2) - 1, ed_rq(3, 1) + ed_rq(3, 3) - 1);
+  int ed_rq_v = ed_rq(3, 0);
+  int ed_rq_v2 = ed_rq(3, 1);
+  int ed_rq_v3 = ed_rq(3, 0);
+  int ed_rq_v4 = ed_rq(3, 2);
+  int ed_rq_v5 = ed_rq(3, 1);
+  int ed_rq_v6 = ed_rq(3, 3);
+  sf_clip(ed_rq_v, ed_rq_v2, ed_rq_v3 + ed_rq_v4 - 1, ed_rq_v5 + ed_rq_v6 - 1);
 } return void;
 
 ed_pclip(int x, int y, int w) {
-  sf_clip(fx_max(x, ed_rq(3, 0)), fx_max(y, ed_rq(3, 1)), fx_min(x + w - 1, ed_rq(3, 0) + ed_rq(3, 2) - 1), ed_pclip_b(y));
+  int ed_rq_v = ed_rq(3, 0);
+  int fx_max_v = fx_max(x, ed_rq_v);
+  int ed_rq_v2 = ed_rq(3, 1);
+  int fx_max_v2 = fx_max(y, ed_rq_v2);
+  int ed_rq_v3 = ed_rq(3, 0);
+  int ed_rq_v4 = ed_rq(3, 2);
+  int fx_min_v = fx_min(x + w - 1, ed_rq_v3 + ed_rq_v4 - 1);
+  int ed_pclip_b_v = ed_pclip_b(y);
+  sf_clip(fx_max_v, fx_max_v2, fx_min_v, ed_pclip_b_v);
 } return void;
 
 ed_pclip_b(int y) {
-} return int fx_min(y + ed_gh() * ed_psc() / 1000 - 1, ed_rq(3, 1) + ed_rq(3, 3) - 1);
+  int ed_gh_v = ed_gh();
+  int ed_psc_v = ed_psc();
+  int ed_rq_v = ed_rq(3, 1);
+  int ed_rq_v2 = ed_rq(3, 3);
+  int ret_i = fx_min(y + ed_gh_v * ed_psc_v / 1000 - 1, ed_rq_v + ed_rq_v2 - 1);
+} return int ret_i;

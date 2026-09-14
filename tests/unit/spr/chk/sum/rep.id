@@ -1,9 +1,15 @@
 // The channel sums of one opaque pixel.
 
 t_acc2(int c) {
-  lset((import t_st), 1, (import t_st)[1] + d2_cr(c));
-  lset((import t_st), 2, (import t_st)[2] + d2_cg(c));
-  lset((import t_st), 3, (import t_st)[3] + d2_cb(c));
+  int t_st_v = (import t_st)[1];
+  int d2_cr_v = d2_cr(c);
+  lset((import t_st), 1, t_st_v + d2_cr_v);
+  int t_st_v2 = (import t_st)[2];
+  int d2_cg_v = d2_cg(c);
+  lset((import t_st), 2, t_st_v2 + d2_cg_v);
+  int t_st_v3 = (import t_st)[3];
+  int d2_cb_v = d2_cb(c);
+  lset((import t_st), 3, t_st_v3 + d2_cb_v);
 } return void;
 
 // The whole 2560x2560 sheet as ONE frame sampled down to 8x8 -- the cols = rows = 1
@@ -11,6 +17,10 @@ t_acc2(int c) {
 // pixel frame 12 above lands on, so the two paths must agree on it.
 t_whole() {
   int p = spr_png("thumb", "test_assets/spryte-run.png", 1, 1, 8, 8);
-  print("thumb: " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p) + " (4,4) exp 15657421 = " + d2_spr_at(p, 4 * 8 + 4));
+  int d2_spr_w_v = d2_spr_w(p);
+  int d2_spr_h_v = d2_spr_h(p);
+  int d2_spr_nf_v = d2_spr_nf(p);
+  int d2_spr_at_v = d2_spr_at(p, 4 * 8 + 4);
+  print("thumb: " + d2_spr_w_v + "x" + d2_spr_h_v + " frames " + d2_spr_nf_v + " (4,4) exp 15657421 = " + d2_spr_at_v);
   t_report(p, 64, "thumb");
 } return void;

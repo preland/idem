@@ -2,7 +2,8 @@
 
 // One block of one MCU, addressed in the component's own block grid.
 jpg_one(int mx, int my, int ci, int by, int bx) {
-  jpg_blk(ci, jpg_bat(ci, mx * (import jpg_c)[ci * 10 + 1] + bx, my * (import jpg_c)[ci * 10 + 2] + by));
+  int jpg_bat_v = jpg_bat(ci, mx * (import jpg_c)[ci * 10 + 1] + bx, my * (import jpg_c)[ci * 10 + 2] + by);
+  jpg_blk(ci, jpg_bat_v);
 } return void;
 
 // Which decoder a scan wants. Baseline sends DC and the whole AC band in one
@@ -20,6 +21,10 @@ jpg_blk(int ci, int a) {
 // blocks until a restart or a new scan clears it.
 jpg_dc(int ci, int a) {
   int sz = jpg_dec((import jpg_c)[ci * 10 + 4]);
-  lset((import jpg_c), ci * 10 + 6, (import jpg_c)[ci * 10 + 6] + jpg_diff(sz));
-  jpg_cset(a, 0, (import jpg_c)[ci * 10 + 6] * inf_pow2((import jpg_st)[16]));
+  int jpg_c_v = (import jpg_c)[ci * 10 + 6];
+  int jpg_diff_v = jpg_diff(sz);
+  lset((import jpg_c), ci * 10 + 6, jpg_c_v + jpg_diff_v);
+  int jpg_c_v2 = (import jpg_c)[ci * 10 + 6];
+  int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  jpg_cset(a, 0, jpg_c_v2 * inf_pow2_v);
 } return void;

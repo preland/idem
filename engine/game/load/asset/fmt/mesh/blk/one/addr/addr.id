@@ -41,4 +41,5 @@ bl_apick(int i, word wp) {
 // half is unsigned.
 bl_ule32(int p) {
   word wp = asset_at(p + 3);
-} return word wp * 16777216 + asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;
+  word ret_w = wp * 16777216 + asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;
+} return word ret_w;

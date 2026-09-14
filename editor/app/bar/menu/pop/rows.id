@@ -10,13 +10,26 @@ ed_pop_rows(int k, int i) {
 // A live item highlights and acts; a dim one does neither, so the difference is
 // visible before it is clicked rather than after.
 ed_pop_row(int k, int i) {
-  int ok = ed_in(ed_mx(k) - 4 * txt_ui(), ed_hdr() + 1 + i * ed_rowh(), ed_pop_w(k, 0, 0), ed_rowh()) * ed_mon(k, i);
+  int ed_mx_v = ed_mx(k);
+  int txt_ui_v = txt_ui();
+  int ed_hdr_v = ed_hdr();
+  int ed_rowh_v = ed_rowh();
+  int ed_pop_w_v = ed_pop_w(k, 0, 0);
+  int ed_rowh_v2 = ed_rowh();
+  int ok = ed_in(ed_mx_v - 4 * txt_ui_v, ed_hdr_v + 1 + i * ed_rowh_v, ed_pop_w_v, ed_rowh_v2) * ed_mon(k, i);
   ed_pop_hl(k, i, ok);
   ed_pop_hit(k, i, ok);
 } return void;
 
 ed_pop_hl(int k, int i, int ok) {
   if (ok = 1) {
-    sf_rect(ed_mx(k) - 4 * txt_ui(), ed_hdr() + 1 + i * ed_rowh(), ed_pop_w(k, 0, 0), ed_rowh(), ed_col(7));
+    int ed_mx_v = ed_mx(k);
+    int txt_ui_v = txt_ui();
+    int ed_hdr_v = ed_hdr();
+    int ed_rowh_v = ed_rowh();
+    int ed_pop_w_v = ed_pop_w(k, 0, 0);
+    int ed_rowh_v2 = ed_rowh();
+    int ed_col_v = ed_col(7);
+    sf_rect(ed_mx_v - 4 * txt_ui_v, ed_hdr_v + 1 + i * ed_rowh_v, ed_pop_w_v, ed_rowh_v2, ed_col_v);
   }
 } return void;

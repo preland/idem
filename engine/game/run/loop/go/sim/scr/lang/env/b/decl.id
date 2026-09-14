@@ -8,14 +8,18 @@
 scr_push(string name, int v) {
   push((import scr_vn), name);
   push((import scr_vv), v);
-} return int len((import scr_vv)) - 1;
+  int ret_i = len((import scr_vv)) - 1;
+} return int ret_i;
 
 // `var name = expr` inside a declaration. The initialiser is evaluated with no
 // entity, so it may name a game variable and may not name a sibling -- which is
 // the same rule a struct initialiser has in most languages and avoids an
 // ordering question nobody wants to answer.
 scr_dvar(int nd) {
-  scr_push(ast_tx(nd), scr_ev(ast_ia(nd), 0 - 1));
+  string ast_tx_v = ast_tx(nd);
+  int ast_ia_v = ast_ia(nd);
+  int scr_ev_v = scr_ev(ast_ia_v, 0 - 1);
+  scr_push(ast_tx_v, scr_ev_v);
 } return void;
 
 // Everything after the game's own block, dropped. `id` frees nothing, so this

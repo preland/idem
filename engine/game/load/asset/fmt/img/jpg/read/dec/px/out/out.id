@@ -7,7 +7,8 @@
 // -- so asset_row and the sprite loader address both formats with one rule.
 
 jpg_out() {
-  int da = alloc(fx_max((import jpg_st)[1] * (1 + (import jpg_st)[0] * 3), 1));
+  int fx_max_v = fx_max((import jpg_st)[1] * (1 + (import jpg_st)[0] * 3), 1);
+  int da = alloc(fx_max_v);
   jpg_pngst(da);
   jpg_orows(0);
 } return void;

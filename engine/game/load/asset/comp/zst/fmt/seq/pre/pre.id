@@ -24,5 +24,6 @@ zst_pre2() {
 zst_pload(int r, int[] xs, int log, int base) {
   zst_pcopy(xs);
   m4_pair((import fse_rl), r * 2, r * 2 + 1, base, log);
-  fse_build(base, log, len(xs) - 1);
+  int len_v = len(xs);
+  fse_build(base, log, len_v - 1);
 } return void;

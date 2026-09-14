@@ -25,10 +25,13 @@ asset_io_init() {
 asset_slurp(string path) {
   int n = fs_size(path);
   asset_slurp_alloc(n);
-  lset((import asset_io), 1, asset_take(path, n));
-} return int (import asset_io)[1];
+  int asset_take_v = asset_take(path, n);
+  lset((import asset_io), 1, asset_take_v);
+  int ret_i = (import asset_io)[1];
+} return int ret_i;
 
 asset_slurp_alloc(int n) {
-  int da = alloc(fx_max(n, 1));
+  int fx_max_v = fx_max(n, 1);
+  int da = alloc(fx_max_v);
   lset((import asset_io), 0, da);
 } return void;

@@ -4,7 +4,9 @@ jpg_kind(int p, int m) {
   if (m = 217) {
     lset((import jpg_st), 9, (import asset_io)[1]);
   } else {
-    jpg_kind2(p, m, asset_at(p + 2) * 256 + asset_at(p + 3));
+    int asset_at_v = asset_at(p + 2);
+    int asset_at_v2 = asset_at(p + 3);
+    jpg_kind2(p, m, asset_at_v * 256 + asset_at_v2);
   }
 } return void;
 
@@ -18,9 +20,11 @@ jpg_kind2(int p, int m, int ln) {
 
 jpg_disp(int p, int m) {
   if (m = 219) {
-    jpg_dqt(p, jpg_end(p));
+    int jpg_end_v = jpg_end(p);
+    jpg_dqt(p, jpg_end_v);
   } else if (m = 196) {
-    jpg_dht(p, jpg_end(p));
+    int jpg_end_v2 = jpg_end(p);
+    jpg_dht(p, jpg_end_v2);
   } else {
     jpg_disp2(p, m);
   }

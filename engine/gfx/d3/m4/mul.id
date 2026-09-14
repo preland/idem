@@ -28,7 +28,8 @@ m4_muli(int[] mat, int[] xs, int[] ys) {
 m4_row(int[] mat, int[] xs, int[] ys, int i) {
   int j = 0;
   while (j < 4) {
-    lset(mat, i * 4 + j, m4_dot(xs, ys, i, j));
+    int m4_dot_v = m4_dot(xs, ys, i, j);
+    lset(mat, i * 4 + j, m4_dot_v);
     j = j + 1;
   }
 } return void;

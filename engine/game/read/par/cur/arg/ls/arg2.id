@@ -13,4 +13,6 @@ par_tuple(int[] pos) {
   int[] kids = [];
   par_want(pos, "(");
   par_tfill(pos, kids);
-} return int ast_new_kids(ast_k_tuple(), "", kids);
+  int ast_k_tuple_v = ast_k_tuple();
+  int ret_i = ast_new_kids(ast_k_tuple_v, "", kids);
+} return int ret_i;

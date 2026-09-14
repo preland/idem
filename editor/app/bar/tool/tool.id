@@ -6,18 +6,27 @@
 // gizmo work that comes with a scene model to manipulate.
 
 ed_tools() {
-  d2_hline(ed_rq(1, 0), ed_rq(1, 1) + ed_rq(1, 3) - 1, ed_rq(1, 2), ed_col(3));
+  int ed_rq_v = ed_rq(1, 0);
+  int ed_rq_v2 = ed_rq(1, 1);
+  int ed_rq_v3 = ed_rq(1, 3);
+  int ed_rq_v4 = ed_rq(1, 2);
+  int ed_col_v = ed_col(3);
+  d2_hline(ed_rq_v, ed_rq_v2 + ed_rq_v3 - 1, ed_rq_v4, ed_col_v);
   ed_tool_row();
 } return void;
 
 ed_tool_row() {
-  ed_tool(6 * txt_ui(), 0, "pan");
-  ed_tool(44 * txt_ui(), 1, "move");
+  int txt_ui_v = txt_ui();
+  ed_tool(6 * txt_ui_v, 0, "pan");
+  int txt_ui_v2 = txt_ui();
+  ed_tool(44 * txt_ui_v2, 1, "move");
   ed_tool2();
 } return void;
 
 ed_tool2() {
-  ed_tool(90 * txt_ui(), 2, "turn");
-  ed_tool(132 * txt_ui(), 3, "size");
+  int txt_ui_v = txt_ui();
+  ed_tool(90 * txt_ui_v, 2, "turn");
+  int txt_ui_v2 = txt_ui();
+  ed_tool(132 * txt_ui_v2, 3, "size");
   ed_play();
 } return void;

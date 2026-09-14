@@ -8,7 +8,8 @@
 // its draw pass sees last frame's Return again.
 t_quiet() {
   t_hold(3200);
-  print("a frame with no keys exp act 0 = " + tin_act());
+  int tin_act_v = tin_act();
+  print("a frame with no keys exp act 0 = " + tin_act_v);
   t_rep();
 } return void;
 
@@ -23,7 +24,8 @@ t_rep() {
 // before the FIRST character would feel broken in a way no amount of correct
 // repeating would fix.
 t_rep2() {
-  print("backspace pressed at 5000 exp 12345678 = " + tin_text());
+  string tin_text_v = tin_text();
+  print("backspace pressed at 5000 exp 12345678 = " + tin_text_v);
   t_hold(5100);
   t_rep3();
 } return void;

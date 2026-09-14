@@ -10,7 +10,9 @@
 // stretch the art, which is a worse trade than one row of background.
 
 sys_stage() {
-  lset((import sys_vp), 0, fx_max(sys_snap(), 1));
+  int sys_snap_v = sys_snap();
+  int fx_max_v = fx_max(sys_snap_v, 1);
+  lset((import sys_vp), 0, fx_max_v);
   sys_soff();
 } return void;
 
@@ -21,6 +23,8 @@ sys_snap() {
 } return int snap;
 
 sys_soff() {
-  lset((import sys_vp), 1, ((import sf_gw) - sys_sw()) / 2);
-  lset((import sys_vp), 2, ((import sf_gh) - sys_sh()) / 2);
+  int sys_sw_v = sys_sw();
+  lset((import sys_vp), 1, ((import sf_gw) - sys_sw_v) / 2);
+  int sys_sh_v = sys_sh();
+  lset((import sys_vp), 2, ((import sf_gh) - sys_sh_v) / 2);
 } return void;

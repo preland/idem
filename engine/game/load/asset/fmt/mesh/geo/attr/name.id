@@ -1,18 +1,21 @@
 // The two hops: the attribute's name, and its values.
 
 bl_aname(int o, string name) {
-  int i = bl_at(bl_lew(o));
+  word bl_lew_v = bl_lew(o);
+  int i = bl_at(bl_lew_v);
   int ok = 0;
   if (i >= 0) { ok = bl_streq((import bl_bp)[i], name); }
 } return int ok;
 
 // Attribute.data -> AttributeArray, whose first field is the values pointer.
 bl_adata(int o) {
-  int i = bl_at(bl_lew(o + 16));
+  word bl_lew_v = bl_lew(o + 16);
+  int i = bl_at(bl_lew_v);
   int k = 0 - 1;
-  if (i >= 0) { k = bl_at(bl_lew((import bl_bp)[i])); }
+  if (i >= 0) { word bl_lew_v2 = bl_lew((import bl_bp)[i]); k = bl_at(bl_lew_v2); }
 } return int k;
 
 // A 64-bit little-endian pointer, as the `word` it has to be.
 bl_lew(int p) {
-} return word bl_le64(p);
+  word ret_w = bl_le64(p);
+} return word ret_w;

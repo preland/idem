@@ -30,10 +30,13 @@ png_init() {
 // after another, four bytes per pixel, with the filter bytes removed.
 png_load(string path) {
   lst_set_all((import png_st), 16, 0);
-  lset((import png_st), 9, png_open(path));
-} return int (import png_st)[9];
+  int png_open_v = png_open(path);
+  lset((import png_st), 9, png_open_v);
+  int ret_i = (import png_st)[9];
+} return int ret_i;
 
 png_open(string path) {
   int n = asset_slurp(path);
   int ok = png_sig(n);
-} return int png_walk(ok, 8);
+  int ret_i = png_walk(ok, 8);
+} return int ret_i;

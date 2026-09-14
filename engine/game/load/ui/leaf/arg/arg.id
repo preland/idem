@@ -8,14 +8,16 @@
 ui_arg(int nd, int i, int v) {
   int a = ast_ia(nd);
   if (a != 0 && i < len(ast_ks(a))) {
-    v = ast_ia(ast_ks(a)[i]);
+    int[] ast_ks_v = ast_ks(a);
+    v = ast_ia(ast_ks_v[i]);
   }
 } return int v;
 
 ui_sarg(int nd, int i, string s) {
   int a = ast_ia(nd);
   if (a != 0 && i < len(ast_ks(a))) {
-    s = ast_tx(ast_ks(a)[i]);
+    int[] ast_ks_v = ast_ks(a);
+    s = ast_tx(ast_ks_v[i]);
   }
 } return string s;
 
@@ -32,7 +34,8 @@ ui_sarg(int nd, int i, string s) {
 // `Text(@score)` are the same item with a different first argument, which is what
 // lets a screen be laid out once and filled from the world every frame.
 ui_text(int nd, int x, int y, int w, int h) {
-  if (ast_kd(ui_arg0(nd)) = ast_k_ref()) {
+  int ui_arg0_v = ui_arg0(nd);
+  if (ast_kd(ui_arg0_v) = ast_k_ref()) {
     ui_tnum(nd, x, y, w, h);
   } else {
     ui_tstr(nd, x, y, w, h);

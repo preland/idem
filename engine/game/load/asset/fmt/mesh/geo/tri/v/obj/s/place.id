@@ -3,7 +3,10 @@
 bl_obj2(int i) {
   int si = bl_sfind("Object");
   bl_scope(i);
-  bl_obj3(i, si, bl_gat(bl_lew((import bl_bp)[i] + bl_foff(si, "*data"))));
+  int bl_foff_v = bl_foff(si, "*data");
+  word bl_lew_v = bl_lew((import bl_bp)[i] + bl_foff_v);
+  int bl_gat_v = bl_gat(bl_lew_v);
+  bl_obj3(i, si, bl_gat_v);
 } return void;
 
 // The world matrix is built while the Object's own scope is current -- it reads
@@ -16,7 +19,8 @@ bl_obj3(int i, int si, int mi) {
 
 bl_obj4(int mi) {
   if (mi >= 0 && (import bl_bc)[mi] = 1296367616) {
-    lset((import bl_st), 12, len((import bl_v)) / 3);
+    int len_v = len((import bl_v));
+    lset((import bl_st), 12, len_v / 3);
     bl_mone(mi);
   }
 } return void;

@@ -11,7 +11,9 @@ t_home() {
 
 // 261 is End.
 t_home2() {
-  print("home, then backspace at 0 exp ac caret 0 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("home, then backspace at 0 exp ac caret 0 = " + tin_text_v + " " + tin_caret_v);
   t_tap(261, 2700);
   t_end();
 } return void;
@@ -20,6 +22,8 @@ t_home2() {
 // than index past the last character.
 t_end() {
   t_tap(257, 2800);
-  print("end, then right at the end exp ac caret 2 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("end, then right at the end exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
   t_edge();
 } return void;

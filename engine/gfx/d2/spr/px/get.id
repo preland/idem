@@ -19,7 +19,8 @@ d2_spr_px(int p) {
 } return int[] px;
 
 d2_spr_put(int p, int i, int c) {
-  lset(d2_spr_px(p), i, c);
+  int[] d2_spr_px_v = d2_spr_px(p);
+  lset(d2_spr_px_v, i, c);
 } return void;
 
 d2_spr_at(int p, int i) {

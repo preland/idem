@@ -3,7 +3,8 @@
 zst_sone(int last) {
   int ll = fse_dsym(0, (import zst_sq)[0]);
   int of = fse_dsym(1, (import zst_sq)[1]);
-  zst_sone2(ll, of, fse_dsym(2, (import zst_sq)[2]), last);
+  int fse_dsym_v = fse_dsym(2, (import zst_sq)[2]);
+  zst_sone2(ll, of, fse_dsym_v, last);
 } return void;
 
 // Each extra-bit read is its own statement: two side-effecting reads in one

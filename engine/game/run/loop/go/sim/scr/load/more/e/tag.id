@@ -12,11 +12,16 @@ scr_emem2(int e, int nd) {
 // tag and the entity's bitset is the union.
 scr_etags(int e, int nd, int i) {
   while (i < scn_nargs(nd)) {
-    scr_etag(e, scn_arg(nd, i));
+    int scn_arg_v = scn_arg(nd, i);
+    scr_etag(e, scn_arg_v);
     i = i + 1;
   }
 } return void;
 
 scr_etag(int e, int nd) {
-  ent_put(e, 20, ent_at(e, 20) | inf_pow2(scr_tag(ast_tx(nd))));
+  int ent_at_v = ent_at(e, 20);
+  string ast_tx_v = ast_tx(nd);
+  int scr_tag_v = scr_tag(ast_tx_v);
+  int inf_pow2_v = inf_pow2(scr_tag_v);
+  ent_put(e, 20, ent_at_v | inf_pow2_v);
 } return void;

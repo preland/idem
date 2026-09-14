@@ -9,8 +9,12 @@ jpg_comps(int p, int ci) {
 } return void;
 
 jpg_comp(int p, int ci) {
-  m4_pair((import jpg_c), ci * 10, ci * 10 + 1, asset_at(p), asset_at(p + 1) / 16);
-  m4_pair((import jpg_c), ci * 10 + 2, ci * 10 + 3, asset_at(p + 1) % 16, asset_at(p + 2));
+  int asset_at_v = asset_at(p);
+  int asset_at_v2 = asset_at(p + 1);
+  m4_pair((import jpg_c), ci * 10, ci * 10 + 1, asset_at_v, asset_at_v2 / 16);
+  int asset_at_v3 = asset_at(p + 1);
+  int asset_at_v4 = asset_at(p + 2);
+  m4_pair((import jpg_c), ci * 10 + 2, ci * 10 + 3, asset_at_v3 % 16, asset_at_v4);
 } return void;
 
 // An MCU is one block of every component at its own sampling, so its size in

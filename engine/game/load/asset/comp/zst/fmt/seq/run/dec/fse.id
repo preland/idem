@@ -1,7 +1,12 @@
 // An FSE-coded table: read the description, build, and skip what it consumed.
 
 zst_sfse(int r, int base) {
-  int used = fse_read((import zst_st)[0] + (import zst_st)[1], (import zst_st)[2] - (import zst_st)[1], zst_smax(r));
+  int zst_st_v = (import zst_st)[0];
+  int zst_st_v2 = (import zst_st)[1];
+  int zst_st_v3 = (import zst_st)[2];
+  int zst_st_v4 = (import zst_st)[1];
+  int zst_smax_v = zst_smax(r);
+  int used = fse_read(zst_st_v + zst_st_v2, zst_st_v3 - zst_st_v4, zst_smax_v);
   m4_pair((import fse_rl), r * 2, r * 2 + 1, base, (import fse_st)[0]);
   zst_sfse2(base, used);
 } return void;

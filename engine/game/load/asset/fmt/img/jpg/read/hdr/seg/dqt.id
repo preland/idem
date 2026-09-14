@@ -5,7 +5,8 @@
 // table is indexed by the zigzag position and never has to be reordered.
 
 jpg_end(int p) {
-} return int (import jpg_st)[9];
+  int ret_i = (import jpg_st)[9];
+} return int ret_i;
 
 jpg_disp2(int p, int m) {
   if (m = 192 || m = 193 || m = 194) {
@@ -13,7 +14,9 @@ jpg_disp2(int p, int m) {
   } else if (m = 218) {
     jpg_sos(p);
   } else if (m = 221) {
-    lset((import jpg_st), 7, asset_at(p) * 256 + asset_at(p + 1));
+    int asset_at_v = asset_at(p);
+    int asset_at_v2 = asset_at(p + 1);
+    lset((import jpg_st), 7, asset_at_v * 256 + asset_at_v2);
   }
 } return void;
 

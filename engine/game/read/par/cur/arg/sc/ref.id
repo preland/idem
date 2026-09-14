@@ -11,10 +11,13 @@ par_pathx(int[] pos) {
 par_uref(int[] pos) {
   par_next(pos);
   int nd = par_pathx(pos);
-} return int par_uref2(pos, nd);
+  int ret_i = par_uref2(pos, nd);
+} return int ret_i;
 
 // The trailing `!` is idml's *live* marker: a falling bird must not be eased.
 par_uref2(int[] pos, int nd) {
   string txt = "";
   if (par_is(pos, "!")) { txt = "!"; par_next(pos); }
-} return int ast_new_a(ast_k_ref(), txt, nd);
+  int ast_k_ref_v = ast_k_ref();
+  int ret_i = ast_new_a(ast_k_ref_v, txt, nd);
+} return int ret_i;

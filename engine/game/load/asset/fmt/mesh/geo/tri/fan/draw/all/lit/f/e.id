@@ -25,5 +25,6 @@ bl_efill(int i) {
 
 bl_shade2(int[] tri, int nvx, int nvy) {
   int nvz = (import bl_e)[2] / 4;
-  bl_tint(tri, bl_lam(nvx, nvy, nvz));
+  int bl_lam_v = bl_lam(nvx, nvy, nvz);
+  bl_tint(tri, bl_lam_v);
 } return void;

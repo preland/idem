@@ -7,7 +7,10 @@
 scr_ex5(int nd, int e) {
   int fin = 0;
   if (ast_kd(nd) = ast_k_repeat()) {
-    fin = scr_rep(nd, e, fx_min(scr_ev(ast_ia(nd), e), 10000));
+    int ast_ia_v = ast_ia(nd);
+    int scr_ev_v = scr_ev(ast_ia_v, e);
+    int fx_min_v = fx_min(scr_ev_v, 10000);
+    fin = scr_rep(nd, e, fx_min_v);
   } else {
     fin = scr_ex6(nd, e);
   }
@@ -22,7 +25,8 @@ scr_rep(int nd, int e, int n) {
 scr_rloop(int nd, int e, int n, int i) {
   int fin = 0;
   while (fin = 0 && i < n) {
-    fin = scr_ex(ast_ib(nd), e);
+    int ast_ib_v = ast_ib(nd);
+    fin = scr_ex(ast_ib_v, e);
     i = i + 1;
   }
 } return int fin;

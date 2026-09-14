@@ -14,11 +14,13 @@ bl_push2(int n, int i) {
 } return void;
 
 bl_le32(int p) {
-} return int asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536 + asset_at(p + 3) * 16777216;
+  int ret_i = asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536 + asset_at(p + 3) * 16777216;
+} return int ret_i;
 
 // A 64-bit little-endian field -- an address, or one of the lengths the newer
 // block header widened. The high half is multiplied in a `word` so the shift does
 // not wrap: the operands decide the width in this language, not the target.
 bl_le64(int p) {
   word wp = bl_le32(p + 4);
-} return word wp * 4294967296 + bl_ule32(p);
+  word ret_w = wp * 4294967296 + bl_ule32(p);
+} return word ret_w;

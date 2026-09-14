@@ -24,12 +24,18 @@
 d3_proj(int[] tri, int i, int[] verts, int p) {
   int z = fx_max(tri[i * 3 + 2], 1);
   d3_proj_xy(tri, i * 3, verts, p, z);
-  d3_proj_c(verts, p, tri[9 + i], d3_dkey(z));
+  int tri_v = tri[9 + i];
+  int d3_dkey_v = d3_dkey(z);
+  d3_proj_c(verts, p, tri_v, d3_dkey_v);
 } return void;
 
 d3_proj_xy(int[] tri, int i, int[] verts, int p, int z) {
-  lset(verts, p, (import d3_vp)[4] + d3_pscale(tri[i], (import d3_cam)[8], z));
-  lset(verts, p + 1, (import d3_vp)[5] - d3_pscale(tri[i + 1], (import d3_cam)[8], z));
+  int d3_vp_v = (import d3_vp)[4];
+  int d3_pscale_v = d3_pscale(tri[i], (import d3_cam)[8], z);
+  lset(verts, p, d3_vp_v + d3_pscale_v);
+  int d3_vp_v2 = (import d3_vp)[5];
+  int d3_pscale_v2 = d3_pscale(tri[i + 1], (import d3_cam)[8], z);
+  lset(verts, p + 1, d3_vp_v2 - d3_pscale_v2);
 } return void;
 
 d3_proj_c(int[] verts, int p, int c, int dz) {

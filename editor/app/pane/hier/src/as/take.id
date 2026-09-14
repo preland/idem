@@ -2,7 +2,8 @@
 
 ed_as_take(string src, int i, int e) {
   if (str_eqat(src, i, "#asset ") = 1) {
-    push((import ed_as), str_slice(src, i + 7, e - i - 7));
+    string str_slice_v = str_slice(src, i + 7, e - i - 7);
+    push((import ed_as), str_slice_v);
   }
 } return void;
 
@@ -22,7 +23,9 @@ ed_load_as(int i) {
 
 // 6 characters back from the end is where ".blend" starts.
 ed_try_as(string path) {
-  if (str_eqat(path, len(path) - 6, ".blend") = 1) {
-    ed_fit_mesh(bl_scene(path));
+  int len_v = len(path);
+  if (str_eqat(path, len_v - 6, ".blend") = 1) {
+    int bl_scene_v = bl_scene(path);
+    ed_fit_mesh(bl_scene_v);
   }
 } return void;

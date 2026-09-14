@@ -15,7 +15,8 @@ jpg_walk(int ok) {
   lset((import jpg_st), 8, ok);
   lset((import jpg_st), 9, 2);
   jpg_loop();
-} return int jpg_fin();
+  int ret_i = jpg_fin();
+} return int ret_i;
 
 // The pixels are built after the whole file has been walked, not at the end of
 // the scan: a progressive image has several scans and only the last completes
@@ -25,4 +26,5 @@ jpg_fin() {
   if ((import jpg_st)[8] = 1 && (import jpg_st)[0] > 0) {
     jpg_all();
   }
-} return int (import jpg_st)[8];
+  int ret_i = (import jpg_st)[8];
+} return int ret_i;

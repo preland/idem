@@ -5,7 +5,10 @@
 // learned the old ones needs one line, in the place they are already looking.
 
 ed_note(int y) {
-  ed_sdraw(6 * txt_ui(), y, ed_ntxt(), ed_col(13));
+  int txt_ui_v = txt_ui();
+  string ed_ntxt_v = ed_ntxt();
+  int ed_col_v = ed_col(13);
+  ed_sdraw(6 * txt_ui_v, y, ed_ntxt_v, ed_col_v);
 } return void;
 
 ed_ntxt() {

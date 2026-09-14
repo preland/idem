@@ -15,13 +15,15 @@
 // test is what stands between an off-screen wall and a dead game.
 
 d3_edge(int[] verts, int a, int b, int y, int[] st, int p) {
-  d3_edge6(verts, a, b, fx_div(y - verts[a + 1], verts[b + 1] - verts[a + 1], 65536), st, p);
+  int fx_div_v = fx_div(y - verts[a + 1], verts[b + 1] - verts[a + 1], 65536);
+  d3_edge6(verts, a, b, fx_div_v, st, p);
 } return void;
 
 d3_edge6(int[] verts, int a, int b, int t, int[] st, int p) {
   int k = 0;
   while (k < 6) {
-    lset(st, p + k, d3_mix(verts[a + k], verts[b + k], t));
+    int d3_mix_v = d3_mix(verts[a + k], verts[b + k], t);
+    lset(st, p + k, d3_mix_v);
     k = k + 1;
   }
 } return void;

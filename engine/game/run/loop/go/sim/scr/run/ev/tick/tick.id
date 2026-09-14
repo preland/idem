@@ -19,7 +19,10 @@ scr_tents(int e, int dt) {
 } return void;
 
 scr_tent(int e, int dt) {
-  ent_put(e, 22, ent_at(e, 22) + dt);
-  ent_put(e, 21, ent_at(e, 21) + dt);
-  scr_tfire(e, ent_at(e, 21));
+  int ent_at_v = ent_at(e, 22);
+  ent_put(e, 22, ent_at_v + dt);
+  int ent_at_v2 = ent_at(e, 21);
+  ent_put(e, 21, ent_at_v2 + dt);
+  int ent_at_v3 = ent_at(e, 21);
+  scr_tfire(e, ent_at_v3);
 } return void;

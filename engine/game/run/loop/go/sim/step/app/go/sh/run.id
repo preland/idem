@@ -10,10 +10,13 @@ idem_aframe() {
   int t = sys_now();
   idem_astep();
   idem_apace(t);
-} return int sys_alive();
+  int ret_i = sys_alive();
+} return int ret_i;
 
 idem_apace(int t) {
   func(int) return int gs = (import eng_stage);
   sys_present();
-  sys_pace(t, fx_max(gs(3), 1));
+  int gs_v = gs(3);
+  int fx_max_v = fx_max(gs_v, 1);
+  sys_pace(t, fx_max_v);
 } return void;

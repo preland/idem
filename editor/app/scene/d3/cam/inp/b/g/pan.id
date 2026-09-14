@@ -21,17 +21,30 @@ ed_pan() {
   if (ed_is2d() = 1) {
     ed_pan2d();
   } else {
-    ed_pan_by(ed_prate(inp_mx() - (import ed_st)[6]), ed_prate(inp_my() - (import ed_st)[7]));
+    int inp_mx_v = inp_mx();
+    int ed_prate_v = ed_prate(inp_mx_v - (import ed_st)[6]);
+    int inp_my_v = inp_my();
+    int ed_prate_v2 = ed_prate(inp_my_v - (import ed_st)[7]);
+    ed_pan_by(ed_prate_v, ed_prate_v2);
   }
 } return void;
 
 // One pixel of drag, in millunits of world. fx_max keeps a panel that has not
 // been laid out yet from dividing by zero.
 ed_prate(int d) {
-} return int d * (import ed_st)[4] / fx_max(ed_rq(3, 2), 1);
+  int ed_st_v = (import ed_st)[4];
+  int ed_rq_v = ed_rq(3, 2);
+  int ret_i = d * ed_st_v / fx_max(ed_rq_v, 1);
+} return int ret_i;
 
 ed_pan_by(int dx, int dy) {
-  lset((import ed_st), 10, (import ed_st)[10] - ed_pcx(dx, dy));
-  lset((import ed_st), 11, (import ed_st)[11] - ed_pcy(dy));
-  lset((import ed_st), 12, (import ed_st)[12] - ed_pcz(dx, dy));
+  int ed_st_v = (import ed_st)[10];
+  int ed_pcx_v = ed_pcx(dx, dy);
+  lset((import ed_st), 10, ed_st_v - ed_pcx_v);
+  int ed_st_v2 = (import ed_st)[11];
+  int ed_pcy_v = ed_pcy(dy);
+  lset((import ed_st), 11, ed_st_v2 - ed_pcy_v);
+  int ed_st_v3 = (import ed_st)[12];
+  int ed_pcz_v = ed_pcz(dx, dy);
+  lset((import ed_st), 12, ed_st_v3 - ed_pcz_v);
 } return void;

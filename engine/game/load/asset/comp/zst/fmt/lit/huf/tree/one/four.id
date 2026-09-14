@@ -12,7 +12,8 @@
 zst_l4(int reg, int n) {
   int l1 = zst_l16(0);
   int l2 = zst_l16(2);
-  zst_l4a(reg, n, l1, l2, zst_l16(4));
+  int zst_l16_v = zst_l16(4);
+  zst_l4a(reg, n, l1, l2, zst_l16_v);
 } return void;
 
 zst_l4a(int reg, int n, int l1, int l2, int l3) {

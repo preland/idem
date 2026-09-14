@@ -11,9 +11,11 @@
 
 sim_wrap(int e) {
   if (ent_at(e, 9) / 8 % 2 = 1 && ent_at(e, 0) < ent_at(e, 10)) {
-    ent_put(e, 0, ent_at(e, 11));
+    int ent_at_v = ent_at(e, 11);
+    ent_put(e, 0, ent_at_v);
   }
-  ent_put(e, 7, ent_anim(e));
+  int ent_anim_v = ent_anim(e);
+  ent_put(e, 7, ent_anim_v);
 } return void;
 
 // first + (elapsed / ms) mod the cycle length. An entity with no anim holds

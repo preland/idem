@@ -2,7 +2,8 @@
 
 jpg_orows(int y) {
   while (y < (import jpg_st)[1]) {
-    jpg_orow(y, asset_row(y));
+    int asset_row_v = asset_row(y);
+    jpg_orow(y, asset_row_v);
     y = y + 1;
   }
 } return void;
@@ -13,7 +14,10 @@ jpg_orows(int y) {
 jpg_orow(int y, int ra) {
   int x = 0;
   while (x < (import jpg_st)[0]) {
-    jpg_opx(ra + 1 + x * 3, jpg_samp(0, x, y), jpg_samp(1, x, y), jpg_samp(2, x, y));
+    int jpg_samp_v = jpg_samp(0, x, y);
+    int jpg_samp_v2 = jpg_samp(1, x, y);
+    int jpg_samp_v3 = jpg_samp(2, x, y);
+    jpg_opx(ra + 1 + x * 3, jpg_samp_v, jpg_samp_v2, jpg_samp_v3);
     x = x + 1;
   }
 } return void;
@@ -21,7 +25,10 @@ jpg_orow(int y, int ra) {
 // YCbCr to RGB, JFIF's coefficients at x1024. The shifts floor rather than
 // truncate, which matters because Cb and Cr are signed once centred.
 jpg_opx(int da, int lu, int cb, int cr) {
-  poke8(da, fx_clamp(lu + ((1436 * (cr - 128)) >> 10), 0, 255));
-  poke8(da + 1, fx_clamp(lu - ((352 * (cb - 128) + 731 * (cr - 128)) >> 10), 0, 255));
-  poke8(da + 2, fx_clamp(lu + ((1815 * (cb - 128)) >> 10), 0, 255));
+  int fx_clamp_v = fx_clamp(lu + ((1436 * (cr - 128)) >> 10), 0, 255);
+  poke8(da, fx_clamp_v);
+  int fx_clamp_v2 = fx_clamp(lu - ((352 * (cb - 128) + 731 * (cr - 128)) >> 10), 0, 255);
+  poke8(da + 1, fx_clamp_v2);
+  int fx_clamp_v3 = fx_clamp(lu + ((1815 * (cb - 128)) >> 10), 0, 255);
+  poke8(da + 2, fx_clamp_v3);
 } return void;

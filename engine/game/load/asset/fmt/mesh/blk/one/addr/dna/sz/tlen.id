@@ -6,11 +6,13 @@
 // the struct count reads as whatever the first two structs happen to encode.
 bl_tlens(int p) {
   lset((import bl_st), 9, p + 4);
-  bl_strc(bl_al(p + 4 + (import bl_st)[5] * 2));
+  int bl_al_v = bl_al(p + 4 + (import bl_st)[5] * 2);
+  bl_strc(bl_al_v);
 } return void;
 
 bl_strc(int p) {
-  lset((import bl_st), 6, bl_le32(p + 4));
+  int bl_le32_v = bl_le32(p + 4);
+  lset((import bl_st), 6, bl_le32_v);
   lset((import bl_st), 10, p + 8);
 } return void;
 
@@ -18,4 +20,5 @@ bl_zend(int p) {
   while (asset_at(p) != 0) {
     p = p + 1;
   }
-} return int p + 1;
+  int ret_i = p + 1;
+} return int ret_i;

@@ -26,4 +26,5 @@ fse_z2() {
     zf_drop(2);
     n = n + 3;
   }
-} return int n + fse_z2b();
+  int ret_i = n + fse_z2b();
+} return int ret_i;

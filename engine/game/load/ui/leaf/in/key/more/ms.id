@@ -12,11 +12,13 @@
 // that a deliberate single tap never doubles: the range everything agrees on is
 // 400-600 ms, and X11's own default is 660.
 tin_delay() {
-} return int (import tin_base) + 20;
+  int ret_i = (import tin_base) + 20;
+} return int ret_i;
 
 // And how often it repeats after that: 30 ms, so 33 characters a second. A
 // frame at 60 fps is 16 ms, so this fires on every second frame at most -- which
 // matters, because tin_press fires a key at most once per call and a rate faster
 // than the frame would silently become the frame rate.
 tin_rate() {
-} return int (import tin_base) - 370;
+  int ret_i = (import tin_base) - 370;
+} return int ret_i;

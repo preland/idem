@@ -19,8 +19,12 @@ sf_cl_init() {
 } return void;
 
 sf_clip(int x0, int y0, int x1, int y1) {
-  m4_pair((import sf_cl), 0, 1, fx_clamp(x0, 0, (import sf_gw) - 1), fx_clamp(y0, 0, (import sf_gh) - 1));
-  m4_pair((import sf_cl), 2, 3, fx_clamp(x1, 0, (import sf_gw) - 1), fx_clamp(y1, 0, (import sf_gh) - 1));
+  int fx_clamp_v = fx_clamp(x0, 0, (import sf_gw) - 1);
+  int fx_clamp_v2 = fx_clamp(y0, 0, (import sf_gh) - 1);
+  m4_pair((import sf_cl), 0, 1, fx_clamp_v, fx_clamp_v2);
+  int fx_clamp_v3 = fx_clamp(x1, 0, (import sf_gw) - 1);
+  int fx_clamp_v4 = fx_clamp(y1, 0, (import sf_gh) - 1);
+  m4_pair((import sf_cl), 2, 3, fx_clamp_v3, fx_clamp_v4);
 } return void;
 
 sf_unclip() {

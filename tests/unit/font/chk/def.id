@@ -1,8 +1,13 @@
 // The face the engine ships with, before anything is loaded over it.
 
 t_def() {
-  print("built-in metrics exp w 8 h 16 bits 8 glyphs 95 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen());
-  print("built-in range exp first 32 last 126 = " + (import txt_first) + " " + txt_last());
+  int txt_cell_v = txt_cell();
+  int txt_cellh_v = txt_cellh();
+  int txt_bit_v = txt_bit();
+  int txt_facen_v = txt_facen();
+  print("built-in metrics exp w 8 h 16 bits 8 glyphs 95 = " + txt_cell_v + " " + txt_cellh_v + " " + txt_bit_v + " " + txt_facen_v);
+  int txt_last_v = txt_last();
+  print("built-in range exp first 32 last 126 = " + (import txt_first) + " " + txt_last_v);
   t_at();
 } return void;
 
@@ -13,8 +18,13 @@ t_def() {
 // Out of range draws a space rather than reading past the table. 9 is Tab and
 // 300 is past every code point; both answer the offset of code 32.
 t_at() {
-  print("txt_glyph_at(32, 65, 126) exp 0 528 1504 = " + txt_glyph_at(32) + " " + txt_glyph_at(65) + " " + txt_glyph_at(126));
-  print("txt_glyph_at(9, 300) both draw a space, exp 0 0 = " + txt_glyph_at(9) + " " + txt_glyph_at(300));
+  int txt_glyph_at_v = txt_glyph_at(32);
+  int txt_glyph_at_v2 = txt_glyph_at(65);
+  int txt_glyph_at_v3 = txt_glyph_at(126);
+  print("txt_glyph_at(32, 65, 126) exp 0 528 1504 = " + txt_glyph_at_v + " " + txt_glyph_at_v2 + " " + txt_glyph_at_v3);
+  int txt_glyph_at_v4 = txt_glyph_at(9);
+  int txt_glyph_at_v5 = txt_glyph_at(300);
+  print("txt_glyph_at(9, 300) both draw a space, exp 0 0 = " + txt_glyph_at_v4 + " " + txt_glyph_at_v5);
   t_defr();
 } return void;
 
@@ -22,7 +32,15 @@ t_at() {
 // 11111110 -- seven columns of the eight, which is what makes the VGA face's
 // crossbar reach the full width of the letter.
 t_defr() {
-  print("built-in 'A' rows 2,3,7 exp 16 56 254 = " + (import txt_glyphs)[txt_glyph_at(65) + 2] + " " + (import txt_glyphs)[txt_glyph_at(65) + 3] + " " + (import txt_glyphs)[txt_glyph_at(65) + 7]);
-  print("built-in table, FNV-1a of all 1520 rows, exp 1584669841 = " + t_hash(0, txt_facen() * txt_cellh(), 2166136261));
+  int txt_glyph_at_v = txt_glyph_at(65);
+  int txt_glyphs_v = (import txt_glyphs)[txt_glyph_at_v + 2];
+  int txt_glyph_at_v2 = txt_glyph_at(65);
+  int txt_glyphs_v2 = (import txt_glyphs)[txt_glyph_at_v2 + 3];
+  int txt_glyph_at_v3 = txt_glyph_at(65);
+  print("built-in 'A' rows 2,3,7 exp 16 56 254 = " + txt_glyphs_v + " " + txt_glyphs_v2 + " " + (import txt_glyphs)[txt_glyph_at_v3 + 7]);
+  int txt_facen_v = txt_facen();
+  int txt_cellh_v = txt_cellh();
+  word t_hash_v = t_hash(0, txt_facen_v * txt_cellh_v, 2166136261);
+  print("built-in table, FNV-1a of all 1520 rows, exp 1584669841 = " + t_hash_v);
   t_psf2();
 } return void;

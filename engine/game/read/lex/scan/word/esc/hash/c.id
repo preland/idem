@@ -16,7 +16,10 @@ lex_plen(string src, int i) {
 // 61 is '=', 60 '<', 62 '>', 33 '!', 38 '&', 124 '|'. Two shapes cover all
 // eight: something followed by '=', or a character doubled.
 lex_p2(string src, int i) {
-} return int lex_op2(charat(src, i), charat(src, i + 1));
+  int charat_v = charat(src, i);
+  int charat_v2 = charat(src, i + 1);
+  int ret_i = lex_op2(charat_v, charat_v2);
+} return int ret_i;
 
 lex_op2(int c, int nxt) {
   int ok = 0;

@@ -41,7 +41,8 @@ zst_init() {
 zst_run(int sa, int slen, int da, int cap) {
   zst_reset(sa, slen, da, cap);
   zst_frames();
-} return int zst_out();
+  int ret_i = zst_out();
+} return int ret_i;
 
 zst_reset(int sa, int slen, int da, int cap) {
   m4_pair((import zst_st), 0, 1, sa, 0);

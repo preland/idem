@@ -22,7 +22,9 @@ par_dvar(int[] pos, string name, int ln) {
 
 par_variant(int[] pos, string name) {
   par_next(pos);
-} return int par_variant2(pos, name, par_text(pos));
+  string par_text_v = par_text(pos);
+  int ret_i = par_variant2(pos, name, par_text_v);
+} return int ret_i;
 
 // `bn` and not `base`: `base` is already an int elsewhere in the program, and a
 // name carries one type across the whole of it.
@@ -31,6 +33,8 @@ par_variant(int[] pos, string name) {
 // ast_new_kids takes one text and a list, and a variant of a variant would want
 // the same shape anyway.
 par_variant2(int[] pos, string name, string bn) {
-  int[] ks = [ast_new_k(ast_k_ident(), bn)];
+  int ast_k_ident_v = ast_k_ident();
+  int[] ks = [ast_new_k(ast_k_ident_v, bn)];
   par_next(pos);
-} return int par_vbody(pos, name, ks);
+  int ret_i = par_vbody(pos, name, ks);
+} return int ret_i;

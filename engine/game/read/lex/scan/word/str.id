@@ -2,8 +2,11 @@
 // value, not the spelling. 34 is '"', 92 is a backslash.
 lex_string(string src, int i) {
   int e = lex_strend(src, i + 1);
-  lex_push(lex_k_string(), lex_unesc(src, i + 1, e), 0, 0);
-} return int e + 1;
+  int lex_k_string_v = lex_k_string();
+  string lex_unesc_v = lex_unesc(src, i + 1, e);
+  lex_push(lex_k_string_v, lex_unesc_v, 0, 0);
+  int ret_i = e + 1;
+} return int ret_i;
 
 lex_strend(string src, int i) {
   while (charat(src, i) != 34 && charat(src, i) != -1) {

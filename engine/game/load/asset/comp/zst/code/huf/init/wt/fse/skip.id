@@ -5,13 +5,16 @@
 // how many bytes the description took, and that is where the bitstream begins.
 
 huf_wskip() {
-} return int zf_used();
+  int ret_i = zf_used();
+} return int ret_i;
 
 huf_ab_init() {
   export int[] huf_ab = [0, 0];
 } return void;
 
 huf_wstart() {
-  lset((import huf_ab), 0, fse_dstart(3));
-  lset((import huf_ab), 1, fse_dstart(3));
+  int fse_dstart_v = fse_dstart(3);
+  lset((import huf_ab), 0, fse_dstart_v);
+  int fse_dstart_v2 = fse_dstart(3);
+  lset((import huf_ab), 1, fse_dstart_v2);
 } return void;

@@ -13,7 +13,8 @@ spr_fill(string src, int n, int m) {
 // one expression may evaluate in either order, which here would transpose red and
 // blue on every pixel -- a bug that looks like an artistic choice.
 spr_one(string src, int n, int m) {
-  int cr = spr_scale(imp_int(src), m);
+  int imp_int_v = imp_int(src);
+  int cr = spr_scale(imp_int_v, m);
   if (n = 1) {
     push((import spr_al), cr);
   } else {
@@ -22,7 +23,9 @@ spr_one(string src, int n, int m) {
 } return void;
 
 spr_rgb(string src, int cr, int m) {
-  int cg = spr_scale(imp_int(src), m);
-  int cb = spr_scale(imp_int(src), m);
+  int imp_int_v = imp_int(src);
+  int cg = spr_scale(imp_int_v, m);
+  int imp_int_v2 = imp_int(src);
+  int cb = spr_scale(imp_int_v2, m);
   push((import spr_px), cr * 65536 + cg * 256 + cb);
 } return void;

@@ -16,7 +16,10 @@ scr_ex(int nd, int e) {
 scr_ex1(int nd, int e) {
   int fin = 0;
   if (ast_kd(nd) = ast_k_assign()) {
-    scr_asg(ast_ia(nd), scr_ev(ast_ib(nd), e), e);
+    int ast_ia_v = ast_ia(nd);
+    int ast_ib_v = ast_ib(nd);
+    int scr_ev_v = scr_ev(ast_ib_v, e);
+    scr_asg(ast_ia_v, scr_ev_v, e);
   } else {
     fin = scr_ex2(nd, e);
   }

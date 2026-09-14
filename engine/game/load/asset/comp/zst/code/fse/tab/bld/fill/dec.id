@@ -9,10 +9,13 @@
 // bits come from the BACKWARD reader, unlike the table description above.
 
 fse_dstart(int r) {
-} return int zb_bits((import fse_rl)[r * 2 + 1]);
+  int ret_i = zb_bits((import fse_rl)[r * 2 + 1]);
+} return int ret_i;
 
 fse_dsym(int r, int fs) {
-} return int (import fse_sy)[(import fse_rl)[r * 2] + fs];
+  int ret_i = (import fse_sy)[(import fse_rl)[r * 2] + fs];
+} return int ret_i;
 
 fse_dnext(int r, int fs) {
-} return int (import fse_bs)[(import fse_rl)[r * 2] + fs] + zb_bits((import fse_nb)[(import fse_rl)[r * 2] + fs]);
+  int ret_i = (import fse_bs)[(import fse_rl)[r * 2] + fs] + zb_bits((import fse_nb)[(import fse_rl)[r * 2] + fs]);
+} return int ret_i;

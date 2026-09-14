@@ -40,10 +40,13 @@ jpg_init() {
 // PNG's filter byte occupies, kept so one row-addressing rule serves both).
 jpg_load(string path) {
   lst_set_all((import jpg_st), 20, 0);
-  lset((import jpg_st), 8, jpg_open(path));
-} return int (import jpg_st)[8];
+  int jpg_open_v = jpg_open(path);
+  lset((import jpg_st), 8, jpg_open_v);
+  int ret_i = (import jpg_st)[8];
+} return int ret_i;
 
 jpg_open(string path) {
   int n = asset_slurp(path);
   int ok = jpg_soi(n);
-} return int jpg_walk(ok);
+  int ret_i = jpg_walk(ok);
+} return int ret_i;

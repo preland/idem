@@ -11,4 +11,5 @@
 // entity's cell, read from the scene it does not exist.
 
 t_src() {
-} return string "game t {" + chr(10) + "  display (100, 100)" + chr(10) + "  fps 50" + chr(10) + "  persist { best = 7 }" + chr(10) + "  keys { space = press }" + chr(10) + "}" + chr(10) + t_src2();
+  string ret_s = "game t {" + chr(10) + "  display (100, 100)" + chr(10) + "  fps 50" + chr(10) + "  persist { best = 7 }" + chr(10) + "  keys { space = press }" + chr(10) + "}" + chr(10) + t_src2();
+} return string ret_s;

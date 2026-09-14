@@ -4,7 +4,11 @@ png_gather(int p, int n) {
   int i = 0;
   png_first(p);
   while (i < n) {
-    poke8((import asset_io)[0] + (import png_st)[5] + (import png_st)[6] + i, asset_at(p + i));
+    int asset_io_v = (import asset_io)[0];
+    int png_st_v = (import png_st)[5];
+    int png_st_v2 = (import png_st)[6];
+    int asset_at_v = asset_at(p + i);
+    poke8(asset_io_v + png_st_v + png_st_v2 + i, asset_at_v);
     i = i + 1;
   }
 } return void;

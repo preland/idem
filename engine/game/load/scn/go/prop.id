@@ -7,7 +7,8 @@
 
 scn_prop(int nd) {
   if (ast_tx(nd) = "display") {
-    scn_disp(scn_arg(nd, 0));
+    int scn_arg_v = scn_arg(nd, 0);
+    scn_disp(scn_arg_v);
   } else {
     scn_prop2(nd);
   }
@@ -15,7 +16,9 @@ scn_prop(int nd) {
 
 scn_prop2(int nd) {
   if (ast_tx(nd) = "fps") {
-    lset((import scn_st), 2, fx_max(scn_num(nd, 0), 1));
+    int scn_num_v = scn_num(nd, 0);
+    int fx_max_v = fx_max(scn_num_v, 1);
+    lset((import scn_st), 2, fx_max_v);
   } else {
     scn_prop3(nd);
   }
@@ -24,6 +27,10 @@ scn_prop2(int nd) {
 // A tuple node's two numbers are its first two children.
 scn_disp(int t) {
   if (t != 0 && len(ast_ks(t)) >= 2) {
-    m4_pair((import scn_st), 0, 1, ast_ia(ast_ks(t)[0]), ast_ia(ast_ks(t)[1]));
+    int[] ast_ks_v = ast_ks(t);
+    int ast_ia_v = ast_ia(ast_ks_v[0]);
+    int[] ast_ks_v2 = ast_ks(t);
+    int ast_ia_v2 = ast_ia(ast_ks_v2[1]);
+    m4_pair((import scn_st), 0, 1, ast_ia_v, ast_ia_v2);
   }
 } return void;

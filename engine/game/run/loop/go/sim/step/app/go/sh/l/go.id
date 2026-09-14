@@ -7,7 +7,9 @@ idem_ago(int argc, string[] argv) {
 
 idem_ago2(int argc, string[] argv) {
   if (argc > 1) {
-    idem_ashot(fx_max(shot_n(argc, argv), 1));
+    int shot_n_v = shot_n(argc, argv);
+    int fx_max_v = fx_max(shot_n_v, 1);
+    idem_ashot(fx_max_v);
   } else {
     idem_aloop(1);
   }
@@ -21,5 +23,6 @@ idem_ago2(int argc, string[] argv) {
 idem_app2(string[] chunks, int argc, string[] argv) {
   idem_init();
   idem_pre(argc, argv);
-  idem_alay(run_join(chunks, 0, ""));
+  string run_join_v = run_join(chunks, 0, "");
+  idem_alay(run_join_v);
 } return void;

@@ -5,7 +5,8 @@
 // 10000 * a few thousand pixels, comfortably inside an int.
 
 ui_cent(int v, int n) {
-} return int v * n / 10000;
+  int ret_i = v * n / 10000;
+} return int ret_i;
 
 // A `?@ref` gate: the item renders when the variable the ref names is non-zero.
 //
@@ -26,5 +27,5 @@ ui_cent(int v, int n) {
 // that should not be there and is looks like a broken game.
 ui_vis(int nd) {
   int ok = 1;
-  if (ast_ic(nd) != 0) { ok = ui_val(ast_ic(nd)) != 0; }
+  if (ast_ic(nd) != 0) { int ast_ic_v = ast_ic(nd); ok = ui_val(ast_ic_v) != 0; }
 } return int ok;

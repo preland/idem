@@ -15,14 +15,18 @@
 par_item(int[] pos) {
   string name = par_text(pos);
   par_next(pos);
-} return int par_item2(pos, name);
+  int ret_i = par_item2(pos, name);
+} return int ret_i;
 
 par_item2(int[] pos, string name) {
   int a = par_uargs(pos);
   int b = par_dims(pos);
-} return int par_item3(pos, name, a, b);
+  int ret_i = par_item3(pos, name, a, b);
+} return int ret_i;
 
 par_item3(int[] pos, string name, int a, int b) {
   int c = par_uvis(pos);
   int[] kids = par_ukids(pos);
-} return int ast_new(ast_k_item(), name, a, b, c, kids);
+  int ast_k_item_v = ast_k_item();
+  int ret_i = ast_new(ast_k_item_v, name, a, b, c, kids);
+} return int ret_i;

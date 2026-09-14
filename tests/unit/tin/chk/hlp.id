@@ -20,7 +20,8 @@ t_up(int key, int t) {
 // from a frozen clock would fire on the wrong frame and this would not notice.
 t_type(string s, int i, int t) {
   while (charat(s, i) >= 0) {
-    t_tap(charat(s, i), t + i);
+    int charat_v = charat(s, i);
+    t_tap(charat_v, t + i);
     i = i + 1;
   }
 } return void;

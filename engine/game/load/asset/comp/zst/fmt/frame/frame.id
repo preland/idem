@@ -26,6 +26,7 @@ zst_reset3() {
 
 zst_frames() {
   while ((import zst_st)[1] + 4 <= (import zst_st)[2] && (import zst_st)[6] = 0) {
-    zst_frame(zst_le(4));
+    int zst_le_v = zst_le(4);
+    zst_frame(zst_le_v);
   }
 } return void;

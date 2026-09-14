@@ -6,10 +6,13 @@
 
 scr_if(int nd, int e) {
   int fin = 0;
-  if (scr_ev(ast_ia(nd), e) != 0) {
-    fin = scr_ex(ast_ib(nd), e);
+  int ast_ia_v = ast_ia(nd);
+  if (scr_ev(ast_ia_v, e) != 0) {
+    int ast_ib_v = ast_ib(nd);
+    fin = scr_ex(ast_ib_v, e);
   } else {
-    fin = scr_else(ast_ic(nd), e);
+    int ast_ic_v = ast_ic(nd);
+    fin = scr_else(ast_ic_v, e);
   }
 } return int fin;
 
@@ -26,7 +29,8 @@ scr_else(int nd, int e) {
 scr_while(int nd, int e, int n) {
   int fin = 0;
   while (fin = 0 && n < 10000 && scr_ev(ast_ia(nd), e) != 0) {
-    fin = scr_ex(ast_ib(nd), e);
+    int ast_ib_v = ast_ib(nd);
+    fin = scr_ex(ast_ib_v, e);
     n = n + 1;
   }
 } return int fin;

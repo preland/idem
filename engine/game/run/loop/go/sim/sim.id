@@ -16,8 +16,10 @@
 // what makes a script's effect predictable.
 
 sim_step() {
-  sim_ents(0, 1000 / fx_max((import scn_st)[2], 1));
-  scr_frame(1000 / fx_max((import scn_st)[2], 1));
+  int fx_max_v = fx_max((import scn_st)[2], 1);
+  sim_ents(0, 1000 / fx_max_v);
+  int fx_max_v2 = fx_max((import scn_st)[2], 1);
+  scr_frame(1000 / fx_max_v2);
 } return void;
 
 sim_ents(int e, int dt) {

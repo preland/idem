@@ -8,10 +8,14 @@ par_nchk(int[] pos) {
 // fractional digits than the slot holds is an error, never a silent rounding.
 par_snum(int[] pos, int sc) {
   int sg = par_sign(pos);
-  int v = par_scale(par_val(pos), par_frac(pos), sc, pos);
+  int par_val_v = par_val(pos);
+  int par_frac_v = par_frac(pos);
+  int v = par_scale(par_val_v, par_frac_v, sc, pos);
   par_nchk(pos);
-} return int ast_new_num(v * sg, 0);
+  int ret_i = ast_new_num(v * sg, 0);
+} return int ret_i;
 
 par_scale(int v, int fr, int sc, int[] pos) {
   par_fchk(pos, fr, sc);
-} return int v * fx_pow(10, sc - fr);
+  int ret_i = v * fx_pow(10, sc - fr);
+} return int ret_i;

@@ -19,7 +19,8 @@
 tin_step(int t) {
   lset((import tin_st), 4, 0);
   tin_scan(0, t);
-} return int (import tin_st)[4];
+  int ret_i = (import tin_st)[4];
+} return int ret_i;
 
 // Every code, not just the printable ones: the arrows, Home, End and Delete are
 // all above 255 (inp/inp.id), and asking inp_hit about a code no keyboard has is
@@ -37,8 +38,10 @@ tin_scan(int key, int t) {
 // as a burst.
 tin_press(int key, int t) {
   if (inp_hit(key) = 1) {
-    tin_fire(key, t, t + tin_delay());
+    int tin_delay_v = tin_delay();
+    tin_fire(key, t, t + tin_delay_v);
   } else if (key = (import tin_st)[1] && inp_down(key) = 1 && t >= (import tin_st)[2]) {
-    tin_fire(key, t, t + tin_rate());
+    int tin_rate_v = tin_rate();
+    tin_fire(key, t, t + tin_rate_v);
   }
 } return void;

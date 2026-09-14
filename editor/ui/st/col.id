@@ -18,4 +18,6 @@ ed_col3(int c, int d, int e) {
 // Clamped rather than trusted: a colour index is written by hand at every call
 // site, and an out-of-range list read aborts the process.
 ed_col(int i) {
-} return int (import ed_pal)[fx_clamp(i, 0, len((import ed_pal)) - 1)];
+  int len_v = len((import ed_pal));
+  int ret_i = (import ed_pal)[fx_clamp(i, 0, len_v - 1)];
+} return int ret_i;

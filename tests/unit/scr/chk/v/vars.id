@@ -5,8 +5,13 @@
 // from an entity, and a name an entity declared is not visible from the scene.
 
 t_vars() {
-  print("game block: best exp 7 = " + scr_get(0 - 1, "best"));
-  print("scene vars n/ticks/taps/hits exp 0 0 0 0 = " + scr_get(0 - 1, "n") + " " + scr_get(0 - 1, "ticks") + " " + scr_get(0 - 1, "taps") + " " + scr_get(0 - 1, "hits"));
+  int scr_get_v = scr_get(0 - 1, "best");
+  print("game block: best exp 7 = " + scr_get_v);
+  int scr_get_v2 = scr_get(0 - 1, "n");
+  int scr_get_v3 = scr_get(0 - 1, "ticks");
+  int scr_get_v4 = scr_get(0 - 1, "taps");
+  int scr_get_v5 = scr_get(0 - 1, "hits");
+  print("scene vars n/ticks/taps/hits exp 0 0 0 0 = " + scr_get_v2 + " " + scr_get_v3 + " " + scr_get_v4 + " " + scr_get_v5);
   t_vars2();
 } return void;
 
@@ -15,8 +20,12 @@ t_vars() {
 // is the thing being checked -- a scene has a beginning and something has to
 // happen at it.
 t_vars2() {
-  print("entities exp 3, bird tagged exp 1 = " + ent_n() + " " + (ent_at(0, 20) != 0));
-  print("own from the bird exp 5, from the scene exp 0 = " + scr_get(0, "own") + " " + scr_get(0 - 1, "own"));
+  int ent_n_v = ent_n();
+  int ent_at_v = ent_at(0, 20);
+  print("entities exp 3, bird tagged exp 1 = " + ent_n_v + " " + (ent_at_v != 0));
+  int scr_get_v = scr_get(0, "own");
+  int scr_get_v2 = scr_get(0 - 1, "own");
+  print("own from the bird exp 5, from the scene exp 0 = " + scr_get_v + " " + scr_get_v2);
   t_upd();
 } return void;
 
@@ -24,6 +33,8 @@ t_vars2() {
 // which is `id`'s rule and every other language's.
 t_upd() {
   scr_upd(0);
-  print("after one update: n exp 14, own exp 6 = " + scr_get(0 - 1, "n") + " " + scr_get(0, "own"));
+  int scr_get_v = scr_get(0 - 1, "n");
+  int scr_get_v2 = scr_get(0, "own");
+  print("after one update: n exp 14, own exp 6 = " + scr_get_v + " " + scr_get_v2);
   t_hit();
 } return void;

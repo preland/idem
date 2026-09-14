@@ -6,4 +6,5 @@
 // run of DATA blocks and nothing else (blk/one/addr/addr.id).
 bl_mone(int i) {
   bl_scope(i);
-} return int bl_mesh3((import bl_bp)[i]);
+  int ret_i = bl_mesh3((import bl_bp)[i]);
+} return int ret_i;

@@ -12,7 +12,11 @@
 tin_ins(int key) {
   string s = tin_text();
   int i = (import tin_st)[0];
-  tin_put(str_slice(s, 0, i) + chr(key) + str_slice(s, i, len(s) - i), i + 1);
+  string str_slice_v = str_slice(s, 0, i);
+  string chr_v = chr(key);
+  int len_v = len(s);
+  string str_slice_v2 = str_slice(s, i, len_v - i);
+  tin_put(str_slice_v + chr_v + str_slice_v2, i + 1);
 } return void;
 
 // Delete the character at i, if there is one. Backspace and Delete are the same
@@ -21,7 +25,10 @@ tin_ins(int key) {
 tin_del(int i) {
   string s = tin_text();
   if (i >= 0 && i < len(s)) {
-    tin_put(str_slice(s, 0, i) + str_slice(s, i + 1, len(s) - i - 1), i);
+    string str_slice_v = str_slice(s, 0, i);
+    int len_v = len(s);
+    string str_slice_v2 = str_slice(s, i + 1, len_v - i - 1);
+    tin_put(str_slice_v + str_slice_v2, i);
   }
 } return void;
 
@@ -31,5 +38,7 @@ tin_del(int i) {
 // one without clamping the other against it.
 tin_put(string s, int i) {
   sset((import tin_s), 0, s);
-  lset((import tin_st), 0, fx_clamp(i, 0, len(s)));
+  int len_v = len(s);
+  int fx_clamp_v = fx_clamp(i, 0, len_v);
+  lset((import tin_st), 0, fx_clamp_v);
 } return void;

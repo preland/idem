@@ -8,7 +8,8 @@ sf_init2(int w, int h) {
 // A negative count pushes nothing, which is precisely the "already big enough"
 // case, so no branch is needed to express it.
 sf_grow(int n) {
-  lst_fill((import sf_fb), n - len((import sf_fb)), 0);
+  int len_v = len((import sf_fb));
+  lst_fill((import sf_fb), n - len_v, 0);
 } return void;
 
 sf_clear(int c) {

@@ -8,7 +8,8 @@ t_more() {
 } return void;
 
 t_one(string msg, string path, int w, int h) {
-  print(msg + ": load exp 1 = " + jpg_load(path));
+  int jpg_load_v = jpg_load(path);
+  print(msg + ": load exp 1 = " + jpg_load_v);
   print("  size exp " + w + " " + h + " = " + (import png_st)[0] + " " + (import png_st)[1] + "  channels exp 3 = " + (import png_st)[4]);
   t_px(w, h);
 } return void;

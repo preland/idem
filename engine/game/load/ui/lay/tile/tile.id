@@ -11,14 +11,18 @@
 // truncation -- and loses it consistently, so the tiles abut with no seam.
 
 ui_tile(int nd, int x, int y, int w, int h) {
-  ui_kids(nd, x, y, w, h, ui_axis(ui_base(ast_tx(nd))));
+  string ast_tx_v = ast_tx(nd);
+  string ui_base_v = ui_base(ast_tx_v);
+  int ui_axis_v = ui_axis(ui_base_v);
+  ui_kids(nd, x, y, w, h, ui_axis_v);
 } return void;
 
 ui_kids(int nd, int x, int y, int w, int h, int k) {
   int i = 0;
   int p = 0;
   while (i < len(ast_ks(nd))) {
-    p = p + ui_kid(ast_ks(nd)[i], x, y, w, h, k, p);
+    int[] ast_ks_v = ast_ks(nd);
+    p = p + ui_kid(ast_ks_v[i], x, y, w, h, k, p);
     i = i + 1;
   }
 } return void;

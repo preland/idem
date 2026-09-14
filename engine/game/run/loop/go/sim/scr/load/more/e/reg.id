@@ -22,6 +22,7 @@ scr_tfind(string name, int i) {
 } return int at;
 
 scr_tadd(string name) {
-  int i = fx_min(len((import scr_tn)), 30);
+  int len_v = len((import scr_tn));
+  int i = fx_min(len_v, 30);
   push((import scr_tn), name);
 } return int i;

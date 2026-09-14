@@ -12,7 +12,8 @@
 
 bl_open2() {
   bl_unz();
-  lset((import bl_st), 11, bl_head());
+  int bl_head_v = bl_head();
+  lset((import bl_st), 11, bl_head_v);
 } return void;
 
 bl_unz() {

@@ -14,7 +14,9 @@ huf_fill() {
   int w = 1;
   int p = 0;
   while (w < (import huf_st)[0] + 1) {
-    p = huf_fill1(w, p, (import huf_rk)[0] + huf_first(w));
+    int huf_rk_v = (import huf_rk)[0];
+    int huf_first_v = huf_first(w);
+    p = huf_fill1(w, p, huf_rk_v + huf_first_v);
     w = w + 1;
   }
 } return void;

@@ -8,13 +8,21 @@ ed_tool(int x, int k, string s) {
 
 ed_tool_bg(int x, int w, int k) {
   if ((import ed_st)[9] = k) {
-    sf_rect(x, ed_hdr() + 2, w, ed_hdr(), ed_col(6));
+    int ed_hdr_v = ed_hdr();
+    int ed_hdr_v2 = ed_hdr();
+    int ed_col_v = ed_col(6);
+    sf_rect(x, ed_hdr_v + 2, w, ed_hdr_v2, ed_col_v);
   }
 } return void;
 
 ed_tool_hit(int x, int w, int k, string s) {
-  if (ed_in(x, ed_hdr() + 2, w, ed_hdr()) * inp_mhit(1) = 1) {
+  int ed_hdr_v = ed_hdr();
+  int ed_hdr_v2 = ed_hdr();
+  if (ed_in(x, ed_hdr_v + 2, w, ed_hdr_v2) * inp_mhit(1) = 1) {
     lset((import ed_st), 9, k);
   }
-  txt_draw(s, x + 5 * txt_ui(), ed_hdr() + 4, ed_col(4));
+  int txt_ui_v = txt_ui();
+  int ed_hdr_v3 = ed_hdr();
+  int ed_col_v = ed_col(4);
+  txt_draw(s, x + 5 * txt_ui_v, ed_hdr_v3 + 4, ed_col_v);
 } return void;

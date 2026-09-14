@@ -3,7 +3,8 @@
 // know leaves slot 24 at 0 and the entity draws nothing, which is the same thing
 // a missing sprite does.
 scn_efill9(int e, int nd) {
-  scn_eshape(e, scn_mem(nd, "shape", 0));
+  int scn_mem_v = scn_mem(nd, "shape", 0);
+  scn_eshape(e, scn_mem_v);
   scr_evars(e, nd, 0);
 } return void;
 

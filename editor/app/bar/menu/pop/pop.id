@@ -16,8 +16,22 @@ ed_menu_pop() {
 } return void;
 
 ed_pop_at(int k) {
-  sf_rect(ed_mx(k) - 4 * txt_ui(), ed_hdr(), ed_pop_w(k, 0, 0), ed_mn(k) * ed_rowh() + 2, ed_col(2));
-  d2_frame(ed_mx(k) - 4 * txt_ui(), ed_hdr(), ed_pop_w(k, 0, 0), ed_mn(k) * ed_rowh() + 2, ed_col(3));
+  int ed_mx_v = ed_mx(k);
+  int txt_ui_v = txt_ui();
+  int ed_hdr_v = ed_hdr();
+  int ed_pop_w_v = ed_pop_w(k, 0, 0);
+  int ed_mn_v = ed_mn(k);
+  int ed_rowh_v = ed_rowh();
+  int ed_col_v = ed_col(2);
+  sf_rect(ed_mx_v - 4 * txt_ui_v, ed_hdr_v, ed_pop_w_v, ed_mn_v * ed_rowh_v + 2, ed_col_v);
+  int ed_mx_v2 = ed_mx(k);
+  int txt_ui_v2 = txt_ui();
+  int ed_hdr_v2 = ed_hdr();
+  int ed_pop_w_v2 = ed_pop_w(k, 0, 0);
+  int ed_mn_v2 = ed_mn(k);
+  int ed_rowh_v2 = ed_rowh();
+  int ed_col_v2 = ed_col(3);
+  d2_frame(ed_mx_v2 - 4 * txt_ui_v2, ed_hdr_v2, ed_pop_w_v2, ed_mn_v2 * ed_rowh_v2 + 2, ed_col_v2);
   ed_pop_rows(k, 0);
 } return void;
 
@@ -26,7 +40,10 @@ ed_pop_at(int k) {
 // frame, and a stored one would go stale when the text scale changed.
 ed_pop_w(int k, int i, int w) {
   while (i < ed_mn(k)) {
-    w = fx_max(w, txt_width(ed_mitem(k, i)));
+    string ed_mitem_v = ed_mitem(k, i);
+    int txt_width_v = txt_width(ed_mitem_v);
+    w = fx_max(w, txt_width_v);
     i = i + 1;
   }
-} return int w + 16 * txt_ui();
+  int ret_i = w + 16 * txt_ui();
+} return int ret_i;

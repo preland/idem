@@ -9,7 +9,8 @@
 spr_scale(int v, int m) {
   int n = v;
   if (m != 255) {
-    n = fx_div(v, fx_max(m, 1), 255);
+    int fx_max_v = fx_max(m, 1);
+    n = fx_div(v, fx_max_v, 255);
   }
 } return int n;
 

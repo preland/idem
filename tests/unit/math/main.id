@@ -16,13 +16,24 @@ main(int argc, string[] argv) {
 } return int 0;
 
 t_fxbase() {
-  print("fx_abs(-7,7,0) exp 7 7 0 = " + fx_abs(0 - 7) + " " + fx_abs(7) + " " + fx_abs(0));
-  print("fx_min(-3,5) exp -3 | fx_max(-3,5) exp 5 = " + fx_min(0 - 3, 5) + " " + fx_max(0 - 3, 5));
+  int fx_abs_v = fx_abs(0 - 7);
+  int fx_abs_v2 = fx_abs(7);
+  int fx_abs_v3 = fx_abs(0);
+  print("fx_abs(-7,7,0) exp 7 7 0 = " + fx_abs_v + " " + fx_abs_v2 + " " + fx_abs_v3);
+  int fx_min_v = fx_min(0 - 3, 5);
+  int fx_max_v = fx_max(0 - 3, 5);
+  print("fx_min(-3,5) exp -3 | fx_max(-3,5) exp 5 = " + fx_min_v + " " + fx_max_v);
   t_fxlim();
 } return void;
 
 t_fxlim() {
-  print("fx_clamp(5,-5,99 into 0..10) exp 5 0 10 = " + fx_clamp(5, 0, 10) + " " + fx_clamp(0 - 5, 0, 10) + " " + fx_clamp(99, 0, 10));
-  print("fx_sign(-9,0,9) exp -1 0 1 = " + fx_sign(0 - 9) + " " + fx_sign(0) + " " + fx_sign(9));
+  int fx_clamp_v = fx_clamp(5, 0, 10);
+  int fx_clamp_v2 = fx_clamp(0 - 5, 0, 10);
+  int fx_clamp_v3 = fx_clamp(99, 0, 10);
+  print("fx_clamp(5,-5,99 into 0..10) exp 5 0 10 = " + fx_clamp_v + " " + fx_clamp_v2 + " " + fx_clamp_v3);
+  int fx_sign_v = fx_sign(0 - 9);
+  int fx_sign_v2 = fx_sign(0);
+  int fx_sign_v3 = fx_sign(9);
+  print("fx_sign(-9,0,9) exp -1 0 1 = " + fx_sign_v + " " + fx_sign_v2 + " " + fx_sign_v3);
   t_fxscale();
 } return void;

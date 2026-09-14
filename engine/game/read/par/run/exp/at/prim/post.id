@@ -11,9 +11,12 @@ par_post_f(int[] pos, int base) {
   par_next(pos);
   string name = par_text(pos);
   par_next(pos);
-} return int ast_new_a(ast_k_field(), name, base);
+  int ast_k_field_v = ast_k_field();
+  int ret_i = ast_new_a(ast_k_field_v, name, base);
+} return int ret_i;
 
 par_prim(int[] pos) {
   int[] out = [0];
   par_prim2(pos, out);
-} return int out[0];
+  int ret_i = out[0];
+} return int ret_i;

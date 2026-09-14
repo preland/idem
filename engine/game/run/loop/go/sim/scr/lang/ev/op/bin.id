@@ -19,7 +19,13 @@
 // comparison and nothing else.
 
 scr_bin(int nd, int e) {
-} return int scr_op(ast_tx(nd), scr_ev(ast_ia(nd), e), scr_ev(ast_ib(nd), e));
+  string ast_tx_v = ast_tx(nd);
+  int ast_ia_v = ast_ia(nd);
+  int scr_ev_v = scr_ev(ast_ia_v, e);
+  int ast_ib_v = ast_ib(nd);
+  int scr_ev_v2 = scr_ev(ast_ib_v, e);
+  int ret_i = scr_op(ast_tx_v, scr_ev_v, scr_ev_v2);
+} return int ret_i;
 
 scr_op(string op, int a, int b) {
   int v = scr_op2(op, a, b);

@@ -14,7 +14,9 @@ scn_one4(int nd) {
 // interpreter's, and both are read here because the manifest is walked once.
 scn_prop3(int nd) {
   if (ast_tx(nd) = "scale") {
-    lset((import scn_st), 3, fx_clamp(scn_num(nd, 0), 1, 8));
+    int scn_num_v = scn_num(nd, 0);
+    int fx_clamp_v = fx_clamp(scn_num_v, 1, 8);
+    lset((import scn_st), 3, fx_clamp_v);
   } else {
     scn_prop4(nd);
   }

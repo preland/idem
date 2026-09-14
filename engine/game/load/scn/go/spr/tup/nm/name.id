@@ -9,5 +9,6 @@
 
 scn_ifname(int nd, string name, int i) {
   int t = 0;
-  if (ast_tx(scn_arg(nd, i)) = name) { t = scn_arg(nd, i); }
+  int scn_arg_v = scn_arg(nd, i);
+  if (ast_tx(scn_arg_v) = name) { t = scn_arg(nd, i); }
 } return int t;

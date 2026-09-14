@@ -16,7 +16,10 @@ idem_aopen() {
 
 idem_aopen1(func() return void gi, func(int) return int gs) {
   gi();
-  sys_open(gs(0), gs(1), gs(2), "idem");
+  int gs_v = gs(0);
+  int gs_v2 = gs(1);
+  int gs_v3 = gs(2);
+  sys_open(gs_v, gs_v2, gs_v3, "idem");
   idem_aopen2();
 } return void;
 

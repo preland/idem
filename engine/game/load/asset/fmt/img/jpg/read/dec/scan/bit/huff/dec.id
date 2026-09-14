@@ -8,9 +8,12 @@ jpg_dwalk(int t, int[] st) {
 } return void;
 
 jpg_dstep(int t, int[] st) {
-  lset(st, 0, st[0] * 2 + jpg_bit());
+  int st_v = st[0];
+  int jpg_bit_v = jpg_bit();
+  lset(st, 0, st_v * 2 + jpg_bit_v);
   int ok = st[0] - st[1] < (import jpg_hc)[t * 17 + st[3]];
-} return int jpg_dnext(t, st, ok);
+  int ret_i = jpg_dnext(t, st, ok);
+} return int ret_i;
 
 jpg_dnext(int t, int[] st, int ok) {
   if (ok = 0) {

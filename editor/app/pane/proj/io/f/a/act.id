@@ -10,8 +10,10 @@
 // started from. Nothing is written until Save: New is a document in memory, which
 // is what New means everywhere else.
 ed_new() {
-  sset((import ed_doc), 0, ed_pong());
-  sset((import ed_path), 0, ed_up((import scn_dir)[0]) + "pong/pong.idml");
+  string ed_pong_v = ed_pong();
+  sset((import ed_doc), 0, ed_pong_v);
+  string ed_up_v = ed_up((import scn_dir)[0]);
+  sset((import ed_path), 0, ed_up_v + "pong/pong.idml");
   ed_reopen(8);
 } return void;
 
@@ -19,8 +21,11 @@ ed_new() {
 // was loaded from. There is no directory listing across the seam, so the browser's
 // list -- which tools/idem supplied as `#file` markers -- is the file chooser.
 ed_open() {
-  sset((import ed_path), 0, (import scn_dir)[0] + ed_pick_file());
-  sset((import ed_doc), 0, ed_rd((import ed_path)[0]));
+  string scn_dir_v = (import scn_dir)[0];
+  string ed_pick_file_v = ed_pick_file();
+  sset((import ed_path), 0, scn_dir_v + ed_pick_file_v);
+  string ed_rd_v = ed_rd((import ed_path)[0]);
+  sset((import ed_doc), 0, ed_rd_v);
   ed_reopen(7);
 } return void;
 

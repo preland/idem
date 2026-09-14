@@ -2,4 +2,5 @@
 
 t_at(int t) {
   lset((import sim_st), 0, t);
-} return int ent_anim(0);
+  int ret_i = ent_anim(0);
+} return int ret_i;

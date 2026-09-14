@@ -11,6 +11,7 @@ scr_un(string op, int v) {
 // it. It is milliseconds since the scene loaded, which is what a `sin(time * n)`
 // bob is written against.
 scr_name(int nd, int e) {
-  int v = scr_get(e, ast_tx(nd));
+  string ast_tx_v = ast_tx(nd);
+  int v = scr_get(e, ast_tx_v);
   if (ast_tx(nd) = "time") { v = (import sim_st)[0]; }
 } return int v;

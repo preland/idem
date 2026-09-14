@@ -17,7 +17,8 @@
 // alternative is word arithmetic in the hottest text path in the engine.
 
 txt_number(int v, int x, int y, int c) {
-  txt_num_sc(v, x, y, c, txt_ui() * 1000);
+  int txt_ui_v = txt_ui();
+  txt_num_sc(v, x, y, c, txt_ui_v * 1000);
 } return void;
 
 // The same, at a given per-mille scale -- what a game's UI draws a score with,
@@ -27,7 +28,10 @@ txt_num_sc(int v, int x, int y, int c, int sc) {
   if (v < 0) {
     txt_glyph_sc((import txt_first) + 13, x, y, c, sc);
   }
-  txt_num_run(m, x + txt_cell() * sc / 1000 * (v < 0), y, c, txt_num_pw(txt_num_pow(m), sc));
+  int txt_cell_v = txt_cell();
+  int txt_num_pow_v = txt_num_pow(m);
+  int txt_num_pw_v = txt_num_pw(txt_num_pow_v, sc);
+  txt_num_run(m, x + txt_cell_v * sc / 1000 * (v < 0), y, c, txt_num_pw_v);
 } return void;
 
 // pw walks 10^(digits-1) down to 1, so the digits come out most significant first

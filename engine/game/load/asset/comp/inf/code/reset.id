@@ -12,7 +12,8 @@ inf_blocks() {
   int last = 0;
   while (last = 0 && (import inf_st)[7] = 0) {
     last = inf_bits(1);
-    inf_block(inf_bits(2));
+    int inf_bits_v = inf_bits(2);
+    inf_block(inf_bits_v);
   }
 } return void;
 

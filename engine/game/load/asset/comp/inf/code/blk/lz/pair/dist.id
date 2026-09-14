@@ -9,7 +9,9 @@ inf_dist2(int n, int k) {
   if (k >= len((import inf_db))) {
     lset((import inf_st), 7, 1);
   } else {
-    inf_copy(n, (import inf_db)[k] + inf_bits((import inf_de)[k]));
+    int inf_db_v = (import inf_db)[k];
+    int inf_bits_v = inf_bits((import inf_de)[k]);
+    inf_copy(n, inf_db_v + inf_bits_v);
   }
 } return void;
 
@@ -19,7 +21,8 @@ inf_copy(int n, int d) {
   int i = 0;
   if (d > (import inf_st)[5]) { lset((import inf_st), 7, 1); }
   while (i < n && (import inf_st)[7] = 0) {
-    inf_put(inf_back(d));
+    int inf_back_v = inf_back(d);
+    inf_put(inf_back_v);
     i = i + 1;
   }
 } return void;

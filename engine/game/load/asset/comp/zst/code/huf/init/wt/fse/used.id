@@ -17,14 +17,19 @@ huf_wfse(int p, int n) {
   fse_read((import zst_st)[0] + p, n, 255);
   fse_build(1280, (import fse_st)[0], (import fse_st)[4] - 1);
   m4_pair((import fse_rl), 6, 7, 1280, (import fse_st)[0]);
-} return int huf_wrun(p, n);
+  int ret_i = huf_wrun(p, n);
+} return int ret_i;
 
 // The two initial states are read in SEPARATE statements. Both consume bits, and
 // two side-effecting calls in one expression may evaluate in either order in this
 // language -- which silently swaps the two states and decodes a different number
 // of weights. This is the third time that trap has cost time in this module.
 huf_wrun(int p, int n) {
-  zb_start((import zst_st)[0] + p + huf_wskip(), n - huf_wskip());
+  int zst_st_v = (import zst_st)[0];
+  int huf_wskip_v = huf_wskip();
+  int huf_wskip_v2 = huf_wskip();
+  zb_start(zst_st_v + p + huf_wskip_v, n - huf_wskip_v2);
   huf_wstart();
-} return int huf_wloop(0);
+  int ret_i = huf_wloop(0);
+} return int ret_i;
 

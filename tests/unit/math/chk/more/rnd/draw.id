@@ -26,6 +26,8 @@ t_draw(int[] xs, int n) {
 
 t_one(int[] xs) {
   int v = rnd_range(10, 20);
-  lset(xs, 0, fx_min(xs[0], v));
-  lset(xs, 1, fx_max(xs[1], v));
+  int fx_min_v = fx_min(xs[0], v);
+  lset(xs, 0, fx_min_v);
+  int fx_max_v = fx_max(xs[1], v);
+  lset(xs, 1, fx_max_v);
 } return void;

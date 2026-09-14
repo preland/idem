@@ -2,4 +2,6 @@
 // action budget.
 bl_lamc(word wp) {
   int a = wp;
-} return int fx_clamp(fx_abs(a), 0, 1000);
+  int fx_abs_v = fx_abs(a);
+  int ret_i = fx_clamp(fx_abs_v, 0, 1000);
+} return int ret_i;

@@ -14,16 +14,20 @@
 // one block too many per row and every row after the first is displaced.
 jpg_coefs(int ci) {
   jpg_coefs_alloc(ci);
-  lset((import jpg_nb), ci * 2, jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]));
-  lset((import jpg_nb), ci * 2 + 1, jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]));
+  int jpg_cdim_v = jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]);
+  lset((import jpg_nb), ci * 2, jpg_cdim_v);
+  int jpg_cdim_v2 = jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]);
+  lset((import jpg_nb), ci * 2 + 1, jpg_cdim_v2);
 } return void;
 
 jpg_coefs_alloc(int ci) {
-  int da = alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 128, 2));
+  int fx_max_v = fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 128, 2);
+  int da = alloc(fx_max_v);
   lset((import jpg_ca), ci, da);
 } return void;
 
 // ceil(ceil(n * s / smax) / 8) -- the component's own size in samples, rounded
 // up to whole blocks.
 jpg_cdim(int n, int sf, int smax) {
-} return int ((n * sf + smax - 1) / fx_max(smax, 1) + 7) / 8;
+  int ret_i = ((n * sf + smax - 1) / fx_max(smax, 1) + 7) / 8;
+} return int ret_i;

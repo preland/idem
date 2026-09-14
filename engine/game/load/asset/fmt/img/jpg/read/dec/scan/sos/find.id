@@ -2,7 +2,9 @@
 
 jpg_stab(int p, int k, int ns) {
   while (k < ns) {
-    jpg_st1(asset_at(p + k * 2), asset_at(p + k * 2 + 1));
+    int asset_at_v = asset_at(p + k * 2);
+    int asset_at_v2 = asset_at(p + k * 2 + 1);
+    jpg_st1(asset_at_v, asset_at_v2);
     k = k + 1;
   }
 } return void;

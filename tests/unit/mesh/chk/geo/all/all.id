@@ -14,13 +14,17 @@
 // failed before, and it needs no reference at all to test.
 
 t_all() {
-  print("bl_all showroom exp 1 = " + bl_all("games/fps/showroom.blend"));
-  print("total verts exp 94443, triangles exp 167934 = " + len((import bl_v)) / 3 + " " + bl_ntri());
+  int bl_all_v = bl_all("games/fps/showroom.blend");
+  print("bl_all showroom exp 1 = " + bl_all_v);
+  int len_v = len((import bl_v));
+  int bl_ntri_v = bl_ntri();
+  print("total verts exp 94443, triangles exp 167934 = " + len_v / 3 + " " + bl_ntri_v);
   t_range();
 } return void;
 
 t_range() {
-  print("triangle indices outside the vertex list exp 0 = " + t_oob());
+  int t_oob_v = t_oob();
+  print("triangle indices outside the vertex list exp 0 = " + t_oob_v);
   t_span();
 } return void;
 

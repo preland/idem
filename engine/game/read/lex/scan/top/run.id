@@ -17,16 +17,19 @@ lex_run(string src) {
   while (charat(src, i) >= 0) {
     i = lex_one(src, i);
   }
-  lex_push(lex_k_eof(), "", 0, 0);
+  int lex_k_eof_v = lex_k_eof();
+  lex_push(lex_k_eof_v, "", 0, 0);
 } return void;
 
 lex_one(string src, int i) {
   int[] out = [0];
   lex_one1(src, i, out);
-} return int out[0];
+  int ret_i = out[0];
+} return int ret_i;
 
 lex_one1(string src, int i, int[] out) {
-  if (lex_is_space(charat(src, i))) { out[0] = i + 1; }
+  int charat_v = charat(src, i);
+  if (lex_is_space(charat_v)) { out[0] = i + 1; }
   else if (charat(src, i) = 10) { out[0] = lex_nl(src, i); }
   else { lex_one2(src, i, out); }
 } return void;

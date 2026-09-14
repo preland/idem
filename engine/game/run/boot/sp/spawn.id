@@ -6,14 +6,16 @@
 
 scn_spawn(int nd, int i) {
   while (nd != 0 && i < len(ast_ks(nd))) {
-    scn_ent(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    scn_ent(ast_ks_v[i]);
     i = i + 1;
   }
 } return void;
 
 scn_ent(int nd) {
   if (ast_kd(nd) = ast_k_entity()) {
-    scn_efill(ent_add(), nd, 0);
+    int ent_add_v = ent_add();
+    scn_efill(ent_add_v, nd, 0);
   }
 } return void;
 

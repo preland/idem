@@ -22,7 +22,8 @@ zst_kind2(int kd, int n) {
 zst_raw(int n) {
   int i = 0;
   while (i < n && (import zst_st)[6] = 0) {
-    zst_put(zst_byte((import zst_st)[1] + i));
+    int zst_byte_v = zst_byte((import zst_st)[1] + i);
+    zst_put(zst_byte_v);
     i = i + 1;
   }
   lset((import zst_st), 1, (import zst_st)[1] + n);

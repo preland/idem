@@ -20,4 +20,5 @@ zst_l4run(int off, int m, int p, int len) {
 // The jump table is three little-endian 16-bit lengths; the fourth stream's
 // length is whatever is left, which is why only three are written down.
 zst_l16(int k) {
-} return int zst_byte((import zst_st)[1] + k) + zst_byte((import zst_st)[1] + k + 1) * 256;
+  int ret_i = zst_byte((import zst_st)[1] + k) + zst_byte((import zst_st)[1] + k + 1) * 256;
+} return int ret_i;

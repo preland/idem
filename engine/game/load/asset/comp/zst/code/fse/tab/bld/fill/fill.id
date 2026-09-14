@@ -20,6 +20,9 @@ fse_bcell(int u) {
 
 fse_bcell2(int u, int kd, int ns) {
   lset((import fse_nx), kd, ns + 1);
-  lset((import fse_nb), (import fse_st)[6] + u, (import fse_st)[0] - fse_hib(ns));
+  int fse_st_v = (import fse_st)[6];
+  int fse_st_v2 = (import fse_st)[0];
+  int fse_hib_v = fse_hib(ns);
+  lset((import fse_nb), fse_st_v + u, fse_st_v2 - fse_hib_v);
   fse_bbase(u, ns);
 } return void;

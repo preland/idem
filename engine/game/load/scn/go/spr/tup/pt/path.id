@@ -19,7 +19,8 @@ scn_dir_init() {
 } return void;
 
 scn_path(string s) {
-} return string (import scn_dir)[0] + s;
+  string ret_s = (import scn_dir)[0] + s;
+} return string ret_s;
 
 // The first string argument: the `from "path"` one. `from` lexes as an identifier
 // and is skipped by looking for the string rather than by counting.

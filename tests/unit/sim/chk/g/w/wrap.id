@@ -18,6 +18,7 @@ t_wrap2() {
 } return void;
 
 t_wrap2b() {
-  print("past the left bound: x exp 432000 = " + ent_at(0, 0));
+  int ent_at_v = ent_at(0, 0);
+  print("past the left bound: x exp 432000 = " + ent_at_v);
   t_wrap3();
 } return void;

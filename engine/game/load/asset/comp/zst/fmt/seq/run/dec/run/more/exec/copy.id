@@ -8,7 +8,8 @@ zst_smatch(int off, int n) {
   int i = 0;
   if (off > (import zst_st)[4] || off < 1) { lset((import zst_st), 6, 1); }
   while (i < n && (import zst_st)[6] = 0) {
-    zst_put(zst_back(off));
+    int zst_back_v = zst_back(off);
+    zst_put(zst_back_v);
     i = i + 1;
   }
 } return void;

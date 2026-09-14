@@ -14,7 +14,10 @@ par_top(int[] pos) {
 par_page(int[] pos) {
   par_next(pos);
   par_want(pos, "/");
-} return int ast_new_a(ast_k_page(), "", par_item(pos));
+  int ast_k_page_v = ast_k_page();
+  int par_item_v = par_item(pos);
+  int ret_i = ast_new_a(ast_k_page_v, "", par_item_v);
+} return int ret_i;
 
 // An unknown keyword is reported and skipped rather than ending the parse: a
 // document with one unrecognised declaration should still yield the rest, because
@@ -28,4 +31,6 @@ par_decl(int[] pos) {
   string name = par_text(pos);
   int ln = par_line(pos);
   par_next(pos);
-} return int par_dkind(pos, name, par_dk(name), ln);
+  int par_dk_v = par_dk(name);
+  int ret_i = par_dkind(pos, name, par_dk_v, ln);
+} return int ret_i;

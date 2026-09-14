@@ -16,7 +16,8 @@ t_sum() {
 
 t_hash(int y, word wp) {
   while (y < (import png_st)[1]) {
-    wp = t_row(asset_row(y) + 1, 0, wp);
+    int asset_row_v = asset_row(y);
+    wp = t_row(asset_row_v + 1, 0, wp);
     y = y + 1;
   }
 } return word wp;

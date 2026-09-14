@@ -20,7 +20,8 @@ scn_espr(int nd) {
 scn_sname(int nd, int i) {
   string s = "";
   while (i < len(ast_ks(nd)) && s = "") {
-    s = scn_ifspr(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    s = scn_ifspr(ast_ks_v[i]);
     i = i + 1;
   }
 } return string s;

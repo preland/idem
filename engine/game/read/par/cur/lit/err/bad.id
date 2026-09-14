@@ -1,6 +1,8 @@
 par_badtok(int[] pos) {
   string txt = par_text(pos);
-  par_err(pos, "unexpected " + chr(39) + txt + chr(39));
+  string chr_v = chr(39);
+  string chr_v2 = chr(39);
+  par_err(pos, "unexpected " + chr_v + txt + chr_v2);
   int v = par_badtok_tail(pos, txt);
 } return int v;
 

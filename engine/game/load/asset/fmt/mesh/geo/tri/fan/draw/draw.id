@@ -16,7 +16,8 @@
 // wiring it up is the next piece of work rather than something this hides.
 
 bl_ntri() {
-} return int len((import bl_ti)) / 3;
+  int ret_i = len((import bl_ti)) / 3;
+} return int ret_i;
 
 bl_tfill(int i, int[] tri, int c) {
   bl_tv(tri, 0, (import bl_ti)[i * 3]);

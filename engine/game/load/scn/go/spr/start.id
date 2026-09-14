@@ -9,7 +9,8 @@ scn_start(int doc) {
 // means anyway.
 scn_pick(int doc, int i) {
   while (i < len(ast_ks(doc)) && (import scn_st)[5] = 0) {
-    scn_take(ast_ks(doc)[i]);
+    int[] ast_ks_v = ast_ks(doc);
+    scn_take(ast_ks_v[i]);
     i = i + 1;
   }
 } return void;

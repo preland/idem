@@ -14,11 +14,13 @@
 // into the previewed program instead -- and the editor will have to run it.
 
 g_ref(string name) {
-} return int scr_get(0 - 1, name);
+  int ret_i = scr_get(0 - 1, name);
+} return int ret_i;
 
 g_act(string name) {
   lset((import ed_st), 17, 1);
 } return void;
 
 g_stage(int k) {
-} return int ed_gstage(k);
+  int ret_i = ed_gstage(k);
+} return int ret_i;

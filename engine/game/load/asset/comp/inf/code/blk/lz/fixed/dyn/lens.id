@@ -19,7 +19,8 @@ inf_dyn3(int hlit, int hdist) {
 inf_dlens(int n) {
   int i = 0;
   while (i < n && (import inf_st)[7] = 0) {
-    i = i + inf_dsym2(inf_decode((import inf_cc), (import inf_cs)), i, n);
+    int inf_decode_v = inf_decode((import inf_cc), (import inf_cs));
+    i = i + inf_dsym2(inf_decode_v, i, n);
   }
 } return void;
 

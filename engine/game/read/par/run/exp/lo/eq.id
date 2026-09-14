@@ -7,7 +7,10 @@ par_and(int[] pos) {
 
 par_and_f(int[] pos, int left) {
   par_next(pos);
-} return int ast_new_ab(ast_k_bin(), "&&", left, par_eq(pos));
+  int ast_k_bin_v = ast_k_bin();
+  int par_eq_v = par_eq(pos);
+  int ret_i = ast_new_ab(ast_k_bin_v, "&&", left, par_eq_v);
+} return int ret_i;
 
 par_eq(int[] pos) {
   int left = par_rel(pos);

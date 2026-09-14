@@ -31,8 +31,11 @@ ui_dinit2() {
 // and is told apart by having no body. A define always has exactly one child: the
 // item it stands for.
 ui_dload(int nd) {
-  if (len(ast_ks(nd)) > 0) {
-    push((import ui_dn), ast_tx(nd));
-    push((import ui_dd), ast_ks(nd)[0]);
+  int[] ast_ks_v = ast_ks(nd);
+  if (len(ast_ks_v) > 0) {
+    string ast_tx_v = ast_tx(nd);
+    push((import ui_dn), ast_tx_v);
+    int[] ast_ks_v2 = ast_ks(nd);
+    push((import ui_dd), ast_ks_v2[0]);
   }
 } return void;

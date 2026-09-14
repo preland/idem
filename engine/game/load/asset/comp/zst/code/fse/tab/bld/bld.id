@@ -17,7 +17,9 @@
 
 fse_build(int base, int log, int maxs) {
   m4_pair((import fse_st), 0, 6, log, base);
-  m4_pair((import fse_st), 7, 8, inf_pow2(log), inf_pow2(log) - 1);
+  int inf_pow2_v = inf_pow2(log);
+  int inf_pow2_v2 = inf_pow2(log);
+  m4_pair((import fse_st), 7, 8, inf_pow2_v, inf_pow2_v2 - 1);
   fse_blow(maxs);
 } return void;
 

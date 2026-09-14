@@ -6,12 +6,15 @@
 ui_main(int nd, int w, int h, int k) {
   int n = h;
   if (k = 1) { n = w; }
-} return int ui_pct(ast_ib(nd), n, k);
+  int ast_ib_v = ast_ib(nd);
+  int ret_i = ui_pct(ast_ib_v, n, k);
+} return int ret_i;
 
 ui_pct(int nd, int n, int k) {
   int m = n;
   if (nd != 0) {
-    m = ui_cent(ui_dim(nd, k), n);
+    int ui_dim_v = ui_dim(nd, k);
+    m = ui_cent(ui_dim_v, n);
   }
 } return int m;
 
@@ -19,4 +22,5 @@ ui_pct(int nd, int n, int k) {
 ui_dim(int nd, int k) {
   int v = ast_ia(nd);
   if (k = 1) { v = ast_ib(nd); }
-} return int ast_ia(v);
+  int ret_i = ast_ia(v);
+} return int ret_i;

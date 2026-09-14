@@ -16,14 +16,17 @@
 scr_call(int nd, int e) {
   int a = scr_arg(nd, 0, e);
   int b = scr_arg(nd, 1, e);
-} return int scr_fn(ast_tx(nd), a, b);
+  string ast_tx_v = ast_tx(nd);
+  int ret_i = scr_fn(ast_tx_v, a, b);
+} return int ret_i;
 
 // A missing argument is 0. `random(0, 100)` and `random(100)` then differ by
 // their lower bound rather than by one being an error, which is the reading a
 // person expects.
 scr_arg(int nd, int i, int e) {
   int v = 0;
-  if (i < len(ast_ks(nd))) { v = scr_ev(ast_ks(nd)[i], e); }
+  int[] ast_ks_v = ast_ks(nd);
+  if (i < len(ast_ks_v)) { int[] ast_ks_v2 = ast_ks(nd); v = scr_ev(ast_ks_v2[i], e); }
 } return int v;
 
 scr_fn(string name, int a, int b) {

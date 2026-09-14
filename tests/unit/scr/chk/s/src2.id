@@ -1,4 +1,5 @@
 // The template and the scene's variables.
 
 t_src2() {
-} return string "template Box {" + chr(10) + "  pos (0, 0)" + chr(10) + "  body (10, 10)" + chr(10) + "  solid" + chr(10) + "  tag deadly" + chr(10) + "}" + chr(10) + "scene play {" + chr(10) + "  var n = 0" + chr(10) + "  var ticks = 0" + chr(10) + "  var taps = 0" + chr(10) + "  var hits = 0" + chr(10) + t_src3();
+  string ret_s = "template Box {" + chr(10) + "  pos (0, 0)" + chr(10) + "  body (10, 10)" + chr(10) + "  solid" + chr(10) + "  tag deadly" + chr(10) + "}" + chr(10) + "scene play {" + chr(10) + "  var n = 0" + chr(10) + "  var ticks = 0" + chr(10) + "  var taps = 0" + chr(10) + "  var hits = 0" + chr(10) + t_src3();
+} return string ret_s;

@@ -6,4 +6,6 @@
 // small room.
 
 ed_diag(int[] bb) {
-} return int fx_hyp(fx_hyp((bb[3] - bb[0]) / 2, (bb[4] - bb[1]) / 2), (bb[5] - bb[2]) / 2);
+  int fx_hyp_v = fx_hyp((bb[3] - bb[0]) / 2, (bb[4] - bb[1]) / 2);
+  int ret_i = fx_hyp(fx_hyp_v, (bb[5] - bb[2]) / 2);
+} return int ret_i;

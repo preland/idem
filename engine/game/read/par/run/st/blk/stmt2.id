@@ -15,4 +15,7 @@ par_stmt6(int[] pos, int[] out) {
 par_assign(int[] pos) {
   int tgt = par_post(pos);
   par_want(pos, "=");
-} return int ast_new_ab(ast_k_assign(), "", tgt, par_expr(pos));
+  int ast_k_assign_v = ast_k_assign();
+  int par_expr_v = par_expr(pos);
+  int ret_i = ast_new_ab(ast_k_assign_v, "", tgt, par_expr_v);
+} return int ret_i;

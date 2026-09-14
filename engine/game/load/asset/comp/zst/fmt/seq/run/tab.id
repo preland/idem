@@ -24,5 +24,7 @@ zst_stab2(int r, int md, int log, int base) {
 // nothing to do. That only holds because the tables live in fse_sy/fse_nb/fse_bs
 // at fixed per-role bases and are never cleared between blocks.
 zst_spre(int r, int base) {
-  zst_pload(r, zst_pdist(r), zst_plog(r), base);
+  int[] zst_pdist_v = zst_pdist(r);
+  int zst_plog_v = zst_plog(r);
+  zst_pload(r, zst_pdist_v, zst_plog_v, base);
 } return void;

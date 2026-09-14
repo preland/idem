@@ -20,8 +20,10 @@
 idem_boot(string[] chunks, int argc, string[] argv) {
   idem_init();
   err_mute(0);
-  idem_read(run_join(chunks, 0, ""));
-} return int idem_go(argc, argv);
+  string run_join_v = run_join(chunks, 0, "");
+  idem_read(run_join_v);
+  int ret_i = idem_go(argc, argv);
+} return int ret_i;
 
 idem_init() {
   fx_trig_init();

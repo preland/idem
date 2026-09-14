@@ -41,6 +41,9 @@ bl_world(int p, int si) {
 
 // Rotation, as Rz * Ry * Rx built straight into the destination.
 bl_wrot(int p, int si) {
-  m4_rot4((import bl_wm), 0, 1, 4, 5, bl_deg(bl_f32(p + bl_foff(si, "rot[3]") + 8)));
+  int bl_foff_v = bl_foff(si, "rot[3]");
+  int bl_f32_v = bl_f32(p + bl_foff_v + 8);
+  int bl_deg_v = bl_deg(bl_f32_v);
+  m4_rot4((import bl_wm), 0, 1, 4, 5, bl_deg_v);
   bl_wrx(p, si);
 } return void;

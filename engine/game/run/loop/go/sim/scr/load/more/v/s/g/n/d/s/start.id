@@ -22,5 +22,6 @@ scn_starts(int e) {
 } return void;
 
 scn_start1(int e) {
-  scr_fire(scr_sc(e), "start", e, "");
+  int scr_sc_v = scr_sc(e);
+  scr_fire(scr_sc_v, "start", e, "");
 } return void;

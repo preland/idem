@@ -23,7 +23,8 @@ bl_front(int[] tri) {
   word wp = (import bl_e)[0] * ((import d3_cam)[0] - tri[0]);
   word wq = (import bl_e)[1] * ((import d3_cam)[1] - tri[1]);
   wp = wp + wq + (import bl_e)[2] * ((import d3_cam)[2] - tri[2]);
-} return int (wp > 0) - (wp < 0);
+  int ret_i = (wp > 0) - (wp < 0);
+} return int ret_i;
 
 // Quartered on the way into the lighting, which is where the components have to
 // fit an int and be squared: 4e8 each, so the sum of squares is 4.8e17 and its

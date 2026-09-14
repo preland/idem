@@ -10,4 +10,5 @@ ed_is_decl2(string s) {
 // strings a frame: nowhere near the loop that makes concatenation a disaster, and
 // the alternative (a flat-store build) would be unreadable for the saving.
 ed_label(int i) {
-} return string (import ed_kd)[i] + " " + (import ed_nm)[i];
+  string ret_s = (import ed_kd)[i] + " " + (import ed_nm)[i];
+} return string ret_s;

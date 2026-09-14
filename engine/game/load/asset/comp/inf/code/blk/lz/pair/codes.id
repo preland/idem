@@ -30,6 +30,8 @@ inf_pair(int k) {
   if (k >= len((import inf_lb))) {
     lset((import inf_st), 7, 1);
   } else {
-    inf_dist((import inf_lb)[k] + inf_bits((import inf_le)[k]));
+    int inf_lb_v = (import inf_lb)[k];
+    int inf_bits_v = inf_bits((import inf_le)[k]);
+    inf_dist(inf_lb_v + inf_bits_v);
   }
 } return void;

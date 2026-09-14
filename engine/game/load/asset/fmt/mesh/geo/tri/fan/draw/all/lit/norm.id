@@ -32,13 +32,16 @@ bl_cross(int a, int b, int c, int d) {
 bl_lam(int nvx, int nvy, int nvz) {
   word wp = nvx;
   word wq = nvy;
-  wp = (wp * 300 + wq * 800 + nvz * 520) / fx_max(fx_hyp3(nvx, nvy, nvz), 1);
-} return int bl_lamc(wp);
+  int fx_hyp3_v = fx_hyp3(nvx, nvy, nvz);
+  wp = (wp * 300 + wq * 800 + nvz * 520) / fx_max(fx_hyp3_v, 1);
+  int ret_i = bl_lamc(wp);
+} return int ret_i;
 
 // Ambient plus the directional term. Never black, never blown out: 350 per-mille
 // is the shadow side, 1000 is full light. All three vertex colours are equal --
 // bl_tc wrote them -- so one shade covers the triangle.
 bl_tint(int[] tri, int lam) {
-  bl_tc(tri, d2_shade(tri[9], 350 + lam * 65 / 100));
+  int d2_shade_v = d2_shade(tri[9], 350 + lam * 65 / 100);
+  bl_tc(tri, d2_shade_v);
   d3_wtri(tri);
 } return void;

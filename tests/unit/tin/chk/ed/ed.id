@@ -2,13 +2,17 @@
 
 t_boot() {
   tin_init();
-  print("empty field exp '' caret 0 = '" + tin_text() + "' " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("empty field exp '' caret 0 = '" + tin_text_v + "' " + tin_caret_v);
   t_type1();
 } return void;
 
 t_type1() {
   t_type("abc", 0, 1000);
-  print("typed abc exp abc caret 3 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("typed abc exp abc caret 3 = " + tin_text_v + " " + tin_caret_v);
   t_move();
 } return void;
 

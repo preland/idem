@@ -7,7 +7,8 @@
 scn_sscript(int nd, int i) {
   int sc = 0;
   while (i < len(ast_ks(nd)) && sc = 0) {
-    sc = scn_ifscript(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    sc = scn_ifscript(ast_ks_v[i]);
     i = i + 1;
   }
 } return int sc;
@@ -21,4 +22,5 @@ scn_ifscript(int nd) {
 // an unknown name means the jump does not happen, which leaves the game where it
 // was rather than in a scene with no entities in it.
 scn_byname(string name) {
-} return int scn_bfind((import scn_st)[4], name, 0);
+  int ret_i = scn_bfind((import scn_st)[4], name, 0);
+} return int ret_i;

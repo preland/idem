@@ -26,7 +26,12 @@ ed_drag_st() {
 // pressed mid-drag changes nothing, which is what stops a stray middle-click from
 // turning an orbit into a pan halfway through.
 ed_drag_on(int b, int k) {
-  if (inp_mhit(b) * ed_in(ed_rq(3, 0), ed_rq(3, 1), ed_rq(3, 2), ed_rq(3, 3)) = 1 && (import ed_st)[5] = 0) {
+  int inp_mhit_v = inp_mhit(b);
+  int ed_rq_v = ed_rq(3, 0);
+  int ed_rq_v2 = ed_rq(3, 1);
+  int ed_rq_v3 = ed_rq(3, 2);
+  int ed_rq_v4 = ed_rq(3, 3);
+  if (inp_mhit_v * ed_in(ed_rq_v, ed_rq_v2, ed_rq_v3, ed_rq_v4) = 1 && (import ed_st)[5] = 0) {
     ed_drag_beg(k);
   }
   ed_drag_end(b, k);

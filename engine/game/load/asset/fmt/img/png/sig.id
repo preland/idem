@@ -15,10 +15,12 @@ png_sig(int n) {
 // to be fast enough to open an asset while someone waits.
 png_walk(int ok, int p) {
   while (ok = 1 && p + 8 <= (import asset_io)[1]) {
-    p = png_chunk(p, asset_be32(p));
+    int asset_be32_v = asset_be32(p);
+    p = png_chunk(p, asset_be32_v);
     ok = png_more(p);
   }
-} return int png_done();
+  int ret_i = png_done();
+} return int ret_i;
 
 // A refusal has to stop the walk, not merely be recorded. It was only recorded:
 // png_chk set slot 9 to -1, the walk carried on, and IEND then overwrote it with

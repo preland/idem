@@ -1,7 +1,8 @@
 // A byte already written, addressed backwards from the cursor, and the result.
 
 zst_back(int d) {
-} return int peek8((import zst_st)[3] + (import zst_st)[4] - d);
+  int ret_i = peek8((import zst_st)[3] + (import zst_st)[4] - d);
+} return int ret_i;
 
 zst_out() {
   int n = (import zst_st)[4];

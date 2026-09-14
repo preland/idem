@@ -5,7 +5,10 @@ t_lst_show(int[] xs) {
 } return void;
 
 t_err_show(int[] xs) {
-  print("lget 9 = " + lget(xs, 4) + " len 5 = " + len(xs));
+  int lget_v = lget(xs, 4);
+  int len_v = len(xs);
+  print("lget 9 = " + lget_v + " len 5 = " + len_v);
   err_report("fake.idml", 7, "a reported error is counted");
-  print("errs 1 = " + err_count());
+  int err_count_v = err_count();
+  print("errs 1 = " + err_count_v);
 } return void;

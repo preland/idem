@@ -1,11 +1,16 @@
 // The scan header's band and precision fields.
 jpg_band(int p) {
-  m4_pair((import jpg_st), 13, 14, asset_at(p), asset_at(p + 1));
-  m4_pair((import jpg_st), 15, 16, asset_at(p + 2) / 16, asset_at(p + 2) % 16);
+  int asset_at_v = asset_at(p);
+  int asset_at_v2 = asset_at(p + 1);
+  m4_pair((import jpg_st), 13, 14, asset_at_v, asset_at_v2);
+  int asset_at_v3 = asset_at(p + 2);
+  int asset_at_v4 = asset_at(p + 2);
+  m4_pair((import jpg_st), 15, 16, asset_at_v3 / 16, asset_at_v4 % 16);
   jpg_bset(p + 3);
 } return void;
 
 jpg_plane_alloc(int ci) {
-  int da = alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 64, 1));
+  int fx_max_v = fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 64, 1);
+  int da = alloc(fx_max_v);
   lset((import jpg_c), ci * 10 + 7, da);
 } return void;

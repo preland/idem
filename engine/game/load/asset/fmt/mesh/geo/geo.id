@@ -43,6 +43,8 @@ bl_geo2() {
 // Load `path` and extract its first mesh. Answers 1 on success.
 bl_mesh(string path) {
   bl_reset();
-  lset((import bl_st), 11, bl_open(path));
-} return int bl_mesh2();
+  int bl_open_v = bl_open(path);
+  lset((import bl_st), 11, bl_open_v);
+  int ret_i = bl_mesh2();
+} return int ret_i;
 

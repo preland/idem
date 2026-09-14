@@ -5,10 +5,13 @@
 // from the same panel rather than reading state that has since been handed back.
 
 ed_epx(int e, int k) {
-} return int ed_pl0() + ent_at(e, 0) * ed_psc() / 1000000;
+  int ret_i = ed_pl0() + ent_at(e, 0) * ed_psc() / 1000000;
+} return int ret_i;
 
 ed_epy(int e) {
-} return int ed_pt0() + ent_at(e, 1) * ed_psc() / 1000000;
+  int ret_i = ed_pt0() + ent_at(e, 1) * ed_psc() / 1000000;
+} return int ret_i;
 
 ed_in2(int x, int y, int x0, int y0, int x1, int y1) {
-} return int x >= x0 && x <= x1 && y >= y0 && y <= y1;
+  int ret_i = x >= x0 && x <= x1 && y >= y0 && y <= y1;
+} return int ret_i;

@@ -8,14 +8,17 @@
 
 scn_txt2(int nd, int i) {
   string s = "";
-  if (ast_kd(scn_arg(nd, i)) = ast_k_str()) { s = ast_tx(scn_arg(nd, i)); }
+  int scn_arg_v = scn_arg(nd, i);
+  if (ast_kd(scn_arg_v) = ast_k_str()) { int scn_arg_v2 = scn_arg(nd, i); s = ast_tx(scn_arg_v2); }
 } return string s;
 
 // `grid (cols, rows)` defaults to one by one: a whole image as a single frame.
 scn_gx(int nd, int k) {
-} return int scn_tup(nd, "grid", k, 1);
+  int ret_i = scn_tup(nd, "grid", k, 1);
+} return int ret_i;
 
 // `cell (w, h)` defaults to 0, which spr_png reads as "the source cell's own
 // size" -- so a sprite declared with no cell loads at its natural resolution.
 scn_cx(int nd, int k) {
-} return int scn_tup(nd, "cell", k, 0);
+  int ret_i = scn_tup(nd, "cell", k, 0);
+} return int ret_i;

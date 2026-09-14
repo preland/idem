@@ -19,7 +19,8 @@
 png_samp(int r, int x) {
   int d = (import png_st)[2];
   int by = peek8(r + 1 + x * d * (import png_st)[4] / 8);
-} return int by / inf_pow2(8 - d - x * d % 8) % inf_pow2(d);
+  int ret_i = by / inf_pow2(8 - d - x * d % 8) % inf_pow2(d);
+} return int ret_i;
 
 png_pcol_rgb2(int cr, int cg, int i) {
   int cb = peek8(i + 2);

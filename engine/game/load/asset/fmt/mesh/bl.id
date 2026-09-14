@@ -44,7 +44,8 @@ bl_open(string path) {
   lst_set_all((import bl_st), 13, 0);
   asset_slurp(path);
   bl_open2();
-} return int (import bl_st)[11];
+  int ret_i = (import bl_st)[11];
+} return int ret_i;
 
 // `BLENDER`, then the header length as two ASCII digits. 66 is 'B', 82 is 'R'.
 bl_head() {

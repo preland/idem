@@ -7,7 +7,7 @@
 scn_tup(int nd, string name, int k, int dv) {
   int t = scn_after(nd, name, 0);
   int v = dv;
-  if (t != 0 && k < len(ast_ks(t))) { v = ast_ia(ast_ks(t)[k]); }
+  if (t != 0 && k < len(ast_ks(t))) { int[] ast_ks_v = ast_ks(t); v = ast_ia(ast_ks_v[k]); }
 } return int v;
 
 scn_after(int nd, string name, int i) {
@@ -20,5 +20,5 @@ scn_after(int nd, string name, int i) {
 
 scn_nargs(int nd) {
   int n = 0;
-  if (ast_ia(nd) != 0) { n = len(ast_ks(ast_ia(nd))); }
+  if (ast_ia(nd) != 0) { int ast_ia_v = ast_ia(nd); int[] ast_ks_v = ast_ks(ast_ia_v); n = len(ast_ks_v); }
 } return int n;

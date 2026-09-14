@@ -17,13 +17,16 @@ spr_frame(int f) {
 spr_row(int f, int y) {
   word ad = alloc((import spr_d)[0] + 1);
   spr_chars(f, y, ad);
-  print("  \"" + str_of_mem(ad, (import spr_d)[0]) + "\"");
+  string str_of_mem_v = str_of_mem(ad, (import spr_d)[0]);
+  print("  \"" + str_of_mem_v + "\"");
 } return void;
 
 spr_chars(int f, int y, word ad) {
   int x = 0;
   while (x < (import spr_d)[0]) {
-    poke8(ad + x, spr_char(spr_at(f, y, x)));
+    int spr_at_v = spr_at(f, y, x);
+    int spr_char_v = spr_char(spr_at_v);
+    poke8(ad + x, spr_char_v);
     x = x + 1;
   }
 } return void;

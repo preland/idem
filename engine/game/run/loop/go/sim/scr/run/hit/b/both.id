@@ -19,6 +19,7 @@ scr_hside(int e, int o, int i) {
 
 scr_htag(int e, int o, int i) {
   if (ent_at(o, 20) / inf_pow2(i) % 2 = 1) {
-    scr_fire(scr_sc(e), "hit", e, (import scr_tn)[i]);
+    int scr_sc_v = scr_sc(e);
+    scr_fire(scr_sc_v, "hit", e, (import scr_tn)[i]);
   }
 } return void;

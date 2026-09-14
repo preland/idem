@@ -2,6 +2,7 @@
 // its action budget.
 
 png_inflate_alloc(int n) {
-  int da = alloc(fx_max(n, 1));
+  int fx_max_v = fx_max(n, 1);
+  int da = alloc(fx_max_v);
   lset((import png_st), 7, da);
 } return void;

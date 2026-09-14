@@ -44,7 +44,8 @@ ent_init() {
 } return void;
 
 ent_at(int e, int k) {
-} return int (import ent_r)[e * 28 + k];
+  int ret_i = (import ent_r)[e * 28 + k];
+} return int ret_i;
 
 ent_put(int e, int k, int v) {
   lset((import ent_r), e * 28 + k, v);

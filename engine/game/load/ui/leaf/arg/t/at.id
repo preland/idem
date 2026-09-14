@@ -6,7 +6,14 @@
 // one of these has meant since the first layout.
 
 ui_tx(int nd, int x, int w, int n) {
-} return int x + ui_ax(ast_tx(ast_ib(nd)), w) - txt_align(n, ui_al(ast_tx(ast_ib(nd))));
+  int ast_ib_v = ast_ib(nd);
+  string ast_tx_v = ast_tx(ast_ib_v);
+  int ui_ax_v = ui_ax(ast_tx_v, w);
+  int ast_ib_v2 = ast_ib(nd);
+  string ast_tx_v2 = ast_tx(ast_ib_v2);
+  int ui_al_v = ui_al(ast_tx_v2);
+  int ret_i = x + ui_ax_v - txt_align(n, ui_al_v);
+} return int ret_i;
 
 // Centred on the rect at the *UI's* scale, so a label stays in the middle of its
 // box as the view zooms rather than creeping toward the top of it.
@@ -17,4 +24,5 @@ ui_tx(int nd, int x, int w, int n) {
 // high in its box, which reads as a layout bug rather than as a font change --
 // and it is the one place in the engine that centred text vertically at all.
 ui_ty(int y, int h) {
-} return int y + (h - txt_cellh() * (import ui_ts)[0] / 1000) / 2;
+  int ret_i = y + (h - txt_cellh() * (import ui_ts)[0] / 1000) / 2;
+} return int ret_i;

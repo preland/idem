@@ -12,7 +12,8 @@
 // the button a person reaches for first should pick things.
 
 ed_scene(int x, int y, int w, int h) {
-  sf_rect(x, y, w, h, ed_col(8));
+  int ed_col_v = ed_col(8);
+  sf_rect(x, y, w, h, ed_col_v);
   d3_viewport(x, y, w, h);
   ed_scene2(x, y, w, h);
 } return void;
@@ -30,5 +31,6 @@ ed_scene2(int x, int y, int w, int h) {
 ed_scene3(int x, int y, int w, int h) {
   ed_content();
   ed_band_draw();
-  d2_frame(x, y, w, h, ed_col(3));
+  int ed_col_v = ed_col(3);
+  d2_frame(x, y, w, h, ed_col_v);
 } return void;

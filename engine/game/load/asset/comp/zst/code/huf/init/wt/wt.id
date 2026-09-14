@@ -11,8 +11,10 @@ huf_init7() {
 
 huf_stats(int p) {
   int b0 = peek8((import zst_st)[0] + p);
-  lset((import huf_st), 1, huf_wread(p, b0));
-} return int huf_used(b0, p);
+  int huf_wread_v = huf_wread(p, b0);
+  lset((import huf_st), 1, huf_wread_v);
+  int ret_i = huf_used(b0, p);
+} return int ret_i;
 
 huf_wread(int p, int b0) {
   int n = 0;

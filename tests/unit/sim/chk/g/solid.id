@@ -1,6 +1,7 @@
 // A solid body does not fall, and one with no body never started.
 
 t_grav4() {
-  print("solid body: vy unchanged exp 24000 = " + ent_at(1, 3));
+  int ent_at_v = ent_at(1, 3);
+  print("solid body: vy unchanged exp 24000 = " + ent_at_v);
   t_wrap();
 } return void;

@@ -25,4 +25,5 @@ run_frame() {
   int t = sys_now();
   run_step();
   sys_pace(t, (import scn_st)[2]);
-} return int sys_alive();
+  int ret_i = sys_alive();
+} return int ret_i;

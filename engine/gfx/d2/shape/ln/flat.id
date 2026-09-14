@@ -30,4 +30,5 @@ d2_frame(int x, int y, int w, int h, int c) {
   d2_hline(x, y, w, c);
   d2_hline(x, y + h - 1, w, c);
   d2_vline(x, y, h, c);
-} return int d2_vline(x + w - 1, y, h, c);
+  int ret_i = d2_vline(x + w - 1, y, h, c);
+} return int ret_i;

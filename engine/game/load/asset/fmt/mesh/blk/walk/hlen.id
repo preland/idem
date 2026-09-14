@@ -6,6 +6,9 @@
 // noise.
 // The header length, then the walk. Two ASCII digits at offset 7.
 bl_hlen() {
-  lset((import bl_st), 0, (asset_at(7) - 48) * 10 + asset_at(8) - 48);
+  int asset_at_v = asset_at(7);
+  int asset_at_v2 = asset_at(8);
+  lset((import bl_st), 0, (asset_at_v - 48) * 10 + asset_at_v2 - 48);
   bl_clear();
-} return int bl_walk((import bl_st)[0]);
+  int ret_i = bl_walk((import bl_st)[0]);
+} return int ret_i;

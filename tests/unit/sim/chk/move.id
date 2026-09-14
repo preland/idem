@@ -16,6 +16,7 @@ t_move() {
 } return void;
 
 t_move2() {
-  print("x after one 16ms step at -120/s exp -1920 = " + ent_at(0, 0));
+  int ent_at_v = ent_at(0, 0);
+  print("x after one 16ms step at -120/s exp -1920 = " + ent_at_v);
   t_grav();
 } return void;

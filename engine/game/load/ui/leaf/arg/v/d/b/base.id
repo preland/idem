@@ -6,5 +6,5 @@
 ui_base(string name) {
   int i = ui_vfind(name);
   string bn = name;
-  if (i >= 0) { bn = ast_tx(ast_ks((import ui_vd)[i])[0]); }
+  if (i >= 0) { int[] ast_ks_v = ast_ks((import ui_vd)[i]); bn = ast_tx(ast_ks_v[0]); }
 } return string bn;

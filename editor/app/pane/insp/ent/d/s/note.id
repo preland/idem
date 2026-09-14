@@ -6,14 +6,25 @@
 // what it is.
 
 ed_insp_note(int x, int y, int w) {
-  d2_hline(x + 4 * txt_ui(), y, w - 8 * txt_ui(), ed_col(3));
-  txt_draw("components need the", x + 6 * txt_ui(), y + 6 * txt_ui(), ed_col(5));
-  txt_draw("declaration parser", x + 6 * txt_ui(), y + ed_rowh() + 6 * txt_ui(), ed_col(5));
+  int txt_ui_v = txt_ui();
+  int txt_ui_v2 = txt_ui();
+  int ed_col_v = ed_col(3);
+  d2_hline(x + 4 * txt_ui_v, y, w - 8 * txt_ui_v2, ed_col_v);
+  int txt_ui_v3 = txt_ui();
+  int txt_ui_v4 = txt_ui();
+  int ed_col_v2 = ed_col(5);
+  txt_draw("components need the", x + 6 * txt_ui_v3, y + 6 * txt_ui_v4, ed_col_v2);
+  int txt_ui_v5 = txt_ui();
+  int ed_rowh_v = ed_rowh();
+  int txt_ui_v6 = txt_ui();
+  int ed_col_v3 = ed_col(5);
+  txt_draw("declaration parser", x + 6 * txt_ui_v5, y + ed_rowh_v + 6 * txt_ui_v6, ed_col_v3);
 } return void;
 
 ed_proj(int x, int y, int w, int h) {
   ed_pane(x, y, w, h, "Project");
-  ed_proj_rows(x, y + ed_hdr() + 3, w, h);
+  int ed_hdr_v = ed_hdr();
+  ed_proj_rows(x, y + ed_hdr_v + 3, w, h);
 } return void;
 
 // The files the `#file` markers named, one per column of the browser -- the same
@@ -22,7 +33,8 @@ ed_proj(int x, int y, int w, int h) {
 ed_proj_rows(int x, int y, int w, int h) {
   int i = 0;
   while (i < len((import ed_dir)) && i < 8) {
-    ed_proj_one(x + (6 + i * 78) * txt_ui(), y, i);
+    int txt_ui_v = txt_ui();
+    ed_proj_one(x + (6 + i * 78) * txt_ui_v, y, i);
     i = i + 1;
   }
 } return void;

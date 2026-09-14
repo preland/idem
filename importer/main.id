@@ -27,13 +27,16 @@
 
 main(int argc, string[] argv) {
   err_init();
-  imp_go(read_all());
+  string read_all_v = read_all();
+  imp_go(read_all_v);
   flush();
-} return int err_count();
+  int ret_i = err_count();
+} return int ret_i;
 
 imp_go(string src) {
   imp_init();
-  imp_kind(src, imp_tok(src));
+  string imp_tok_v = imp_tok(src);
+  imp_kind(src, imp_tok_v);
 } return void;
 
 imp_kind(string src, string name) {

@@ -11,8 +11,10 @@
 
 bl_scene(string path) {
   bl_reset();
-  lset((import bl_st), 11, bl_open(path));
-} return int bl_scene2();
+  int bl_open_v = bl_open(path);
+  lset((import bl_st), 11, bl_open_v);
+  int ret_i = bl_scene2();
+} return int ret_i;
 
 bl_scene2() {
   int i = 0;
@@ -20,7 +22,8 @@ bl_scene2() {
     bl_obj(i);
     i = i + 1;
   }
-} return int len((import bl_ti)) > 0;
+  int ret_i = len((import bl_ti)) > 0;
+} return int ret_i;
 
 // "OB\0\0" packed most significant byte first: 79*2^24 + 66*2^16 = 1329725440.
 bl_obj(int i) {

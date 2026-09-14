@@ -3,7 +3,8 @@
 t_fsum(int base, int n) {
   int a = t_fcol((import fse_sy), base, n);
   int b = t_fcol((import fse_nb), base, n);
-  t_fshow(a, b, t_fcol((import fse_bs), base, n));
+  int t_fcol_v = t_fcol((import fse_bs), base, n);
+  t_fshow(a, b, t_fcol_v);
 } return void;
 
 t_fshow(int a, int b, int c) {

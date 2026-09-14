@@ -21,7 +21,10 @@ ed_status_txt(int y) {
 } return void;
 
 ed_status_flow(int y) {
-  int x = ed_slab(6 * txt_ui(), y, ed_fit((import ed_fl)[0], 22));
-  x = ed_snum(x, y, "decls", len((import ed_nm)));
+  int txt_ui_v = txt_ui();
+  string ed_fit_v = ed_fit((import ed_fl)[0], 22);
+  int x = ed_slab(6 * txt_ui_v, y, ed_fit_v);
+  int len_v = len((import ed_nm));
+  x = ed_snum(x, y, "decls", len_v);
   ed_status_n(x, y);
 } return void;

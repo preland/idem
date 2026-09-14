@@ -12,7 +12,9 @@
 
 ed_band_take(int k) {
   if (k = 3) {
-    ed_pick(0, ed_bx0(), ed_by0(), 0);
+    int ed_bx0_v = ed_bx0();
+    int ed_by0_v = ed_by0();
+    ed_pick(0, ed_bx0_v, ed_by0_v, 0);
   }
 } return void;
 
@@ -20,7 +22,13 @@ ed_band_take(int k) {
 // same rectangle. Four functions rather than one that answers a record, because
 // each is one expression and a record would have to be allocated or owned.
 ed_bx0() {
-} return int fx_min((import ed_st)[13], inp_mx());
+  int ed_st_v = (import ed_st)[13];
+  int inp_mx_v = inp_mx();
+  int ret_i = fx_min(ed_st_v, inp_mx_v);
+} return int ret_i;
 
 ed_bx1() {
-} return int fx_max((import ed_st)[13], inp_mx());
+  int ed_st_v = (import ed_st)[13];
+  int inp_mx_v = inp_mx();
+  int ret_i = fx_max(ed_st_v, inp_mx_v);
+} return int ret_i;

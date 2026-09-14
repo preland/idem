@@ -20,9 +20,12 @@ zst_sdec(int n, int end) {
 } return void;
 
 zst_sinit() {
-  lset((import zst_sq), 0, fse_dstart(0));
-  lset((import zst_sq), 1, fse_dstart(1));
-  lset((import zst_sq), 2, fse_dstart(2));
+  int fse_dstart_v = fse_dstart(0);
+  lset((import zst_sq), 0, fse_dstart_v);
+  int fse_dstart_v2 = fse_dstart(1);
+  lset((import zst_sq), 1, fse_dstart_v2);
+  int fse_dstart_v3 = fse_dstart(2);
+  lset((import zst_sq), 2, fse_dstart_v3);
 } return void;
 
 // The last sequence does not advance the states -- there are no bits left for it

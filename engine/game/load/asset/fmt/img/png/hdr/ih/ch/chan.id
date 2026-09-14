@@ -17,7 +17,8 @@ png_chan2(int kd) {
 // would slide every row after the first by part of a pixel -- an image that looks
 // sheared rather than one that looks unsupported.
 png_chk() {
-  lset((import png_st), 11, fx_max((import png_st)[2] * (import png_st)[4] / 8, 1));
+  int fx_max_v = fx_max((import png_st)[2] * (import png_st)[4] / 8, 1);
+  lset((import png_st), 11, fx_max_v);
   lset((import png_st), 8, ((import png_st)[0] * (import png_st)[4] * (import png_st)[2] + 7) / 8 + 1);
   png_chk2();
 } return void;

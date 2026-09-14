@@ -1,7 +1,9 @@
 // The base state, and the highest set bit it needs.
 
 fse_bbase(int u, int ns) {
-  lset((import fse_bs), (import fse_st)[6] + u, ns * inf_pow2((import fse_nb)[(import fse_st)[6] + u]) - (import fse_st)[7]);
+  int fse_st_v = (import fse_st)[6];
+  int inf_pow2_v = inf_pow2((import fse_nb)[(import fse_st)[6] + u]);
+  lset((import fse_bs), fse_st_v + u, ns * inf_pow2_v - (import fse_st)[7]);
 } return void;
 
 // The index of the highest set bit: 0 for 1, 1 for 2-3, 2 for 4-7. A loop rather

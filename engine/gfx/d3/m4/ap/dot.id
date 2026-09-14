@@ -12,11 +12,13 @@ m4_dot(int[] xs, int[] ys, int i, int j) {
     wp = wp + m4_wmul(xs[i * 4 + k], ys[k * 4 + j]);
     k = k + 1;
   }
-} return int wp / 1000;
+  int ret_i = wp / 1000;
+} return int ret_i;
 
 m4_wmul(int a, int b) {
   word wp = a;
-} return word wp * b;
+  word ret_w = wp * b;
+} return word ret_w;
 
 // cot(deg) x1000, for a projection's focal term. deg is millidegrees; a quarter
 // turn gives 0 and anything approaching zero gives a huge number, so callers
@@ -24,4 +26,7 @@ m4_wmul(int a, int b) {
 // fx_div answers 0 rather than dividing by zero, so a 180-degree fov degrades to
 // a flat matrix instead of a core dump.
 m4_cot(int deg) {
-} return int fx_div(fx_cos(deg), fx_sin(deg), 1000);
+  int fx_cos_v = fx_cos(deg);
+  int fx_sin_v = fx_sin(deg);
+  int ret_i = fx_div(fx_cos_v, fx_sin_v, 1000);
+} return int ret_i;

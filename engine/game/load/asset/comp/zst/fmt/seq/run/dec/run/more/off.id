@@ -11,7 +11,8 @@
 
 zst_soff(int of, int ll) {
   int v = inf_pow2(of) + zb_bits(of);
-} return int zst_srep(v, ll);
+  int ret_i = zst_srep(v, ll);
+} return int ret_i;
 
 zst_srep(int v, int ll) {
   int off = 0;

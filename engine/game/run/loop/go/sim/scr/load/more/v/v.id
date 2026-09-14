@@ -4,7 +4,8 @@
 // binding with no value raises nothing.
 scr_kev(int nd) {
   string s = "";
-  if (len(ast_ks(nd)) > 0) { s = ast_tx(ast_ks(nd)[0]); }
+  int[] ast_ks_v = ast_ks(nd);
+  if (len(ast_ks_v) > 0) { int[] ast_ks_v2 = ast_ks(nd); s = ast_tx(ast_ks_v2[0]); }
 } return string s;
 
 // `persist { high = 0 }`. These are the game's own variables: declared once,
@@ -13,12 +14,16 @@ scr_kev(int nd) {
 // than an expression (par_kv), so it is read as digits.
 scr_persist(int nd, int i) {
   while (i < len(ast_ks(nd))) {
-    scr_p1(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    scr_p1(ast_ks_v[i]);
     i = i + 1;
   }
-  lset((import scr_st), 4, len((import scr_vv)));
+  int len_v = len((import scr_vv));
+  lset((import scr_st), 4, len_v);
 } return void;
 
 scr_p1(int nd) {
-  scr_push(ast_tx(nd), scr_kev2(nd));
+  string ast_tx_v = ast_tx(nd);
+  int scr_kev2_v = scr_kev2(nd);
+  scr_push(ast_tx_v, scr_kev2_v);
 } return void;

@@ -9,7 +9,8 @@
 // predicts from the same channel of the previous pixel, not the previous byte.
 
 asset_row(int y) {
-} return int (import png_st)[7] + y * (import png_st)[8];
+  int ret_i = (import png_st)[7] + y * (import png_st)[8];
+} return int ret_i;
 
 png_row(int y, int r) {
   int f = peek8(r);
@@ -19,7 +20,9 @@ png_row(int y, int r) {
 png_bytes(int y, int r, int f) {
   int i = 0;
   while (i < (import png_st)[8] - 1) {
-    poke8(r + i, (peek8(r + i) + png_pred(y, r, i, f)) % 256);
+    word peek8_v = peek8(r + i);
+    int png_pred_v = png_pred(y, r, i, f);
+    poke8(r + i, (peek8_v + png_pred_v) % 256);
     i = i + 1;
   }
 } return void;

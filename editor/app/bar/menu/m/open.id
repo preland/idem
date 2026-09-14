@@ -1,7 +1,11 @@
 // Which title the pointer is on, what a click there does, and the walk.
 
 ed_menu_click(int x, int k, string s) {
-  if (ed_in(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1) = 1) {
+  int txt_ui_v = txt_ui();
+  int txt_width_v = txt_width(s);
+  int txt_ui_v2 = txt_ui();
+  int ed_hdr_v = ed_hdr();
+  if (ed_in(x - 4 * txt_ui_v, 0, txt_width_v + 8 * txt_ui_v2, ed_hdr_v - 1) = 1) {
     ed_menu_pick(k);
   }
 } return void;
@@ -11,7 +15,8 @@ ed_menu_click(int x, int k, string s) {
 // again and k otherwise, without a second branch.
 ed_menu_pick(int k) {
   if (inp_mhit(1) = 1) {
-    lset((import ed_st), 15, ed_mtog(k));
+    int ed_mtog_v = ed_mtog(k);
+    lset((import ed_st), 15, ed_mtog_v);
   } else if ((import ed_st)[15] >= 0) {
     lset((import ed_st), 15, k);
   }

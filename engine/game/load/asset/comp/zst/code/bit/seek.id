@@ -21,7 +21,8 @@ zb_hi(int v) {
   int h = 0 - 1;
   int i = 0;
   while (i < 8) {
-    h = zb_pick(h, i, v / inf_pow2(i) % 2);
+    int inf_pow2_v = inf_pow2(i);
+    h = zb_pick(h, i, v / inf_pow2_v % 2);
     i = i + 1;
   }
 } return int h;

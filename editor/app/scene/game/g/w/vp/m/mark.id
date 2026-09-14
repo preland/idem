@@ -15,13 +15,21 @@ ed_marks(int e) {
 
 ed_mark1(int e) {
   if ((ent_at(e, 23) & 1) = 1) {
-    ed_cross(ed_epx(e, 0), ed_epy(e));
+    int ed_epx_v = ed_epx(e, 0);
+    int ed_epy_v = ed_epy(e);
+    ed_cross(ed_epx_v, ed_epy_v);
   }
 } return void;
 
 // Clipped to the plane, because a selected entity can scroll off it while the
 // game runs and a cross drawn over the hierarchy is worse than no cross.
 ed_cross(int x, int y) {
-  d2_hline(x - 4 * txt_ui(), y, 9 * txt_ui(), ed_col(13));
-  d2_vline(x, y - 4 * txt_ui(), 9 * txt_ui(), ed_col(13));
+  int txt_ui_v = txt_ui();
+  int txt_ui_v2 = txt_ui();
+  int ed_col_v = ed_col(13);
+  d2_hline(x - 4 * txt_ui_v, y, 9 * txt_ui_v2, ed_col_v);
+  int txt_ui_v3 = txt_ui();
+  int txt_ui_v4 = txt_ui();
+  int ed_col_v2 = ed_col(13);
+  d2_vline(x, y - 4 * txt_ui_v3, 9 * txt_ui_v4, ed_col_v2);
 } return void;

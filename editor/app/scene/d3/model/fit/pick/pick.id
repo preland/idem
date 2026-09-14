@@ -19,4 +19,5 @@ ed_content() {
 // whichever view is actually on screen. Two views with one set of bindings is the
 // point: a person should not have to know which renderer a project woke up.
 ed_is2d() {
-} return int bl_ntri() = 0 && (import ed_gu)[0] != 0;
+  int ret_i = bl_ntri() = 0 && (import ed_gu)[0] != 0;
+} return int ret_i;

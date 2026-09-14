@@ -30,5 +30,7 @@ inf_block2(int t) {
 // it is noise.
 inf_stored() {
   inf_align();
-  inf_stored2(inf_word(), inf_word());
+  int inf_word_v = inf_word();
+  int inf_word_v2 = inf_word();
+  inf_stored2(inf_word_v, inf_word_v2);
 } return void;

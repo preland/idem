@@ -2,8 +2,10 @@
 // a sequence describes.
 
 zst_supd2() {
-  lset((import zst_sq), 2, fse_dnext(2, (import zst_sq)[2]));
-  lset((import zst_sq), 1, fse_dnext(1, (import zst_sq)[1]));
+  int fse_dnext_v = fse_dnext(2, (import zst_sq)[2]);
+  lset((import zst_sq), 2, fse_dnext_v);
+  int fse_dnext_v2 = fse_dnext(1, (import zst_sq)[1]);
+  lset((import zst_sq), 1, fse_dnext_v2);
 } return void;
 
 zst_sexec(int llen, int off, int mlen) {

@@ -18,7 +18,9 @@ bl_sfind(string name) {
 bl_spick(int i, string name) {
   int p = bl_soff(i);
   int k = 0 - 1;
-  if (bl_streq(bl_nth((import bl_st)[8], bl_le16(p)), name) = 1) { k = i; }
+  int bl_le16_v = bl_le16(p);
+  int bl_nth_v = bl_nth((import bl_st)[8], bl_le16_v);
+  if (bl_streq(bl_nth_v, name) = 1) { k = i; }
 } return int k;
 
 // The offset of struct i's entry, by walking the ones before it.

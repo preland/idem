@@ -2,11 +2,14 @@
 
 scn_ebox(int e, int nd) {
   ent_put(e, 24, 1);
-  ent_put(e, 25, scn_smem(nd, 0) * 1000);
+  int scn_smem_v = scn_smem(nd, 0);
+  ent_put(e, 25, scn_smem_v * 1000);
   scn_ebox2(e, nd);
 } return void;
 
 scn_ebox2(int e, int nd) {
-  ent_put(e, 26, scn_smem(nd, 1) * 1000);
-  ent_put(e, 27, scn_num(nd, 1));
+  int scn_smem_v = scn_smem(nd, 1);
+  ent_put(e, 26, scn_smem_v * 1000);
+  int scn_num_v = scn_num(nd, 1);
+  ent_put(e, 27, scn_num_v);
 } return void;

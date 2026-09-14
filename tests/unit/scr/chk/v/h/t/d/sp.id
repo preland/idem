@@ -6,7 +6,8 @@
 
 t_press() {
   scr_pall("press", 0 - 1);
-  print("one press: taps exp 1 = " + scr_get(0 - 1, "taps"));
+  int scr_get_v = scr_get(0 - 1, "taps");
+  print("one press: taps exp 1 = " + scr_get_v);
   t_spawn();
 } return void;
 
@@ -17,13 +18,18 @@ t_press() {
 // solid, has a body and carries its tag -- and its position comes from the
 // statement rather than from the template's own `pos (0, 0)`.
 t_spawn() {
-  print("before: entities exp 3 = " + ent_n());
+  int ent_n_v = ent_n();
+  print("before: entities exp 3 = " + ent_n_v);
   scr_fire((import scn_st)[9], "enter", 0 - 1, "");
   t_spawn2();
 } return void;
 
 t_spawn2() {
-  print("after: entities exp 4 = " + ent_n());
-  print("its pos exp 30000 40000, tagged exp 1 = " + ent_at(3, 0) + " " + ent_at(3, 1) + " " + (ent_at(3, 20) != 0));
+  int ent_n_v = ent_n();
+  print("after: entities exp 4 = " + ent_n_v);
+  int ent_at_v = ent_at(3, 0);
+  int ent_at_v2 = ent_at(3, 1);
+  int ent_at_v3 = ent_at(3, 20);
+  print("its pos exp 30000 40000, tagged exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 != 0));
   t_done();
 } return void;

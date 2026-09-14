@@ -17,7 +17,10 @@
 // speck, and there because a scale of zero divides by nothing in the blitter.
 
 ed_zoom2d() {
-  lset((import ed_st), 18, fx_clamp((import ed_st)[18] + (import ed_st)[18] / 8 * inp_mdown(8) - (import ed_st)[18] / 8 * inp_mdown(16), 100, 32000));
+  int inp_mdown_v = inp_mdown(8);
+  int inp_mdown_v2 = inp_mdown(16);
+  int fx_clamp_v = fx_clamp((import ed_st)[18] + (import ed_st)[18] / 8 * inp_mdown_v - (import ed_st)[18] / 8 * inp_mdown_v2, 100, 32000);
+  lset((import ed_st), 18, fx_clamp_v);
 } return void;
 
 // Panning a flat view is the drag itself: one pixel of pointer is one pixel of
@@ -25,6 +28,10 @@ ed_zoom2d() {
 // is *not* the same arithmetic as the 3D pan is the reason they are two
 // functions rather than one with a flag.
 ed_pan2d() {
-  lset((import ed_st), 19, (import ed_st)[19] + inp_mx() - (import ed_st)[6]);
-  lset((import ed_st), 20, (import ed_st)[20] + inp_my() - (import ed_st)[7]);
+  int ed_st_v = (import ed_st)[19];
+  int inp_mx_v = inp_mx();
+  lset((import ed_st), 19, ed_st_v + inp_mx_v - (import ed_st)[6]);
+  int ed_st_v2 = (import ed_st)[20];
+  int inp_my_v = inp_my();
+  lset((import ed_st), 20, ed_st_v2 + inp_my_v - (import ed_st)[7]);
 } return void;

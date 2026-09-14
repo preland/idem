@@ -18,7 +18,8 @@ main(int argc, string[] argv) {
 
 t_load() {
   inf_init();
-  print("load spryte-run.png exp 1 = " + png_load("test_assets/spryte-run.png"));
+  int png_load_v = png_load("test_assets/spryte-run.png");
+  print("load spryte-run.png exp 1 = " + png_load_v);
   t_head();
 } return void;
 

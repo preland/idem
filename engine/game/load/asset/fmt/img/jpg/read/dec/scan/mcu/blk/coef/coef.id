@@ -22,5 +22,6 @@ jpg_cget(int a, int k) {
 
 // Add to one, which is what a refinement scan does.
 jpg_cadd(int a, int k, int v) {
-  jpg_cset(a, k, jpg_cget(a, k) + v);
+  int jpg_cget_v = jpg_cget(a, k);
+  jpg_cset(a, k, jpg_cget_v + v);
 } return void;

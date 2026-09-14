@@ -9,6 +9,8 @@
 // easy to write: the eye orbits opposite to the thing it is looking at.
 
 ed_turn() {
-  lset((import ed_st), 2, (import ed_st)[2] - (inp_mx() - (import ed_st)[6]) * 500);
+  int ed_st_v = (import ed_st)[2];
+  int inp_mx_v = inp_mx();
+  lset((import ed_st), 2, ed_st_v - (inp_mx_v - (import ed_st)[6]) * 500);
   ed_pitch();
 } return void;

@@ -8,7 +8,8 @@ jpg_loop() {
 
 jpg_seg() {
   int p = jpg_mark((import jpg_st)[9]);
-  jpg_kind(p, asset_at(p + 1));
+  int asset_at_v = asset_at(p + 1);
+  jpg_kind(p, asset_at_v);
 } return void;
 
 // A real marker is 0xFF followed by something that is neither 0x00 (a stuffed

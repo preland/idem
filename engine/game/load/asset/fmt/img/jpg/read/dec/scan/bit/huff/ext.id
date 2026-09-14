@@ -22,4 +22,5 @@ jpg_ext(int v, int n) {
 jpg_dec(int t) {
   int[] st = [0, 0, 0, 1];
   jpg_dwalk(t, st);
-} return int jpg_dsym(t, st);
+  int ret_i = jpg_dsym(t, st);
+} return int ret_i;

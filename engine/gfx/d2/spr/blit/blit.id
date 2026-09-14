@@ -17,16 +17,22 @@
 // end would index past the pixel list, and that aborts the process.
 
 d2_blit(int p, int x, int y, int f) {
-  int i = d2_spr_w(p) * d2_spr_h(p) * fx_clamp(f, 0, d2_spr_nf(p) - 1);
-  int n = fx_min(d2_spr_h(p), (import sf_cl)[3] + 1 - y);
-  d2_blit_rows(p, x, y, i, fx_max(0, (import sf_cl)[1] - y), n);
+  int d2_spr_w_v = d2_spr_w(p);
+  int d2_spr_h_v = d2_spr_h(p);
+  int d2_spr_nf_v = d2_spr_nf(p);
+  int i = d2_spr_w_v * d2_spr_h_v * fx_clamp(f, 0, d2_spr_nf_v - 1);
+  int d2_spr_h_v2 = d2_spr_h(p);
+  int n = fx_min(d2_spr_h_v2, (import sf_cl)[3] + 1 - y);
+  int fx_max_v = fx_max(0, (import sf_cl)[1] - y);
+  d2_blit_rows(p, x, y, i, fx_max_v, n);
 } return void;
 
 // j is the sprite row, so y + j is the surface row and i + w * j the first source
 // pixel of it. j starts at the first row that is on-screen, not at 0.
 d2_blit_rows(int p, int x, int y, int i, int j, int n) {
   while (j < n) {
-    d2_blit_clip(p, x, y + j, i + d2_spr_w(p) * j);
+    int d2_spr_w_v = d2_spr_w(p);
+    d2_blit_clip(p, x, y + j, i + d2_spr_w_v * j);
     j = j + 1;
   }
 } return void;
@@ -36,6 +42,9 @@ d2_blit_rows(int p, int x, int y, int i, int j, int n) {
 // sprite hanging off the left edge from sliding sideways as it moves.
 d2_blit_clip(int p, int x, int y, int i) {
   int x0 = fx_max(x, (import sf_cl)[0]);
-  int x1 = fx_min(x + d2_spr_w(p) - 1, (import sf_cl)[2]);
-  d2_blit_row(d2_spr_px(p), i + x0 - x, (import sf_fb), sf_idx(x0, y), x1 - x0 + 1);
+  int d2_spr_w_v = d2_spr_w(p);
+  int x1 = fx_min(x + d2_spr_w_v - 1, (import sf_cl)[2]);
+  int[] d2_spr_px_v = d2_spr_px(p);
+  int sf_idx_v = sf_idx(x0, y);
+  d2_blit_row(d2_spr_px_v, i + x0 - x, (import sf_fb), sf_idx_v, x1 - x0 + 1);
 } return void;

@@ -6,7 +6,7 @@
 
 jpg_diff(int sz) {
   int v = 0;
-  if (sz > 0) { v = jpg_ext(jpg_recv(sz), sz); }
+  if (sz > 0) { int jpg_recv_v = jpg_recv(sz); v = jpg_ext(jpg_recv_v, sz); }
 } return int v;
 
 jpg_ac(int ci, int a, int k) {
@@ -17,4 +17,5 @@ jpg_ac(int ci, int a, int k) {
 
 jpg_ac1(int ci, int a, int k) {
   int rs = jpg_dec((import jpg_c)[ci * 10 + 5]);
-} return int jpg_ac2(ci, a, k, rs / 16, rs % 16);
+  int ret_i = jpg_ac2(ci, a, k, rs / 16, rs % 16);
+} return int ret_i;

@@ -15,9 +15,11 @@
 // zeros rather than walking off the end of the picture into the next section.
 
 spr_plane(string src, string kd, int n) {
-  spr_magic(src, kd, imp_tok(src));
+  string imp_tok_v = imp_tok(src);
+  spr_magic(src, kd, imp_tok_v);
   imp_int(src);
-  spr_fill(src, n, spr_max(src));
+  int spr_max_v = spr_max(src);
+  spr_fill(src, n, spr_max_v);
 } return void;
 
 spr_magic(string src, string kd, string name) {
@@ -30,4 +32,5 @@ spr_magic(string src, string kd, string name) {
 // both of them inside three actions.
 spr_max(string src) {
   imp_int(src);
-} return int imp_int(src);
+  int ret_i = imp_int(src);
+} return int ret_i;

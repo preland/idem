@@ -2,7 +2,8 @@
 
 ent_show(int e) {
   if (ent_at(e, 6) >= 0) {
-    ent_blit(ent_at(e, 6), e);
+    int ent_at_v = ent_at(e, 6);
+    ent_blit(ent_at_v, e);
   } else if (ent_at(e, 24) = 1) {
     ent_box(e);
   }
@@ -16,5 +17,12 @@ ent_show(int e) {
 // letterboxed stage.
 
 ent_box(int e) {
-  sf_rect(sys_sx() + ent_bx(e, 0, 25), sys_sy() + ent_bx(e, 1, 26), ent_bs(e, 25), ent_bs(e, 26), ent_at(e, 27));
+  int sys_sx_v = sys_sx();
+  int ent_bx_v = ent_bx(e, 0, 25);
+  int sys_sy_v = sys_sy();
+  int ent_bx_v2 = ent_bx(e, 1, 26);
+  int ent_bs_v = ent_bs(e, 25);
+  int ent_bs_v2 = ent_bs(e, 26);
+  int ent_at_v = ent_at(e, 27);
+  sf_rect(sys_sx_v + ent_bx_v, sys_sy_v + ent_bx_v2, ent_bs_v, ent_bs_v2, ent_at_v);
 } return void;

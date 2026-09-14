@@ -29,7 +29,8 @@
 txt_ui() {
   int step_w = txt_step((import sf_gw), 640);
   int step_h = txt_step((import sf_gh), 400);
-  int ui = fx_max(fx_min(step_w, step_h), 1);
+  int fx_min_v = fx_min(step_w, step_h);
+  int ui = fx_max(fx_min_v, 1);
 } return int ui;
 
 // Round-to-nearest division: (n + ref/2) / ref.

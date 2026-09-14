@@ -23,5 +23,5 @@ scr_fn6(string name, int a, int b) {
 scr_fn7(string name, int a, int b) {
   int v = 0;
   if (name = "key") { v = inp_down(a); }
-  else { err_report("script", 0, "unknown function " + chr(39) + name + chr(39)); }
+  else { string chr_v = chr(39); string chr_v2 = chr(39); err_report("script", 0, "unknown function " + chr_v + name + chr_v2); }
 } return int v;

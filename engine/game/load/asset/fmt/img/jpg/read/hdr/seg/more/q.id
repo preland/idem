@@ -2,13 +2,16 @@
 
 jpg_dqt1(int p) {
   int pq = asset_at(p) / 16;
-  jpg_qfill(p + 1, asset_at(p) % 16, pq);
-} return int p + 1 + 64 * (pq + 1);
+  int asset_at_v = asset_at(p);
+  jpg_qfill(p + 1, asset_at_v % 16, pq);
+  int ret_i = p + 1 + 64 * (pq + 1);
+} return int ret_i;
 
 jpg_qfill(int p, int tq, int pq) {
   int k = 0;
   while (k < 64) {
-    lset((import jpg_q), tq * 64 + k, jpg_q1(p, k, pq));
+    int jpg_q1_v = jpg_q1(p, k, pq);
+    lset((import jpg_q), tq * 64 + k, jpg_q1_v);
     k = k + 1;
   }
 } return void;

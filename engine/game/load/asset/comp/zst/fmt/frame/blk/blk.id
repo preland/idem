@@ -13,14 +13,16 @@
 zst_blocks(int ck) {
   int last = 0;
   while (last = 0 && (import zst_st)[6] = 0) {
-    last = zst_block(zst_le(3));
+    int zst_le_v = zst_le(3);
+    last = zst_block(zst_le_v);
   }
   zst_cksum(ck);
 } return void;
 
 zst_block(int bh) {
   zst_kind(bh / 2 % 4, bh / 8);
-} return int bh % 2;
+  int ret_i = bh % 2;
+} return int ret_i;
 
 // Four bytes of xxhash64's low half, when the frame asked for it. It is not
 // checked: computing xxhash to verify data this decoder is about to be told is

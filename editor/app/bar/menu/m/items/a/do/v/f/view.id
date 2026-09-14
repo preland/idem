@@ -10,7 +10,9 @@ ed_sel_all(int e, int v) {
 // Yaw and pitch only: the distance and the centre are where the geometry is, and
 // a "front view" that also flew the camera home would be two commands in one.
 ed_mview_do(int i) {
-  m4_pair((import ed_st), 2, 3, ed_vyaw(i), ed_vpit(i));
+  int ed_vyaw_v = ed_vyaw(i);
+  int ed_vpit_v = ed_vpit(i);
+  m4_pair((import ed_st), 2, 3, ed_vyaw_v, ed_vpit_v);
 } return void;
 
 ed_vyaw(int i) {

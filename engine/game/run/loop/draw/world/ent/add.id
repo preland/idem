@@ -5,12 +5,15 @@
 // and a new entity is live.
 
 ent_n() {
-} return int len((import ent_r)) / 28;
+  int ret_i = len((import ent_r)) / 28;
+} return int ret_i;
 
 ent_add() {
   lst_fill((import ent_r), 28, 0);
-  ent_new(ent_n() - 1);
-} return int ent_n() - 1;
+  int ent_n_v = ent_n();
+  ent_new(ent_n_v - 1);
+  int ret_i = ent_n() - 1;
+} return int ret_i;
 
 ent_new(int e) {
   m4_pair((import ent_r), e * 28 + 4, e * 28 + 5, 1000, 1000);

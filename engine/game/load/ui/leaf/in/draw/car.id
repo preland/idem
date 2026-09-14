@@ -7,7 +7,10 @@
 // side bearing, so a gap-filling caret would have to be zero pixels wide.
 tin_car(int x, int y, int c, int t) {
   if (tin_blink(t) = 1) {
-    sf_rect(x, y, txt_ui(), txt_cellh() * txt_ui(), c);
+    int txt_ui_v = txt_ui();
+    int txt_cellh_v = txt_cellh();
+    int txt_ui_v2 = txt_ui();
+    sf_rect(x, y, txt_ui_v, txt_cellh_v * txt_ui_v2, c);
   }
 } return void;
 
@@ -17,7 +20,8 @@ tin_car(int x, int y, int c, int t) {
 // difference between a caret that acknowledges a keystroke and one that can go
 // dark in the middle of one, which reads as a dropped character.
 tin_blink(int t) {
-} return int (t - (import tin_st)[3]) / (import tin_base) % 2 = 0;
+  int ret_i = (t - (import tin_st)[3]) / (import tin_base) % 2 = 0;
+} return int ret_i;
 
 // How far left the text is shifted so the caret stays inside a field n pixels
 // wide: zero until the caret would leave the right-hand edge, and after that
@@ -28,4 +32,8 @@ tin_blink(int t) {
 // cell would leave the caret in a different place after every scroll, and the
 // eye follows the caret.
 tin_off(int n) {
-} return int fx_max(((import tin_st)[0] + 1) * txt_cell() * txt_ui() - n, 0);
+  int tin_st_v = (import tin_st)[0];
+  int txt_cell_v = txt_cell();
+  int txt_ui_v = txt_ui();
+  int ret_i = fx_max((tin_st_v + 1) * txt_cell_v * txt_ui_v - n, 0);
+} return int ret_i;

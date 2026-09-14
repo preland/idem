@@ -6,7 +6,8 @@
 t_dump(int p, int n) {
   int i = 0;
   while (i < n) {
-    put("" + d2_spr_at(p, i) + " ");
+    int d2_spr_at_v = d2_spr_at(p, i);
+    put("" + d2_spr_at_v + " ");
     i = i + 1;
   }
   print("");
@@ -14,7 +15,10 @@ t_dump(int p, int n) {
 
 t_big() {
   int p = spr_png("runner", "test_assets/spryte-run.png", 5, 5, 40, 40);
-  print("sheet: id " + p + " " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p));
+  int d2_spr_w_v = d2_spr_w(p);
+  int d2_spr_h_v = d2_spr_h(p);
+  int d2_spr_nf_v = d2_spr_nf(p);
+  print("sheet: id " + p + " " + d2_spr_w_v + "x" + d2_spr_h_v + " frames " + d2_spr_nf_v);
   t_probe(p);
 } return void;
 
@@ -23,7 +27,9 @@ t_big() {
 // 15657421. Frame 0's (0,0) samples source (0,0), which is alpha 0 and must be
 // clear despite carrying the colour 250 249 252.
 t_probe(int p) {
-  print("  frame0 (0,0) exp -1 = " + d2_spr_at(p, 0) + " | frame12 (20,20) exp 15657421 = " + d2_spr_at(p, 12 * 1600 + 20 * 40 + 20));
+  int d2_spr_at_v = d2_spr_at(p, 0);
+  int d2_spr_at_v2 = d2_spr_at(p, 12 * 1600 + 20 * 40 + 20);
+  print("  frame0 (0,0) exp -1 = " + d2_spr_at_v + " | frame12 (20,20) exp 15657421 = " + d2_spr_at_v2);
   t_report(p, 40000, "sheet");
   t_whole();
 } return void;

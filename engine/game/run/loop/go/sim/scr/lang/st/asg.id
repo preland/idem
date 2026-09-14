@@ -8,7 +8,8 @@
 
 scr_asg(int tgt, int v, int e) {
   if (ast_kd(tgt) = ast_k_ident()) {
-    scr_set(e, ast_tx(tgt), v);
+    string ast_tx_v = ast_tx(tgt);
+    scr_set(e, ast_tx_v, v);
   } else {
     scr_asgf(tgt, v, e);
   }
@@ -16,7 +17,10 @@ scr_asg(int tgt, int v, int e) {
 
 scr_asgf(int tgt, int v, int e) {
   if (ast_kd(tgt) = ast_k_field() && ast_kd(ast_ia(tgt)) = ast_k_ident()) {
-    scr_asgf2(ast_tx(ast_ia(tgt)), ast_tx(tgt), v, e);
+    int ast_ia_v = ast_ia(tgt);
+    string ast_tx_v = ast_tx(ast_ia_v);
+    string ast_tx_v2 = ast_tx(tgt);
+    scr_asgf2(ast_tx_v, ast_tx_v2, v, e);
   }
 } return void;
 
@@ -24,6 +28,7 @@ scr_asgf2(string bn, string name, int v, int e) {
   if (bn = "scene" || bn = "game") {
     scr_set(e, name, v);
   } else {
-    scr_pslot(e, scr_fk(bn, name), v);
+    int scr_fk_v = scr_fk(bn, name);
+    scr_pslot(e, scr_fk_v, v);
   }
 } return void;

@@ -2,7 +2,9 @@ par_eq_f(int[] pos, int left) {
   string txt = par_text(pos);
   par_next(pos);
   int nd = par_rel(pos);
-} return int ast_new_ab(ast_k_bin(), txt, left, nd);
+  int ast_k_bin_v = ast_k_bin();
+  int ret_i = ast_new_ab(ast_k_bin_v, txt, left, nd);
+} return int ret_i;
 
 par_rel(int[] pos) {
   int left = par_bor(pos);
@@ -15,4 +17,6 @@ par_rel_f(int[] pos, int left) {
   string txt = par_text(pos);
   par_next(pos);
   int nd = par_bor(pos);
-} return int ast_new_ab(ast_k_bin(), txt, left, nd);
+  int ast_k_bin_v = ast_k_bin();
+  int ret_i = ast_new_ab(ast_k_bin_v, txt, left, nd);
+} return int ret_i;

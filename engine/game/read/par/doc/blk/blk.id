@@ -14,13 +14,18 @@ par_dkind(int[] pos, string name, int kd, int ln) {
 // terminates rather than hanging -- and this is the production that would
 // otherwise spin, because it is the one that consumes nothing on failure.
 par_dbad(int[] pos, string name) {
-  par_err(pos, "unknown declaration " + chr(39) + name + chr(39));
+  string chr_v = chr(39);
+  string chr_v2 = chr(39);
+  par_err(pos, "unknown declaration " + chr_v + name + chr_v2);
   par_next(pos);
-} return int ast_new_k(ast_k_bad(), name);
+  int ast_k_bad_v = ast_k_bad();
+  int ret_i = ast_new_k(ast_k_bad_v, name);
+} return int ret_i;
 
 // `import "path"` has a string where a name goes, which is the one exception --
 // so the name is whatever token follows, taken as text either way.
 par_dblock(int[] pos, int kd, int ln) {
   string name = par_text(pos);
   par_next(pos);
-} return int par_dbody(pos, kd, name, ln);
+  int ret_i = par_dbody(pos, kd, name, ln);
+} return int ret_i;

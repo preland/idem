@@ -12,7 +12,8 @@ ui_rect(string name, int i) {
 
 ui_rpair(int p, int i) {
   int v = (import ui_rv)[p * 2 + i / 2];
-} return int ui_half(v, i % 2);
+  int ret_i = ui_half(v, i % 2);
+} return int ret_i;
 
 ui_half(int v, int k) {
   int n = v / 65536;

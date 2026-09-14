@@ -7,10 +7,14 @@ par_goto(int[] pos) {
   par_next(pos);
   string name = par_text(pos);
   par_next(pos);
-} return int ast_new_k(ast_k_goto(), name);
+  int ast_k_goto_v = ast_k_goto();
+  int ret_i = ast_new_k(ast_k_goto_v, name);
+} return int ret_i;
 
 par_play(int[] pos) {
   par_next(pos);
   string name = par_text(pos);
   par_next(pos);
-} return int ast_new_k(ast_k_play(), name);
+  int ast_k_play_v = ast_k_play();
+  int ret_i = ast_new_k(ast_k_play_v, name);
+} return int ret_i;

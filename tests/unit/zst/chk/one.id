@@ -23,7 +23,8 @@ t_more() {
 // honest answer. This is why the fault must never be suppressed at end of stream.
 t_one(string msg, string path, int n) {
   int got = t_dec(path, n);
-  t_show(msg, got, t_hash((import zst_st)[4]));
+  word t_hash_v = t_hash((import zst_st)[4]);
+  t_show(msg, got, t_hash_v);
 } return void;
 
 // The output buffer is sized from what the fixture is known to decompress to, not
@@ -31,5 +32,7 @@ t_one(string msg, string path, int n) {
 // cannot be tested against a frame that lies about it.
 t_dec(string path, int n) {
   int slen = asset_slurp(path);
-  int da = alloc(fx_max(n, 1));
-} return int zst_run((import asset_io)[0], slen, da, n);
+  int fx_max_v = fx_max(n, 1);
+  int da = alloc(fx_max_v);
+  int ret_i = zst_run((import asset_io)[0], slen, da, n);
+} return int ret_i;

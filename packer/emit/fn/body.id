@@ -12,7 +12,8 @@
 
 pack_sig(int k) {
   print("");
-  print(pack_name(k) + "(string[] chunks) {");
+  string pack_name_v = pack_name(k);
+  print(pack_name_v + "(string[] chunks) {");
 } return void;
 
 // The literal goes out with put, in one piece, straight from the escape buffer.
@@ -20,7 +21,8 @@ pack_sig(int k) {
 // 120 KB string twice for the sake of one print.
 pack_body(string src, int p, int nxt, int k) {
   put("  push(chunks, \"");
-  put(pack_esc(src, p, nxt - p));
+  string pack_esc_v = pack_esc(src, p, nxt - p);
+  put(pack_esc_v);
   pack_tail(src, nxt, k);
 } return void;
 

@@ -15,18 +15,30 @@
 // advances a single frame, which is the control you actually want when something
 // happens too fast to see.
 ed_play() {
-  ed_play_hit(ed_play_btn((import sf_gw) / 2 - txt_width("play") - 12 * txt_ui(), ed_play_lbl()), 1);
-  ed_play_hit(ed_play_btn((import sf_gw) / 2 + 4 * txt_ui(), "step"), 2);
+  int txt_width_v = txt_width("play");
+  int txt_ui_v = txt_ui();
+  string ed_play_lbl_v = ed_play_lbl();
+  int ed_play_btn_v = ed_play_btn((import sf_gw) / 2 - txt_width_v - 12 * txt_ui_v, ed_play_lbl_v);
+  ed_play_hit(ed_play_btn_v, 1);
+  int txt_ui_v2 = txt_ui();
+  int ed_play_btn_v2 = ed_play_btn((import sf_gw) / 2 + 4 * txt_ui_v2, "step");
+  ed_play_hit(ed_play_btn_v2, 2);
 } return void;
 
 ed_play_btn(int x, string s) {
-} return int ed_btn(x, ed_hdr() + 2, txt_width(s) + 8 * txt_ui(), ed_hdr(), s);
+  int ed_hdr_v = ed_hdr();
+  int txt_width_v = txt_width(s);
+  int txt_ui_v = txt_ui();
+  int ed_hdr_v2 = ed_hdr();
+  int ret_i = ed_btn(x, ed_hdr_v + 2, txt_width_v + 8 * txt_ui_v, ed_hdr_v2, s);
+} return int ret_i;
 
 // 1 toggles running, 2 asks for one frame. Slot 16 carries both, and ed_tick
 // clears a 2 after simulating -- so a step is exactly one frame however long the
 // button is held down.
 ed_play_hit(int ok, int k) {
   if (ok = 1) {
-    lset((import ed_st), 16, ed_play_next(k));
+    int ed_play_next_v = ed_play_next(k);
+    lset((import ed_st), 16, ed_play_next_v);
   }
 } return void;

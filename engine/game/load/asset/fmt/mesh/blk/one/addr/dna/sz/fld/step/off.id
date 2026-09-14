@@ -5,8 +5,10 @@
 // bl_fdone reads out and clears. Two answers, one walk.
 bl_foff(int si, string name) {
   int p = bl_soff(si);
-  bl_fwalk(p + 4, bl_le16(p + 2), name);
-} return int bl_fdone();
+  int bl_le16_v = bl_le16(p + 2);
+  bl_fwalk(p + 4, bl_le16_v, name);
+  int ret_i = bl_fdone();
+} return int ret_i;
 
 // Fields are laid out in declaration order and Blender's own structs carry their
 // padding explicitly (`char _pad[4]`), so plain accumulation is exact. The proof

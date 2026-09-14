@@ -3,13 +3,17 @@
 bl_fan(int cv, int a, int b) {
   int i = a + 1;
   while (i + 1 < b) {
-    bl_tpush(bl_cv(cv, a), bl_cv(cv, i), bl_cv(cv, i + 1));
+    int bl_cv_v = bl_cv(cv, a);
+    int bl_cv_v2 = bl_cv(cv, i);
+    int bl_cv_v3 = bl_cv(cv, i + 1);
+    bl_tpush(bl_cv_v, bl_cv_v2, bl_cv_v3);
     i = i + 1;
   }
 } return void;
 
 bl_cv(int cv, int i) {
-} return int bl_le32((import bl_bp)[cv] + i * 4);
+  int ret_i = bl_le32((import bl_bp)[cv] + i * 4);
+} return int ret_i;
 
 // Indices are relative to the mesh they came from, so the base of that mesh in
 // the shared vertex list is added here -- the one place every index passes

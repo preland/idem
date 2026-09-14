@@ -2,7 +2,8 @@
 
 ui_ppage(int nd) {
   if (ast_kd(nd) = ast_k_page()) {
-    lset((import ui_pg), 0, ast_ia(nd));
+    int ast_ia_v = ast_ia(nd);
+    lset((import ui_pg), 0, ast_ia_v);
   }
 } return void;
 

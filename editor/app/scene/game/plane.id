@@ -31,7 +31,13 @@
 
 ed_plane() {
   ed_clip_pane();
-  ed_plane3(ed_pl0(), ed_pt0(), ed_gw() * ed_psc() / 1000, ed_gh() * ed_psc() / 1000);
+  int ed_pl0_v = ed_pl0();
+  int ed_pt0_v = ed_pt0();
+  int ed_gw_v = ed_gw();
+  int ed_psc_v = ed_psc();
+  int ed_gh_v = ed_gh();
+  int ed_psc_v2 = ed_psc();
+  ed_plane3(ed_pl0_v, ed_pt0_v, ed_gw_v * ed_psc_v / 1000, ed_gh_v * ed_psc_v2 / 1000);
   sf_unclip();
 } return void;
 

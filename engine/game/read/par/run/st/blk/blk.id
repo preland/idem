@@ -7,11 +7,14 @@ par_block(int[] pos) {
   int[] kids = [];
   par_want(pos, "{");
   par_bfill(pos, kids);
-} return int ast_new_kids(ast_k_block(), "", kids);
+  int ast_k_block_v = ast_k_block();
+  int ret_i = ast_new_kids(ast_k_block_v, "", kids);
+} return int ret_i;
 
 par_bfill(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_stmt(pos));
+    int par_stmt_v = par_stmt(pos);
+    push(kids, par_stmt_v);
   }
   par_eat(pos, "}");
 } return void;
@@ -19,4 +22,5 @@ par_bfill(int[] pos, int[] kids) {
 par_stmt(int[] pos) {
   int[] out = [0];
   par_stmt2(pos, out);
-} return int out[0];
+  int ret_i = out[0];
+} return int ret_i;

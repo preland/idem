@@ -2,7 +2,8 @@
 
 ui_pscan(int nd, string prop, int i, int dv) {
   while (i < len(ast_ks(nd))) {
-    dv = ui_pone(ast_ks(nd)[i], prop, dv);
+    int[] ast_ks_v = ast_ks(nd);
+    dv = ui_pone(ast_ks_v[i], prop, dv);
     i = i + 1;
   }
 } return int dv;
@@ -14,5 +15,5 @@ ui_pscan(int nd, string prop, int i, int dv) {
 // a colour that had not been applied at all, which it had.
 ui_pone(int nd, string prop, int dv) {
   int v = dv;
-  if (ast_tx(nd) = prop) { v = ast_ia(ast_ia(nd)); }
+  if (ast_tx(nd) = prop) { int ast_ia_v = ast_ia(nd); v = ast_ia(ast_ia_v); }
 } return int v;

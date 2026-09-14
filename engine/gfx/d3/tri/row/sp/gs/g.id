@@ -11,7 +11,11 @@ d3_gput(int[] fb, int[] zb, int i, int dz, int[] xs) {
 } return void;
 
 d3_gpack(int[] xs) {
-} return int d2_rgb(fx_clamp(xs[0] / 256, 0, 255), fx_clamp(xs[1] / 256, 0, 255), fx_clamp(xs[2] / 256, 0, 255));
+  int fx_clamp_v = fx_clamp(xs[0] / 256, 0, 255);
+  int fx_clamp_v2 = fx_clamp(xs[1] / 256, 0, 255);
+  int fx_clamp_v3 = fx_clamp(xs[2] / 256, 0, 255);
+  int ret_i = d2_rgb(fx_clamp_v, fx_clamp_v2, fx_clamp_v3);
+} return int ret_i;
 
 d3_gstep(int[] xs) {
   xs[0] = xs[0] + xs[3];

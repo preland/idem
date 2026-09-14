@@ -16,7 +16,8 @@ bl_streq(int p, string name) {
   while (charat(name, i) >= 0 && asset_at(p + i) = charat(name, i)) {
     i = i + 1;
   }
-} return int bl_zeq(p, i, name);
+  int ret_i = bl_zeq(p, i, name);
+} return int ret_i;
 
 bl_zeq(int p, int i, string name) {
   int ok = 0;

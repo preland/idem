@@ -12,5 +12,5 @@ pack_name(int k) {
 // left after it, which is what terminates the recursion at boot without needing a
 // count of the chunks anywhere.
 pack_next(string src, int nxt, int k) {
-  if (nxt < len(src)) { print("  " + pack_name(k + 1) + "(chunks);"); }
+  if (nxt < len(src)) { string pack_name_v = pack_name(k + 1); print("  " + pack_name_v + "(chunks);"); }
 } return void;

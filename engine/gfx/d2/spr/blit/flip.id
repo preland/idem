@@ -12,14 +12,20 @@
 // reason the two are separate functions.
 
 d2_blit_flip(int p, int x, int y, int f) {
-  int i = d2_spr_w(p) * d2_spr_h(p) * fx_clamp(f, 0, d2_spr_nf(p) - 1);
-  int n = fx_min(d2_spr_h(p), (import sf_gh) - y);
-  d2_flip_rows(p, x, y, i, fx_max(0, 0 - y), n);
+  int d2_spr_w_v = d2_spr_w(p);
+  int d2_spr_h_v = d2_spr_h(p);
+  int d2_spr_nf_v = d2_spr_nf(p);
+  int i = d2_spr_w_v * d2_spr_h_v * fx_clamp(f, 0, d2_spr_nf_v - 1);
+  int d2_spr_h_v2 = d2_spr_h(p);
+  int n = fx_min(d2_spr_h_v2, (import sf_gh) - y);
+  int fx_max_v = fx_max(0, 0 - y);
+  d2_flip_rows(p, x, y, i, fx_max_v, n);
 } return void;
 
 d2_flip_rows(int p, int x, int y, int i, int j, int n) {
   while (j < n) {
-    d2_flip_clip(p, x, y + j, i + d2_spr_w(p) * j);
+    int d2_spr_w_v = d2_spr_w(p);
+    d2_flip_clip(p, x, y + j, i + d2_spr_w_v * j);
     j = j + 1;
   }
 } return void;
@@ -28,6 +34,10 @@ d2_flip_rows(int p, int x, int y, int i, int j, int n) {
 // w - 1 - (x0 - x), counted from the row's start.
 d2_flip_clip(int p, int x, int y, int i) {
   int x0 = fx_max(x, 0);
-  int x1 = fx_min(x + d2_spr_w(p) - 1, (import sf_gw) - 1);
-  d2_flip_row(d2_spr_px(p), i + d2_spr_w(p) - 1 - x0 + x, (import sf_fb), sf_idx(x0, y), x1 - x0 + 1);
+  int d2_spr_w_v = d2_spr_w(p);
+  int x1 = fx_min(x + d2_spr_w_v - 1, (import sf_gw) - 1);
+  int[] d2_spr_px_v = d2_spr_px(p);
+  int d2_spr_w_v2 = d2_spr_w(p);
+  int sf_idx_v = sf_idx(x0, y);
+  d2_flip_row(d2_spr_px_v, i + d2_spr_w_v2 - 1 - x0 + x, (import sf_fb), sf_idx_v, x1 - x0 + 1);
 } return void;

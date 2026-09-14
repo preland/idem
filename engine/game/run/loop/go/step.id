@@ -7,7 +7,8 @@ run_step() {
 } return void;
 
 run_input() {
-  run_quit(inp_drain());
+  int inp_drain_v = inp_drain();
+  run_quit(inp_drain_v);
 } return void;
 
 // -2 is the window's close button, 27 is Esc.

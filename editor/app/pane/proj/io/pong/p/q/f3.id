@@ -1,11 +1,14 @@
 // The document, four lines at a time.
 
 ed_pg9() {
-} return string ed_pong_ln("    solid") + ed_pong_ln("    tag paddle") + ed_pong_ln("    script {") + ed_pong_ln("      on update {") + ed_pg10();
+  string ret_s = ed_pong_ln("    solid") + ed_pong_ln("    tag paddle") + ed_pong_ln("    script {") + ed_pong_ln("      on update {") + ed_pg10();
+} return string ret_s;
 
 ed_pg10() {
-} return string ed_pong_ln("        vel.y = 0") + ed_pong_ln("        if (key(258) = 1 && pos.y > 22) { vel.y = 0 - 260 }") + ed_pong_ln("        if (key(259) = 1 && pos.y < 178) { vel.y = 260 }") + ed_pong_ln("      }") + ed_pg11();
+  string ret_s = ed_pong_ln("        vel.y = 0") + ed_pong_ln("        if (key(258) = 1 && pos.y > 22) { vel.y = 0 - 260 }") + ed_pong_ln("        if (key(259) = 1 && pos.y < 178) { vel.y = 260 }") + ed_pong_ln("      }") + ed_pg11();
+} return string ret_s;
 
 ed_pg11() {
-} return string ed_pong_ln("    }") + ed_pong_ln("  }") + ed_pong_ln("") + ed_pong_ln("  entity ball {") + ed_pg12();
+  string ret_s = ed_pong_ln("    }") + ed_pong_ln("  }") + ed_pong_ln("") + ed_pong_ln("  entity ball {") + ed_pg12();
+} return string ret_s;
 

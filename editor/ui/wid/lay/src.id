@@ -6,4 +6,5 @@
 // children, which is exactly what a named region wants to be.
 
 ed_src() {
-} return string "Col()[100, 100, top-left] {" + (import ed_src2) + (import ed_src3) + "}";
+  string ret_s = "Col()[100, 100, top-left] {" + (import ed_src2) + (import ed_src3) + "}";
+} return string ret_s;

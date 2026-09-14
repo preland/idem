@@ -4,9 +4,19 @@
 // with the text like everything else in the chrome.
 
 ed_nudge_draw(int x, int y, int ok, int d) {
-  sf_rect(x, y, ed_hdr(), ed_hdr(), ed_col(7 - 5 * (ok = 0)));
-  d2_frame(x, y, ed_hdr(), ed_hdr(), ed_col(3));
-  txt_draw(ed_sign(d), x + (ed_hdr() - txt_width("+")) / 2, y + 1, ed_col(4));
+  int ed_hdr_v = ed_hdr();
+  int ed_hdr_v2 = ed_hdr();
+  int ed_col_v = ed_col(7 - 5 * (ok = 0));
+  sf_rect(x, y, ed_hdr_v, ed_hdr_v2, ed_col_v);
+  int ed_hdr_v3 = ed_hdr();
+  int ed_hdr_v4 = ed_hdr();
+  int ed_col_v2 = ed_col(3);
+  d2_frame(x, y, ed_hdr_v3, ed_hdr_v4, ed_col_v2);
+  string ed_sign_v = ed_sign(d);
+  int ed_hdr_v5 = ed_hdr();
+  int txt_width_v = txt_width("+");
+  int ed_col_v3 = ed_col(4);
+  txt_draw(ed_sign_v, x + (ed_hdr_v5 - txt_width_v) / 2, y + 1, ed_col_v3);
 } return void;
 
 ed_sign(int d) {

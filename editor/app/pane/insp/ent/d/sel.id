@@ -12,7 +12,8 @@ ed_nsel(int e, int n) {
 ed_first(int e) {
   int at = 0 - 1;
   while (e < ent_n()) {
-    at = lst_pick(at, e, ent_at(e, 23) & 1);
+    int ent_at_v = ent_at(e, 23);
+    at = lst_pick(at, e, ent_at_v & 1);
     e = e + 1;
   }
 } return int at;

@@ -27,7 +27,8 @@ t_draw() {
 
 t_draw2() {
   tin_draw(0, 0, 160, 32, 16777215, 5490);
-  print("field drawn: white pixels exp 538 (380 frame + 142 glyphs + 16 caret) = " + t_ink(0, 0, 160, 32));
+  int t_ink_v = t_ink(0, 0, 160, 32);
+  print("field drawn: white pixels exp 538 (380 frame + 142 glyphs + 16 caret) = " + t_ink_v);
   t_draw3();
 } return void;
 

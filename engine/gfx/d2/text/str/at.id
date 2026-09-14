@@ -22,7 +22,11 @@ txt_align(int n, int align) {
 // (v < 0) is a comparison, which yields 1 or 0, so the minus sign costs one glyph
 // exactly when there is one.
 txt_num_width(int v) {
-} return int txt_cell() * txt_ui() * (txt_num_dn(fx_abs(v)) + (v < 0));
+  int txt_cell_v = txt_cell();
+  int txt_ui_v = txt_ui();
+  int fx_abs_v = fx_abs(v);
+  int ret_i = txt_cell_v * txt_ui_v * (txt_num_dn(fx_abs_v) + (v < 0));
+} return int ret_i;
 
 // How many decimal digits m has; 0 has one. The loop compares against m / 10
 // rather than multiplying pw by 10 and testing it against m, because the second

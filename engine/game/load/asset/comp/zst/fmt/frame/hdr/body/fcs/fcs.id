@@ -12,7 +12,8 @@
 
 zst_fcs(int f, int ss) {
   int n = zst_fsz(f, ss);
-  lset((import zst_st), 7, zst_fval(f, n));
+  int zst_fval_v = zst_fval(f, n);
+  lset((import zst_st), 7, zst_fval_v);
 } return void;
 
 zst_fsz(int f, int ss) {

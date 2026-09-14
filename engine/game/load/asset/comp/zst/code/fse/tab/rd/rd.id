@@ -14,13 +14,17 @@
 
 fse_read(int sa, int slen, int maxs) {
   zf_start(sa, slen);
-  fse_rinit(zf_bits(4) + 5, maxs);
+  int zf_bits_v = zf_bits(4);
+  fse_rinit(zf_bits_v + 5, maxs);
   fse_rloop();
-} return int zf_used();
+  int ret_i = zf_used();
+} return int ret_i;
 
 fse_rinit(int log, int maxs) {
-  m4_pair((import fse_st), 0, 1, log, inf_pow2(log) + 1);
-  m4_pair((import fse_st), 2, 3, inf_pow2(log), log + 1);
+  int inf_pow2_v = inf_pow2(log);
+  m4_pair((import fse_st), 0, 1, log, inf_pow2_v + 1);
+  int inf_pow2_v2 = inf_pow2(log);
+  m4_pair((import fse_st), 2, 3, inf_pow2_v2, log + 1);
   fse_rinit2(maxs);
 } return void;
 

@@ -7,6 +7,7 @@ t_wrap3() {
 } return void;
 
 t_wrap3b() {
-  print("inside it: x unchanged exp -143000 = " + ent_at(0, 0));
+  int ent_at_v = ent_at(0, 0);
+  print("inside it: x unchanged exp -143000 = " + ent_at_v);
   t_anim();
 } return void;

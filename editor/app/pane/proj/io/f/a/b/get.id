@@ -7,16 +7,20 @@
 
 ed_rd(string path) {
   int[] buf = [];
-  lst_fill(buf, fx_max(fs_size(path), 0), 0);
-} return string ed_rget(path, buf);
+  int fs_size_v = fs_size(path);
+  int fx_max_v = fx_max(fs_size_v, 0);
+  lst_fill(buf, fx_max_v, 0);
+  string ret_s = ed_rget(path, buf);
+} return string ret_s;
 
 ed_rget(string path, int[] buf) {
   int h = fs_open(path, "r");
   int n = ed_rnow(h, buf);
-} return string ed_rstr(buf, 0, n, "");
+  string ret_s = ed_rstr(buf, 0, n, "");
+} return string ret_s;
 
 ed_rnow(int h, int[] buf) {
   int n = 0;
-  if (h >= 0) { n = fs_read(h, buf, len(buf)); }
+  if (h >= 0) { int len_v = len(buf); n = fs_read(h, buf, len_v); }
   ed_wshut(h);
 } return int n;

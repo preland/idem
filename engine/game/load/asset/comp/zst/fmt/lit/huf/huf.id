@@ -35,4 +35,5 @@ zst_lreg(int sf, int h) {
   int w = zst_lwid(sf);
   word wp = zst_lval(w);
   zst_lregv(wp, w);
-} return int wp / 16 % inf_pow2(w);
+  int ret_i = wp / 16 % inf_pow2(w);
+} return int ret_i;

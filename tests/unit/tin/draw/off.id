@@ -12,14 +12,19 @@
 // clip and lets 160 pixels of text run into a 56-pixel box. This is the check
 // that the clip is what stops them.
 t_draw4() {
-  print("20 characters in a 56-pixel field: tin_off exp 112 = " + tin_off(56));
+  int tin_off_v = tin_off(56);
+  print("20 characters in a 56-pixel field: tin_off exp 112 = " + tin_off_v);
   sf_clear(0);
   t_draw5();
 } return void;
 
 t_draw5() {
   tin_draw(4, 4, 64, 24, 16777215, 5490);
-  print("ink outside the field exp 0 = " + (t_ink(0, 0, 160, 4) + t_ink(0, 28, 160, 4) + t_ink(0, 4, 4, 24) + t_ink(68, 4, 92, 24)));
+  int t_ink_v = t_ink(0, 0, 160, 4);
+  int t_ink_v2 = t_ink(0, 28, 160, 4);
+  int t_ink_v3 = t_ink(0, 4, 4, 24);
+  int t_ink_v4 = t_ink(68, 4, 92, 24);
+  print("ink outside the field exp 0 = " + (t_ink_v + t_ink_v2 + t_ink_v3 + t_ink_v4));
 } return void;
 
 // White pixels in a rect. sf_pget answers 0 outside the surface, so a rect that

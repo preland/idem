@@ -16,8 +16,18 @@ ed_cam() {
 // the origin shows the inside of a wall for any scene an artist did not happen to
 // model around it.
 ed_cam_eye(int d, int deg, int pit) {
-  int m = fx_mul(d, fx_cos(pit), 1000);
-  d3_cam_set((import ed_st)[10] + fx_mul(m, fx_sin(deg), 1000), (import ed_st)[11] - fx_mul(d, fx_sin(pit), 1000), (import ed_st)[12] + fx_mul(m, fx_cos(deg), 1000));
+  int fx_cos_v = fx_cos(pit);
+  int m = fx_mul(d, fx_cos_v, 1000);
+  int ed_st_v = (import ed_st)[10];
+  int fx_sin_v = fx_sin(deg);
+  int fx_mul_v = fx_mul(m, fx_sin_v, 1000);
+  int ed_st_v2 = (import ed_st)[11];
+  int fx_sin_v2 = fx_sin(pit);
+  int fx_mul_v2 = fx_mul(d, fx_sin_v2, 1000);
+  int ed_st_v3 = (import ed_st)[12];
+  int fx_cos_v2 = fx_cos(deg);
+  int fx_mul_v3 = fx_mul(m, fx_cos_v2, 1000);
+  d3_cam_set(ed_st_v + fx_mul_v, ed_st_v2 - fx_mul_v2, ed_st_v3 + fx_mul_v3);
 } return void;
 
 // The ground plane, as lines of thin quads rather than as 2D lines, so that the

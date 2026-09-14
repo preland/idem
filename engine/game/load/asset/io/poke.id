@@ -19,4 +19,5 @@ asset_at(int p) {
 
 // A big-endian 32-bit field, which is every length and every dimension in a PNG.
 asset_be32(int p) {
-} return int asset_at(p) * 16777216 + asset_at(p + 1) * 65536 + asset_at(p + 2) * 256 + asset_at(p + 3);
+  int ret_i = asset_at(p) * 16777216 + asset_at(p + 1) * 65536 + asset_at(p + 2) * 256 + asset_at(p + 3);
+} return int ret_i;

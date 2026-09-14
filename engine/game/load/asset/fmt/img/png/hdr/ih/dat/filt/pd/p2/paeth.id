@@ -2,12 +2,12 @@
 
 png_up(int y, int i) {
   int v = 0;
-  if (y > 0) { v = peek8(asset_row(y - 1) + 1 + i); }
+  if (y > 0) { int asset_row_v = asset_row(y - 1); v = peek8(asset_row_v + 1 + i); }
 } return int v;
 
 png_ul(int y, int i) {
   int v = 0;
-  if (y > 0 && i >= (import png_st)[11]) { v = peek8(asset_row(y - 1) + 1 + i - (import png_st)[11]); }
+  if (y > 0 && i >= (import png_st)[11]) { int asset_row_v = asset_row(y - 1); v = peek8(asset_row_v + 1 + i - (import png_st)[11]); }
 } return int v;
 
 // Whichever of left, above and above-left is closest to a + b - c. Ties go to

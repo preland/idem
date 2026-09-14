@@ -20,7 +20,9 @@ zst_lrle(int n) {
 zst_lcopy(int n) {
   int i = 0;
   while (i < n && (import zst_st)[6] = 0) {
-    poke8((import zst_st)[8] + i, zst_byte((import zst_st)[1] + i));
+    int zst_st_v = (import zst_st)[8];
+    int zst_byte_v = zst_byte((import zst_st)[1] + i);
+    poke8(zst_st_v + i, zst_byte_v);
     i = i + 1;
   }
   lset((import zst_st), 1, (import zst_st)[1] + n);

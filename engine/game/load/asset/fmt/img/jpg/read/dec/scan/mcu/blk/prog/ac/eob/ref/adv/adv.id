@@ -5,7 +5,8 @@
 // expression may evaluate in either order.
 jpg_rsign(int a) {
   int bt = jpg_bit();
-  lset((import jpg_r), 2, inf_pow2((import jpg_st)[16]) * (2 * bt - 1));
+  int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  lset((import jpg_r), 2, inf_pow2_v * (2 * bt - 1));
   jpg_rgo(a);
 } return void;
 

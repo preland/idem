@@ -8,7 +8,8 @@
 spr_row(int p, int i, int r, int x, int cw, int sw) {
   int dx = 0;
   while (dx < cw) {
-    d2_spr_put(p, i + dx, spr_at(r, x + dx * sw / cw));
+    int spr_at_v = spr_at(r, x + dx * sw / cw);
+    d2_spr_put(p, i + dx, spr_at_v);
     dx = dx + 1;
   }
 } return void;
@@ -31,6 +32,6 @@ spr_at(int r, int x) {
 // whose brightnesses are palette indices looks like noise, not like a mistake.
 spr_col(int r, int x) {
   int c = spr_grey(r, x);
-  if ((import png_st)[3] = 3) { c = png_pcol(png_samp(r, x)); }
+  if ((import png_st)[3] = 3) { int png_samp_v = png_samp(r, x); c = png_pcol(png_samp_v); }
   else if ((import png_st)[4] >= 3) { c = spr_rgb(r, x); }
 } return int c;

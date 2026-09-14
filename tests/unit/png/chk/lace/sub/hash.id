@@ -9,7 +9,9 @@ t_phash(int y, int hv) {
 
 t_prow(int y, int hv, int x) {
   while (x < (import png_st)[0]) {
-    hv = t_pmix(hv, png_samp(asset_row(y), x));
+    int asset_row_v = asset_row(y);
+    int png_samp_v = png_samp(asset_row_v, x);
+    hv = t_pmix(hv, png_samp_v);
     x = x + 1;
   }
 } return int hv;
@@ -19,5 +21,6 @@ t_prow(int y, int hv, int x) {
 // image depends on, which is the bug class that made two-image pipelines fail.
 t_bhash() {
   png_load("games/flappy/art/bird.png");
-  print("  bird.png every sample, hash exp 880280616 = " + t_phash(0, 0));
+  int t_phash_v = t_phash(0, 0);
+  print("  bird.png every sample, hash exp 880280616 = " + t_phash_v);
 } return void;

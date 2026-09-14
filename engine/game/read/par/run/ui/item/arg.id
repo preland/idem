@@ -19,13 +19,16 @@ par_uargs2(int[] pos) {
   int[] kids = [];
   par_ufill(pos, kids);
   par_want(pos, ")");
-} return int ast_new_kids(ast_k_args(), "", kids);
+  int ast_k_args_v = ast_k_args();
+  int ret_i = ast_new_kids(ast_k_args_v, "", kids);
+} return int ret_i;
 
 // Every collection loop carries an end-of-input guard, so malformed input costs
 // one diagnostic and terminates rather than hanging.
 par_ufill(int[] pos, int[] kids) {
   while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_expr(pos));
+    int par_expr_v = par_expr(pos);
+    push(kids, par_expr_v);
     par_eat(pos, ",");
   }
 } return void;

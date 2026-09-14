@@ -1,6 +1,9 @@
 par_bxor_f(int[] pos, int left) {
   par_next(pos);
-} return int ast_new_ab(ast_k_bin(), "^", left, par_band(pos));
+  int ast_k_bin_v = ast_k_bin();
+  int par_band_v = par_band(pos);
+  int ret_i = ast_new_ab(ast_k_bin_v, "^", left, par_band_v);
+} return int ret_i;
 
 par_band(int[] pos) {
   int left = par_shift(pos);
@@ -11,4 +14,7 @@ par_band(int[] pos) {
 
 par_band_f(int[] pos, int left) {
   par_next(pos);
-} return int ast_new_ab(ast_k_bin(), "&", left, par_shift(pos));
+  int ast_k_bin_v = ast_k_bin();
+  int par_shift_v = par_shift(pos);
+  int ret_i = ast_new_ab(ast_k_bin_v, "&", left, par_shift_v);
+} return int ret_i;

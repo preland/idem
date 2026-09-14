@@ -8,5 +8,7 @@ mdl_face(string src) {
 
 mdl_f3(string src, int a, int b) {
   int c = imp_int(src);
-  print("    (" + a + ", " + b + ", " + c + ", 0x" + imp_hex6(imp_int(src)) + ")");
+  int imp_int_v = imp_int(src);
+  string imp_hex6_v = imp_hex6(imp_int_v);
+  print("    (" + a + ", " + b + ", " + c + ", 0x" + imp_hex6_v + ")");
 } return void;

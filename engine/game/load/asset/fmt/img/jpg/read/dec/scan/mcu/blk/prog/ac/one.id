@@ -6,7 +6,8 @@
 
 jpg_pacf3(int ci, int a, int k) {
   int rs = jpg_dec((import jpg_c)[ci * 10 + 5]);
-} return int jpg_pacf4(ci, a, k, rs / 16, rs % 16);
+  int ret_i = jpg_pacf4(ci, a, k, rs / 16, rs % 16);
+} return int ret_i;
 
 jpg_pacf4(int ci, int a, int k, int rn, int sz) {
   int nk = 0;

@@ -6,7 +6,8 @@
 // its interface pasted on at a fixed size.
 
 ed_plane4(int x, int y, int w, int h) {
-  lset((import ui_ts), 0, ed_psc());
+  int ed_psc_v = ed_psc();
+  lset((import ui_ts), 0, ed_psc_v);
   ui_draw((import ed_gu)[0], x, y, w, h);
   ed_plane5(x, y, w, h);
 } return void;

@@ -5,8 +5,11 @@
 // never frees -- and a four-byte comparison is what the format is.
 
 png_chunk(int p, int n) {
-  png_kind(p + 8, n, asset_at(p + 5), asset_at(p + 6));
-} return int p + 12 + n;
+  int asset_at_v = asset_at(p + 5);
+  int asset_at_v2 = asset_at(p + 6);
+  png_kind(p + 8, n, asset_at_v, asset_at_v2);
+  int ret_i = p + 12 + n;
+} return int ret_i;
 
 // The SECOND and THIRD bytes of the type are what tell the chunks apart: IHDR is
 // 'H' 'D' (72, 68), IDAT is 'D' 'A' (68, 65), IEND is 'E' 'N' (69, 78), PLTE is

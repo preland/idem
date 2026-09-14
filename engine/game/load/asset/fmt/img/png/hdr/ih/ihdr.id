@@ -13,8 +13,12 @@
 // walk stops on it -- see png_more.
 
 png_ihdr(int p) {
-  m4_pair((import png_st), 0, 1, asset_be32(p), asset_be32(p + 4));
-  m4_pair((import png_st), 2, 3, asset_at(p + 8), asset_at(p + 9));
+  int asset_be32_v = asset_be32(p);
+  int asset_be32_v2 = asset_be32(p + 4);
+  m4_pair((import png_st), 0, 1, asset_be32_v, asset_be32_v2);
+  int asset_at_v = asset_at(p + 8);
+  int asset_at_v2 = asset_at(p + 9);
+  m4_pair((import png_st), 2, 3, asset_at_v, asset_at_v2);
   png_ihdr2(p);
 } return void;
 
@@ -23,8 +27,10 @@ png_ihdr(int p) {
 // out nothing like the scanlines this decoder expects, and it would happily
 // unfilter them into a picture made of interleaved fragments.
 png_ihdr2(int p) {
-  lset((import png_st), 10, asset_at(p + 12));
-  lset((import png_st), 4, png_chan((import png_st)[3]));
+  int asset_at_v = asset_at(p + 12);
+  lset((import png_st), 10, asset_at_v);
+  int png_chan_v = png_chan((import png_st)[3]);
+  lset((import png_st), 4, png_chan_v);
   png_chk();
 } return void;
 

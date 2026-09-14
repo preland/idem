@@ -4,7 +4,8 @@
 // fails to find `BLENDER` and bl_open answers 0 -- one failure path, not two.
 
 bl_unz3(int da, int cap) {
-  bl_unz4(da, zst_run((import asset_io)[0], (import asset_io)[1], da, cap));
+  int zst_run_v = zst_run((import asset_io)[0], (import asset_io)[1], da, cap);
+  bl_unz4(da, zst_run_v);
 } return void;
 
 bl_unz4(int da, int got) {

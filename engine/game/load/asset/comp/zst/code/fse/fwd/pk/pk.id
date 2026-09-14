@@ -8,9 +8,12 @@ zf_more2() {
 
 zf_peek(int n) {
   zf_fill(n);
-} return int (import zf_st)[2] % inf_pow2(n);
+  int ret_i = (import zf_st)[2] % inf_pow2(n);
+} return int ret_i;
 
 zf_drop(int n) {
-  lset((import zf_st), 2, (import zf_st)[2] / inf_pow2(n));
+  int zf_st_v = (import zf_st)[2];
+  int inf_pow2_v = inf_pow2(n);
+  lset((import zf_st), 2, zf_st_v / inf_pow2_v);
   lset((import zf_st), 3, (import zf_st)[3] - n);
 } return void;

@@ -16,14 +16,19 @@
 
 d3_span2(int y, int[] st) {
   int n = st[6] - st[0];
-  d3_steps(st, fx_max(n, 1));
+  int fx_max_v = fx_max(n, 1);
+  d3_steps(st, fx_max_v);
   d3_span3(y, st, n);
 } return void;
 
 d3_span3(int y, int[] st, int n) {
   int cl = fx_max((import d3_vp)[0] - st[0], 0);
-  int t = fx_div(cl, fx_max(n, 1), 65536);
-  d3_span4(sf_idx(st[0] + cl, y), sf_idx(fx_min(st[6], (import d3_vp)[2]), y), st, t);
+  int fx_max_v = fx_max(n, 1);
+  int t = fx_div(cl, fx_max_v, 65536);
+  int sf_idx_v = sf_idx(st[0] + cl, y);
+  int fx_min_v = fx_min(st[6], (import d3_vp)[2]);
+  int sf_idx_v2 = sf_idx(fx_min_v, y);
+  d3_span4(sf_idx_v, sf_idx_v2, st, t);
 } return void;
 
 // i and n are now framebuffer indices, first and last inclusive, and both are

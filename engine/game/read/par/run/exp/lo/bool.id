@@ -8,7 +8,8 @@
 // operator, advancing, recursing and building is four actions.
 
 par_expr(int[] pos) {
-} return int par_or(pos);
+  int ret_i = par_or(pos);
+} return int ret_i;
 
 par_or(int[] pos) {
   int left = par_and(pos);
@@ -19,4 +20,7 @@ par_or(int[] pos) {
 
 par_or_f(int[] pos, int left) {
   par_next(pos);
-} return int ast_new_ab(ast_k_bin(), "||", left, par_and(pos));
+  int ast_k_bin_v = ast_k_bin();
+  int par_and_v = par_and(pos);
+  int ret_i = ast_new_ab(ast_k_bin_v, "||", left, par_and_v);
+} return int ret_i;

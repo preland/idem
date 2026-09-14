@@ -8,8 +8,14 @@
 
 jpg_sof(int p, int m) {
   lset((import jpg_st), 10, m = 194);
-  m4_pair((import jpg_st), 1, 0, asset_at(p + 1) * 256 + asset_at(p + 2), asset_at(p + 3) * 256 + asset_at(p + 4));
-  jpg_sof2(p + 6, asset_at(p + 5), asset_at(p));
+  int asset_at_v = asset_at(p + 1);
+  int asset_at_v2 = asset_at(p + 2);
+  int asset_at_v3 = asset_at(p + 3);
+  int asset_at_v4 = asset_at(p + 4);
+  m4_pair((import jpg_st), 1, 0, asset_at_v * 256 + asset_at_v2, asset_at_v3 * 256 + asset_at_v4);
+  int asset_at_v5 = asset_at(p + 5);
+  int asset_at_v6 = asset_at(p);
+  jpg_sof2(p + 6, asset_at_v5, asset_at_v6);
 } return void;
 
 // Only 8-bit samples. A 12-bit image would need wider coefficients and a
@@ -21,7 +27,8 @@ jpg_sof(int p, int m) {
 // of bug that makes an unsupported file look like a working one right up until
 // it does not.
 jpg_sof2(int p, int nc, int prec) {
-  lset((import jpg_st), 2, fx_min(nc, 4));
+  int fx_min_v = fx_min(nc, 4);
+  lset((import jpg_st), 2, fx_min_v);
   jpg_prec(prec, nc);
   jpg_sof3(p);
 } return void;

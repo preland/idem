@@ -14,4 +14,5 @@
 // shape from different directions is the rule working: a `gravity (0, 1500)` and
 // a `box (6, 40)` really are the same question asked of different components.
 scn_smem(int nd, int k) {
-} return int scn_mtup2(nd, k);
+  int ret_i = scn_mtup2(nd, k);
+} return int ret_i;

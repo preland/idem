@@ -1,5 +1,8 @@
 // The spawned entity's own components, which came from the template.
 
 t_done() {
-  print("its body exp 10000 10000, solid exp 1 = " + ent_at(3, 12) + " " + ent_at(3, 13) + " " + (ent_at(3, 9) / 2 % 2));
+  int ent_at_v = ent_at(3, 12);
+  int ent_at_v2 = ent_at(3, 13);
+  int ent_at_v3 = ent_at(3, 9);
+  print("its body exp 10000 10000, solid exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 / 2 % 2));
 } return void;

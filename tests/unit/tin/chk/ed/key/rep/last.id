@@ -2,7 +2,8 @@
 
 t_rep6() {
   t_hold(5490);
-  print("second repeat exp 123456 = " + tin_text());
+  string tin_text_v = tin_text();
+  print("second repeat exp 123456 = " + tin_text_v);
   t_rep7();
 } return void;
 
@@ -21,7 +22,11 @@ t_rep7() {
 // again after 800. tin_blink is pure -- it reads the clock it is handed -- so
 // three calls at three times is the whole of it.
 t_rep8() {
-  print("released, three seconds later exp 123456 = " + tin_text());
-  print("blink at the last edit, +400, +800 exp 1 0 1 = " + tin_blink(5490) + " " + tin_blink(5890) + " " + tin_blink(6290));
+  string tin_text_v = tin_text();
+  print("released, three seconds later exp 123456 = " + tin_text_v);
+  int tin_blink_v = tin_blink(5490);
+  int tin_blink_v2 = tin_blink(5890);
+  int tin_blink_v3 = tin_blink(6290);
+  print("blink at the last edit, +400, +800 exp 1 0 1 = " + tin_blink_v + " " + tin_blink_v2 + " " + tin_blink_v3);
   t_draw();
 } return void;

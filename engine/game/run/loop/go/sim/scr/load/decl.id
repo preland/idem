@@ -8,7 +8,8 @@
 // components -- a template is an entity declaration that nothing instantiated
 // yet, and scn_efill reads it exactly as it reads a scene's `entity`.
 scr_tload(int nd) {
-  push((import scr_pn), ast_tx(nd));
+  string ast_tx_v = ast_tx(nd);
+  push((import scr_pn), ast_tx_v);
   push((import scr_pd), nd);
 } return void;
 
@@ -16,12 +17,16 @@ scr_tload(int nd) {
 // key and whose one child names the event.
 scr_keys(int nd, int i) {
   while (i < len(ast_ks(nd))) {
-    scr_key1(ast_ks(nd)[i]);
+    int[] ast_ks_v = ast_ks(nd);
+    scr_key1(ast_ks_v[i]);
     i = i + 1;
   }
 } return void;
 
 scr_key1(int nd) {
-  push((import scr_kk), scr_kcode(ast_tx(nd)));
-  push((import scr_ke), scr_kev(nd));
+  string ast_tx_v = ast_tx(nd);
+  int scr_kcode_v = scr_kcode(ast_tx_v);
+  push((import scr_kk), scr_kcode_v);
+  string scr_kev_v = scr_kev(nd);
+  push((import scr_ke), scr_kev_v);
 } return void;

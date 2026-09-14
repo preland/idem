@@ -24,7 +24,8 @@ spr_fill(int p, int cols, int cw, int ch, int sw, int sh) {
 spr_frame(int p, int f, int cols, int cw, int ch, int sw, int sh) {
   int y = 0;
   while (y < ch) {
-    spr_row(p, f * cw * ch + y * cw, asset_row(f / cols * sh + y * sh / ch), f % cols * sw, cw, sw);
+    int asset_row_v = asset_row(f / cols * sh + y * sh / ch);
+    spr_row(p, f * cw * ch + y * cw, asset_row_v, f % cols * sw, cw, sw);
     y = y + 1;
   }
 } return void;

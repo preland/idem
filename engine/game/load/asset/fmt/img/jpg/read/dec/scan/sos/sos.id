@@ -23,7 +23,10 @@ jpg_plane(int ci) {
 // tables each uses. Baseline sends one scan with every component; progressive
 // sends several, and this is read the same way for both.
 jpg_sos(int p) {
-  lset((import jpg_st), 11, asset_at(p));
-  jpg_stab(p + 1, 0, asset_at(p));
-  jpg_scan(p + 1 + asset_at(p) * 2);
+  int asset_at_v = asset_at(p);
+  lset((import jpg_st), 11, asset_at_v);
+  int asset_at_v2 = asset_at(p);
+  jpg_stab(p + 1, 0, asset_at_v2);
+  int asset_at_v3 = asset_at(p);
+  jpg_scan(p + 1 + asset_at_v3 * 2);
 } return void;

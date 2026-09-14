@@ -22,7 +22,8 @@ t_case(string msg, int z0, int z1, int z2) {
 t_draw(string msg, int z0, int z1, int z2) {
   int[] tri = [0 - 1000, 0 - 500, z0, 1000, 0 - 500, z1, 0, 500, z2, 0xFF8800, 0xFF8800, 0xFF8800];
   d3_nclip(tri);
-  print("nclip " + msg + " lit = " + t_lit());
+  int t_lit_v = t_lit();
+  print("nclip " + msg + " lit = " + t_lit_v);
 } return void;
 
 t_lit() {

@@ -3,7 +3,10 @@
 huf_fill1(int w, int p, int s0) {
   int i = 0;
   while (i < (import huf_rk)[w]) {
-    p = huf_frun(p, (import huf_sm)[s0 + i], (import huf_st)[0] + 1 - w, inf_pow2(w) / 2);
+    int huf_sm_v = (import huf_sm)[s0 + i];
+    int huf_st_v = (import huf_st)[0];
+    int inf_pow2_v = inf_pow2(w);
+    p = huf_frun(p, huf_sm_v, huf_st_v + 1 - w, inf_pow2_v / 2);
     i = i + 1;
   }
 } return int p;
@@ -14,7 +17,8 @@ huf_frun(int p, int kd, int nb, int n) {
     huf_fput(p + i, kd, nb);
     i = i + 1;
   }
-} return int p + n;
+  int ret_i = p + n;
+} return int ret_i;
 
 huf_fput(int p, int kd, int nb) {
   lset((import huf_sy), p, kd);

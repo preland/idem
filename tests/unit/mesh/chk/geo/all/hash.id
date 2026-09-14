@@ -3,7 +3,8 @@
 t_hv(word wp, int p) {
   wp = ((wp ^ ((import bl_v)[p] & 4294967295)) * 16777619) & 4294967295;
   wp = ((wp ^ ((import bl_v)[p + 1] & 4294967295)) * 16777619) & 4294967295;
-} return word ((wp ^ ((import bl_v)[p + 2] & 4294967295)) * 16777619) & 4294967295;
+  word ret_w = ((wp ^ ((import bl_v)[p + 2] & 4294967295)) * 16777619) & 4294967295;
+} return word ret_w;
 
 // The form a caller draws with: twelve slots, ready for d3_wtri. Filling triangle
 // 0 must reproduce vertices 0, 1 and 3 in order, with the colour on all three.

@@ -1,15 +1,19 @@
 // The two string tables, and the alignment they are padded to.
 
 bl_names(int p) {
-  lset((import bl_st), 4, bl_le32(p));
+  int bl_le32_v = bl_le32(p);
+  lset((import bl_st), 4, bl_le32_v);
   lset((import bl_st), 7, p + 4);
-  bl_types(bl_skip(p + 4, (import bl_st)[4]));
+  int bl_skip_v = bl_skip(p + 4, (import bl_st)[4]);
+  bl_types(bl_skip_v);
 } return void;
 
 bl_types(int p) {
-  lset((import bl_st), 5, bl_le32(p + 4));
+  int bl_le32_v = bl_le32(p + 4);
+  lset((import bl_st), 5, bl_le32_v);
   lset((import bl_st), 8, p + 8);
-  bl_tlens(bl_skip(p + 8, (import bl_st)[5]));
+  int bl_skip_v = bl_skip(p + 8, (import bl_st)[5]);
+  bl_tlens(bl_skip_v);
 } return void;
 
 // Past n NUL-terminated strings, then aligned. The alignment is measured from the
@@ -21,4 +25,5 @@ bl_skip(int p, int n) {
     p = bl_zend(p);
     i = i + 1;
   }
-} return int bl_al(p);
+  int ret_i = bl_al(p);
+} return int ret_i;

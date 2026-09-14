@@ -24,8 +24,10 @@
 
 bl_all(string path) {
   bl_reset();
-  lset((import bl_st), 11, bl_open(path));
-} return int bl_all2();
+  int bl_open_v = bl_open(path);
+  lset((import bl_st), 11, bl_open_v);
+  int ret_i = bl_all2();
+} return int ret_i;
 
 bl_all2() {
   int i = 0;
@@ -33,13 +35,15 @@ bl_all2() {
     bl_one_mesh(i);
     i = i + 1;
   }
-} return int len((import bl_ti)) > 0;
+  int ret_i = len((import bl_ti)) > 0;
+} return int ret_i;
 
 // "ME\0\0" packed big-endian. The vertex base is taken before the mesh is read,
 // so its own indices stay 0-based while the list they land in does not.
 bl_one_mesh(int i) {
   if ((import bl_bc)[i] = 1296367616) {
-    lset((import bl_st), 12, len((import bl_v)) / 3);
+    int len_v = len((import bl_v));
+    lset((import bl_st), 12, len_v / 3);
     bl_mone(i);
   }
 } return void;

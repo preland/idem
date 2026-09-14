@@ -1,13 +1,18 @@
 // A labelled number, and the three the status line carries.
 
 ed_snum(int x, int y, string s, int v) {
-  ed_sdraw(x, y, s, ed_col(5));
-  ed_snm2(x + txt_width(s) + 4 * txt_ui(), y, v);
-} return int x + txt_width(s) + txt_num_width(v) + 12 * txt_ui();
+  int ed_col_v = ed_col(5);
+  ed_sdraw(x, y, s, ed_col_v);
+  int txt_width_v = txt_width(s);
+  int txt_ui_v = txt_ui();
+  ed_snm2(x + txt_width_v + 4 * txt_ui_v, y, v);
+  int ret_i = x + txt_width(s) + txt_num_width(v) + 12 * txt_ui();
+} return int ret_i;
 
 ed_snm2(int x, int y, int v) {
   if (x < (import sf_gw)) {
-    txt_number(v, x, y, ed_col(4));
+    int ed_col_v = ed_col(4);
+    txt_number(v, x, y, ed_col_v);
   }
 } return void;
 

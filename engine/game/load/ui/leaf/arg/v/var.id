@@ -29,6 +29,7 @@ ui_vinit2() {
 } return void;
 
 ui_vload(int nd) {
-  push((import ui_vn), ast_tx(nd));
+  string ast_tx_v = ast_tx(nd);
+  push((import ui_vn), ast_tx_v);
   push((import ui_vd), nd);
 } return void;

@@ -10,19 +10,24 @@
 // 1e9+7, which is python3's answer for the same walk.
 
 t_grey() {
-  print("digits.png exp 1 = " + png_load("games/flappy/art/digits.png"));
+  int png_load_v = png_load("games/flappy/art/digits.png");
+  print("digits.png exp 1 = " + png_load_v);
   print("  w/h/depth/colour/stride exp 4 60 1 0 2 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[2] + " " + (import png_st)[3] + " " + (import png_st)[8]);
   t_grey2();
 } return void;
 
 t_grey2() {
-  print("  rows 0..2 exp 1111 1001 1001 = " + t_grow(0) + " " + t_grow(1) + " " + t_grow(2));
-  print("  every sample, hash exp 680646057 = " + t_phash(0, 0));
+  string t_grow_v = t_grow(0);
+  string t_grow_v2 = t_grow(1);
+  string t_grow_v3 = t_grow(2);
+  print("  rows 0..2 exp 1111 1001 1001 = " + t_grow_v + " " + t_grow_v2 + " " + t_grow_v3);
+  int t_phash_v = t_phash(0, 0);
+  print("  every sample, hash exp 680646057 = " + t_phash_v);
   t_bhash();
 } return void;
 
 t_grow(int y) {
   string s = "";
   int x = 0;
-  while (x < (import png_st)[0]) { s = s + png_samp(asset_row(y), x); x = x + 1; }
+  while (x < (import png_st)[0]) { int asset_row_v = asset_row(y); s = s + png_samp(asset_row_v, x); x = x + 1; }
 } return string s;

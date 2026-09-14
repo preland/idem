@@ -19,11 +19,13 @@ ed_io_init() {
 ed_wr(string path, string s) {
   int[] buf = [];
   ed_wbuf(s, 0, buf);
-} return int ed_wput(path, buf);
+  int ret_i = ed_wput(path, buf);
+} return int ret_i;
 
 ed_wbuf(string s, int i, int[] buf) {
   while (charat(s, i) >= 0) {
-    push(buf, charat(s, i));
+    int charat_v = charat(s, i);
+    push(buf, charat_v);
     i = i + 1;
   }
 } return void;

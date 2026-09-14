@@ -5,4 +5,7 @@
 // whole string.
 
 ed_base(string path) {
-} return string str_slice(path, scn_lastsep(path, 0, 0 - 1) + 1, len(path));
+  int scn_lastsep_v = scn_lastsep(path, 0, 0 - 1);
+  int len_v = len(path);
+  string ret_s = str_slice(path, scn_lastsep_v + 1, len_v);
+} return string ret_s;

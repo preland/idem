@@ -6,4 +6,7 @@
 // than under the floor.
 
 ed_pup(int dy, int sv) {
-} return int 0 - fx_mul(fx_mul(dy, fx_sin((import ed_st)[3]), 1000), sv, 1000);
+  int fx_sin_v = fx_sin((import ed_st)[3]);
+  int fx_mul_v = fx_mul(dy, fx_sin_v, 1000);
+  int ret_i = 0 - fx_mul(fx_mul_v, sv, 1000);
+} return int ret_i;

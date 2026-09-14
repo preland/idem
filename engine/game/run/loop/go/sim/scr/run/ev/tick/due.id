@@ -5,12 +5,14 @@
 // every frame and never drain, so it is floored at one millisecond.
 
 scr_tdue(int h, int e, int acc) {
-  int ms = fx_max(scr_ev(ast_ia(h), e), 1);
+  int ast_ia_v = ast_ia(h);
+  int scr_ev_v = scr_ev(ast_ia_v, e);
+  int ms = fx_max(scr_ev_v, 1);
   int due = acc >= ms;
   scr_tdrain(e, ms, due);
 } return int due;
 
 scr_tdrain(int e, int ms, int due) {
   if (due = 1 && e < 0) { lset((import scn_st), 12, (import scn_st)[12] - ms); }
-  else if (due = 1) { ent_put(e, 21, ent_at(e, 21) - ms); }
+  else if (due = 1) { int ent_at_v = ent_at(e, 21); ent_put(e, 21, ent_at_v - ms); }
 } return void;

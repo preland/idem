@@ -38,7 +38,8 @@ zst_frame(int mag) {
 // hand were both wrong, and a wrong magic number fails as "not a zstd file".
 zst_other(int mag) {
   if (mag / 16 = 25481893) {
-    zst_jump(zst_le(4));
+    int zst_le_v = zst_le(4);
+    zst_jump(zst_le_v);
   } else {
     lset((import zst_st), 6, 1);
   }

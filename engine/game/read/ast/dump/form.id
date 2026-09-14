@@ -1,13 +1,23 @@
 // 34 is a double quote. A nil node prints as nothing at all, which is what makes
 // an absent a/b/c invisible instead of noisy.
 ast_sexp3(int nd, int kd, string[] strs) {
-  if (kd = ast_k_str()) { sset(strs, 0, chr(34) + ast_tx(nd) + chr(34)); }
-  else if (kd != ast_k_nil()) { sset(strs, 0, ast_form(nd)); }
+  if (kd = ast_k_str()) { string chr_v = chr(34); string ast_tx_v = ast_tx(nd); string chr_v2 = chr(34); sset(strs, 0, chr_v + ast_tx_v + chr_v2); }
+  else if (kd != ast_k_nil()) { string ast_form_v = ast_form(nd); sset(strs, 0, ast_form_v); }
 } return void;
 
 ast_form(int nd) {
-  string s = "(" + ast_kname(ast_kd(nd)) + ast_dtx(nd) + ast_dsp(ast_ia(nd));
-} return string s + ast_dsp(ast_ib(nd)) + ast_dsp(ast_ic(nd)) + ast_dkl(ast_ks(nd), 0, "") + ")";
+  int ast_kd_v = ast_kd(nd);
+  string ast_kname_v = ast_kname(ast_kd_v);
+  string ast_dtx_v = ast_dtx(nd);
+  int ast_ia_v = ast_ia(nd);
+  string s = "(" + ast_kname_v + ast_dtx_v + ast_dsp(ast_ia_v);
+  int ast_ib_v = ast_ib(nd);
+  string ast_dsp_v = ast_dsp(ast_ib_v);
+  int ast_ic_v = ast_ic(nd);
+  string ast_dsp_v2 = ast_dsp(ast_ic_v);
+  int[] ast_ks_v = ast_ks(nd);
+  string ret_s = s + ast_dsp_v + ast_dsp_v2 + ast_dkl(ast_ks_v, 0, "") + ")";
+} return string ret_s;
 
 // A literal still owed fractional digits prints as 14e-1, so a golden file shows
 // whether the parser scaled it or left it for the loader.

@@ -7,9 +7,13 @@ bl_end(int p) {
 
 bl_block(int p) {
   int n = bl_le32(p + 16);
-  push((import bl_ba), bl_le64(p + 8));
-  bl_push(asset_be32(p), p + 32, n, bl_le32(p + 4));
-} return int p + 32 + n;
+  word bl_le64_v = bl_le64(p + 8);
+  push((import bl_ba), bl_le64_v);
+  int asset_be32_v = asset_be32(p);
+  int bl_le32_v = bl_le32(p + 4);
+  bl_push(asset_be32_v, p + 32, n, bl_le32_v);
+  int ret_i = p + 32 + n;
+} return int ret_i;
 
 bl_push(int kd, int p, int n, int i) {
   push((import bl_bc), kd);

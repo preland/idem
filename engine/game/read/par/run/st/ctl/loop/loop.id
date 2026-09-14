@@ -1,7 +1,8 @@
 par_while2(int[] pos, int cond) {
   par_want(pos, ")");
   int block = par_block(pos);
-  int nd = ast_new_ab(ast_k_while(), "", cond, block);
+  int ast_k_while_v = ast_k_while();
+  int nd = ast_new_ab(ast_k_while_v, "", cond, block);
 } return int nd;
 
 // `repeat n { }` -- no parentheses, so the count expression stops at the '{'.
@@ -13,5 +14,6 @@ par_repeat(int[] pos) {
 
 par_repeat2(int[] pos, int n) {
   int block = par_block(pos);
-  int nd = ast_new_ab(ast_k_repeat(), "", n, block);
+  int ast_k_repeat_v = ast_k_repeat();
+  int nd = ast_new_ab(ast_k_repeat_v, "", n, block);
 } return int nd;

@@ -21,4 +21,5 @@ ed_scan_as(string src, int i) {
 ed_as_line(string src, int i) {
   int e = scn_reol(src, i);
   ed_as_take(src, i, e);
-} return int e + 1;
+  int ret_i = e + 1;
+} return int ret_i;

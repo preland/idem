@@ -38,8 +38,10 @@ tin_init() {
 // Put text in the field and drop the caret at its end, which is where someone
 // who has just been handed a value to edit expects it.
 tin_set(string s) {
-  tin_put(s, len(s));
+  int len_v = len(s);
+  tin_put(s, len_v);
 } return void;
 
 tin_text() {
-} return string (import tin_s)[0];
+  string ret_s = (import tin_s)[0];
+} return string ret_s;

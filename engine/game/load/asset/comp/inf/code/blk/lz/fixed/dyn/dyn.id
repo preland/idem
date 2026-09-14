@@ -12,7 +12,8 @@
 inf_dyn() {
   int hlit = 257 + inf_bits(5);
   int hdist = 1 + inf_bits(5);
-  inf_dyn2(hlit, hdist, 4 + inf_bits(4));
+  int inf_bits_v = inf_bits(4);
+  inf_dyn2(hlit, hdist, 4 + inf_bits_v);
 } return void;
 
 inf_dyn2(int hlit, int hdist, int hclen) {
@@ -28,7 +29,9 @@ inf_clens(int n) {
   int i = 0;
   lst_set_all((import inf_lens), 19, 0);
   while (i < n && (import inf_st)[7] = 0) {
-    lset((import inf_lens), (import inf_ord)[i], inf_bits(3));
+    int inf_ord_v = (import inf_ord)[i];
+    int inf_bits_v = inf_bits(3);
+    lset((import inf_lens), inf_ord_v, inf_bits_v);
     i = i + 1;
   }
 } return void;

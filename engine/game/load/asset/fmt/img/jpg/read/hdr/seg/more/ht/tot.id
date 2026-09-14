@@ -14,7 +14,8 @@ jpg_htot(int t) {
 jpg_hsym(int p, int t, int n) {
   int k = 0;
   while (k < n && k < 256) {
-    lset((import jpg_hs), t * 256 + k, asset_at(p + k));
+    int asset_at_v = asset_at(p + k);
+    lset((import jpg_hs), t * 256 + k, asset_at_v);
     k = k + 1;
   }
 } return void;

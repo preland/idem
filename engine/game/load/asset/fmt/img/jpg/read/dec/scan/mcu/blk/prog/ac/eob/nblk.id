@@ -6,6 +6,7 @@
 
 jpg_nblk(int ci, int bx, int by) {
   jpg_rst();
-  jpg_blk(ci, jpg_bat(ci, bx, by));
+  int jpg_bat_v = jpg_bat(ci, bx, by);
+  jpg_blk(ci, jpg_bat_v);
   lset((import jpg_st), 12, (import jpg_st)[12] + 1);
 } return void;

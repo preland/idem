@@ -4,14 +4,16 @@
 // key must change nothing at all.
 t_rep3() {
   t_hold(5300);
-  print("held through 5100 and 5300, still inside the delay exp 12345678 = " + tin_text());
+  string tin_text_v = tin_text();
+  print("held through 5100 and 5300, still inside the delay exp 12345678 = " + tin_text_v);
   t_rep4();
 } return void;
 
 // 5450 is the first frame at or after 5420, so this is where the repeat starts.
 t_rep4() {
   t_hold(5450);
-  print("first frame past 5420 exp 1234567 = " + tin_text());
+  string tin_text_v = tin_text();
+  print("first frame past 5420 exp 1234567 = " + tin_text_v);
   t_rep5();
 } return void;
 
@@ -20,6 +22,7 @@ t_rep4() {
 // started -- the commonest way to get this wrong.
 t_rep5() {
   t_hold(5470);
-  print("10 ms short of the next repeat exp 1234567 = " + tin_text());
+  string tin_text_v = tin_text();
+  print("10 ms short of the next repeat exp 1234567 = " + tin_text_v);
   t_rep6();
 } return void;

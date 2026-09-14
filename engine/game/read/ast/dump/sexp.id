@@ -10,19 +10,22 @@
 // here and nowhere else: a dump happens once, off the frame path.
 
 ast_dump(int nd) {
-  print(ast_sexp(nd));
+  string ast_sexp_v = ast_sexp(nd);
+  print(ast_sexp_v);
 } return void;
 
 ast_sexp(int nd) {
   string[] strs = [""];
-  ast_sexp2(nd, ast_kd(nd), strs);
-} return string strs[0];
+  int ast_kd_v = ast_kd(nd);
+  ast_sexp2(nd, ast_kd_v, strs);
+  string ret_s = strs[0];
+} return string ret_s;
 
 // Written through a cell rather than returned, because the fall-through arm must
 // not be evaluated when an earlier arm matches: ast_form on a `num` node would
 // read ast_a as a node id and index the arena out of range, which aborts.
 ast_sexp2(int nd, int kd, string[] strs) {
-  if (kd = ast_k_num()) { sset(strs, 0, ast_numtx(nd)); }
-  else if (kd = ast_k_ident()) { sset(strs, 0, ast_tx(nd)); }
+  if (kd = ast_k_num()) { string ast_numtx_v = ast_numtx(nd); sset(strs, 0, ast_numtx_v); }
+  else if (kd = ast_k_ident()) { string ast_tx_v = ast_tx(nd); sset(strs, 0, ast_tx_v); }
   else { ast_sexp3(nd, kd, strs); }
 } return void;

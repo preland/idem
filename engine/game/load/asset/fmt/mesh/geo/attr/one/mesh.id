@@ -10,9 +10,12 @@ bl_mesh2() {
 bl_mesh3(int p) {
   int si = bl_sfind("Mesh");
   bl_verts(p, si);
-} return int bl_faces(p, si);
+  int ret_i = bl_faces(p, si);
+} return int ret_i;
 
 // An int field of a struct, by name -- the field offset comes from the file's own
 // schema, so this reads the same field correctly in a file from any version.
 bl_mint(int p, int si, string name) {
-} return int bl_le32(p + bl_foff(si, name));
+  int bl_foff_v = bl_foff(si, name);
+  int ret_i = bl_le32(p + bl_foff_v);
+} return int ret_i;

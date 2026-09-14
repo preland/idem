@@ -1,10 +1,13 @@
 par_script2(int[] pos, int[] kids) {
   par_hfill(pos, kids);
-} return int ast_new_kids(ast_k_script(), "", kids);
+  int ast_k_script_v = ast_k_script();
+  int ret_i = ast_new_kids(ast_k_script_v, "", kids);
+} return int ret_i;
 
 par_hfill(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
-    push(kids, par_handler(pos));
+    int par_handler_v = par_handler(pos);
+    push(kids, par_handler_v);
   }
   par_eat(pos, "}");
 } return void;
@@ -13,4 +16,5 @@ par_handler(int[] pos) {
   par_want(pos, "on");
   string name = par_text(pos);
   par_next(pos);
-} return int par_h2(pos, name);
+  int ret_i = par_h2(pos, name);
+} return int ret_i;

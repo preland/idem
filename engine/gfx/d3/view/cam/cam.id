@@ -25,5 +25,6 @@ d3_cam_aim(int deg, int pit) {
 // the fov was.
 d3_cam_fov(int deg) {
   lset((import d3_cam), 7, deg);
-  lset((import d3_cam), 8, d3_cam_focal());
+  int d3_cam_focal_v = d3_cam_focal();
+  lset((import d3_cam), 8, d3_cam_focal_v);
 } return void;

@@ -7,8 +7,13 @@
 // scene so the edge of the game is visible rather than ambiguous.
 
 run_draw() {
-  sf_clear(d2_shade((import scn_st)[6], 300));
-  sf_rect(sys_sx(), sys_sy(), sys_sw(), sys_sh(), (import scn_st)[6]);
+  int d2_shade_v = d2_shade((import scn_st)[6], 300);
+  sf_clear(d2_shade_v);
+  int sys_sx_v = sys_sx();
+  int sys_sy_v = sys_sy();
+  int sys_sw_v = sys_sw();
+  int sys_sh_v = sys_sh();
+  sf_rect(sys_sx_v, sys_sy_v, sys_sw_v, sys_sh_v, (import scn_st)[6]);
   run_world();
 } return void;
 
@@ -21,5 +26,6 @@ run_world() {
 // walk -- the same one the editor's own chrome goes through.
 run_ui() {
   ui_rclear();
-  run_ui2(scn_ui((import scn_st)[5], 0));
+  int scn_ui_v = scn_ui((import scn_st)[5], 0);
+  run_ui2(scn_ui_v);
 } return void;

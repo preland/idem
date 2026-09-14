@@ -11,17 +11,29 @@
 // you are in the bar, you are browsing it.
 
 ed_menu_one(int x, int k, string s) {
-  ed_menu_hl(x, s, ed_in(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1) + ((import ed_st)[15] = k));
+  int txt_ui_v = txt_ui();
+  int txt_width_v = txt_width(s);
+  int txt_ui_v2 = txt_ui();
+  int ed_hdr_v = ed_hdr();
+  int ed_in_v = ed_in(x - 4 * txt_ui_v, 0, txt_width_v + 8 * txt_ui_v2, ed_hdr_v - 1);
+  ed_menu_hl(x, s, ed_in_v + ((import ed_st)[15] = k));
   ed_menu_ttl(x, k, s);
 } return void;
 
 ed_menu_hl(int x, string s, int ok) {
   if (ok >= 1) {
-    sf_rect(x - 4 * txt_ui(), 0, txt_width(s) + 8 * txt_ui(), ed_hdr() - 1, ed_col(7));
+    int txt_ui_v = txt_ui();
+    int txt_width_v = txt_width(s);
+    int txt_ui_v2 = txt_ui();
+    int ed_hdr_v = ed_hdr();
+    int ed_col_v = ed_col(7);
+    sf_rect(x - 4 * txt_ui_v, 0, txt_width_v + 8 * txt_ui_v2, ed_hdr_v - 1, ed_col_v);
   }
 } return void;
 
 ed_menu_ttl(int x, int k, string s) {
   ed_menu_click(x, k, s);
-  txt_draw(s, x, 2 * txt_ui(), ed_col(4));
+  int txt_ui_v = txt_ui();
+  int ed_col_v = ed_col(4);
+  txt_draw(s, x, 2 * txt_ui_v, ed_col_v);
 } return void;

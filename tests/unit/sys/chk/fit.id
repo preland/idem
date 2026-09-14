@@ -12,7 +12,8 @@ t_fit() {
 
 t_show(string msg, int w, int h) {
   t_size(w, h);
-  print(msg + " = gw " + (import sf_gw) + " gh " + (import sf_gh) + " cells " + len((import sf_fb)));
+  int len_v = len((import sf_fb));
+  print(msg + " = gw " + (import sf_gw) + " gh " + (import sf_gh) + " cells " + len_v);
 } return void;
 
 // 0 means "do not resize" -- the value gfx_width answers with no display, and the

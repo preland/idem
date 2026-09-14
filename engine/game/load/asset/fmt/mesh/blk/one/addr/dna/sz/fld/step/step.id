@@ -5,9 +5,13 @@
 // cannot stop at the match -- and a loop in this language cannot break out anyway.
 
 bl_fstep(int p, string name, int o) {
-  int np = bl_nth((import bl_st)[7], bl_le16(p + 2));
+  int bl_st_v = (import bl_st)[7];
+  int bl_le16_v = bl_le16(p + 2);
+  int np = bl_nth(bl_st_v, bl_le16_v);
   bl_fhit(np, name, o);
-} return int bl_fsz(bl_le16(p), np);
+  int bl_le16_v2 = bl_le16(p);
+  int ret_i = bl_fsz(bl_le16_v2, np);
+} return int ret_i;
 
 bl_fhit(int np, string name, int o) {
   if (bl_streq(np, name) = 1) {

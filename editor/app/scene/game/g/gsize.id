@@ -1,7 +1,9 @@
 // The game's logical size, unpacked.
 
 ed_gw() {
-} return int (import ed_gu)[2] / 65536;
+  int ret_i = (import ed_gu)[2] / 65536;
+} return int ret_i;
 
 ed_gh() {
-} return int (import ed_gu)[2] % 65536;
+  int ret_i = (import ed_gu)[2] % 65536;
+} return int ret_i;

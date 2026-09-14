@@ -5,7 +5,9 @@
 // only place that knows the layout is a document rather than arithmetic.
 
 ed_rq(int p, int i) {
-} return int ui_rect(ed_pname(p), i);
+  string ed_pname_v = ed_pname(p);
+  int ret_i = ui_rect(ed_pname_v, i);
+} return int ret_i;
 
 ed_pname(int p) {
   string name = "MenuBar";

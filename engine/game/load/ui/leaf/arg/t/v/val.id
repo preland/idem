@@ -11,6 +11,7 @@
 
 ui_val(int nd) {
   string s = "";
-  if (ast_ia(nd) != 0) { s = ast_tx(ast_ia(nd)); }
+  if (ast_ia(nd) != 0) { int ast_ia_v = ast_ia(nd); s = ast_tx(ast_ia_v); }
   func(string) return int gr = (import eng_ref);
-} return int gr(s);
+  int ret_i = gr(s);
+} return int ret_i;

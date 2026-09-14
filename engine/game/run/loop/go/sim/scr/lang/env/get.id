@@ -18,6 +18,8 @@ scr_set(int e, string name, int v) {
   if (i >= 0) {
     lset((import scr_vv), i, v);
   } else {
-    err_report("script", 0, "assignment to undeclared variable " + chr(39) + name + chr(39));
+    string chr_v = chr(39);
+    string chr_v2 = chr(39);
+    err_report("script", 0, "assignment to undeclared variable " + chr_v + name + chr_v2);
   }
 } return void;

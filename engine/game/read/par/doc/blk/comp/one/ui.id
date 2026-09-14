@@ -3,12 +3,15 @@
 par_mui(int[] pos) {
   par_next(pos);
   par_want(pos, "{");
-} return int par_mui2(pos);
+  int ret_i = par_mui2(pos);
+} return int ret_i;
 
 par_mui2(int[] pos) {
   int[] kids = [par_item(pos)];
   par_want(pos, "}");
-} return int ast_new_kids(ast_k_ui(), "", kids);
+  int ast_k_ui_v = ast_k_ui();
+  int ret_i = ast_new_kids(ast_k_ui_v, "", kids);
+} return int ret_i;
 
 // A component: a name and its arguments, to the end of its line. `pos (144, 200)`,
 // `body (12, 8)`, `tag player`, `anim (0, 24, 40)`.
@@ -20,4 +23,5 @@ par_comp(int[] pos) {
   string name = par_text(pos);
   int ln = par_line(pos);
   par_next(pos);
-} return int par_comp2(pos, name, ln);
+  int ret_i = par_comp2(pos, name, ln);
+} return int ret_i;

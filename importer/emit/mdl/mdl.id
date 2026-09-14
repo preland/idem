@@ -18,7 +18,8 @@ mdl_go(string src) {
 } return void;
 
 mdl_go2(string src) {
-  lset((import mdl_n), 1, imp_int(src));
+  int imp_int_v = imp_int(src);
+  lset((import mdl_n), 1, imp_int_v);
   mdl_head();
   mdl_body(src);
 } return void;

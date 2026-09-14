@@ -36,11 +36,17 @@ spr_png(string name, string path, int cols, int rows, int cw, int ch) {
 spr_png2(string name, int cols, int rows, int cw, int ch) {
   int sw = (import png_st)[0] / fx_max(cols, 1);
   int sh = (import png_st)[1] / fx_max(rows, 1);
-} return int spr_dims(name, fx_max(cols, 1), fx_max(rows, 1), spr_cell(cw, sw), spr_cell(ch, sh), sw, sh);
+  int fx_max_v = fx_max(cols, 1);
+  int fx_max_v2 = fx_max(rows, 1);
+  int spr_cell_v = spr_cell(cw, sw);
+  int spr_cell_v2 = spr_cell(ch, sh);
+  int ret_i = spr_dims(name, fx_max_v, fx_max_v2, spr_cell_v, spr_cell_v2, sw, sh);
+} return int ret_i;
 
 // 0 or less means the source cell's own size. Floored at 1 either way: a zero
 // dimension would make d2_spr_add allocate nothing and every later index abort.
 spr_cell(int v, int n) {
   int m = v;
   if (v <= 0) { m = n; }
-} return int fx_max(m, 1);
+  int ret_i = fx_max(m, 1);
+} return int ret_i;

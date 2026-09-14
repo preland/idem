@@ -9,7 +9,8 @@
 bl_fsz(int ti, int np) {
   int n = bl_tlen(ti);
   if (asset_at(np) = 42) { n = 8; }
-} return int n * bl_arr(np);
+  int ret_i = n * bl_arr(np);
+} return int ret_i;
 
 bl_arr(int np) {
   int m = 1;

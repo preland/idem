@@ -4,12 +4,14 @@
 // template to spawn, and handlers for update, timer, press and hit.
 t_load() {
   lex_init();
-  lex_run(t_src());
+  string t_src_v = t_src();
+  lex_run(t_src_v);
   t_go();
 } return void;
 
 t_go() {
   int[] pos = [0];
-  scn_load(par_doc(pos));
+  int par_doc_v = par_doc(pos);
+  scn_load(par_doc_v);
   t_vars();
 } return void;

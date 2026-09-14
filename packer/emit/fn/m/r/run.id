@@ -2,6 +2,7 @@
 
 pack_run() {
   pack_main();
-  pack_files(read_all(), 0, 0);
+  string read_all_v = read_all();
+  pack_files(read_all_v, 0, 0);
 } return void;
 

@@ -5,8 +5,10 @@
 // would empty the previous plane every time it was called.
 
 spr_dim3(string src) {
-  lset((import spr_d), 6, imp_int(src));
-  lset((import spr_d), 7, imp_int(src));
+  int imp_int_v = imp_int(src);
+  lset((import spr_d), 6, imp_int_v);
+  int imp_int_v2 = imp_int(src);
+  lset((import spr_d), 7, imp_int_v2);
 } return void;
 
 spr_lists() {

@@ -21,9 +21,12 @@ m4_apply(int[] mat, int[] tri, int i) {
 } return void;
 
 m4_apply3(int[] mat, int[] tri, int i, int x, int y, int z) {
-  lset(tri, i, m4_pt(mat, 0, x, y, z));
-  lset(tri, i + 1, m4_pt(mat, 4, x, y, z));
-  lset(tri, i + 2, m4_pt(mat, 8, x, y, z));
+  int m4_pt_v = m4_pt(mat, 0, x, y, z);
+  lset(tri, i, m4_pt_v);
+  int m4_pt_v2 = m4_pt(mat, 4, x, y, z);
+  lset(tri, i + 1, m4_pt_v2);
+  int m4_pt_v3 = m4_pt(mat, 8, x, y, z);
+  lset(tri, i + 2, m4_pt_v3);
 } return void;
 
 // One row of the product, `p` being the row's first slot. The four products are
@@ -32,4 +35,5 @@ m4_apply3(int[] mat, int[] tri, int i, int x, int y, int z) {
 m4_pt(int[] mat, int p, int x, int y, int z) {
   word wp = m4_wmul(mat[p], x) + m4_wmul(mat[p + 1], y);
   wp = wp + m4_wmul(mat[p + 2], z) + m4_wmul(mat[p + 3], 1000);
-} return int wp / 1000;
+  int ret_i = wp / 1000;
+} return int ret_i;

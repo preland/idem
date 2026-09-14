@@ -22,7 +22,8 @@ scn_enter2(int nd) {
 } return void;
 
 scn_enter3(int nd) {
-  lset((import scn_st), 9, scn_sscript(nd, 0));
+  int scn_sscript_v = scn_sscript(nd, 0);
+  lset((import scn_st), 9, scn_sscript_v);
   scn_bg(nd, 0);
   scn_enter4(nd);
 } return void;

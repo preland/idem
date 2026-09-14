@@ -2,8 +2,10 @@
 // and the editor draws two of them a frame -- the game's, inside the plane, and
 // its own layout, over the whole window.
 ed_plane5(int x, int y, int w, int h) {
-  lset((import ui_ts), 0, txt_ui() * 1000);
-  d2_frame(x - 1, y - 1, w + 2, h + 2, ed_col(3));
+  int txt_ui_v = txt_ui();
+  lset((import ui_ts), 0, txt_ui_v * 1000);
+  int ed_col_v = ed_col(3);
+  d2_frame(x - 1, y - 1, w + 2, h + 2, ed_col_v);
 } return void;
 
 // The game's entities, drawn into the plane.
@@ -23,7 +25,9 @@ ed_plane5(int x, int y, int w, int h) {
 // parent rather than unclip.
 ed_pworld(int x, int y, int w) {
   ed_pclip(x, y, w);
-  ed_pdraw(x, y, w * 1000 / fx_max(ed_gw(), 1), (import sys_vp)[0]);
+  int ed_gw_v = ed_gw();
+  int fx_max_v = fx_max(ed_gw_v, 1);
+  ed_pdraw(x, y, w * 1000 / fx_max_v, (import sys_vp)[0]);
   ed_clip_pane();
 } return void;
 

@@ -10,8 +10,10 @@
 // never degenerate and `far - near` is never zero.
 
 d3_cam_lens(int near, int far) {
-  lset((import d3_cam), 5, fx_max(near, 40));
-  lset((import d3_cam), 6, fx_max(far, near + 1));
+  int fx_max_v = fx_max(near, 40);
+  lset((import d3_cam), 5, fx_max_v);
+  int fx_max_v2 = fx_max(far, near + 1);
+  lset((import d3_cam), 6, fx_max_v2);
 } return void;
 
 // focal = (viewport width / 2) * cot(fov / 2), in pixels x1000.
@@ -26,4 +28,5 @@ d3_cam_lens(int near, int far) {
 // field of view rather than a stretched slice of it. d3_viewport re-derives this
 // whenever the rect changes.
 d3_cam_focal() {
-} return int d3_vp_w() / 2 * m4_cot((import d3_cam)[7] / 2);
+  int ret_i = d3_vp_w() / 2 * m4_cot((import d3_cam)[7] / 2);
+} return int ret_i;

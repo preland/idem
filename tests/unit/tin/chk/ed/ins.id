@@ -6,7 +6,9 @@
 // character or the next one lands in front of it.
 t_ins() {
   t_tap(88, 2200);
-  print("X at caret 1 exp aXbc caret 2 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("X at caret 1 exp aXbc caret 2 = " + tin_text_v + " " + tin_caret_v);
   t_bs();
 } return void;
 
@@ -14,7 +16,9 @@ t_ins() {
 // back with it.
 t_bs() {
   t_tap(8, 2300);
-  print("backspace exp abc caret 1 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("backspace exp abc caret 1 = " + tin_text_v + " " + tin_caret_v);
   t_del();
 } return void;
 
@@ -23,6 +27,8 @@ t_bs() {
 // tin_del takes an index rather than a direction.
 t_del() {
   t_tap(265, 2400);
-  print("delete exp ac caret 1 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("delete exp ac caret 1 = " + tin_text_v + " " + tin_caret_v);
   t_home();
 } return void;

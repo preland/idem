@@ -12,7 +12,8 @@ scr_pev(string evn) {
 // not an entity's: the bird flaps and the scene starts the run, and both are
 // written as `on press` in their own script.
 scr_pall(string evn, int e) {
-  scr_fire(scr_sc(e), evn, e, "");
+  int scr_sc_v = scr_sc(e);
+  scr_fire(scr_sc_v, evn, e, "");
   scr_pents(evn, 0);
 } return void;
 

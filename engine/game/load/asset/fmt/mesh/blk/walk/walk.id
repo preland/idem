@@ -21,4 +21,5 @@ bl_walk(int p) {
   while (p + 32 <= (import asset_io)[1] && bl_end(p) = 0) {
     p = bl_block(p);
   }
-} return int bl_dna();
+  int ret_i = bl_dna();
+} return int ret_i;

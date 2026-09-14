@@ -7,7 +7,8 @@
 // the alternative is tg pipe that exists but does not move until the next frame.
 
 scr_upd(int e) {
-  scr_fire(scr_sc(e), "update", e, "");
+  int scr_sc_v = scr_sc(e);
+  scr_fire(scr_sc_v, "update", e, "");
 } return void;
 
 scr_ents(int e) {

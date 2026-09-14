@@ -8,14 +8,16 @@
 scr_ex8(int nd, int e) {
   int fin = 0;
   if (ast_kd(nd) = ast_k_goto()) {
-    fin = scr_goto(ast_tx(nd));
+    string ast_tx_v = ast_tx(nd);
+    fin = scr_goto(ast_tx_v);
   } else {
     fin = scr_ex9(nd, e);
   }
 } return int fin;
 
 scr_goto(string name) {
-  lset((import scr_st), 2, scn_byname(name));
+  int scn_byname_v = scn_byname(name);
+  lset((import scr_st), 2, scn_byname_v);
 } return int 1;
 
 // `stop` ends the handler and nothing else. `say` and `play` are accepted and do

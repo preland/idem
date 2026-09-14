@@ -18,9 +18,12 @@ d3_gs_init(int[] st, int t) {
 } return void;
 
 d3_gs_c(int[] st, int t) {
-  lset((import d3_gs), 0, d3_mix(st[3], st[9], t) * 256);
-  lset((import d3_gs), 1, d3_mix(st[4], st[10], t) * 256);
-  lset((import d3_gs), 2, d3_mix(st[5], st[11], t) * 256);
+  int d3_mix_v = d3_mix(st[3], st[9], t);
+  lset((import d3_gs), 0, d3_mix_v * 256);
+  int d3_mix_v2 = d3_mix(st[4], st[10], t);
+  lset((import d3_gs), 1, d3_mix_v2 * 256);
+  int d3_mix_v3 = d3_mix(st[5], st[11], t);
+  lset((import d3_gs), 2, d3_mix_v3 * 256);
 } return void;
 
 d3_gs_st(int[] st) {

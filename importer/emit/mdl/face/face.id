@@ -7,7 +7,8 @@
 // go looking for.
 
 mdl_v3(string src, int x, int y) {
-  print("    (" + x + ", " + y + ", " + imp_int(src) + ")");
+  int imp_int_v = imp_int(src);
+  print("    (" + x + ", " + y + ", " + imp_int_v + ")");
 } return void;
 
 mdl_faces(string src) {

@@ -50,4 +50,5 @@ pack_nl(string src, int p, int hi) {
   while (j > p && charat(src, j - 1) != 10) {
     j = j - 1;
   }
-} return int j + (j = p) * (hi - p);
+  int ret_i = j + (j = p) * (hi - p);
+} return int ret_i;

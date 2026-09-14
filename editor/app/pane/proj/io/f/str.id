@@ -11,10 +11,15 @@ ed_rstr(int[] buf, int i, int n, string s) {
 // trailing slash, so stepping up means dropping that slash first -- otherwise the
 // answer is the same directory again.
 ed_up(string path) {
-} return string scn_dirof(str_slice(path, 0, fx_max(len(path) - 1, 0)));
+  int len_v = len(path);
+  int fx_max_v = fx_max(len_v - 1, 0);
+  string str_slice_v = str_slice(path, 0, fx_max_v);
+  string ret_s = scn_dirof(str_slice_v);
+} return string ret_s;
 
 // Where the toolchain is: the executable's own directory is `<root>/build/`, so
 // the root is one above it. That is how Export finds `tools/idem` without being
 // told where the project it is editing came from.
 ed_root() {
-} return string ed_up((import scn_dir)[1]);
+  string ret_s = ed_up((import scn_dir)[1]);
+} return string ret_s;

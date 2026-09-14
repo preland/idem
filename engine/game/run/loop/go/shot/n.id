@@ -25,4 +25,5 @@ shot_val(string s, int i, int v) {
     v = v * 10 + charat(s, i) - 48;
     i = i + 1;
   }
-} return int shot_ok(s, i, v);
+  int ret_i = shot_ok(s, i, v);
+} return int ret_i;

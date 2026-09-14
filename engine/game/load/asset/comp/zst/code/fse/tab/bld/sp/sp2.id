@@ -10,7 +10,8 @@ fse_sp2(int kd, int step, int p) {
 
 fse_sp3(int kd, int step, int p) {
   lset((import fse_sy), (import fse_st)[6] + p, kd);
-} return int fse_skip(step, (p + step) % (import fse_st)[7]);
+  int ret_i = fse_skip(step, (p + step) % (import fse_st)[7]);
+} return int ret_i;
 
 // Slots above `high` already hold the -1 symbols, so the walk steps over them
 // rather than through them. The size is a power of two, so `% size` is the mask

@@ -10,8 +10,11 @@
 // the checksum alone would only tell you about after the fact.
 
 t_geo() {
-  print("mesh cube.blend exp 1 = " + bl_mesh("tests/unit/mesh/cube.blend"));
-  print("verts exp 8, triangles exp 12 = " + len((import bl_v)) / 3 + " " + bl_ntri());
+  int bl_mesh_v = bl_mesh("tests/unit/mesh/cube.blend");
+  print("mesh cube.blend exp 1 = " + bl_mesh_v);
+  int len_v = len((import bl_v));
+  int bl_ntri_v = bl_ntri();
+  print("verts exp 8, triangles exp 12 = " + len_v / 3 + " " + bl_ntri_v);
   t_verts();
 } return void;
 

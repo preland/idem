@@ -2,6 +2,7 @@
 
 scr_pent(string evn, int e) {
   if (ent_at(e, 9) % 2 = 1) {
-    scr_fire(scr_sc(e), evn, e, "");
+    int scr_sc_v = scr_sc(e);
+    scr_fire(scr_sc_v, evn, e, "");
   }
 } return void;

@@ -8,7 +8,8 @@ jpg_rsym(int ci, int a) {
   if ((import jpg_r)[0] > (import jpg_st)[14]) {
     lset((import jpg_r), 3, 2);
   } else {
-    jpg_rsym2(ci, a, jpg_dec((import jpg_c)[ci * 10 + 5]));
+    int jpg_dec_v = jpg_dec((import jpg_c)[ci * 10 + 5]);
+    jpg_rsym2(ci, a, jpg_dec_v);
   }
 } return void;
 

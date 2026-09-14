@@ -4,7 +4,8 @@ imp_eol(string src, int i) {
   while (charat(src, i) >= 0 && charat(src, i) != 10) {
     i = i + 1;
   }
-} return int i + 1;
+  int ret_i = i + 1;
+} return int ret_i;
 
 // 32 space, 10 newline, 13 carriage return, 9 tab. A stream that has been near
 // Windows is still a stream this has to read.

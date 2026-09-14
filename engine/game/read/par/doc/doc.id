@@ -22,10 +22,13 @@
 par_doc(int[] pos) {
   int[] kids = [];
   par_dfill(pos, kids);
-} return int ast_new_kids(ast_k_file(), "", kids);
+  int ast_k_file_v = ast_k_file();
+  int ret_i = ast_new_kids(ast_k_file_v, "", kids);
+} return int ret_i;
 
 par_dfill(int[] pos, int[] kids) {
   while (par_kind(pos) != lex_k_eof()) {
-    push(kids, par_top(pos));
+    int par_top_v = par_top(pos);
+    push(kids, par_top_v);
   }
 } return void;

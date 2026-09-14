@@ -43,7 +43,8 @@ d3_zalloc() {
 // passed through. A negative count pushes nothing, so this is free once the
 // buffer is big enough.
 d3_zclear() {
-  lst_fill((import d3_zb), (import sf_gw) * (import sf_gh) - len((import d3_zb)), 0);
+  int len_v = len((import d3_zb));
+  lst_fill((import d3_zb), (import sf_gw) * (import sf_gh) - len_v, 0);
   lst_set_all((import d3_zb), (import sf_gw) * (import sf_gh), 0);
 } return void;
 

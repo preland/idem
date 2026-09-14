@@ -7,17 +7,26 @@
 ed_btn(int x, int y, int w, int h, string s) {
   int ok = ed_in(x, y, w, h);
   ed_btn_draw(x, y, w, h, s, ok);
-} return int ok * inp_mhit(1);
+  int ret_i = ok * inp_mhit(1);
+} return int ret_i;
 
 ed_btn_draw(int x, int y, int w, int h, string s, int ok) {
-  sf_rect(x, y, w, h, ed_col(7 - 6 * (ok = 0)));
-  d2_frame(x, y, w, h, ed_col(3));
-  txt_draw(s, x + (w - txt_width(s)) / 2, y + (h - txt_cellh() * txt_ui()) / 2, ed_col(4));
+  int ed_col_v = ed_col(7 - 6 * (ok = 0));
+  sf_rect(x, y, w, h, ed_col_v);
+  int ed_col_v2 = ed_col(3);
+  d2_frame(x, y, w, h, ed_col_v2);
+  int txt_width_v = txt_width(s);
+  int txt_cellh_v = txt_cellh();
+  int txt_ui_v = txt_ui();
+  int ed_col_v3 = ed_col(4);
+  txt_draw(s, x + (w - txt_width_v) / 2, y + (h - txt_cellh_v * txt_ui_v) / 2, ed_col_v3);
 } return void;
 
 // One row of a list. `sel` draws it selected, which wins over hover: the selected
 // row must stay obvious while the pointer is somewhere else entirely.
 ed_row(int x, int y, int w, string s, int sel) {
-  int ok = ed_in(x, y, w, ed_rowh());
+  int ed_rowh_v = ed_rowh();
+  int ok = ed_in(x, y, w, ed_rowh_v);
   ed_row_draw(x, y, w, s, sel + ok);
-} return int ok * inp_mhit(1);
+  int ret_i = ok * inp_mhit(1);
+} return int ret_i;

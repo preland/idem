@@ -8,7 +8,8 @@
 
 ed_insp(int x, int y, int w, int h) {
   ed_pane(x, y, w, h, "Inspector");
-  ed_insp_body(x, y + ed_hdr() + 3, w);
+  int ed_hdr_v = ed_hdr();
+  ed_insp_body(x, y + ed_hdr_v + 3, w);
 } return void;
 
 // Three things can be selected and they are checked in the order a person means

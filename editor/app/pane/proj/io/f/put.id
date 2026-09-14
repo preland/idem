@@ -7,11 +7,12 @@
 ed_wput(string path, int[] buf) {
   int h = fs_open(path, "w");
   int n = ed_wnow(h, buf);
-} return int n = len(buf);
+  int ret_i = n = len(buf);
+} return int ret_i;
 
 ed_wnow(int h, int[] buf) {
   int n = 0 - 1;
-  if (h >= 0) { n = fs_write(h, buf, len(buf)); }
+  if (h >= 0) { int len_v = len(buf); n = fs_write(h, buf, len_v); }
   ed_wshut(h);
 } return int n;
 

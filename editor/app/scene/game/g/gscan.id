@@ -2,7 +2,8 @@
 
 ed_gparse(int i) {
   int[] pos = [i];
-  lset((import ed_gu), 0, par_item(pos));
+  int par_item_v = par_item(pos);
+  lset((import ed_gu), 0, par_item_v);
 } return void;
 
 // `clear 0x70C5CE` in a scene, and `display (288, 512)` in the manifest. Both are

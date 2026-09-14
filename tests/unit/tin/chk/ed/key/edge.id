@@ -5,7 +5,9 @@
 // AND leave the caret alone, which is a different claim from "it did not crash".
 t_edge() {
   t_tap(9, 2900);
-  print("tab is not a character exp ac caret 2 = " + tin_text() + " " + tin_caret());
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("tab is not a character exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
   t_act();
 } return void;
 
@@ -13,7 +15,9 @@ t_edge() {
 // whoever owns the field, and this module has no idea.
 t_act() {
   t_tap(13, 3000);
-  print("return exp act 1, text still ac = " + tin_act() + " " + tin_text());
+  int tin_act_v = tin_act();
+  string tin_text_v = tin_text();
+  print("return exp act 1, text still ac = " + tin_act_v + " " + tin_text_v);
   t_esc();
 } return void;
 
@@ -21,6 +25,8 @@ t_act() {
 // already cleared the buffer would leave the caller nothing to restore.
 t_esc() {
   t_tap(27, 3100);
-  print("escape exp act 2, text still ac = " + tin_act() + " " + tin_text());
+  int tin_act_v = tin_act();
+  string tin_text_v = tin_text();
+  print("escape exp act 2, text still ac = " + tin_act_v + " " + tin_text_v);
   t_quiet();
 } return void;

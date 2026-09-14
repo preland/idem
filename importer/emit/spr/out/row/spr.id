@@ -2,7 +2,10 @@
 
 spr_pal_rows(int i) {
   while (i < len((import spr_p))) {
-    print("  " + chr(spr_char(i)) + " 0x" + imp_hex6((import spr_p)[i]));
+    int spr_char_v = spr_char(i);
+    string chr_v = chr(spr_char_v);
+    string imp_hex6_v = imp_hex6((import spr_p)[i]);
+    print("  " + chr_v + " 0x" + imp_hex6_v);
     i = i + 1;
   }
 } return void;

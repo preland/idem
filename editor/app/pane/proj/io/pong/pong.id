@@ -18,8 +18,10 @@
 // chained.
 
 ed_pong() {
-} return string ed_pong_ln("") + ed_pg0();
+  string ret_s = ed_pong_ln("") + ed_pg0();
+} return string ret_s;
 
 // One line of the document, newline included.
 ed_pong_ln(string s) {
-} return string s + chr(10);
+  string ret_s = s + chr(10);
+} return string ret_s;

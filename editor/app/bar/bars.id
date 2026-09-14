@@ -16,6 +16,11 @@ ed_bars2() {
 } return void;
 
 ed_menu() {
-  d2_hline(ed_rq(0, 0), ed_rq(0, 1) + ed_rq(0, 3) - 1, ed_rq(0, 2), ed_col(3));
+  int ed_rq_v = ed_rq(0, 0);
+  int ed_rq_v2 = ed_rq(0, 1);
+  int ed_rq_v3 = ed_rq(0, 3);
+  int ed_rq_v4 = ed_rq(0, 2);
+  int ed_col_v = ed_col(3);
+  d2_hline(ed_rq_v, ed_rq_v2 + ed_rq_v3 - 1, ed_rq_v4, ed_col_v);
   ed_menu_items();
 } return void;

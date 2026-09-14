@@ -8,7 +8,8 @@
 
 t_hit() {
   scr_hits(0);
-  print("one overlap: hits exp 1 = " + scr_get(0 - 1, "hits"));
+  int scr_get_v = scr_get(0 - 1, "hits");
+  print("one overlap: hits exp 1 = " + scr_get_v);
   t_hit2();
 } return void;
 
@@ -21,6 +22,7 @@ t_hit2() {
 } return void;
 
 t_hit3() {
-  print("moved apart: hits exp 1 = " + scr_get(0 - 1, "hits"));
+  int scr_get_v = scr_get(0 - 1, "hits");
+  print("moved apart: hits exp 1 = " + scr_get_v);
   t_tick();
 } return void;

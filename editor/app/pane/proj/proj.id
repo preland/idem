@@ -5,17 +5,26 @@
 // kind of thing this is beats a missing-texture box.
 
 ed_proj_one(int x, int y, int i) {
-  int ok = ed_in(x, y, 72 * txt_ui(), 24 * txt_ui());
+  int txt_ui_v = txt_ui();
+  int txt_ui_v2 = txt_ui();
+  int ok = ed_in(x, y, 72 * txt_ui_v, 24 * txt_ui_v2);
   ed_proj_tile(x, y, i, ok);
 } return void;
 
 ed_proj_tile(int x, int y, int i, int ok) {
   sf_rect(x, y, 72 * txt_ui(), 24 * txt_ui(), ed_col(7 - 6 * (ok = 0 && (import ed_st)[1] != i)));
-  d2_frame(x, y, 72 * txt_ui(), 24 * txt_ui(), ed_col(3));
+  int txt_ui_v = txt_ui();
+  int txt_ui_v2 = txt_ui();
+  int ed_col_v = ed_col(3);
+  d2_frame(x, y, 72 * txt_ui_v, 24 * txt_ui_v2, ed_col_v);
   ed_proj_txt(x, y, i, ok);
 } return void;
 
 ed_proj_txt(int x, int y, int i, int ok) {
-  txt_draw(ed_fit((import ed_dir)[i], 8), x + 4 * txt_ui(), y + 8 * txt_ui(), ed_col(4));
+  string ed_fit_v = ed_fit((import ed_dir)[i], 8);
+  int txt_ui_v = txt_ui();
+  int txt_ui_v2 = txt_ui();
+  int ed_col_v = ed_col(4);
+  txt_draw(ed_fit_v, x + 4 * txt_ui_v, y + 8 * txt_ui_v2, ed_col_v);
   ed_proj_hit(x, y, i, ok);
 } return void;

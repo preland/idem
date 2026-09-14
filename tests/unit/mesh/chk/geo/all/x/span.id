@@ -5,13 +5,19 @@
 // a wrong pointer shows up as millions, not as a different hash.
 
 t_span() {
-  print("x extent exp -6525 9300 = " + t_lo(0) + " " + t_hi(0));
-  print("y extent exp -1000 4350 = " + t_lo(1) + " " + t_hi(1));
+  int t_lo_v = t_lo(0);
+  int t_hi_v = t_hi(0);
+  print("x extent exp -6525 9300 = " + t_lo_v + " " + t_hi_v);
+  int t_lo_v2 = t_lo(1);
+  int t_hi_v2 = t_hi(1);
+  print("y extent exp -1000 4350 = " + t_lo_v2 + " " + t_hi_v2);
   t_span2();
 } return void;
 
 t_span2() {
-  print("z extent exp -7118 4239 = " + t_lo(2) + " " + t_hi(2));
+  int t_lo_v = t_lo(2);
+  int t_hi_v = t_hi(2);
+  print("z extent exp -7118 4239 = " + t_lo_v + " " + t_hi_v);
   t_scene();
 } return void;
 

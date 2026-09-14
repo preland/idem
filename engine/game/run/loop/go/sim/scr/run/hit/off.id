@@ -14,7 +14,8 @@ scr_offs(int e) {
 
 scr_off(int e) {
   if (ent_at(e, 9) % 2 = 1 && ent_at(e, 0) < 0 - (import scn_st)[0] * 1000) {
-    scr_fire(scr_sc(e), "offscreen", e, "");
+    int scr_sc_v = scr_sc(e);
+    scr_fire(scr_sc_v, "offscreen", e, "");
   }
 } return void;
 

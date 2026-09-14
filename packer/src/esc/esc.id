@@ -13,7 +13,8 @@
 pack_esc(string src, int p, int n) {
   word ad = alloc(2 * n + 1);
   int nxt = pack_esc_run(src, p, n, ad);
-} return string str_of_mem(ad, nxt);
+  string ret_s = str_of_mem(ad, nxt);
+} return string ret_s;
 
 // j is the write cursor and runs ahead of the read cursor i, by one for every
 // character that needed a backslash.
@@ -21,7 +22,8 @@ pack_esc_run(string src, int p, int n, word ad) {
   int i = 0;
   int j = 0;
   while (i < n) {
-    j = j + pack_esc_ch(charat(src, p + i), ad + j);
+    int charat_v = charat(src, p + i);
+    j = j + pack_esc_ch(charat_v, ad + j);
     i = i + 1;
   }
 } return int j;

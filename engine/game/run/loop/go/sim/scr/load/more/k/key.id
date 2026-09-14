@@ -8,7 +8,7 @@
 
 scr_kcode(string name) {
   int c = scr_knamed(name);
-  if (len(name) = 1) { c = scr_klower(charat(name, 0)); }
+  if (len(name) = 1) { int charat_v = charat(name, 0); c = scr_klower(charat_v); }
 } return int c;
 
 scr_klower(int c) {

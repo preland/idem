@@ -6,12 +6,17 @@ main(int argc, string[] argv) {
   err_init();
   t_str();
   t_lst();
-} return int err_count();
+  int ret_i = err_count();
+} return int ret_i;
 
 t_str() {
   string s = "sprite bird-up(17, 12)";
-  print("slice bird-up = " + str_slice(s, 7, 7));
-  print("eqat 1,0,1 = " + str_eqat(s, 0, "sprite") + str_eqat(s, 0, "model") + str_eqat(s, 7, "bird"));
+  string str_slice_v = str_slice(s, 7, 7);
+  print("slice bird-up = " + str_slice_v);
+  int str_eqat_v = str_eqat(s, 0, "sprite");
+  int str_eqat_v2 = str_eqat(s, 0, "model");
+  int str_eqat_v3 = str_eqat(s, 7, "bird");
+  print("eqat 1,0,1 = " + str_eqat_v + str_eqat_v2 + str_eqat_v3);
 } return void;
 
 t_lst() {

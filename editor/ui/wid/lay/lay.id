@@ -38,6 +38,7 @@ ed_parse() {
 // window: the rects follow a resize with no layout code involved at all.
 ed_lay() {
   ui_rclear();
-  lset((import ui_ts), 0, txt_ui() * 1000);
+  int txt_ui_v = txt_ui();
+  lset((import ui_ts), 0, txt_ui_v * 1000);
   ui_draw((import ed_ui)[0], 0, 0, (import sf_gw), (import sf_gh));
 } return void;

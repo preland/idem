@@ -42,6 +42,8 @@ jpg_pdc(int ci, int a) {
 // had it set must not carry.
 jpg_pdcr(int a) {
   if (jpg_bit() = 1) {
-    jpg_cset(a, 0, jpg_cget(a, 0) | inf_pow2((import jpg_st)[16]));
+    int jpg_cget_v = jpg_cget(a, 0);
+    int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+    jpg_cset(a, 0, jpg_cget_v | inf_pow2_v);
   }
 } return void;

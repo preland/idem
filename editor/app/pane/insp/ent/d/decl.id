@@ -4,6 +4,9 @@ ed_insp_decl(int x, int y, int w) {
   if ((import ed_st)[0] >= 0 && (import ed_st)[0] < len((import ed_nm))) {
     ed_insp_rows(x, y, w, (import ed_st)[0]);
   } else {
-    txt_draw("nothing selected", x + 6 * txt_ui(), y + 4 * txt_ui(), ed_col(5));
+    int txt_ui_v = txt_ui();
+    int txt_ui_v2 = txt_ui();
+    int ed_col_v = ed_col(5);
+    txt_draw("nothing selected", x + 6 * txt_ui_v, y + 4 * txt_ui_v2, ed_col_v);
   }
 } return void;

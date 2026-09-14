@@ -2,7 +2,9 @@
 
 ed_menu_run(int k) {
   while (k < 5) {
-    ed_menu_one(ed_mx(k), k, ed_mname(k));
+    int ed_mx_v = ed_mx(k);
+    string ed_mname_v = ed_mname(k);
+    ed_menu_one(ed_mx_v, k, ed_mname_v);
     k = k + 1;
   }
 } return void;
@@ -17,7 +19,8 @@ ed_mx(int k) {
 
 ed_mxr(int x, int i, int k) {
   while (i < k) {
-    x = x + txt_width(ed_mname(i)) + 10 * txt_ui();
+    string ed_mname_v = ed_mname(i);
+    x = x + txt_width(ed_mname_v) + 10 * txt_ui();
     i = i + 1;
   }
 } return int x;

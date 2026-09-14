@@ -14,7 +14,8 @@ t_report(int p, int n, string msg) {
 t_scan(int p, int n) {
   int i = 0;
   while (i < n) {
-    t_acc(d2_spr_at(p, i));
+    int d2_spr_at_v = d2_spr_at(p, i);
+    t_acc(d2_spr_at_v);
     i = i + 1;
   }
 } return void;

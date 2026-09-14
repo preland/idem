@@ -11,6 +11,10 @@
 // a matrix entry wants, so nothing is converted here.
 
 m4_rot4(int[] mat, int i, int j, int k, int p, int deg) {
-  m4_pair(mat, i, j, fx_cos(deg), 0 - fx_sin(deg));
-  m4_pair(mat, k, p, fx_sin(deg), fx_cos(deg));
+  int fx_cos_v = fx_cos(deg);
+  int fx_sin_v = fx_sin(deg);
+  m4_pair(mat, i, j, fx_cos_v, 0 - fx_sin_v);
+  int fx_sin_v2 = fx_sin(deg);
+  int fx_cos_v2 = fx_cos(deg);
+  m4_pair(mat, k, p, fx_sin_v2, fx_cos_v2);
 } return void;

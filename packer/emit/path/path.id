@@ -18,7 +18,8 @@ pack_head() {
 pack_path(int k) {
   word ad = alloc(2 * k + 1);
   pack_ns(ad, 2 * k);
-} return string str_of_mem(ad, 2 * k);
+  string ret_s = str_of_mem(ad, 2 * k);
+} return string ret_s;
 
 pack_ns(word ad, int n) {
   int i = 0;

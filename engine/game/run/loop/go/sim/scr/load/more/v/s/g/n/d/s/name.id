@@ -3,7 +3,8 @@
 scn_bfind(int doc, string name, int i) {
   int nd = 0;
   while (i < len(ast_ks(doc)) && nd = 0) {
-    nd = scn_bone(ast_ks(doc)[i], name);
+    int[] ast_ks_v = ast_ks(doc);
+    nd = scn_bone(ast_ks_v[i], name);
     i = i + 1;
   }
 } return int nd;

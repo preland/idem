@@ -26,7 +26,8 @@ d3_unpack(int[] verts, int p, int c) {
 d3_pscale(int a, int b, int z) {
   word wp = a;
   wp = wp * b / z / 1000;
-} return int d3_pclamp(wp);
+  int ret_i = d3_pclamp(wp);
+} return int ret_i;
 
 d3_pclamp(word wp) {
   if (wp > 1000000) {

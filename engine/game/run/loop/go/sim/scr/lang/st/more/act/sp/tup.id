@@ -6,5 +6,5 @@
 
 scr_tup(int tup, int i, int e) {
   int v = 0;
-  if (tup != 0 && i < len(ast_ks(tup))) { v = scr_ev(ast_ks(tup)[i], e); }
+  if (tup != 0 && i < len(ast_ks(tup))) { int[] ast_ks_v = ast_ks(tup); v = scr_ev(ast_ks_v[i], e); }
 } return int v;

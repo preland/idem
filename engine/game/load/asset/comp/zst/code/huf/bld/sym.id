@@ -1,8 +1,11 @@
 // Recording the last weight, ordering the symbols, and the rank starts.
 
 huf_last2(int n, int rest) {
-  lset((import huf_wt), n, fse_hib(rest) + 1);
-  lset((import huf_rk), fse_hib(rest) + 1, (import huf_rk)[fse_hib(rest) + 1] + 1);
+  int fse_hib_v = fse_hib(rest);
+  lset((import huf_wt), n, fse_hib_v + 1);
+  int fse_hib_v2 = fse_hib(rest);
+  int fse_hib_v3 = fse_hib(rest);
+  lset((import huf_rk), fse_hib_v2 + 1, (import huf_rk)[fse_hib_v3 + 1] + 1);
   lset((import huf_st), 1, n + 1);
 } return void;
 

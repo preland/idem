@@ -1,7 +1,9 @@
 par_str(int[] pos) {
   string txt = par_text(pos);
   par_next(pos);
-} return int ast_new_k(ast_k_str(), txt);
+  int ast_k_str_v = ast_k_str();
+  int ret_i = ast_new_k(ast_k_str_v, txt);
+} return int ret_i;
 
 // A leading minus is a separate token (the lexer never folds it), so every place
 // that reads a signed literal folds it here instead.
@@ -14,6 +16,8 @@ par_sign(int[] pos) {
 // the count still owed. Used everywhere the grammar does not name the slot.
 par_num(int[] pos) {
   int sg = par_sign(pos);
-  int nd = ast_new_num(par_val(pos) * sg, par_frac(pos));
+  int par_val_v = par_val(pos);
+  int par_frac_v = par_frac(pos);
+  int nd = ast_new_num(par_val_v * sg, par_frac_v);
   par_nchk(pos);
 } return int nd;

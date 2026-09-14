@@ -6,8 +6,10 @@
 // vertex, a wrong winding or a wrong fan changes it.
 
 t_sum() {
-  print("sum of all triangle coords exp 0 = " + t_coords());
-  print("FNV-1a of all triangle coords exp 2593114485 = " + t_hash(0, 2166136261));
+  int t_coords_v = t_coords();
+  print("sum of all triangle coords exp 0 = " + t_coords_v);
+  word t_hash_v = t_hash(0, 2166136261);
+  print("FNV-1a of all triangle coords exp 2593114485 = " + t_hash_v);
   t_fill();
 } return void;
 

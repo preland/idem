@@ -12,7 +12,8 @@
 // are there to say *which* when it does.
 
 t_pal() {
-  print("bird.png exp 1 = " + png_load("games/flappy/art/bird.png"));
+  int png_load_v = png_load("games/flappy/art/bird.png");
+  print("bird.png exp 1 = " + png_load_v);
   print("  w/h/depth/colour/channels exp 17 36 4 3 1 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[2] + " " + (import png_st)[3] + " " + (import png_st)[4]);
   t_pal2();
 } return void;
@@ -23,12 +24,32 @@ t_pal() {
 // non-opaque entry, so index 0 is the transparent one and 1..4 are opaque.
 t_pal2() {
   print("  bpp/stride/palette/trns exp 1 10 5 1 = " + (import png_st)[11] + " " + (import png_st)[8] + " " + (import png_st)[13] + " " + (import png_st)[15]);
-  print("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = " + png_samp(asset_row(0), 0) + " " + png_samp(asset_row(6), 8) + " " + png_samp(asset_row(12), 3) + " " + png_samp(asset_row(20), 10) + " " + png_samp(asset_row(35), 16));
+  int asset_row_v = asset_row(0);
+  int png_samp_v = png_samp(asset_row_v, 0);
+  int asset_row_v2 = asset_row(6);
+  int png_samp_v2 = png_samp(asset_row_v2, 8);
+  int asset_row_v3 = asset_row(12);
+  int png_samp_v3 = png_samp(asset_row_v3, 3);
+  int asset_row_v4 = asset_row(20);
+  int png_samp_v4 = png_samp(asset_row_v4, 10);
+  int asset_row_v5 = asset_row(35);
+  int png_samp_v5 = png_samp(asset_row_v5, 16);
+  print("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = " + png_samp_v + " " + png_samp_v2 + " " + png_samp_v3 + " " + png_samp_v4 + " " + png_samp_v5);
   t_pal3();
 } return void;
 
 t_pal3() {
-  print("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = " + png_pcol(0) + " " + png_pcol(2) + " " + png_pcol(0) + " " + png_pcol(3) + " " + png_pcol(0));
-  print("  those alphas exp 0 255 0 255 0 = " + png_palpha(0) + " " + png_palpha(2) + " " + png_palpha(0) + " " + png_palpha(3) + " " + png_palpha(0));
+  int png_pcol_v = png_pcol(0);
+  int png_pcol_v2 = png_pcol(2);
+  int png_pcol_v3 = png_pcol(0);
+  int png_pcol_v4 = png_pcol(3);
+  int png_pcol_v5 = png_pcol(0);
+  print("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = " + png_pcol_v + " " + png_pcol_v2 + " " + png_pcol_v3 + " " + png_pcol_v4 + " " + png_pcol_v5);
+  int png_palpha_v = png_palpha(0);
+  int png_palpha_v2 = png_palpha(2);
+  int png_palpha_v3 = png_palpha(0);
+  int png_palpha_v4 = png_palpha(3);
+  int png_palpha_v5 = png_palpha(0);
+  print("  those alphas exp 0 255 0 255 0 = " + png_palpha_v + " " + png_palpha_v2 + " " + png_palpha_v3 + " " + png_palpha_v4 + " " + png_palpha_v5);
   t_grey();
 } return void;

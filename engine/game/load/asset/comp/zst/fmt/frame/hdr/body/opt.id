@@ -13,7 +13,8 @@ zst_win(int ss) {
 
 zst_did(int f) {
   if (f > 0) {
-    zst_le(zst_dsz(f));
+    int zst_dsz_v = zst_dsz(f);
+    zst_le(zst_dsz_v);
   }
 } return void;
 

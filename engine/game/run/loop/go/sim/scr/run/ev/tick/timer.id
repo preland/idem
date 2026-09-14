@@ -6,12 +6,14 @@
 // slots and no game has yet wanted the second.
 
 scr_tfire(int e, int acc) {
-  scr_tscan2(scr_sc(e), e, acc, 0);
+  int scr_sc_v = scr_sc(e);
+  scr_tscan2(scr_sc_v, e, acc, 0);
 } return void;
 
 scr_tscan2(int sc, int e, int acc, int i) {
   while (sc != 0 && i < len(ast_ks(sc))) {
-    scr_tone(ast_ks(sc)[i], e, acc);
+    int[] ast_ks_v = ast_ks(sc);
+    scr_tone(ast_ks_v[i], e, acc);
     i = i + 1;
   }
 } return void;

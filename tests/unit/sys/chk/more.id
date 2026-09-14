@@ -23,6 +23,11 @@ t_stage() {
 } return void;
 
 t_sshow(string msg) {
-  print(msg + " = sc " + (import sys_vp)[0] + " x " + sys_sx() + " y " + sys_sy() + " w " + sys_sw() + " h " + sys_sh());
+  int sys_vp_v = (import sys_vp)[0];
+  int sys_sx_v = sys_sx();
+  int sys_sy_v = sys_sy();
+  int sys_sw_v = sys_sw();
+  int sys_sh_v = sys_sh();
+  print(msg + " = sc " + sys_vp_v + " x " + sys_sx_v + " y " + sys_sy_v + " w " + sys_sw_v + " h " + sys_sh_v);
   t_keys();
 } return void;

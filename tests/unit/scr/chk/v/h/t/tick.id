@@ -7,7 +7,8 @@
 
 t_tick() {
   t_ticks(4, 20);
-  print("after 80ms: ticks exp 0 = " + scr_get(0 - 1, "ticks"));
+  int scr_get_v = scr_get(0 - 1, "ticks");
+  print("after 80ms: ticks exp 0 = " + scr_get_v);
   t_tick2();
 } return void;
 
@@ -21,6 +22,7 @@ t_ticks(int n, int dt) {
 
 t_tick2() {
   t_ticks(1, 20);
-  print("after 100ms: ticks exp 1 = " + scr_get(0 - 1, "ticks"));
+  int scr_get_v = scr_get(0 - 1, "ticks");
+  print("after 100ms: ticks exp 1 = " + scr_get_v);
   t_press();
 } return void;

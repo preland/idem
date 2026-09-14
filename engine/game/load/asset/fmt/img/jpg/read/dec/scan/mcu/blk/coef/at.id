@@ -3,4 +3,5 @@
 // MCU-padded grid so that interleaved and non-interleaved scans address the same
 // block by the same arithmetic. Two bytes each.
 jpg_bat(int ci, int bx, int by) {
-} return int (import jpg_ca)[ci] + (by * (import jpg_c)[ci * 10 + 8] + bx) * 128;
+  int ret_i = (import jpg_ca)[ci] + (by * (import jpg_c)[ci * 10 + 8] + bx) * 128;
+} return int ret_i;

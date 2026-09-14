@@ -1,7 +1,23 @@
 ui_tstr(int nd, int x, int y, int w, int h) {
-  txt_draw_sc(ui_sarg(nd, 0, ""), ui_tx(nd, x, w, txt_width_sc(ui_sarg(nd, 0, ""), (import ui_ts)[0])), ui_ty(y, h), ui_tc(nd), (import ui_ts)[0]);
+  string ui_sarg_v = ui_sarg(nd, 0, "");
+  string ui_sarg_v2 = ui_sarg(nd, 0, "");
+  int txt_width_sc_v = txt_width_sc(ui_sarg_v2, (import ui_ts)[0]);
+  int ui_tx_v = ui_tx(nd, x, w, txt_width_sc_v);
+  int ui_ty_v = ui_ty(y, h);
+  int ui_tc_v = ui_tc(nd);
+  txt_draw_sc(ui_sarg_v, ui_tx_v, ui_ty_v, ui_tc_v, (import ui_ts)[0]);
 } return void;
 
 ui_tnum(int nd, int x, int y, int w, int h) {
-  txt_num_sc(scr_ev(ast_ia(ui_arg0(nd)), 0 - 1), ui_tx(nd, x, w, txt_num_wsc(scr_ev(ast_ia(ui_arg0(nd)), 0 - 1), (import ui_ts)[0])), ui_ty(y, h), ui_tc(nd), (import ui_ts)[0]);
+  int ui_arg0_v = ui_arg0(nd);
+  int ast_ia_v = ast_ia(ui_arg0_v);
+  int scr_ev_v = scr_ev(ast_ia_v, 0 - 1);
+  int ui_arg0_v2 = ui_arg0(nd);
+  int ast_ia_v2 = ast_ia(ui_arg0_v2);
+  int scr_ev_v2 = scr_ev(ast_ia_v2, 0 - 1);
+  int txt_num_wsc_v = txt_num_wsc(scr_ev_v2, (import ui_ts)[0]);
+  int ui_tx_v = ui_tx(nd, x, w, txt_num_wsc_v);
+  int ui_ty_v = ui_ty(y, h);
+  int ui_tc_v = ui_tc(nd);
+  txt_num_sc(scr_ev_v, ui_tx_v, ui_ty_v, ui_tc_v, (import ui_ts)[0]);
 } return void;

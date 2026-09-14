@@ -17,9 +17,12 @@ huf_wloop(int n) {
 } return int n;
 
 huf_wa(int n) {
-  lset((import huf_wt), n, fse_dsym(3, (import huf_ab)[0]));
-  lset((import huf_ab), 0, fse_dnext(3, (import huf_ab)[0]));
-} return int huf_wb(n + 1);
+  int fse_dsym_v = fse_dsym(3, (import huf_ab)[0]);
+  lset((import huf_wt), n, fse_dsym_v);
+  int fse_dnext_v = fse_dnext(3, (import huf_ab)[0]);
+  lset((import huf_ab), 0, fse_dnext_v);
+  int ret_i = huf_wb(n + 1);
+} return int ret_i;
 
 // If the stream ended with the first of the pair, the second state still owes one
 // symbol -- and it is emitted without an update, because there are no bits left
@@ -29,6 +32,7 @@ huf_wb(int n) {
   if (zb_done() = 0) {
     m = huf_wc(n);
   } else {
-    lset((import huf_wt), n, fse_dsym(3, (import huf_ab)[1]));
+    int fse_dsym_v = fse_dsym(3, (import huf_ab)[1]);
+    lset((import huf_wt), n, fse_dsym_v);
   }
 } return int m;

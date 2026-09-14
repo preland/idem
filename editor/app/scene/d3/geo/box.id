@@ -5,15 +5,19 @@
 // six faces of one colour are a silhouette.
 
 ed_box_x(int x, int y, int z, int n, int c) {
-  ed_wall(x + n, y, z + n, x + n, y + 2 * n, z - n, d2_shade(c, 850));
-  ed_wall(x - n, y, z - n, x - n, y + 2 * n, z + n, d2_shade(c, 600));
+  int d2_shade_v = d2_shade(c, 850);
+  ed_wall(x + n, y, z + n, x + n, y + 2 * n, z - n, d2_shade_v);
+  int d2_shade_v2 = d2_shade(c, 600);
+  ed_wall(x - n, y, z - n, x - n, y + 2 * n, z + n, d2_shade_v2);
 } return void;
 
 // The lid, wound the same way the grid is -- upward-facing horizontal quads are
 // the one case where the obvious vertex order is the wrong one.
 ed_box_top(int x, int y, int z, int n, int c) {
-  ed_face(x - n, y + 2 * n, z - n, x + n, y + 2 * n, z + n, x + n, y + 2 * n, z - n, d2_shade(c, 1200));
-  ed_face(x - n, y + 2 * n, z - n, x - n, y + 2 * n, z + n, x + n, y + 2 * n, z + n, d2_shade(c, 1200));
+  int d2_shade_v = d2_shade(c, 1200);
+  ed_face(x - n, y + 2 * n, z - n, x + n, y + 2 * n, z + n, x + n, y + 2 * n, z - n, d2_shade_v);
+  int d2_shade_v2 = d2_shade(c, 1200);
+  ed_face(x - n, y + 2 * n, z - n, x - n, y + 2 * n, z + n, x + n, y + 2 * n, z + n, d2_shade_v2);
 } return void;
 
 // A vertical wall from one ground corner to the opposite top corner. The two

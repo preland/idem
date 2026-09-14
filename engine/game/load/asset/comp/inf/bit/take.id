@@ -6,7 +6,9 @@
 
 inf_take(int n) {
   int v = (import inf_st)[2] % inf_pow2(n);
-  lset((import inf_st), 2, (import inf_st)[2] / inf_pow2(n));
+  int inf_st_v = (import inf_st)[2];
+  int inf_pow2_v = inf_pow2(n);
+  lset((import inf_st), 2, inf_st_v / inf_pow2_v);
   lset((import inf_st), 3, (import inf_st)[3] - n);
 } return int v;
 
