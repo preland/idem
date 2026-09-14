@@ -55,4 +55,5 @@ d3_zclear() {
 d3_dkey(int z) {
   word wp = 68719476736;
   wp = wp / fx_max(z, 1);
-} return int wp;
+  int ret_i = wp;
+} return int ret_i;

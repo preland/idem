@@ -35,4 +35,5 @@ d3_pclamp(word wp) {
   } else if (wp < 0 - 1000000) {
     wp = 0 - 1000000;
   }
-} return int wp;
+  int ret_i = wp;
+} return int ret_i;
