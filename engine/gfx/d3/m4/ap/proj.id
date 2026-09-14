@@ -38,6 +38,7 @@ m4_zrow(int[] mat, int near, int far) {
 } return void;
 
 m4_zrow2(int[] mat, int a, word wp) {
-  m4_pair(mat, 10, 11, a, wp);
+  int wp_i = wp;
+  m4_pair(mat, 10, 11, a, wp_i);
   m4_pair(mat, 14, 15, 1000, 0);
 } return void;

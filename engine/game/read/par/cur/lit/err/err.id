@@ -1,0 +1,7 @@
+// Diagnostics are accumulated, never thrown: err_report counts and prints, and
+// parsing carries on so that one run reports every problem a game has.
+par_err(int[] pos, string msg) {
+  string pth = par_pth(pos);
+  int ln = par_line(pos);
+  err_report(pth, ln, msg);
+} return void;

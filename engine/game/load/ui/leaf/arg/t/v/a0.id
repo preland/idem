@@ -14,7 +14,6 @@ ui_arg0(int nd) {
 // by half a digit as it crosses a power of ten.
 txt_num_wsc(int v, int sc) {
   int cell = txt_cell();
-  int abs_v = fx_abs(v);
-  int dn = txt_num_dn(abs_v);
+  int dn = txt_num_wdn(v);
   int result = txt_num_wsc_tail(v, sc, cell, dn);
 } return int result;

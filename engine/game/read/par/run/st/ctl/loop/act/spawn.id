@@ -1,0 +1,18 @@
+// `spawn Template at (x, y[, z])` as a statement. The same node kind serves the
+// scene-level spawner, which adds the source name, template and period.
+par_sspawn(int[] pos) {
+  par_next(pos);
+  string name = par_text(pos);
+  int nd = par_sspawn_tail(pos, name);
+} return int nd;
+
+par_sspawn_tail(int[] pos, string name) {
+  par_next(pos);
+  int nd = par_sspawn2(pos, name);
+} return int nd;
+
+par_sspawn2(int[] pos, string name) {
+  par_eat(pos, "at");
+  int tup = par_etuple(pos);
+  int nd = par_sspawn3(name, tup);
+} return int nd;

@@ -19,8 +19,7 @@ t_bits() {
 } return void;
 
 t_bshow(word ad) {
-  zb_start(ad, 1);
-  int a = zb_bits(3);
+  int a = t_bstart(ad);
   t_bshow2(a, zb_bits(3));
 } return void;
 

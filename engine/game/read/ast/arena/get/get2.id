@@ -7,5 +7,5 @@ ast_ic(int nd) {
 } return int c;
 
 ast_ks(int nd) {
-  int[] k = (import ast_kids)[nd];
-} return int[] k;
+  int[] ks = (import ast_kids)[nd];
+} return int[] ks;

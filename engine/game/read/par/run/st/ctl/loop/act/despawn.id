@@ -1,0 +1,15 @@
+// `despawn` alone means this entity; `despawn other` names one. Since newlines
+// carry no structure inside a block, the target is only taken when it sits on the
+// same line as the keyword -- otherwise `despawn` followed by `say "x"` would eat
+// the next statement's first token.
+par_despawn(int[] pos) {
+  int ln = par_line(pos);
+  par_next(pos);
+  int nd = par_despawn_tail(pos, ln);
+} return int nd;
+
+par_despawn_tail(int[] pos, int ln) {
+  int kd = ast_k_despawn();
+  int tgt = par_dtgt(pos, ln);
+  int nd = ast_new_a(kd, "", tgt);
+} return int nd;

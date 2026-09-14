@@ -13,7 +13,8 @@ zst_lchk2(int n) {
 
 zst_lrun2(int n, int i) {
   while (i < n && (import zst_st)[6] = 0) {
-    zst_put(peek8((import zst_st)[8] + (import zst_st)[10] + i));
+    int v = peek8((import zst_st)[8] + (import zst_st)[10] + i);
+    zst_put(v);
     i = i + 1;
   }
 } return void;

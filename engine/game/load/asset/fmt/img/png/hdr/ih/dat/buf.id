@@ -1,0 +1,7 @@
+// The inflate output buffer, split out so png_inflate's own block still fits
+// its action budget.
+
+png_inflate_alloc(int n) {
+  int da = alloc(fx_max(n, 1));
+  lset((import png_st), 7, da);
+} return void;

@@ -1,0 +1,10 @@
+lex_hex_tail(string src, int i, int e) {
+  int v = lex_hexval(src, i + 2, e);
+  lex_hex_push(src, i, e, v);
+} return void;
+
+lex_hex_push(string src, int i, int e, int v) {
+  int kd = lex_k_number();
+  string s = str_slice(src, i, e - i);
+  lex_push(kd, s, v, 0);
+} return void;

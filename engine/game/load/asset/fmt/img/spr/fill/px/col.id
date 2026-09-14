@@ -11,4 +11,4 @@ spr_grey(int r, int x) {
 // depends on the order the three are evaluated in.
 spr_rgb(int r, int x) {
   int i = r + 1 + x * (import png_st)[4];
-} return int d2_rgb(peek8(i), peek8(i + 1), peek8(i + 2));
+} return int png_pcol_rgb(i);

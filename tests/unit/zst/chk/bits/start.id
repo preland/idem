@@ -1,0 +1,8 @@
+// Starts the reader at ad and takes the first 3 bits. zb_start's address
+// parameter is int, and ad is the word alloc() returns, so the narrowing is
+// named here rather than at the call site.
+t_bstart(word ad) {
+  int ad_i = ad;
+  zb_start(ad_i, 1);
+  int a = zb_bits(3);
+} return int a;

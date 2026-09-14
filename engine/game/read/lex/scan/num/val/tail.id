@@ -1,0 +1,10 @@
+lex_frlen(int e, int fe) {
+  int fr = 0;
+  if (fe > e) { fr = fe - e - 1; }
+} return int fr;
+
+lex_dnum_tail(string src, int i, int fe, int fr, int v) {
+  int kd = lex_k_number();
+  string s = str_slice(src, i, fe - i);
+  lex_push(kd, s, v, fr);
+} return void;

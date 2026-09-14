@@ -11,3 +11,11 @@ zst_l4c(int reg, int n, int seg, int l1, int l2, int l3) {
 zst_l4d(int reg, int n, int seg, int lsum) {
   zst_l4run(3 * seg, reg - 3 * seg, 6 + lsum, n - 6 - lsum);
 } return void;
+
+// Slot 14's write for zst_lreg, split out so the caller's own block still fits
+// its action budget. The compressed size is a word (Size_Format 3 puts two
+// 18-bit fields above a nibble, forty bits) and slot 14 is an int slot.
+zst_lregv(word wp, int w) {
+  int v = wp / inf_pow2(4 + w) % inf_pow2(w);
+  lset((import zst_st), 14, v);
+} return void;

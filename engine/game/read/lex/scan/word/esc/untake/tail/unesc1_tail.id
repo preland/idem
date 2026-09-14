@@ -1,5 +1,5 @@
-lex_unesc1_tail(string src, int a, word ad) {
-  int v = lex_escch(int c);
+lex_unesc1_tail(string src, int a, word ad, int c) {
+  int v = lex_escch(c);
   poke8(ad, v);
   int result = a + 2;
 } return int result;

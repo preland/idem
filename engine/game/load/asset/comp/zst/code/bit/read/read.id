@@ -7,12 +7,7 @@ zb_pick(int h, int i, int ok) {
 } return int n;
 
 zb_bit() {
-  int v = 0;
-  if ((import zb_st)[1] < (import zb_st)[0]) {
-    lset((import zb_st), 3, 1);
-  } else {
-    v = peek8((import zb_st)[1]) / inf_pow2((import zb_st)[2]) % 2;
-  }
+  int v = zb_bitv();
   int result = zb_next(v);
 } return int result;
 

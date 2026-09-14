@@ -7,12 +7,9 @@ lex_fracend(string src, int e) {
 } return int fe;
 
 lex_dnum(string src, int i, int e, int fe) {
-  int fr = 0;
-  if (fe > e) { fr = fe - e - 1; }
-  int kd = lex_k_number();
-  string s = str_slice(src, i, fe - i);
+  int fr = lex_frlen(e, fe);
   int v = lex_dval(src, i, fe);
-  lex_push(kd, s, v, fr);
+  lex_dnum_tail(src, i, fe, fr, v);
 } return int fe;
 
 lex_dval(string src, int a, int b) {

@@ -11,7 +11,7 @@
 // rather than aborting, and the gap is visible.
 
 scn_espr(int nd) {
-  int sname = scn_sname(nd, 0);
+  string sname = scn_sname(nd, 0);
   int spr_id = d2_spr_find(sname);
 } return int spr_id;
 

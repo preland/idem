@@ -2,9 +2,14 @@
 // engine/conf.id.
 
 zst_tabs() {
-  lset((import zst_st), 8, alloc((import zst_lmax)));
+  zst_tabs_lit();
   zb_init();
   zst_tabs2();
+} return void;
+
+zst_tabs_lit() {
+  int v = alloc((import zst_lmax));
+  lset((import zst_st), 8, v);
 } return void;
 
 zst_tabs2() {

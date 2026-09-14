@@ -12,7 +12,8 @@ asset_row(int y) {
 } return int (import png_st)[7] + y * (import png_st)[8];
 
 png_row(int y, int r) {
-  png_bytes(y, r + 1, peek8(r));
+  int f = peek8(r);
+  png_bytes(y, r + 1, f);
 } return void;
 
 png_bytes(int y, int r, int f) {

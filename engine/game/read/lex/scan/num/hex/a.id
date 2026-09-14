@@ -16,10 +16,3 @@ lex_hex(string src, int i) {
   int e = lex_hexend(src, i + 2);
   lex_hex_tail(src, i, e);
 } return int e;
-
-lex_hex_tail(string src, int i, int e) {
-  int kd = lex_k_number();
-  string s = str_slice(src, i, e - i);
-  int v = lex_hexval(src, i + 2, e);
-  lex_push(kd, s, v, 0);
-} return void;

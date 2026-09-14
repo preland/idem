@@ -28,7 +28,7 @@ zb_start(int sa, int n) {
 } return void;
 
 zb_mark() {
-  int h = zb_hi(peek8((import zb_st)[1]));
+  int h = zb_hipeek();
   lset((import zb_st), 3, h < 0);
   zb_seek(h - 1);
 } return void;

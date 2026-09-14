@@ -1,8 +1,6 @@
 lex_unesc1(string src, int a, word ad) {
   int c = charat(src, a + 1);
-  int v = lex_escch(c);
-  poke8(ad, v);
-  int result = a + 2;
+  int result = lex_unesc1_tail(src, a, ad, c);
 } return int result;
 
 // 110 is 'n', 116 is 't'. Anything else after a backslash is itself, which gives
@@ -11,11 +9,3 @@ lex_escch(int c) {
   int v = c;
   if (c = 110) { v = 10; } else if (c = 116) { v = 9; }
 } return int v;
-
-lex_punct(string src, int i) {
-  int n = lex_plen(src, i);
-  int kd = lex_k_punct();
-  string s = str_slice(src, i, n);
-  lex_push(kd, s, 0, 0);
-  int res = i + n;
-} return int res;

@@ -1,0 +1,10 @@
+par_ident(int[] pos) {
+  string name = par_text(pos);
+  int v = par_ident_tail(pos, name);
+} return int v;
+
+par_ident_tail(int[] pos, string name) {
+  par_next(pos);
+  int kd = ast_k_ident();
+  int v = ast_new_k(kd, name);
+} return int v;

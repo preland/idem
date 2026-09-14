@@ -27,5 +27,6 @@ bl_unz() {
 // and zst_run refuses to write past whatever it is given rather than trusting it.
 bl_unz2() {
   int n = (import asset_io)[1] * 4 + 65536;
-  bl_unz3(alloc(n), n);
+  int da = alloc(n);
+  bl_unz3(da, n);
 } return void;

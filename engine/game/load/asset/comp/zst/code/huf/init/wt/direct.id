@@ -9,13 +9,15 @@ huf_direct(int p, int n) {
 } return int n;
 
 huf_dpair(int p, int i, int n) {
-  lset((import huf_wt), i, peek8((import zst_st)[0] + p + i / 2) / 16);
+  int v = peek8((import zst_st)[0] + p + i / 2) / 16;
+  lset((import huf_wt), i, v);
   huf_dodd(p, i, n);
 } return void;
 
 // The second nibble of the pair, unless the count is odd and this is the tail.
 huf_dodd(int p, int i, int n) {
   if (i + 1 < n) {
-    lset((import huf_wt), i + 1, peek8((import zst_st)[0] + p + i / 2) % 16);
+    int v = peek8((import zst_st)[0] + p + i / 2) % 16;
+    lset((import huf_wt), i + 1, v);
   }
 } return void;

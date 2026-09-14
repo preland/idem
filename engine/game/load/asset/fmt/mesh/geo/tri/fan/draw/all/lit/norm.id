@@ -33,7 +33,7 @@ bl_lam(int nvx, int nvy, int nvz) {
   word wp = nvx;
   word wq = nvy;
   wp = (wp * 300 + wq * 800 + nvz * 520) / fx_max(fx_hyp3(nvx, nvy, nvz), 1);
-} return int fx_clamp(fx_abs(wp), 0, 1000);
+} return int bl_lamc(wp);
 
 // Ambient plus the directional term. Never black, never blown out: 350 per-mille
 // is the shadow side, 1000 is full light. All three vertex colours are equal --

@@ -13,9 +13,14 @@
 // 357 pixels wide that is 45 columns where the MCU grid has 46. Walking 46 reads
 // one block too many per row and every row after the first is displaced.
 jpg_coefs(int ci) {
-  lset((import jpg_ca), ci, alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 128, 2)));
+  jpg_coefs_alloc(ci);
   lset((import jpg_nb), ci * 2, jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]));
   lset((import jpg_nb), ci * 2 + 1, jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]));
+} return void;
+
+jpg_coefs_alloc(int ci) {
+  int da = alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 128, 2));
+  lset((import jpg_ca), ci, da);
 } return void;
 
 // ceil(ceil(n * s / smax) / 8) -- the component's own size in samples, rounded

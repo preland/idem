@@ -3,8 +3,8 @@ ast_lnof(int nd) {
 } return int ln;
 
 ast_n() {
-  int cnt = len((import ast_kind));
-} return int cnt;
+  int n = len((import ast_kind));
+} return int n;
 
 ast_kname(int kd) {
   string nm = (import ast_kn)[kd - (import ast_kbase)];

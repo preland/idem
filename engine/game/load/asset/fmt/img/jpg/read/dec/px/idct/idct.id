@@ -31,7 +31,8 @@ jpg_irows(int v) {
 jpg_irow(int v) {
   int x = 0;
   while (x < 8) {
-    lset((import jpg_tm), v * 8 + x, (jpg_isum(v, x) + 128) >> 8);
+    int sv = (jpg_isum(v, x) + 128) >> 8;
+    lset((import jpg_tm), v * 8 + x, sv);
     x = x + 1;
   }
 } return void;

@@ -1,0 +1,6 @@
+// The right-hand side of a binding's `=`, evaluated and stored.
+scr_dbind_set(int nd, string ia_tx) {
+  int ib = ast_ib(nd);
+  int ev_val = scr_ev(ib, 0 - 1);
+  scr_push(ia_tx, ev_val);
+} return void;

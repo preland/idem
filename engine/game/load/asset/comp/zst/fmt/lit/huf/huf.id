@@ -34,5 +34,5 @@ zst_lhuf2(int kd, int sf, int reg) {
 zst_lreg(int sf, int h) {
   int w = zst_lwid(sf);
   word wp = zst_lval(w);
-  lset((import zst_st), 14, wp / inf_pow2(4 + w) % inf_pow2(w));
+  zst_lregv(wp, w);
 } return int wp / 16 % inf_pow2(w);

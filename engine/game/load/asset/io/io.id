@@ -24,6 +24,11 @@ asset_io_init() {
 // asset_io[0] -- two values, one of which has to travel by a side channel.
 asset_slurp(string path) {
   int n = fs_size(path);
-  lset((import asset_io), 0, alloc(fx_max(n, 1)));
+  asset_slurp_alloc(n);
   lset((import asset_io), 1, asset_take(path, n));
 } return int (import asset_io)[1];
+
+asset_slurp_alloc(int n) {
+  int da = alloc(fx_max(n, 1));
+  lset((import asset_io), 0, da);
+} return void;

@@ -5,8 +5,8 @@ ast_kd(int nd) {
 } return int k;
 
 ast_tx(int nd) {
-  string t = (import ast_text)[nd];
-} return string t;
+  string tx = (import ast_text)[nd];
+} return string tx;
 
 ast_ia(int nd) {
   int a = (import ast_a)[nd];

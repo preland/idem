@@ -4,3 +4,8 @@ jpg_band(int p) {
   m4_pair((import jpg_st), 15, 16, asset_at(p + 2) / 16, asset_at(p + 2) % 16);
   jpg_bset(p + 3);
 } return void;
+
+jpg_plane_alloc(int ci) {
+  int da = alloc(fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 64, 1));
+  lset((import jpg_c), ci * 10 + 7, da);
+} return void;

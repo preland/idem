@@ -1,0 +1,12 @@
+// One axis of an overlap: each side's center and size, then scr_span decides.
+scr_ovl_ax(int a, int b, int k, int sk) {
+  int ac = ent_at(a, k);
+  int aw = ent_at(a, sk);
+  int v = scr_ovl_ax2(b, k, sk, ac, aw);
+} return int v;
+
+scr_ovl_ax2(int b, int k, int sk, int ac, int aw) {
+  int bc = ent_at(b, k);
+  int bw = ent_at(b, sk);
+  int v = scr_span(ac, aw, bc, bw);
+} return int v;

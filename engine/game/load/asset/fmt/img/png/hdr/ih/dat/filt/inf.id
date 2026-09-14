@@ -7,7 +7,7 @@
 
 png_inflate() {
   int n = (import png_st)[1] * (import png_st)[8];
-  lset((import png_st), 7, alloc(fx_max(n, 1)));
+  png_inflate_alloc(n);
   lset((import png_st), 9, png_inf2(n));
 } return int (import png_st)[9];
 

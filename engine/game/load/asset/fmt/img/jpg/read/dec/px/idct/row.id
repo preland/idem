@@ -27,7 +27,8 @@ jpg_icols(int x) {
 jpg_icol(int x) {
   int y = 0;
   while (y < 8) {
-    lset((import jpg_f), y * 8 + x, fx_clamp(((jpg_csum(x, y) + 8192) >> 14) + 128, 0, 255));
+    int cv = ((jpg_csum(x, y) + 8192) >> 14) + 128;
+    lset((import jpg_f), y * 8 + x, fx_clamp(cv, 0, 255));
     y = y + 1;
   }
 } return void;

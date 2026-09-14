@@ -21,7 +21,7 @@ inf_more() {
 } return void;
 
 inf_more2() {
-  lset((import inf_st), 2, (import inf_st)[2] + peek8((import inf_st)[0] + (import inf_st)[1]) * inf_pow2((import inf_st)[3]));
-  lset((import inf_st), 1, (import inf_st)[1] + 1);
-  lset((import inf_st), 3, (import inf_st)[3] + 8);
+  int v = (import inf_st)[2] + peek8((import inf_st)[0] + (import inf_st)[1]) * inf_pow2((import inf_st)[3]);
+  lset((import inf_st), 2, v);
+  m4_pair((import inf_st), 1, 3, (import inf_st)[1] + 1, (import inf_st)[3] + 8);
 } return void;

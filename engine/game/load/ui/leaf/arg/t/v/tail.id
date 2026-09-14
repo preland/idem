@@ -2,3 +2,8 @@ txt_num_wsc_tail(int v, int sc, int cell, int dn) {
   int sum = dn + (v < 0);
   int result = cell * sc / 1000 * sum;
 } return int result;
+
+txt_num_wdn(int v) {
+  int abs_v = fx_abs(v);
+  int dn = txt_num_dn(abs_v);
+} return int dn;

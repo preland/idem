@@ -17,3 +17,20 @@ zb_bits(int n) {
     i = i + 1;
   }
 } return int v;
+
+// The bit's raw value, split out of zb_bit so that function's own block still
+// fits its action budget.
+zb_bitv() {
+  int v = 0;
+  if ((import zb_st)[1] < (import zb_st)[0]) {
+    lset((import zb_st), 3, 1);
+  } else {
+    v = peek8((import zb_st)[1]) / inf_pow2((import zb_st)[2]) % 2;
+  }
+} return int v;
+
+// zb_mark's byte, narrowed here so the caller can pass it to zb_hi.
+zb_hipeek() {
+  int b = peek8((import zb_st)[1]);
+  int h = zb_hi(b);
+} return int h;

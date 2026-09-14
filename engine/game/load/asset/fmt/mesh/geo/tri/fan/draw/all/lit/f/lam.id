@@ -1,0 +1,5 @@
+// bl_lam's clamp, split out so that function's own block still fits its
+// action budget.
+bl_lamc(word wp) {
+  int a = wp;
+} return int fx_clamp(fx_abs(a), 0, 1000);
