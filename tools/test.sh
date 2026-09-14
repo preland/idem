@@ -57,11 +57,14 @@ ok()   { pass=$((pass+1)); printf '  ok    %s\n' "$1"; }
 bad()  { fail=$((fail+1)); failed+=("$1"); printf '  FAIL  %s\n' "$1"; }
 
 # Compile a project. Graphics builds need the Nix dev shell for X11 headers, so
-# route through it when it is available; without it the compile fails with
-# `X11/Xlib.h: No such file or directory` rather than anything informative.
+# route through it whenever it is available; without it the compile fails with
+# `X11/Xlib.h: No such file or directory` rather than anything informative. A
+# project no longer names its backend -- idc/bin/idc attaches whatever it finds
+# in idstd by backend.id -- so there is no manifest text left to grep for, and
+# the dev shell is harmless to a build that does not need it.
 compile() {
     local dir="$1" out="$2" log="$3"
-    if [ -x "$DEVSHELL" ] && grep -rqs 'backends/gfx' "$dir/import.id" 2>/dev/null; then
+    if [ -x "$DEVSHELL" ]; then
         "$DEVSHELL" "cd '$dir' && $IDC_RUN . -o '$out'" >"$log" 2>&1
     else
         ( cd "$dir" && $IDC_RUN . -o "$out" ) >"$log" 2>&1
