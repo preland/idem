@@ -182,11 +182,11 @@ ok "idem pack produced $BIN"
 # ---------------------------------------------------------------------------
 note "the generated tree"
 
-DATA_FILES="$(find "$GEN" -type f -name '*.id' ! -name 'import.id' ! -name 'main.id' | wc -l)"
+DATA_FILES="$(find "$GEN" -type f -name '*.id' ! -name 'conf.id' ! -name 'main.id' | wc -l)"
 # -exec cat {} + and not cat "$(find …)": the generated tree spills across several
 # files by design, and quoting the whole find result made it one filename with
 # newlines in it -- so this counted 0 and said so about a tree that was correct.
-CHUNKS="$(find "$GEN" -type f -name '*.id' ! -name import.id -exec cat {} + 2>/dev/null \
+CHUNKS="$(find "$GEN" -type f -name '*.id' ! -name conf.id -exec cat {} + 2>/dev/null \
           | grep -c '^  push(chunks, ' )"
 expect_ge "chunks" 4 "$CHUNKS"
 expect_ge "generated data files" 2 "$DATA_FILES"
@@ -197,7 +197,8 @@ else bad "no nested spill directory: the chunks did not fan out"; fi
 if [ -f "$GEN/main.id" ]; then ok "main.id was generated"
 else bad "no main.id"; fi
 
-if grep -q '^} return int idem_boot(chunks, argc, argv);$' "$GEN/main.id" 2>/dev/null
+if grep -q '^  int rc = idem_boot(chunks, argc, argv);$' "$GEN/main.id" 2>/dev/null && \
+   grep -q '^} return int rc;$' "$GEN/main.id" 2>/dev/null
 then ok "main.id enters the engine through idem_boot(chunks, argc, argv)"
 else bad "main.id does not call idem_boot as documented"; fi
 
@@ -219,7 +220,7 @@ note "structural rules, asserted rather than assumed"
 
 WORST_DIR=0; WORST_DIR_NAME=""
 while IFS= read -r d; do
-    files="$(find "$d" -maxdepth 1 -mindepth 1 -type f -name '*.id' ! -name 'import.id' | wc -l)"
+    files="$(find "$d" -maxdepth 1 -mindepth 1 -type f -name '*.id' ! -name 'conf.id' | wc -l)"
     subs="$(find "$d" -maxdepth 1 -mindepth 1 -type d | wc -l)"
     n=$((files + subs))
     if [ "$n" -gt "$WORST_DIR" ]; then WORST_DIR="$n"; WORST_DIR_NAME="${d#"$GEN"}"; fi
@@ -234,7 +235,7 @@ WORST_FN=0; WORST_FN_NAME=""
 while IFS= read -r f; do
     n="$(grep -cE '^[A-Za-z_][A-Za-z0-9_]*[[:space:]]*\(' "$f")"
     if [ "$n" -gt "$WORST_FN" ]; then WORST_FN="$n"; WORST_FN_NAME="${f#"$GEN"}"; fi
-done < <(find "$GEN" -type f -name '*.id' ! -name 'import.id')
+done < <(find "$GEN" -type f -name '*.id' ! -name 'conf.id')
 if [ "$WORST_FN" -le 3 ]; then
     ok "no generated file exceeds 3 functions (worst: ${WORST_FN_NAME} with $WORST_FN)"
 else

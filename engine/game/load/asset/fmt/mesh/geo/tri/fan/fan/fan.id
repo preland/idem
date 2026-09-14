@@ -1,0 +1,30 @@
+// One face's fan, and reading a loop's vertex.
+
+bl_fan(int cv, int a, int b) {
+  int i = a + 1;
+  while (i + 1 < b) {
+    bl_fan_push(cv, a, i);
+    i = i + 1;
+  }
+} return void;
+
+bl_cv(int cv, int i) {
+  int ret_i = bl_le32((import bl_bp)[cv] + i * 4);
+} return int ret_i;
+
+// Indices are relative to the mesh they came from, so the base of that mesh in
+// the shared vertex list is added here -- the one place every index passes
+// through. A scene of fifty objects is one vertex list and one triangle list.
+//
+// **An index outside the mesh drops the triangle.** Reading a whole scene turned
+// this up: some ME blocks in a real file resolve to attribute data that is not
+// theirs, and a garbage index is not a wrong picture, it is `id: index
+// -1006834396 out of bounds` and a dead process. A decoder must survive a file it
+// does not fully understand; dropping a face loses a triangle, and the
+// alternative loses the program.
+bl_tpush(int a, int b, int c) {
+  int n = len((import bl_v)) / 3 - (import bl_st)[12];
+  if (bl_in(a, n) + bl_in(b, n) + bl_in(c, n) = 3) {
+    bl_tpush3(a, b, c);
+  }
+} return void;

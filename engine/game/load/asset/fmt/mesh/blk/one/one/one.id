@@ -1,0 +1,18 @@
+// One block, and the end test.
+
+bl_end(int p) {
+  int ok = 0;
+  if (asset_at(p) = 69 && asset_at(p + 1) = 78 && asset_at(p + 2) = 68 && asset_at(p + 3) = 66) { ok = 1; }
+} return int ok;
+
+bl_block(int p) {
+  int n = bl_block_addr(p);
+  bl_block_code(p, n);
+  int ret_i = p + 32 + n;
+} return int ret_i;
+
+bl_push(int kd, int p, int n, int i) {
+  push((import bl_bc), kd);
+  push((import bl_bp), p);
+  bl_push2(n, i);
+} return void;

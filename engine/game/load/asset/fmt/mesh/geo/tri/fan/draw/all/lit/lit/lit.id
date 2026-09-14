@@ -1,0 +1,46 @@
+// One triangle: filled, culled, shaded by which way it faces, and drawn.
+//
+// Flat colour is not a rendering of a room. The showroom is 233 552 triangles;
+// drawn in one colour with no lighting term it is a single silhouette, and a
+// wall, a floor and a ceiling meeting at a corner are one continuous blob. A
+// single directional term separates them, and it is the lighting model
+// IDML_GAME.md describes for a scene: one direction plus ambient.
+//
+// **The face normal is computed once, exactly, and used twice** -- and that is
+// the whole performance story of this file. Its dot with the eye offset says
+// whether the face is visible at all; its magnitude says how bright it is. Asking
+// the first question first means a back face stops there: no square root, no
+// matrix transform, no clip, no projection, no scanlines. In a closed room that
+// is about half of every frame.
+//
+// The normal is a `word[]`, not an `int[]`, and that is what makes the test
+// exact. A room's edges reach forty thousand millunits, so a cross component
+// reaches 1.6e9 -- inside an int by luck, and outside it for a larger scene.
+// Storing it scaled down instead was a quarter of the cost and cost 71 scattered
+// single pixels of missing surface on the showroom, where a sliver's truncated
+// normal decided its own facing by rounding.
+//
+// What this replaced computed the normal from two *normalised* edges, which cost
+// four square roots, and did it for every triangle including the ones facing
+// away. Lighting was 79% of the frame time on the showroom. Now it is a fifth of
+// that and it is only paid for what is drawn.
+//
+// The normal is not normalised. Only its direction matters and the magnitude
+// divides out in bl_lam, which is where the one remaining root lives.
+
+bl_lit(int i, int[] tri, int c) {
+  bl_tfill(i, tri, c);
+  bl_face(tri);
+} return void;
+
+bl_face(int[] tri) {
+  word bl_cross_v = bl_cross(tri[4] - tri[1], tri[5] - tri[2], tri[7] - tri[1], tri[8] - tri[2]);
+  wset((import bl_e), 0, bl_cross_v);
+  bl_face1(tri);
+} return void;
+
+bl_face2(int[] tri) {
+  word bl_cross_v = bl_cross(tri[3] - tri[0], tri[4] - tri[1], tri[6] - tri[0], tri[7] - tri[1]);
+  wset((import bl_e), 2, bl_cross_v);
+  bl_vis(tri);
+} return void;

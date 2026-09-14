@@ -89,7 +89,7 @@ commands:
                     cannot vouch for.
 
   pack <gamedir>    Generate build/<game>/ from the sources with packer, write its
-                    import.id, and compile it to a standalone executable with
+                    conf.id, and compile it to a standalone executable with
                     idc.py. The result embeds the engine and every asset; nothing
                     in it refers back to the source tree.
 
@@ -205,7 +205,7 @@ x11_ok() {
 # that is the only thing that needs the dev shell.
 project_needs_devshell() {
     local proj="$1" dep
-    [ -f "$proj/import.id" ] || return 1
+    [ -f "$proj/conf.id" ] || return 1
     while IFS= read -r dep; do
         [ -f "$dep/backend.id" ] && return 0
     done < <(manifest_dirs "$proj")
@@ -214,7 +214,7 @@ project_needs_devshell() {
 
 manifest_dirs() {
     local proj="$1"
-    sed -n 's|^[[:space:]]*import[[:space:]]*"\(.*\)"[[:space:]]*$|\1|p' "$proj/import.id" \
+    sed -n 's|^[[:space:]]*import[[:space:]]*"\(.*\)"[[:space:]]*$|\1|p' "$proj/conf.id" \
       | while IFS= read -r rel; do
             ( cd -- "$proj" && cd -- "$rel" 2>/dev/null && pwd )
         done
@@ -264,7 +264,7 @@ stale() {
     return 1
 }
 
-# A path relative to another, so a generated import.id reads like a hand-written
+# A path relative to another, so a generated conf.id reads like a hand-written
 # one instead of hard-coding somebody's home directory.
 relpath() {
     python3 -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$1" "$2"
@@ -553,7 +553,7 @@ write_manifest() {
         for dep in "$@"; do
             printf 'import "%s"\n' "$(relpath "$dep" "$proj")"
         done
-    } > "$proj/import.id"
+    } > "$proj/conf.id"
 }
 
 # ---------------------------------------------------------------------------
@@ -629,7 +629,7 @@ cmd_pack() {
     mkdir -p -- "$gendir"
     split_stream "$stream" "$gendir"
 
-    step "writing $gendir/import.id"
+    step "writing $gendir/conf.id"
     write_manifest "$gendir" "${imports[@]}"
 
     if [ "$gen_only" = 1 ]; then

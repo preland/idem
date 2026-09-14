@@ -1,0 +1,8 @@
+// The rest of pack_boot3 -- the entry point and the closing call -- split
+// out to keep pack_boot3 under the action limit.
+
+pack_boot3_b(string tail) {
+  string e = pack_entry();
+  print("  int rc = " + e + "(chunks, argc, argv" + tail + ");");
+  print("} return int rc;");
+} return void;

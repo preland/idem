@@ -1,0 +1,44 @@
+// The cross-product component, the Lambert term, and the tint.
+
+// One component of e1 x e2, exactly, in a word.
+//
+// Not scaled down. A room-sized triangle has edges of forty thousand millunits so
+// a component reaches 1.6e9, and the scaling that used to happen here truncated:
+// a sliver whose components were below the divisor came out as the zero vector
+// and its facing was then decided by rounding rather than by geometry. bl_lam
+// scales when it needs to, where the magnitude divides out again anyway.
+bl_cross(int a, int b, int c, int d) {
+  word wp = a;
+  word wq = b;
+  wp = wp * d - wq * c;
+} return word wp;
+
+// |cos| between the face and the light, in per-mille.
+//
+// Absolute, so a face is lit from both sides. That is not a shortcut around
+// getting winding right -- a room is *seen from inside*, and its surfaces are as
+// often turned away from the light as towards it, so one-sided lighting would
+// leave half of every room black.
+//
+// The light comes from over the viewer's shoulder and above: the direction that
+// gives a floor, a wall and a ceiling three different shades instead of two.
+//
+// There is no `* 1000` to turn the cosine into per-mille, and that is the point
+// worth remembering: the light vector is *already* per-mille, so |L| is 1000 and
+// the division by |n| carries the scale on its own. Multiplying anyway put every
+// cosine three orders of magnitude high, the clamp turned all of them into 1000,
+// and the room rendered exactly as flat as it had with no lighting at all -- a
+// bug that looks like a missing feature.
+bl_lam(int nvx, int nvy, int nvz) {
+  word wp = bl_lam_mag(nvx, nvy, nvz);
+  int ret_i = bl_lamc(wp);
+} return int ret_i;
+
+// Ambient plus the directional term. Never black, never blown out: 350 per-mille
+// is the shadow side, 1000 is full light. All three vertex colours are equal --
+// bl_tc wrote them -- so one shade covers the triangle.
+bl_tint(int[] tri, int lam) {
+  int d2_shade_v = d2_shade(tri[9], 350 + lam * 65 / 100);
+  bl_tc(tri, d2_shade_v);
+  d3_wtri(tri);
+} return void;
