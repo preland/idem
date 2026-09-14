@@ -191,7 +191,11 @@ CHUNKS="$(find "$GEN" -type f -name '*.id' ! -name conf.id -exec cat {} + 2>/dev
 expect_ge "chunks" 4 "$CHUNKS"
 expect_ge "generated data files" 2 "$DATA_FILES"
 
-if [ -d "$GEN/data/n" ]; then ok "the spill directory data/n/ exists"
+if [ -d "$GEN/data/n" ]; then
+    ok "the spill directory data/n/ exists"
+    if [ -d "$GEN/data/n/m" ]; then
+        ok "spill directories alternate names: data/n/m/ exists (not data/n/n/)"
+    fi
 else bad "no nested spill directory: the chunks did not fan out"; fi
 
 if [ -f "$GEN/main.id" ]; then ok "main.id was generated"

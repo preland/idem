@@ -7,8 +7,9 @@ pack_head() {
   print("// Every change here is lost on the next `tools/idem pack <gamedir>`.");
 } return void;
 
-// The `n/n/n/` prefix of the file holding chunk group `k` -- k levels deep, so
-// each directory on the chain holds one .id file and one subdirectory.
+// The `n/m/n/m/` prefix of the file holding chunk group `k` -- k levels deep, so
+// each directory on the chain holds one .id file and one subdirectory. Characters
+// alternate (n, m, n, m, ...) to ensure no directory has the same name as its parent.
 //
 // This is two characters per level and could obviously be a `+` in a loop. It is
 // not, for the same reason nothing else in this program is: concatenation in this
@@ -24,7 +25,7 @@ pack_path(int k) {
 pack_ns(word ad, int n) {
   int i = 0;
   while (i < n) {
-    poke8(ad + i, 110);
+    poke8(ad + i, 110 - ((i / 2) % 2));
     poke8(ad + i + 1, 47);
     i = i + 2;
   }
