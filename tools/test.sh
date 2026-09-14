@@ -34,15 +34,10 @@ mkdir -p "$WORK"
 trap 'rm -rf "$WORK"' EXIT
 
 # bin/idc, the self-hosted compiler, is what a developer runs and therefore what
-# the suite must test against; IDEM_COMPILER=idc.py switches to the reference
-# implementation, which emits byte-identical C and is the tie-breaker if the two
-# ever disagree. Running the suite both ways is the cheapest parity check there
-# is, so both are supported rather than one being wired in.
-case "${IDEM_COMPILER:-idc}" in
-    idc)    IDC="$ID_DEV/bin/idc";  IDC_RUN="$IDC --allow-untested" ;;
-    idc.py) IDC="$ID_DEV/idc.py";   IDC_RUN="python3 $IDC" ;;
-    *)      echo "test: IDEM_COMPILER must be 'idc' or 'idc.py'" >&2; exit 2 ;;
-esac
+# the suite tests against. idc.py is frozen (docs/HACKING.md) and no longer an
+# option here.
+IDC="$ID_DEV/bin/idc"
+IDC_RUN="$IDC --allow-untested"
 
 if [ ! -f "$IDC" ]; then
     echo "test: cannot find the id compiler at $IDC" >&2

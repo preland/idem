@@ -19,9 +19,8 @@
 # every packed game does -- could not be linked with it at all, and this script
 # used idc.py for that one reason. It now links native backends, checks call
 # arity and argument types, reports every violation in one pass instead of
-# stopping at the first, and builds this engine in 0.1 s. idc.py stays reachable
-# through IDEM_COMPILER for the two things only it does (--target llvm|wasm) and
-# as the bootstrap that builds bin/idc's own stages on a cold cache.
+# stopping at the first, and builds this engine in 0.1 s. idc.py is frozen
+# (id_development's docs/HACKING.md) and is no longer built against here.
 
 set -u -o pipefail
 
@@ -90,7 +89,7 @@ commands:
 
   pack <gamedir>    Generate build/<game>/ from the sources with packer, write its
                     conf.id, and compile it to a standalone executable with
-                    idc.py. The result embeds the engine and every asset; nothing
+                    bin/idc. The result embeds the engine and every asset; nothing
                     in it refers back to the source tree.
 
   run <gamedir>     pack if anything is stale, then exec the executable. Every
@@ -126,62 +125,24 @@ pack options:
       --force       Regenerate even if the output looks up to date.
 
 environment:
-  IDEM_IDC          Path to id_development, or directly to its idc.py.
+  IDEM_IDC          Path to id_development.
   ID_DEV            Path to id_development. Used if IDEM_IDC is unset.
                     Default: ../id_development beside the idem checkout.
-  IDEM_COMPILER     Which compiler to build with: `idc` (the self-hosted bin/idc,
-                    the default) or `idc.py` (the reference implementation).
-                    They emit byte-identical C; idc.py is the escape hatch if a
-                    self-hosted build ever disagrees, and the way to reach
-                    --target llvm|wasm. idc.py cannot build the app-model seam
-                    (docs/TODO.md 14): it has no function values, which
-                    games/pong's `id/` and the editor both use.
 EOF
 }
 
 # ---------------------------------------------------------------------------
 # the toolchain
-#
-# IDEM_IDC may name either id_development itself or its idc.py, because both are
-# things a person plausibly has on hand and guessing wrong is a confusing failure.
 
 resolve_toolchain() {
-    local cand=""
-    if [ -n "${IDEM_IDC:-}" ]; then
-        if [ -f "$IDEM_IDC" ]; then
-            IDC_PY="$IDEM_IDC"
-            ID_DEV_DIR="$(cd -- "$(dirname -- "$IDEM_IDC")" && pwd)"
-        else
-            cand="$IDEM_IDC"
-        fi
-    elif [ -n "${ID_DEV:-}" ]; then
-        cand="$ID_DEV"
-    else
-        cand="$ROOT/../id_development"
-    fi
-
-    if [ -n "$cand" ]; then
-        [ -d "$cand" ] || die "id_development not found at '$cand'
-  Set IDEM_IDC to id_development (or to its idc.py), or ID_DEV to id_development."
-        ID_DEV_DIR="$(cd -- "$cand" && pwd)"
-        IDC_PY="$ID_DEV_DIR/idc.py"
-    fi
+    local cand="${IDEM_IDC:-${ID_DEV:-$ROOT/../id_development}}"
+    [ -d "$cand" ] || die "id_development not found at '$cand'
+  Set IDEM_IDC or ID_DEV to id_development."
+    ID_DEV_DIR="$(cd -- "$cand" && pwd)"
 
     IDC_BIN="$ID_DEV_DIR/bin/idc"
     DEVSHELL="$ID_DEV_DIR/tools/devshell.sh"
-
-    # bin/idc is the compiler; idc.py has to be present anyway, because bin/idc
-    # bootstraps its own two stages with it on a cold cache. So both are checked
-    # here rather than one being discovered missing halfway through a build.
-    case "${IDEM_COMPILER:-idc}" in
-        idc)     [ -x "$IDC_BIN" ] || die "no bin/idc at '$IDC_BIN'" ;;
-        idc.py)  IDC_BIN="" ;;
-        *)       die "IDEM_COMPILER must be 'idc' or 'idc.py', not '${IDEM_COMPILER}'" ;;
-    esac
-    [ -f "$IDC_PY" ] || die "no idc.py at '$IDC_PY'
-  It is still needed even when building with bin/idc: bin/idc bootstraps its own
-  lexer and parser with it the first time it runs."
-    command -v python3 >/dev/null 2>&1 || die "python3 is required to run idc.py"
+    [ -x "$IDC_BIN" ] || die "no bin/idc at '$IDC_BIN'"
 }
 
 # Are the X11 development headers on the default compiler search path? On NixOS
@@ -224,11 +185,7 @@ manifest_dirs() {
 # the dev-shell and the direct paths run exactly the same thing.
 idc_cmdline() {
     local proj="$1" out="$2"
-    if [ -n "$IDC_BIN" ]; then
-        printf 'cd %q && %q . --allow-untested -o %q' "$proj" "$IDC_BIN" "$out"
-    else
-        printf 'cd %q && python3 %q . -o %q' "$proj" "$IDC_PY" "$out"
-    fi
+    printf 'cd %q && %q . --allow-untested -o %q' "$proj" "$IDC_BIN" "$out"
 }
 
 # Compile a project, inside the dev shell when it needs one.
@@ -265,9 +222,28 @@ stale() {
 }
 
 # A path relative to another, so a generated conf.id reads like a hand-written
-# one instead of hard-coding somebody's home directory.
+# one instead of hard-coding somebody's home directory. Pure bash: no python3
+# dependency now that idc.py is not being invoked either.
 relpath() {
-    python3 -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$1" "$2"
+    local target base
+    target="$(cd -- "$1" && pwd)" || return 1
+    base="$(cd -- "$2" && pwd)" || return 1
+    [ "$target" = "$base" ] && { printf '.'; return 0; }
+
+    local -a t_parts b_parts
+    IFS='/' read -ra t_parts <<< "$target"
+    IFS='/' read -ra b_parts <<< "$base"
+
+    local i=0
+    while [ "$i" -lt "${#t_parts[@]}" ] && [ "$i" -lt "${#b_parts[@]}" ] \
+          && [ "${t_parts[$i]}" = "${b_parts[$i]}" ]; do
+        i=$((i + 1))
+    done
+
+    local rel="" j
+    for ((j = i; j < ${#b_parts[@]}; j++)); do rel="../$rel"; done
+    for ((j = i; j < ${#t_parts[@]}; j++)); do rel="$rel${t_parts[$j]}/"; done
+    printf '%s' "${rel%/}"
 }
 
 # ---------------------------------------------------------------------------
