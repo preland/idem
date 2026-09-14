@@ -8,4 +8,5 @@
 t_pmix(int hv, int v) {
   word wp = hv;
   wp = (wp * 31 + v) % 1000000007;
-} return int wp;
+  int ret_i = wp;
+} return int ret_i;
