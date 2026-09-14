@@ -1,8 +1,5 @@
 // The interpreter needs the whole engine: it evaluates against the entity store,
-// the scene tables and the sprite table, and gfx/fs are named by engine/core/sys
-// whether or not this calls one.
+// the scene tables and the sprite table.
 import "../../../engine"
 // The game seam as no-ops: this program links the engine but is not a game.
 import "../../../stub"
-import "../../../../idc/backends/gfx"
-import "../../../../idc/backends/fs"
