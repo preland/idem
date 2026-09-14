@@ -8,6 +8,6 @@ par_vbody_props(int[] pos, int[] ks) {
 } return void;
 
 par_vbody_node(string name, int[] ks) {
-  int ast_k_variant_v = ast_k_variant();
+  int ast_k_variant_v = (import ast_k_variant);
   int ret_i = ast_new_kids(ast_k_variant_v, name, ks);
 } return int ret_i;

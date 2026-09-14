@@ -19,7 +19,7 @@
 scr_fld(int nd, int e) {
   int v = 0;
   int ast_ia_v = ast_ia(nd);
-  if (ast_kd(ast_ia_v) = ast_k_ident()) {
+  if (ast_kd(ast_ia_v) = (import ast_k_ident)) {
     string bn = ast_tx(ast_ia_v);
     string name = ast_tx(nd);
     v = scr_fld2(bn, name, e);

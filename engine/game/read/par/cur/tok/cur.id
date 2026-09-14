@@ -14,7 +14,7 @@
 // end of input.
 
 par_kind(int[] pos) {
-  int kd = lex_k_eof();
+  int kd = (import lex_k_eof);
   if (pos[0] < len((import lex_kind))) { kd = (import lex_kind)[pos[0]]; }
 } return int kd;
 

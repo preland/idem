@@ -11,6 +11,6 @@ ast_new_kids(int kd, string txt, int[] kids) {
 // an integer, plus how many are still owed to a slot's scale (0 once scaled).
 ast_new_num(int v, int fr) {
   int[] kids = [];
-  int kd = ast_k_num();
+  int kd = (import ast_k_num);
   int result = ast_new(kd, "", v, fr, 0, kids);
 } return int result;

@@ -26,7 +26,7 @@ scr_kev2(int nd) {
 // missing, and the only symptom was an "undeclared variable" on every assignment
 // to one -- which reads as a scoping bug and is a shape bug.
 scr_dmem(int nd) {
-  if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = "var") {
+  if (ast_kd(nd) = (import ast_k_comp) && ast_tx(nd) = "var") {
     int arg = scn_arg(nd, 0);
     scr_dbind(arg);
   }
@@ -35,14 +35,14 @@ scr_dmem(int nd) {
 // The `=` expression, and the binding form the manifest's braced blocks produce.
 // Both spellings mean the same thing and a game may use either.
 scr_dbind(int nd) {
-  if (ast_kd(nd) = ast_k_bin() && ast_tx(nd) = "=") {
+  if (ast_kd(nd) = (import ast_k_bin) && ast_tx(nd) = "=") {
     int ia = ast_ia(nd);
     int ia_kd = ast_kd(ia);
-    if (ia_kd = ast_k_ident()) {
+    if (ia_kd = (import ast_k_ident)) {
       string ia_tx = ast_tx(ia);
       scr_dbind_set(nd, ia_tx);
     }
-  } else if (ast_kd(nd) = ast_k_var()) {
+  } else if (ast_kd(nd) = (import ast_k_var)) {
     scr_dvar(nd);
   }
 } return void;

@@ -19,7 +19,7 @@ scr_tscan2(int sc, int e, int acc, int i) {
 } return void;
 
 scr_tone(int h, int e, int acc) {
-  if (ast_kd(h) = ast_k_on() && ast_tx(h) = "timer" && scr_tdue(h, e, acc) = 1) {
+  if (ast_kd(h) = (import ast_k_on) && ast_tx(h) = "timer" && scr_tdue(h, e, acc) = 1) {
     scr_hrun(h, e);
   }
 } return void;

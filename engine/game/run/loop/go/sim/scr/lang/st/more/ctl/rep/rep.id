@@ -6,7 +6,7 @@
 
 scr_ex5(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_repeat()) {
+  if (ast_kd(nd) = (import ast_k_repeat)) {
     int n = scr_ex5n(nd, e);
     fin = scr_rep(nd, e, n);
   } else {

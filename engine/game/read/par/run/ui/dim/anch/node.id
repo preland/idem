@@ -7,6 +7,6 @@ par_dims4_name(int[] pos) {
 } return string name;
 
 par_dims4_node(string name, int a, int b) {
-  int ast_k_dims_v = ast_k_dims();
+  int ast_k_dims_v = (import ast_k_dims);
   int ret_i = ast_new_ab(ast_k_dims_v, name, a, b);
 } return int ret_i;

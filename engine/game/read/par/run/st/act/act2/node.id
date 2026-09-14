@@ -2,7 +2,7 @@
 // within the action limit.
 
 par_say_node(string txt) {
-  int ast_k_say_v = ast_k_say();
+  int ast_k_say_v = (import ast_k_say);
   int ret_i = ast_new_k(ast_k_say_v, txt);
 } return int ret_i;
 

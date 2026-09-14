@@ -15,5 +15,5 @@ par_text2(int[] pos) {
 // mistaken for punctuation and close a block early.
 par_is(int[] pos, string txt) {
   int ok = 0;
-  if (par_kind(pos) != lex_k_string() && par_text(pos) = txt) { ok = 1; }
+  if (par_kind(pos) != (import lex_k_string) && par_text(pos) = txt) { ok = 1; }
 } return int ok;

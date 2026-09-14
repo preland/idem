@@ -19,7 +19,7 @@ scn_ui(int nd, int i) {
 
 scn_ui2(int u, int nd) {
   int v = u;
-  if (ast_kd(nd) = ast_k_ui()) {
+  if (ast_kd(nd) = (import ast_k_ui)) {
     int[] ks = ast_ks(nd);
     if (len(ks) > 0) {
       v = ks[0];

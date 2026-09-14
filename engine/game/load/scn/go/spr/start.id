@@ -16,7 +16,7 @@ scn_pick(int doc, int i) {
 } return void;
 
 scn_take(int nd) {
-  if (ast_kd(nd) = ast_k_scene()) {
+  if (ast_kd(nd) = (import ast_k_scene)) {
     scn_enter(nd);
   }
 } return void;

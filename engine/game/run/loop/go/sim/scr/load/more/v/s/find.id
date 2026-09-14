@@ -15,7 +15,7 @@ scn_sscript(int nd, int i) {
 
 scn_ifscript(int nd) {
   int sc = 0;
-  if (ast_kd(nd) = ast_k_script()) { sc = nd; }
+  if (ast_kd(nd) = (import ast_k_script)) { sc = nd; }
 } return int sc;
 
 // `goto over` names a scene declared somewhere in the document. Answering 0 for

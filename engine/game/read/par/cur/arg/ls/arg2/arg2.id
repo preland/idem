@@ -1,6 +1,6 @@
 par_arg4(int[] pos, int[] out) {
   if (par_is(pos, "-")) { out[0] = par_num(pos); }
-  else if (par_kind(pos) = lex_k_ident()) { par_arg5(pos, out); }
+  else if (par_kind(pos) = (import lex_k_ident)) { par_arg5(pos, out); }
   else { out[0] = par_badtok(pos); }
 } return void;
 

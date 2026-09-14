@@ -2,7 +2,7 @@
 
 scr_ex6(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_spawn()) {
+  if (ast_kd(nd) = (import ast_k_spawn)) {
     scr_spawn(nd, e);
   } else {
     fin = scr_ex7(nd, e);
@@ -14,7 +14,7 @@ scr_ex6(int nd, int e) {
 // `other` safe in a collision handler that despawns both sides.
 scr_ex7(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_despawn()) {
+  if (ast_kd(nd) = (import ast_k_despawn)) {
     fin = scr_kill(e);
   } else {
     fin = scr_ex8(nd, e);

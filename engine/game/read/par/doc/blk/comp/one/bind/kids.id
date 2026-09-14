@@ -8,7 +8,7 @@ par_kv2_kids(int[] pos) {
 } return int[] kids;
 
 par_kv3_node(int[] pos) {
-  int ast_k_ident_v = ast_k_ident();
+  int ast_k_ident_v = (import ast_k_ident);
   string par_text_v = par_text(pos);
   int ret_i = ast_new_k(ast_k_ident_v, par_text_v);
 } return int ret_i;

@@ -1,14 +1,14 @@
 par_is_shop(int[] pos) {
   int ok = 0;
-  if (par_kind(pos) = lex_k_punct() && (par_text(pos) = "<<" || par_text(pos) = ">>")) { ok = 1; }
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "<<" || par_text(pos) = ">>")) { ok = 1; }
 } return int ok;
 
 par_is_addop(int[] pos) {
   int ok = 0;
-  if (par_kind(pos) = lex_k_punct() && (par_text(pos) = "+" || par_text(pos) = "-")) { ok = 1; }
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "+" || par_text(pos) = "-")) { ok = 1; }
 } return int ok;
 
 par_is_mulop(int[] pos) {
   int ok = 0;
-  if (par_kind(pos) = lex_k_punct() && (par_text(pos) = "*" || par_text(pos) = "/" || par_text(pos) = "%")) { ok = 1; }
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "*" || par_text(pos) = "/" || par_text(pos) = "%")) { ok = 1; }
 } return int ok;

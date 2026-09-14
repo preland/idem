@@ -9,10 +9,10 @@ par_paren(int[] pos) {
 // action, which is what lets each of these be two.
 par_is_eqop(int[] pos) {
   int ok = 0;
-  if (par_kind(pos) = lex_k_punct() && (par_text(pos) = "=" || par_text(pos) = "==" || par_text(pos) = "!=")) { ok = 1; }
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "=" || par_text(pos) = "==" || par_text(pos) = "!=")) { ok = 1; }
 } return int ok;
 
 par_is_relop(int[] pos) {
   int ok = 0;
-  if (par_kind(pos) = lex_k_punct() && (par_text(pos) = "<" || par_text(pos) = "<=" || par_text(pos) = ">" || par_text(pos) = ">=")) { ok = 1; }
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "<" || par_text(pos) = "<=" || par_text(pos) = ">" || par_text(pos) = ">=")) { ok = 1; }
 } return int ok;

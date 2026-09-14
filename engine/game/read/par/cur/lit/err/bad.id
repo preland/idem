@@ -11,6 +11,6 @@ par_badtok_err(int[] pos, string txt) {
 
 par_badtok_tail(int[] pos, string txt) {
   par_next(pos);
-  int kd = ast_k_bad();
+  int kd = (import ast_k_bad);
   int v = ast_new_k(kd, txt);
 } return int v;

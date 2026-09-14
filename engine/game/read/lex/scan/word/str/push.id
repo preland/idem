@@ -1,7 +1,7 @@
 // lex_string's push, split out to stay within the action limit.
 
 lex_string_push(string src, int i, int e) {
-  int lex_k_string_v = lex_k_string();
+  int lex_k_string_v = (import lex_k_string);
   string lex_unesc_v = lex_unesc(src, i + 1, e);
   lex_push(lex_k_string_v, lex_unesc_v, 0, 0);
 } return void;

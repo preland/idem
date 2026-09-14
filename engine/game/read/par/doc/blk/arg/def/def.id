@@ -10,7 +10,7 @@
 // reported its layout as a syntax error while the game itself still ran.
 
 par_dbraced(int[] pos, int kd, int[] kids) {
-  if (kd = ast_k_define()) {
+  if (kd = (import ast_k_define)) {
     int item = par_item(pos);
     push(kids, item);
   } else {

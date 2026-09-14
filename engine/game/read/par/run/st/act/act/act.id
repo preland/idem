@@ -1,6 +1,6 @@
 par_dtgt(int[] pos, int ln) {
   int nd = 0;
-  if (par_kind(pos) = lex_k_ident() && par_line(pos) = ln) { nd = par_ident(pos); }
+  if (par_kind(pos) = (import lex_k_ident) && par_line(pos) = ln) { nd = par_ident(pos); }
 } return int nd;
 
 par_goto(int[] pos) {

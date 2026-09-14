@@ -15,7 +15,7 @@ scr_ex(int nd, int e) {
 
 scr_ex1(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_assign()) {
+  if (ast_kd(nd) = (import ast_k_assign)) {
     int ia = ast_ia(nd);
     int rhs = scr_ex1v(nd, e);
     scr_asg(ia, rhs, e);
@@ -28,7 +28,7 @@ scr_ex1(int nd, int e) {
 // folds a status out of more than one thing.
 scr_ex2(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_block()) {
+  if (ast_kd(nd) = (import ast_k_block)) {
     fin = scr_seq(nd, e, 0);
   } else {
     fin = scr_ex3(nd, e);

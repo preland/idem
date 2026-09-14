@@ -1,7 +1,7 @@
 // One handler, matched by event name and argument.
 
 scr_fone(int h, string evn, int e, string tg) {
-  if (ast_kd(h) = ast_k_on() && ast_tx(h) = evn && scr_amatch(h, tg) = 1) {
+  if (ast_kd(h) = (import ast_k_on) && ast_tx(h) = evn && scr_amatch(h, tg) = 1) {
     scr_hrun(h, e);
   }
 } return void;

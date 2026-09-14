@@ -14,7 +14,7 @@ ed_scan(int i) {
 } return void;
 
 ed_scan1(int i) {
-  if (ed_is_decl((import lex_text)[i]) = 1 && (import lex_kind)[i + 1] = lex_k_ident()) {
+  if (ed_is_decl((import lex_text)[i]) = 1 && (import lex_kind)[i + 1] = (import lex_k_ident)) {
     ed_item(i);
   }
   ed_file(i);

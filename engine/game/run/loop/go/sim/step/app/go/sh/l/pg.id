@@ -1,7 +1,7 @@
 // Recording the page.
 
 ui_ppage(int nd) {
-  if (ast_kd(nd) = ast_k_page()) {
+  if (ast_kd(nd) = (import ast_k_page)) {
     int ast_ia_v = ast_ia(nd);
     lset((import ui_pg), 0, ast_ia_v);
   }

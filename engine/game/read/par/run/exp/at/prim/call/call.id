@@ -11,7 +11,7 @@ par_call2(int[] pos, string name, int[] kids) {
 } return int ret_i;
 
 par_efill(int[] pos, int[] kids) {
-  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_expr_v = par_expr(pos);
     push(kids, par_expr_v);
     par_eat(pos, ",");

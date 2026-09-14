@@ -13,7 +13,7 @@
 
 par_etuple(int[] pos) {
   int[] ks = par_etuple_ks(pos);
-  int ast_k_tuple_v = ast_k_tuple();
+  int ast_k_tuple_v = (import ast_k_tuple);
   int ret_i = ast_new_kids(ast_k_tuple_v, "", ks);
 } return int ret_i;
 

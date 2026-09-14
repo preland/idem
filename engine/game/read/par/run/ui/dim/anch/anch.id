@@ -16,7 +16,7 @@ par_anchor(int[] pos) {
 } return string name;
 
 par_aname(int[] pos, string name) {
-  if (par_kind(pos) = lex_k_ident()) {
+  if (par_kind(pos) = (import lex_k_ident)) {
     name = par_text(pos);
     par_next(pos);
   }

@@ -28,5 +28,5 @@ scn_sname(int nd, int i) {
 
 scn_ifspr(int nd) {
   string s = "";
-  if (ast_kd(nd) = ast_k_sprite()) { s = ast_tx(nd); }
+  if (ast_kd(nd) = (import ast_k_sprite)) { s = ast_tx(nd); }
 } return string s;

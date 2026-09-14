@@ -23,7 +23,7 @@ ast_sexp(int nd) {
 // not be evaluated when an earlier arm matches: ast_form on a `num` node would
 // read ast_a as a node id and index the arena out of range, which aborts.
 ast_sexp2(int nd, int kd, string[] strs) {
-  if (kd = ast_k_num()) { string ast_numtx_v = ast_numtx(nd); sset(strs, 0, ast_numtx_v); }
-  else if (kd = ast_k_ident()) { string ast_tx_v = ast_tx(nd); sset(strs, 0, ast_tx_v); }
+  if (kd = (import ast_k_num)) { string ast_numtx_v = ast_numtx(nd); sset(strs, 0, ast_numtx_v); }
+  else if (kd = (import ast_k_ident)) { string ast_tx_v = ast_tx(nd); sset(strs, 0, ast_tx_v); }
   else { ast_sexp3(nd, kd, strs); }
 } return void;

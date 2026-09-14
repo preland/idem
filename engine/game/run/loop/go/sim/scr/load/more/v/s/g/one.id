@@ -5,7 +5,7 @@
 // the scene, which is why they sit together.
 
 scn_one2(int nd) {
-  if (ast_kd(nd) = ast_k_sprite()) {
+  if (ast_kd(nd) = (import ast_k_sprite)) {
     scn_sprite(nd);
   } else {
     scn_one3(nd);

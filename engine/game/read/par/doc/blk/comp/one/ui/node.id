@@ -7,7 +7,7 @@ par_mui2_kids(int[] pos) {
 } return int[] kids;
 
 par_mui2_node(int[] kids) {
-  int ast_k_ui_v = ast_k_ui();
+  int ast_k_ui_v = (import ast_k_ui);
   int ret_i = ast_new_kids(ast_k_ui_v, "", kids);
 } return int ret_i;
 

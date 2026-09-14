@@ -39,7 +39,7 @@ ui_sarg(int nd, int i, string s) {
 // lets a screen be laid out once and filled from the world every frame.
 ui_text(int nd, int x, int y, int w, int h) {
   int ui_arg0_v = ui_arg0(nd);
-  if (ast_kd(ui_arg0_v) = ast_k_ref()) {
+  if (ast_kd(ui_arg0_v) = (import ast_k_ref)) {
     ui_tnum(nd, x, y, w, h);
   } else {
     ui_tstr(nd, x, y, w, h);

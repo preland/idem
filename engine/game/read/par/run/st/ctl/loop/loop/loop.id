@@ -13,6 +13,6 @@ par_repeat(int[] pos) {
 
 par_repeat2(int[] pos, int n) {
   int block = par_block(pos);
-  int ast_k_repeat_v = ast_k_repeat();
+  int ast_k_repeat_v = (import ast_k_repeat);
   int nd = ast_new_ab(ast_k_repeat_v, "", n, block);
 } return int nd;

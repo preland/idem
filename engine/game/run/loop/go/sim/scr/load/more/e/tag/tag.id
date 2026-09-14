@@ -1,9 +1,9 @@
 // Scripts and tags.
 
 scr_emem2(int e, int nd) {
-  if (ast_kd(nd) = ast_k_script()) {
+  if (ast_kd(nd) = (import ast_k_script)) {
     ent_put(e, 19, nd);
-  } else if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = "tag") {
+  } else if (ast_kd(nd) = (import ast_k_comp) && ast_tx(nd) = "tag") {
     scr_etags(e, nd, 0);
   }
 } return void;

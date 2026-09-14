@@ -13,6 +13,6 @@ par_if3_els(int[] pos) {
 } return int els;
 
 par_if3_node(int cond, int thn, int els) {
-  int ast_k_if_v = ast_k_if();
+  int ast_k_if_v = (import ast_k_if);
   int ret_i = ast_new_abc(ast_k_if_v, "", cond, thn, els);
 } return int ret_i;

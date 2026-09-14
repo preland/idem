@@ -7,7 +7,7 @@
 // number rather than the parser losing the fourth child.
 
 par_ufill3(int[] pos, int[] kids) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int item = par_item(pos);
     push(kids, item);
   }

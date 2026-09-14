@@ -4,7 +4,7 @@ lex_hex_tail(string src, int i, int e) {
 } return void;
 
 lex_hex_push(string src, int i, int e, int v) {
-  int kd = lex_k_number();
+  int kd = (import lex_k_number);
   string s = str_slice(src, i, e - i);
   lex_push(kd, s, v, 0);
 } return void;

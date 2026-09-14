@@ -11,6 +11,6 @@ par_un_f(int[] pos) {
 } return int ret_i;
 
 par_un_node(string txt, int nd) {
-  int ast_k_un_v = ast_k_un();
+  int ast_k_un_v = (import ast_k_un);
   int ret_i = ast_new_a(ast_k_un_v, txt, nd);
 } return int ret_i;

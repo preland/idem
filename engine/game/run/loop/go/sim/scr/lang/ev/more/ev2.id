@@ -2,7 +2,7 @@
 
 scr_ev4(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_field()) {
+  if (ast_kd(nd) = (import ast_k_field)) {
     v = scr_fld(nd, e);
   } else {
     v = scr_ev5(nd, e);
@@ -11,7 +11,7 @@ scr_ev4(int nd, int e) {
 
 scr_ev5(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_call()) {
+  if (ast_kd(nd) = (import ast_k_call)) {
     v = scr_call(nd, e);
   } else {
     v = scr_ev6(nd, e);
@@ -21,7 +21,7 @@ scr_ev5(int nd, int e) {
 // Unary minus and `!`. `~` is the parser's too but no game has wanted one.
 scr_ev6(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_un()) {
+  if (ast_kd(nd) = (import ast_k_un)) {
     int rhs = scr_unrhs(nd, e);
     string tx = ast_tx(nd);
     v = scr_un(tx, rhs);

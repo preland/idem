@@ -1,8 +1,8 @@
 // 34 is a double quote. A nil node prints as nothing at all, which is what makes
 // an absent a/b/c invisible instead of noisy.
 ast_sexp3(int nd, int kd, string[] strs) {
-  if (kd = ast_k_str()) { string ast_quote_v = ast_quote(nd); sset(strs, 0, ast_quote_v); }
-  else if (kd != ast_k_nil()) { string ast_form_v = ast_form(nd); sset(strs, 0, ast_form_v); }
+  if (kd = (import ast_k_str)) { string ast_quote_v = ast_quote(nd); sset(strs, 0, ast_quote_v); }
+  else if (kd != (import ast_k_nil)) { string ast_form_v = ast_form(nd); sset(strs, 0, ast_form_v); }
 } return void;
 
 ast_form(int nd) {

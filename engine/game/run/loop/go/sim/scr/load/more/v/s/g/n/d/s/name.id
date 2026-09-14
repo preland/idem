@@ -11,7 +11,7 @@ scn_bfind(int doc, string name, int i) {
 
 scn_bone(int nd, string name) {
   int at = 0;
-  if (ast_kd(nd) = ast_k_scene() && ast_tx(nd) = name) { at = nd; }
+  if (ast_kd(nd) = (import ast_k_scene) && ast_tx(nd) = name) { at = nd; }
 } return int at;
 
 // The record list is shortened rather than replaced: `id` frees nothing, so a

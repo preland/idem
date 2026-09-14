@@ -5,12 +5,12 @@
 
 par_block(int[] pos) {
   int[] kids = par_block_kids(pos);
-  int ast_k_block_v = ast_k_block();
+  int ast_k_block_v = (import ast_k_block);
   int ret_i = ast_new_kids(ast_k_block_v, "", kids);
 } return int ret_i;
 
 par_bfill(int[] pos, int[] kids) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_stmt_v = par_stmt(pos);
     push(kids, par_stmt_v);
   }

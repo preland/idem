@@ -1,7 +1,7 @@
 // lex_pcol's push, split across two calls to stay within the action limit.
 
 lex_pcol_push(string src, int i, int e) {
-  int lex_k_number_v = lex_k_number();
+  int lex_k_number_v = (import lex_k_number);
   string str_slice_v = str_slice(src, i, e - i);
   lex_pcol_push2(src, i, e, lex_k_number_v, str_slice_v);
 } return void;

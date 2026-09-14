@@ -1,4 +1,4 @@
 par_sspawn3(string name, int tup) {
-  int kd = ast_k_spawn();
+  int kd = (import ast_k_spawn);
   int nd = ast_new_a(kd, name, tup);
 } return int nd;

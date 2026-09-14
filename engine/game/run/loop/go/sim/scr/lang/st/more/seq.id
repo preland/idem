@@ -11,7 +11,7 @@ scr_seq(int nd, int e, int i) {
 
 scr_ex3(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_if()) {
+  if (ast_kd(nd) = (import ast_k_if)) {
     fin = scr_if(nd, e);
   } else {
     fin = scr_ex4(nd, e);
@@ -24,7 +24,7 @@ scr_ex3(int nd, int e) {
 // Ten thousand turns is far past any legitimate loop in a frame.
 scr_ex4(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_while()) {
+  if (ast_kd(nd) = (import ast_k_while)) {
     fin = scr_while(nd, e, 0);
   } else {
     fin = scr_ex5(nd, e);

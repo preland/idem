@@ -8,7 +8,7 @@ par_bind_pre(int[] pos) {
 } return string name;
 
 par_bind_node(int[] pos, string name) {
-  int ast_k_var_v = ast_k_var();
+  int ast_k_var_v = (import ast_k_var);
   int par_arg_v = par_arg(pos);
   int ret_i = ast_new_a(ast_k_var_v, name, par_arg_v);
 } return int ret_i;

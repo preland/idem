@@ -8,8 +8,8 @@ par_arg(int[] pos) {
 } return int v;
 
 par_arg2(int[] pos, int[] out) {
-  if (par_kind(pos) = lex_k_number()) { out[0] = par_num(pos); }
-  else if (par_kind(pos) = lex_k_string()) { out[0] = par_str(pos); }
+  if (par_kind(pos) = (import lex_k_number)) { out[0] = par_num(pos); }
+  else if (par_kind(pos) = (import lex_k_string)) { out[0] = par_str(pos); }
   else { par_arg3(pos, out); }
 } return void;
 

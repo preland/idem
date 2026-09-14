@@ -6,7 +6,7 @@ par_vbody(int[] pos, string name, int[] ks) {
 } return int ret_i;
 
 par_vprops(int[] pos, int[] ks) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_vprop_v = par_vprop(pos);
     push(ks, par_vprop_v);
   }

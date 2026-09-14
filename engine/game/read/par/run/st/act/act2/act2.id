@@ -6,7 +6,7 @@ par_say(int[] pos) {
 
 par_stop(int[] pos) {
   par_next(pos);
-  int ast_k_stop_v = ast_k_stop();
+  int ast_k_stop_v = (import ast_k_stop);
   int ret_i = ast_new_k(ast_k_stop_v, "");
 } return int ret_i;
 

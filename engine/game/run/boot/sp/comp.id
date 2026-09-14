@@ -23,5 +23,5 @@ scn_mem(int nd, string name, int i) {
 
 scn_ifmem(int nd, string name) {
   int c = 0;
-  if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = name) { c = nd; }
+  if (ast_kd(nd) = (import ast_k_comp) && ast_tx(nd) = name) { c = nd; }
 } return int c;

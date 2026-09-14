@@ -1,7 +1,7 @@
 // par_assign's node build, split out to stay within the action limit.
 
 par_assign_node(int[] pos, int tgt) {
-  int ast_k_assign_v = ast_k_assign();
+  int ast_k_assign_v = (import ast_k_assign);
   int par_expr_v = par_expr(pos);
   int ret_i = ast_new_ab(ast_k_assign_v, "", tgt, par_expr_v);
 } return int ret_i;

@@ -1,6 +1,6 @@
 // par_post_f's node build, split out to stay within the action limit.
 
 par_post_node(string name, int base) {
-  int ast_k_field_v = ast_k_field();
+  int ast_k_field_v = (import ast_k_field);
   int ret_i = ast_new_a(ast_k_field_v, name, base);
 } return int ret_i;

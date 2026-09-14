@@ -17,6 +17,6 @@ par_uref(int[] pos) {
 // The trailing `!` is idml's *live* marker: a falling bird must not be eased.
 par_uref2(int[] pos, int nd) {
   string txt = par_uref2_txt(pos);
-  int ast_k_ref_v = ast_k_ref();
+  int ast_k_ref_v = (import ast_k_ref);
   int ret_i = ast_new_a(ast_k_ref_v, txt, nd);
 } return int ret_i;

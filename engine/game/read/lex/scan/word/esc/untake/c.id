@@ -5,7 +5,7 @@ lex_punct(string src, int i) {
 } return int res;
 
 lex_punct_push(string src, int i, int n) {
-  int kd = lex_k_punct();
+  int kd = (import lex_k_punct);
   string s = str_slice(src, i, n);
   lex_push(kd, s, 0, 0);
 } return void;

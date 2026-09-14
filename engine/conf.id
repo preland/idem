@@ -23,17 +23,11 @@
 // field feel like one thing, and a blink that beat against the repeat rate
 // would look like a fault.
 //
-// ast_kbase: the AST node kind family's base (docs/NAMES.md), 100. Each kind is
-// `(import ast_kbase) + n`, not a plain literal: `id` rejects two functions
-// whose bodies match up to renaming, and a zero-action function returning a
-// bare integer is distinguished by nothing but that integer, so a literal 12
-// here would collide with a literal 12 in any other module's constant. Naming
-// the base keeps the family's origin in one place.
+// ast_kbase: the AST node kind family's base (docs/NAMES.md), 100. The
+// individual kinds are now conf.id constants rather than functions.
 //
-// lex_kbase: the token kind family's base (docs/NAMES.md), 11, for the same
-// reason as ast_kbase -- a zero-action function that only returns a bare
-// integer is indistinguishable from any other one returning the same integer,
-// so naming the base keeps this family's numbers out of everyone else's.
+// lex_kbase: the token kind family's base (docs/NAMES.md), 11. The
+// individual kinds are now conf.id constants rather than functions.
 //
 // d2_clear: the transparency convention. A sprite pixel of -1 means "do not
 // write". A packed colour is 0xRRGGBB, so every real colour is 0 .. 16777215
@@ -56,3 +50,54 @@ int ast_kbase = 100;
 int lex_kbase = 11;
 int d2_clear = 0 - 1;
 int txt_first = 32;
+int ast_k_nil = 100;
+int ast_k_file = 101;
+int ast_k_import = 102;
+int ast_k_palette = 103;
+int ast_k_pcol = 104;
+int ast_k_sprite = 105;
+int ast_k_model = 106;
+int ast_k_game = 107;
+int ast_k_scene = 108;
+int ast_k_entity = 109;
+int ast_k_template = 110;
+int ast_k_instance = 111;
+int ast_k_spawn = 112;
+int ast_k_comp = 113;
+int ast_k_var = 114;
+int ast_k_script = 115;
+int ast_k_on = 116;
+int ast_k_block = 117;
+int ast_k_if = 118;
+int ast_k_while = 119;
+int ast_k_repeat = 120;
+int ast_k_assign = 121;
+int ast_k_despawn = 122;
+int ast_k_goto = 123;
+int ast_k_play = 124;
+int ast_k_say = 125;
+int ast_k_stop = 126;
+int ast_k_bin = 127;
+int ast_k_un = 128;
+int ast_k_field = 129;
+int ast_k_call = 130;
+int ast_k_num = 131;
+int ast_k_str = 132;
+int ast_k_ident = 133;
+int ast_k_tuple = 134;
+int ast_k_args = 135;
+int ast_k_ui = 136;
+int ast_k_item = 137;
+int ast_k_dims = 138;
+int ast_k_vis = 139;
+int ast_k_ref = 140;
+int ast_k_cond = 141;
+int ast_k_define = 142;
+int ast_k_variant = 143;
+int ast_k_page = 144;
+int ast_k_bad = 145;
+int lex_k_eof = 11;
+int lex_k_ident = 12;
+int lex_k_number = 13;
+int lex_k_string = 14;
+int lex_k_punct = 15;

@@ -1,11 +1,11 @@
 par_script2(int[] pos, int[] kids) {
   par_hfill(pos, kids);
-  int ast_k_script_v = ast_k_script();
+  int ast_k_script_v = (import ast_k_script);
   int ret_i = ast_new_kids(ast_k_script_v, "", kids);
 } return int ret_i;
 
 par_hfill(int[] pos, int[] kids) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_handler_v = par_handler(pos);
     push(kids, par_handler_v);
   }

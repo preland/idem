@@ -7,7 +7,7 @@
 // That is the right failure: the alternative is a diagnostic per frame.
 
 scr_asg(int tgt, int v, int e) {
-  if (ast_kd(tgt) = ast_k_ident()) {
+  if (ast_kd(tgt) = (import ast_k_ident)) {
     string ast_tx_v = ast_tx(tgt);
     scr_set(e, ast_tx_v, v);
   } else {
@@ -16,9 +16,9 @@ scr_asg(int tgt, int v, int e) {
 } return void;
 
 scr_asgf(int tgt, int v, int e) {
-  if (ast_kd(tgt) = ast_k_field()) {
+  if (ast_kd(tgt) = (import ast_k_field)) {
     int ia = ast_ia(tgt);
-    if (ast_kd(ia) = ast_k_ident()) {
+    if (ast_kd(ia) = (import ast_k_ident)) {
       string bn = ast_tx(ia);
       string name = ast_tx(tgt);
       scr_asgf2(bn, name, v, e);

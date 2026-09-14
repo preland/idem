@@ -8,6 +8,6 @@ par_vprop_name(int[] pos) {
 } return string name;
 
 par_vprop_node(string name, int arg) {
-  int ast_k_comp_v = ast_k_comp();
+  int ast_k_comp_v = (import ast_k_comp);
   int ret_i = ast_new_a(ast_k_comp_v, name, arg);
 } return int ret_i;

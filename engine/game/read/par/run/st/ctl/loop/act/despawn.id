@@ -9,7 +9,7 @@ par_despawn(int[] pos) {
 } return int nd;
 
 par_despawn_tail(int[] pos, int ln) {
-  int kd = ast_k_despawn();
+  int kd = (import ast_k_despawn);
   int tgt = par_dtgt(pos, ln);
   int nd = ast_new_a(kd, "", tgt);
 } return int nd;

@@ -14,7 +14,7 @@ par_dfin(int[] pos, int kd, string name, int a, int[] kids) {
 } return int ret_i;
 
 par_dinner(int[] pos, int[] kids) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_member_v = par_member(pos);
     push(kids, par_member_v);
   }

@@ -2,7 +2,7 @@
 // the action limit.
 
 par_str_node(string txt) {
-  int ast_k_str_v = ast_k_str();
+  int ast_k_str_v = (import ast_k_str);
   int ret_i = ast_new_k(ast_k_str_v, txt);
 } return int ret_i;
 

@@ -18,7 +18,7 @@ par_cbody(int[] pos, int[] kids) {
 } return void;
 
 par_cfill(int[] pos, int[] kids) {
-  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_kv_v = par_kv(pos);
     push(kids, par_kv_v);
   }

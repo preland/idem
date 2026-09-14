@@ -3,9 +3,9 @@
 // A `define` and an `import` share a node kind; ui_dload tells them apart by
 // whether there is a body to register.
 scn_one4(int nd) {
-  if (ast_kd(nd) = ast_k_variant()) {
+  if (ast_kd(nd) = (import ast_k_variant)) {
     ui_vload(nd);
-  } else if (ast_kd(nd) = ast_k_define()) {
+  } else if (ast_kd(nd) = (import ast_k_define)) {
     ui_dload(nd);
   }
 } return void;

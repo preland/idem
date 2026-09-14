@@ -18,6 +18,6 @@ ast_ksplit(string[] strs, string s, int i) {
   while (charat(s, i) >= 0) {
     i = ast_ktake(strs, s, i);
   }
-  int kd = ast_k_nil();
+  int kd = (import ast_k_nil);
   ast_new_k(kd, "");
 } return void;

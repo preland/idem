@@ -23,7 +23,7 @@ par_uargs2(int[] pos) {
 // Every collection loop carries an end-of-input guard, so malformed input costs
 // one diagnostic and terminates rather than hanging.
 par_ufill(int[] pos, int[] kids) {
-  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_expr_v = par_expr(pos);
     push(kids, par_expr_v);
     par_eat(pos, ",");

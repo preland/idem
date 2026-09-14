@@ -7,6 +7,6 @@ par_comp2_kids(int[] pos) {
 } return int[] kids;
 
 par_comp2_node(string name, int a, int[] kids) {
-  int ast_k_comp_v = ast_k_comp();
+  int ast_k_comp_v = (import ast_k_comp);
   int ret_i = ast_new(ast_k_comp_v, name, a, 0, 0, kids);
 } return int ret_i;

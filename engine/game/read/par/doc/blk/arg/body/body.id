@@ -13,12 +13,12 @@ par_dbody(int[] pos, int kd, string name, int ln) {
 
 par_dargs(int[] pos, int ln) {
   int[] kids = par_dargs_kids(pos, ln);
-  int ast_k_args_v = ast_k_args();
+  int ast_k_args_v = (import ast_k_args);
   int ret_i = ast_new_kids(ast_k_args_v, "", kids);
 } return int ret_i;
 
 par_dafill(int[] pos, int[] kids, int ln) {
-  while (par_line(pos) = ln && par_is(pos, "{") = 0 && par_kind(pos) != lex_k_eof()) {
+  while (par_line(pos) = ln && par_is(pos, "{") = 0 && par_kind(pos) != (import lex_k_eof)) {
     int par_darg_v = par_darg(pos);
     push(kids, par_darg_v);
   }

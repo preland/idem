@@ -7,7 +7,7 @@
 
 scr_ex8(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_goto()) {
+  if (ast_kd(nd) = (import ast_k_goto)) {
     string ast_tx_v = ast_tx(nd);
     fin = scr_goto(ast_tx_v);
   } else {
@@ -26,5 +26,5 @@ scr_goto(string name) {
 // game cannot avoid.
 scr_ex9(int nd, int e) {
   int fin = 0;
-  if (ast_kd(nd) = ast_k_stop()) { fin = 1; }
+  if (ast_kd(nd) = (import ast_k_stop)) { fin = 1; }
 } return int fin;

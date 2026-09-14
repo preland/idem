@@ -9,7 +9,7 @@
 scn_txt2(int nd, int i) {
   string s = "";
   int scn_arg_v = scn_arg(nd, i);
-  if (ast_kd(scn_arg_v) = ast_k_str()) { int scn_arg_v2 = scn_arg(nd, i); s = ast_tx(scn_arg_v2); }
+  if (ast_kd(scn_arg_v) = (import ast_k_str)) { int scn_arg_v2 = scn_arg(nd, i); s = ast_tx(scn_arg_v2); }
 } return string s;
 
 // `grid (cols, rows)` defaults to one by one: a whole image as a single frame.

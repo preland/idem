@@ -8,6 +8,6 @@ par_uargs2_kids(int[] pos) {
 } return int[] kids;
 
 par_uargs2_node(int[] kids) {
-  int ast_k_args_v = ast_k_args();
+  int ast_k_args_v = (import ast_k_args);
   int ret_i = ast_new_kids(ast_k_args_v, "", kids);
 } return int ret_i;

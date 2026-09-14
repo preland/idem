@@ -1,5 +1,5 @@
 par_nchk(int[] pos) {
-  if (par_kind(pos) != lex_k_number()) { par_err(pos, "expected a number"); }
+  if (par_kind(pos) != (import lex_k_number)) { par_err(pos, "expected a number"); }
   par_next(pos);
 } return void;
 

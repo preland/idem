@@ -1,6 +1,6 @@
 // par_call2's node build, split out to stay within the action limit.
 
 par_call_node(string name, int[] kids) {
-  int ast_k_call_v = ast_k_call();
+  int ast_k_call_v = (import ast_k_call);
   int ret_i = ast_new_kids(ast_k_call_v, name, kids);
 } return int ret_i;

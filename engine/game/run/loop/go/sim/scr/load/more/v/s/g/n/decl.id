@@ -1,7 +1,7 @@
 // The declarations a later pass owns: a template to spawn, a variant to draw as.
 
 scn_one3(int nd) {
-  if (ast_kd(nd) = ast_k_template()) {
+  if (ast_kd(nd) = (import ast_k_template)) {
     scr_tload(nd);
   } else {
     scn_one4(nd);

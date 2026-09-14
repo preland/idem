@@ -9,7 +9,7 @@ scn_walk(int doc, int i) {
 } return void;
 
 scn_one(int nd) {
-  if (ast_kd(nd) = ast_k_game()) {
+  if (ast_kd(nd) = (import ast_k_game)) {
     scn_game(nd, 0);
   } else {
     scn_one2(nd);

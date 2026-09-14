@@ -11,7 +11,7 @@
 
 scr_ev(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_num()) {
+  if (ast_kd(nd) = (import ast_k_num)) {
     v = ast_ia(nd);
   } else {
     v = scr_ev2(nd, e);
@@ -20,7 +20,7 @@ scr_ev(int nd, int e) {
 
 scr_ev2(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_ident()) {
+  if (ast_kd(nd) = (import ast_k_ident)) {
     v = scr_name(nd, e);
   } else {
     v = scr_ev3(nd, e);
@@ -29,7 +29,7 @@ scr_ev2(int nd, int e) {
 
 scr_ev3(int nd, int e) {
   int v = 0;
-  if (ast_kd(nd) = ast_k_bin()) {
+  if (ast_kd(nd) = (import ast_k_bin)) {
     v = scr_bin(nd, e);
   } else {
     v = scr_ev4(nd, e);
