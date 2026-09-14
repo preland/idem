@@ -1,0 +1,6 @@
+// par_item3's node build, split out to stay within the action limit.
+
+par_item3_node(string name, int a, int b, int c, int[] kids) {
+  int ast_k_item_v = ast_k_item();
+  int ret_i = ast_new(ast_k_item_v, name, a, b, c, kids);
+} return int ret_i;

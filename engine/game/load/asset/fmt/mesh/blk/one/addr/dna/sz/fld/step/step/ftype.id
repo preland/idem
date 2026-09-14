@@ -1,0 +1,5 @@
+bl_ftype(int p) {
+  int bl_st_v = (import bl_st)[7];
+  int bl_le16_v = bl_le16(p + 2);
+  int np = bl_nth(bl_st_v, bl_le16_v);
+} return int np;

@@ -1,0 +1,18 @@
+// par_if's "(" prefix -- shared with par_while, whose condition is the same
+// shape -- and par_if3's else-branch and node build, split out to stay
+// within the action limit.
+
+par_if_pre(int[] pos) {
+  par_next(pos);
+  par_want(pos, "(");
+} return void;
+
+par_if3_els(int[] pos) {
+  int els = 0;
+  if (par_is(pos, "else")) { els = par_else(pos); }
+} return int els;
+
+par_if3_node(int cond, int thn, int els) {
+  int ast_k_if_v = ast_k_if();
+  int ret_i = ast_new_abc(ast_k_if_v, "", cond, thn, els);
+} return int ret_i;

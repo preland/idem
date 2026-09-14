@@ -1,0 +1,17 @@
+t_hyp2(int fx_hyp_v, int fx_hyp_v2) {
+  int fx_hyp_v3 = fx_hyp(1, 1);
+  int fx_hyp_v4 = fx_hyp(0 - 3, 0 - 4);
+  t_hyp3(fx_hyp_v, fx_hyp_v2, fx_hyp_v3, fx_hyp_v4);
+} return void;
+
+t_hyp3(int fx_hyp_v, int fx_hyp_v2, int fx_hyp_v3, int fx_hyp_v4) {
+  print("fx_hyp(3,4) exp 5 | (0,0) exp 0 | (1,1) exp 1 | (-3,-4) exp 5 = " + fx_hyp_v + " " + fx_hyp_v2 + " " + fx_hyp_v3 + " " + fx_hyp_v4);
+  int fx_hyp_v5 = fx_hyp(30000, 40000);
+  t_hyp4(fx_hyp_v5);
+} return void;
+
+t_hyp4(int fx_hyp_v5) {
+  int fx_hyp_v6 = fx_hyp(46000, 46000);
+  int fx_hyp_v7 = fx_hyp(65535, 65535);
+  t_hyp5(fx_hyp_v5, fx_hyp_v6, fx_hyp_v7);
+} return void;

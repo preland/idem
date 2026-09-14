@@ -1,0 +1,4 @@
+ed_pick_file() {
+  string s = "";
+  if ((import ed_st)[1] >= 0 && (import ed_st)[1] < len((import ed_dir))) { s = (import ed_dir)[(import ed_st)[1]]; }
+} return string s;

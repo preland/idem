@@ -1,0 +1,13 @@
+// The rest of t_one's four bytes, split to stay under the per-block action
+// limit.
+
+t_one2(string msg, int p, word peek8_v) {
+  word peek8_v2 = peek8(p + 1);
+  word peek8_v3 = peek8(p + 2);
+  t_one3(msg, p, peek8_v, peek8_v2, peek8_v3);
+} return void;
+
+t_one3(string msg, int p, word peek8_v, word peek8_v2, word peek8_v3) {
+  word peek8_v4 = peek8(p + 3);
+  print(msg + " = " + peek8_v + " " + peek8_v2 + " " + peek8_v3 + " " + peek8_v4);
+} return void;

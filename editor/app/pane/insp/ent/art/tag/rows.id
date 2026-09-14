@@ -1,0 +1,10 @@
+ed_insp_tag_kv(int x, int y, int e) {
+  int h = ed_rowh();
+  string tags = ed_tags(e, 0, "");
+  ed_kv(x, y + h + 2, "tags", tags);
+} return void;
+
+ed_insp_tag_rows(int x, int y, int w, int e) {
+  ed_insp_tag_kv(x, y, e);
+  ed_insp_tag_draw(x, y, w);
+} return void;

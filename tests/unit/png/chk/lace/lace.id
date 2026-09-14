@@ -11,6 +11,10 @@
 
 t_lace() {
   int png_load_v = png_load("tests/unit/png/img/lace.png");
+  t_lace_p(png_load_v);
+} return void;
+
+t_lace_p(int png_load_v) {
   print("interlaced PNG refused, exp load 0 = " + png_load_v);
   print("  header still read: exp 32 24, interlace exp 1 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[10]);
   t_again();

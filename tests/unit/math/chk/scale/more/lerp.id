@@ -1,0 +1,17 @@
+t_fxlerp2(int fx_lerp_v, int fx_lerp_v2) {
+  print("fx_lerp(0,1000,500) exp 500 | (100,200,250) exp 125 = " + fx_lerp_v + " " + fx_lerp_v2);
+  int fx_lerp_v3 = fx_lerp(0 - 1000, 1000, 750);
+  t_fxlerp3(fx_lerp_v3);
+} return void;
+
+t_fxlerp3(int fx_lerp_v3) {
+  int fx_lerp_v4 = fx_lerp(7, 7, 999);
+  int fx_lerp_v5 = fx_lerp(0, 1000, 0);
+  t_fxlerp4(fx_lerp_v3, fx_lerp_v4, fx_lerp_v5);
+} return void;
+
+t_fxlerp4(int fx_lerp_v3, int fx_lerp_v4, int fx_lerp_v5) {
+  int fx_lerp_v6 = fx_lerp(0, 1000, 1000);
+  print("fx_lerp(-1000,1000,750) exp 500 | (7,7,999) exp 7 | (0,1000,0) exp 0 | (0,1000,1000) exp 1000 = " + fx_lerp_v3 + " " + fx_lerp_v4 + " " + fx_lerp_v5 + " " + fx_lerp_v6);
+  t_sqrt();
+} return void;

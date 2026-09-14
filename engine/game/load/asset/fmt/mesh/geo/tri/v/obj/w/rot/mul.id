@@ -1,0 +1,11 @@
+// Rz * Ry * Rx, left to right, into bl_wm.
+bl_wmul() {
+  m4_muli((import bl_m2), (import bl_wm), (import bl_m0));
+  m4_muli((import bl_wm), (import bl_m2), (import bl_m1));
+} return void;
+
+bl_rot_angle(int p, int si, int offset) {
+  int bl_foff_v = bl_foff(si, "rot[3]");
+  int bl_f32_v = bl_f32(p + bl_foff_v + offset);
+  int bl_deg_v = bl_deg(bl_f32_v);
+} return int bl_deg_v;

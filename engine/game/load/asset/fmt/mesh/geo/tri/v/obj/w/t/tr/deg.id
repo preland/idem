@@ -1,0 +1,6 @@
+// bl_f32 already scaled by 1000, so this turns milliradians into millidegrees:
+// 180000/pi = 57295.8, and the product stays inside an int for any angle a file
+// can hold (2*pi milliradians is 6283, times 57296 is 3.6e8).
+bl_deg(int mrad) {
+  int ret_i = mrad * 57296 / 1000;
+} return int ret_i;

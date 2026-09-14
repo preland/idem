@@ -1,0 +1,12 @@
+// Frame and both scales, then the blit itself.
+
+ent_blit2(int p, int e, int ox, int oy) {
+  int at = ent_at(e, 7);
+  int scx = ent_sc(e, 4);
+  ent_blit3(p, e, ox, oy, at, scx);
+} return void;
+
+ent_blit3(int p, int e, int ox, int oy, int at, int scx) {
+  int scy = ent_sc(e, 5);
+  d2_blit_xy(p, ox, oy, at, scx, scy);
+} return void;

@@ -1,0 +1,14 @@
+// Helper for huf_wstart initialization.
+
+huf_wstart_ab() {
+  int fse_dstart_v = fse_dstart(3);
+  lset((import huf_ab), 0, fse_dstart_v);
+  huf_wstart_ab2();
+} return void;
+given huf_wstart_test_setup_a ():() then huf_wstart_test_check0:(0) then huf_wstart_test_check1:(1)
+given huf_wstart_test_setup_b ():() then huf_wstart_test_check0:(14) then huf_wstart_test_check1:(0)
+
+huf_wstart_ab2() {
+  int fse_dstart_v2 = fse_dstart(3);
+  lset((import huf_ab), 1, fse_dstart_v2);
+} return void;

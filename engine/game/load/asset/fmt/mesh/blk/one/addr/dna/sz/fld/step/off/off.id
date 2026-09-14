@@ -1,0 +1,10 @@
+// A field's byte offset within a struct, and the nth string of a table.
+
+// bl_fwalk answers the struct's total SIZE -- it has to keep accumulating past
+// the match to compute it -- and leaves the field's offset in bl_st[3], which
+// bl_fdone reads out and clears. Two answers, one walk.
+bl_foff(int si, string name) {
+  int p = bl_soff(si);
+  int bl_le16_v = bl_le16(p + 2);
+  int ret_i = bl_fwalk_done(p + 4, bl_le16_v, name);
+} return int ret_i;

@@ -5,10 +5,7 @@
 // mirrored row, a glyph read from the unicode table past the end of the bitmaps
 // -- all of them change this and none of them need change 'A'.
 t_sum() {
-  int txt_facen_v = txt_facen();
-  int txt_cellh_v = txt_cellh();
-  word t_hash_v = t_hash(0, txt_facen_v * txt_cellh_v, 2166136261);
-  print("  PSF2 face, FNV-1a of all 3584 rows, exp 3575843923 = " + t_hash_v);
+  t_hash_report("  PSF2 face, FNV-1a of all 3584 rows, exp 3575843923 = ");
   t_psf1();
 } return void;
 
@@ -17,16 +14,8 @@ t_sum() {
 // is the check that this is a different font and not the last one still in the
 // table.
 t_psf1r() {
-  int txt_glyph_at_v = txt_glyph_at(65);
-  int txt_glyphs_v = (import txt_glyphs)[txt_glyph_at_v + 3];
-  int txt_glyph_at_v2 = txt_glyph_at(65);
-  int txt_glyphs_v2 = (import txt_glyphs)[txt_glyph_at_v2 + 4];
-  int txt_glyph_at_v3 = txt_glyph_at(65);
-  print("  'A' rows 3,4,8 exp 24 36 126 = " + txt_glyphs_v + " " + txt_glyphs_v2 + " " + (import txt_glyphs)[txt_glyph_at_v3 + 8]);
-  int txt_facen_v = txt_facen();
-  int txt_cellh_v = txt_cellh();
-  word t_hash_v = t_hash(0, txt_facen_v * txt_cellh_v, 2166136261);
-  print("  PSF1 face, FNV-1a of all 3584 rows, exp 485156385 = " + t_hash_v);
+  t_a_rows("  'A' rows 3,4,8 exp 24 36 126 = ", 3, 4, 8);
+  t_hash_report("  PSF1 face, FNV-1a of all 3584 rows, exp 485156385 = ");
   t_bad();
 } return void;
 

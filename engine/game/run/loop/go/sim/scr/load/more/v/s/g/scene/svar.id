@@ -1,0 +1,11 @@
+// Closing scn_svars2's var-table span, and a scene member's own declare.
+scn_svars3() {
+  int len_v = len((import scr_vv));
+  lset((import scn_st), 11, len_v - (import scn_st)[10]);
+} return void;
+
+// A scene member and an entity member declare variables the same way, so both go
+// through scr_dmem and neither knows how a binding is spelled.
+scn_svar(int nd) {
+  scr_dmem(nd);
+} return void;

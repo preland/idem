@@ -1,0 +1,19 @@
+// Every collection loop in this parser carries `par_kind(pos) != lex_k_eof()`.
+// That guard, not error recovery, is what makes malformed input terminate.
+par_tfill(int[] pos, int[] kids) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_arg_v = par_arg(pos);
+    push(kids, par_arg_v);
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;
+
+par_sfill(int[] pos, int[] kids, int sc) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_snum_v = par_snum(pos, sc);
+    push(kids, par_snum_v);
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;

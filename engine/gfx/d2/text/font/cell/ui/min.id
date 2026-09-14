@@ -1,0 +1,7 @@
+// The rest of txt_ui -- the smaller axis, floored at 1 -- split out to keep
+// txt_ui under the action limit.
+
+txt_ui_min(int step_w, int step_h) {
+  int m = fx_min(step_w, step_h);
+  int ui = fx_max(m, 1);
+} return int ui;

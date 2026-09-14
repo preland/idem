@@ -1,0 +1,10 @@
+jpg_sof1d(int p) {
+  int asset_at_v5 = asset_at(p + 5);
+  int asset_at_v6 = asset_at(p);
+  jpg_sof2(p + 6, asset_at_v5, asset_at_v6);
+} return void;
+
+jpg_sof2b(int p, int nc, int prec) {
+  jpg_prec(prec, nc);
+  jpg_sof3(p);
+} return void;

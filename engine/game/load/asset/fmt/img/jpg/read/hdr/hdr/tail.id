@@ -1,0 +1,4 @@
+jpg_walk1(int ok) {
+  lset((import jpg_st), 8, ok);
+  lset((import jpg_st), 9, 2);
+} return void;

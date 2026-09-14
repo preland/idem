@@ -1,0 +1,4 @@
+t_dec_alloc(int n) {
+  int fx_max_v = fx_max(n, 1);
+  int da = alloc(fx_max_v);
+} return int da;

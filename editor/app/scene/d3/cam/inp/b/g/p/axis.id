@@ -4,10 +4,9 @@
 // up vector counts upward: dragging down has to move the centre up.
 
 ed_pcx(int dx, int dy) {
-  int fx_cos_v = fx_cos((import ed_st)[2]);
-  int fx_mul_v = fx_mul(dx, fx_cos_v, 1000);
-  int fx_sin_v = fx_sin((import ed_st)[2]);
-  int ret_i = fx_mul_v - ed_pup(dy, fx_sin_v);
+  int cos_v = fx_cos((import ed_st)[2]);
+  int sin_v = fx_sin((import ed_st)[2]);
+  int ret_i = fx_mul(dx, cos_v, 1000) - ed_pup(dy, sin_v);
 } return int ret_i;
 
 ed_pcy(int dy) {
@@ -16,8 +15,7 @@ ed_pcy(int dy) {
 } return int ret_i;
 
 ed_pcz(int dx, int dy) {
-  int fx_sin_v = fx_sin((import ed_st)[2]);
-  int fx_mul_v = fx_mul(dx, fx_sin_v, 1000);
-  int fx_cos_v = fx_cos((import ed_st)[2]);
-  int ret_i = 0 - fx_mul_v - ed_pup(dy, fx_cos_v);
+  int sin_v = fx_sin((import ed_st)[2]);
+  int cos_v = fx_cos((import ed_st)[2]);
+  int ret_i = 0 - fx_mul(dx, sin_v, 1000) - ed_pup(dy, cos_v);
 } return int ret_i;

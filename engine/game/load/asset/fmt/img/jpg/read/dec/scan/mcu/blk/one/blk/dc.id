@@ -1,0 +1,11 @@
+jpg_dc1(int ci, int a, int diff) {
+  int jpg_c_v = (import jpg_c)[ci * 10 + 6];
+  lset((import jpg_c), ci * 10 + 6, jpg_c_v + diff);
+  jpg_dc2(ci, a);
+} return void;
+
+jpg_dc2(int ci, int a) {
+  int jpg_c_v2 = (import jpg_c)[ci * 10 + 6];
+  int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  jpg_cset(a, 0, jpg_c_v2 * inf_pow2_v);
+} return void;

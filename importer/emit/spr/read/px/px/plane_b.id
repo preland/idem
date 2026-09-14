@@ -1,0 +1,8 @@
+// The rest of spr_plane -- the maxval and the fill -- split out to keep it
+// under the action limit.
+
+spr_plane_b(string src, int n) {
+  imp_int(src);
+  int mx = spr_max(src);
+  spr_fill(src, n, mx);
+} return void;

@@ -1,0 +1,9 @@
+// The offset of struct i's entry, by walking the ones before it.
+bl_soff(int i) {
+  int p = (import bl_st)[10];
+  int j = 0;
+  while (j < i) {
+    p = p + 4 + bl_le16(p + 2) * 4;
+    j = j + 1;
+  }
+} return int p;

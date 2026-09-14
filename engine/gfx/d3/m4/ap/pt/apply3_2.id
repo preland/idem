@@ -1,0 +1,13 @@
+// The rest of m4_apply3 -- the y and z rows -- split out to keep it under
+// the action limit.
+
+m4_apply3_b(int[] mat, int[] tri, int i, int x, int y, int z) {
+  int p1 = m4_pt(mat, 4, x, y, z);
+  lset(tri, i + 1, p1);
+  m4_apply3_c(mat, tri, i, x, y, z);
+} return void;
+
+m4_apply3_c(int[] mat, int[] tri, int i, int x, int y, int z) {
+  int p2 = m4_pt(mat, 8, x, y, z);
+  lset(tri, i + 2, p2);
+} return void;

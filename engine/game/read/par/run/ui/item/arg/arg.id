@@ -1,0 +1,31 @@
+// The argument list, and the visibility gate.
+//
+// Arguments are ordinary expressions, so `Fill(0x3C3C3C)` and `Text("hi", 0xFFF)`
+// reuse the expression parser the scripts use -- one grammar for values, in both
+// halves of the language, which is the property that lets an author move between
+// them without learning two.
+//
+// Empty parentheses are legal and common (`Col()[100, 100, top]`), so an absent
+// list and an empty one are the same node: 0.
+
+par_uargs(int[] pos) {
+  int nd = 0;
+  if (par_eat(pos, "(") = 1) {
+    nd = par_uargs2(pos);
+  }
+} return int nd;
+
+par_uargs2(int[] pos) {
+  int[] kids = par_uargs2_kids(pos);
+  int ret_i = par_uargs2_node(kids);
+} return int ret_i;
+
+// Every collection loop carries an end-of-input guard, so malformed input costs
+// one diagnostic and terminates rather than hanging.
+par_ufill(int[] pos, int[] kids) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_expr_v = par_expr(pos);
+    push(kids, par_expr_v);
+    par_eat(pos, ",");
+  }
+} return void;

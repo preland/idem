@@ -1,0 +1,37 @@
+// Drawing a row, and fitting a string into a width.
+//
+// `k` is 0 for an ordinary row, 1 for hovered, 2 or more for selected -- the sum
+// of the two flags, so selection wins without a branch.
+
+ed_row_draw(int x, int y, int w, string s, int k) {
+  ed_row_bg(x, y, w, k);
+  ed_row_text(x, y, w, s, k);
+} return void;
+
+ed_row_bg(int x, int y, int w, int k) {
+  if (k >= 2) {
+    int ed_rowh_v = ed_rowh();
+    int ed_col_v = ed_col(6);
+    sf_rect(x, y, w, ed_rowh_v, ed_col_v);
+  } else if (k = 1) {
+    int ed_rowh_v2 = ed_rowh();
+    int ed_col_v2 = ed_col(7);
+    sf_rect(x, y, w, ed_rowh_v2, ed_col_v2);
+  }
+} return void;
+
+// The character budget is the rect's width in *glyphs*, which is why it divides
+// by a scaled cell: the same pane holds the same number of characters at every
+// window size, which is what makes a layout designed once stay designed.
+//
+// A pane is a fifth of the window and an asset name is not. Cutting is the honest
+// answer: the alternative is a proportional font this engine does not have, or a
+// scroll this pane does not need yet. str_slice allocates once and does not
+// concatenate, which is the only way to cut a string here.
+ed_fit(string s, int n) {
+  string txt = s;
+  if (len(s) > n) {
+    int fx_max_v = fx_max(n, 0);
+    txt = str_slice(s, 0, fx_max_v);
+  }
+} return string txt;

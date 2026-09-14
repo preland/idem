@@ -1,0 +1,14 @@
+// The rest of d3_tri's winding test, and d3_proj3's third vertex -- split
+// out to keep both under the action limit.
+
+d3_tri_go(int[] tri) {
+  int m = d3_area((import d3_vts));
+  if (m < 0 || m > 0 && ((import d3_env)[8] & 1) = 0) {
+    d3_tri2((import d3_vts));
+  }
+} return void;
+
+d3_proj3_b(int[] tri, int[] verts) {
+  d3_proj(tri, 2, verts, 12);
+  int ret_i = d3_flatc(tri);
+} return int ret_i;

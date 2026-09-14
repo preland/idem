@@ -1,14 +1,12 @@
 par_shift(int[] pos) {
-  int left = par_add(pos);
+  int lv = par_add(pos);
   while (par_is_shop(pos)) {
-    left = par_shift_f(pos, left);
+    lv = par_shift_f(pos, lv);
   }
-} return int left;
+} return int lv;
 
-par_shift_f(int[] pos, int left) {
-  string txt = par_text(pos);
-  par_next(pos);
+par_shift_f(int[] pos, int lv) {
+  string txt = par_optxt(pos);
   int nd = par_add(pos);
-  int ast_k_bin_v = ast_k_bin();
-  int ret_i = ast_new_ab(ast_k_bin_v, txt, left, nd);
+  int ret_i = par_binnode(txt, lv, nd);
 } return int ret_i;

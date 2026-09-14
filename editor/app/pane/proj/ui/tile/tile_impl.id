@@ -1,0 +1,7 @@
+ed_proj_tile_rect_do(int x, int y, int ui, int scale, int col) {
+  sf_rect(x, y, 72 * ui, 24 * scale, col);
+} return void;
+
+ed_proj_tile_frame_do(int x, int y, int ui, int scale, int col) {
+  d2_frame(x, y, 72 * ui, 24 * scale, col);
+} return void;

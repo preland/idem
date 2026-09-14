@@ -1,0 +1,16 @@
+ed_pop_row3(int k, int i, int mx, int ui, int hdr, int rowh) {
+  int w = ed_pop_w(k, 0, 0);
+  int ok = ed_in(mx - 4 * ui, hdr + 1 + i * rowh, w, rowh) * ed_mon(k, i);
+  ed_pop_row4(k, i, ok);
+} return void;
+
+ed_pop_row4(int k, int i, int ok) {
+  ed_pop_hl(k, i, ok);
+  ed_pop_hit(k, i, ok);
+} return void;
+
+ed_pop_hl(int k, int i, int ok) {
+  if (ok = 1) {
+    ed_pop_hl_draw(k, i);
+  }
+} return void;

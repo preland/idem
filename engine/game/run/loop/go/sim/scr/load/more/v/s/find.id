@@ -6,9 +6,9 @@
 // obvious reading.
 scn_sscript(int nd, int i) {
   int sc = 0;
-  while (i < len(ast_ks(nd)) && sc = 0) {
-    int[] ast_ks_v = ast_ks(nd);
-    sc = scn_ifscript(ast_ks_v[i]);
+  int[] ks = ast_ks(nd);
+  while (i < len(ks) && sc = 0) {
+    sc = scn_ifscript(ks[i]);
     i = i + 1;
   }
 } return int sc;

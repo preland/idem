@@ -1,0 +1,30 @@
+// The integer reader.
+//
+// Both readers advance the shared cursor and answer the thing they read, so a
+// caller writes `int w = imp_int(src);` three times in a row and the order is the
+// order of the input. That is only safe because each call is its own statement --
+// two side-effecting calls in one expression may evaluate in either order in this
+// language (NAMES.md section 6), which for a stream reader would silently
+// transpose two fields.
+
+// A signed decimal integer. Vertex coordinates are negative half the time, so the
+// sign is not optional decoration.
+imp_int(string src) {
+  int i = imp_ws(src, (import imp_p)[0]);
+  int sg = imp_sign(src, i);
+  int ret_i = imp_int_b(sg, i, src);
+} return int ret_i;
+
+// 45 is '-'. A comparison is an int here, so this is the sign without a branch.
+imp_sign(string src, int i) {
+  int ret_i = 1 - 2 * (charat(src, i) = 45);
+} return int ret_i;
+
+imp_digits(string src, int i) {
+  int n = 0;
+  while (charat(src, i) >= 48 && charat(src, i) <= 57) {
+    n = n * 10 + charat(src, i) - 48;
+    i = i + 1;
+  }
+  lset((import imp_p), 0, i);
+} return int n;

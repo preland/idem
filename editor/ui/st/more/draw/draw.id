@@ -1,0 +1,29 @@
+// One frame's drawing, top to bottom.
+//
+// The order is back to front and it matters: the window background, then the
+// panes over it, then the bars. Nothing is transparent and nothing is clipped
+// against anything else, so a pane drawn late covers a pane drawn early -- which
+// is the whole compositing model, and enough for a layout whose rects do not
+// overlap by construction.
+
+// The background and every pane's fill come from the idml document; what follows
+// is the content inside those rects. Two layers, and the boundary between them is
+// exactly the boundary between what a layout language can say and what it cannot:
+// idml puts the rectangles where they go, code fills them with lists, text and a
+// 3D view.
+ed_draw() {
+  ed_draw_setup();
+  ed_lay();
+  ed_panes();
+} return void;
+
+ed_draw_setup() {
+  int ed_col_v = ed_col(0);
+  sf_clear(ed_col_v);
+} return void;
+
+ed_panes() {
+  ed_panes_s();
+  ed_panes_h();
+  ed_panes2();
+} return void;

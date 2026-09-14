@@ -1,0 +1,10 @@
+ed_kve_nudge(int x, int y, int w, int e, int k) {
+  ed_kve_nudge_neg(x, y, w, e, k);
+  ed_kve_nudge_pos(x, y, w, e, k);
+} return void;
+
+ed_kve(int x, int y, int w, string s, int e, int k) {
+  int ent_at_v = ent_at(e, k);
+  ed_kvn(x, y, s, ent_at_v / 1000);
+  ed_kve_nudge(x, y, w, e, k);
+} return void;

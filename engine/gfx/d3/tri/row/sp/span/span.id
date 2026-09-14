@@ -1,0 +1,35 @@
+// A span: the per-pixel steps, and the one clip that makes the loop safe.
+//
+// By the time a span gets here it is known to overlap the surface (d3_span tested
+// that), but either end may still be far outside it. Both ends are brought inside
+// once, here, and the loop that follows tests nothing but depth.
+//
+// The left end is not advanced by "step times pixels clipped": that product
+// overflows for a span two million pixels wide, which a wall a hand's width from
+// the camera really does produce. It is re-interpolated instead, from the span's
+// own ends at the fraction the clip lands on -- fx_div and d3_mix are both wide,
+// so the arithmetic is exact whatever the extent.
+//
+// The step denominator is floored at 1 for a single-pixel span. A zero there is a
+// division by zero, which aborts the process -- cleanly now, with a message, but
+// a one-pixel-wide triangle is not a reason to stop playing.
+
+d3_span2(int y, int[] st) {
+  int n = st[6] - st[0];
+  int m = fx_max(n, 1);
+  d3_span2_b(y, st, n, m);
+} return void;
+
+d3_span3(int y, int[] st, int m) {
+  int cl = fx_max((import d3_vp)[0] - st[0], 0);
+  int t = fx_div(cl, m, 65536);
+  d3_span3_b(y, st, t, cl);
+} return void;
+
+// i and n are now framebuffer indices, first and last inclusive, and both are
+// inside the surface. From here on nothing computes a coordinate again.
+d3_span4(int i, int n, int[] st, int t) {
+  int dz = d3_mix(st[2], st[8], t);
+  d3_gs_init(st, t);
+  d3_span5(i, n, dz, st);
+} return void;

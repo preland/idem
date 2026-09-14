@@ -1,0 +1,7 @@
+// Helper for zst_sone dsym reading.
+
+zst_sone_dsym(int ll, int last) {
+  int of = fse_dsym(1, (import zst_sq)[1]);
+  int fse_dsym_v = fse_dsym(2, (import zst_sq)[2]);
+  zst_sone2(ll, of, fse_dsym_v, last);
+} return void;

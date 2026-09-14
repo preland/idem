@@ -1,0 +1,5 @@
+t_fsum2(int a, int base, int n) {
+  int b = t_fcol((import fse_nb), base, n);
+  int c = t_fcol((import fse_bs), base, n);
+  t_fshow(a, b, c);
+} return void;

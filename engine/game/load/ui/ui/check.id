@@ -1,0 +1,4 @@
+ui_tiles(string name) {
+  int ok = 0;
+  if (name = "Col" || name = "Row" || name = "Stack" || name = "Layer") { ok = 1; }
+} return int ok;

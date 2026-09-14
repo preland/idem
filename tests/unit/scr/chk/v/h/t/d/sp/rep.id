@@ -1,0 +1,9 @@
+t_press_rep() {
+  int scr_get_v = scr_get(0 - 1, "taps");
+  print("one press: taps exp 1 = " + scr_get_v);
+} return void;
+
+t_spawn_rep() {
+  int ent_n_v = ent_n();
+  print("before: entities exp 3 = " + ent_n_v);
+} return void;

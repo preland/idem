@@ -1,0 +1,4 @@
+// The sprite's grid (cols, rows) and cell (w, h) dimensions.
+scn_sprite_dims(int nd) {
+  int[] dims = [scn_gx(nd, 0), scn_gx(nd, 1), scn_cx(nd, 0), scn_cx(nd, 1)];
+} return int[] dims;

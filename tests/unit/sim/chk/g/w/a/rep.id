@@ -1,0 +1,15 @@
+t_anim2b(int t_at_v, int t_at_v2) {
+  int t_at_v3 = t_at(240);
+  int t_at_v4 = t_at(360);
+  t_anim2c(t_at_v, t_at_v2, t_at_v3, t_at_v4);
+} return void;
+
+t_anim2c(int t_at_v, int t_at_v2, int t_at_v3, int t_at_v4) {
+  print("frames at 0, 120, 240, 360 ms exp 0 1 2 0 = " + t_at_v + " " + t_at_v2 + " " + t_at_v3 + " " + t_at_v4);
+  t_anim3();
+} return void;
+
+t_anim3_rep() {
+  int t_at_v = t_at(9999);
+  print("no anim: frame held exp 5 = " + t_at_v);
+} return void;

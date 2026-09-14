@@ -11,9 +11,9 @@ scr_tfire(int e, int acc) {
 } return void;
 
 scr_tscan2(int sc, int e, int acc, int i) {
-  while (sc != 0 && i < len(ast_ks(sc))) {
-    int[] ast_ks_v = ast_ks(sc);
-    scr_tone(ast_ks_v[i], e, acc);
+  int[] ks = ast_ks(sc);
+  while (sc != 0 && i < len(ks)) {
+    scr_tone(ks[i], e, acc);
     i = i + 1;
   }
 } return void;

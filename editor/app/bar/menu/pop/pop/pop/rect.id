@@ -1,0 +1,17 @@
+ed_pop_at3(int k, int mx, int ui, int hdr, int w) {
+  int mn = ed_mn(k);
+  int rowh = ed_rowh();
+  ed_pop_at4(k, mx, ui, hdr, w, mn, rowh);
+} return void;
+
+ed_pop_at4(int k, int mx, int ui, int hdr, int w, int mn, int rowh) {
+  int col_fill = ed_col(2);
+  sf_rect(mx - 4 * ui, hdr, w, mn * rowh + 2, col_fill);
+  ed_pop_at5(k, mx, ui, hdr, w, mn, rowh);
+} return void;
+
+ed_pop_at5(int k, int mx, int ui, int hdr, int w, int mn, int rowh) {
+  int col_frame = ed_col(3);
+  d2_frame(mx - 4 * ui, hdr, w, mn * rowh + 2, col_frame);
+  ed_pop_rows(k, 0);
+} return void;

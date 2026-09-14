@@ -1,0 +1,16 @@
+// ident = [A-Za-z_][A-Za-z0-9_-]*, which collides with subtraction: `x-1` could
+// be one identifier. Resolved by letting '-' continue an identifier only when a
+// letter follows it, so `bird-up`, `top-left` and `pipe-body` lex as one token
+// while `x-1` and `x - y` are subtraction. Two hyphenated identifiers subtracted
+// without spaces (`hp-dmg`) lex as one name; write the spaces.
+lex_ident(string src, int i) {
+  int e = lex_idend(src, i);
+  lex_ident_push(src, i, e);
+} return int e;
+
+lex_idend(string src, int i) {
+  int e = i;
+  while (lex_idcont(src, e)) {
+    e = e + 1;
+  }
+} return int e;

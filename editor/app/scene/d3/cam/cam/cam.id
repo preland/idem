@@ -1,0 +1,20 @@
+// The orbit camera.
+//
+// The eye is placed by walking `dist` backwards along the direction the camera
+// faces, which is the one line of trigonometry an orbit needs: d3_cam_aim already
+// defines forward as (-sin(yaw)cos(pitch), sin(pitch), -cos(yaw)cos(pitch)), so
+// eye = -dist * forward puts the origin exactly in the middle of the view at
+// every angle, with no second convention to keep in step.
+
+ed_cam() {
+  d3_cam_aim((import ed_st)[2], (import ed_st)[3]);
+  ed_cam_eye((import ed_st)[4], (import ed_st)[2], (import ed_st)[3]);
+  d3_view_matrix();
+} return void;
+
+// eye = centre - dist * forward. The centre is where the geometry is; orbiting
+// the origin shows the inside of a wall for any scene an artist did not happen to
+// model around it.
+ed_cam_eye(int d, int deg, int pit) {
+  ed_cam_set_eye(d, deg, pit);
+} return void;

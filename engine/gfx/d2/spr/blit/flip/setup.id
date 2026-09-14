@@ -1,0 +1,14 @@
+// The rest of d2_blit_flip's setup -- the frame index and the vertical clip
+// -- split out to keep d2_blit_flip under the action limit.
+
+d2_flip_setup(int p, int x, int y, int f, int w, int h) {
+  int nf = d2_spr_nf(p);
+  int i = w * h * fx_clamp(f, 0, nf - 1);
+  d2_flip_clip_y(p, x, y, w, h, i);
+} return void;
+
+d2_flip_clip_y(int p, int x, int y, int w, int h, int i) {
+  int n = fx_min(h, (import sf_gh) - y);
+  int j0 = fx_max(0, 0 - y);
+  d2_flip_rows(p, x, y, i, j0, n);
+} return void;

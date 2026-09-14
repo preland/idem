@@ -1,0 +1,19 @@
+// Anim's first frame and its ms-per-frame, and the layer clamp they and
+// scn_efill_ly need.
+
+scn_efill_af(int e, int nd) {
+  int af = scn_mtup(nd, "anim", 0);
+  ent_put(e, 14, af);
+  scn_efill8(e, nd);
+} return void;
+
+scn_efill_ams(int e, int nd) {
+  int ams = scn_eanimms(nd);
+  ent_put(e, 16, ams);
+  scn_efill9(e, nd);
+} return void;
+
+scn_elayer(int nd) {
+  int ly = scn_mnum(nd, "layer");
+  int c = fx_clamp(ly, 0, 7);
+} return int c;

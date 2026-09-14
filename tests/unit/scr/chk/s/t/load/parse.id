@@ -1,0 +1,5 @@
+t_parse() {
+  int[] pos = [0];
+  int par_doc_v = par_doc(pos);
+  scn_load(par_doc_v);
+} return void;

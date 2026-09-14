@@ -3,6 +3,10 @@
 t_done() {
   int ent_at_v = ent_at(3, 12);
   int ent_at_v2 = ent_at(3, 13);
+  t_done_rep(ent_at_v, ent_at_v2);
+} return void;
+
+t_done_rep(int ent_at_v, int ent_at_v2) {
   int ent_at_v3 = ent_at(3, 9);
   print("its body exp 10000 10000, solid exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 / 2 % 2));
 } return void;

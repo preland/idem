@@ -1,0 +1,7 @@
+// Helper for reading words in stored block.
+
+inf_read_words() {
+  int inf_word_v = inf_word();
+  int inf_word_v2 = inf_word();
+  inf_stored2(inf_word_v, inf_word_v2);
+} return void;

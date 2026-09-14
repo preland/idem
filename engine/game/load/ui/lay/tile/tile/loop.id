@@ -1,0 +1,9 @@
+// Walking the children in order, each one advancing the running offset.
+ui_kids_loop(int[] ks, int x, int y, int w, int h, int k) {
+  int i = 0;
+  int p = 0;
+  while (i < len(ks)) {
+    p = p + ui_kid(ks[i], x, y, w, h, k, p);
+    i = i + 1;
+  }
+} return void;

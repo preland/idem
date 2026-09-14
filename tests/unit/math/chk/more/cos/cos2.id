@@ -1,0 +1,17 @@
+t_cos2(int fx_cos_v, int fx_cos_v2) {
+  int fx_cos_v3 = fx_cos(90000);
+  print("fx_cos(0,60000,90000) exp 1000 500 0 = " + fx_cos_v + " " + fx_cos_v2 + " " + fx_cos_v3);
+  t_cos3();
+} return void;
+
+t_cos3() {
+  int fx_cos_v4 = fx_cos(180000);
+  int fx_cos_v5 = fx_cos(270000);
+  t_cos4(fx_cos_v4, fx_cos_v5);
+} return void;
+
+t_cos4(int fx_cos_v4, int fx_cos_v5) {
+  int fx_cos_v6 = fx_cos(45000);
+  int fx_cos_v7 = fx_cos(30500);
+  t_cos5(fx_cos_v4, fx_cos_v5, fx_cos_v6, fx_cos_v7);
+} return void;

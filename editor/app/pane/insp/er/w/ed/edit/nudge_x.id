@@ -1,0 +1,11 @@
+ed_kve_nudge_neg(int x, int y, int w, int e, int k) {
+  int hdr = ed_hdr();
+  int ui = txt_ui();
+  ed_nudge(x + w - 2 * hdr - 6 * ui, y, e, k, 0 - 1000);
+} return void;
+
+ed_kve_nudge_pos(int x, int y, int w, int e, int k) {
+  int hdr = ed_hdr();
+  int ui = txt_ui();
+  ed_nudge(x + w - hdr - 3 * ui, y, e, k, 1000);
+} return void;

@@ -1,0 +1,19 @@
+// The file the project browser has selected, read from the directory the project
+// was loaded from. There is no directory listing across the seam, so the browser's
+// list -- which tools/idem supplied as `#file` markers -- is the file chooser.
+ed_open_path() {
+  string scn_dir_v = (import scn_dir)[0];
+  string ed_pick_file_v = ed_pick_file();
+  sset((import ed_path), 0, scn_dir_v + ed_pick_file_v);
+} return void;
+
+ed_open_read() {
+  string ed_rd_v = ed_rd((import ed_path)[0]);
+  sset((import ed_doc), 0, ed_rd_v);
+} return void;
+
+ed_open() {
+  ed_open_path();
+  ed_open_read();
+  ed_reopen(7);
+} return void;

@@ -1,0 +1,5 @@
+// The two hops: the attribute's name, and its values.
+// A 64-bit little-endian pointer, as the `word` it has to be.
+bl_lew(int p) {
+  word ret_w = bl_le64(p);
+} return word ret_w;

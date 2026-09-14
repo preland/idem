@@ -1,0 +1,23 @@
+// The SDNA catalogue, and the field walk.
+
+// "DATA" packed most significant byte first, which is how a block code is stored.
+t_count(int kd) {
+  int n = 0;
+  int i = 0;
+  while (i < len((import bl_bc))) {
+    n = n + ((import bl_bc)[i] = kd);
+    i = i + 1;
+  }
+} return int n;
+
+t_dna() {
+  print("SDNA names/types/structs exp 5225 1131 981 = " + (import bl_st)[4] + " " + (import bl_st)[5] + " " + (import bl_st)[6]);
+  t_struct_idx();
+  t_fields();
+} return void;
+
+t_fields() {
+  t_field_vp();
+  t_field_poff();
+  t_size();
+} return void;

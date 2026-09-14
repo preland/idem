@@ -1,0 +1,10 @@
+t_open_report() {
+  int bl_mesh_v = bl_mesh("tests/unit/mesh/cube.blend");
+  print("mesh cube.blend exp 1 = " + bl_mesh_v);
+} return void;
+
+t_count_report() {
+  int len_v = len((import bl_v));
+  int bl_ntri_v = bl_ntri();
+  print("verts exp 8, triangles exp 12 = " + len_v / 3 + " " + bl_ntri_v);
+} return void;

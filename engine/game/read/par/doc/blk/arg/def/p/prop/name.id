@@ -1,0 +1,13 @@
+// par_vprop's name-and-colon prefix, then its node build. Split to stay
+// within the action limit.
+
+par_vprop_name(int[] pos) {
+  string name = par_text(pos);
+  par_next(pos);
+  par_eat(pos, ":");
+} return string name;
+
+par_vprop_node(string name, int arg) {
+  int ast_k_comp_v = ast_k_comp();
+  int ret_i = ast_new_a(ast_k_comp_v, name, arg);
+} return int ret_i;

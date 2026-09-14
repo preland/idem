@@ -1,0 +1,32 @@
+// The 2D plane's magnification and pan.
+//
+// 1000 per-mille is the fit -- the whole game exactly inside the panel, which is
+// where a project opens. An eighth per notch, geometric like the orbit's.
+//
+// The bounds are not taste. The upper one exists because a blit's extent is
+// computed as `sprite width * scale` in an **int**, and the scale a sprite ends
+// up drawn at is the plane's times the entity's own: flappy's pipe shaft is 40x,
+// so a 52-pixel sprite at a plane scale of S is `52 * 40 * S / 1000` wide, and a
+// 2560-pixel sheet at 40x overflows a 32-bit product somewhere above 20000.
+// 32000 is past any zoom a person will reach by turning a wheel -- one game pixel
+// becomes twenty-five screen pixels at the default fit -- and leaves the
+// arithmetic sound for everything short of a pathological sprite. The old ceiling
+// of 8000 was a guess and it was reachable in a few seconds of scrolling.
+//
+// The lower one is 100: a hundredth of the fit, far enough out that a game is a
+// speck, and there because a scale of zero divides by nothing in the blitter.
+
+ed_zoom2d() {
+  int up_v = inp_mdown(8);
+  int down_v = inp_mdown(16);
+  ed_zoom2d_set(up_v, down_v);
+} return void;
+
+// Panning a flat view is the drag itself: one pixel of pointer is one pixel of
+// picture, with no basis to project through and no distance to scale by. That it
+// is *not* the same arithmetic as the 3D pan is the reason they are two
+// functions rather than one with a flag.
+ed_pan2d() {
+  ed_pan2d_x();
+  ed_pan2d_y();
+} return void;

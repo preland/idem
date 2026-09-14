@@ -1,0 +1,30 @@
+// Loading both header formats.
+
+// PSF2. The same face the built-in table came from, so the ASCII rows must not
+// move -- and 129 more code points arrive with it, which is what the count
+// changing from 95 to 224 says.
+t_psf2() {
+  t_psf_load_report("test_assets/vga8x16.psf", "psf_load vga8x16.psf (PSF2) exp 1 = ");
+  t_psf2_metrics();
+  t_rows();
+} return void;
+
+// 219 is the full block: sixteen rows of 255, and the strongest single check
+// that the copy did not shift by a byte -- one row out of place and the block
+// grows a hole. 176 is the light shade, 00010001 / 01000100 alternating, which
+// would survive a byte shift and not a mirror.
+t_rows() {
+  t_a_rows("  'A' rows 2,3,7 unchanged, exp 16 56 254 = ", 2, 3, 7);
+  t_rows_block();
+  t_sum();
+} return void;
+
+// PSF1, and 512 glyphs of it: the count has to come back capped at 224, because
+// a byte is what indexes a glyph here. Its 'A' is a different letter from the
+// VGA one -- 24 36 126 where the other is 16 56 254 -- so this is also the check
+// that a second load replaces the table rather than leaving the first in place.
+t_psf1() {
+  t_psf_load_report("test_assets/latgrkcyr8x16.psf", "psf_load latgrkcyr8x16.psf (PSF1, mode bit 0 set: 512 glyphs) exp 1 = ");
+  t_metrics_report("  metrics exp w 8 h 16 bits 8 glyphs 224 = ");
+  t_psf1r();
+} return void;

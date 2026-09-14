@@ -1,0 +1,11 @@
+ed_btn_text(int x, int y, int w, int h, string s) {
+  int tw = txt_width(s);
+  int th = txt_cellh();
+  ed_btn_text_draw(x, y, w, h, s, tw, th);
+} return void;
+
+ed_btn_text_draw(int x, int y, int w, int h, string s, int tw, int th) {
+  int tu = txt_ui();
+  int col = ed_col(4);
+  txt_draw(s, x + (w - tw) / 2, y + (h - th * tu) / 2, col);
+} return void;

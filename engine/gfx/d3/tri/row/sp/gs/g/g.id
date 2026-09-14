@@ -1,0 +1,23 @@
+// One interpolated pixel: pack it, keep it, step it.
+//
+// The channels are clamped on the way out even though the endpoints are in range,
+// because the step is truncated toward zero and the accumulator can overshoot by
+// a unit at the far end of a long span. A channel one over 255 would carry into
+// the next channel of the packed word and turn a highlight into a colour shift.
+
+d3_gput(int[] fb, int[] zb, int i, int dz, int[] xs) {
+  fb[i] = d3_gpack(xs);
+  zb[i] = dz;
+} return void;
+
+d3_gpack(int[] xs) {
+  int r = fx_clamp(xs[0] / 256, 0, 255);
+  int g = fx_clamp(xs[1] / 256, 0, 255);
+  int ret_i = d3_gpack_b(xs, r, g);
+} return int ret_i;
+
+d3_gstep(int[] xs) {
+  xs[0] = xs[0] + xs[3];
+  xs[1] = xs[1] + xs[4];
+  xs[2] = xs[2] + xs[5];
+} return void;

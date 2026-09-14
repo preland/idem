@@ -1,0 +1,7 @@
+bl_nth(int p, int i) {
+  int j = 0;
+  while (j < i) {
+    p = bl_zend(p);
+    j = j + 1;
+  }
+} return int p;

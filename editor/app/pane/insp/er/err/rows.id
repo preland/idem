@@ -1,0 +1,7 @@
+ed_err_rows(int x, int y, int w, int i) {
+  while (i < err_nmsg()) {
+    int ed_rowh_v = ed_rowh();
+    ed_err_row(x, y + i * ed_rowh_v * 2, w, i);
+    i = i + 1;
+  }
+} return void;

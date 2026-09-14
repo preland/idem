@@ -1,0 +1,40 @@
+// draw -- the field on screen.
+//
+// A frame, the buffer inside it, and a caret. `c` is the one colour: the frame,
+// the text and the caret are all drawn in it, because a field that needed a
+// palette would need one per caller and every caller here already has a theme
+// colour it wants this to match.
+//
+// It draws at txt_ui() -- the window-relative UI scale, the same one txt_draw
+// uses -- so a field is the same size relative to the chrome around it whatever
+// the window is. Nothing here is per-mille: a caller that wants a field inside a
+// zooming view wants the text to zoom with it, and that is a different widget
+// than this one.
+
+tin_draw(int x, int y, int w, int h, int c, int t) {
+  d2_frame(x, y, w, h, c);
+  tin_body(x + 2, y + 2, w - 4, h - 4, c, t);
+} return void;
+
+// The clip is narrowed to the field's inside and put back, around *both* the
+// text and the caret. That is what makes a buffer longer than the field a
+// scrolled view of itself rather than a line of text running across whatever is
+// drawn next to it -- and it is why the caret at the right-hand edge is a
+// half-visible bar instead of one painted over the frame. There is one clip in
+// the engine and callers restore it (gfx/px/sf/cl/clip.id).
+tin_body(int x, int y, int w, int h, int c, int t) {
+  sf_clip(x, y, x + w - 1, y + h - 1);
+  tin_body_draw(x, y, w, h, c, t);
+  sf_unclip();
+} return void;
+
+// The text and the caret take the same x and the same y, already scrolled and
+// already centred, and the caret's offset from x is the caret index times the
+// advance. Passing one pair to both is the only way they cannot disagree: a
+// caret computed from its own copy of the layout drifts a pixel per rounding and
+// ends up between two characters instead of in front of one.
+tin_txy(int x, int y, int c, int t) {
+  string tin_text_v = tin_text();
+  txt_draw(tin_text_v, x, y, c);
+  tin_txy_car(x, y, c, t);
+} return void;

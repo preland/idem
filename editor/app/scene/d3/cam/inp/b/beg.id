@@ -5,9 +5,13 @@
 // was last looked at.
 ed_drag_beg(int k) {
   lset((import ed_st), 5, k);
-  int inp_mx_v = inp_mx();
-  int inp_my_v = inp_my();
-  m4_pair((import ed_st), 13, 14, inp_mx_v, inp_my_v);
+  ed_drag_beg_set_pos();
+} return void;
+
+ed_drag_beg_set_pos() {
+  int mx = inp_mx();
+  int my = inp_my();
+  m4_pair((import ed_st), 13, 14, mx, my);
 } return void;
 
 // A selection band commits when the button comes up; an orbit and a pan have

@@ -1,0 +1,17 @@
+t_span_x() {
+  int t_lo_v = t_lo(0);
+  int t_hi_v = t_hi(0);
+  print("x extent exp -6525 9300 = " + t_lo_v + " " + t_hi_v);
+} return void;
+
+t_span_y() {
+  int t_lo_v2 = t_lo(1);
+  int t_hi_v2 = t_hi(1);
+  print("y extent exp -1000 4350 = " + t_lo_v2 + " " + t_hi_v2);
+} return void;
+
+t_span_z() {
+  int t_lo_v = t_lo(2);
+  int t_hi_v = t_hi(2);
+  print("z extent exp -7118 4239 = " + t_lo_v + " " + t_hi_v);
+} return void;

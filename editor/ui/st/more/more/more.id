@@ -1,0 +1,21 @@
+// The last four colours, and one frame.
+
+ed_col_more() {
+  ed_col3(0x9B4A4A, 0x4A79A8, 0xFFFFFF);
+  push((import ed_pal), 0xD8A24A);
+} return void;
+
+ed_frame() {
+  ed_step();
+  ed_frame_pace();
+  int ret_i = sys_alive();
+} return int ret_i;
+
+// Input, then drawing, then present. Input first so that a click is acted on in
+// the frame it happened rather than the one after -- an editor that lags its own
+// pointer by a frame feels broken in a way nobody can quite name.
+ed_step() {
+  ed_input();
+  ed_tick();
+  ed_show();
+} return void;

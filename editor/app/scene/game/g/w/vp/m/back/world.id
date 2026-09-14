@@ -1,0 +1,14 @@
+// The game's entities, drawn into the plane.
+//
+// The world is clipped to the plane, and the panel clip is put back afterwards.
+
+ed_pworld(int x, int y, int w) {
+  ed_pclip(x, y, w);
+  ed_pworld_draw(x, y, w);
+} return void;
+
+ed_pworld_draw(int x, int y, int w) {
+  int gw_v = ed_gw();
+  int scale = w * 1000 / fx_max(gw_v, 1);
+  ed_pworld_draw2(x, y, scale);
+} return void;

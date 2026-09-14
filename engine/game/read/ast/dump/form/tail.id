@@ -1,0 +1,14 @@
+// ast_form's closing: the dumped kids and the closing paren. ast_quote is
+// ast_sexp3's string-literal case, the same quoting shape, split out for the
+// same reason.
+
+ast_ftail(int nd) {
+  int[] ast_ks_v = ast_ks(nd);
+  string s = ast_dkl(ast_ks_v, 0, "") + ")";
+} return string s;
+
+ast_quote(int nd) {
+  string chr_v = chr(34);
+  string ast_tx_v = ast_tx(nd);
+  string s = chr_v + ast_tx_v + chr_v;
+} return string s;

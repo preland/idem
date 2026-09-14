@@ -1,0 +1,18 @@
+// Helper for huf_wfse and huf_wrun.
+
+huf_wfse_build(int p, int n) {
+  fse_build(1280, (import fse_st)[0], (import fse_st)[4] - 1);
+  m4_pair((import fse_rl), 6, 7, 1280, (import fse_st)[0]);
+  int ret_i = huf_wrun(p, n);
+} return int ret_i;
+
+huf_wrun_setup(int zst_st_v, int p, int huf_wskip_v, int n) {
+  huf_wrun_setup_zb(zst_st_v, p, huf_wskip_v, n);
+  huf_wstart();
+  int ret_i = huf_wloop(0);
+} return int ret_i;
+
+huf_wrun_setup_zb(int zst_st_v, int p, int huf_wskip_v, int n) {
+  int huf_wskip_v2 = huf_wskip();
+  zb_start(zst_st_v + p + huf_wskip_v, n - huf_wskip_v2);
+} return void;

@@ -1,0 +1,5 @@
+// idem_app2's source join and layout kick-off, closing out what it opened.
+idem_app3(string[] chunks) {
+  string src = run_join(chunks, 0, "");
+  idem_alay(src);
+} return void;

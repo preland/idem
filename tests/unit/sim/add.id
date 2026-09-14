@@ -1,0 +1,5 @@
+t_defs_add() {
+  int ent_add_v = ent_add();
+  t_two(ent_add_v);
+  t_defs2();
+} return void;

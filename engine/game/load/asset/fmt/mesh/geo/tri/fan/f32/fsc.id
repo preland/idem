@@ -1,0 +1,13 @@
+bl_fsc(int e, int m, int sg) {
+  word wp = m;
+  wp = bl_fshift(wp * 1000, e - 150);
+  int ret_i = sg * wp;
+} return int ret_i;
+
+// A signed binary shift by whatever the exponent asks for. Positive shifts up,
+// negative shifts down; beyond the range of the quantity either way the answer
+// saturates to something the caller can still use rather than wrapping.
+bl_fshift(word wp, int e) {
+  while (e > 0 && wp < 1000000000) { wp = wp * 2; e = e - 1; }
+  while (e < 0 && wp != 0) { wp = wp / 2; e = e + 1; }
+} return word wp;

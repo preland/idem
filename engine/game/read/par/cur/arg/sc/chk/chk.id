@@ -1,0 +1,10 @@
+par_fchk(int[] pos, int fr, int sc) {
+  if (fr > sc) { par_err(pos, "a literal with " + fr + " fractional digits does not fit a slot scaled to " + sc); }
+} return void;
+
+// `name = value`: a key bound to one value. The same shape serves `keys { space =
+// press }`, `persist { high = 0 }` and `hook update = my_update`.
+par_bind(int[] pos) {
+  string name = par_bind_pre(pos);
+  int ret_i = par_bind_node(pos, name);
+} return int ret_i;

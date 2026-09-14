@@ -1,0 +1,6 @@
+// The rest of t_load, split to stay under the per-block action limit.
+
+t_load_p(int png_load_v) {
+  print("load spryte-run.png exp 1 = " + png_load_v);
+  t_head();
+} return void;

@@ -1,0 +1,6 @@
+// par_while2's node build, split out to stay within the action limit.
+
+par_while_node(int cond, int block) {
+  int ast_k_while_v = ast_k_while();
+  int nd = ast_new_ab(ast_k_while_v, "", cond, block);
+} return int nd;

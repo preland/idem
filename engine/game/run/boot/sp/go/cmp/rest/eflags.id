@@ -1,0 +1,20 @@
+// The flag byte scn_efill5 writes, and the anim-ms clamp scn_efill_ams needs
+// -- both fold three-plus reads into one value, which is more than a single
+// block's action budget allows in one step.
+
+scn_eanimms(int nd) {
+  int raw = scn_mtup(nd, "anim", 2);
+  int ms = fx_max(raw, 1);
+} return int ms;
+
+scn_eflags2(int nd) {
+  int sd = scn_mem(nd, "solid", 0);
+  int bd = scn_mem(nd, "body", 0);
+  int base = 1 + 2 * (sd != 0) + 4 * (bd != 0);
+} return int base;
+
+scn_eflags(int nd) {
+  int base = scn_eflags2(nd);
+  int wr = scn_mem(nd, "wrap", 0);
+  int flags = base + 8 * (wr != 0);
+} return int flags;

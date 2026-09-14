@@ -12,9 +12,13 @@
 // to happen the first time one of them learned something the other did not.
 
 par_etuple(int[] pos) {
-  int[] ks = [];
-  par_want(pos, "(");
-  par_efill(pos, ks);
+  int[] ks = par_etuple_ks(pos);
   int ast_k_tuple_v = ast_k_tuple();
   int ret_i = ast_new_kids(ast_k_tuple_v, "", ks);
 } return int ret_i;
+
+par_etuple_ks(int[] pos) {
+  int[] ks = [];
+  par_want(pos, "(");
+  par_efill(pos, ks);
+} return int[] ks;

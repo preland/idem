@@ -2,19 +2,13 @@
 // mesh left in local space these all collapse toward one mesh's extent.
 
 t_sbox() {
-  int t_lo_v = t_lo(0);
-  int t_hi_v = t_hi(0);
-  print("scene x exp -6525 9300 = " + t_lo_v + " " + t_hi_v);
-  int t_lo_v2 = t_lo(1);
-  int t_hi_v2 = t_hi(1);
-  print("scene y exp -1000 4350 = " + t_lo_v2 + " " + t_hi_v2);
+  t_sbox_x();
+  t_sbox_y();
   t_sbox2();
 } return void;
 
 t_sbox2() {
-  int t_lo_v = t_lo(2);
-  int t_hi_v = t_hi(2);
-  print("scene z exp -6719 4239 = " + t_lo_v + " " + t_hi_v);
+  t_sbox_z();
   int t_oob_v = t_oob();
   print("scene triangle indices out of range exp 0 = " + t_oob_v);
 } return void;

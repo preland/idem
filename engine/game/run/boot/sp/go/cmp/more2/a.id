@@ -1,0 +1,20 @@
+// The second half of pos, vel, and scale -- the y (or second-tuple-member)
+// slot that scn_efill, scn_efill2, and scn_efill3 have no room left to write.
+
+scn_efill_p2(int e, int nd) {
+  int py = scn_ex(nd, 1);
+  ent_put(e, 1, py);
+  scn_efill2(e, nd);
+} return void;
+
+scn_efill_v2(int e, int nd) {
+  int vy = scn_mtup(nd, "vel", 1);
+  ent_put(e, 3, vy * 1000);
+  scn_efill3(e, nd);
+} return void;
+
+scn_efill_s2(int e, int nd) {
+  int sy = scn_mtup(nd, "scale", 1);
+  scn_edef(e, 5, sy);
+  scn_efill4(e, nd);
+} return void;

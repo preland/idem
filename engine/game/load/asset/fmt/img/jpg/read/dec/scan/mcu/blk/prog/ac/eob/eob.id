@@ -18,11 +18,7 @@ jpg_eobset(int n, int rn) {
 jpg_pacv(int ci, int a, int k, int sz) {
   int nk = 0;
   if (k <= (import jpg_st)[14]) {
-    int jpg_zz_v = (import jpg_zz)[k];
-    int jpg_recv_v = jpg_recv(sz);
-    int jpg_ext_v = jpg_ext(jpg_recv_v, sz);
-    int inf_pow2_v = inf_pow2((import jpg_st)[16]);
-    jpg_cset(a, jpg_zz_v, jpg_ext_v * inf_pow2_v);
+    jpg_cwrite1(a, k, sz);
     nk = k + 1;
   }
 } return int nk;

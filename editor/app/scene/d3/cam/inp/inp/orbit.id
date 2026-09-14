@@ -1,0 +1,17 @@
+ed_orbit() {
+  ed_drag_st();
+  ed_drag_do();
+  ed_zoom();
+} return void;
+
+// Orbit and pan move the camera; a selection band only draws itself and is
+// committed on release. Splitting on the drag kind here rather than inside each
+// one keeps the three gestures from having to know about each other.
+ed_drag_do() {
+  if ((import ed_st)[5] = 1) {
+    ed_turn();
+  } else if ((import ed_st)[5] = 2) {
+    ed_pan();
+  }
+  ed_mark();
+} return void;

@@ -1,15 +1,18 @@
 // The box's size and colour, into the record.
 
 scn_ebox(int e, int nd) {
-  ent_put(e, 24, 1);
-  int scn_smem_v = scn_smem(nd, 0);
-  ent_put(e, 25, scn_smem_v * 1000);
+  int sz = scn_smem(nd, 0);
+  ent_put(e, 25, sz * 1000);
   scn_ebox2(e, nd);
 } return void;
 
 scn_ebox2(int e, int nd) {
-  int scn_smem_v = scn_smem(nd, 1);
-  ent_put(e, 26, scn_smem_v * 1000);
-  int scn_num_v = scn_num(nd, 1);
-  ent_put(e, 27, scn_num_v);
+  int sz = scn_smem(nd, 1);
+  ent_put(e, 26, sz * 1000);
+  scn_ebox3(e, nd);
+} return void;
+
+scn_ebox3(int e, int nd) {
+  int col = scn_num(nd, 1);
+  ent_put(e, 27, col);
 } return void;

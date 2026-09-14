@@ -1,0 +1,19 @@
+// The two halves of run_draw's background: the whole surface, then the
+// letterbox rect around the stage.
+
+run_clear() {
+  int shade = d2_shade((import scn_st)[6], 300);
+  sf_clear(shade);
+} return void;
+
+run_letterbox() {
+  int sx = sys_sx();
+  int sy = sys_sy();
+  run_letterbox2(sx, sy);
+} return void;
+
+run_letterbox2(int sx, int sy) {
+  int sw = sys_sw();
+  int sh = sys_sh();
+  sf_rect(sx, sy, sw, sh, (import scn_st)[6]);
+} return void;

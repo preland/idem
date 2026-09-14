@@ -7,6 +7,10 @@
 ed_note(int y) {
   int txt_ui_v = txt_ui();
   string ed_ntxt_v = ed_ntxt();
+  ed_note2(y, txt_ui_v, ed_ntxt_v);
+} return void;
+
+ed_note2(int y, int txt_ui_v, string ed_ntxt_v) {
   int ed_col_v = ed_col(13);
   ed_sdraw(6 * txt_ui_v, y, ed_ntxt_v, ed_col_v);
 } return void;

@@ -1,0 +1,13 @@
+// idem_aframe's step-then-pace, and idem_apace's declared fps -- each pulled
+// out only because its caller has no room left in its own three actions.
+
+idem_aframe2(int t) {
+  idem_astep();
+  idem_apace(t);
+} return void;
+
+idem_apacefps() {
+  func(int) return int gs = (import eng_stage);
+  int gs_v = gs(3);
+  int fps = fx_max(gs_v, 1);
+} return int fps;

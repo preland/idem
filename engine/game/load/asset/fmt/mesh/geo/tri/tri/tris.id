@@ -1,0 +1,7 @@
+// One face's corner range, read from the poly-offset block and fanned.
+
+bl_tris_fan(int cv, int po, int f) {
+  int bl_le32_v = bl_le32((import bl_bp)[po] + f * 4);
+  int bl_le32_v2 = bl_le32((import bl_bp)[po] + f * 4 + 4);
+  bl_fan(cv, bl_le32_v, bl_le32_v2);
+} return void;

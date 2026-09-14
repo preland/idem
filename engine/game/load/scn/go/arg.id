@@ -6,9 +6,12 @@
 
 scn_arg(int nd, int i) {
   int v = 0;
-  if (ast_ia(nd) != 0 && i < len(ast_ks(ast_ia(nd)))) {
-    int ast_ia_v = ast_ia(nd);
-    v = ast_ks(ast_ia_v)[i];
+  int ia_val = ast_ia(nd);
+  if (ia_val != 0) {
+    int[] ks_val = ast_ks(ia_val);
+    if (i < len(ks_val)) {
+      v = ks_val[i];
+    }
   }
 } return int v;
 

@@ -1,0 +1,10 @@
+ed_err_where_input(int x, int y, int w, int i) {
+  int h = ed_rowh();
+  int in = ed_in(x, y, w, h * 2);
+  ed_err_hit(x, y, w, i, in);
+} return void;
+
+ed_err_where(int x, int y, int w, int i) {
+  ed_err_where_input(x, y, w, i);
+  ed_err_where_txt(x, y, i);
+} return void;

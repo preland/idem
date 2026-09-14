@@ -1,0 +1,13 @@
+// The rest of d2_scl_clip's row extent -- split out to keep it under the
+// action limit.
+
+d2_scl_clip2(int p, int x, int y, int i, int sc, int x0, int w) {
+  int x1 = fx_min(x + w * sc / 1000 - 1, (import sf_cl)[2]);
+  int[] px = d2_spr_px(p);
+  d2_scl_clip3(x, y, i, sc, x0, x1, px);
+} return void;
+
+d2_scl_clip3(int x, int y, int i, int sc, int x0, int x1, int[] px) {
+  int idx = sf_idx(x0, y);
+  d2_scl_row(px, i, (import sf_fb), idx, x1 - x0 + 1, sc, x0 - x);
+} return void;

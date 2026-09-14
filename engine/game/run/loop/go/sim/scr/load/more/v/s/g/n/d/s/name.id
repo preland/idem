@@ -2,9 +2,9 @@
 
 scn_bfind(int doc, string name, int i) {
   int nd = 0;
-  while (i < len(ast_ks(doc)) && nd = 0) {
-    int[] ast_ks_v = ast_ks(doc);
-    nd = scn_bone(ast_ks_v[i], name);
+  int[] ks = ast_ks(doc);
+  while (i < len(ks) && nd = 0) {
+    nd = scn_bone(ks[i], name);
     i = i + 1;
   }
 } return int nd;

@@ -1,0 +1,34 @@
+// Reading one plane.
+//
+// Both planes have the same header shape -- a magic token, width, height, maxval
+// -- and differ only in how many samples make one pixel: three for P3, one for
+// P2. So this is one reader with a stride, and the two calls in spr_body are what
+// distinguish colour from coverage.
+//
+// The maxval is read and honoured rather than assumed to be 255. ImageMagick
+// writes 255 for an 8-bit image and 65535 for a 16-bit one, and a 16-bit source
+// that silently imported at 1/257 brightness would be a mystery worth avoiding
+// for the one multiply it costs.
+//
+// The sample count comes from the *header's* grid, not the plane's own width and
+// height, so a plane that disagrees with the header runs out of input and reads
+// zeros rather than walking off the end of the picture into the next section.
+
+spr_plane(string src, string kd, int n) {
+  string name = imp_tok(src);
+  spr_magic(src, kd, name);
+  spr_plane_b(src, n);
+} return void;
+
+spr_magic(string src, string kd, string name) {
+  if (name != kd) {
+    err_report("stdin", 1, "expected a " + kd + " plane, got '" + name + "'");
+  }
+} return void;
+
+// Height then maxval: the width was consumed by the caller, which is what keeps
+// both of them inside three actions.
+spr_max(string src) {
+  imp_int(src);
+  int ret_i = imp_int(src);
+} return int ret_i;

@@ -1,0 +1,12 @@
+// The box's stage-space top-left, one axis at a time.
+ent_boxx(int e) {
+  int ss = sys_sx();
+  int bx = ent_bx(e, 0, 25);
+  int ox = ss + bx;
+} return int ox;
+
+ent_boxy(int e) {
+  int ss = sys_sy();
+  int by = ent_bx(e, 1, 26);
+  int oy = ss + by;
+} return int oy;

@@ -1,0 +1,14 @@
+// The rest of d2_line's setup -- the sign of each step, the walker's state
+// and the step count -- split out to keep d2_line under the action limit.
+
+d2_line_go(int x0, int y0, int x1, int y1, int dx, int dy, int c) {
+  int sx = fx_sign(x1 - x0);
+  int sy = fx_sign(y1 - y0);
+  d2_line_go2(x0, y0, dx, dy, sx, sy, c);
+} return void;
+
+d2_line_go2(int x0, int y0, int dx, int dy, int sx, int sy, int c) {
+  int[] st = [x0, y0, dx - dy];
+  int n = fx_max(dx, dy);
+  d2_line_run(st, dx, dy, sx, sy, n, c);
+} return void;

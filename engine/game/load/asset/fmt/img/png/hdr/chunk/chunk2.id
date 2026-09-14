@@ -1,0 +1,9 @@
+png_kind2(int p, int n, int a, int b) {
+  if (a = 68 && b = 65) {
+    png_idat(p, n);
+  } else if (a = 69 && b = 78) {
+    lset((import png_st), 9, 2);
+  } else {
+    png_kind3(p, n, a, b);
+  }
+} return void;

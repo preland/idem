@@ -1,0 +1,18 @@
+// The translation, and radians to millidegrees.
+
+bl_wtrans(int p, int si) {
+  int off = bl_foff(si, "loc[3]");
+  bl_wtrans_xy(p, off);
+  bl_wtrans_z(p, off);
+} return void;
+
+bl_wtrans_xy(int p, int off) {
+  int bl_f32_v = bl_f32(p + off);
+  int bl_f32_v2 = bl_f32(p + off + 4);
+  m4_pair((import bl_wm), 3, 7, bl_f32_v, bl_f32_v2);
+} return void;
+
+bl_wtrans_z(int p, int off) {
+  int bl_f32_v3 = bl_f32(p + off + 8);
+  lset((import bl_wm), 11, bl_f32_v3);
+} return void;

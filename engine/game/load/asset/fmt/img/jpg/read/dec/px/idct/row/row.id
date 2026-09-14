@@ -1,0 +1,33 @@
+// One output of the row pass, and the column pass.
+//
+// The sums are accumulated in a `word`. A well-formed 8-bit image keeps them
+// inside an int -- about 9 million at the widest -- but a corrupt file can send a
+// 15-bit coefficient against a 255 quantiser, and the product of eight of those
+// wraps silently. m4_wmul is what makes each product wide before it is added,
+// since in this language the operands decide the width and not the target.
+
+jpg_isum(int v, int x) {
+  int u = 0;
+  word wp = 0;
+  while (u < 8) {
+    wp = wp + m4_wmul((import jpg_t)[u * 8 + x], (import jpg_f)[v * 8 + u]);
+    u = u + 1;
+  }
+} return word wp;
+
+jpg_icols(int x) {
+  while (x < 8) {
+    jpg_icol(x);
+    x = x + 1;
+  }
+} return void;
+
+// The result is written back over the coefficient block. That is safe because
+// the column pass reads only jpg_tm, and it saves a third 64-entry scratch.
+jpg_icol(int x) {
+  int y = 0;
+  while (y < 8) {
+    jpg_icol1(x, y);
+    y = y + 1;
+  }
+} return void;

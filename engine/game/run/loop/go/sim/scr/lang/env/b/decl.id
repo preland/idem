@@ -16,10 +16,9 @@ scr_push(string name, int v) {
 // the same rule a struct initialiser has in most languages and avoids an
 // ordering question nobody wants to answer.
 scr_dvar(int nd) {
-  string ast_tx_v = ast_tx(nd);
-  int ast_ia_v = ast_ia(nd);
-  int scr_ev_v = scr_ev(ast_ia_v, 0 - 1);
-  scr_push(ast_tx_v, scr_ev_v);
+  string tx = ast_tx(nd);
+  int v = scr_dvarv(nd);
+  scr_push(tx, v);
 } return void;
 
 // Everything after the game's own block, dropped. `id` frees nothing, so this

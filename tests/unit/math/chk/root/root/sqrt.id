@@ -1,0 +1,17 @@
+t_sqrt2(int fx_sqrt_v, int fx_sqrt_v2) {
+  int fx_sqrt_v3 = fx_sqrt(2);
+  int fx_sqrt_v4 = fx_sqrt(3);
+  t_sqrt3(fx_sqrt_v, fx_sqrt_v2, fx_sqrt_v3, fx_sqrt_v4);
+} return void;
+
+t_sqrt3(int fx_sqrt_v, int fx_sqrt_v2, int fx_sqrt_v3, int fx_sqrt_v4) {
+  int fx_sqrt_v5 = fx_sqrt(4);
+  print("fx_sqrt(0,1,2,3,4) exp 0 1 1 1 2 = " + fx_sqrt_v + " " + fx_sqrt_v2 + " " + fx_sqrt_v3 + " " + fx_sqrt_v4 + " " + fx_sqrt_v5);
+  t_sqrt4();
+} return void;
+
+t_sqrt4() {
+  int fx_sqrt_v6 = fx_sqrt(0 - 5);
+  int fx_sqrt_v7 = fx_sqrt(9);
+  t_sqrt5(fx_sqrt_v6, fx_sqrt_v7);
+} return void;

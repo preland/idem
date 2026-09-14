@@ -1,0 +1,5 @@
+// The drawn text's x/y/colour, once its on-screen width is known.
+ui_tstr_xyc(int nd, int x, int y, int w, int h, string sarg) {
+  int txt_width_sc_v = txt_width_sc(sarg, (import ui_ts)[0]);
+  int[] xyc = [ui_text_coords(nd, x, y, w, h, txt_width_sc_v), ui_ty(y, h), ui_tc(nd)];
+} return int[] xyc;

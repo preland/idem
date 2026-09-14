@@ -1,0 +1,20 @@
+// The rest of t_grey and t_grey2, split to stay under the per-block action
+// limit: the header line, the third grey row plus the row report, and the
+// full-image hash plus the hand-off to t_bhash.
+
+t_grey_p() {
+  print("  w/h/depth/colour/stride exp 4 60 1 0 2 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[2] + " " + (import png_st)[3] + " " + (import png_st)[8]);
+  t_grey2();
+} return void;
+
+t_grey2b(string t_grow_v, string t_grow_v2) {
+  string t_grow_v3 = t_grow(2);
+  print("  rows 0..2 exp 1111 1001 1001 = " + t_grow_v + " " + t_grow_v2 + " " + t_grow_v3);
+  t_grey2c();
+} return void;
+
+t_grey2c() {
+  int t_phash_v = t_phash(0, 0);
+  print("  every sample, hash exp 680646057 = " + t_phash_v);
+  t_bhash();
+} return void;

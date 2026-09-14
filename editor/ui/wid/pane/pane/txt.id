@@ -1,0 +1,10 @@
+ed_bar_txt(int x, int y, string title) {
+  int tu = txt_ui();
+  ed_bar_txt_draw(x, y, title, tu);
+} return void;
+
+ed_bar_txt_draw(int x, int y, string title, int tu) {
+  int tu2 = txt_ui();
+  int col = ed_col(4);
+  txt_draw(title, x + 5 * tu, y + 2 * tu2, col);
+} return void;

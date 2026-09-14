@@ -1,0 +1,17 @@
+// lex_idend's per-character continue test: alnum, or a hyphen followed by a
+// letter (see lex_ident's comment). Its own call so the while condition names
+// no nested call.
+lex_idcont(string src, int e) {
+  int charat_v = charat(src, e);
+  int ok = lex_is_alnum(charat_v);
+  if (ok = 0) { ok = lex_hyp(src, e); }
+} return int ok;
+
+// 45 is '-'
+lex_hyp(string src, int e) {
+  int ok = 0;
+  if (charat(src, e) = 45) {
+    int charat_v = charat(src, e + 1);
+    if (lex_is_alpha(charat_v)) { ok = 1; }
+  }
+} return int ok;

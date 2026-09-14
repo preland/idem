@@ -1,21 +1,8 @@
 // Drawing one item's label, running it, and closing the menu.
 
 ed_pop_hit(int k, int i, int ok) {
-  string ed_mitem_v = ed_mitem(k, i);
-  int ed_mx_v = ed_mx(k);
-  int txt_ui_v = txt_ui();
-  int ed_hdr_v = ed_hdr();
-  int ed_rowh_v = ed_rowh();
-  int txt_ui_v2 = txt_ui();
-  int ed_mon_v = ed_mon(k, i);
-  int ed_col_v = ed_col(4 + 1 * (ed_mon_v = 0));
-  txt_draw(ed_mitem_v, ed_mx_v + 4 * txt_ui_v, ed_hdr_v + 1 + i * ed_rowh_v + txt_ui_v2, ed_col_v);
-  int inp_mhit_v = inp_mhit(1);
-  ed_pop_go(k, i, ok * inp_mhit_v);
-} return void;
-
-ed_pop_go(int k, int i, int go) {
-  if (go = 1) {
+  ed_pop_draw_item(k, i);
+  if (ok * inp_mhit(1) = 1) {
     ed_mdo(k, i);
     lset((import ed_st), 15, 0 - 1);
   }
@@ -26,7 +13,11 @@ ed_pop_go(int k, int i, int go) {
 // it is why the menu closes on the frame you choose something rather than the one
 // after.
 ed_pop_off() {
-  if (inp_mhit(1) = 1 && (import ed_st)[15] >= 0 && ed_in(0, 0, (import sf_gw), ed_hdr() - 1) = 0) {
-    lset((import ed_st), 15, 0 - 1);
+  int left_chk = inp_mhit(1) = 1 && (import ed_st)[15] >= 0;
+  if (left_chk = 1) {
+    int h = ed_hdr();
+    if (ed_in(0, 0, (import sf_gw), h - 1) = 0) {
+      lset((import ed_st), 15, 0 - 1);
+    }
   }
 } return void;

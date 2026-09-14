@@ -1,0 +1,10 @@
+t_hash_report(string label) {
+  int n = txt_facen() * txt_cellh();
+  word t_hash_v = t_hash(0, n, 2166136261);
+  print(label + t_hash_v);
+} return void;
+
+t_a_rows(string label, int o1, int o2, int o3) {
+  string msg = label + (import txt_glyphs)[txt_glyph_at(65) + o1] + " " + (import txt_glyphs)[txt_glyph_at(65) + o2] + " " + (import txt_glyphs)[txt_glyph_at(65) + o3];
+  print(msg);
+} return void;

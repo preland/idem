@@ -21,6 +21,10 @@ d3_mix(int a, int b, int t) {
 d3_area(int[] verts) {
   word wp = verts[6] - verts[0];
   word sm = verts[7] - verts[1];
+  int ret_i = d3_area_b(verts, wp, sm);
+} return int ret_i;
+
+d3_area_b(int[] verts, word wp, word sm) {
   wp = wp * (verts[13] - verts[1]) - sm * (verts[12] - verts[0]);
   int ret_i = (wp > 0) - (wp < 0);
 } return int ret_i;

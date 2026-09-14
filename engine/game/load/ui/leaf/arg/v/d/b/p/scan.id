@@ -1,8 +1,8 @@
 // Scanning a variant's properties.
 
 ui_pscan(int nd, string prop, int i, int dv) {
-  while (i < len(ast_ks(nd))) {
-    int[] ast_ks_v = ast_ks(nd);
+  int[] ast_ks_v = ast_ks(nd);
+  while (i < len(ast_ks_v)) {
     dv = ui_pone(ast_ks_v[i], prop, dv);
     i = i + 1;
   }

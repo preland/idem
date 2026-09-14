@@ -1,0 +1,16 @@
+ed_band_draw2() {
+  int bx0_v = ed_bx0();
+  int by0_v = ed_by0();
+  ed_band_draw3(bx0_v, by0_v);
+} return void;
+
+ed_band_draw3(int bx0, int by0) {
+  int bx1_v = ed_bx1();
+  int by1_v = ed_by1();
+  ed_band_draw4(bx0, by0, bx1_v, by1_v);
+} return void;
+
+ed_band_draw4(int bx0, int by0, int bx1, int by1) {
+  int col_v = ed_col(13);
+  d2_frame(bx0, by0, bx1 - bx0 + 1, by1 - by0 + 1, col_v);
+} return void;

@@ -1,0 +1,8 @@
+// The rest of d3_viewport -- storing the low bound and re-deriving what
+// depends on it -- split out to keep d3_viewport under the action limit.
+
+d3_viewport_b(int cx, int cy, int w, int h, int x, int y) {
+  m4_pair((import d3_vp), 0, 1, cx, cy);
+  d3_vp_hi(x + w - 1, y + h - 1);
+  d3_vp_mid();
+} return void;

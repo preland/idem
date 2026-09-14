@@ -1,0 +1,8 @@
+// One character of txt_draw_sc's loop body -- split out to keep it under the
+// action limit.
+
+txt_draw_sc_ch(string s, int x, int y, int c, int sc, int i) {
+  int ch = charat(s, i);
+  int cell = txt_cell();
+  txt_glyph_sc(ch, x + i * cell * sc / 1000, y, c, sc);
+} return void;

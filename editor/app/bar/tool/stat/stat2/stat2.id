@@ -1,0 +1,27 @@
+// The status line, flowed left to right.
+//
+// It used to be a dozen hardcoded x positions, tuned by eye at 640 wide. That
+// works at exactly one text size: scaling the positions scales the gaps but not
+// the *content*, and a number that is one digit wider than it was at design time
+// walks into its neighbour. So nothing here knows where it is -- each field is
+// drawn at a cursor and answers where the next one starts.
+//
+// Fields past the right edge are dropped rather than drawn over each other. At a
+// large text size there is genuinely more status than window, and the honest
+// failure is a shorter status line, not an overlapping one.
+
+// A note from the Help menu replaces the whole line while it is showing. It is
+// dismissed by choosing it again, which is the only affordance a status line has.
+ed_status_txt(int y) {
+  if ((import ed_st)[17] > 0) {
+    ed_note(y);
+  } else {
+    ed_status_flow(y);
+  }
+} return void;
+
+ed_status_flow(int y) {
+  int ui = txt_ui();
+  string fit = ed_fit((import ed_fl)[0], 22);
+  ed_status_flow2(y, ui, fit);
+} return void;

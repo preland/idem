@@ -1,0 +1,41 @@
+// geo -- a .blend's mesh, as triangles the 3D pipeline can draw.
+//
+// Blender 5.x keeps nothing where a reader of older files would look. The legacy
+// `mvert`/`mpoly`/`mloop` pointers are NULL and `vdata` has no layers; every
+// mesh datum is an entry in **AttributeStorage**, a list of `Attribute` records
+// each naming a domain and pointing at its values through one more indirection:
+//
+//     Mesh.attribute_storage.dna_attributes -> Attribute[]
+//     Attribute.data -> AttributeArray (values + a size)  or  AttributeSingle
+//     AttributeArray.data -> the values themselves
+//
+// The three that make a drawable mesh:
+//
+//     position       Float3 on POINT    one xyz per vertex
+//     .corner_vert   Int32 on CORNER    which vertex each loop uses
+//     poly_offset_indices                where each face's loops start
+//
+// `poly_offset_indices` is not an attribute -- it is a plain field of Mesh, with
+// totpoly+1 entries, so face f owns loops [off[f], off[f+1]). Blender stores
+// polygons, not triangles, so a face of n corners becomes n-2 triangles fanned
+// from its first corner.
+//
+// Output: bl_v holds x, y, z per vertex in **millunits on the engine's axes**,
+// and bl_ti holds three vertex indices per triangle. Blender is Z-up and the
+// engine is Y-up with -Z forward, so (x, y, z) becomes (x, z, -y) -- the same
+// conversion tools/blend_mesh.py writes down.
+
+bl_geo_init() {
+  export int[] bl_v = [];
+  export int[] bl_ti = [];
+  bl_geo2();
+} return void;
+
+// The world matrix every vertex goes through, and the scratch its composition
+// needs. It is the identity unless an Object sets it, so bl_mesh -- which reads
+// one mesh in its own local space -- is unaffected.
+bl_geo2() {
+  export int[] bl_m0 = m4_new();
+  export int[] bl_m1 = m4_new();
+  bl_geo3();
+} return void;

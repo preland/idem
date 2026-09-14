@@ -16,9 +16,6 @@ par_wchk(int[] pos, string txt, int ok) {
   if (ok = 0) {
     string found = par_text(pos);
     string chr_v = chr(39);
-    string chr_v2 = chr(39);
-    string chr_v3 = chr(39);
-    string chr_v4 = chr(39);
-    par_err(pos, "expected " + chr_v + txt + chr_v2 + ", found " + chr_v3 + found + chr_v4);
+    par_err(pos, "expected " + chr_v + txt + chr_v + ", found " + chr_v + found + chr_v);
   }
 } return void;

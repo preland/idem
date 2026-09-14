@@ -1,0 +1,10 @@
+ed_menu_ttl(int x, int k, string s) {
+  ed_menu_click(x, k, s);
+  ed_menu_ttl_draw(x, s);
+} return void;
+
+ed_menu_ttl_draw(int x, string s) {
+  int txt_ui_v = txt_ui();
+  int ed_col_v = ed_col(4);
+  txt_draw(s, x, 2 * txt_ui_v, ed_col_v);
+} return void;

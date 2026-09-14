@@ -1,0 +1,21 @@
+// A variant's body: `key: value` pairs, one per line.
+
+par_vbody(int[] pos, string name, int[] ks) {
+  par_vbody_props(pos, ks);
+  int ret_i = par_vbody_node(name, ks);
+} return int ret_i;
+
+par_vprops(int[] pos, int[] ks) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_vprop_v = par_vprop(pos);
+    push(ks, par_vprop_v);
+  }
+} return void;
+
+// The colon is eaten rather than demanded: `colour 0xFFFFFF` is the same
+// statement with one fewer character, and refusing it would buy nothing.
+par_vprop(int[] pos) {
+  string name = par_vprop_name(pos);
+  int arg = par_arg(pos);
+  int ret_i = par_vprop_node(name, arg);
+} return int ret_i;

@@ -1,3 +1,8 @@
 t_unused() {
   print("");
 } return void;
+
+t_dump(int[] pos) {
+  int par_script_v = par_script(pos);
+  ast_dump(par_script_v);
+} return void;

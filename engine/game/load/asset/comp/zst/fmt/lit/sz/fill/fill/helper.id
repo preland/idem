@@ -1,0 +1,14 @@
+// Helper for zst_lcopy loop.
+
+zst_lcopy_loop(int i, int n) {
+  while (i < n && (import zst_st)[6] = 0) {
+    zst_lcopy_put(i);
+    i = i + 1;
+  }
+} return void;
+
+zst_lcopy_put(int i) {
+  int zst_st_v = (import zst_st)[8];
+  int zst_byte_v = zst_byte((import zst_st)[1] + i);
+  poke8(zst_st_v + i, zst_byte_v);
+} return void;

@@ -1,0 +1,9 @@
+// ast_sexp's write-through-a-cell call and the read back, split out to stay
+// within the action limit; see ast_sexp2's comment for why it is a cell and
+// not a return value.
+
+ast_sexp_body(int nd, int kd) {
+  string[] strs = [""];
+  ast_sexp2(nd, kd, strs);
+  string s = strs[0];
+} return string s;

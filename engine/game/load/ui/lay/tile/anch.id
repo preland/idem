@@ -27,5 +27,12 @@ ui_al(string name) {
 // substring test rather than an equality: `center` and `top-center` both centre.
 ui_has(string name, string txt) {
   int ok = 0;
-  if (name = txt || str_eqat(name, len(name) - len(txt), txt) = 1) { ok = 1; }
+  if (name = txt) {
+    ok = 1;
+  } else {
+    int offset = len(name) - len(txt);
+    if (str_eqat(name, offset, txt) = 1) {
+      ok = 1;
+    }
+  }
 } return int ok;

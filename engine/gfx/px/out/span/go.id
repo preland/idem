@@ -1,0 +1,14 @@
+// The rest of sf_span -- clipping both ends to sf_cl and writing the row --
+// split out to keep sf_span under the action limit.
+
+sf_span_go(int x0, int x1, int y, int c) {
+  int x0c = fx_max(x0, (import sf_cl)[0]);
+  int i = sf_idx(x0c, y);
+  sf_span_go2(x1, y, c, i);
+} return void;
+
+sf_span_go2(int x1, int y, int c, int i) {
+  int x1c = fx_min(x1, (import sf_cl)[2]);
+  int j = sf_idx(x1c, y);
+  sf_span_row((import sf_fb), i, j, c);
+} return void;

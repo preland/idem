@@ -1,0 +1,22 @@
+// The nine header numbers, three at a time, because a block holds three actions.
+// The order here is the order in the stream and there is no other record of it,
+// so this is the one place tools/idem's header format is written down on this
+// side of the pipe.
+
+spr_dim4(string src) {
+  int v0 = imp_int(src);
+  lset((import spr_d), 0, v0);
+  spr_dim4_b(src);
+} return void;
+
+spr_dim2(string src) {
+  int v2 = imp_int(src);
+  lset((import spr_d), 2, v2);
+  spr_dim2_b(src);
+} return void;
+
+spr_dim5(string src) {
+  int v4 = imp_int(src);
+  lset((import spr_d), 4, v4);
+  spr_dim5_b(src);
+} return void;

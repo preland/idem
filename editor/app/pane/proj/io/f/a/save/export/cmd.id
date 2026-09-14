@@ -1,0 +1,10 @@
+ed_export_run_cmd(string root, string up) {
+  string q = chr(39);
+  string cmd = root + "tools/idem pack " + q + up + q + " > /dev/null 2>&1";
+} return string cmd;
+
+ed_export_cmd() {
+  string root = ed_root();
+  string up_dir = ed_up((import ed_path)[0]);
+  string cmd = ed_export_run_cmd(root, up_dir);
+} return string cmd;

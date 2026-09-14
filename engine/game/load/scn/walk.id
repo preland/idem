@@ -1,9 +1,9 @@
 // Walking the document's top-level declarations.
 
 scn_walk(int doc, int i) {
-  while (i < len(ast_ks(doc))) {
-    int[] ast_ks_v = ast_ks(doc);
-    scn_one(ast_ks_v[i]);
+  int[] ks = ast_ks(doc);
+  while (i < len(ks)) {
+    scn_one(ks[i]);
     i = i + 1;
   }
 } return void;
@@ -18,9 +18,9 @@ scn_one(int nd) {
 
 // The manifest's components, each a `comp` node whose args are literals.
 scn_game(int nd, int i) {
-  while (i < len(ast_ks(nd))) {
-    int[] ast_ks_v = ast_ks(nd);
-    scn_prop(ast_ks_v[i]);
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scn_prop(ks[i]);
     i = i + 1;
   }
 } return void;

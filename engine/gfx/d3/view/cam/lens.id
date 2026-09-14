@@ -10,10 +10,14 @@
 // never degenerate and `far - near` is never zero.
 
 d3_cam_lens(int near, int far) {
-  int fx_max_v = fx_max(near, 40);
-  lset((import d3_cam), 5, fx_max_v);
-  int fx_max_v2 = fx_max(far, near + 1);
-  lset((import d3_cam), 6, fx_max_v2);
+  int n = fx_max(near, 40);
+  lset((import d3_cam), 5, n);
+  d3_cam_lens_b(far, near);
+} return void;
+
+d3_cam_lens_b(int far, int near) {
+  int f = fx_max(far, near + 1);
+  lset((import d3_cam), 6, f);
 } return void;
 
 // focal = (viewport width / 2) * cot(fov / 2), in pixels x1000.

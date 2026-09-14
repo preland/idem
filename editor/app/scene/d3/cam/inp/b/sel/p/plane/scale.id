@@ -1,0 +1,14 @@
+ed_pscw() {
+  int gw_v = ed_gw();
+  int ret_i = ed_rq(3, 2) * 1000 / fx_max(gw_v, 1);
+} return int ret_i;
+
+ed_psch() {
+  int gh_v = ed_gh();
+  int ret_i = ed_rq(3, 3) * 1000 / fx_max(gh_v, 1);
+} return int ret_i;
+
+ed_psc_ret(int w, int h) {
+  int min_v = fx_min(w, h);
+  int ret_i = fx_max(min_v * (import ed_st)[18] / 1000, 1);
+} return int ret_i;

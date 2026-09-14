@@ -1,0 +1,17 @@
+ed_insp_art_frame(int x, int y, int e) {
+  int h = ed_rowh();
+  int frame = ent_at(e, 7);
+  ed_kvn(x, y + h + 2, "frame", frame);
+} return void;
+
+ed_insp_art_sprite(int x, int y, int e) {
+  int sprite = ent_at(e, 6);
+  ed_kvn(x, y, "sprite", sprite);
+  ed_insp_art_frame(x, y, e);
+} return void;
+
+ed_insp_art(int x, int y, int w, int e) {
+  ed_insp_art_sprite(x, y, e);
+  int h = ed_rowh();
+  ed_insp_tag(x, y + 2 * (h + 2), w, e);
+} return void;

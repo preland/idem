@@ -1,0 +1,6 @@
+// The var block's length, closing out what scr_evars opened.
+scr_evars3(int e) {
+  int len_v = len((import scr_vv));
+  int at = ent_at(e, 17);
+  ent_put(e, 18, len_v - at);
+} return void;

@@ -1,0 +1,29 @@
+// The press, and spawning from a template.
+//
+// The press path is fired directly: a headless test has no keyboard, and what is
+// worth checking is that the event reaches every live entity's handler rather
+// than that X11 delivered it.
+
+t_press() {
+  scr_pall("press", 0 - 1);
+  t_press_rep();
+  t_spawn();
+} return void;
+
+// `on enter { spawn Box at (30, 40) }`, fired a second time -- once by the scene
+// load and once here -- so the count moves by exactly one and the new record is
+// the last. The
+// template's components are read exactly as a scene's `entity` is, so the box is
+// solid, has a body and carries its tag -- and its position comes from the
+// statement rather than from the template's own `pos (0, 0)`.
+t_spawn() {
+  t_spawn_rep();
+  scr_fire((import scn_st)[9], "enter", 0 - 1, "");
+  t_spawn2();
+} return void;
+
+t_spawn2() {
+  int ent_n_v = ent_n();
+  print("after: entities exp 4 = " + ent_n_v);
+  t_spawn_pos();
+} return void;

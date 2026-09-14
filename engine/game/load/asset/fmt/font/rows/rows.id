@@ -18,8 +18,7 @@
 psf_copy(int sa, int n, int cs, int h, int w) {
   int fx_min_v = fx_min(n, 256);
   txt_face_set(w, h, (w + 7) / 8 * 8, fx_min_v - (import txt_first));
-  int fx_min_v2 = fx_min(n, 256);
-  psf_glyphs(sa + (import txt_first) * cs, fx_min_v2 - (import txt_first), cs, h, (w + 7) / 8);
+  psf_copy2(sa, fx_min_v, cs, h, w);
 } return int 1;
 
 // One glyph after another. `cs` steps the source because a glyph may be padded;

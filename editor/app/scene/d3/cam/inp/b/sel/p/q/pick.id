@@ -14,21 +14,6 @@ ed_pick(int e, int x, int y, int n) {
 
 ed_pick1(int e, int x, int y) {
   ent_put(e, 23, 0);
-  int ed_inband_v = ed_inband(e);
-  ent_put(e, 23, ed_inband_v);
-  int ret_i = ent_at(e, 23);
-} return int ret_i;
-
-// The entity's centre, in surface pixels, against the band. Its centre and not
-// its rect: a sprite stretched twelve screens wide would otherwise be selected by
-// a band anywhere on the row, and what a person means by dragging over a thing is
-// the thing they can see the middle of.
-ed_inband(int e) {
-  int ed_epx_v = ed_epx(e, 0);
-  int ed_epy_v = ed_epy(e);
-  int ed_bx0_v = ed_bx0();
-  int ed_by0_v = ed_by0();
-  int ed_bx1_v = ed_bx1();
-  int ed_by1_v = ed_by1();
-  int ret_i = ed_in2(ed_epx_v, ed_epy_v, ed_bx0_v, ed_by0_v, ed_bx1_v, ed_by1_v);
+  int ret_i = ed_inband(e);
+  ent_put(e, 23, ret_i);
 } return int ret_i;

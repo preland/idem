@@ -1,0 +1,16 @@
+// The rest of spr_one's dispatch, and spr_rgb's blue sample -- split out to
+// keep both under the action limit.
+
+spr_one_b(string src, int n, int cr, int m) {
+  if (n = 1) {
+    push((import spr_al), cr);
+  } else {
+    spr_rgb(src, cr, m);
+  }
+} return void;
+
+spr_rgb_b(int cr, int cg, string src, int m) {
+  int v2 = imp_int(src);
+  int cb = spr_scale(v2, m);
+  push((import spr_px), cr * 65536 + cg * 256 + cb);
+} return void;

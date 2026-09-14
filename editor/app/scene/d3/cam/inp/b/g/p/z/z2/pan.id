@@ -1,0 +1,9 @@
+ed_pan2d_x() {
+  int mx_v = inp_mx();
+  lset((import ed_st), 19, (import ed_st)[19] + mx_v - (import ed_st)[6]);
+} return void;
+
+ed_pan2d_y() {
+  int my_v = inp_my();
+  lset((import ed_st), 20, (import ed_st)[20] + my_v - (import ed_st)[7]);
+} return void;

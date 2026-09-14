@@ -20,10 +20,9 @@ scr_fld(int nd, int e) {
   int v = 0;
   int ast_ia_v = ast_ia(nd);
   if (ast_kd(ast_ia_v) = ast_k_ident()) {
-    int ast_ia_v2 = ast_ia(nd);
-    string ast_tx_v = ast_tx(ast_ia_v2);
-    string ast_tx_v2 = ast_tx(nd);
-    v = scr_fld2(ast_tx_v, ast_tx_v2, e);
+    string bn = ast_tx(ast_ia_v);
+    string name = ast_tx(nd);
+    v = scr_fld2(bn, name, e);
   }
 } return int v;
 

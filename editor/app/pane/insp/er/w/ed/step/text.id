@@ -1,0 +1,15 @@
+ed_nudge_draw_text_paint(int x, int y, string sign) {
+  int hdr = ed_hdr();
+  int wid = txt_width("+");
+  ed_nudge_draw_text_do(x, y, sign, hdr, wid);
+} return void;
+
+ed_nudge_draw_text(int x, int y, int d) {
+  string sign = ed_sign(d);
+  ed_nudge_draw_text_paint(x, y, sign);
+} return void;
+
+ed_sign(int d) {
+  string s = "+";
+  if (d < 0) { s = "-"; }
+} return string s;

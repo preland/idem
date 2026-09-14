@@ -1,0 +1,11 @@
+ed_insp_tag_draw(int x, int y, int w) {
+  int h = ed_rowh();
+  int ui = txt_ui();
+  ed_insp_tag_draw_line(x, y, w, h, ui);
+} return void;
+
+ed_insp_tag(int x, int y, int w, int e) {
+  int ent_at_v = ent_at(e, 8);
+  ed_kvn(x, y, "layer", ent_at_v);
+  ed_insp_tag_rows(x, y, w, e);
+} return void;

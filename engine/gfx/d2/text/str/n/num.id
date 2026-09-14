@@ -28,10 +28,7 @@ txt_num_sc(int v, int x, int y, int c, int sc) {
   if (v < 0) {
     txt_glyph_sc((import txt_first) + 13, x, y, c, sc);
   }
-  int txt_cell_v = txt_cell();
-  int txt_num_pow_v = txt_num_pow(m);
-  int txt_num_pw_v = txt_num_pw(txt_num_pow_v, sc);
-  txt_num_run(m, x + txt_cell_v * sc / 1000 * (v < 0), y, c, txt_num_pw_v);
+  txt_num_sc2(m, v, x, y, c, sc);
 } return void;
 
 // pw walks 10^(digits-1) down to 1, so the digits come out most significant first

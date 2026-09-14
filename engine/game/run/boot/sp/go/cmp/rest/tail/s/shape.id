@@ -19,7 +19,12 @@ scn_manim(int nd, int k) {
 // Reading a `shape` component into the record.
 
 scn_eshape(int e, int nd) {
-  if (nd != 0 && ast_tx(scn_arg(nd, 0)) = "box") {
-    scn_ebox(e, nd);
+  if (nd != 0) {
+    int arg = scn_arg(nd, 0);
+    string tx = ast_tx(arg);
+    if (tx = "box") {
+      ent_put(e, 24, 1);
+      scn_ebox(e, nd);
+    }
   }
 } return void;

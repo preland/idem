@@ -1,0 +1,5 @@
+jpg_dqt2(int p, int pq) {
+  int asset_at_v = asset_at(p);
+  jpg_qfill(p + 1, asset_at_v % 16, pq);
+  int ret_i = p + 1 + 64 * (pq + 1);
+} return int ret_i;

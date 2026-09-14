@@ -1,0 +1,4 @@
+ed_zoom2d_set(int up_v, int down_v) {
+  int clamp_v = fx_clamp((import ed_st)[18] + (import ed_st)[18] / 8 * up_v - (import ed_st)[18] / 8 * down_v, 100, 32000);
+  lset((import ed_st), 18, clamp_v);
+} return void;

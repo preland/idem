@@ -1,0 +1,22 @@
+// The items, and dismissing the menu.
+
+ed_pop_rows(int k, int i) {
+  while (i < ed_mn(k)) {
+    ed_pop_row(k, i);
+    i = i + 1;
+  }
+} return void;
+
+// A live item highlights and acts; a dim one does neither, so the difference is
+// visible before it is clicked rather than after.
+ed_pop_row(int k, int i) {
+  int mx = ed_mx(k);
+  int ui = txt_ui();
+  ed_pop_row2(k, i, mx, ui);
+} return void;
+
+ed_pop_row2(int k, int i, int mx, int ui) {
+  int hdr = ed_hdr();
+  int rowh = ed_rowh();
+  ed_pop_row3(k, i, mx, ui, hdr, rowh);
+} return void;

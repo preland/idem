@@ -9,9 +9,14 @@
 // path node hanging off it. A path of more than one segment -- `@item.top` inside
 // a Repeat -- is not resolved yet and reads as its first segment.
 
-ui_val(int nd) {
+ui_val_txt(int nd) {
   string s = "";
-  if (ast_ia(nd) != 0) { int ast_ia_v = ast_ia(nd); s = ast_tx(ast_ia_v); }
+  int ast_ia_v = ast_ia(nd);
+  if (ast_ia_v != 0) { s = ast_tx(ast_ia_v); }
+} return string s;
+
+ui_val(int nd) {
+  string s = ui_val_txt(nd);
   func(string) return int gr = (import eng_ref);
   int ret_i = gr(s);
 } return int ret_i;

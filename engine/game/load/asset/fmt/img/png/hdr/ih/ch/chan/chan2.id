@@ -1,0 +1,8 @@
+// IDAT payloads are gathered by *moving* them down over the file's own bytes:
+// they are already in the store, in order, with twelve bytes of chunk framing
+// between them, so compacting in place costs one pass and no allocation. The
+// gathered stream starts where the first IDAT's payload did.
+png_idat(int p, int n) {
+  png_gather(p, n);
+  lset((import png_st), 6, (import png_st)[6] + n);
+} return void;

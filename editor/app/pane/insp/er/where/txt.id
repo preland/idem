@@ -1,0 +1,11 @@
+ed_err_where_txt_draw(int x, int y, string fit, int ln) {
+  int ui = txt_ui();
+  int col = ed_col(10);
+  txt_draw(fit + ":" + ln, x + 6 * ui, y, col);
+} return void;
+
+ed_err_where_txt(int x, int y, int i) {
+  string fit = ed_fit((import err_fs)[i], 14);
+  int ln = (import err_ls)[i];
+  ed_err_where_txt_draw(x, y, fit, ln);
+} return void;

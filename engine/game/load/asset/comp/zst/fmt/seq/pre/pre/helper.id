@@ -1,0 +1,6 @@
+// Helper for zst_pload setup.
+
+zst_pload_set(int r, int[] xs, int log, int base) {
+  zst_pcopy(xs);
+  m4_pair((import fse_rl), r * 2, r * 2 + 1, base, log);
+} return void;

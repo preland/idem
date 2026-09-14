@@ -1,0 +1,10 @@
+t_all_open_report() {
+  int bl_all_v = bl_all("games/fps/showroom.blend");
+  print("bl_all showroom exp 1 = " + bl_all_v);
+} return void;
+
+t_all_count_report() {
+  int len_v = len((import bl_v));
+  int bl_ntri_v = bl_ntri();
+  print("total verts exp 94443, triangles exp 167934 = " + len_v / 3 + " " + bl_ntri_v);
+} return void;

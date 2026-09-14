@@ -1,0 +1,7 @@
+// The rest of pack_body -- writing the escaped literal and the tail --
+// split out to keep pack_body under the action limit.
+
+pack_body_b(string es, string src, int nxt, int k) {
+  put(es);
+  pack_tail(src, nxt, k);
+} return void;

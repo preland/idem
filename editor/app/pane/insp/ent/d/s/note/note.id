@@ -1,0 +1,4 @@
+ed_insp_note(int x, int y, int w) {
+  ed_insp_note_line(x, y, w);
+  ed_insp_note_texts(x, y);
+} return void;

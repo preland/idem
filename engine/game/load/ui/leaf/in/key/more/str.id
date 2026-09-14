@@ -1,0 +1,16 @@
+// String building helpers for text input.
+
+tin_ins_left(string s, int i) {
+  string str_slice_v = str_slice(s, 0, i);
+} return string str_slice_v;
+
+tin_ins_right(string s, int i) {
+  int len_s = len(s);
+  string str_slice_v = str_slice(s, i, len_s - i);
+} return string str_slice_v;
+
+tin_del_right(string s, int i) {
+  int len_s = len(s);
+  string str_slice_v = str_slice(s, i + 1, len_s - i - 1);
+} return string str_slice_v;
+

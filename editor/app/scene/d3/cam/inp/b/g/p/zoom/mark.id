@@ -1,0 +1,9 @@
+ed_mark_x() {
+  int mx_v = inp_mx();
+  lset((import ed_st), 6, mx_v);
+} return void;
+
+ed_mark_y() {
+  int my_v = inp_my();
+  lset((import ed_st), 7, my_v);
+} return void;

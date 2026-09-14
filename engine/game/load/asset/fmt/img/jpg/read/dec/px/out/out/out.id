@@ -1,0 +1,24 @@
+// The output: component planes, upsampled and converted, into the layout a PNG
+// leaves behind.
+//
+// png_st is filled here rather than a jpg_ record being invented, because it is
+// the *decoded image* record and PNG merely declared it first. The row stride
+// carries the same one-byte head a PNG row has -- the place its filter byte sits
+// -- so asset_row and the sprite loader address both formats with one rule.
+
+jpg_out() {
+  int da = jpg_out2();
+  jpg_orows(0);
+} return void;
+
+jpg_out2() {
+  int fx_max_v = fx_max((import jpg_st)[1] * (1 + (import jpg_st)[0] * 3), 1);
+  int da = alloc(fx_max_v);
+  jpg_pngst(da);
+} return int da;
+
+jpg_pngst(int da) {
+  m4_pair((import png_st), 0, 1, (import jpg_st)[0], (import jpg_st)[1]);
+  m4_pair((import png_st), 4, 7, 3, da);
+  jpg_pngst2();
+} return void;

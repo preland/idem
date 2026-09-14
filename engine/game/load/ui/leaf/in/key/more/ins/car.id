@@ -1,0 +1,4 @@
+tin_clamp_caret(int i, int len_s) {
+  int fx_clamp_v = fx_clamp(i, 0, len_s);
+  lset((import tin_st), 0, fx_clamp_v);
+} return void;

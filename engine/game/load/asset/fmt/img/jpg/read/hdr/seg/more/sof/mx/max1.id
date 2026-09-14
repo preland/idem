@@ -1,0 +1,14 @@
+jpg_max1(int ci) {
+  jpg_max1_h(ci);
+  jpg_max1_v(ci);
+} return void;
+
+jpg_max1_h(int ci) {
+  int fx_max_v = fx_max((import jpg_st)[3], (import jpg_c)[ci * 10 + 1]);
+  lset((import jpg_st), 3, fx_max_v);
+} return void;
+
+jpg_max1_v(int ci) {
+  int fx_max_v2 = fx_max((import jpg_st)[4], (import jpg_c)[ci * 10 + 2]);
+  lset((import jpg_st), 4, fx_max_v2);
+} return void;

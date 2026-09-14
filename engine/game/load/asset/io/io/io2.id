@@ -1,0 +1,5 @@
+asset_slurp2(string path, int n) {
+  int asset_take_v = asset_take(path, n);
+  lset((import asset_io), 1, asset_take_v);
+  int ret_i = (import asset_io)[1];
+} return int ret_i;

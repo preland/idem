@@ -1,0 +1,19 @@
+// The two halves of ast_form's opening: the kind name, then "(" + kname + dtx
+// + the first optional field, dsp'd. Split out of ast_form to stay within the
+// action limit.
+
+ast_fkind(int nd) {
+  int ast_kd_v = ast_kd(nd);
+  string ast_kname_v = ast_kname(ast_kd_v);
+} return string ast_kname_v;
+
+ast_fhead(int nd) {
+  int ast_ia_v = ast_ia(nd);
+  string s = "(" + ast_fkind(nd) + ast_dtx(nd) + ast_dsp(ast_ia_v);
+} return string s;
+
+ast_fmid(int nd) {
+  int ast_ib_v = ast_ib(nd);
+  int ast_ic_v = ast_ic(nd);
+  string s = ast_dsp(ast_ib_v) + ast_dsp(ast_ic_v);
+} return string s;

@@ -1,0 +1,13 @@
+// The chrome's scale put back. ui_ts belongs to whoever is about to draw a UI,
+// and the editor draws two of them a frame -- the game's, inside the plane, and
+// its own layout, over the whole window.
+ed_plane5(int x, int y, int w, int h) {
+  int txt_val = txt_ui() * 1000;
+  lset((import ui_ts), 0, txt_val);
+  ed_plane5_frame(x, y, w, h);
+} return void;
+
+ed_plane5_frame(int x, int y, int w, int h) {
+  int ed_col_v = ed_col(3);
+  d2_frame(x - 1, y - 1, w + 2, h + 2, ed_col_v);
+} return void;

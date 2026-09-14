@@ -14,9 +14,7 @@ par_top(int[] pos) {
 par_page(int[] pos) {
   par_next(pos);
   par_want(pos, "/");
-  int ast_k_page_v = ast_k_page();
-  int par_item_v = par_item(pos);
-  int ret_i = ast_new_a(ast_k_page_v, "", par_item_v);
+  int ret_i = par_page_node(pos);
 } return int ret_i;
 
 // An unknown keyword is reported and skipped rather than ending the parse: a
@@ -30,7 +28,5 @@ par_page(int[] pos) {
 par_decl(int[] pos) {
   string name = par_text(pos);
   int ln = par_line(pos);
-  par_next(pos);
-  int par_dk_v = par_dk(name);
-  int ret_i = par_dkind(pos, name, par_dk_v, ln);
+  int ret_i = par_decl_kind(pos, name, ln);
 } return int ret_i;

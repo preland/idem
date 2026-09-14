@@ -7,10 +7,14 @@
 // clamp -- unlike the Gouraud accumulator, which steps and can overshoot.
 
 d3_cmix(int a, int b, int t) {
-  int d3_chn_v = d3_chn(a / 65536, b / 65536, t);
-  int d3_chn_v2 = d3_chn(a / 256, b / 256, t);
-  int d3_chn_v3 = d3_chn(a, b, t);
-  int ret_i = d2_rgb(d3_chn_v, d3_chn_v2, d3_chn_v3);
+  int r = d3_chn(a / 65536, b / 65536, t);
+  int g = d3_chn(a / 256, b / 256, t);
+  int ret_i = d3_cmix_b(a, b, t, r, g);
+} return int ret_i;
+
+d3_cmix_b(int a, int b, int t, int r, int g) {
+  int bl = d3_chn(a, b, t);
+  int ret_i = d2_rgb(r, g, bl);
 } return int ret_i;
 
 // One channel. The shift is the caller's, the mask is here: a / 65536 for red is

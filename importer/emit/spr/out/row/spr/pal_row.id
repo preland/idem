@@ -1,0 +1,13 @@
+// One palette line of spr_pal_rows's loop body -- split out to keep it
+// under the action limit.
+
+spr_pal_row(int i) {
+  int ch = spr_char(i);
+  string cs = chr(ch);
+  spr_pal_row_b(i, cs);
+} return void;
+
+spr_pal_row_b(int i, string cs) {
+  string h = imp_hex6((import spr_p)[i]);
+  print("  " + cs + " 0x" + h);
+} return void;

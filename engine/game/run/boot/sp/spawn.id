@@ -5,9 +5,9 @@
 // frame indexes a record and never walks an AST.
 
 scn_spawn(int nd, int i) {
-  while (nd != 0 && i < len(ast_ks(nd))) {
-    int[] ast_ks_v = ast_ks(nd);
-    scn_ent(ast_ks_v[i]);
+  int[] ks = ast_ks(nd);
+  while (nd != 0 && i < len(ks)) {
+    scn_ent(ks[i]);
     i = i + 1;
   }
 } return void;

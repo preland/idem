@@ -1,0 +1,12 @@
+// Every scanline carries a filter byte saying how it was predicted from its
+// neighbours, and undoing it must happen top to bottom and left to right: the
+// prediction refers to bytes this loop has already corrected, so a row cannot be
+// unfiltered out of order.
+png_unfilt(int ok) {
+  int y = 0;
+  while (y < (import png_st)[1] && ok = 1) {
+    int asset_row_v = asset_row(y);
+    png_row(y, asset_row_v);
+    y = y + 1;
+  }
+} return int ok;

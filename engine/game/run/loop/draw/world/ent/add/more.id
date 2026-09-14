@@ -1,0 +1,5 @@
+// ent_add's new-index-plus-init step, split out to stay in budget.
+ent_add2(int n) {
+  int e = n - 1;
+  ent_new(e);
+} return int e;

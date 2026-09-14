@@ -1,0 +1,53 @@
+// The leaves -- the items that paint.
+//
+// A leaf's arguments are ordinary expressions, evaluated to ints. Without the
+// script interpreter that means literals only, which covers every leaf the editor
+// needs: a colour is a literal and a label is a string.
+//
+//     Fill(colour)        a solid rect
+//     Frame(colour)       a one-pixel border, drawn inside the rect
+//     Text("s", colour)   a string, anchored in the rect
+//     Spacer              nothing, and the reason no gap is ever implicit
+//
+// Any of them may be reached through a styled variant, which supplies the colour
+// the item did not write. The item wins wherever it said something: a variant is
+// a default, not an override.
+//
+// An unknown name draws nothing and walks its children with the whole rect, so a
+// leaf this engine has not learned yet degrades to a transparent container rather
+// than to a diagnostic in the middle of a frame.
+
+// Three things can happen to a name, in this order: it is a `define`, in which
+// case the item is replaced by that fragment drawn into this rect; or it is a
+// styled variant, in which case it paints as its base with the variant's
+// defaults; or it is a leaf, in which case it paints. A name that is none of
+// them draws nothing and walks its children, so an item this engine has not
+// learned degrades to a transparent container.
+ui_leaf(int nd, int x, int y, int w, int h) {
+  string ast_tx_v = ast_tx(nd);
+  if (ui_def(ast_tx_v) != 0) {
+    string ast_tx_v2 = ast_tx(nd);
+    int ui_def_v = ui_def(ast_tx_v2);
+    ui_expand(ui_def_v, x, y, w, h);
+  } else {
+    ui_leaf2(nd, x, y, w, h);
+  }
+} return void;
+
+ui_paint(string name, int nd, int x, int y, int w, int h) {
+  if (name = "Fill") {
+    int ui_arg_v = ui_paint_color(nd);
+    sf_rect(x, y, w, h, ui_arg_v);
+  } else {
+    ui_paint2(name, nd, x, y, w, h);
+  }
+} return void;
+
+ui_paint2(string name, int nd, int x, int y, int w, int h) {
+  if (name = "Frame") {
+    int ui_arg_v = ui_paint_color(nd);
+    d2_frame(x, y, w, h, ui_arg_v);
+  } else if (name = "Text") {
+    ui_text(nd, x, y, w, h);
+  }
+} return void;

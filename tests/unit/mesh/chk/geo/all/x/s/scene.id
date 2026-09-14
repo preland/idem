@@ -5,10 +5,18 @@
 // box is the room rather than one mesh's local space. Both come from Blender's
 // own reading of the file, transforms included.
 t_scene() {
+  t_scene_open_report();
+  t_scene_count_report();
+  t_sbox();
+} return void;
+
+t_scene_open_report() {
   int bl_scene_v = bl_scene("games/fps/showroom.blend");
   print("bl_scene showroom exp 1 = " + bl_scene_v);
+} return void;
+
+t_scene_count_report() {
   int len_v = len((import bl_v));
   int bl_ntri_v = bl_ntri();
   print("scene verts exp 130657, triangles exp 233552 = " + len_v / 3 + " " + bl_ntri_v);
-  t_sbox();
 } return void;

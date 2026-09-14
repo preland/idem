@@ -1,0 +1,17 @@
+huf_wstart_test_setup_b() {
+  fse_init();
+  zb_init();
+  huf_wstart_test_b2();
+} return void;
+
+huf_wstart_test_b2() {
+  huf_ab_init();
+  lset((import fse_rl), 6, 0);
+  huf_wstart_test_b3();
+} return void;
+
+huf_wstart_test_b3() {
+  lset((import fse_rl), 7, 4);
+  int p = alloc(2);
+  huf_wstart_test_b4(p);
+} return void;

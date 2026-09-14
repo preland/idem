@@ -1,0 +1,11 @@
+// Attribute.data -> AttributeArray, whose first field is the values pointer.
+bl_adata(int o) {
+  word bl_lew_v = bl_lew(o + 16);
+  int i = bl_at(bl_lew_v);
+  int k = bl_adata_get(i);
+} return int k;
+
+bl_adata_get(int i) {
+  int k = 0 - 1;
+  if (i >= 0) { word bl_lew_v2 = bl_lew((import bl_bp)[i]); k = bl_at(bl_lew_v2); }
+} return int k;

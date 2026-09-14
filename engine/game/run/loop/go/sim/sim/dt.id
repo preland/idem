@@ -1,0 +1,5 @@
+// The declared frame time, closing out what sim_step opened.
+sim_dt() {
+  int fps = fx_max((import scn_st)[2], 1);
+  int dt = 1000 / fps;
+} return int dt;

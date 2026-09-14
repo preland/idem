@@ -1,0 +1,18 @@
+ed_drag_on2(int hit, int in, int btn, int k) {
+  if (hit * in = 1 && (import ed_st)[5] = 0) {
+    ed_drag_beg(k);
+  }
+  ed_drag_end(btn, k);
+} return void;
+
+ed_in_panel() {
+  int x0 = ed_rq(3, 0);
+  int y0 = ed_rq(3, 1);
+  int ret_i = ed_in_panel2(x0, y0);
+} return int ret_i;
+
+ed_in_panel2(int x0, int y0) {
+  int w = ed_rq(3, 2);
+  int h = ed_rq(3, 3);
+  int ret_i = ed_in(x0, y0, w, h);
+} return int ret_i;

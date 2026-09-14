@@ -1,0 +1,19 @@
+// Shared by every binary-operator fold in par/run/exp -- capturing the
+// operator, advancing, recursing and building the node is four actions on its
+// own, so each level splits it the same way. Kept as one function each so the
+// split does not turn into a dozen near-identical copies.
+
+// The operator text, consumed. For a level whose operator is not a single
+// fixed symbol (par_add_f, par_mul_f, par_shift_f, par_eq_f, par_rel_f) and
+// for par_un_f.
+par_optxt(int[] pos) {
+  string txt = par_text(pos);
+  par_next(pos);
+} return string txt;
+
+// The binary node itself, given the operator text (a variable or a fixed
+// symbol -- every level's fold ends by calling this the same way).
+par_binnode(string txt, int lv, int rv) {
+  int ast_k_bin_v = ast_k_bin();
+  int ret_i = ast_new_ab(ast_k_bin_v, txt, lv, rv);
+} return int ret_i;

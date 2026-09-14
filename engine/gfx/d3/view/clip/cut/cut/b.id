@@ -1,0 +1,8 @@
+// The rest of d3_ncut6 -- the y coordinate and the colour cut -- split out
+// to keep it under the action limit.
+
+d3_ncut6_b(int[] tri, int i, int k, int j, int t) {
+  int m1 = d3_mix(tri[i * 3 + 1], tri[k * 3 + 1], t);
+  lset((import d3_clp), j * 3 + 1, m1);
+  d3_ncut3(tri, i, k, j, t);
+} return void;

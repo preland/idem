@@ -1,0 +1,7 @@
+// A block's code and SDNA index, pushed via bl_push.
+
+bl_block_code(int p, int n) {
+  int asset_be32_v = asset_be32(p);
+  int bl_le32_v = bl_le32(p + 4);
+  bl_push(asset_be32_v, p + 32, n, bl_le32_v);
+} return void;

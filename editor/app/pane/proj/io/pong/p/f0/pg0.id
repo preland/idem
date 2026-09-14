@@ -1,0 +1,5 @@
+// The document, four lines at a time.
+
+ed_pg0() {
+  string ret_s = ed_pong_ln("# pong -- created by the idem editor's File > New.") + ed_pong_ln("#") + ed_pong_ln("# Two paddles, a ball, and no art: every visible thing is a `shape box`.") + ed_pong_ln("# w/s move the left paddle, the arrow keys move the right.") + ed_pg1();
+} return string ret_s;

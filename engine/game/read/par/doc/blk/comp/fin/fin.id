@@ -1,0 +1,32 @@
+// Finishing a declaration: the braced body, if there is one.
+//
+// A body holds components (`pos (144, 200)`), nested declarations (`entity` inside
+// a `scene`), and the two sub-languages that already had parsers: `script { }` and
+// `ui { }`. Dispatching on the keyword is all that is needed to reach them, which
+// is why those two were worth building first.
+
+par_dfin(int[] pos, int kd, string name, int a, int[] kids) {
+  if (par_eat(pos, "{") = 1) {
+    par_dbraced(pos, kd, kids);
+    par_want(pos, "}");
+  }
+  int ret_i = ast_new(kd, name, a, 0, 0, kids);
+} return int ret_i;
+
+par_dinner(int[] pos, int[] kids) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_member_v = par_member(pos);
+    push(kids, par_member_v);
+  }
+} return void;
+
+// A member is a nested declaration if its keyword is one, a script or a ui block
+// if it is one of those, and an ordinary component otherwise.
+par_member(int[] pos) {
+  int nd = 0;
+  if (par_member_iskw(pos) != 0) {
+    nd = par_decl(pos);
+  } else {
+    nd = par_mem2(pos);
+  }
+} return int nd;

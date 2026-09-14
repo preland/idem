@@ -1,0 +1,16 @@
+// The widest label decides the panel, so nothing is clipped and nothing floats in
+// space. Recomputed rather than stored: it is a handful of string widths once a
+// frame, and a stored one would go stale when the text scale changed.
+ed_pop_w(int k, int i, int w) {
+  while (i < ed_mn(k)) {
+    w = ed_pop_w_step(k, i, w);
+    i = i + 1;
+  }
+  int ret_i = w + 16 * txt_ui();
+} return int ret_i;
+
+ed_pop_w_step(int k, int i, int w) {
+  string ed_mitem_v = ed_mitem(k, i);
+  int txt_width_v = txt_width(ed_mitem_v);
+  int ret_i = fx_max(w, txt_width_v);
+} return int ret_i;

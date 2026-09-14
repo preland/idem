@@ -1,0 +1,10 @@
+bl_wry(int p, int si) {
+  int deg_v = bl_rot_angle(p, si, 0);
+  bl_wry_rot(deg_v);
+} return void;
+
+bl_wry_rot(int deg_v) {
+  m4_ident((import bl_m1));
+  m4_rot4((import bl_m1), 5, 6, 9, 10, deg_v);
+  bl_wmul();
+} return void;

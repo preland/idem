@@ -1,0 +1,13 @@
+// idem_aui's stage rect, gathered two at a time like run_ui2's and closing on
+// the same run_ui4 draw.
+
+idem_aui2() {
+  int pg = (import ui_pg)[0];
+  int sx = sys_sx();
+  idem_aui3(pg, sx);
+} return void;
+
+idem_aui3(int pg, int sx) {
+  int sy = sys_sy();
+  run_ui4(pg, sx, sy);
+} return void;

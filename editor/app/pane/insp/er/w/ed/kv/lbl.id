@@ -1,0 +1,10 @@
+ed_kv_lbl(int x, int y, string s) {
+  int ui = txt_ui();
+  int col = ed_col(5);
+  txt_draw(s, x + 6 * ui, y, col);
+} return void;
+
+ed_kv_text_draw_do(int x, int y, string fit, int ui, int wid) {
+  int col = ed_col(4);
+  txt_draw(fit, x + 12 * ui + wid, y, col);
+} return void;

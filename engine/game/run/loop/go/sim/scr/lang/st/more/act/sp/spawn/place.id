@@ -1,0 +1,11 @@
+// scr_place's y coordinate and its `on start` fire, closing out the spawn.
+
+scr_place2(int ne, int tup, int e) {
+  int y = scr_tup(tup, 1, e);
+  ent_put(ne, 1, y * 1000);
+  scr_place3(ne);
+} return void;
+
+scr_place3(int ne) {
+  scn_start1(ne);
+} return void;

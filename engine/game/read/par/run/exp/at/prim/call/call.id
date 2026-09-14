@@ -1,0 +1,20 @@
+par_call(int[] pos) {
+  string name = par_optxt(pos);
+  int[] kids = [];
+  int ret_i = par_call2(pos, name, kids);
+} return int ret_i;
+
+par_call2(int[] pos, string name, int[] kids) {
+  par_want(pos, "(");
+  par_efill(pos, kids);
+  int ret_i = par_call_node(name, kids);
+} return int ret_i;
+
+par_efill(int[] pos, int[] kids) {
+  while (par_is(pos, ")") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_expr_v = par_expr(pos);
+    push(kids, par_expr_v);
+    par_eat(pos, ",");
+  }
+  par_eat(pos, ")");
+} return void;

@@ -1,0 +1,32 @@
+// The frame header: how big the image is and what it is made of.
+//
+// Payload: precision, height, width, component count, then three bytes per
+// component -- id, packed sampling factors, quantisation table.
+//
+// Height before width, which is the opposite of every other pair in this engine
+// and is what the standard says.
+
+jpg_sof(int p, int m) {
+  lset((import jpg_st), 10, m = 194);
+  jpg_sof1(p);
+} return void;
+
+// Only 8-bit samples. A 12-bit image would need wider coefficients and a
+// different IDCT scaling throughout, so it is refused rather than read as if the
+// top half of every sample were the whole of it.
+// A refusal has to STOP the setup, not merely be recorded: jpg_comps allocates a
+// coefficient buffer per component from dimensions that a refused header has no
+// business supplying. Recording a fault and carrying on regardless is the shape
+// of bug that makes an unsupported file look like a working one right up until
+// it does not.
+jpg_sof2(int p, int nc, int prec) {
+  int fx_min_v = fx_min(nc, 4);
+  lset((import jpg_st), 2, fx_min_v);
+  jpg_sof2b(p, nc, prec);
+} return void;
+
+jpg_prec(int prec, int nc) {
+  if (prec != 8 || nc < 1 || nc > 4) {
+    lset((import jpg_st), 8, 0);
+  }
+} return void;

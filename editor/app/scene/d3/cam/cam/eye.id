@@ -1,0 +1,18 @@
+// Set camera eye position from distance and angles.
+
+ed_cam_set_eye(int d, int deg, int pit) {
+  int ex = ed_cam_coord_x(d, deg, pit);
+  int ey = ed_cam_coord_y(d, pit);
+  ed_cam_apply(ex, ey, d, deg, pit);
+} return void;
+
+ed_cam_apply(int ex, int ey, int d, int deg, int pit) {
+  int ez = ed_cam_coord_z(d, deg, pit);
+  d3_cam_set(ex, ey, ez);
+} return void;
+
+ed_cam_coord_y(int d, int pit) {
+  int sin_p = fx_sin(pit);
+  int dy = fx_mul(d, sin_p, 1000);
+  int v = (import ed_st)[11] - dy;
+} return int v;

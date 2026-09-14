@@ -1,0 +1,11 @@
+t_home2_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("home, then backspace at 0 exp ac caret 0 = " + tin_text_v + " " + tin_caret_v);
+} return void;
+
+t_end_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("end, then right at the end exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
+} return void;

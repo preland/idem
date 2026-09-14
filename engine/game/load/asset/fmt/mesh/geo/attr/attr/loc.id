@@ -1,0 +1,12 @@
+// Locating the attribute array and its element count from the storage offset.
+
+bl_afind_walk(int p, int foff, string name) {
+  int ap = bl_afind_ap(p, foff);
+  int n = bl_le32(p + foff + 8);
+  int ret_i = bl_awalk(ap, n, name);
+} return int ret_i;
+
+bl_afind_ap(int p, int foff) {
+  word bl_lew_v = bl_lew(p + foff);
+  int ap = bl_at(bl_lew_v);
+} return int ap;

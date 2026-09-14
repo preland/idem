@@ -1,0 +1,6 @@
+// Helper for zst_lreg computation.
+
+zst_lreg_comp(word wp, int w) {
+  zst_lregv(wp, w);
+  int ret_i = wp / 16 % inf_pow2(w);
+} return int ret_i;

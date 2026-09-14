@@ -1,0 +1,21 @@
+// The entity's centre, in surface pixels, against the band. Its centre and not
+// its rect: a sprite stretched twelve screens wide would otherwise be selected by
+// a band anywhere on the row, and what a person means by dragging over a thing is
+// the thing they can see the middle of.
+ed_inband(int e) {
+  int epx_v = ed_epx(e, 0);
+  int epy_v = ed_epy(e);
+  int ret_i = ed_inband2(epx_v, epy_v);
+} return int ret_i;
+
+ed_inband2(int x, int y) {
+  int bx0_v = ed_bx0();
+  int by0_v = ed_by0();
+  int ret_i = ed_inband3(x, y, bx0_v, by0_v);
+} return int ret_i;
+
+ed_inband3(int x, int y, int bx0, int by0) {
+  int bx1_v = ed_bx1();
+  int by1_v = ed_by1();
+  int ret_i = ed_in2(x, y, bx0, by0, bx1_v, by1_v);
+} return int ret_i;

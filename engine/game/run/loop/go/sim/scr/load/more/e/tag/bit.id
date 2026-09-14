@@ -1,0 +1,6 @@
+// One tag argument's bit, closing out what scr_etag opened.
+scr_etagbit(int nd) {
+  string tx = ast_tx(nd);
+  int tag = scr_tag(tx);
+  int bit = inf_pow2(tag);
+} return int bit;

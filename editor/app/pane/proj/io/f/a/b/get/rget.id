@@ -1,0 +1,11 @@
+ed_rnow(int h, int[] buf) {
+  int n = 0;
+  if (h >= 0) { int len_v = len(buf); n = fs_read(h, buf, len_v); }
+  ed_wshut(h);
+} return int n;
+
+ed_rget(string path, int[] buf) {
+  int h = fs_open(path, "r");
+  int n = ed_rnow(h, buf);
+  string ret_s = ed_rstr(buf, 0, n, "");
+} return string ret_s;

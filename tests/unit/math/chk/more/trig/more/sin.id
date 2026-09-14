@@ -1,0 +1,16 @@
+t_norm5(int fx_norm_deg_v4, int fx_norm_deg_v5, int fx_norm_deg_v6, int fx_norm_deg_v7) {
+  print("fx_norm_deg(360000,725000,-360000,-725000) exp 0 5000 0 355000 = " + fx_norm_deg_v4 + " " + fx_norm_deg_v5 + " " + fx_norm_deg_v6 + " " + fx_norm_deg_v7);
+  t_sin();
+} return void;
+
+t_sin2(int fx_sin_v, int fx_sin_v2) {
+  int fx_sin_v3 = fx_sin(45000);
+  int fx_sin_v4 = fx_sin(60000);
+  t_sin3(fx_sin_v, fx_sin_v2, fx_sin_v3, fx_sin_v4);
+} return void;
+
+t_sin3(int fx_sin_v, int fx_sin_v2, int fx_sin_v3, int fx_sin_v4) {
+  print("fx_sin(0,30000,45000,60000) exp 0 500 707 866 = " + fx_sin_v + " " + fx_sin_v2 + " " + fx_sin_v3 + " " + fx_sin_v4);
+  int fx_sin_v5 = fx_sin(90000);
+  t_sin4(fx_sin_v5);
+} return void;

@@ -1,0 +1,16 @@
+jpg_sof1(int p) {
+  int asset_at_v = asset_at(p + 1);
+  int asset_at_v2 = asset_at(p + 2);
+  jpg_sof1b(p, asset_at_v, asset_at_v2);
+} return void;
+
+jpg_sof1b(int p, int asset_at_v, int asset_at_v2) {
+  int asset_at_v3 = asset_at(p + 3);
+  int asset_at_v4 = asset_at(p + 4);
+  jpg_sof1c(p, asset_at_v, asset_at_v2, asset_at_v3, asset_at_v4);
+} return void;
+
+jpg_sof1c(int p, int asset_at_v, int asset_at_v2, int asset_at_v3, int asset_at_v4) {
+  m4_pair((import jpg_st), 1, 0, asset_at_v * 256 + asset_at_v2, asset_at_v3 * 256 + asset_at_v4);
+  jpg_sof1d(p);
+} return void;

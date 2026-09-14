@@ -1,0 +1,5 @@
+ed_err_row_msg_fit(int w, int i) {
+  int ui = txt_ui();
+  int cell = txt_cell();
+  string fit = ed_fit((import err_ms)[i], (w - 12 * ui) / (cell * ui));
+} return string fit;

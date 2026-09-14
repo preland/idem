@@ -1,0 +1,24 @@
+// The header strip, and the title in it. Drawn even when the title is empty,
+// because the strip is what separates one pane from the next when they abut.
+//
+// Every measurement here is in *design pixels multiplied by txt_ui()*. The text
+// scales with the window (engine/gfx/d2/text/font/cell/ui.id), so anything that
+// has to sit beside it or contain it must scale by exactly the same step, or the
+// chrome and the type drift apart the first time the window is resized.
+ed_bar(int x, int y, int w, string title) {
+  ed_bar_bg(x, y, w);
+  ed_bar_line(x, y, w);
+  ed_bar_txt(x, y, title);
+} return void;
+
+ed_bar_bg(int x, int y, int w) {
+  int ed_hdr_v = ed_hdr();
+  int col = ed_col(2);
+  sf_rect(x + 1, y + 1, w - 2, ed_hdr_v - 2, col);
+} return void;
+
+ed_bar_line(int x, int y, int w) {
+  int ed_hdr_v = ed_hdr();
+  int col = ed_col(3);
+  d2_hline(x + 1, y + ed_hdr_v - 1, w - 2, col);
+} return void;

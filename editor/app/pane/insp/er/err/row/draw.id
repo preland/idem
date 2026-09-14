@@ -1,0 +1,10 @@
+ed_err_row_msg_draw(int x, int y, string fit) {
+  int ui = txt_ui();
+  ed_err_row_msg_paint(x, y, fit, ui);
+} return void;
+
+ed_err_row_msg_paint(int x, int y, string fit, int ui) {
+  int h = ed_rowh();
+  int col = ed_col(4);
+  txt_draw(fit, x + 10 * ui, y + h, col);
+} return void;

@@ -1,0 +1,11 @@
+t_fxmul2(int fx_mul_v, int fx_mul_v2) {
+  print("fx_mul(2000,3000,1000) exp 6000 | (-2000,3000,1000) exp -6000 = " + fx_mul_v + " " + fx_mul_v2);
+  int fx_mul_v3 = fx_mul(100000, 100000, 1000);
+  t_fxmul3(fx_mul_v3);
+} return void;
+
+t_fxmul3(int fx_mul_v3) {
+  int fx_mul_v4 = fx_mul(46341, 46341, 1000);
+  print("fx_mul word intermediate (100000,100000,1000) exp 10000000 | (46341,46341,1000) exp 2147488 = " + fx_mul_v3 + " " + fx_mul_v4);
+  t_fxdiv();
+} return void;

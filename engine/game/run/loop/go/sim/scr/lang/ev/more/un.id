@@ -6,6 +6,12 @@ scr_un(string op, int v) {
   else if (op = "~") { r = 0 - v - 1; }
 } return int r;
 
+// scr_ev6's operand, evaluated before the unary op is looked up.
+scr_unrhs(int nd, int e) {
+  int ia = ast_ia(nd);
+  int rhs = scr_ev(ia, e);
+} return int rhs;
+
 // A bare identifier. Almost always a variable; `time` is the exception, and it is
 // one because every game wants the clock and none of them should have to declare
 // it. It is milliseconds since the scene loaded, which is what a `sin(time * n)`

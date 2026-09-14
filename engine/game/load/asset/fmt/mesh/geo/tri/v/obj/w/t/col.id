@@ -1,0 +1,10 @@
+bl_wcol(int i, int a, int b, int c) {
+  bl_wcol_set(i, 0, a);
+  bl_wcol_set(i, 1, b);
+  bl_wcol_set(i, 2, c);
+} return void;
+
+bl_wcol_set(int i, int j, int v) {
+  int fx_mul_v = fx_mul((import bl_wm)[i * 4 + j], v, 1000);
+  lset((import bl_wm), i * 4 + j, fx_mul_v);
+} return void;

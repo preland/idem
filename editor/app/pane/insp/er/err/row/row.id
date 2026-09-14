@@ -1,0 +1,9 @@
+ed_err_row_msg(int x, int y, int w, int i) {
+  string fit = ed_err_row_msg_fit(w, i);
+  ed_err_row_msg_draw(x, y, fit);
+} return void;
+
+ed_err_row(int x, int y, int w, int i) {
+  ed_err_where(x, y, w, i);
+  ed_err_row_msg(x, y, w, i);
+} return void;

@@ -1,0 +1,7 @@
+// The remaining two scale components, and the diagonal-scale call.
+
+bl_wts_scale2(int p, int off, int s0) {
+  int s1 = bl_f32(p + off + 4);
+  int s2 = bl_f32(p + off + 8);
+  bl_wscale(s0, s1, s2);
+} return void;

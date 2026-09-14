@@ -1,0 +1,26 @@
+// A scene's own variables and script, and an entity's.
+//
+// A scene load truncates the variable table back to the game's block and then
+// declares the scene's `var`s, so entering a scene twice -- which is how flappy
+// restarts a run -- starts from the declared values rather than from wherever the
+// last run left them.
+
+scn_svars(int nd, int i) {
+  scr_reset();
+  scn_svars1(nd, i);
+} return void;
+
+scn_svars1(int nd, int i) {
+  int len_v = len((import scr_vv));
+  lset((import scn_st), 10, len_v);
+  scn_svars2(nd, i);
+} return void;
+
+scn_svars2(int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scn_svar(ks[i]);
+    i = i + 1;
+  }
+  scn_svars3();
+} return void;

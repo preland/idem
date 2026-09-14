@@ -1,0 +1,10 @@
+// The rest of m4_dot -- the accumulation loop and the narrowing divide --
+// split out to keep m4_dot under the action limit.
+
+m4_dot_acc(int[] xs, int[] ys, int i, int j, word wp, int k) {
+  while (k < 4) {
+    wp = wp + m4_wmul(xs[i * 4 + k], ys[k * 4 + j]);
+    k = k + 1;
+  }
+  int ret_i = wp / 1000;
+} return int ret_i;

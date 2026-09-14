@@ -1,0 +1,5 @@
+jpg_dstep2(int t, int[] st, int st_v, int jpg_bit_v) {
+  lset(st, 0, st_v * 2 + jpg_bit_v);
+  int ok = st[0] - st[1] < (import jpg_hc)[t * 17 + st[3]];
+  int ret_i = jpg_dnext(t, st, ok);
+} return int ret_i;

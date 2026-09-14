@@ -1,0 +1,17 @@
+ed_panes2() {
+  ed_panes2_i();
+  ed_panes2_p();
+  ed_bars();
+} return void;
+
+ed_panes2_p() {
+  int r0 = ed_rq(5, 0);
+  int r1 = ed_rq(5, 1);
+  ed_panes2_p2(r0, r1);
+} return void;
+
+ed_panes2_p2(int r0, int r1) {
+  int r2 = ed_rq(5, 2);
+  int r3 = ed_rq(5, 3);
+  ed_proj(r0, r1, r2, r3);
+} return void;

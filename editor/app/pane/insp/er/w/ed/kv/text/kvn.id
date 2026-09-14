@@ -1,0 +1,15 @@
+ed_kvn_text_do(int x, int y, int v, int ui, int wid) {
+  int col = ed_col(4);
+  txt_number(v, x + 12 * ui + wid, y, col);
+} return void;
+
+ed_kvn_text(int x, int y, int v) {
+  int ui = txt_ui();
+  int wid = txt_width("selected");
+  ed_kvn_text_do(x, y, v, ui, wid);
+} return void;
+
+ed_kvn(int x, int y, string s, int v) {
+  ed_kv_lbl(x, y, s);
+  ed_kvn_text(x, y, v);
+} return void;

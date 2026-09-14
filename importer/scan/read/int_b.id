@@ -1,0 +1,7 @@
+// The rest of imp_int -- advancing the cursor and scaling by the sign --
+// split out to keep imp_int under the action limit.
+
+imp_int_b(int sg, int i, string src) {
+  lset((import imp_p), 0, i + (sg < 0));
+  int ret_i = sg * imp_digits(src, (import imp_p)[0]);
+} return int ret_i;

@@ -1,0 +1,18 @@
+// The rest of d3_span2's and d3_span3's setup -- split out to keep both
+// under the action limit.
+
+d3_span2_b(int y, int[] st, int n, int m) {
+  d3_steps(st, m);
+  d3_span3(y, st, m);
+} return void;
+
+d3_span3_b(int y, int[] st, int t, int cl) {
+  int i = sf_idx(st[0] + cl, y);
+  int xmax = fx_min(st[6], (import d3_vp)[2]);
+  d3_span3_c(y, st, t, i, xmax);
+} return void;
+
+d3_span3_c(int y, int[] st, int t, int i, int xmax) {
+  int j = sf_idx(xmax, y);
+  d3_span4(i, j, st, t);
+} return void;

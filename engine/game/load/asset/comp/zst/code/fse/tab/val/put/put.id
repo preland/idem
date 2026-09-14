@@ -1,0 +1,26 @@
+// Recording a count, and shrinking the code width behind it.
+//
+// The count is stored biased -- what the stream carries is one more than the real
+// probability, so that -1 is expressible -- and the mass it consumes is its
+// magnitude, since a -1 symbol still occupies one slot in the table.
+
+fse_rput(int c) {
+  lset((import fse_ct), (import fse_st)[4], c);
+  fse_rput_upd(c);
+} return void;
+
+fse_rnext(int c) {
+  lset((import fse_st), 4, (import fse_st)[4] + 1);
+  lset((import fse_st), 5, c = 0);
+  fse_rshrink();
+} return void;
+
+// As the remaining mass falls below the threshold, both halve: the encoder spends
+// only as many bits as the residue can still need, and a decoder that keeps the
+// original width reads garbage from the second symbol onward.
+fse_rshrink() {
+  while ((import fse_st)[1] < (import fse_st)[2]) {
+    lset((import fse_st), 3, (import fse_st)[3] - 1);
+    lset((import fse_st), 2, (import fse_st)[2] / 2);
+  }
+} return void;

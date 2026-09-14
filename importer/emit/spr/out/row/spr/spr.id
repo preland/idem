@@ -1,0 +1,27 @@
+// The palette's colour lines, and the sprite block's header and frames.
+
+spr_pal_rows(int i) {
+  while (i < len((import spr_p))) {
+    spr_pal_row(i);
+    i = i + 1;
+  }
+} return void;
+
+// The three-argument form of `sprite` is the animated one (IDML_GAME.md §2), and
+// a sheet is always animated even when it has one cell -- a one-frame animation
+// is a still, and having one shape here means a game never has to know which kind
+// of sheet it was given.
+spr_spr() {
+  print("");
+  print("sprite " + (import spr_nm)[0] + "(" + (import spr_d)[0] + ", " + (import spr_d)[1] + ", " + (import spr_d)[2] * (import spr_d)[3] + ") using " + (import spr_nm)[0] + "-pal {");
+  spr_frames();
+} return void;
+
+spr_frames() {
+  int f = 0;
+  while (f < (import spr_d)[2] * (import spr_d)[3]) {
+    spr_frame(f);
+    f = f + 1;
+  }
+  print("}");
+} return void;

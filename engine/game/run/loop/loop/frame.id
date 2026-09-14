@@ -1,0 +1,5 @@
+// run_frame's step-then-pace, closing out what it opened.
+run_frame2(int t) {
+  run_step();
+  sys_pace(t, (import scn_st)[2]);
+} return void;

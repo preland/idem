@@ -1,0 +1,4 @@
+t_draw4_show() {
+  int tin_off_v = tin_off(56);
+  print("20 characters in a 56-pixel field: tin_off exp 112 = " + tin_off_v);
+} return void;

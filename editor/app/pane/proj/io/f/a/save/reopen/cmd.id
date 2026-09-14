@@ -1,0 +1,9 @@
+ed_reopen_prepare_cmd(string up, string base) {
+  string cmd = "#root " + up + chr(10) + "#file " + base + chr(10) + (import ed_doc)[0];
+} return string cmd;
+
+ed_reopen_cmd() {
+  string up_dir = ed_up((import ed_path)[0]);
+  string base = ed_base((import ed_path)[0]);
+  string cmd = ed_reopen_prepare_cmd(up_dir, base);
+} return string cmd;

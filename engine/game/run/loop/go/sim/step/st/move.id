@@ -1,0 +1,13 @@
+// sim_move's two axes.
+
+sim_movex(int e, int dt) {
+  int x = ent_at(e, 0);
+  int vx = ent_at(e, 2);
+  ent_put(e, 0, x + vx * dt / 1000);
+} return void;
+
+sim_movey(int e, int dt) {
+  int y = ent_at(e, 1);
+  int vy = ent_at(e, 3);
+  ent_put(e, 1, y + vy * dt / 1000);
+} return void;

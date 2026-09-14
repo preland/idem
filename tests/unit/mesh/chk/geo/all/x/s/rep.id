@@ -1,0 +1,17 @@
+t_sbox_x() {
+  int t_lo_v = t_lo(0);
+  int t_hi_v = t_hi(0);
+  print("scene x exp -6525 9300 = " + t_lo_v + " " + t_hi_v);
+} return void;
+
+t_sbox_y() {
+  int t_lo_v2 = t_lo(1);
+  int t_hi_v2 = t_hi(1);
+  print("scene y exp -1000 4350 = " + t_lo_v2 + " " + t_hi_v2);
+} return void;
+
+t_sbox_z() {
+  int t_lo_v = t_lo(2);
+  int t_hi_v = t_hi(2);
+  print("scene z exp -6719 4239 = " + t_lo_v + " " + t_hi_v);
+} return void;

@@ -1,0 +1,23 @@
+// A labelled number, and the three the status line carries.
+
+ed_snum(int x, int y, string s, int v) {
+  int col = ed_col(5);
+  ed_sdraw(x, y, s, col);
+  int ret_i = ed_snum2(x, y, s, v);
+} return int ret_i;
+
+ed_snm2(int x, int y, int v) {
+  if (x < (import sf_gw)) {
+    int ed_col_v = ed_col(4);
+    txt_number(v, x, y, ed_col_v);
+  }
+} return void;
+
+// The surface, then the stage inside it and the scale it was fitted at -- the
+// numbers that make a letterboxed or cropped window explicable rather than
+// surprising, and that say plainly that the surface is the window.
+ed_status_n(int x, int y) {
+  x = ed_snum(x, y, "surface", (import sf_gw));
+  x = ed_snum(x, y, "x", (import sf_gh));
+  ed_status_wh(x, y);
+} return void;

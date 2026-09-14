@@ -1,0 +1,35 @@
+// IHDR, and gathering the IDATs.
+//
+// Colour type decides how many bytes a pixel takes: 0 grey (1), 2 truecolour (3),
+// 4 grey+alpha (2), 6 truecolour+alpha (4). Type 3 is a palette and is refused
+// here -- it needs the PLTE chunk and an indirection this decoder does not have
+// yet, and refusing is better than drawing an image whose colours are indices.
+//
+// Only 8 bits per channel, and no interlacing. 16-bit PNGs exist and would double
+// every stride; a decoder that silently read one as 8-bit would produce a picture
+// made of the high halves of its samples, which looks like a corrupted image
+// rather than an unsupported one. Adam7 interlacing is refused for the same
+// reason. All three refusals are recorded in png_st slot 9 as -1, and the chunk
+// walk stops on it -- see png_more.
+
+png_ihdr(int p) {
+  int asset_be32_v = asset_be32(p);
+  int asset_be32_v2 = asset_be32(p + 4);
+  int ret_i = png_ihdr_p(p, asset_be32_v, asset_be32_v2);
+} return void;
+
+png_ihdr1(int p) {
+  int asset_at_v = asset_at(p + 8);
+  int asset_at_v2 = asset_at(p + 9);
+  int ret_i = png_ihdr1_p(p, asset_at_v, asset_at_v2);
+} return void;
+
+// IHDR + 12 is the interlace method. It was never read, which meant an Adam7
+// file decoded as garbage rather than being refused: the seven passes are laid
+// out nothing like the scanlines this decoder expects, and it would happily
+// unfilter them into a picture made of interleaved fragments.
+png_ihdr2(int p) {
+  int asset_at_v = asset_at(p + 12);
+  lset((import png_st), 10, asset_at_v);
+  png_ihdr3();
+} return void;

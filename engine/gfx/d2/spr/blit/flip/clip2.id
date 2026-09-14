@@ -1,0 +1,13 @@
+// The rest of d2_flip_clip's row extent -- split out to keep it under the
+// action limit.
+
+d2_flip_clip2(int p, int x, int y, int i, int x0, int w) {
+  int x1 = fx_min(x + w - 1, (import sf_gw) - 1);
+  int[] px = d2_spr_px(p);
+  d2_flip_clip3(x, y, i, x0, x1, w, px);
+} return void;
+
+d2_flip_clip3(int x, int y, int i, int x0, int x1, int w, int[] px) {
+  int idx = sf_idx(x0, y);
+  d2_flip_row(px, i + w - 1 - x0 + x, (import sf_fb), idx, x1 - x0 + 1);
+} return void;

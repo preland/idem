@@ -1,0 +1,4 @@
+ed_insp_tag_draw_line(int x, int y, int w, int h, int ui) {
+  int col = ed_col(3);
+  d2_hline(x + 4 * ui, y + 2 * (h + 2), w - 8 * ui, col);
+} return void;

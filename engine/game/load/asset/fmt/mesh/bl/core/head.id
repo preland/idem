@@ -1,0 +1,5 @@
+// `BLENDER`, then the header length as two ASCII digits. 66 is 'B', 82 is 'R'.
+bl_head() {
+  int ok = 0;
+  if (asset_at(0) = 66 && asset_at(6) = 82) { ok = bl_hlen(); }
+} return int ok;

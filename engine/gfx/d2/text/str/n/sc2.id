@@ -1,0 +1,13 @@
+// The rest of txt_num_sc -- the digit power and the run -- split out to keep
+// txt_num_sc under the action limit.
+
+txt_num_sc2(int m, int v, int x, int y, int c, int sc) {
+  int cell = txt_cell();
+  int pow = txt_num_pow(m);
+  txt_num_sc3(m, v, x, y, c, sc, cell, pow);
+} return void;
+
+txt_num_sc3(int m, int v, int x, int y, int c, int sc, int cell, int pow) {
+  int pw = txt_num_pw(pow, sc);
+  txt_num_run(m, x + cell * sc / 1000 * (v < 0), y, c, pw);
+} return void;

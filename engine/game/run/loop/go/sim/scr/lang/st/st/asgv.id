@@ -1,0 +1,4 @@
+// scr_ex1's assigned value, closing out what scr_ex1 opened.
+scr_ex1v(int nd, int e) {
+  int rhs = scr_binr(nd, e);
+} return int rhs;

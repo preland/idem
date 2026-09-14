@@ -5,14 +5,16 @@
 // half is ignored -- a single line is centred in its rect, which is what every
 // one of these has meant since the first layout.
 
+ui_tx_off(int x, int w, int n, string txt) {
+  int ui_ax_v = ui_ax(txt, w);
+  int ui_al_v = ui_al(txt);
+  int ret_i = x + ui_ax_v - txt_align(n, ui_al_v);
+} return int ret_i;
+
 ui_tx(int nd, int x, int w, int n) {
   int ast_ib_v = ast_ib(nd);
   string ast_tx_v = ast_tx(ast_ib_v);
-  int ui_ax_v = ui_ax(ast_tx_v, w);
-  int ast_ib_v2 = ast_ib(nd);
-  string ast_tx_v2 = ast_tx(ast_ib_v2);
-  int ui_al_v = ui_al(ast_tx_v2);
-  int ret_i = x + ui_ax_v - txt_align(n, ui_al_v);
+  int ret_i = ui_tx_off(x, w, n, ast_tx_v);
 } return int ret_i;
 
 // Centred on the rect at the *UI's* scale, so a label stays in the middle of its

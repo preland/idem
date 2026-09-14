@@ -1,5 +1,9 @@
 par_h2(int[] pos, string name) {
   int arg = par_hopt(pos);
+  int ret_i = par_h2_node(pos, name, arg);
+} return int ret_i;
+
+par_h2_node(int[] pos, string name, int arg) {
   int ast_k_on_v = ast_k_on();
   int par_block_v = par_block(pos);
   int ret_i = ast_new_ab(ast_k_on_v, name, arg, par_block_v);

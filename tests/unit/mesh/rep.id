@@ -1,0 +1,9 @@
+t_main_open() {
+  int bl_open_v = bl_open("tests/unit/mesh/cube.blend");
+  print("open cube.blend exp 1 = " + bl_open_v);
+} return void;
+
+t_main_blocks_count() {
+  int t_count_v = t_count(1145132097);
+  print("DATA blocks exp 1046 = " + t_count_v);
+} return void;

@@ -1,0 +1,6 @@
+// The entity block's count and scan, closing out what scr_find opened.
+scr_find2(int e, string name, int lo) {
+  int n = scr_eb(e, 18);
+  int i = scr_scan(lo, lo + n, name);
+  if (i < 0) { i = scr_sfind(name); }
+} return int i;

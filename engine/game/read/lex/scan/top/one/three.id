@@ -1,0 +1,14 @@
+// 34 is a double quote. Everything left is punctuation: there is no whitelist,
+// which is why adding an operator to the language needs no change here.
+// Split into two: alpha-vs-other first, then quote-vs-punct, to stay within
+// the action limit.
+lex_one3(string src, int i, int[] out) {
+  int charat_v = charat(src, i);
+  if (lex_is_alpha(charat_v)) { out[0] = lex_ident(src, i); }
+  else { lex_one4(src, i, out); }
+} return void;
+
+lex_one4(string src, int i, int[] out) {
+  if (charat(src, i) = 34) { out[0] = lex_string(src, i); }
+  else { out[0] = lex_punct(src, i); }
+} return void;

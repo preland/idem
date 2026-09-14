@@ -1,0 +1,6 @@
+// par_uref2's live-marker scan, split out to stay within the action limit.
+
+par_uref2_txt(int[] pos) {
+  string txt = "";
+  if (par_is(pos, "!")) { txt = "!"; par_next(pos); }
+} return string txt;

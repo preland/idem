@@ -1,0 +1,12 @@
+// par_dims4's anchor-and-bracket prefix, then its node build. Split to stay
+// within the action limit.
+
+par_dims4_name(int[] pos) {
+  string name = par_anchor(pos);
+  par_want(pos, "]");
+} return string name;
+
+par_dims4_node(string name, int a, int b) {
+  int ast_k_dims_v = ast_k_dims();
+  int ret_i = ast_new_ab(ast_k_dims_v, name, a, b);
+} return int ret_i;

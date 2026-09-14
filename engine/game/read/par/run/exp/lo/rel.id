@@ -1,22 +1,18 @@
-par_eq_f(int[] pos, int left) {
-  string txt = par_text(pos);
-  par_next(pos);
+par_eq_f(int[] pos, int lv) {
+  string txt = par_optxt(pos);
   int nd = par_rel(pos);
-  int ast_k_bin_v = ast_k_bin();
-  int ret_i = ast_new_ab(ast_k_bin_v, txt, left, nd);
+  int ret_i = par_binnode(txt, lv, nd);
 } return int ret_i;
 
 par_rel(int[] pos) {
-  int left = par_bor(pos);
+  int lv = par_bor(pos);
   while (par_is_relop(pos)) {
-    left = par_rel_f(pos, left);
+    lv = par_rel_f(pos, lv);
   }
-} return int left;
+} return int lv;
 
-par_rel_f(int[] pos, int left) {
-  string txt = par_text(pos);
-  par_next(pos);
+par_rel_f(int[] pos, int lv) {
+  string txt = par_optxt(pos);
   int nd = par_bor(pos);
-  int ast_k_bin_v = ast_k_bin();
-  int ret_i = ast_new_ab(ast_k_bin_v, txt, left, nd);
+  int ret_i = par_binnode(txt, lv, nd);
 } return int ret_i;

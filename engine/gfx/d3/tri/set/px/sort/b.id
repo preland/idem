@@ -1,0 +1,14 @@
+// The rest of d3_tri2 -- the two halves' y ranges -- split out to keep it
+// under the action limit.
+
+d3_tri2_b(int[] verts, int y0) {
+  int y1 = fx_min(verts[7] - 1, (import d3_vp)[3]);
+  d3_half(verts, y0, y1, 0, 12, 0, 6);
+  d3_tri2_c(verts);
+} return void;
+
+d3_tri2_c(int[] verts) {
+  int y2 = fx_max(verts[7], (import d3_vp)[1]);
+  int y3 = fx_min(verts[13], (import d3_vp)[3]);
+  d3_half(verts, y2, y3, 0, 12, 6, 12);
+} return void;

@@ -13,9 +13,9 @@ scr_fire(int sc, string evn, int e, string tg) {
 } return void;
 
 scr_floop(int sc, string evn, int e, string tg, int i) {
-  while (i < len(ast_ks(sc))) {
-    int[] ast_ks_v = ast_ks(sc);
-    scr_fone(ast_ks_v[i], evn, e, tg);
+  int[] ks = ast_ks(sc);
+  while (i < len(ks)) {
+    scr_fone(ks[i], evn, e, tg);
     i = i + 1;
   }
 } return void;

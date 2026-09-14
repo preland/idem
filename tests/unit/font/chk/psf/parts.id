@@ -1,0 +1,9 @@
+t_psf2_metrics() {
+  string msg = "  metrics exp w 8 h 16 bits 8 glyphs 224, last 255 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen() + " " + txt_last();
+  print(msg);
+} return void;
+
+t_rows_block() {
+  string msg = "  block 219 rows 0,15 exp 255 255 | shade 176 rows 0,1 exp 17 68 = " + (import txt_glyphs)[txt_glyph_at(219)] + " " + (import txt_glyphs)[txt_glyph_at(219) + 15] + " " + (import txt_glyphs)[txt_glyph_at(176)] + " " + (import txt_glyphs)[txt_glyph_at(176) + 1];
+  print(msg);
+} return void;

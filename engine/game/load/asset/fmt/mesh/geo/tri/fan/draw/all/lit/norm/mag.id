@@ -1,0 +1,13 @@
+// The Lambert numerator, and its division by the normal's magnitude.
+
+bl_lam_mag(int nvx, int nvy, int nvz) {
+  int fx_hyp3_v = fx_hyp3(nvx, nvy, nvz);
+  word wp = bl_lam_sum(nvx, nvy, nvz);
+  wp = wp / fx_max(fx_hyp3_v, 1);
+} return word wp;
+
+bl_lam_sum(int nvx, int nvy, int nvz) {
+  word wp = nvx;
+  word wq = nvy;
+  wp = wp * 300 + wq * 800 + nvz * 520;
+} return word wp;

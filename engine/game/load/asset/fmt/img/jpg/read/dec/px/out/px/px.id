@@ -1,0 +1,26 @@
+// One output row, and one pixel.
+
+jpg_orows(int y) {
+  while (y < (import jpg_st)[1]) {
+    int asset_row_v = asset_row(y);
+    jpg_orow(y, asset_row_v);
+    y = y + 1;
+  }
+} return void;
+
+// Three samples in one expression is safe here only because jpg_samp reads and
+// writes nothing: two side-effecting calls in one expression may evaluate in
+// either order in this language, which would silently swap two channels.
+jpg_orow(int y, int ra) {
+  int x = 0;
+  while (x < (import jpg_st)[0]) {
+    jpg_orow1(x, y, ra);
+    x = x + 1;
+  }
+} return void;
+
+jpg_orow1(int x, int y, int ra) {
+  int jpg_samp_v = jpg_samp(0, x, y);
+  int jpg_samp_v2 = jpg_samp(1, x, y);
+  jpg_orow2(x, y, ra, jpg_samp_v, jpg_samp_v2);
+} return void;

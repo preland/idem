@@ -22,9 +22,8 @@ scr_ev5(int nd, int e) {
 scr_ev6(int nd, int e) {
   int v = 0;
   if (ast_kd(nd) = ast_k_un()) {
-    string ast_tx_v = ast_tx(nd);
-    int ast_ia_v = ast_ia(nd);
-    int scr_ev_v = scr_ev(ast_ia_v, e);
-    v = scr_un(ast_tx_v, scr_ev_v);
+    int rhs = scr_unrhs(nd, e);
+    string tx = ast_tx(nd);
+    v = scr_un(tx, rhs);
   }
 } return int v;

@@ -1,0 +1,4 @@
+bl_fsz_at(int p, int np) {
+  int bl_le16_v2 = bl_le16(p);
+  int ret_i = bl_fsz(bl_le16_v2, np);
+} return int ret_i;

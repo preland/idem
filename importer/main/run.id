@@ -1,0 +1,8 @@
+// The rest of main -- running the importer and flushing its diagnostics --
+// split out to keep main under the action limit.
+
+main_run(string src) {
+  imp_go(src);
+  flush();
+  int ret_i = err_count();
+} return int ret_i;

@@ -1,0 +1,14 @@
+// Which title the pointer is on, what a click there does, and the walk.
+
+ed_menu_click(int x, int k, string s) {
+  int txt_ui_v = txt_ui();
+  int txt_width_v = txt_width(s);
+  ed_menu_click2(x, k, s, txt_ui_v, txt_width_v);
+} return void;
+
+ed_menu_click2(int x, int k, string s, int txt_ui_v, int txt_width_v) {
+  int ed_hdr_v = ed_hdr();
+  if (ed_in(x - 4 * txt_ui_v, 0, txt_width_v + 8 * txt_ui_v, ed_hdr_v - 1) = 1) {
+    ed_menu_pick(k);
+  }
+} return void;

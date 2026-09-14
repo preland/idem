@@ -11,8 +11,7 @@ par_else2(int[] pos) {
 } return int nd;
 
 par_while(int[] pos) {
-  par_next(pos);
-  par_want(pos, "(");
+  par_if_pre(pos);
   int par_expr_v = par_expr(pos);
   int ret_i = par_while2(pos, par_expr_v);
 } return int ret_i;

@@ -1,0 +1,15 @@
+// The other two axes, and the scale-and-translate.
+//
+// bl_m0 and bl_m1 are the scratch every composition needs: m4_muli must not write
+// into either of its operands.
+
+bl_wrx(int p, int si) {
+  bl_rot_x_init(p, si);
+  bl_wry(p, si);
+} return void;
+
+bl_rot_x_init(int p, int si) {
+  int deg_v = bl_rot_angle(p, si, 4);
+  m4_ident((import bl_m0));
+  m4_rot4((import bl_m0), 0, 8, 2, 10, deg_v);
+} return void;

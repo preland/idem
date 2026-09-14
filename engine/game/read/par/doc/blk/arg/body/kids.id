@@ -1,0 +1,6 @@
+// par_dargs's kid-list fill, split out to stay within the action limit.
+
+par_dargs_kids(int[] pos, int ln) {
+  int[] kids = [];
+  par_dafill(pos, kids, ln);
+} return int[] kids;

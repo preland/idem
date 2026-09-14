@@ -1,0 +1,29 @@
+// The marker walk.
+//
+// A JPEG is a chain of segments, each introduced by 0xFF and a marker byte. Most
+// carry a big-endian length that covers itself; SOI, EOI and the restart markers
+// do not, and 0xFF may repeat as fill before a marker.
+//
+// 216 is SOI, 217 EOI, 218 SOS, 219 DQT, 196 DHT, 221 DRI, 192/193/194 SOF0/1/2.
+
+jpg_soi(int n) {
+  int ok = 0;
+  if (n > 4 && asset_at(0) = 255 && asset_at(1) = 216) { ok = 1; }
+} return int ok;
+
+jpg_walk(int ok) {
+  jpg_walk1(ok);
+  jpg_loop();
+  int ret_i = jpg_fin();
+} return int ret_i;
+
+// The pixels are built after the whole file has been walked, not at the end of
+// the scan: a progressive image has several scans and only the last completes
+// the coefficients. Baseline reaches here with one scan decoded, which is the
+// same thing.
+jpg_fin() {
+  if ((import jpg_st)[8] = 1 && (import jpg_st)[0] > 0) {
+    jpg_all();
+  }
+  int ret_i = (import jpg_st)[8];
+} return int ret_i;

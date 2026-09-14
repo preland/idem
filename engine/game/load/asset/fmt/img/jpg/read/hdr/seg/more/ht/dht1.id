@@ -1,0 +1,15 @@
+jpg_dht1(int p) {
+  int t = jpg_dht1_setup(p);
+  jpg_dht1_store(p, t);
+  int ret_i = p + 17 + jpg_htot(t);
+} return int ret_i;
+
+jpg_dht1_setup(int p) {
+  int t = asset_at(p) % 16 + 4 * (asset_at(p) / 16);
+  jpg_hcnt(p + 1, t);
+} return int t;
+
+jpg_dht1_store(int p, int t) {
+  int jpg_htot_v = jpg_htot(t);
+  jpg_hsym(p + 17, t, jpg_htot_v);
+} return void;

@@ -1,0 +1,7 @@
+// Helper for huf_wa.
+
+huf_wa_next(int n) {
+  int fse_dnext_v = fse_dnext(3, (import huf_ab)[0]);
+  lset((import huf_ab), 0, fse_dnext_v);
+  int ret_i = huf_wb(n + 1);
+} return int ret_i;

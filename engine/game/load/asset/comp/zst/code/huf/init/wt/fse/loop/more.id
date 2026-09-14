@@ -3,9 +3,7 @@
 huf_wc(int n) {
   int fse_dsym_v = fse_dsym(3, (import huf_ab)[1]);
   lset((import huf_wt), n, fse_dsym_v);
-  int fse_dnext_v = fse_dnext(3, (import huf_ab)[1]);
-  lset((import huf_ab), 1, fse_dnext_v);
-  int ret_i = huf_wd(n + 1);
+  int ret_i = huf_wc_next(n);
 } return int ret_i;
 
 huf_wd(int n) {
@@ -16,3 +14,9 @@ huf_wd(int n) {
     m = n + 1;
   }
 } return int m;
+
+huf_wc_next(int n) {
+  int fse_dnext_v = fse_dnext(3, (import huf_ab)[1]);
+  lset((import huf_ab), 1, fse_dnext_v);
+  int ret_i = huf_wd(n + 1);
+} return int ret_i;

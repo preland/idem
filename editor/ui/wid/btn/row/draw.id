@@ -1,0 +1,10 @@
+ed_row_text_draw(int x, int y, string fit, int k) {
+  int ui3 = txt_ui();
+  int ui4 = txt_ui();
+  ed_row_text_col(x, y, fit, ui3, ui4, k);
+} return void;
+
+ed_row_text_col(int x, int y, string fit, int ui3, int ui4, int k) {
+  int col = ed_col(4 + (k = 0));
+  txt_draw(fit, x + 4 * ui3, y + ui4, col);
+} return void;

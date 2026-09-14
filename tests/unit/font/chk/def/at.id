@@ -1,0 +1,9 @@
+t_at_off() {
+  string msg = "txt_glyph_at(32, 65, 126) exp 0 528 1504 = " + txt_glyph_at(32) + " " + txt_glyph_at(65) + " " + txt_glyph_at(126);
+  print(msg);
+} return void;
+
+t_at_oob() {
+  string msg = "txt_glyph_at(9, 300) both draw a space, exp 0 0 = " + txt_glyph_at(9) + " " + txt_glyph_at(300);
+  print(msg);
+} return void;

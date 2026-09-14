@@ -19,11 +19,5 @@
 t_wide() {
   int fx_hyp_v = fx_hyp(2000000, 2000000);
   int fx_hyp_v2 = fx_hyp(710000, 0);
-  int fx_hyp_v3 = fx_hyp(1004091, 710000);
-  print("fx_hyp(2e6,2e6) exp 2828427 | (710000,0) exp 710000 | (1004091,710000) exp 1229755 = " + fx_hyp_v + " " + fx_hyp_v2 + " " + fx_hyp_v3);
-  int fx_hyp_v4 = fx_hyp(1000000000, 1000000000);
-  int fx_hyp_v5 = fx_hyp(1500000000, 1000000000);
-  int fx_hyp_v6 = fx_hyp(2000000000, 0);
-  print("fx_hyp(1e9,1e9) exp 1414213562 | (1.5e9,1e9) exp 1802775637 | (2e9,0) exp 2000000000 = " + fx_hyp_v4 + " " + fx_hyp_v5 + " " + fx_hyp_v6);
-  t_norm();
+  t_wide2(fx_hyp_v, fx_hyp_v2);
 } return void;

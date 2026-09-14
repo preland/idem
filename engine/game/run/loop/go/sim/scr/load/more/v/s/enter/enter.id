@@ -1,0 +1,28 @@
+// Entering a scene.
+//
+// Everything a scene owns is rebuilt here and in this order: the entity list is
+// emptied, the variable table is truncated back to the game's own block, the
+// scene's `var`s are declared, its script and background are found, and then its
+// entities are spawned. Spawning last is what lets an entity's `var` initialiser
+// name a scene variable.
+//
+// `goto play` from inside `play` is a restart, and it works because none of this
+// is incremental: the same scene entered twice is the same world twice.
+
+scn_enter(int nd) {
+  lset((import scn_st), 5, nd);
+  lset((import scr_st), 2, 0);
+  scn_enter2(nd);
+} return void;
+
+scn_enter2(int nd) {
+  ent_clear();
+  scn_svars(nd, 0);
+  scn_enter3(nd);
+} return void;
+
+scn_enter3(int nd) {
+  int sc = scn_sscript(nd, 0);
+  lset((import scn_st), 9, sc);
+  scn_enter3b(nd);
+} return void;

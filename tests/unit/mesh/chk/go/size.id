@@ -18,10 +18,6 @@ t_size2() {
 } return void;
 
 t_one(string name, int n) {
-  int si = bl_sfind(name);
-  int bl_soff_v = bl_soff(si);
-  int bl_soff_v2 = bl_soff(si);
-  int bl_le16_v = bl_le16(bl_soff_v2 + 2);
-  int bl_fwalk_v = bl_fwalk(bl_soff_v + 4, bl_le16_v, "");
+  int bl_fwalk_v = t_one_size(name);
   print("walked size of " + name + " exp " + n + " = " + bl_fwalk_v);
 } return void;

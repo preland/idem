@@ -1,0 +1,25 @@
+// Scripts and tags.
+
+scr_emem2(int e, int nd) {
+  if (ast_kd(nd) = ast_k_script()) {
+    ent_put(e, 19, nd);
+  } else if (ast_kd(nd) = ast_k_comp() && ast_tx(nd) = "tag") {
+    scr_etags(e, nd, 0);
+  }
+} return void;
+
+// `tag pipe deadly` is one component with two arguments, so every argument is a
+// tag and the entity's bitset is the union.
+scr_etags(int e, int nd, int i) {
+  while (i < scn_nargs(nd)) {
+    int scn_arg_v = scn_arg(nd, i);
+    scr_etag(e, scn_arg_v);
+    i = i + 1;
+  }
+} return void;
+
+scr_etag(int e, int nd) {
+  int at = ent_at(e, 20);
+  int bit = scr_etagbit(nd);
+  ent_put(e, 20, at | bit);
+} return void;

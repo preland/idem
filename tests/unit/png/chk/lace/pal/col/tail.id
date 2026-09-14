@@ -1,0 +1,13 @@
+// The rest of t_pal3's alpha checks, and the hand-off to t_grey.
+
+t_pal3e(int png_palpha_v, int png_palpha_v2) {
+  int png_palpha_v3 = png_palpha(0);
+  int png_palpha_v4 = png_palpha(3);
+  t_pal3f(png_palpha_v, png_palpha_v2, png_palpha_v3, png_palpha_v4);
+} return void;
+
+t_pal3f(int png_palpha_v, int png_palpha_v2, int png_palpha_v3, int png_palpha_v4) {
+  int png_palpha_v5 = png_palpha(0);
+  print("  those alphas exp 0 255 0 255 0 = " + png_palpha_v + " " + png_palpha_v2 + " " + png_palpha_v3 + " " + png_palpha_v4 + " " + png_palpha_v5);
+  t_grey();
+} return void;

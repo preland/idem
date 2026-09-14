@@ -1,0 +1,9 @@
+t_tick_rep() {
+  int scr_get_v = scr_get(0 - 1, "ticks");
+  print("after 80ms: ticks exp 0 = " + scr_get_v);
+} return void;
+
+t_tick2_rep() {
+  int scr_get_v = scr_get(0 - 1, "ticks");
+  print("after 100ms: ticks exp 1 = " + scr_get_v);
+} return void;

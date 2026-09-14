@@ -1,0 +1,17 @@
+jpg_orow2(int x, int y, int ra, int lu, int cb) {
+  int jpg_samp_v3 = jpg_samp(2, x, y);
+  jpg_opx(ra + 1 + x * 3, lu, cb, jpg_samp_v3);
+} return void;
+
+// YCbCr to RGB, JFIF's coefficients at x1024. The shifts floor rather than
+// truncate, which matters because Cb and Cr are signed once centred.
+jpg_opx(int da, int lu, int cb, int cr) {
+  jpg_opx_r(da, lu, cr);
+  jpg_opx_g(da, lu, cb, cr);
+  jpg_opx_b(da, lu, cb);
+} return void;
+
+jpg_opx_r(int da, int lu, int cr) {
+  int fx_clamp_v = fx_clamp(lu + ((1436 * (cr - 128)) >> 10), 0, 255);
+  poke8(da, fx_clamp_v);
+} return void;

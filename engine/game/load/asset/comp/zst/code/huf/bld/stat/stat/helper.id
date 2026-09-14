@@ -1,0 +1,15 @@
+// Helper for huf_ranks and huf_last.
+
+huf_ranks_loop(int i, int n) {
+  while (i < n) {
+    lset((import huf_rk), (import huf_wt)[i], (import huf_rk)[(import huf_wt)[i]] + 1);
+    i = i + 1;
+  }
+  int ret_i = huf_total(n, 0, 0);
+} return int ret_i;
+
+huf_last_setup(int log, int n, int v) {
+  lset((import huf_st), 0, log);
+  int inf_pow2_v = inf_pow2(log);
+  huf_last2(n, inf_pow2_v - v);
+} return void;

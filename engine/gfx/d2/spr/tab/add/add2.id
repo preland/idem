@@ -1,0 +1,7 @@
+// The rest of d2_spr_add -- the pushes and the id they produce -- split out
+// to keep d2_spr_add under the action limit.
+
+d2_spr_add2(string name, int w, int h, int n, int[] xs) {
+  d2_spr_push(name, w, h, n, xs);
+  int id = len((import asset_sprw)) - 1;
+} return int id;

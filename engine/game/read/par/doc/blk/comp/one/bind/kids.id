@@ -1,0 +1,19 @@
+// par_kv2's kid-list fill, and par_kv3's node build and advance, split out to
+// stay within the action limit.
+
+par_kv2_kids(int[] pos) {
+  int[] kids = [];
+  par_eat(pos, "=");
+  par_kv3(pos, kids);
+} return int[] kids;
+
+par_kv3_node(int[] pos) {
+  int ast_k_ident_v = ast_k_ident();
+  string par_text_v = par_text(pos);
+  int ret_i = ast_new_k(ast_k_ident_v, par_text_v);
+} return int ret_i;
+
+par_kv3_adv(int[] pos) {
+  par_next(pos);
+  par_eat(pos, ",");
+} return void;

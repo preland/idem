@@ -1,0 +1,14 @@
+ed_reopen_prepare(int note) {
+  string cmd = ed_reopen_cmd();
+  ed_read6(cmd);
+} return void;
+
+// Re-read the world from the document in memory. The editor's own reader takes
+// the stream format tools/idem feeds it -- a `#root` line and a `#file` marker --
+// so one document is wrapped in that shape rather than the reader learning a
+// second one.
+ed_reopen(int note) {
+  ed_reopen_dir();
+  ed_reopen_prepare(note);
+  lset((import ed_st), 17, note);
+} return void;

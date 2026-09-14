@@ -1,0 +1,11 @@
+ed_pan3d() {
+  int dx_v = inp_mx() - (import ed_st)[6];
+  int dy_v = inp_my() - (import ed_st)[7];
+  ed_pan3d_go(dx_v, dy_v);
+} return void;
+
+ed_pan3d_go(int dx, int dy) {
+  int prate_x = ed_prate(dx);
+  int prate_y = ed_prate(dy);
+  ed_pan_by(prate_x, prate_y);
+} return void;

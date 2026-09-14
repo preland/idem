@@ -1,0 +1,4 @@
+ed_frame_pace() {
+  int t = sys_now();
+  sys_pace(t, 60);
+} return void;

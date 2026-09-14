@@ -1,11 +1,18 @@
 // The status bar's rule and its text.
 
 ed_status() {
-  int ed_rq_v = ed_rq(6, 0);
-  int ed_rq_v2 = ed_rq(6, 1);
-  int ed_rq_v3 = ed_rq(6, 2);
-  int ed_col_v = ed_col(3);
-  d2_hline(ed_rq_v, ed_rq_v2, ed_rq_v3, ed_col_v);
-  int ed_rq_v4 = ed_rq(6, 1);
-  ed_status_txt(ed_rq_v4 + 2);
+  int r0 = ed_rq(6, 0);
+  int r1 = ed_rq(6, 1);
+  ed_status2(r0, r1);
+} return void;
+
+ed_status2(int r0, int r1) {
+  int r2 = ed_rq(6, 2);
+  int col = ed_col(3);
+  ed_status3(r0, r1, r2, col);
+} return void;
+
+ed_status3(int r0, int r1, int r2, int col) {
+  d2_hline(r0, r1, r2, col);
+  ed_status_txt(r1 + 2);
 } return void;

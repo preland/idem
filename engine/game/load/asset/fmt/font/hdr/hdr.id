@@ -1,0 +1,37 @@
+// The PSF2 header, and the one test that decides whether a file is safe to read.
+
+// PSF2's seven 32-bit fields, at fixed offsets: 4 version, 8 header size,
+// 12 flags, 16 glyph count, 20 charsize, 24 height, 28 width. Version and flags
+// are read by nobody -- version is 0 in every file that exists, and the only
+// flag says a unicode table follows the glyphs, which this decoder skips (psf.id).
+//
+// The header size is taken from the file rather than assumed to be 32, which is
+// the one piece of forward compatibility PSF2 has and it costs nothing to honour.
+psf_two() {
+  int sa = psf_fld(8);
+  int ret_i = psf_two2(sa);
+} return int ret_i;
+
+psf_two2(int sa) {
+  int n = psf_fld(16);
+  int ret_i = psf_two3(sa, n);
+} return int ret_i;
+
+// One header field: 32-bit little-endian, of which only the low three bytes are
+// taken -- a fourth byte that is not zero answers -1 and refuses the file.
+//
+// That is not laziness about the top byte. Every field in the format is small
+// (the largest legitimate one is a glyph count of 512), and `int` is 32 bits and
+// signed, so a full-width read of a corrupt or hostile field can hand back a
+// negative number that passes every `<=` bound below it. Three bytes cannot: the
+// value is in 0..16777215, and psf_fit's ceilings do the rest.
+//
+// It is also why this is not asset_be32 or bl_le32. A .blend reads the same four
+// bytes the same way round, and the compiler rejected the copy -- correctly, they
+// were the same function. This one is a different function: it has a guard.
+psf_fld(int p) {
+  int v = 0 - 1;
+  if (asset_at(p + 3) = 0) {
+    v = asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;
+  }
+} return int v;

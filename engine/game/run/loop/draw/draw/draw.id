@@ -1,0 +1,26 @@
+// Drawing a frame: the scene's background over the whole surface, then the
+// world and the UI inside the stage.
+//
+// The stage is the rect the game's own units map onto (`sys_sx`/`sys_sy`/`sys_sw`/
+// `sys_sh`), so a 288x512 game keeps its coordinate system whatever the window
+// does. Outside it is letterbox, and it is cleared to something darker than the
+// scene so the edge of the game is visible rather than ambiguous.
+
+run_draw() {
+  run_clear();
+  run_letterbox();
+  run_world();
+} return void;
+
+run_world() {
+  ent_draw(0);
+  run_ui();
+} return void;
+
+// The scene's `ui { }` block, resolved over the stage rect by the engine's idml
+// walk -- the same one the editor's own chrome goes through.
+run_ui() {
+  ui_rclear();
+  int scn_ui_v = scn_ui((import scn_st)[5], 0);
+  run_ui2(scn_ui_v);
+} return void;

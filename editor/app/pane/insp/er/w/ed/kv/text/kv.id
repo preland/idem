@@ -1,0 +1,15 @@
+ed_kv_text_draw(int x, int y, string fit) {
+  int ui = txt_ui();
+  int wid = txt_width("selected");
+  ed_kv_text_draw_do(x, y, fit, ui, wid);
+} return void;
+
+ed_kv_text(int x, int y, string txt) {
+  string fit = ed_fit(txt, 12);
+  ed_kv_text_draw(x, y, fit);
+} return void;
+
+ed_kv(int x, int y, string s, string txt) {
+  ed_kv_lbl(x, y, s);
+  ed_kv_text(x, y, txt);
+} return void;

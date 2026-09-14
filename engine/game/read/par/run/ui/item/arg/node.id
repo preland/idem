@@ -1,0 +1,13 @@
+// par_uargs2's kid-list fill and node build, split out to stay within the
+// action limit.
+
+par_uargs2_kids(int[] pos) {
+  int[] kids = [];
+  par_ufill(pos, kids);
+  par_want(pos, ")");
+} return int[] kids;
+
+par_uargs2_node(int[] kids) {
+  int ast_k_args_v = ast_k_args();
+  int ret_i = ast_new_kids(ast_k_args_v, "", kids);
+} return int ret_i;

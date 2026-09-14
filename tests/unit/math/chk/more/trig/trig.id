@@ -1,0 +1,27 @@
+// fx_norm_deg and fx_sin, in millidegrees.
+//
+// The negative angles are the reason fx_norm_deg exists: `%` truncates toward
+// zero here, so -450000 % 360000 is -90000 and a plain modulo would index the
+// table backwards. Every quadrant boundary is checked because the quadrant fold
+// is where an off-by-one shows up as a mirrored world.
+//
+// The last line is the interpolation proof: a table-only lookup would return 500
+// for both 30000 and 30500, because both fall on whole degree 30.
+
+t_norm() {
+  int fx_norm_deg_v = fx_norm_deg(0 - 450000);
+  int fx_norm_deg_v2 = fx_norm_deg(0 - 1);
+  t_norm2(fx_norm_deg_v, fx_norm_deg_v2);
+} return void;
+
+t_sin() {
+  int fx_sin_v = fx_sin(0);
+  int fx_sin_v2 = fx_sin(30000);
+  t_sin2(fx_sin_v, fx_sin_v2);
+} return void;
+
+t_sinmore() {
+  int fx_sin_v = fx_sin(120000);
+  int fx_sin_v2 = fx_sin(225000);
+  t_sinmore2(fx_sin_v, fx_sin_v2);
+} return void;

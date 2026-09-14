@@ -1,8 +1,12 @@
 // An item that is not a define: paint it, then tile its children.
 
+ui_leaf2_paint(int nd, string txt, int x, int y, int w, int h) {
+  string ui_base_v = ui_base(txt);
+  ui_paint(ui_base_v, nd, x, y, w, h);
+} return void;
+
 ui_leaf2(int nd, int x, int y, int w, int h) {
   string ast_tx_v = ast_tx(nd);
-  string ui_base_v = ui_base(ast_tx_v);
-  ui_paint(ui_base_v, nd, x, y, w, h);
+  ui_leaf2_paint(nd, ast_tx_v, x, y, w, h);
   ui_kids(nd, x, y, w, h, 0 - 1);
 } return void;

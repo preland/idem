@@ -1,0 +1,16 @@
+t_cos5(int fx_cos_v4, int fx_cos_v5, int fx_cos_v6, int fx_cos_v7) {
+  print("fx_cos(180000,270000,45000,30500) exp -1000 0 707 861 = " + fx_cos_v4 + " " + fx_cos_v5 + " " + fx_cos_v6 + " " + fx_cos_v7);
+  t_lin();
+} return void;
+
+t_lin2(int idstd_fx_sin_lin_v, int idstd_fx_sin_lin_v2) {
+  int idstd_fx_sin_lin_v3 = idstd_fx_sin_lin(90000);
+  print("fx_sin_lin(0,45000,90000) exp 0 707 1000 = " + idstd_fx_sin_lin_v + " " + idstd_fx_sin_lin_v2 + " " + idstd_fx_sin_lin_v3);
+  t_lin3();
+} return void;
+
+t_lin3() {
+  int idstd_fx_tab_v = idstd_fx_tab(0);
+  int idstd_fx_tab_v2 = idstd_fx_tab(45);
+  t_lin4(idstd_fx_tab_v, idstd_fx_tab_v2);
+} return void;

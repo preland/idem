@@ -1,0 +1,30 @@
+// The scene's background colour, and loading a sprite from its file.
+
+scn_bg(int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scn_bg1(ks[i]);
+    i = i + 1;
+  }
+} return void;
+
+// `clear` and `gravity`, the two scene properties a frame reads. Gravity is
+// declared in stage units per second squared and kept in millunits, like every
+// other rate in the store.
+scn_bg1(int nd) {
+  if (ast_tx(nd) = "clear") {
+    int scn_num_v = scn_num(nd, 0);
+    lset((import scn_st), 6, scn_num_v);
+  } else if (ast_tx(nd) = "gravity") {
+    scn_grav(nd);
+  }
+} return void;
+
+// `sprite NAME from "path" grid (c, r) cell (w, h)` -- a reference, decoded by the
+// engine. The path is relative to the game's directory, which the runtime knows
+// and this does not, so it is resolved by the caller through scn_dir.
+scn_sprite(int nd) {
+  string[] scn_sprite_info_v = scn_sprite_info(nd);
+  int[] scn_sprite_dims_v = scn_sprite_dims(nd);
+  spr_png(scn_sprite_info_v[0], scn_sprite_info_v[1], scn_sprite_dims_v[0], scn_sprite_dims_v[1], scn_sprite_dims_v[2], scn_sprite_dims_v[3]);
+} return void;

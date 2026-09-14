@@ -1,0 +1,8 @@
+// One character of txt_spr_run's loop body -- split out to keep it under the
+// action limit.
+
+txt_spr_run_ch(string s, int x, int y, int p, int c, int i) {
+  int ch = charat(s, i);
+  int w = d2_spr_w(p);
+  txt_spr_one(ch - (import txt_first), x + i * w, y, p, c);
+} return void;

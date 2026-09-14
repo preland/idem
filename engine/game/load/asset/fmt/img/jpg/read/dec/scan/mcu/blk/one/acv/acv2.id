@@ -1,0 +1,13 @@
+// Shared by the baseline and progressive first-pass AC decoders: both place a
+// coefficient the same way, differing only in which band they accept `k` into.
+jpg_cwrite1(int a, int k, int sz) {
+  int jpg_zz_v = (import jpg_zz)[k];
+  int jpg_recv_v = jpg_recv(sz);
+  jpg_cwrite2(a, jpg_zz_v, jpg_recv_v, sz);
+} return void;
+
+jpg_cwrite2(int a, int zz, int recv_v, int sz) {
+  int jpg_ext_v = jpg_ext(recv_v, sz);
+  int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  jpg_cset(a, zz, jpg_ext_v * inf_pow2_v);
+} return void;

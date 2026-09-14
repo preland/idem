@@ -1,0 +1,28 @@
+// The open menu's panel.
+//
+// Drawn after every pane and every bar, because it covers them: this is the whole
+// of the popup layer, and it is one rectangle deep. A second popup -- a submenu,
+// a dialog -- would need a stack; one does not.
+//
+// Clicking an item runs it and closes the menu. Clicking anywhere else closes it
+// too, which is the behaviour that stops a menu from being a trap: the way out of
+// an open menu is to click, anywhere.
+
+ed_menu_pop() {
+  if ((import ed_st)[15] >= 0) {
+    ed_pop_at((import ed_st)[15]);
+  }
+  ed_pop_off();
+} return void;
+
+ed_pop_at(int k) {
+  int mx = ed_mx(k);
+  int ui = txt_ui();
+  ed_pop_at2(k, mx, ui);
+} return void;
+
+ed_pop_at2(int k, int mx, int ui) {
+  int hdr = ed_hdr();
+  int w = ed_pop_w(k, 0, 0);
+  ed_pop_at3(k, mx, ui, hdr, w);
+} return void;

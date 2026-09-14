@@ -1,0 +1,9 @@
+t_psf_load_report(string path, string label) {
+  string msg = label + psf_load(path);
+  print(msg);
+} return void;
+
+t_metrics_report(string label) {
+  string msg = label + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen();
+  print(msg);
+} return void;

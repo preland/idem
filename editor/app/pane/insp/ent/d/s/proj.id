@@ -1,0 +1,17 @@
+ed_proj(int x, int y, int w, int h) {
+  ed_pane(x, y, w, h, "Project");
+  int ed_hdr_v = ed_hdr();
+  ed_proj_rows(x, y + ed_hdr_v + 3, w, h);
+} return void;
+
+// The files the `#file` markers named, one per column of the browser -- the same
+// left-to-right strip of items every project browser has, without the icons the
+// engine has no art for.
+ed_proj_rows(int x, int y, int w, int h) {
+  int i = 0;
+  while (i < len((import ed_dir)) && i < 8) {
+    int txt_ui_v = txt_ui();
+    ed_proj_one(x + (6 + i * 78) * txt_ui_v, y, i);
+    i = i + 1;
+  }
+} return void;

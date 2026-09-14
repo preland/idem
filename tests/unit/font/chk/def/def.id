@@ -1,0 +1,28 @@
+// The face the engine ships with, before anything is loaded over it.
+
+t_def() {
+  t_metrics_report("built-in metrics exp w 8 h 16 bits 8 glyphs 95 = ");
+  t_def_range();
+  t_at();
+} return void;
+
+// The index arithmetic, which moved from *8 to *16 with the face and is the one
+// piece of it that would fail silently: a glyph drawn from the wrong offset is
+// still a glyph.
+//
+// Out of range draws a space rather than reading past the table. 9 is Tab and
+// 300 is past every code point; both answer the offset of code 32.
+t_at() {
+  t_at_off();
+  t_at_oob();
+  t_defr();
+} return void;
+
+// Rows 2, 3 and 7 of 'A': the apex, the row below it, and the crossbar. 254 is
+// 11111110 -- seven columns of the eight, which is what makes the VGA face's
+// crossbar reach the full width of the letter.
+t_defr() {
+  t_a_rows("built-in 'A' rows 2,3,7 exp 16 56 254 = ", 2, 3, 7);
+  t_hash_report("built-in table, FNV-1a of all 1520 rows, exp 1584669841 = ");
+  t_psf2();
+} return void;

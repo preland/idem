@@ -1,0 +1,31 @@
+// Rasterising a case and counting what it lit.
+//
+// A count is a coarse assertion and a good one here: the question is not "which
+// pixels" but "did the clip let anything through that should not have been", and
+// a triangle drawn on the wrong side of the screen lights thousands of pixels
+// rather than none. The surface is cleared to black and the depth buffer to zero
+// before each case, so the counts are independent.
+//
+// The vertices are wound so that the triangle faces the camera. Getting that
+// backwards is not a subtle failure either: back-face culling drops it and the
+// count is 0 everywhere, including the case that is supposed to draw.
+
+t_case(string msg, int z0, int z1, int z2) {
+  sf_clear(0);
+  d3_zclear();
+  t_draw(msg, z0, z1, z2);
+} return void;
+
+// Two units ahead, the three vertices project to (22,169), (298,169) and
+// (160,31) on a 320x200 surface -- wholly on screen, and 0.5 * 276 * 138 = 19044
+// pixels of area, which is what the first case's count is measured against.
+t_draw(string msg, int z0, int z1, int z2) {
+  int[] tri = [0 - 1000, 0 - 500, z0, 1000, 0 - 500, z1, 0, 500, z2, 0xFF8800, 0xFF8800, 0xFF8800];
+  d3_nclip(tri);
+  t_report(msg);
+} return void;
+
+t_report(string msg) {
+  int t_lit_v = t_lit();
+  print("nclip " + msg + " lit = " + t_lit_v);
+} return void;

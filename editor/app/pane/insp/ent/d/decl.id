@@ -1,12 +1,15 @@
 // The hierarchy's selected declaration, and the note under it.
 
+ed_insp_decl_none(int x, int y) {
+  int ui = txt_ui();
+  int col = ed_col(5);
+  txt_draw("nothing selected", x + 6 * ui, y + 4 * ui, col);
+} return void;
+
 ed_insp_decl(int x, int y, int w) {
   if ((import ed_st)[0] >= 0 && (import ed_st)[0] < len((import ed_nm))) {
     ed_insp_rows(x, y, w, (import ed_st)[0]);
   } else {
-    int txt_ui_v = txt_ui();
-    int txt_ui_v2 = txt_ui();
-    int ed_col_v = ed_col(5);
-    txt_draw("nothing selected", x + 6 * txt_ui_v, y + 4 * txt_ui_v2, ed_col_v);
+    ed_insp_decl_none(x, y);
   }
 } return void;

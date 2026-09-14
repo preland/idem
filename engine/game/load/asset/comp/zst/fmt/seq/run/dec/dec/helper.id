@@ -1,0 +1,18 @@
+// Helper for zst_sfse reading.
+
+zst_sfse_read(int r) {
+  int zst_st_v = (import zst_st)[0];
+  int zst_st_v2 = (import zst_st)[1];
+  int used = zst_sfse_read2(r, zst_st_v, zst_st_v2);
+} return int used;
+
+zst_sfse_read2(int r, int zst_st_v, int zst_st_v2) {
+  int zst_st_v3 = (import zst_st)[2];
+  int zst_st_v4 = (import zst_st)[1];
+  int used = zst_sfse_fread(r, zst_st_v, zst_st_v2, zst_st_v3, zst_st_v4);
+} return int used;
+
+zst_sfse_fread(int r, int zst_st_v, int zst_st_v2, int zst_st_v3, int zst_st_v4) {
+  int zst_smax_v = zst_smax(r);
+  int used = fse_read(zst_st_v + zst_st_v2, zst_st_v3 - zst_st_v4, zst_smax_v);
+} return int used;

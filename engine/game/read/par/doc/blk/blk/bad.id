@@ -1,0 +1,7 @@
+// par_dbad's diagnostic; the node itself is par_badtok_tail's, shared with
+// par_badtok (par/cur/lit/err/bad.id) -- same shape, one function.
+
+par_dbad_err(int[] pos, string name) {
+  string chr_v = chr(39);
+  par_err(pos, "unknown declaration " + chr_v + name + chr_v);
+} return void;

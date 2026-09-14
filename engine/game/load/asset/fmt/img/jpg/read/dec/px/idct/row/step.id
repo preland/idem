@@ -1,0 +1,5 @@
+jpg_icol1(int x, int y) {
+  int cv = ((jpg_csum(x, y) + 8192) >> 14) + 128;
+  int fx_clamp_v = fx_clamp(cv, 0, 255);
+  lset((import jpg_f), y * 8 + x, fx_clamp_v);
+} return void;

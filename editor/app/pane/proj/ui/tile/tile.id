@@ -1,0 +1,17 @@
+ed_proj_tile_rect(int x, int y, int i, int ok) {
+  int ui = txt_ui();
+  int col = ed_col(7 - 6 * (ok = 0 && (import ed_st)[1] != i));
+  ed_proj_tile_rect_do(x, y, ui, ui, col);
+} return void;
+
+ed_proj_tile_frame(int x, int y) {
+  int ui = txt_ui();
+  int col = ed_col(3);
+  ed_proj_tile_frame_do(x, y, ui, ui, col);
+} return void;
+
+ed_proj_tile(int x, int y, int i, int ok) {
+  ed_proj_tile_rect(x, y, i, ok);
+  ed_proj_tile_frame(x, y);
+  ed_proj_txt(x, y, i, ok);
+} return void;

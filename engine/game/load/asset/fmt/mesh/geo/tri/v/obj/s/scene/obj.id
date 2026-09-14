@@ -1,0 +1,6 @@
+// "OB\0\0" packed most significant byte first: 79*2^24 + 66*2^16 = 1329725440.
+bl_obj(int i) {
+  if ((import bl_bc)[i] = 1329725440) {
+    bl_obj2(i);
+  }
+} return void;

@@ -1,0 +1,10 @@
+bl_aname(int o, string name) {
+  word bl_lew_v = bl_lew(o);
+  int i = bl_at(bl_lew_v);
+  int ok = bl_aname_check(i, name);
+} return int ok;
+
+bl_aname_check(int i, string name) {
+  int ok = 0;
+  if (i >= 0) { ok = bl_streq((import bl_bp)[i], name); }
+} return int ok;

@@ -1,0 +1,17 @@
+ed_insp_note_text1(int x, int y) {
+  int ui = txt_ui();
+  int col = ed_col(5);
+  txt_draw("components need the", x + 6 * ui, y + 6 * ui, col);
+} return void;
+
+ed_insp_note_text2(int x, int y, int h) {
+  int ui = txt_ui();
+  int col = ed_col(5);
+  txt_draw("declaration parser", x + 6 * ui, y + h + 6 * ui, col);
+} return void;
+
+ed_insp_note_texts(int x, int y) {
+  ed_insp_note_text1(x, y);
+  int h = ed_rowh();
+  ed_insp_note_text2(x, y, h);
+} return void;

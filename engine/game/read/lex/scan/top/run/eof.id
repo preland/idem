@@ -1,0 +1,7 @@
+// lex_run's trailing EOF token push, split out to keep lex_run within the
+// action limit.
+
+lex_run_eof() {
+  int lex_k_eof_v = lex_k_eof();
+  lex_push(lex_k_eof_v, "", 0, 0);
+} return void;

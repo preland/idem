@@ -1,0 +1,20 @@
+ed_play_btn(int x, string s) {
+  int hdr = ed_hdr();
+  int txt_width_v = txt_width(s);
+  int ret_i = ed_play_btn2(x, s, hdr, txt_width_v);
+} return int ret_i;
+
+ed_play_btn2(int x, string s, int hdr, int txt_width_v) {
+  int ui = txt_ui();
+  int ret_i = ed_btn(x, hdr + 2, txt_width_v + 8 * ui, hdr, s);
+} return int ret_i;
+
+// 1 toggles running, 2 asks for one frame. Slot 16 carries both, and ed_tick
+// clears a 2 after simulating -- so a step is exactly one frame however long the
+// button is held down.
+ed_play_hit(int ok, int k) {
+  if (ok = 1) {
+    int ed_play_next_v = ed_play_next(k);
+    lset((import ed_st), 16, ed_play_next_v);
+  }
+} return void;

@@ -1,0 +1,37 @@
+// The caret: where it is, whether it is visible, and how far the text is
+// scrolled to keep it so.
+
+// A bar one UI pixel wide and one cell tall. It is drawn *over* the character at
+// the caret rather than between two of them, at one pixel wide, because between
+// two characters at scale 1 there is no room: the face is monospaced with no
+// side bearing, so a gap-filling caret would have to be zero pixels wide.
+tin_car(int x, int y, int c, int t) {
+  if (tin_blink(t) = 1) {
+    int txt_ui_v = txt_ui();
+    int txt_cellh_v = txt_cellh();
+    sf_rect(x, y, txt_ui_v, txt_cellh_v * txt_ui_v, c);
+  }
+} return void;
+
+// Visible for the first half of each period since the last edit -- so it is
+// solid the instant a key is pressed and stays solid for a full half-period
+// after. Phasing it from the edit rather than from a free-running clock is the
+// difference between a caret that acknowledges a keystroke and one that can go
+// dark in the middle of one, which reads as a dropped character.
+tin_blink(int t) {
+  int ret_i = (t - (import tin_st)[3]) / (import tin_base) % 2 = 0;
+} return int ret_i;
+
+// How far left the text is shifted so the caret stays inside a field n pixels
+// wide: zero until the caret would leave the right-hand edge, and after that
+// exactly enough to hold it there. The +1 cell is the caret's own width, so the
+// character being typed is fully visible rather than half under the edge.
+//
+// It scrolls in whole pixels and not whole characters. A field that jumped by a
+// cell would leave the caret in a different place after every scroll, and the
+// eye follows the caret.
+tin_off(int n) {
+  int txt_cell_v = txt_cell();
+  int txt_ui_v = txt_ui();
+  int ret_i = fx_max(((import tin_st)[0] + 1) * txt_cell_v * txt_ui_v - n, 0);
+} return int ret_i;

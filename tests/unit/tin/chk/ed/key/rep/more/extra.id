@@ -1,0 +1,14 @@
+t_rep3_show() {
+  string tin_text_v = tin_text();
+  print("held through 5100 and 5300, still inside the delay exp 12345678 = " + tin_text_v);
+} return void;
+
+t_rep4_show() {
+  string tin_text_v = tin_text();
+  print("first frame past 5420 exp 1234567 = " + tin_text_v);
+} return void;
+
+t_rep5_show() {
+  string tin_text_v = tin_text();
+  print("10 ms short of the next repeat exp 1234567 = " + tin_text_v);
+} return void;

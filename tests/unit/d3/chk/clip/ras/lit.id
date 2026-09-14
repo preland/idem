@@ -1,0 +1,8 @@
+t_lit() {
+  int n = 0;
+  int i = 0;
+  while (i < (import sf_gw) * (import sf_gh)) {
+    n = n + ((import sf_fb)[i] != 0);
+    i = i + 1;
+  }
+} return int n;

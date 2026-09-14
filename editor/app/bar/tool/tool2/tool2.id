@@ -1,0 +1,23 @@
+// One tool button, the play controls, and the status bar.
+
+ed_tool(int x, int k, string s) {
+  int w = txt_width(s) + 10 * txt_ui();
+  ed_tool_bg(x, w, k);
+  ed_tool_hit(x, w, k, s);
+} return void;
+
+ed_tool_bg(int x, int w, int k) {
+  if ((import ed_st)[9] = k) {
+    int h = ed_hdr();
+    int col = ed_col(6);
+    sf_rect(x, h + 2, w, h, col);
+  }
+} return void;
+
+ed_tool_hit(int x, int w, int k, string s) {
+  int h = ed_hdr();
+  if (ed_in(x, h + 2, w, h) * inp_mhit(1) = 1) {
+    lset((import ed_st), 9, k);
+  }
+  ed_tool_hit_lbl(x, h, s);
+} return void;

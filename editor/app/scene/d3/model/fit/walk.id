@@ -1,0 +1,5 @@
+ed_bwalk1(int[] bb, int i) {
+  int min_v = fx_min(bb[i % 3], (import bl_v)[i]);
+  lset(bb, i % 3, min_v);
+  ed_bmax(bb, i);
+} return void;

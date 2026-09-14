@@ -1,0 +1,17 @@
+t_acc2_r(int c) {
+  int t_st_v = (import t_st)[1];
+  int d2_cr_v = d2_cr(c);
+  lset((import t_st), 1, t_st_v + d2_cr_v);
+} return void;
+
+t_acc2_g(int c) {
+  int t_st_v = (import t_st)[2];
+  int d2_cg_v = d2_cg(c);
+  lset((import t_st), 2, t_st_v + d2_cg_v);
+} return void;
+
+t_acc2_b(int c) {
+  int t_st_v = (import t_st)[3];
+  int d2_cb_v = d2_cb(c);
+  lset((import t_st), 3, t_st_v + d2_cb_v);
+} return void;

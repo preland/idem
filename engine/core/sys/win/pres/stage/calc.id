@@ -1,0 +1,12 @@
+// sys_stage's two halves that pushed it over the action limit: the scale
+// number itself, and the horizontal centring offset.
+
+sys_scale() {
+  int sys_snap_v = sys_snap();
+  int fx_max_v = fx_max(sys_snap_v, 1);
+} return int fx_max_v;
+
+sys_offx() {
+  int sys_sw_v = sys_sw();
+  lset((import sys_vp), 1, ((import sf_gw) - sys_sw_v) / 2);
+} return void;

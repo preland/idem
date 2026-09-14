@@ -1,0 +1,15 @@
+// Helper for huf_fill loop.
+
+huf_fill_loop(int w, int p) {
+  while (w < (import huf_st)[0] + 1) {
+    int huf_v = huf_fill_vals(w);
+    p = huf_fill1(w, p, huf_v);
+    w = w + 1;
+  }
+} return void;
+
+huf_fill_vals(int w) {
+  int huf_rk_v = (import huf_rk)[0];
+  int huf_first_v = huf_first(w);
+  int ret_i = huf_rk_v + huf_first_v;
+} return int ret_i;

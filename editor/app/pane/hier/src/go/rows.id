@@ -1,0 +1,15 @@
+ed_hier_rows(int x, int y, int w, int n) {
+  int i = 0;
+  while (i < n && i < len((import ed_nm))) {
+    int ed_rowh_v = ed_rowh();
+    ed_hier_row(x, y + i * ed_rowh_v, w, i);
+    i = i + 1;
+  }
+} return void;
+
+ed_hier_row(int x, int y, int w, int i) {
+  string ed_label_v = ed_label(i);
+  if (ed_row(x + 1, y, w - 2, ed_label_v, (import ed_st)[0] = i) = 1) {
+    lset((import ed_st), 0, i);
+  }
+} return void;

@@ -1,0 +1,8 @@
+// One hex digit of imp_hex6's loop body -- split out to keep it under the
+// action limit.
+
+imp_hex6_ch(int c, int i, string s) {
+  int p = imp_pow16(i);
+  int d = imp_hexd(c / p % 16);
+  s = s + chr(d);
+} return string s;

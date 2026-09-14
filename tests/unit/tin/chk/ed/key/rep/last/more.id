@@ -1,0 +1,14 @@
+t_rep6_show() {
+  string tin_text_v = tin_text();
+  print("second repeat exp 123456 = " + tin_text_v);
+} return void;
+
+t_rep8_text() {
+  string tin_text_v = tin_text();
+  print("released, three seconds later exp 123456 = " + tin_text_v);
+} return void;
+
+t_rep8_blink() {
+  string msg1 = t_rep8_blink1();
+  t_rep8_blink2(msg1);
+} return void;

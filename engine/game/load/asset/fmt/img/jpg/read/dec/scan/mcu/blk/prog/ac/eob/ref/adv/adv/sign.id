@@ -1,0 +1,4 @@
+jpg_rsign1(int a, int inf_pow2_v, int bt) {
+  lset((import jpg_r), 2, inf_pow2_v * (2 * bt - 1));
+  jpg_rgo(a);
+} return void;

@@ -12,6 +12,5 @@ t_one(string src) {
 t_two(string src) {
   int[] pos = [0];
   lex_run(src);
-  int par_script_v = par_script(pos);
-  ast_dump(par_script_v);
+  t_dump(pos);
 } return void;

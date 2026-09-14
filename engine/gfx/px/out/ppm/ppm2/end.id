@@ -1,0 +1,7 @@
+// The newline that ends a PPM row -- split out to keep ppm_row under the
+// action limit.
+
+ppm_row_end() {
+  string nl = chr(10);
+  put(nl);
+} return void;

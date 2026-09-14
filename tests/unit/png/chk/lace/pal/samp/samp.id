@@ -1,0 +1,19 @@
+// The rest of t_pal and t_pal2, split to stay under the per-block action
+// limit: the header line, the shared row/sample fetch, and the first pair of
+// the five spot-checked samples.
+
+t_pal_h() {
+  print("  w/h/depth/colour/channels exp 17 36 4 3 1 = " + (import png_st)[0] + " " + (import png_st)[1] + " " + (import png_st)[2] + " " + (import png_st)[3] + " " + (import png_st)[4]);
+  t_pal2();
+} return void;
+
+t_pal_s(int row, int col) {
+  int asset_row_v = asset_row(row);
+  int png_samp_v = png_samp(asset_row_v, col);
+} return int png_samp_v;
+
+t_pal2b(int png_samp_v) {
+  int png_samp_v2 = t_pal_s(6, 8);
+  int png_samp_v3 = t_pal_s(12, 3);
+  t_pal2c(png_samp_v, png_samp_v2, png_samp_v3);
+} return void;

@@ -1,0 +1,3 @@
+ed_export_run_do(string cmd) {
+  int result = fs_run(cmd);
+} return int result;

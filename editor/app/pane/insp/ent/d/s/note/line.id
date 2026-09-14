@@ -1,0 +1,5 @@
+ed_insp_note_line(int x, int y, int w) {
+  int ui = txt_ui();
+  int col = ed_col(3);
+  d2_hline(x + 4 * ui, y, w - 8 * ui, col);
+} return void;

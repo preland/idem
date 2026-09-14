@@ -1,0 +1,30 @@
+// A marker on each selected entity.
+//
+// A small cross rather than a box around the sprite: an entity's sprite can be
+// twelve screens wide (a stretched ground strip) or four pixels (a digit), and a
+// box around either is useless -- one is invisible and the other is off-panel.
+// The cross sits on `pos`, which is the entity's centre and the thing the
+// inspector is showing coordinates for.
+
+ed_marks(int e) {
+  while (e < ent_n()) {
+    ed_mark1(e);
+    e = e + 1;
+  }
+} return void;
+
+ed_mark1(int e) {
+  if ((ent_at(e, 23) & 1) = 1) {
+    int ed_epx_v = ed_epx(e, 0);
+    int ed_epy_v = ed_epy(e);
+    ed_cross(ed_epx_v, ed_epy_v);
+  }
+} return void;
+
+// Clipped to the plane, because a selected entity can scroll off it while the
+// game runs and a cross drawn over the hierarchy is worse than no cross.
+ed_cross(int x, int y) {
+  int u = txt_ui();
+  int col_v = ed_col(13);
+  ed_cross2(x, y, u, col_v);
+} return void;

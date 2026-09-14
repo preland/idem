@@ -1,0 +1,28 @@
+// 1-bit grey, and a hash of every sample of both images.
+//
+// digits.png is 4 x 60: ten 4x6 digit cells stacked, one bit a pixel, which is
+// what a bitmap font actually is. A 1-bit sample of 1 must reach the sprite table
+// as 255 and not as 1 -- the scale is `v * 255 / (2^d - 1)`, not a shift -- and
+// spr_grey is what does that; here the raw samples are checked instead, so a
+// failure points at the unpacking rather than at the colour.
+//
+// The hash is `s = s * 31 + sample` over the image in row-major order, modulo
+// 1e9+7, which is python3's answer for the same walk.
+
+t_grey() {
+  int png_load_v = png_load("games/flappy/art/digits.png");
+  print("digits.png exp 1 = " + png_load_v);
+  t_grey_p();
+} return void;
+
+t_grey2() {
+  string t_grow_v = t_grow(0);
+  string t_grow_v2 = t_grow(1);
+  t_grey2b(t_grow_v, t_grow_v2);
+} return void;
+
+t_grow(int y) {
+  string s = "";
+  int x = 0;
+  while (x < (import png_st)[0]) { int asset_row_v = asset_row(y); s = s + png_samp(asset_row_v, x); x = x + 1; }
+} return string s;

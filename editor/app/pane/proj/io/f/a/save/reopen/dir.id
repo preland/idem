@@ -1,0 +1,4 @@
+ed_reopen_dir() {
+  string ed_up_v = ed_up((import ed_path)[0]);
+  sset((import scn_dir), 0, ed_up_v);
+} return void;

@@ -1,0 +1,14 @@
+// par_page's node build and par_decl's keyword lookup, split out to stay
+// within the action limit.
+
+par_page_node(int[] pos) {
+  int ast_k_page_v = ast_k_page();
+  int par_item_v = par_item(pos);
+  int ret_i = ast_new_a(ast_k_page_v, "", par_item_v);
+} return int ret_i;
+
+par_decl_kind(int[] pos, string name, int ln) {
+  par_next(pos);
+  int par_dk_v = par_dk(name);
+  int ret_i = par_dkind(pos, name, par_dk_v, ln);
+} return int ret_i;

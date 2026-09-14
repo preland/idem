@@ -1,0 +1,16 @@
+ed_pop_draw_item(int k, int i) {
+  string txt = ed_mitem(k, i);
+  ed_pop_draw_xy(k, i, txt);
+} return void;
+
+ed_pop_draw_xy(int k, int i, string txt) {
+  int x = ed_mx(k) - 4 * txt_ui();
+  int y = ed_hdr() + 1 + i * ed_rowh() + txt_ui();
+  ed_pop_draw_txt(k, i, txt, x, y);
+} return void;
+
+ed_pop_draw_txt(int k, int i, string txt, int x, int y) {
+  int mon = ed_mon(k, i);
+  int col = ed_col(4 + 1 * (mon = 0));
+  txt_draw(txt, x, y, col);
+} return void;

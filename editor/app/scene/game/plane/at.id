@@ -1,0 +1,11 @@
+ed_plane_at() {
+  int pl0_v = ed_pl0();
+  int pt0_v = ed_pt0();
+  ed_plane_wh(pl0_v, pt0_v);
+} return void;
+
+ed_plane_wh(int x, int y) {
+  int w_v = ed_gw() * ed_psc() / 1000;
+  int h_v = ed_gh() * ed_psc() / 1000;
+  ed_plane3(x, y, w_v, h_v);
+} return void;

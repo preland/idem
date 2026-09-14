@@ -1,0 +1,22 @@
+// The menu bar, the toolbar and the status bar.
+//
+// The open menu's panel is drawn last of everything in the editor, because it is
+// a popup and popups cover things. That is the whole popup layer: one rectangle
+// deep, dismissed by any click that is not on an item.
+
+ed_bars() {
+  ed_menu();
+  ed_tools();
+  ed_bars2();
+} return void;
+
+ed_bars2() {
+  ed_status();
+  ed_menu_pop();
+} return void;
+
+ed_menu() {
+  int r0 = ed_rq(0, 0);
+  int y = ed_rq(0, 1) + ed_rq(0, 3) - 1;
+  ed_menu_line(r0, y);
+} return void;

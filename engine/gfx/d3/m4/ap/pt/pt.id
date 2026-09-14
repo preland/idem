@@ -1,0 +1,36 @@
+// Transforming one point, in place.
+//
+// `tri` is any list of packed x, y, z triples and `i` is the index of the x of
+// the point to transform -- so a triangle record is transformed by three calls at
+// 0, 3 and 6, and a model vertex list could be transformed in place by a walk.
+//
+// The three coordinates are read out into parameters before any of them is
+// written back, because slot i is overwritten before slot i+1 is computed and an
+// in-place transform that reads its own output shears the point.
+//
+// Only rows 0..2 are applied: the point's w is taken to be 1000 and the result's
+// w is assumed to stay 1000. That makes this correct for every affine matrix
+// (translate, rotate, scale, and any product of them) and NOT valid for a
+// perspective matrix, whose fourth row is the whole point. The 3D pipeline
+// projects with an explicit divide in d3_pscale rather than with a matrix, so
+// nothing here ever needs the general homogeneous case; m4_pt with p = 12 answers
+// the w component for anyone who does.
+
+m4_apply(int[] mat, int[] tri, int i) {
+  m4_apply3(mat, tri, i, tri[i], tri[i + 1], tri[i + 2]);
+} return void;
+
+m4_apply3(int[] mat, int[] tri, int i, int x, int y, int z) {
+  int p0 = m4_pt(mat, 0, x, y, z);
+  lset(tri, i, p0);
+  m4_apply3_b(mat, tri, i, x, y, z);
+} return void;
+
+// One row of the product, `p` being the row's first slot. The four products are
+// accumulated wide and narrowed once, as everywhere in this module; the w term is
+// mat[p + 3] * 1000, which is why a translation entry reads as plain millunits.
+m4_pt(int[] mat, int p, int x, int y, int z) {
+  word wp = m4_wmul(mat[p], x) + m4_wmul(mat[p + 1], y);
+  wp = wp + m4_wmul(mat[p + 2], z) + m4_wmul(mat[p + 3], 1000);
+  int ret_i = wp / 1000;
+} return int ret_i;

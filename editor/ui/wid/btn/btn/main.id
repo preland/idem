@@ -1,0 +1,24 @@
+// A button, a list row, and clipped text.
+//
+// Both widgets return 1 on the frame they are clicked, so a caller writes
+// `if (ed_btn(...)) { … }` and never sees a mouse event. Hover is drawn from the
+// same test that decides the click, which is what keeps the two from disagreeing.
+
+ed_btn(int x, int y, int w, int h, string s) {
+  int ok = ed_in(x, y, w, h);
+  ed_btn_draw(x, y, w, h, s, ok);
+  int ret_i = ok * inp_mhit(1);
+} return int ret_i;
+
+// One row of a list. `sel` draws it selected, which wins over hover: the selected
+// row must stay obvious while the pointer is somewhere else entirely.
+ed_row(int x, int y, int w, string s, int sel) {
+  int h = ed_rowh();
+  int ret_i = ed_row_interact(x, y, w, h, s, sel);
+} return int ret_i;
+
+ed_row_interact(int x, int y, int w, int h, string s, int sel) {
+  int ok = ed_in(x, y, w, h);
+  ed_row_draw(x, y, w, s, sel + ok);
+  int ret_i = ok * inp_mhit(1);
+} return int ret_i;

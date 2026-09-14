@@ -1,0 +1,12 @@
+// par_say's node build and par_script's brace prefix, split out to stay
+// within the action limit.
+
+par_say_node(string txt) {
+  int ast_k_say_v = ast_k_say();
+  int ret_i = ast_new_k(ast_k_say_v, txt);
+} return int ret_i;
+
+par_script_pre(int[] pos) {
+  par_next(pos);
+  par_want(pos, "{");
+} return void;

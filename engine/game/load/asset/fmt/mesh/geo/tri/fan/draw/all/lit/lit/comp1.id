@@ -1,0 +1,7 @@
+// The face normal's y component, stored, before the z component and the visibility test.
+
+bl_face1(int[] tri) {
+  word bl_cross_v2 = bl_cross(tri[5] - tri[2], tri[3] - tri[0], tri[8] - tri[2], tri[6] - tri[0]);
+  wset((import bl_e), 1, bl_cross_v2);
+  bl_face2(tri);
+} return void;

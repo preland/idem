@@ -1,0 +1,13 @@
+// par_vbody's two halves: the braced prop list, then the variant node. Split
+// to stay within the action limit.
+
+par_vbody_props(int[] pos, int[] ks) {
+  par_want(pos, "{");
+  par_vprops(pos, ks);
+  par_want(pos, "}");
+} return void;
+
+par_vbody_node(string name, int[] ks) {
+  int ast_k_variant_v = ast_k_variant();
+  int ret_i = ast_new_kids(ast_k_variant_v, name, ks);
+} return int ret_i;

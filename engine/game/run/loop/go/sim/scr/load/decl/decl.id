@@ -1,0 +1,30 @@
+// What the loader hands the interpreter.
+//
+// Three things arrive from the document and none of them can be worked out from
+// the entity records alone: the templates a `spawn` may name, the key map a
+// press is matched against, and the `persist` block that outlives a scene.
+
+// A `template` declaration, kept by name. The node is kept, not a copy of its
+// components -- a template is an entity declaration that nothing instantiated
+// yet, and scn_efill reads it exactly as it reads a scene's `entity`.
+scr_tload(int nd) {
+  string ast_tx_v = ast_tx(nd);
+  push((import scr_pn), ast_tx_v);
+  push((import scr_pd), nd);
+} return void;
+
+// `keys { space = press, esc = quit }`. Each binding is a comp whose name is the
+// key and whose one child names the event.
+scr_keys(int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scr_key1(ks[i]);
+    i = i + 1;
+  }
+} return void;
+
+scr_key1(int nd) {
+  string tx = ast_tx(nd);
+  scr_key1code(tx);
+  scr_key1ev(nd);
+} return void;

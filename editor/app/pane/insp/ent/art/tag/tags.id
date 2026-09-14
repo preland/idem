@@ -1,0 +1,9 @@
+// The tag names an entity's bitset actually stands for, joined. The registry is
+// the interpreter's, so this is the same list `on hit deadly` matches against --
+// not a second copy that could disagree with it.
+ed_tags(int e, int i, string s) {
+  while (i < len((import scr_tn))) {
+    s = s + ed_tag1(e, i);
+    i = i + 1;
+  }
+} return string s;

@@ -1,0 +1,19 @@
+// The predefined distribution and log for a role, an RLE table, and an FSE one.
+
+zst_pdist(int r) {
+  int[] xs = (import zst_pll);
+  if (r = 1) { xs = (import zst_pof); }
+  else if (r = 2) { xs = (import zst_pml); }
+} return int[] xs;
+
+zst_plog(int r) {
+  int log = 6;
+  if (r = 1) { log = 5; }
+} return int log;
+
+// One symbol, one state, no bits ever read. Accuracy log 0 is what makes every
+// decode of this table answer the same symbol and consume nothing.
+zst_srle(int r, int base) {
+  zst_srle_set(r, base);
+  zst_srle_put(base);
+} return void;

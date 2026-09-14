@@ -1,0 +1,13 @@
+// The directory a path is in, and the one above a directory. scn_dirof keeps the
+// trailing slash, so stepping up means dropping that slash first -- otherwise the
+// answer is the same directory again.
+ed_up_trimmed(string path) {
+  int len_v = len(path);
+  int max_idx = fx_max(len_v - 1, 0);
+  string slice_v = str_slice(path, 0, max_idx);
+} return string slice_v;
+
+ed_up(string path) {
+  string slice_v = ed_up_trimmed(path);
+  string ret_s = scn_dirof(slice_v);
+} return string ret_s;

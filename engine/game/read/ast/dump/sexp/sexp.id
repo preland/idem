@@ -1,0 +1,29 @@
+// The S-expression dumper. This is how the reader is tested: golden-file
+// comparison of these strings is the only cheap, exact check on a parser in a
+// language with no reflection and no structured output.
+//
+// It is fully generic -- it never asks what kind a node is except to handle the
+// four leaf shapes that are not "(name fields kids)". That is only possible
+// because every kind stores node ids in a/b/c; see ast/kind/dcl/a.id.
+//
+// The result is built with string `+`, which is quadratic. That is acceptable
+// here and nowhere else: a dump happens once, off the frame path.
+
+ast_dump(int nd) {
+  string ast_sexp_v = ast_sexp(nd);
+  print(ast_sexp_v);
+} return void;
+
+ast_sexp(int nd) {
+  int ast_kd_v = ast_kd(nd);
+  string ret_s = ast_sexp_body(nd, ast_kd_v);
+} return string ret_s;
+
+// Written through a cell rather than returned, because the fall-through arm must
+// not be evaluated when an earlier arm matches: ast_form on a `num` node would
+// read ast_a as a node id and index the arena out of range, which aborts.
+ast_sexp2(int nd, int kd, string[] strs) {
+  if (kd = ast_k_num()) { string ast_numtx_v = ast_numtx(nd); sset(strs, 0, ast_numtx_v); }
+  else if (kd = ast_k_ident()) { string ast_tx_v = ast_tx(nd); sset(strs, 0, ast_tx_v); }
+  else { ast_sexp3(nd, kd, strs); }
+} return void;

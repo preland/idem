@@ -1,0 +1,15 @@
+t_run() {
+  err_init();
+  t_str();
+  t_lst();
+} return void;
+
+t_str_slice(string s) {
+  string line = "slice bird-up = " + str_slice(s, 7, 7);
+  print(line);
+} return void;
+
+t_str_eqat(string s) {
+  string line = "eqat 1,0,1 = " + str_eqat(s, 0, "sprite") + str_eqat(s, 0, "model") + str_eqat(s, 7, "bird");
+  print(line);
+} return void;

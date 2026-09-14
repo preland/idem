@@ -1,0 +1,17 @@
+ed_pop_hl_draw(int k, int i) {
+  int mx = ed_mx(k);
+  int ui = txt_ui();
+  ed_pop_hl_draw2(k, i, mx, ui);
+} return void;
+
+ed_pop_hl_draw2(int k, int i, int mx, int ui) {
+  int hdr = ed_hdr();
+  int rowh = ed_rowh();
+  ed_pop_hl_draw3(k, i, mx, ui, hdr, rowh);
+} return void;
+
+ed_pop_hl_draw3(int k, int i, int mx, int ui, int hdr, int rowh) {
+  int w = ed_pop_w(k, 0, 0);
+  int col = ed_col(7);
+  sf_rect(mx - 4 * ui, hdr + 1 + i * rowh, w, rowh, col);
+} return void;

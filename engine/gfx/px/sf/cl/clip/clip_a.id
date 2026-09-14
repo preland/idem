@@ -1,0 +1,7 @@
+// The rest of sf_clip -- storing the low bound -- split out to keep it under
+// the action limit.
+
+sf_clip_a(int cx0, int cy0, int x1, int y1) {
+  m4_pair((import sf_cl), 0, 1, cx0, cy0);
+  sf_clip_b(x1, y1);
+} return void;

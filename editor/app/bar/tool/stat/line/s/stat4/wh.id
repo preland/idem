@@ -1,0 +1,11 @@
+ed_status_wh2(int x, int y) {
+  int sh = sys_sh();
+  x = ed_snum(x, y, "x", sh);
+  ed_status_f(x, y);
+} return void;
+
+ed_status_e2(int x, int y) {
+  int errs = err_count();
+  x = ed_snum(x, y, "errs", errs);
+  ed_snum(x, y, "frame", (import ed_st)[8]);
+} return void;

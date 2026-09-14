@@ -1,0 +1,15 @@
+// A click toggles this menu; a hover switches to it, but only when a menu is
+// already open. `0 - 1 - (k + 1) * (…)` is -1 when the same title is clicked
+// again and k otherwise, without a second branch.
+ed_menu_pick(int k) {
+  if (inp_mhit(1) = 1) {
+    int ed_mtog_v = ed_mtog(k);
+    lset((import ed_st), 15, ed_mtog_v);
+  } else if ((import ed_st)[15] >= 0) {
+    lset((import ed_st), 15, k);
+  }
+} return void;
+
+ed_menu_items() {
+  ed_menu_run(0);
+} return void;

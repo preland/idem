@@ -1,0 +1,9 @@
+// "ME\0\0" packed big-endian. The vertex base is taken before the mesh is read,
+// so its own indices stay 0-based while the list they land in does not.
+bl_one_mesh(int i) {
+  if ((import bl_bc)[i] = 1296367616) {
+    int len_v = len((import bl_v));
+    lset((import bl_st), 12, len_v / 3);
+    bl_mone(i);
+  }
+} return void;

@@ -1,0 +1,17 @@
+ed_pg1_header() {
+  string ed_pong_ln_v = ed_pong_ln("");
+  string ed_pong_ln_v2 = ed_pong_ln("game pong {");
+  string ret_s = ed_pong_ln_v + ed_pong_ln_v2;
+} return string ret_s;
+
+ed_pg1_body() {
+  string chr_v = chr(34);
+  string chr_v2 = chr(34);
+  string ret_s = ed_pong_ln("  display (320, 200) " + chr_v + "pong" + chr_v2 + "") + ed_pong_ln("  fps 60");
+} return string ret_s;
+
+ed_pg1() {
+  string head = ed_pg1_header();
+  string body = ed_pg1_body();
+  string ret_s = head + body + ed_pg2();
+} return string ret_s;

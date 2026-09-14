@@ -1,0 +1,5 @@
+jpg_plane_alloc(int ci) {
+  int fx_max_v = fx_max((import jpg_c)[ci * 10 + 8] * (import jpg_c)[ci * 10 + 9] * 64, 1);
+  int da = alloc(fx_max_v);
+  lset((import jpg_c), ci * 10 + 7, da);
+} return void;

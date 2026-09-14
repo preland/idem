@@ -1,0 +1,12 @@
+// Recomputed every frame from the surface, because the window manager owns the
+// window: the rects follow a resize with no layout code involved at all.
+ed_lay() {
+  ui_rclear();
+  int txt_ui_v = txt_ui();
+  ed_lay_draw(txt_ui_v);
+} return void;
+
+ed_lay_draw(int txt_ui_v) {
+  lset((import ui_ts), 0, txt_ui_v * 1000);
+  ui_draw((import ed_ui)[0], 0, 0, (import sf_gw), (import sf_gh));
+} return void;

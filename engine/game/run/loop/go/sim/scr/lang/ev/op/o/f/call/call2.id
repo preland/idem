@@ -1,0 +1,6 @@
+// scr_call's second argument and dispatch, closing out what scr_call opened.
+scr_call2(int nd, int e, int a) {
+  int b = scr_arg(nd, 1, e);
+  string tx = ast_tx(nd);
+  int ret_i = scr_fn(tx, a, b);
+} return int ret_i;

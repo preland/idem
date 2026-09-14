@@ -1,0 +1,41 @@
+// png -- a PNG, decoded by the engine.
+//
+// No conversion step and no intermediary format: the file on disk is the asset,
+// and this reads it. That is only possible at all because `id` gained file I/O
+// (backends/fs) and because bytes cross that seam as a list rather than a string.
+//
+// The pipeline: signature, then the chunk stream. IHDR gives the dimensions and
+// the colour type, every IDAT's payload is one piece of a single zlib stream, and
+// IEND ends it. The concatenated IDAT bytes are inflated into scanlines, each
+// prefixed by a filter byte, and unfiltering turns those into pixels.
+//
+// png_st, the header and the working addresses:
+//
+//     0 w   1 h   2 depth   3 colour type   4 channels
+//     5 zaddr  the gathered zlib stream     6 zlen
+//     7 raddr  the inflated scanlines       8 rlen (bytes per row, incl. filter)
+//     9 ok     1 while everything has gone well, -1 for a refusal
+//    10 lace   the interlace method; anything but 0 is refused
+//    11 bpp    the filter stride in bytes, floored at 1 for sub-byte depths
+//    12 plte  13 pn   the palette's address and its entry count
+//    14 trns  15 tn   the palette's alphas and how many of them there are
+
+png_init() {
+  export int[] png_st = [];
+  lst_fill((import png_st), 16, 0);
+  asset_io_init();
+} return void;
+
+// Load `path`. Answers 1 on success; the pixels are then at png_st[7], one row
+// after another, four bytes per pixel, with the filter bytes removed.
+png_load(string path) {
+  lst_set_all((import png_st), 16, 0);
+  int png_open_v = png_open(path);
+  int ret_i = png_load2(png_open_v);
+} return int ret_i;
+
+png_open(string path) {
+  int n = asset_slurp(path);
+  int ok = png_sig(n);
+  int ret_i = png_walk(ok, 8);
+} return int ret_i;

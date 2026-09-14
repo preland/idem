@@ -5,6 +5,10 @@
 imp_tok(string src) {
   int i = imp_ws(src, (import imp_p)[0]);
   int e = imp_end(src, i);
+  string s = imp_tok_b(e, i, src);
+} return string s;
+
+imp_tok_b(int e, int i, string src) {
   lset((import imp_p), 0, e);
-  string ret_s = str_slice(src, i, e - i);
-} return string ret_s;
+  string s = str_slice(src, i, e - i);
+} return string s;

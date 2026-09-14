@@ -18,7 +18,6 @@ ed_bset(int[] bb) {
 
 ed_bset2(int[] bb) {
   lset((import ed_st), 12, (bb[2] + bb[5]) / 2);
-  int ed_diag_v = ed_diag(bb);
-  int fx_max_v = fx_max(ed_diag_v / 2, 1000);
-  lset((import ed_st), 4, fx_max_v);
+  int diag_v = ed_diag(bb);
+  ed_bdist(diag_v);
 } return void;

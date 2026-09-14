@@ -1,0 +1,14 @@
+// The buffer with a key inserted at the caret: the text before it, unchanged,
+// and the key followed by the text after it.
+tin_ins_parts(string s, int key) {
+  string left = tin_ins_left(s, (import tin_st)[0]);
+  string tail = tin_ins_tail(key, s, (import tin_st)[0]);
+  string combined = left + tail;
+} return string combined;
+
+// The key just typed, followed by the text that was after the caret.
+tin_ins_tail(int key, string s, int i) {
+  string chr_v = chr(key);
+  string right = tin_ins_right(s, i);
+  string tail = chr_v + right;
+} return string tail;

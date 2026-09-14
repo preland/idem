@@ -1,0 +1,6 @@
+// Colour type 2 is truecolour, three channels, no alpha -- which is what a JPEG
+// always is here, and what makes spr_alpha answer 255 without knowing why.
+jpg_pngst2() {
+  m4_pair((import png_st), 2, 3, 8, 2);
+  m4_pair((import png_st), 8, 9, 1 + (import jpg_st)[0] * 3, 1);
+} return void;

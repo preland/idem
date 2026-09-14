@@ -1,0 +1,11 @@
+t_rep8_blink1() {
+  int tin_blink_v = tin_blink(5490);
+  int tin_blink_v2 = tin_blink(5890);
+  string msg1 = "blink at the last edit, +400, +800 exp 1 0 1 = " + tin_blink_v + " " + tin_blink_v2;
+} return string msg1;
+
+t_rep8_blink2(string msg1) {
+  int tin_blink_v3 = tin_blink(6290);
+  string msg2 = msg1 + " " + tin_blink_v3;
+  print(msg2);
+} return void;

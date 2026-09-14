@@ -16,11 +16,13 @@ scr_asg(int tgt, int v, int e) {
 } return void;
 
 scr_asgf(int tgt, int v, int e) {
-  if (ast_kd(tgt) = ast_k_field() && ast_kd(ast_ia(tgt)) = ast_k_ident()) {
-    int ast_ia_v = ast_ia(tgt);
-    string ast_tx_v = ast_tx(ast_ia_v);
-    string ast_tx_v2 = ast_tx(tgt);
-    scr_asgf2(ast_tx_v, ast_tx_v2, v, e);
+  if (ast_kd(tgt) = ast_k_field()) {
+    int ia = ast_ia(tgt);
+    if (ast_kd(ia) = ast_k_ident()) {
+      string bn = ast_tx(ia);
+      string name = ast_tx(tgt);
+      scr_asgf2(bn, name, v, e);
+    }
   }
 } return void;
 

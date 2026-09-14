@@ -1,0 +1,7 @@
+// The rest of txt_num_width -- the magnitude and the sign glyph -- split out
+// to keep txt_num_width under the action limit.
+
+txt_num_width2(int v, int cell, int ui) {
+  int a = fx_abs(v);
+  int w = cell * ui * (txt_num_dn(a) + (v < 0));
+} return int w;

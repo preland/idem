@@ -1,0 +1,6 @@
+// Helper for updating state after taking bits.
+
+inf_take_update(int inf_st_v, int inf_pow2_v, int n) {
+  lset((import inf_st), 2, inf_st_v / inf_pow2_v);
+  lset((import inf_st), 3, (import inf_st)[3] - n);
+} return void;

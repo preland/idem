@@ -1,0 +1,41 @@
+// Building a decode table from normalized counts.
+//
+// Three steps, in this order, and the order is the algorithm:
+//
+//   1. Symbols with count -1 are laid down from the TOP of the table downwards.
+//      They are the ones too rare to earn a spread slot, and putting them at the
+//      top is what lets the spread below simply skip anything above `high`.
+//   2. The rest are spread across the remaining slots by repeatedly stepping by
+//      (size/2 + size/8 + 3) modulo the size -- a stride chosen so that it visits
+//      every slot exactly once, which is why the position returns to 0 at the end.
+//   3. Each slot is then given a bit count and a base state from how many times
+//      its symbol has been seen so far.
+//
+// Written from RFC 8878 and checked entry by entry against an independent
+// implementation of the same three steps: the predefined tables' first and last
+// cells and the sums of all three columns.
+
+fse_build(int base, int log, int maxs) {
+  m4_pair((import fse_st), 0, 6, log, base);
+  fse_build_init(log, maxs);
+} return void;
+
+fse_blow(int maxs) {
+  int kd = 0;
+  while (kd <= maxs) {
+    fse_blow1(kd);
+    kd = kd + 1;
+  }
+  fse_spread(maxs);
+} return void;
+
+// A -1 count takes a slot at the top and starts its next-state counter at 1; any
+// other count starts it at the count itself.
+fse_blow1(int kd) {
+  if ((import fse_ct)[kd] = 0 - 1) {
+    lset((import fse_sy), (import fse_st)[6] + (import fse_st)[8], kd);
+    fse_bhigh(kd);
+  } else {
+    lset((import fse_nx), kd, (import fse_ct)[kd]);
+  }
+} return void;

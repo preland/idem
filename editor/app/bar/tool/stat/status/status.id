@@ -1,0 +1,33 @@
+// The play controls and the status bar.
+//
+// The status bar carries the numbers that answer "is this thing working": the
+// surface, the stage inside it and the scale it was fitted at, and the frame
+// count. They come from the engine's own state rather than from what the editor
+// asked for, so a window manager that imposed a different size shows up here
+// rather than as a mystery.
+//
+// A button is sized from its label, never from a constant. `30` happened to hold
+// "play" at the design text size and clipped it at twice that -- the bug that
+// scaling the type exposed, and the reason nothing here carries a width.
+
+// `play` toggles the simulation and reads `stop` while it is running, because a
+// button that does two things has to say which one it will do next. `step`
+// advances a single frame, which is the control you actually want when something
+// happens too fast to see.
+ed_play() {
+  int txt_width_v = txt_width("play");
+  int ui = txt_ui();
+  ed_play2(txt_width_v, ui);
+} return void;
+
+ed_play2(int txt_width_v, int ui) {
+  string lbl = ed_play_lbl();
+  int btn1 = ed_play_btn((import sf_gw) / 2 - txt_width_v - 12 * ui, lbl);
+  ed_play3(ui, btn1);
+} return void;
+
+ed_play3(int ui, int btn1) {
+  ed_play_hit(btn1, 1);
+  int btn2 = ed_play_btn((import sf_gw) / 2 + 4 * ui, "step");
+  ed_play_hit(btn2, 2);
+} return void;

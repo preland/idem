@@ -1,0 +1,11 @@
+// Draw the scene frame border and content.
+
+ed_scene3(int x, int y, int w, int h) {
+  ed_content();
+  ed_band_draw();
+  ed_scene_frame(x, y, w, h);
+} return void;
+
+ed_scene_frame(int x, int y, int w, int h) {
+  ed_btn_frame(x, y, w, h);
+} return void;

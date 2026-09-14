@@ -1,0 +1,14 @@
+// The rest of txt_tint's setup, and one row of txt_tint_rows's loop --
+// split out to keep both under the action limit.
+
+txt_tint_setup(int p, int x, int y, int f, int c, int w, int h) {
+  int nf = d2_spr_nf(p);
+  int clamped = fx_clamp(f, 0, nf - 1);
+  txt_tint_rows(p, x, y, w * h * clamped, c, 0);
+} return void;
+
+txt_tint_row_at(int p, int x, int y, int i, int c, int j) {
+  int[] px = d2_spr_px(p);
+  int w = d2_spr_w(p);
+  txt_tint_row(px, i + w * j, x, y + j, c, w);
+} return void;

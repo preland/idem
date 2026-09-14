@@ -1,0 +1,15 @@
+ed_proj_txt_draw_do(int x, int y, string fit, int ui) {
+  int col = ed_col(4);
+  txt_draw(fit, x + 4 * ui, y + 8 * ui, col);
+} return void;
+
+ed_proj_txt_draw(int x, int y, int i) {
+  string fit = ed_fit((import ed_dir)[i], 8);
+  int ui = txt_ui();
+  ed_proj_txt_draw_do(x, y, fit, ui);
+} return void;
+
+ed_proj_txt(int x, int y, int i, int ok) {
+  ed_proj_txt_draw(x, y, i);
+  ed_proj_hit(x, y, i, ok);
+} return void;

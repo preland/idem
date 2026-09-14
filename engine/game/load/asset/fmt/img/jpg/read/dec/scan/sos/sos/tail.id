@@ -1,0 +1,10 @@
+jpg_sos1(int p) {
+  int asset_at_v2 = asset_at(p);
+  jpg_stab(p + 1, 0, asset_at_v2);
+  jpg_sos2(p);
+} return void;
+
+jpg_sos2(int p) {
+  int asset_at_v3 = asset_at(p);
+  jpg_scan(p + 1 + asset_at_v3 * 2);
+} return void;

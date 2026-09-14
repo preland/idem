@@ -1,0 +1,36 @@
+// idem_boot -- the entry point a packed game's main.id calls.
+//
+//     main(int argc, string[] argv) { … } return int idem_boot(chunks, argc, argv);
+//
+// The packer has generated that call all along and it has been satisfied by a
+// stub in the round-trip test. This is the real one.
+//
+// In: the game's sources as chunks, joined once. Out: the process exit code, and
+// a window in between.
+//
+// The init order is the engine's and is not negotiable -- an exported global does
+// not exist until its declaring function has run. Trigonometry before anything
+// that takes a sine, the arena before anything that parses, the surface before
+// anything that measures itself against one.
+
+// One argument of any kind means `--shot`: render a single frame and write the
+// surface to stdout as a PPM instead of opening a loop. It is the verification
+// path ARCHITECTURE.md §10 describes, it needs no display, and it is the only way
+// to check what a game draws without a person looking at it.
+idem_boot(string[] chunks, int argc, string[] argv) {
+  idem_init();
+  err_mute(0);
+  int ret_i = idem_boot2(chunks, argc, argv);
+} return int ret_i;
+
+idem_init() {
+  fx_trig_init();
+  rnd_init(20260730);
+  idem_init2();
+} return void;
+
+idem_init3() {
+  d2_spr_init();
+  ent_init();
+  idem_init5();
+} return void;

@@ -1,0 +1,13 @@
+ed_export_run() {
+  string cmd = ed_export_cmd();
+  int result = ed_export_run_do(cmd);
+} return int result;
+
+// Save, then hand the directory to the packer. Packing reads what is *on disk*,
+// so an unsaved change would be packed as it was before it was made -- saving
+// first is not a convenience, it is what makes the button mean what it says.
+ed_export() {
+  ed_save();
+  int fs_run_v = ed_export_run();
+  lset((import ed_st), 17, 5 + (fs_run_v != 0));
+} return void;

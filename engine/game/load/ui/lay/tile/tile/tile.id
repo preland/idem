@@ -1,0 +1,30 @@
+// Tiling a container's children.
+//
+// Each child claims a percentage of the main axis and is walked in order, with a
+// running offset. The cross axis is the parent's, in full: idml's exact-fill
+// invariant means a child's cross dimension is 100% unless it is doing something
+// deliberate, and the loader reports a violation rather than the drawing silently
+// papering over it.
+//
+// Centipercent throughout: a child's main extent is `dim * extent / 10000`, which
+// for the common splits is exact and for the rest loses at most a pixel to
+// truncation -- and loses it consistently, so the tiles abut with no seam.
+
+ui_tile(int nd, int x, int y, int w, int h) {
+  int ui_axis_v = ui_tile_axis(nd);
+  ui_kids(nd, x, y, w, h, ui_axis_v);
+} return void;
+
+ui_kids(int nd, int x, int y, int w, int h, int k) {
+  int[] ks = ast_ks(nd);
+  ui_kids_loop(ks, x, y, w, h, k);
+} return void;
+
+// One child, at offset p along the main axis. Answers how far it advanced the
+// offset, which is 0 for a stacked child and for a gated one that did not render.
+ui_kid(int nd, int x, int y, int w, int h, int k, int p) {
+  int n = 0;
+  if (ui_vis(nd) = 1) {
+    n = ui_place(nd, x, y, w, h, k, p);
+  }
+} return int n;

@@ -1,0 +1,25 @@
+// The sample loop, one pixel, and the scale.
+
+spr_fill(string src, int n, int m) {
+  int i = 0;
+  while (i < (import spr_d)[8] * (import spr_d)[1] * (import spr_d)[3]) {
+    spr_one(src, n, m);
+    i = i + 1;
+  }
+} return void;
+
+// n = 3 packs a triple into spr_px as 0xRRGGBB; n = 1 appends one coverage value
+// to spr_al. Each sample is its own statement because two side-effecting reads in
+// one expression may evaluate in either order, which here would transpose red and
+// blue on every pixel -- a bug that looks like an artistic choice.
+spr_one(string src, int n, int m) {
+  int v = imp_int(src);
+  int cr = spr_scale(v, m);
+  spr_one_b(src, n, cr, m);
+} return void;
+
+spr_rgb(string src, int cr, int m) {
+  int v1 = imp_int(src);
+  int cg = spr_scale(v1, m);
+  spr_rgb_b(cr, cg, src, m);
+} return void;

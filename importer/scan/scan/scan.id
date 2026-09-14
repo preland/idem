@@ -1,0 +1,35 @@
+// scan -- a whitespace-delimited reader over one string.
+//
+// The input is millions of small integers, so this is the importer's hot path
+// and its shape is decided by one measured fact: `charat` remembers the length of
+// the last string it was asked about, and `len` does not. Every read here touches
+// only `src`, and the end of input is `charat(src, i) < 0` rather than
+// `i < len(src)` -- the second form re-measures a 4 MB stream per character and
+// turns a one-second import into a ten-minute one.
+//
+// imp_p is the cursor, one slot, threaded through the exported list rather than
+// passed and returned, because every reader here is called from an expression
+// position where there is nowhere to put a returned index.
+
+imp_init() {
+  export int[] imp_p = [0];
+} return void;
+
+// Past whitespace, and past a `#` comment to the end of its line. Comments are
+// here because ImageMagick writes one into a PPM header unless it is stripped,
+// and a reader that trips over a comment in a format that permits them is a
+// reader that fails on someone else's ImageMagick.
+imp_ws(string src, int i) {
+  int go = imp_ws_ok(src, i);
+  while (go = 1) {
+    i = imp_ws2(src, i);
+    go = imp_ws_ok(src, i);
+  }
+} return int i;
+
+imp_ws2(string src, int i) {
+  int nxt = i + 1;
+  if (charat(src, i) = 35) {
+    nxt = imp_eol(src, i);
+  }
+} return int nxt;

@@ -1,0 +1,12 @@
+// par_goto's and par_play's node builds, split out to stay within the action
+// limit.
+
+par_goto_node(string name) {
+  int ast_k_goto_v = ast_k_goto();
+  int ret_i = ast_new_k(ast_k_goto_v, name);
+} return int ret_i;
+
+par_play_node(string name) {
+  int ast_k_play_v = ast_k_play();
+  int ret_i = ast_new_k(ast_k_play_v, name);
+} return int ret_i;

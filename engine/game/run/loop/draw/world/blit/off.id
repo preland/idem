@@ -1,0 +1,20 @@
+// The stage-space offset for one axis: the surface origin plus ent_off's
+// half-sprite adjustment. ent_blitoffx and ent_blitoffy differ only in which
+// stage getter and sprite dimension feed it, so the add itself lives here once.
+
+ent_blitoff(int e, int dim, int k, int sk, int ss) {
+  int off = ent_off(e, dim, k, sk);
+  int o = ss + off;
+} return int o;
+
+ent_blitoffx(int p, int e) {
+  int ss = sys_sx();
+  int w = d2_spr_w(p);
+  int ox = ent_blitoff(e, w, 0, 4, ss);
+} return int ox;
+
+ent_blitoffy(int p, int e) {
+  int ss = sys_sy();
+  int h = d2_spr_h(p);
+  int oy = ent_blitoff(e, h, 1, 5, ss);
+} return int oy;

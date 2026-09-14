@@ -1,0 +1,11 @@
+bl_types(int p) {
+  bl_types_setup(p);
+  int bl_skip_v = bl_skip(p + 8, (import bl_st)[5]);
+  bl_tlens(bl_skip_v);
+} return void;
+
+bl_types_setup(int p) {
+  int bl_le32_v = bl_le32(p + 4);
+  lset((import bl_st), 5, bl_le32_v);
+  lset((import bl_st), 8, p + 8);
+} return void;

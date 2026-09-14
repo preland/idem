@@ -1,0 +1,34 @@
+// flip -- the same blit, mirrored horizontally.
+//
+// This exists so that art is authored once: an enemy that walks left is the same
+// sprite as the one that walks right, and a game that stored both would pay twice
+// the memory and drift out of sync the first time one was edited.
+//
+// The clipping is identical to d2_blit's -- same rows, same extent, same
+// arithmetic -- and only the source index differs: the destination still runs
+// left to right, while the source starts at the row's last pixel and walks
+// backwards (d2_flip_row). Note the left clip subtracts from the *start* index
+// here instead of adding to it, which is the mirror of d2_blit_clip and the
+// reason the two are separate functions.
+
+d2_blit_flip(int p, int x, int y, int f) {
+  int w = d2_spr_w(p);
+  int h = d2_spr_h(p);
+  d2_flip_setup(p, x, y, f, w, h);
+} return void;
+
+d2_flip_rows(int p, int x, int y, int i, int j, int n) {
+  while (j < n) {
+    int d2_spr_w_v = d2_spr_w(p);
+    d2_flip_clip(p, x, y + j, i + d2_spr_w_v * j);
+    j = j + 1;
+  }
+} return void;
+
+// The source index for surface column x0 is the sprite's column
+// w - 1 - (x0 - x), counted from the row's start.
+d2_flip_clip(int p, int x, int y, int i) {
+  int x0 = fx_max(x, 0);
+  int w = d2_spr_w(p);
+  d2_flip_clip2(p, x, y, i, x0, w);
+} return void;

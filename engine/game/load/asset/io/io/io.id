@@ -1,0 +1,35 @@
+// io -- a file, in the flat store.
+//
+// `id` gained file I/O as a backend (`backends/fs`), not as builtins: eight
+// entry points, and bytes cross the seam as an `int[]` rather than as a string,
+// which is the detail that makes binary possible at all -- a string is
+// NUL-terminated and a PNG is full of zeros.
+//
+// A list is eight bytes per byte, though, so a 3 MB file read straight into one
+// costs 26 MB and a decoded 2560x2560 image would cost 200. So the file is read
+// in chunks through a small list and poked into the **flat store**, where a byte
+// is a byte. Everything downstream addresses it as memory.
+//
+// The address is kept as an `int`. Store addresses start at 1 and the largest
+// asset here is tens of megabytes, comfortably inside 2^31, and an `int` is what
+// a list slot holds -- widening to `word` happens implicitly at each peek8.
+
+asset_io_init() {
+  export int[] asset_io = [0, 0];
+  export int[] asset_buf = [];
+  lst_fill((import asset_buf), (import asset_chunk), 0);
+} return void;
+
+// Slurp `path`. Answers the number of bytes read, and leaves the address in
+// asset_io[0] -- two values, one of which has to travel by a side channel.
+asset_slurp(string path) {
+  int n = fs_size(path);
+  asset_slurp_alloc(n);
+  int ret_i = asset_slurp2(path, n);
+} return int ret_i;
+
+asset_slurp_alloc(int n) {
+  int fx_max_v = fx_max(n, 1);
+  int da = alloc(fx_max_v);
+  lset((import asset_io), 0, da);
+} return void;

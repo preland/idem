@@ -1,0 +1,11 @@
+// Past n NUL-terminated strings, then aligned. The alignment is measured from the
+// SDNA payload's start, not from the file's -- getting that wrong lands one byte
+// off and the next tag reads as garbage.
+bl_skip(int p, int n) {
+  int i = 0;
+  while (i < n) {
+    p = bl_zend(p);
+    i = i + 1;
+  }
+  int ret_i = bl_al(p);
+} return int ret_i;

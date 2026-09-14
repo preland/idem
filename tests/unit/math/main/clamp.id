@@ -1,0 +1,17 @@
+t_fxclamp2(int fx_clamp_v, int fx_clamp_v2) {
+  int fx_clamp_v3 = fx_clamp(99, 0, 10);
+  print("fx_clamp(5,-5,99 into 0..10) exp 5 0 10 = " + fx_clamp_v + " " + fx_clamp_v2 + " " + fx_clamp_v3);
+  t_fxsign();
+} return void;
+
+t_fxsign() {
+  int fx_sign_v = fx_sign(0 - 9);
+  int fx_sign_v2 = fx_sign(0);
+  t_fxsign2(fx_sign_v, fx_sign_v2);
+} return void;
+
+t_fxsign2(int fx_sign_v, int fx_sign_v2) {
+  int fx_sign_v3 = fx_sign(9);
+  print("fx_sign(-9,0,9) exp -1 0 1 = " + fx_sign_v + " " + fx_sign_v2 + " " + fx_sign_v3);
+  t_fxscale();
+} return void;

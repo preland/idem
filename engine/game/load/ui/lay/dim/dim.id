@@ -4,8 +4,7 @@
 // child with no dimension slot at all takes the whole axis, which is what a bare
 // leaf inside a Stack means.
 ui_main(int nd, int w, int h, int k) {
-  int n = h;
-  if (k = 1) { n = w; }
+  int n = zb_pick(h, w, k);
   int ast_ib_v = ast_ib(nd);
   int ret_i = ui_pct(ast_ib_v, n, k);
 } return int ret_i;

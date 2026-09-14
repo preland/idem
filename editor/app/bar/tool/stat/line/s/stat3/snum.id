@@ -1,0 +1,10 @@
+ed_snum2(int x, int y, string s, int v) {
+  int txt_width_v = txt_width(s);
+  int ui = txt_ui();
+  int ret_i = ed_snum3(x, y, v, txt_width_v, ui);
+} return int ret_i;
+
+ed_snum3(int x, int y, int v, int txt_width_v, int ui) {
+  ed_snm2(x + txt_width_v + 4 * ui, y, v);
+  int ret_i = x + txt_width_v + txt_num_width(v) + 12 * ui;
+} return int ret_i;

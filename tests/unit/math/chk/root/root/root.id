@@ -1,0 +1,26 @@
+// fx_sqrt and fx_hyp. fx_sqrt is claimed exact over the whole non-negative int
+// range, so the ends of that range are checked explicitly: 2147395600 is
+// 46340^2 and 46340 is the largest root an int can hold, so 2147395599 must come
+// back one lower and 2147483647 must not come back one higher.
+//
+// fx_hyp's large cases are the point of it: 46000^2 + 46000^2 is 4.2e9, twice
+// the int range, and 65535^2 + 65535^2 is 8.6e9 -- both would wrap to a small or
+// negative radicand if the sum were not accumulated in a word.
+
+t_sqrt() {
+  int fx_sqrt_v = fx_sqrt(0);
+  int fx_sqrt_v2 = fx_sqrt(1);
+  t_sqrt2(fx_sqrt_v, fx_sqrt_v2);
+} return void;
+
+t_sqrtbig() {
+  int fx_sqrt_v = fx_sqrt(999999);
+  int fx_sqrt_v2 = fx_sqrt(1000000);
+  t_sqrtbig2(fx_sqrt_v, fx_sqrt_v2);
+} return void;
+
+t_hyp() {
+  int fx_hyp_v = fx_hyp(3, 4);
+  int fx_hyp_v2 = fx_hyp(0, 0);
+  t_hyp2(fx_hyp_v, fx_hyp_v2);
+} return void;

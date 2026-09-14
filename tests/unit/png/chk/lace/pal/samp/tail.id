@@ -1,0 +1,13 @@
+// The last two of the five spot-checked samples, and the print that reports
+// all five.
+
+t_pal2c(int png_samp_v, int png_samp_v2, int png_samp_v3) {
+  int png_samp_v4 = t_pal_s(20, 10);
+  int png_samp_v5 = t_pal_s(35, 16);
+  t_pal2d(png_samp_v, png_samp_v2, png_samp_v3, png_samp_v4, png_samp_v5);
+} return void;
+
+t_pal2d(int png_samp_v, int png_samp_v2, int png_samp_v3, int png_samp_v4, int png_samp_v5) {
+  print("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = " + png_samp_v + " " + png_samp_v2 + " " + png_samp_v3 + " " + png_samp_v4 + " " + png_samp_v5);
+  t_pal3();
+} return void;

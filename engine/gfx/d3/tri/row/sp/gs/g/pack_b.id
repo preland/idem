@@ -1,0 +1,7 @@
+// The rest of d3_gpack -- the blue channel and the pack -- split out to keep
+// d3_gpack under the action limit.
+
+d3_gpack_b(int[] xs, int r, int g) {
+  int b = fx_clamp(xs[2] / 256, 0, 255);
+  int ret_i = d2_rgb(r, g, b);
+} return int ret_i;

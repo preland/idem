@@ -1,0 +1,19 @@
+// Helpers for dynamic block handling.
+
+inf_dyn_bits(int hlit, int hdist) {
+  int inf_bits_v = inf_bits(4);
+  inf_dyn2(hlit, hdist, 4 + inf_bits_v);
+} return void;
+
+inf_clens_loop(int i, int n) {
+  while (i < n && (import inf_st)[7] = 0) {
+    inf_clens_step(i);
+    i = i + 1;
+  }
+} return void;
+
+inf_clens_step(int i) {
+  int inf_ord_v = (import inf_ord)[i];
+  int inf_bits_v = inf_bits(3);
+  lset((import inf_lens), inf_ord_v, inf_bits_v);
+} return void;

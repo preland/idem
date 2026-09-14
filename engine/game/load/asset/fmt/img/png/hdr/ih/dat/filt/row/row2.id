@@ -1,0 +1,11 @@
+png_bytes_one(int y, int r, int i, int f) {
+  word peek8_v = peek8(r + i);
+  int png_pred_v = png_pred(y, r, i, f);
+  int next_i = png_bytes_poke(r, i, peek8_v, png_pred_v);
+} return int next_i;
+
+png_bytes_poke(int r, int i, word peek8_v, int png_pred_v) {
+  int val = (peek8_v + png_pred_v) % 256;
+  poke8(r + i, val);
+  int next_i = i + 1;
+} return int next_i;

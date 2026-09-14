@@ -1,0 +1,28 @@
+// The event a binding names, and the game's persistent variables.
+
+// `space = press` -- the value is the binding's one child, an identifier. A
+// binding with no value raises nothing.
+scr_kev(int nd) {
+  string s = "";
+  int[] ast_ks_v = ast_ks(nd);
+  if (len(ast_ks_v) > 0) { int[] ast_ks_v2 = ast_ks(nd); s = ast_tx(ast_ks_v2[0]); }
+} return string s;
+
+// `persist { high = 0 }`. These are the game's own variables: declared once,
+// before any scene, and never truncated by a scene change -- which is the whole
+// difference between them and a scene's `var`. The initialiser is a token rather
+// than an expression (par_kv), so it is read as digits.
+scr_persist(int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scr_p1(ks[i]);
+    i = i + 1;
+  }
+  scr_persist2();
+} return void;
+
+scr_p1(int nd) {
+  string ast_tx_v = ast_tx(nd);
+  int scr_kev2_v = scr_kev2(nd);
+  scr_push(ast_tx_v, scr_kev2_v);
+} return void;

@@ -1,0 +1,13 @@
+// The text, scrolled by the field's own offset and vertically centred, drawn
+// inside the clip tin_body already narrowed.
+tin_body_draw(int x, int y, int w, int h, int c, int t) {
+  int tin_off_v = tin_off(w);
+  int y_adj = tin_calc_y(y, h);
+  tin_txy(x - tin_off_v, y_adj, c, t);
+} return void;
+
+// The caret, at its own offset from the text's x.
+tin_txy_car(int x, int y, int c, int t) {
+  int caret_x = tin_calc_caret_x(0);
+  tin_car(x + caret_x, y, c, t);
+} return void;

@@ -1,0 +1,15 @@
+// Helper for huf_fill1 loop.
+
+huf_fill1_loop(int w, int p, int s0, int i) {
+  while (i < (import huf_rk)[w]) {
+    int huf_sm_v = (import huf_sm)[s0 + i];
+    p = huf_fill1_frun(p, w, huf_sm_v);
+    i = i + 1;
+  }
+} return int p;
+
+huf_fill1_frun(int p, int w, int huf_sm_v) {
+  int huf_st_v = (import huf_st)[0];
+  int inf_pow2_v = inf_pow2(w);
+  p = huf_frun(p, huf_sm_v, huf_st_v + 1 - w, inf_pow2_v / 2);
+} return int p;

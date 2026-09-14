@@ -1,0 +1,25 @@
+// The delay expires, and the rate takes over.
+
+// 5100 and 5300 are both inside the 420 ms delay, so two whole frames of a held
+// key must change nothing at all.
+t_rep3() {
+  t_hold(5300);
+  t_rep3_show();
+  t_rep4();
+} return void;
+
+// 5450 is the first frame at or after 5420, so this is where the repeat starts.
+t_rep4() {
+  t_hold(5450);
+  t_rep4_show();
+  t_rep5();
+} return void;
+
+// The next deadline is 5450 + 30 = 5480, so 5470 is 10 ms short of it. This is
+// the frame that catches a repeat which fires on every frame once it has
+// started -- the commonest way to get this wrong.
+t_rep5() {
+  t_hold(5470);
+  t_rep5_show();
+  t_rep6();
+} return void;

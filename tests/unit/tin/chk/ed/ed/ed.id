@@ -1,0 +1,21 @@
+// Typing, and moving the caret into the middle of what was typed.
+
+t_boot() {
+  tin_init();
+  t_boot_show();
+  t_type1();
+} return void;
+
+t_type1() {
+  t_type("abc", 0, 1000);
+  t_type1_show();
+  t_move();
+} return void;
+
+// 256 is Left. Two of them from the end of a 3-character buffer leave the caret
+// between 'a' and 'b', which is where the next character has to land.
+t_move() {
+  t_tap(256, 2000);
+  t_tap(256, 2100);
+  t_ins();
+} return void;

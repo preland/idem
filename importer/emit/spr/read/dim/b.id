@@ -1,0 +1,20 @@
+// The rest of spr_dim4, spr_dim2 and spr_dim5 -- each one's second number --
+// split out to keep all three under the action limit.
+
+spr_dim4_b(string src) {
+  int v1 = imp_int(src);
+  lset((import spr_d), 1, v1);
+  spr_dim2(src);
+} return void;
+
+spr_dim2_b(string src) {
+  int v3 = imp_int(src);
+  lset((import spr_d), 3, v3);
+  lset((import spr_d), 8, (import spr_d)[0] * (import spr_d)[2]);
+} return void;
+
+spr_dim5_b(string src) {
+  int v5 = imp_int(src);
+  lset((import spr_d), 5, v5);
+  spr_dim3(src);
+} return void;

@@ -1,0 +1,37 @@
+// One frame of simulation.
+//
+// Gravity, then integration, then wrapping, then animation, then the scripts --
+// and that order is the only one that reads correctly. Integrating before applying gravity loses a
+// frame of acceleration; wrapping before integrating lets an entity spend one
+// frame past its bound.
+//
+// dt is the *declared* frame time, 1000/fps milliseconds, and not the measured
+// one. A fixed step makes a run reproducible, which is what makes `--shot`
+// comparable between builds; sys_pace already sleeps out the difference, and a
+// game that misses its frame budget wants to go slow rather than to teleport.
+//
+// Scripts run *after* the world has moved, so a collision handler sees where
+// things are rather than where they were, and an `on update` that sets a velocity
+// has it applied on the next frame -- one frame of latency, uniformly, which is
+// what makes a script's effect predictable.
+
+sim_step() {
+  int dt = sim_dt();
+  sim_ents(0, dt);
+  scr_frame(dt);
+} return void;
+
+sim_ents(int e, int dt) {
+  while (e < ent_n()) {
+    sim_one(e, dt);
+    e = e + 1;
+  }
+  lset((import sim_st), 0, (import sim_st)[0] + dt);
+} return void;
+
+// Simulate, then draw. A frame that drew first would show the world as it was
+// before its own input was applied, which reads as a frame of lag on every key.
+run_sim() {
+  sim_step();
+  run_draw();
+} return void;

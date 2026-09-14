@@ -1,20 +1,19 @@
 par_and(int[] pos) {
-  int left = par_eq(pos);
+  int lv = par_eq(pos);
   while (par_is(pos, "&&")) {
-    left = par_and_f(pos, left);
+    lv = par_and_f(pos, lv);
   }
-} return int left;
+} return int lv;
 
-par_and_f(int[] pos, int left) {
+par_and_f(int[] pos, int lv) {
   par_next(pos);
-  int ast_k_bin_v = ast_k_bin();
   int par_eq_v = par_eq(pos);
-  int ret_i = ast_new_ab(ast_k_bin_v, "&&", left, par_eq_v);
+  int ret_i = par_binnode("&&", lv, par_eq_v);
 } return int ret_i;
 
 par_eq(int[] pos) {
-  int left = par_rel(pos);
+  int lv = par_rel(pos);
   while (par_is_eqop(pos)) {
-    left = par_eq_f(pos, left);
+    lv = par_eq_f(pos, lv);
   }
-} return int left;
+} return int lv;

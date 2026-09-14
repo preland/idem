@@ -1,0 +1,10 @@
+jpg_comp1(int ci, int p, int asset_at_v, int asset_at_v2) {
+  m4_pair((import jpg_c), ci * 10, ci * 10 + 1, asset_at_v, asset_at_v2 / 16);
+  jpg_comp2(ci, p);
+} return void;
+
+jpg_comp2(int ci, int p) {
+  int asset_at_v3 = asset_at(p + 1);
+  int asset_at_v4 = asset_at(p + 2);
+  m4_pair((import jpg_c), ci * 10 + 2, ci * 10 + 3, asset_at_v3 % 16, asset_at_v4);
+} return void;

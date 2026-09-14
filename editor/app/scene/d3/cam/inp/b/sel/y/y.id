@@ -1,0 +1,22 @@
+// The band's vertical bounds.
+
+ed_by0() {
+  int ed_st_v = (import ed_st)[14];
+  int inp_my_v = inp_my();
+  int ret_i = fx_min(ed_st_v, inp_my_v);
+} return int ret_i;
+
+ed_by1() {
+  int ed_st_v = (import ed_st)[14];
+  int inp_my_v = inp_my();
+  int ret_i = fx_max(ed_st_v, inp_my_v);
+} return int ret_i;
+
+// Drawn while the drag is live: a filled wash so the covered area reads at a
+// glance, and a frame so its edges are exact. Only for the selection drag -- an
+// orbit and a pan have their own feedback in the scene moving.
+ed_band_draw() {
+  if ((import ed_st)[5] = 3) {
+    ed_band_draw2();
+  }
+} return void;

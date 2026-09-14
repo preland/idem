@@ -1,0 +1,30 @@
+// scene -- every OBJECT, each placing its mesh with its own transform.
+//
+// This is what makes a showroom a room rather than a pile. A mesh is geometry in
+// local space; an Object says where it stands, and several Objects may share one
+// mesh -- the showroom's 49 mesh objects draw 29 meshes, and the ceiling lights
+// are one mesh placed twenty times.
+//
+// Object.data is an ID pointer, not a data pointer, so it resolves **globally**:
+// ID blocks have unique addresses across the file, which is exactly why the
+// per-ID scoping that data pointers need does not apply to it.
+
+bl_scene(string path) {
+  bl_reset();
+  int ret_i = bl_scene_open(path);
+} return int ret_i;
+
+bl_scene_open(string path) {
+  int bl_open_v = bl_open(path);
+  lset((import bl_st), 11, bl_open_v);
+  int ret_i = bl_scene2();
+} return int ret_i;
+
+bl_scene2() {
+  int i = 0;
+  while (i < len((import bl_bc)) && (import bl_st)[11] = 1) {
+    bl_obj(i);
+    i = i + 1;
+  }
+  int ret_i = len((import bl_ti)) > 0;
+} return int ret_i;

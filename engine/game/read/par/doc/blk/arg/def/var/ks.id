@@ -1,0 +1,7 @@
+// par_variant2's base-name-as-child list, split out to stay within the
+// action limit.
+
+par_variant2_ks(string bn) {
+  int ast_k_ident_v = ast_k_ident();
+  int[] ks = [ast_new_k(ast_k_ident_v, bn)];
+} return int[] ks;

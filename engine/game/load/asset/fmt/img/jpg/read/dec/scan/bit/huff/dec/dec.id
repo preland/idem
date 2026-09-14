@@ -1,0 +1,21 @@
+// One step of the walk: take a bit, and ask whether the code so far falls inside
+// this length's block of codes.
+
+jpg_dwalk(int t, int[] st) {
+  while (st[3] <= 16 && jpg_dstep(t, st) = 0) {
+    lset(st, 3, st[3] + 1);
+  }
+} return void;
+
+jpg_dstep(int t, int[] st) {
+  int st_v = st[0];
+  int jpg_bit_v = jpg_bit();
+  int ret_i = jpg_dstep2(t, st, st_v, jpg_bit_v);
+} return int ret_i;
+
+jpg_dnext(int t, int[] st, int ok) {
+  if (ok = 0) {
+    lset(st, 2, st[2] + (import jpg_hc)[t * 17 + st[3]]);
+    lset(st, 1, (st[1] + (import jpg_hc)[t * 17 + st[3]]) * 2);
+  }
+} return int ok;

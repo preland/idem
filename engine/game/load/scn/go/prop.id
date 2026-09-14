@@ -26,11 +26,12 @@ scn_prop2(int nd) {
 
 // A tuple node's two numbers are its first two children.
 scn_disp(int t) {
-  if (t != 0 && len(ast_ks(t)) >= 2) {
-    int[] ast_ks_v = ast_ks(t);
-    int ast_ia_v = ast_ia(ast_ks_v[0]);
-    int[] ast_ks_v2 = ast_ks(t);
-    int ast_ia_v2 = ast_ia(ast_ks_v2[1]);
-    m4_pair((import scn_st), 0, 1, ast_ia_v, ast_ia_v2);
+  if (t != 0) {
+    int[] ks = ast_ks(t);
+    if (len(ks) >= 2) {
+      int v0 = ast_ia(ks[0]);
+      int v1 = ast_ia(ks[1]);
+      m4_pair((import scn_st), 0, 1, v0, v1);
+    }
   }
 } return void;

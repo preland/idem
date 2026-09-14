@@ -1,0 +1,6 @@
+// Helper for dropping bits from zf state.
+
+zf_drop_update(int zf_st_v, int inf_pow2_v, int n) {
+  lset((import zf_st), 2, zf_st_v / inf_pow2_v);
+  lset((import zf_st), 3, (import zf_st)[3] - n);
+} return void;

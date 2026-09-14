@@ -1,0 +1,31 @@
+// Reading a table description: the normalized counts.
+//
+// A description is an accuracy log then one count per symbol, summing to
+// 2^log. Counts are stored biased by one so that -1 can mean "appears, but with
+// probability below one in 2^log" -- those symbols get a slot at the top of the
+// table and cost the maximum number of bits. A count of zero is followed by a
+// run-length of further zeroes, which is why the loop carries a `previous was
+// zero` flag rather than just reading symbol after symbol.
+//
+// The number of bits a count occupies shrinks as the remaining probability mass
+// does: the encoder spends only as many bits as the residue can still need. That
+// is the `while remaining < threshold` at the end of every symbol, and it is the
+// part that silently produces a table full of plausible rubbish if it is wrong.
+
+fse_read(int sa, int slen, int maxs) {
+  zf_start(sa, slen);
+  int zf_bits_v = zf_bits(4);
+  int ret_i = fse_read_loop(zf_bits_v, maxs);
+} return int ret_i;
+
+fse_rinit(int log, int maxs) {
+  int inf_pow2_v = inf_pow2(log);
+  int inf_pow2_v2 = inf_pow2(log);
+  fse_rinit_setup(log, inf_pow2_v, inf_pow2_v2, maxs);
+} return void;
+
+fse_rinit2(int maxs) {
+  m4_pair((import fse_st), 4, 5, 0, 0);
+  lset((import fse_st), 9, maxs);
+  lst_set_all((import fse_ct), 256, 0);
+} return void;

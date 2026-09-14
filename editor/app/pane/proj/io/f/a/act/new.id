@@ -1,0 +1,19 @@
+// A new project goes in a sibling directory of the one currently open, so it
+// lands beside the games it was made next to rather than wherever the editor was
+// started from. Nothing is written until Save: New is a document in memory, which
+// is what New means everywhere else.
+ed_new_init() {
+  string ed_pong_v = ed_pong();
+  sset((import ed_doc), 0, ed_pong_v);
+} return void;
+
+ed_new_path() {
+  string ed_up_v = ed_up((import scn_dir)[0]);
+  sset((import ed_path), 0, ed_up_v + "pong/pong.idml");
+} return void;
+
+ed_new() {
+  ed_new_init();
+  ed_new_path();
+  ed_reopen(8);
+} return void;

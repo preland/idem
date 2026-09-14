@@ -1,0 +1,17 @@
+t_sin4(int fx_sin_v5) {
+  int fx_sin_v6 = fx_sin(180000);
+  int fx_sin_v7 = fx_sin(270000);
+  t_sin5(fx_sin_v5, fx_sin_v6, fx_sin_v7);
+} return void;
+
+t_sin5(int fx_sin_v5, int fx_sin_v6, int fx_sin_v7) {
+  int fx_sin_v8 = fx_sin(359999);
+  print("fx_sin(90000,180000,270000,359999) exp 1000 0 -1000 0 = " + fx_sin_v5 + " " + fx_sin_v6 + " " + fx_sin_v7 + " " + fx_sin_v8);
+  t_sinmore();
+} return void;
+
+t_sinmore2(int fx_sin_v, int fx_sin_v2) {
+  int fx_sin_v3 = fx_sin(0 - 90000);
+  int fx_sin_v4 = fx_sin(450000);
+  t_sinmore3(fx_sin_v, fx_sin_v2, fx_sin_v3, fx_sin_v4);
+} return void;

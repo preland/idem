@@ -1,0 +1,17 @@
+t_sqrtbig2(int fx_sqrt_v, int fx_sqrt_v2) {
+  print("fx_sqrt(999999) exp 999 | (1000000) exp 1000 = " + fx_sqrt_v + " " + fx_sqrt_v2);
+  int fx_sqrt_v3 = fx_sqrt(2147395599);
+  t_sqrtbig3(fx_sqrt_v3);
+} return void;
+
+t_sqrtbig3(int fx_sqrt_v3) {
+  int fx_sqrt_v4 = fx_sqrt(2147395600);
+  int fx_sqrt_v5 = fx_sqrt(2147483646);
+  t_sqrtbig4(fx_sqrt_v3, fx_sqrt_v4, fx_sqrt_v5);
+} return void;
+
+t_sqrtbig4(int fx_sqrt_v3, int fx_sqrt_v4, int fx_sqrt_v5) {
+  int fx_sqrt_v6 = fx_sqrt(2147483647);
+  print("fx_sqrt(2147395599) exp 46339 | (2147395600) exp 46340 | (2147483646) exp 46340 | (2147483647) exp 46340 = " + fx_sqrt_v3 + " " + fx_sqrt_v4 + " " + fx_sqrt_v5 + " " + fx_sqrt_v6);
+  t_hyp();
+} return void;

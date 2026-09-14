@@ -1,0 +1,13 @@
+// The window's declared size and scale, closing out what idem_aopen1 opened.
+
+idem_aopen1b(func(int) return int gs) {
+  int w = gs(0);
+  int h = gs(1);
+  idem_aopen1c(gs, w, h);
+} return void;
+
+idem_aopen1c(func(int) return int gs, int w, int h) {
+  int sc = gs(2);
+  sys_open(w, h, sc, "idem");
+  idem_aopen2();
+} return void;

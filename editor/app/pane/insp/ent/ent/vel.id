@@ -1,0 +1,11 @@
+ed_insp_vel_rows(int x, int y, int w, int e) {
+  ed_kve(x, y, w, "vel x", e, 2);
+  int ed_rowh_v = ed_rowh();
+  ed_kve(x, y + ed_rowh_v + 2, w, "vel y", e, 3);
+} return void;
+
+ed_insp_vel(int x, int y, int w, int e) {
+  ed_insp_vel_rows(x, y, w, e);
+  int h = ed_rowh();
+  ed_insp_art(x, y + 2 * (h + 2), w, e);
+} return void;

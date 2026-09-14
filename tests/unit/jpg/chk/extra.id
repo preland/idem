@@ -1,0 +1,8 @@
+t_one_load(string msg, string path) {
+  string line = msg + ": load exp 1 = " + jpg_load(path);
+  print(line);
+} return void;
+
+t_one_size(int w, int h) {
+  print("  size exp " + w + " " + h + " = " + (import png_st)[0] + " " + (import png_st)[1] + "  channels exp 3 = " + (import png_st)[4]);
+} return void;

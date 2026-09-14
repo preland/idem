@@ -1,0 +1,4 @@
+ed_hier(int x, int y, int w, int h) {
+  ed_pane(x, y, w, h, "Hierarchy");
+  ed_hier_rows_h(x, y, w, h);
+} return void;

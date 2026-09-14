@@ -1,0 +1,4 @@
+ed_bdist(int diag) {
+  int max_v = fx_max(diag / 2, 1000);
+  lset((import ed_st), 4, max_v);
+} return void;

@@ -1,0 +1,7 @@
+// lex_ident's push, split out to stay within the action limit.
+
+lex_ident_push(string src, int i, int e) {
+  int lex_k_ident_v = lex_k_ident();
+  string str_slice_v = str_slice(src, i, e - i);
+  lex_push(lex_k_ident_v, str_slice_v, 0, 0);
+} return void;

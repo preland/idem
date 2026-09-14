@@ -1,0 +1,11 @@
+ed_clip_pane2(int x0, int y0) {
+  int w = ed_rq(3, 2);
+  int h = ed_rq(3, 3);
+  sf_clip(x0, y0, x0 + w - 1, y0 + h - 1);
+} return void;
+
+ed_pclip_b2(int y, int prod) {
+  int y0 = ed_rq(3, 1);
+  int h = ed_rq(3, 3);
+  int ret_i = fx_min(y + prod - 1, y0 + h - 1);
+} return int ret_i;

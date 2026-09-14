@@ -1,0 +1,12 @@
+// par_comp2's kid-list fill and node build, split out to stay within the
+// action limit.
+
+par_comp2_kids(int[] pos) {
+  int[] kids = [];
+  par_cbody(pos, kids);
+} return int[] kids;
+
+par_comp2_node(string name, int a, int[] kids) {
+  int ast_k_comp_v = ast_k_comp();
+  int ret_i = ast_new(ast_k_comp_v, name, a, 0, 0, kids);
+} return int ret_i;

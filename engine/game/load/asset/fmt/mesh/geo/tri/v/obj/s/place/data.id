@@ -1,0 +1,12 @@
+// The Object's `*data` pointer, resolved to a block index and handed to bl_obj3.
+
+bl_obj2_data(int i, int si) {
+  int bl_gat_v = bl_obj2_mi(i, si);
+  bl_obj3(i, si, bl_gat_v);
+} return void;
+
+bl_obj2_mi(int i, int si) {
+  int bl_foff_v = bl_foff(si, "*data");
+  word bl_lew_v = bl_lew((import bl_bp)[i] + bl_foff_v);
+  int bl_gat_v = bl_gat(bl_lew_v);
+} return int bl_gat_v;

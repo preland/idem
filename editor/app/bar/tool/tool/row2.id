@@ -1,0 +1,10 @@
+ed_tool2() {
+  int ui = txt_ui();
+  ed_tool(90 * ui, 2, "turn");
+  ed_tool3(ui);
+} return void;
+
+ed_tool3(int ui) {
+  ed_tool(132 * ui, 3, "size");
+  ed_play();
+} return void;

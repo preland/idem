@@ -1,0 +1,6 @@
+// The rest of spr_dim3 -- split out to keep it under the action limit.
+
+spr_dim3_b(string src) {
+  int v7 = imp_int(src);
+  lset((import spr_d), 7, v7);
+} return void;

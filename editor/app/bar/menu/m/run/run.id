@@ -1,0 +1,14 @@
+// Walking the five menus, where each title sits, and the toggle.
+
+ed_menu_run(int k) {
+  while (k < 5) {
+    ed_menu_run_one(k);
+    k = k + 1;
+  }
+} return void;
+
+ed_menu_run_one(int k) {
+  int ed_mx_v = ed_mx(k);
+  string ed_mname_v = ed_mname(k);
+  ed_menu_one(ed_mx_v, k, ed_mname_v);
+} return void;

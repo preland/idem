@@ -1,0 +1,22 @@
+// fx_cos, the first-quadrant interpolator on its own, and the first two draws of
+// the PRNG. The two rnd_next values are the reference Park-Miller sequence from
+// seed 12345 (state 12346 after the seed fold), so a broken Schrage split shows
+// up immediately rather than as a subtly non-uniform distribution.
+
+t_cos() {
+  int fx_cos_v = fx_cos(0);
+  int fx_cos_v2 = fx_cos(60000);
+  t_cos2(fx_cos_v, fx_cos_v2);
+} return void;
+
+t_lin() {
+  int idstd_fx_sin_lin_v = idstd_fx_sin_lin(0);
+  int idstd_fx_sin_lin_v2 = idstd_fx_sin_lin(45000);
+  t_lin2(idstd_fx_sin_lin_v, idstd_fx_sin_lin_v2);
+} return void;
+
+t_rnd() {
+  int rnd_next_v = rnd_next();
+  print("rnd_next draw 1 exp 207499222 = " + rnd_next_v);
+  t_rnd2();
+} return void;

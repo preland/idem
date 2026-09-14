@@ -1,0 +1,24 @@
+// Statements. Every form in IDML_GAME.md 5.3, dispatched as a chain of two-way
+// decisions writing through a one-element cell: a three-way if/else-if/else fills
+// a block completely, leaving no room for the declaration the result needs, and
+// the fall-through arm must not run when an earlier arm matched.
+
+par_block(int[] pos) {
+  int[] kids = par_block_kids(pos);
+  int ast_k_block_v = ast_k_block();
+  int ret_i = ast_new_kids(ast_k_block_v, "", kids);
+} return int ret_i;
+
+par_bfill(int[] pos, int[] kids) {
+  while (par_is(pos, "}") = 0 && par_kind(pos) != lex_k_eof()) {
+    int par_stmt_v = par_stmt(pos);
+    push(kids, par_stmt_v);
+  }
+  par_eat(pos, "}");
+} return void;
+
+par_stmt(int[] pos) {
+  int[] out = [0];
+  par_stmt2(pos, out);
+  int ret_i = out[0];
+} return int ret_i;

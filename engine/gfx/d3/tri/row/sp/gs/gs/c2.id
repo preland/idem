@@ -1,0 +1,13 @@
+// The rest of d3_gs_c -- the green and blue channels -- split out to keep it
+// under the action limit.
+
+d3_gs_c2(int[] st, int t) {
+  int m1 = d3_mix(st[4], st[10], t);
+  lset((import d3_gs), 1, m1 * 256);
+  d3_gs_c3(st, t);
+} return void;
+
+d3_gs_c3(int[] st, int t) {
+  int m2 = d3_mix(st[5], st[11], t);
+  lset((import d3_gs), 2, m2 * 256);
+} return void;

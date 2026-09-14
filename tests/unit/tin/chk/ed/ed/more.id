@@ -1,0 +1,11 @@
+t_boot_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("empty field exp '' caret 0 = '" + tin_text_v + "' " + tin_caret_v);
+} return void;
+
+t_type1_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("typed abc exp abc caret 3 = " + tin_text_v + " " + tin_caret_v);
+} return void;

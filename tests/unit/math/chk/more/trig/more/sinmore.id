@@ -1,0 +1,16 @@
+t_sinmore3(int fx_sin_v, int fx_sin_v2, int fx_sin_v3, int fx_sin_v4) {
+  print("fx_sin(120000,225000,-90000,450000) exp 866 -707 -1000 1000 = " + fx_sin_v + " " + fx_sin_v2 + " " + fx_sin_v3 + " " + fx_sin_v4);
+  t_sinmore4();
+} return void;
+
+t_sinmore4() {
+  int fx_sin_v5 = fx_sin(30000);
+  int fx_sin_v6 = fx_sin(30500);
+  t_sinmore5(fx_sin_v5, fx_sin_v6);
+} return void;
+
+t_sinmore5(int fx_sin_v5, int fx_sin_v6) {
+  int fx_sin_v7 = fx_sin(31000);
+  print("fx_sin interpolates (30000,30500,31000) exp 500 507 515 = " + fx_sin_v5 + " " + fx_sin_v6 + " " + fx_sin_v7);
+  t_cos();
+} return void;

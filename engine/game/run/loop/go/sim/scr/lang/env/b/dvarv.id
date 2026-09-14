@@ -1,0 +1,5 @@
+// scr_dvar's initialiser value, split out to stay in budget.
+scr_dvarv(int nd) {
+  int ia = ast_ia(nd);
+  int v = scr_ev(ia, 0 - 1);
+} return int v;

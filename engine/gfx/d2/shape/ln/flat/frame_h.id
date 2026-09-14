@@ -1,0 +1,7 @@
+// The top and bottom edges of d2_frame's outline, split out to keep d2_frame
+// under the action limit.
+
+d2_frame_h(int x, int y, int w, int h, int c) {
+  d2_hline(x, y, w, c);
+  int n = d2_hline(x, y + h - 1, w, c);
+} return int n;

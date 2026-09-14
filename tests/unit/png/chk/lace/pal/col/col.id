@@ -1,0 +1,20 @@
+// The rest of t_pal3's palette colour checks, split to stay under the
+// per-block action limit.
+
+t_pal3b(int png_pcol_v, int png_pcol_v2) {
+  int png_pcol_v3 = png_pcol(0);
+  int png_pcol_v4 = png_pcol(3);
+  t_pal3c(png_pcol_v, png_pcol_v2, png_pcol_v3, png_pcol_v4);
+} return void;
+
+t_pal3c(int png_pcol_v, int png_pcol_v2, int png_pcol_v3, int png_pcol_v4) {
+  int png_pcol_v5 = png_pcol(0);
+  print("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = " + png_pcol_v + " " + png_pcol_v2 + " " + png_pcol_v3 + " " + png_pcol_v4 + " " + png_pcol_v5);
+  t_pal3d();
+} return void;
+
+t_pal3d() {
+  int png_palpha_v = png_palpha(0);
+  int png_palpha_v2 = png_palpha(2);
+  t_pal3e(png_palpha_v, png_palpha_v2);
+} return void;

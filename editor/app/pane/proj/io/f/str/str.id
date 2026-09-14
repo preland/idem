@@ -1,0 +1,15 @@
+// The bytes, as characters.
+
+ed_rstr(int[] buf, int i, int n, string s) {
+  while (i < n) {
+    s = s + chr(buf[i]);
+    i = i + 1;
+  }
+} return string s;
+
+// Where the toolchain is: the executable's own directory is `<root>/build/`, so
+// the root is one above it. That is how Export finds `tools/idem` without being
+// told where the project it is editing came from.
+ed_root() {
+  string ret_s = ed_up((import scn_dir)[1]);
+} return string ret_s;

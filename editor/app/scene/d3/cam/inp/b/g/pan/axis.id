@@ -1,0 +1,14 @@
+ed_pan_cx(int dx, int dy) {
+  int pcx_v = ed_pcx(dx, dy);
+  lset((import ed_st), 10, (import ed_st)[10] - pcx_v);
+} return void;
+
+ed_pan_cy(int dy) {
+  int pcy_v = ed_pcy(dy);
+  lset((import ed_st), 11, (import ed_st)[11] - pcy_v);
+} return void;
+
+ed_pan_cz(int dx, int dy) {
+  int pcz_v = ed_pcz(dx, dy);
+  lset((import ed_st), 12, (import ed_st)[12] - pcz_v);
+} return void;

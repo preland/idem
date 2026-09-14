@@ -1,0 +1,28 @@
+// Where the game's declared display lands inside the surface: the largest whole
+// per-mille scale that fits, centred.
+//
+// Per-mille rather than an integer magnification because the surface is no longer
+// a multiple of the stage -- a 288x512 game in a 1280x800 window fits at 1.5625x,
+// and rounding that down to 1 would waste a third of the window.
+//
+// It truncates, so up to a pixel of the surface goes unused on a long axis. The
+// alternative -- fitting each axis exactly -- would scale x and y differently and
+// stretch the art, which is a worse trade than one row of background.
+
+sys_stage() {
+  int sys_scale_v = sys_scale();
+  lset((import sys_vp), 0, sys_scale_v);
+  sys_soff();
+} return void;
+
+sys_snap() {
+  int denom1 = fx_max((import sys_vp)[3], 1);
+  int denom2 = fx_max((import sys_vp)[4], 1);
+  int snap = fx_min((import sf_gw) * 1000 / denom1, (import sf_gh) * 1000 / denom2);
+} return int snap;
+
+sys_soff() {
+  sys_offx();
+  int sys_sh_v = sys_sh();
+  lset((import sys_vp), 2, ((import sf_gh) - sys_sh_v) / 2);
+} return void;

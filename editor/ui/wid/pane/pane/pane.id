@@ -1,0 +1,26 @@
+// The three things every pane is made of: a filled rect, a titled header, and a
+// hit test.
+//
+// Immediate mode, in the sense that matters here: there is no widget tree and no
+// retained state. Each frame every pane is drawn from the model and every widget
+// answers whether the pointer is in it *now*. A list row does not remember that
+// it is selected -- ed_st does, and the row asks. That is the shape that suits a
+// language with no structs, no closures and no function pointers, and it is also
+// the shape that cannot go stale.
+
+// The pane's fill is the idml document's business (ui/wid/lay/src.id); what is
+// left is the header strip and the border, which are chrome around a rect rather
+// than the rect itself.
+ed_pane(int x, int y, int w, int h, string title) {
+  int ed_col_v = ed_col(3);
+  d2_frame(x, y, w, h, ed_col_v);
+  ed_bar(x, y, w, title);
+} return void;
+
+// Is the pointer inside this rect? Every button, row and drag target is this
+// question and the pointer's state, which inp_ sampled once at the top of the
+// frame -- so nothing in a frame can see the mouse in two places.
+ed_in(int x, int y, int w, int h) {
+  int ok = 0;
+  if (inp_mx() >= x && inp_mx() < x + w && inp_my() >= y && inp_my() < y + h) { ok = 1; }
+} return int ok;

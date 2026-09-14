@@ -1,0 +1,13 @@
+// Helper for fse table reading.
+
+fse_read_loop(int zf_bits_v, int maxs) {
+  fse_rinit(zf_bits_v + 5, maxs);
+  fse_rloop();
+  int ret_i = zf_used();
+} return int ret_i;
+
+fse_rinit_setup(int log, int inf_pow2_v, int inf_pow2_v2, int maxs) {
+  m4_pair((import fse_st), 0, 1, log, inf_pow2_v + 1);
+  m4_pair((import fse_st), 2, 3, inf_pow2_v2, log + 1);
+  fse_rinit2(maxs);
+} return void;

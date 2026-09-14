@@ -1,0 +1,13 @@
+// Calculation helpers for text input display.
+
+tin_calc_y(int y, int h) {
+  int txt_cellh_v = txt_cellh();
+  int txt_ui_v = txt_ui();
+  int ret_i = y + (h - txt_cellh_v * txt_ui_v) / 2;
+} return int ret_i;
+
+tin_calc_caret_x(int i) {
+  int txt_st_v = (import tin_st)[0];
+  int txt_cell_v = txt_cell();
+  int ret_i = txt_st_v * txt_cell_v * txt_ui();
+} return int ret_i;

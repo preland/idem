@@ -1,0 +1,17 @@
+t_vars2_ent() {
+  int ent_n_v = ent_n();
+  int ent_at_v = ent_at(0, 20);
+  print("entities exp 3, bird tagged exp 1 = " + ent_n_v + " " + (ent_at_v != 0));
+} return void;
+
+t_vars2_own() {
+  int scr_get_v = scr_get(0, "own");
+  int scr_get_v2 = scr_get(0 - 1, "own");
+  print("own from the bird exp 5, from the scene exp 0 = " + scr_get_v + " " + scr_get_v2);
+} return void;
+
+t_upd_rep() {
+  int scr_get_v = scr_get(0 - 1, "n");
+  int scr_get_v2 = scr_get(0, "own");
+  print("after one update: n exp 14, own exp 6 = " + scr_get_v + " " + scr_get_v2);
+} return void;

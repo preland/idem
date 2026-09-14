@@ -1,0 +1,11 @@
+ed_row_text(int x, int y, int w, string s, int k) {
+  int ui1 = txt_ui();
+  int cell = txt_cell();
+  ed_row_text_fit(x, y, w, s, k, ui1, cell);
+} return void;
+
+ed_row_text_fit(int x, int y, int w, string s, int k, int ui1, int cell) {
+  int ui2 = txt_ui();
+  string fit = ed_fit(s, (w - 8 * ui1) / (cell * ui2));
+  ed_row_text_draw(x, y, fit, k);
+} return void;

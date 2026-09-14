@@ -1,0 +1,17 @@
+// Fields are laid out in declaration order and Blender's own structs carry their
+// padding explicitly (`char _pad[4]`), so plain accumulation is exact. The proof
+// that it is exact is that the accumulated total equals TLEN's size for the
+// struct, and tests/unit/mesh asserts exactly that.
+bl_fwalk(int p, int n, string name) {
+  int o = 0;
+  int i = 0;
+  while (i < n) {
+    o = o + bl_fstep(p + i * 4, name, o);
+    i = i + 1;
+  }
+} return int o;
+
+bl_fwalk_done(int p, int n, string name) {
+  bl_fwalk(p, n, name);
+  int ret_i = bl_fdone();
+} return int ret_i;

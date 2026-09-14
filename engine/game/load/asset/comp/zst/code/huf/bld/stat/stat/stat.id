@@ -1,0 +1,26 @@
+// Collecting the weight statistics, and the implied last weight.
+//
+// From entropy_common.c: every weight contributes `(1 << w) >> 1` to a running
+// total; the table log is one more than the highest set bit of that total; and the
+// *last* symbol's weight is not stored at all -- it is whatever makes the total a
+// clean power of two. That implied weight is why a description names one fewer
+// symbol than the table holds.
+
+huf_ranks(int n) {
+  int i = 0;
+  lst_set_all((import huf_rk), 16, 0);
+  int ret_i = huf_ranks_loop(i, n);
+} return int ret_i;
+
+huf_total(int n, int i, int v) {
+  while (i < n) {
+    v = v + inf_pow2((import huf_wt)[i]) / 2;
+    i = i + 1;
+  }
+} return int v;
+
+// tableLog = highbit(total) + 1, and the rest of the space is the last symbol's.
+huf_last(int n, int v) {
+  int log = fse_hib(v) + 1;
+  huf_last_setup(log, n, v);
+} return void;

@@ -1,0 +1,17 @@
+ui_text_coords(int nd, int x, int y, int w, int h, int w_sc) {
+  int ui_tx_v = ui_tx(nd, x, w, w_sc);
+  int ui_ty_v = ui_ty(y, h);
+  int ui_tc_v = ui_tc(nd);
+} return int ui_tx_v;
+
+ui_tstr(int nd, int x, int y, int w, int h) {
+  string ui_sarg_v = ui_sarg(nd, 0, "");
+  int[] xyc = ui_tstr_xyc(nd, x, y, w, h, ui_sarg_v);
+  txt_draw_sc(ui_sarg_v, xyc[0], xyc[1], xyc[2], (import ui_ts)[0]);
+} return void;
+
+ui_tnum(int nd, int x, int y, int w, int h) {
+  int scr_ev_v = ui_tnum_ev(nd);
+  int[] xyc = ui_tnum_xyc(nd, x, y, w, h, scr_ev_v);
+  txt_num_sc(scr_ev_v, xyc[0], xyc[1], xyc[2], (import ui_ts)[0]);
+} return void;

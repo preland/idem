@@ -1,0 +1,11 @@
+// The box's size and colour, then the rect itself.
+ent_box2(int e, int ox, int oy) {
+  int bsw = ent_bs(e, 25);
+  int bsh = ent_bs(e, 26);
+  ent_box3(e, ox, oy, bsw, bsh);
+} return void;
+
+ent_box3(int e, int ox, int oy, int bsw, int bsh) {
+  int col = ent_at(e, 27);
+  sf_rect(ox, oy, bsw, bsh, col);
+} return void;

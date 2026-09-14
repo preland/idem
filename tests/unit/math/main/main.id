@@ -1,0 +1,28 @@
+// Unit tests for engine/core/math. Every line names the expected value in its
+// own label, so the output is self-describing and tools/test.sh can diff the
+// whole thing against golden.txt -- a regression is a one-line diff rather than a
+// judgement call. Expected values were computed independently with python3.
+//
+// The checks are one long chain of three-action functions (each ends by calling
+// the next) because that is the only way to run more than three of them: a block
+// holds three actions and the free return clause. fx_trig_init and rnd_init run
+// first because an exported global does not exist until its declaring function
+// has run, and reading one before that segfaults.
+
+main(int argc, string[] argv) {
+  fx_trig_init();
+  rnd_init(12345);
+  t_fxbase();
+} return int 0;
+
+t_fxbase() {
+  int fx_abs_v = fx_abs(0 - 7);
+  int fx_abs_v2 = fx_abs(7);
+  t_fxabs2(fx_abs_v, fx_abs_v2);
+} return void;
+
+t_fxlim() {
+  int fx_clamp_v = fx_clamp(5, 0, 10);
+  int fx_clamp_v2 = fx_clamp(0 - 5, 0, 10);
+  t_fxclamp2(fx_clamp_v, fx_clamp_v2);
+} return void;

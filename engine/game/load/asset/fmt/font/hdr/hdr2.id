@@ -1,0 +1,33 @@
+psf_two3(int sa, int n) {
+  int cs = psf_fld(20);
+  int ret_i = psf_two4(sa, n, cs);
+} return int ret_i;
+
+psf_two4(int sa, int n, int cs) {
+  int h = psf_fld(24);
+  int w = psf_fld(28);
+  int ret_i = psf_one(sa, n, cs, h, w);
+} return int ret_i;
+
+// Is this a face this engine can hold, and does its glyph data fit in the file?
+//
+// The width ceiling is 24 and not 32: a packed row is an int, `int` is 32 bits
+// and signed, and a 32-wide row would set the sign bit and make the `>>` in
+// txt_px_sc arithmetic rather than logical. 24 covers every fixed face in
+// existence -- the widest kbd(1) ships is 16 -- and leaves the sign bit clear by
+// a whole byte.
+//
+// The height ceiling is 64 because txt_row_sc packs a row index and a column
+// index as `j * 256 + k` and a taller face would collide the two. The charsize
+// test allows a glyph *bigger* than its rows need, because the format permits
+// padding, and refuses one that is smaller, because that is a file that would be
+// read past. The two ceilings on cs and n are there so that `sa + n * cs` cannot
+// overflow into a positive number smaller than the file -- 65536 * 256 is 2^24,
+// with seven bits of headroom left. The count has to clear (import txt_first): a font
+// with no printable ASCII is not one this engine can draw with.
+psf_fit(int sa, int n, int cs, int h, int w) {
+  int ok = 0;
+  if (w >= 1 && w <= 24 && h >= 1 && h <= 64 && cs >= h * ((w + 7) / 8) && cs <= 256 && n <= 65536) {
+    ok = n > (import txt_first) && sa > 0 && sa + n * cs <= (import asset_io)[1];
+  }
+} return int ok;

@@ -1,0 +1,8 @@
+// The rest of sf_clip -- the high bound -- split out to keep sf_clip under
+// the action limit.
+
+sf_clip_b(int x1, int y1) {
+  int cx1 = fx_clamp(x1, 0, (import sf_gw) - 1);
+  int cy1 = fx_clamp(y1, 0, (import sf_gh) - 1);
+  m4_pair((import sf_cl), 2, 3, cx1, cy1);
+} return void;

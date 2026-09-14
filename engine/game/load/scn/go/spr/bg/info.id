@@ -1,0 +1,5 @@
+// The sprite's name and its asset path, resolved through scn_dir.
+scn_sprite_info(int nd) {
+  string scn_str_v = scn_str(nd);
+  string[] info = [ast_tx(nd), scn_path(scn_str_v)];
+} return string[] info;

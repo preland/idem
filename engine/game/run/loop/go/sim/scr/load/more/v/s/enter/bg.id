@@ -1,0 +1,5 @@
+// The background and entity spawn, closing out what scn_enter3 opened.
+scn_enter3b(int nd) {
+  scn_bg(nd, 0);
+  scn_enter4(nd);
+} return void;

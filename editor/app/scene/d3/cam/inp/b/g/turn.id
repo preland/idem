@@ -8,9 +8,13 @@
 // way -- hence the minus. Getting this backwards is not subtle to use and is very
 // easy to write: the eye orbits opposite to the thing it is looking at.
 
-ed_turn() {
+ed_turn_yaw() {
   int ed_st_v = (import ed_st)[2];
   int inp_mx_v = inp_mx();
   lset((import ed_st), 2, ed_st_v - (inp_mx_v - (import ed_st)[6]) * 500);
+} return void;
+
+ed_turn() {
+  ed_turn_yaw();
   ed_pitch();
 } return void;

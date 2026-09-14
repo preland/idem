@@ -1,0 +1,29 @@
+// The 2D clip rect.
+//
+// Sprite blits clip to this rather than to the surface, so a caller that draws
+// into a *panel* -- the editor's scene view showing a game's world -- gets a
+// sprite cut off at the panel's edge instead of one that runs across the
+// inspector. Everything defaults to the whole surface, which is what every other
+// caller wants and what sf_init restores on every resize.
+//
+// Inclusive bounds, because that is what the row clips compare against and
+// converting once here beats converting per row. Clamped to the surface, because
+// a clip rect wider than the framebuffer is not a drawing that spills, it is an
+// out-of-range store, and an out-of-range store aborts the process.
+//
+// This is a clip and not a scissor stack: there is one, callers set it and put it
+// back, and nesting it would need a stack that the one caller does not want.
+
+sf_cl_init() {
+  export int[] sf_cl = [0, 0, 0, 0];
+} return void;
+
+sf_clip(int x0, int y0, int x1, int y1) {
+  int cx0 = fx_clamp(x0, 0, (import sf_gw) - 1);
+  int cy0 = fx_clamp(y0, 0, (import sf_gh) - 1);
+  sf_clip_a(cx0, cy0, x1, y1);
+} return void;
+
+sf_unclip() {
+  sf_clip(0, 0, (import sf_gw) - 1, (import sf_gh) - 1);
+} return void;

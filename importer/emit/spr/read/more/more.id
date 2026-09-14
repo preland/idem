@@ -1,0 +1,23 @@
+// The rest of the header, the two pixel lists, and the order the body runs in.
+//
+// The lists are declared exactly once, here, and never inside the plane reader --
+// an `export` declaration *executes*, so a reader that declared its own list
+// would empty the previous plane every time it was called.
+
+spr_dim3(string src) {
+  int v6 = imp_int(src);
+  lset((import spr_d), 6, v6);
+  spr_dim3_b(src);
+} return void;
+
+spr_lists() {
+  export int[] spr_px = [];
+  export int[] spr_al = [];
+  export int[] spr_p = [0 - 1];
+} return void;
+
+spr_body(string src) {
+  spr_plane(src, "P3", 3);
+  spr_plane(src, "P2", 1);
+  spr_out();
+} return void;

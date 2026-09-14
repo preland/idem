@@ -1,0 +1,44 @@
+// The perspective matrix.
+//
+// This is the GL-shaped projection, in the engine's camera space: +X right,
+// +Y up, and **+Z straight ahead** (d3_view_matrix flips the world's -Z-forward
+// convention once, so that everything downstream tests `z >= near` instead of
+// reasoning about signs). Against a GL matrix the third and fourth rows
+// therefore have the opposite sign, and w comes out as +z rather than -z.
+//
+//   x_clip = cot(fov/2) * x
+//   y_clip = cot(fov/2) * aspect * y          aspect = width / height, x1000
+//   z_clip = A * z + B                        A = (far+near)/(far-near)
+//   w_clip = z                                B = -2*far*near/(far-near)
+//
+// so z_clip / w_clip is -1 at the near plane and +1 at the far plane.
+//
+// fov is the **horizontal** field of view in millidegrees -- the same slot the
+// camera record holds, and the same one d3_cam_focal turns into a focal length.
+// The rasteriser does not use this matrix: it projects with one divide per vertex
+// (d3_pscale), because a 4x4 product per vertex would buy nothing when the fourth
+// row is the only interesting part. This exists so that a game or a test can
+// speak to the same projection algebraically, and it is where the near/far term
+// is written down.
+//
+// 2 * far * near reaches 8 * 10^9 for a 40-unit far plane, twice the int range,
+// so it is formed in a word. far - near is floored at 1 because a degenerate
+// frustum must give a flat matrix rather than a division by zero.
+
+m4_perspective(int fov, int aspect, int near, int far) {
+  int[] mat = m4_new();
+  int c = m4_cot(fov / 2);
+  m4_persp2(mat, c, aspect, near, far);
+} return int[] mat;
+
+m4_zrow(int[] mat, int near, int far) {
+  int d = fx_max(far - near, 1);
+  word wp = far;
+  m4_zrow_b(mat, near, far, d, wp);
+} return void;
+
+m4_zrow2(int[] mat, int a, word wp) {
+  int wp_i = wp;
+  m4_pair(mat, 10, 11, a, wp_i);
+  m4_pair(mat, 14, 15, 1000, 0);
+} return void;

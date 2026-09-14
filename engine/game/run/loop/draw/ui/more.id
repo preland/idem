@@ -1,0 +1,13 @@
+// The two remaining stage-rect reads run_ui2 has no room left for.
+
+run_ui3(int nd) {
+  int sx = sys_sx();
+  int sy = sys_sy();
+  run_ui4(nd, sx, sy);
+} return void;
+
+run_ui4(int nd, int sx, int sy) {
+  int sw = sys_sw();
+  int sh = sys_sh();
+  ui_draw(nd, sx, sy, sw, sh);
+} return void;

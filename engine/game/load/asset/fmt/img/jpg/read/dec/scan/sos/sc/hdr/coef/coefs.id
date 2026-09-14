@@ -1,0 +1,15 @@
+jpg_coefs(int ci) {
+  jpg_coefs_alloc(ci);
+  jpg_coefs_w(ci);
+  jpg_coefs_h(ci);
+} return void;
+
+jpg_coefs_w(int ci) {
+  int jpg_cdim_v = jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]);
+  lset((import jpg_nb), ci * 2, jpg_cdim_v);
+} return void;
+
+jpg_coefs_h(int ci) {
+  int jpg_cdim_v2 = jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]);
+  lset((import jpg_nb), ci * 2 + 1, jpg_cdim_v2);
+} return void;

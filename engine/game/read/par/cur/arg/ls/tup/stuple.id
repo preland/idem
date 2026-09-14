@@ -1,0 +1,13 @@
+// The same tuple, with every number scaled to a known slot: this is what a vertex
+// list and a brush use.
+par_stuple(int[] pos, int sc) {
+  int[] kids = par_stuple_kids(pos, sc);
+  int ast_k_tuple_v = ast_k_tuple();
+  int ret_i = ast_new_kids(ast_k_tuple_v, "", kids);
+} return int ret_i;
+
+par_stuple_kids(int[] pos, int sc) {
+  int[] kids = [];
+  par_want(pos, "(");
+  par_sfill(pos, kids, sc);
+} return int[] kids;

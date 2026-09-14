@@ -1,0 +1,17 @@
+// par_mui2's kid-list and node build, and par_comp's advance-and-dispatch,
+// split out to stay within the action limit.
+
+par_mui2_kids(int[] pos) {
+  int[] kids = [par_item(pos)];
+  par_want(pos, "}");
+} return int[] kids;
+
+par_mui2_node(int[] kids) {
+  int ast_k_ui_v = ast_k_ui();
+  int ret_i = ast_new_kids(ast_k_ui_v, "", kids);
+} return int ret_i;
+
+par_comp_fin(int[] pos, string name, int ln) {
+  par_next(pos);
+  int ret_i = par_comp2(pos, name, ln);
+} return int ret_i;

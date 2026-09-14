@@ -14,15 +14,11 @@ t_anim() {
 t_anim2() {
   int t_at_v = t_at(0);
   int t_at_v2 = t_at(120);
-  int t_at_v3 = t_at(240);
-  int t_at_v4 = t_at(360);
-  print("frames at 0, 120, 240, 360 ms exp 0 1 2 0 = " + t_at_v + " " + t_at_v2 + " " + t_at_v3 + " " + t_at_v4);
-  t_anim3();
+  t_anim2b(t_at_v, t_at_v2);
 } return void;
 
 t_anim3() {
   ent_put(0, 15, 0 - 1);
   ent_put(0, 7, 5);
-  int t_at_v = t_at(9999);
-  print("no anim: frame held exp 5 = " + t_at_v);
+  t_anim3_rep();
 } return void;

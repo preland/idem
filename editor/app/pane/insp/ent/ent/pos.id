@@ -1,0 +1,11 @@
+ed_insp_pos_rows(int x, int y, int w, int e) {
+  ed_kve(x, y, w, "pos x", e, 0);
+  int ed_rowh_v = ed_rowh();
+  ed_kve(x, y + ed_rowh_v + 2, w, "pos y", e, 1);
+} return void;
+
+ed_insp_pos(int x, int y, int w, int e) {
+  ed_insp_pos_rows(x, y, w, e);
+  int h = ed_rowh();
+  ed_insp_vel(x, y + 2 * (h + 2), w, e);
+} return void;

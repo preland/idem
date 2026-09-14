@@ -1,0 +1,22 @@
+// The two rectangles a plane draw is clipped to.
+//
+// The panel is where the whole thing lives; the plane, intersected with it, is
+// where the game's own pixels live. At a magnification of 1 the plane is inside
+// the panel and the intersection is the plane; zoomed in it is the panel.
+
+ed_clip_pane() {
+  int x0 = ed_rq(3, 0);
+  int y0 = ed_rq(3, 1);
+  ed_clip_pane2(x0, y0);
+} return void;
+
+ed_pclip(int x, int y, int w) {
+  int x0 = ed_rq(3, 0);
+  int y0 = ed_rq(3, 1);
+  ed_pclip2(x, y, w, x0, y0);
+} return void;
+
+ed_pclip_b(int y) {
+  int prod_v = ed_gh() * ed_psc() / 1000;
+  int ret_i = ed_pclip_b2(y, prod_v);
+} return int ret_i;

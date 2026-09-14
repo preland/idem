@@ -1,0 +1,12 @@
+// The two halves of one key binding scr_key1 has no room left for: the code,
+// and the event it raises.
+
+scr_key1code(string tx) {
+  int kc = scr_kcode(tx);
+  push((import scr_kk), kc);
+} return void;
+
+scr_key1ev(int nd) {
+  string kev = scr_kev(nd);
+  push((import scr_ke), kev);
+} return void;

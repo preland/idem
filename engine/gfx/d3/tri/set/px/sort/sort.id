@@ -1,0 +1,48 @@
+// Sorting the three vertices by y, and splitting the triangle in two.
+//
+// A triangle is rasterised as two scanline runs sharing the long edge: from the
+// top vertex to the middle one, walking edges (v0,v2) and (v0,v1); then from the
+// middle to the bottom, walking (v0,v2) and (v1,v2). Sorting first is what makes
+// both runs monotonic, so no scanline needs to ask which edges are active.
+//
+// Both y ranges are clipped to the surface here rather than per scanline, so a
+// triangle entirely above or below it produces two empty `while`s and costs three
+// comparisons. A flat-topped triangle (y0 = y1) produces an empty first run, and
+// a flat-bottomed one (y1 = y2) a single-line second run; both fall out of the
+// bounds without a special case.
+//
+// The upper run stops one line short of the middle vertex and the lower run
+// includes it, so the middle scanline is drawn exactly once -- drawing it twice
+// would double-write pixels that a semi-transparent blend would then show as a
+// seam, and skipping it leaves a one-pixel crack between the halves.
+
+d3_tri2(int[] verts) {
+  d3_sort3(verts);
+  int y0 = fx_max(verts[1], (import d3_vp)[1]);
+  d3_tri2_b(verts, y0);
+} return void;
+
+// A three-element sort is three conditional swaps: compare the first pair, the
+// second pair, then the first pair again.
+d3_sort3(int[] verts) {
+  if (verts[7] < verts[1]) {
+    d3_swapv(verts, 0, 6);
+  }
+  if (verts[13] < verts[7]) {
+    d3_swapv(verts, 6, 12);
+  }
+  if (verts[7] < verts[1]) {
+    d3_swapv(verts, 0, 6);
+  }
+} return void;
+
+// Exchange the six slots of two records. p and q are base slots, not vertex
+// numbers, which is what lets the scanline code reuse this to put a span's two
+// ends the right way round (d3_line2).
+d3_swapv(int[] xs, int p, int q) {
+  int k = 0;
+  while (k < 6) {
+    lst_swap(xs, p + k, q + k);
+    k = k + 1;
+  }
+} return void;

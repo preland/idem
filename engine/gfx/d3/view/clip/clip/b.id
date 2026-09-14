@@ -1,0 +1,7 @@
+// The rest of d3_nclip -- the third vertex's side and the case dispatch --
+// split out to keep it under the action limit.
+
+d3_nclip_b(int[] tri, int s0, int s1) {
+  int s2 = d3_side(tri, 2);
+  d3_ncase(tri, s0 + s1 * 2 + s2 * 4);
+} return void;

@@ -1,0 +1,7 @@
+// The rest of m4_rot4 -- the two matrix entries -- split out to keep it
+// under the action limit.
+
+m4_rot4_b(int[] mat, int i, int j, int k, int p, int co, int si) {
+  m4_pair(mat, i, j, co, 0 - si);
+  m4_pair(mat, k, p, si, co);
+} return void;

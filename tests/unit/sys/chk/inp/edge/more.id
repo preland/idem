@@ -1,0 +1,14 @@
+t_rel_show() {
+  string line = "W released: exp down 0 hit 0 = " + inp_down(87) + " " + inp_hit(87);
+  print(line);
+} return void;
+
+t_tapp_show1() {
+  string line = "W tapped inside one frame: exp down 0 hit 1 = " + inp_down(87) + " " + inp_hit(87);
+  print(line);
+} return void;
+
+t_tapp_show2() {
+  string line = "out of range: inp_down(-1), inp_down(512), inp_hit(99999) exp 0 0 0 = " + inp_down(0 - 1) + " " + inp_down(512) + " " + inp_hit(99999);
+  print(line);
+} return void;

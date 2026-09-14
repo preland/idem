@@ -1,8 +1,12 @@
 // The orbit's distance, on the wheel.
 
 ed_zoom3d() {
-  int inp_mdown_v = inp_mdown(8);
-  int inp_mdown_v2 = inp_mdown(16);
-  int fx_clamp_v = fx_clamp((import ed_st)[4] - (import ed_st)[4] / 8 * inp_mdown_v + (import ed_st)[4] / 8 * inp_mdown_v2, 1200, 60000);
-  lset((import ed_st), 4, fx_clamp_v);
+  int up_v = inp_mdown(8);
+  int down_v = inp_mdown(16);
+  ed_zoom3d_set(up_v, down_v);
+} return void;
+
+ed_zoom3d_set(int up_v, int down_v) {
+  int clamp_v = fx_clamp((import ed_st)[4] - (import ed_st)[4] / 8 * up_v + (import ed_st)[4] / 8 * down_v, 1200, 60000);
+  lset((import ed_st), 4, clamp_v);
 } return void;

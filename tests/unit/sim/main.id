@@ -33,7 +33,5 @@ t_boot() {
 t_defs() {
   int ent_n_v = ent_n();
   print("ent_n on an empty store exp 0 = " + ent_n_v);
-  int ent_add_v = ent_add();
-  t_two(ent_add_v);
-  t_defs2();
+  t_defs_add();
 } return void;

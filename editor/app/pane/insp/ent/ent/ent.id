@@ -1,0 +1,16 @@
+ed_insp_ent_rows_sel(int x, int y, int h) {
+  int nsel = ed_nsel(0, 0);
+  ed_kvn(x, y + h + 2, "selected", nsel);
+} return void;
+
+ed_insp_ent_rows(int x, int y, int w, int e) {
+  ed_kvn(x, y, "entity", e);
+  int h = ed_rowh();
+  ed_insp_ent_rows_sel(x, y, h);
+} return void;
+
+ed_insp_ent(int x, int y, int w, int e) {
+  ed_insp_ent_rows(x, y, w, e);
+  int h = ed_rowh();
+  ed_insp_pos(x, y + 2 * (h + 2), w, e);
+} return void;

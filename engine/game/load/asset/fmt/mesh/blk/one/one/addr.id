@@ -1,0 +1,7 @@
+// A block's length and its old-memory address, pushed to bl_ba.
+
+bl_block_addr(int p) {
+  int n = bl_le32(p + 16);
+  word bl_le64_v = bl_le64(p + 8);
+  push((import bl_ba), bl_le64_v);
+} return int n;

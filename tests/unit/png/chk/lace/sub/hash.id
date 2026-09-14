@@ -9,8 +9,7 @@ t_phash(int y, int hv) {
 
 t_prow(int y, int hv, int x) {
   while (x < (import png_st)[0]) {
-    int asset_row_v = asset_row(y);
-    int png_samp_v = png_samp(asset_row_v, x);
+    int png_samp_v = t_pal_s(y, x);
     hv = t_pmix(hv, png_samp_v);
     x = x + 1;
   }

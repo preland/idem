@@ -1,0 +1,24 @@
+// fx_mul / fx_div / fx_lerp. The interesting cases are the ones whose product
+// does not fit in 32 bits: 100000 * 100000 is 10^10 and 46341^2 is just past
+// 2^31-1, so both would wrap to a negative number without the word intermediate.
+// A zero divisor is checked too, because in this language an int division by zero
+// is an unchecked SIGFPE core dump -- if the guard were missing these lines would
+// not print a wrong answer, the binary would die here.
+
+t_fxscale() {
+  int fx_mul_v = fx_mul(2000, 3000, 1000);
+  int fx_mul_v2 = fx_mul(0 - 2000, 3000, 1000);
+  t_fxmul2(fx_mul_v, fx_mul_v2);
+} return void;
+
+t_fxdiv() {
+  int fx_mul_v = fx_mul(5, 5, 0);
+  print("fx_mul(5,5,0) exp 0 not a crash = " + fx_mul_v);
+  t_fxdiv2();
+} return void;
+
+t_fxlerp() {
+  int fx_lerp_v = fx_lerp(0, 1000, 500);
+  int fx_lerp_v2 = fx_lerp(100, 200, 250);
+  t_fxlerp2(fx_lerp_v, fx_lerp_v2);
+} return void;

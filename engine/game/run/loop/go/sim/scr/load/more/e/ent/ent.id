@@ -1,0 +1,29 @@
+// An entity's variables, tags and script, read out of its declaration.
+//
+// The var block is a contiguous run appended as the entity is filled, so its base
+// is wherever the table happened to be. Nothing is ever inserted into the middle
+// of the table, which is what keeps every earlier block's base valid as entities
+// spawn.
+
+scr_evars(int e, int nd, int i) {
+  int len_v = len((import scr_vv));
+  ent_put(e, 17, len_v);
+  scr_evars2(e, nd, i);
+} return void;
+
+scr_evars2(int e, int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (i < len(ks)) {
+    scr_emem(e, ks[i]);
+    i = i + 1;
+  }
+  scr_evars3(e);
+} return void;
+
+// Three member kinds matter here: a `var` declares, a `script` is kept by node,
+// and a `tag` contributes bits. scr_dmem does nothing to a member that is not a
+// variable, so both branches run and only one of them ever does anything.
+scr_emem(int e, int nd) {
+  scr_dmem(nd);
+  scr_emem2(e, nd);
+} return void;

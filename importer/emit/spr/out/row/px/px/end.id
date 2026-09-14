@@ -1,0 +1,13 @@
+// The rest of spr_row and one character of spr_chars's loop body -- split
+// out to keep both under the action limit.
+
+spr_row_end(word ad) {
+  string s = str_of_mem(ad, (import spr_d)[0]);
+  print("  \"" + s + "\"");
+} return void;
+
+spr_chars_ch(int f, int y, word ad, int x) {
+  int at = spr_at(f, y, x);
+  int ch = spr_char(at);
+  poke8(ad + x, ch);
+} return void;

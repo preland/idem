@@ -1,0 +1,29 @@
+// Key repeat, straddling the delay from both sides.
+//
+// The whole sequence holds Backspace over a nine-character buffer from t = 5000,
+// so every deletion is visible in the text: a repeat that fired every frame
+// would empty it, and one that never fired would leave eight characters.
+
+// The action is per-frame and has to clear itself, or a caller that reads it in
+// its draw pass sees last frame's Return again.
+t_quiet() {
+  t_hold(3200);
+  t_quiet_show();
+  t_rep();
+} return void;
+
+// tin_set drops the caret at the end, which is where Backspace has to bite.
+t_rep() {
+  tin_set("123456789");
+  t_down(8, 5000);
+  t_rep2();
+} return void;
+
+// The press itself fires once, immediately. A field that waited out the delay
+// before the FIRST character would feel broken in a way no amount of correct
+// repeating would fix.
+t_rep2() {
+  t_rep2_show();
+  t_hold(5100);
+  t_rep3();
+} return void;

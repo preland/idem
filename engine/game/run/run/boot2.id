@@ -1,0 +1,6 @@
+// idem_boot's source join, read, and dispatch, closing out what it opened.
+idem_boot2(string[] chunks, int argc, string[] argv) {
+  string src = run_join(chunks, 0, "");
+  idem_read(src);
+  int ret_i = idem_go(argc, argv);
+} return int ret_i;

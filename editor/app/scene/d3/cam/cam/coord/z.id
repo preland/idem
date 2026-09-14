@@ -1,0 +1,13 @@
+// Z coordinate calculation for camera eye position.
+
+ed_cam_coord_z(int d, int deg, int pit) {
+  int cos_p = fx_cos(pit);
+  int m = fx_mul(d, cos_p, 1000);
+  int v = ed_cam_z_with_m(m, deg);
+} return int v;
+
+ed_cam_z_with_m(int m, int deg) {
+  int cos_d = fx_cos(deg);
+  int cz = (import ed_st)[12];
+  int v = cz + fx_mul(m, cos_d, 1000);
+} return int v;

@@ -1,0 +1,3 @@
+ed_pg2() {
+  string ret_s = ed_pong_ln("  scale 2") + ed_pong_ln("  start play") + ed_pong_ln("  keys { esc = quit }") + ed_pong_ln("  persist { lscore = 0 rscore = 0 }") + ed_pg3();
+} return string ret_s;

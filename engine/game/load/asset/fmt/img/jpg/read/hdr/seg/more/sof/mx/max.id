@@ -7,20 +7,12 @@ jpg_maxes(int ci) {
   }
 } return void;
 
-jpg_max1(int ci) {
-  int fx_max_v = fx_max((import jpg_st)[3], (import jpg_c)[ci * 10 + 1]);
-  lset((import jpg_st), 3, fx_max_v);
-  int fx_max_v2 = fx_max((import jpg_st)[4], (import jpg_c)[ci * 10 + 2]);
-  lset((import jpg_st), 4, fx_max_v2);
+jpg_grid() {
+  jpg_gridc(0, 3, 5);
+  jpg_gridc(1, 4, 6);
 } return void;
 
-jpg_grid() {
-  int jpg_st_v = (import jpg_st)[0];
-  int jpg_st_v2 = (import jpg_st)[3];
-  int fx_max_v = fx_max(8 * (import jpg_st)[3], 1);
-  lset((import jpg_st), 5, (jpg_st_v + 8 * jpg_st_v2 - 1) / fx_max_v);
-  int jpg_st_v3 = (import jpg_st)[1];
-  int jpg_st_v4 = (import jpg_st)[4];
-  int fx_max_v2 = fx_max(8 * (import jpg_st)[4], 1);
-  lset((import jpg_st), 6, (jpg_st_v3 + 8 * jpg_st_v4 - 1) / fx_max_v2);
+jpg_gridc(int szi, int sfi, int outi) {
+  int fx_max_v = fx_max(8 * (import jpg_st)[sfi], 1);
+  lset((import jpg_st), outi, ((import jpg_st)[szi] + 8 * (import jpg_st)[sfi] - 1) / fx_max_v);
 } return void;

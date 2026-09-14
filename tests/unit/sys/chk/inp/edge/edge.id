@@ -1,0 +1,28 @@
+// Releases, the tap that starts and ends inside one frame, and the guard.
+//
+// 65536 is GFX_RELEASED: a release arrives as the key's own code plus that.
+//
+// The tap is the case the old timestamp scheme could not express at all. A press
+// and a release inside one frame must still read as a hit for that frame -- that
+// is a real click on a real mouse -- while reading as not held, because it is not.
+
+t_rel() {
+  inp_stamp(87 + 65536);
+  t_rel_show();
+  t_tap();
+} return void;
+
+t_tap() {
+  inp_stamp(87);
+  inp_stamp(87 + 65536);
+  t_tapp();
+} return void;
+
+// The guard on the key code is what stands between a keyboard with one key more
+// than this seam knows about and an out-of-range list store, which aborts the
+// process. Both ends are checked, because a negative index is as fatal as a large
+// one and arrives by a different route (a release of code 0 arithmetic'd wrong).
+t_tapp() {
+  t_tapp_show1();
+  t_tapp_show2();
+} return void;

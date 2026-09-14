@@ -1,0 +1,10 @@
+ed_status_flow2(int y, int ui, string fit) {
+  int x = ed_slab(6 * ui, y, fit);
+  int len_v = len((import ed_nm));
+  ed_status_flow3(y, x, len_v);
+} return void;
+
+ed_status_flow3(int y, int x, int len_v) {
+  int x2 = ed_snum(x, y, "decls", len_v);
+  ed_status_n(x2, y);
+} return void;

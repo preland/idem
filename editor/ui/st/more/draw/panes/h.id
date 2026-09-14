@@ -1,0 +1,11 @@
+ed_panes_h() {
+  int r0 = ed_rq(2, 0);
+  int r1 = ed_rq(2, 1);
+  ed_panes_h2(r0, r1);
+} return void;
+
+ed_panes_h2(int r0, int r1) {
+  int r2 = ed_rq(2, 2);
+  int r3 = ed_rq(2, 3);
+  ed_hier(r0, r1, r2, r3);
+} return void;

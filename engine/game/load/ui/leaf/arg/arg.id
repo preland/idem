@@ -7,17 +7,21 @@
 
 ui_arg(int nd, int i, int v) {
   int a = ast_ia(nd);
-  if (a != 0 && i < len(ast_ks(a))) {
+  if (a != 0) {
     int[] ast_ks_v = ast_ks(a);
-    v = ast_ia(ast_ks_v[i]);
+    if (i < len(ast_ks_v)) {
+      v = ast_ia(ast_ks_v[i]);
+    }
   }
 } return int v;
 
 ui_sarg(int nd, int i, string s) {
   int a = ast_ia(nd);
-  if (a != 0 && i < len(ast_ks(a))) {
+  if (a != 0) {
     int[] ast_ks_v = ast_ks(a);
-    s = ast_tx(ast_ks_v[i]);
+    if (i < len(ast_ks_v)) {
+      s = ast_tx(ast_ks_v[i]);
+    }
   }
 } return string s;
 

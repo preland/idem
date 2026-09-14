@@ -1,0 +1,13 @@
+// The rest of m4_perspective's and m4_zrow's setup -- split out to keep both
+// under the action limit.
+
+m4_persp2(int[] mat, int c, int aspect, int near, int far) {
+  int sx = fx_mul(c, aspect, 1000);
+  m4_pair(mat, 0, 5, c, sx);
+  m4_zrow(mat, near, far);
+} return void;
+
+m4_zrow_b(int[] mat, int near, int far, int d, word wp) {
+  int a = fx_div(far + near, d, 1000);
+  m4_zrow2(mat, a, 0 - wp * near * 2000 / d);
+} return void;

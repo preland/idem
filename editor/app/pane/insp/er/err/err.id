@@ -1,0 +1,16 @@
+ed_insp_err_header_draw(int x, int y, int nmsg, int ui) {
+  int col = ed_col(10);
+  txt_draw(nmsg + " diagnostics", x + 6 * ui, y, col);
+} return void;
+
+ed_insp_err_header(int x, int y) {
+  int nmsg = err_nmsg();
+  int ui = txt_ui();
+  ed_insp_err_header_draw(x, y, nmsg, ui);
+} return void;
+
+ed_insp_err(int x, int y, int w, int i) {
+  ed_insp_err_header(x, y);
+  int h = ed_rowh();
+  ed_err_rows(x, y + h + 2, w, i);
+} return void;

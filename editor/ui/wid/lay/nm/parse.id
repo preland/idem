@@ -2,8 +2,16 @@
 
 ed_parse2() {
   int[] pos = [0];
+  ed_parse2_lex();
+  ed_parse2_set(pos);
+} return void;
+
+ed_parse2_lex() {
   string ed_src_v = ed_src();
   lex_run(ed_src_v);
+} return void;
+
+ed_parse2_set(int[] pos) {
   int par_item_v = par_item(pos);
   lset((import ed_ui), 0, par_item_v);
 } return void;

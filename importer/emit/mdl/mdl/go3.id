@@ -1,0 +1,7 @@
+// The rest of mdl_go2 -- the header and the body -- split out to keep it
+// under the action limit.
+
+mdl_go3(string src) {
+  mdl_head();
+  mdl_body(src);
+} return void;

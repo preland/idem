@@ -1,0 +1,13 @@
+// Whether imp_ws should keep walking -- whitespace, or a `#` comment --
+// split out of imp_ws's while condition, which may not hold a call.
+
+imp_ws_ok(string src, int i) {
+  int c = charat(src, i);
+  int sp = imp_space(c);
+  int ok = imp_ws_ok2(sp, c);
+} return int ok;
+
+imp_ws_ok2(int sp, int c) {
+  int ok = 0;
+  if (sp = 1 || c = 35) { ok = 1; }
+} return int ok;

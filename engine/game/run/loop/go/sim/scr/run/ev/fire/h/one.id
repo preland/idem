@@ -11,5 +11,12 @@ scr_fone(int h, string evn, int e, string tg) {
 // `on hit deadly` fires for a pipe and not for a coin.
 scr_amatch(int h, string tg) {
   int ok = 1;
-  if (tg != "") { ok = ast_ia(h) != 0 && ast_tx(ast_ia(h)) = tg; }
+  if (tg != "") {
+    int ia = ast_ia(h);
+    ok = 0;
+    if (ia != 0) {
+      string tx = ast_tx(ia);
+      ok = tx = tg;
+    }
+  }
 } return int ok;

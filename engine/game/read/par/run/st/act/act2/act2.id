@@ -1,0 +1,18 @@
+par_say(int[] pos) {
+  par_next(pos);
+  string txt = par_optxt(pos);
+  int ret_i = par_say_node(txt);
+} return int ret_i;
+
+par_stop(int[] pos) {
+  par_next(pos);
+  int ast_k_stop_v = ast_k_stop();
+  int ret_i = ast_new_k(ast_k_stop_v, "");
+} return int ret_i;
+
+// A script is a set of handlers and nothing else may sit at its top level.
+par_script(int[] pos) {
+  int[] kids = [];
+  par_script_pre(pos);
+  int ret_i = par_script2(pos, kids);
+} return int ret_i;

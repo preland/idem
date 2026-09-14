@@ -1,0 +1,10 @@
+ed_tool_row() {
+  int ui = txt_ui();
+  ed_tool(6 * ui, 0, "pan");
+  ed_tool_row2(ui);
+} return void;
+
+ed_tool_row2(int ui) {
+  ed_tool(44 * ui, 1, "move");
+  ed_tool2();
+} return void;

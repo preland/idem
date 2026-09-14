@@ -1,0 +1,12 @@
+ed_nudge_draw_rect_do(int x, int y, int w, int hgt, int col) {
+  sf_rect(x, y, w, hgt, col);
+} return void;
+
+ed_nudge_draw_frame_do(int x, int y, int w, int hgt, int col) {
+  d2_frame(x, y, w, hgt, col);
+} return void;
+
+ed_nudge_draw_text_do(int x, int y, string sign, int hdr, int wid) {
+  int col = ed_col(4);
+  txt_draw(sign, x + (hdr - wid) / 2, y + 1, col);
+} return void;

@@ -1,0 +1,5 @@
+ed_hier_rows_h(int x, int y, int w, int h) {
+  int rowh = ed_rowh();
+  int hdr = ed_hdr();
+  ed_hier_rows(x, y + hdr + 1, w, (h - hdr - 3) / rowh);
+} return void;

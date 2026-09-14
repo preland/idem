@@ -1,0 +1,11 @@
+t_lin4(int idstd_fx_tab_v, int idstd_fx_tab_v2) {
+  int idstd_fx_tab_v3 = idstd_fx_tab(90);
+  print("fx_tab(0,45,90) exp 0 707 1000 = " + idstd_fx_tab_v + " " + idstd_fx_tab_v2 + " " + idstd_fx_tab_v3);
+  t_rnd();
+} return void;
+
+t_rnd2() {
+  int rnd_next_v2 = rnd_next();
+  print("rnd_next draw 2 exp 2073465073 = " + rnd_next_v2);
+  t_rndspan();
+} return void;

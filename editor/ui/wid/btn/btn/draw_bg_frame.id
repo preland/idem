@@ -1,0 +1,15 @@
+ed_btn_draw(int x, int y, int w, int h, string s, int ok) {
+  ed_btn_bg(x, y, w, h, ok);
+  ed_btn_frame(x, y, w, h);
+  ed_btn_text(x, y, w, h, s);
+} return void;
+
+ed_btn_bg(int x, int y, int w, int h, int ok) {
+  int col = ed_col(7 - 6 * (ok = 0));
+  sf_rect(x, y, w, h, col);
+} return void;
+
+ed_btn_frame(int x, int y, int w, int h) {
+  int col = ed_col(3);
+  d2_frame(x, y, w, h, col);
+} return void;

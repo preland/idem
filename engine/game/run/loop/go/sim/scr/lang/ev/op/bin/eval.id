@@ -1,0 +1,16 @@
+// scr_bin's two operands, and the op combine that closes it out.
+
+scr_binl(int nd, int e) {
+  int a = scr_unrhs(nd, e);
+} return int a;
+
+scr_binr(int nd, int e) {
+  int ib = ast_ib(nd);
+  int b = scr_ev(ib, e);
+} return int b;
+
+scr_bin2(int nd, int e, int a) {
+  int b = scr_binr(nd, e);
+  string op = ast_tx(nd);
+  int ret_i = scr_op(op, a, b);
+} return int ret_i;

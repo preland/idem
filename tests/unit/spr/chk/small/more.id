@@ -1,0 +1,9 @@
+t_one_show(string name, int p) {
+  string msg = name + ": id " + p + " " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p);
+  print(msg);
+} return void;
+
+t_one_dump(int p) {
+  int n = d2_spr_w(p) * d2_spr_h(p);
+  t_dump(p, n);
+} return void;

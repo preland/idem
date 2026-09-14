@@ -1,0 +1,29 @@
+// The rest of the colour types, and the two things that must hold.
+
+png_chan2(int kd) {
+  int n = 0;
+  if (kd = 2) { n = 3; }
+  else { n = png_chan3(kd); }
+} return int n;
+
+// The filter stride and the row stride, both of which depend on the depth.
+//
+// The filter stride is the distance `sub` and `paeth` predict from: the pixel
+// size in whole bytes, floored at 1, because at 1, 2 or 4 bits a pixel is smaller
+// than the unit the filters work in and the format says to use one byte there.
+//
+// The row stride rounds *up* to a byte. A 17-pixel 4-bit row is nine bytes with
+// four bits of padding, not eight and a half, and a stride that lost the round-up
+// would slide every row after the first by part of a pixel -- an image that looks
+// sheared rather than one that looks unsupported.
+png_chk() {
+  int fx_max_v = fx_max((import png_st)[2] * (import png_st)[4] / 8, 1);
+  lset((import png_st), 11, fx_max_v);
+  png_chk1();
+} return void;
+
+png_chk1() {
+  int stride = ((import png_st)[0] * (import png_st)[4] * (import png_st)[2] + 7) / 8 + 1;
+  lset((import png_st), 8, stride);
+  png_chk2();
+} return void;

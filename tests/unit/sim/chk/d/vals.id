@@ -1,0 +1,11 @@
+t_defs2a2(int ent_at_v, int ent_at_v2) {
+  int ent_at_v3 = ent_at(0, 6);
+  int ent_at_v4 = ent_at(0, 9);
+  print("defaults: scale exp 1000 1000, sprite exp -1, live exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + ent_at_v3 + " " + ent_at_v4);
+} return void;
+
+t_defs2b2(int ent_at_v5, int ent_at_v6) {
+  int ent_at_v7 = ent_at(0, 0);
+  int ent_at_v8 = ent_at(0, 1);
+  print("anim last exp -1, ms exp 100, pos exp 0 0 = " + ent_at_v5 + " " + ent_at_v6 + " " + ent_at_v7 + " " + ent_at_v8);
+} return void;

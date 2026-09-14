@@ -12,15 +12,14 @@ par_expr(int[] pos) {
 } return int ret_i;
 
 par_or(int[] pos) {
-  int left = par_and(pos);
+  int lv = par_and(pos);
   while (par_is(pos, "||")) {
-    left = par_or_f(pos, left);
+    lv = par_or_f(pos, lv);
   }
-} return int left;
+} return int lv;
 
-par_or_f(int[] pos, int left) {
+par_or_f(int[] pos, int lv) {
   par_next(pos);
-  int ast_k_bin_v = ast_k_bin();
   int par_and_v = par_and(pos);
-  int ret_i = ast_new_ab(ast_k_bin_v, "||", left, par_and_v);
+  int ret_i = par_binnode("||", lv, par_and_v);
 } return int ret_i;

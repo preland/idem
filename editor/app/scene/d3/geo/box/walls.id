@@ -1,0 +1,10 @@
+ed_wall_pair(int x, int y, int z, int n, int c) {
+  int c1 = d2_shade(c, 850);
+  int c2 = d2_shade(c, 600);
+  ed_wall_pair2(x, y, z, n, c1, c2);
+} return void;
+
+ed_wall_pair2(int x, int y, int z, int n, int c1, int c2) {
+  ed_wall(x + n, y, z + n, x + n, y + 2 * n, z - n, c1);
+  ed_wall(x - n, y, z - n, x - n, y + 2 * n, z + n, c2);
+} return void;

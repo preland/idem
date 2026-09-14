@@ -1,0 +1,17 @@
+t_norm2(int fx_norm_deg_v, int fx_norm_deg_v2) {
+  int fx_norm_deg_v3 = fx_norm_deg(0);
+  print("fx_norm_deg(-450000,-1,0) exp 270000 359999 0 = " + fx_norm_deg_v + " " + fx_norm_deg_v2 + " " + fx_norm_deg_v3);
+  t_norm3();
+} return void;
+
+t_norm3() {
+  int fx_norm_deg_v4 = fx_norm_deg(360000);
+  int fx_norm_deg_v5 = fx_norm_deg(725000);
+  t_norm4(fx_norm_deg_v4, fx_norm_deg_v5);
+} return void;
+
+t_norm4(int fx_norm_deg_v4, int fx_norm_deg_v5) {
+  int fx_norm_deg_v6 = fx_norm_deg(0 - 360000);
+  int fx_norm_deg_v7 = fx_norm_deg(0 - 725000);
+  t_norm5(fx_norm_deg_v4, fx_norm_deg_v5, fx_norm_deg_v6, fx_norm_deg_v7);
+} return void;

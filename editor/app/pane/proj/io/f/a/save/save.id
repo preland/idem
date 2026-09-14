@@ -1,0 +1,13 @@
+// The directory is made first: a new project's has never existed, and fs has no
+// mkdir -- which is what fs_run is for. `-p` so an existing one is not an error.
+ed_save_mkdir() {
+  string q = chr(39);
+  string up = ed_up((import ed_path)[0]);
+  fs_run("mkdir -p " + q + up + q);
+} return void;
+
+ed_save() {
+  ed_save_mkdir();
+  int ed_wr_v = ed_wr((import ed_path)[0], (import ed_doc)[0]);
+  lset((import ed_st), 17, 3 + (ed_wr_v != 1));
+} return void;

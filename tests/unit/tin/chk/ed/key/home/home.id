@@ -1,0 +1,25 @@
+// The ends of the buffer, and what the editing keys do when they are already
+// there. Every one of these is a case that would be an out-of-range slice if the
+// caret were not clamped in one place (tin_put).
+
+// 260 is Home, then Backspace with nothing to its left.
+t_home() {
+  t_tap(260, 2500);
+  t_tap(8, 2600);
+  t_home2();
+} return void;
+
+// 261 is End.
+t_home2() {
+  t_home2_show();
+  t_tap(261, 2700);
+  t_end();
+} return void;
+
+// 257 is Right, pressed at the end of the buffer: the caret must stay put rather
+// than index past the last character.
+t_end() {
+  t_tap(257, 2800);
+  t_end_show();
+  t_edge();
+} return void;

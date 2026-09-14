@@ -1,0 +1,9 @@
+t_totvert_off() {
+  int bl_sfind_v = bl_sfind("Mesh");
+  int bl_foff_v = bl_foff(bl_sfind_v, "totvert");
+} return int bl_foff_v;
+
+t_totpoly_off() {
+  int bl_sfind_v2 = bl_sfind("Mesh");
+  int bl_foff_v2 = bl_foff(bl_sfind_v2, "totpoly");
+} return int bl_foff_v2;

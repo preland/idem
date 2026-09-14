@@ -1,0 +1,35 @@
+// Every mesh of the user's own showroom, from the compressed file.
+//
+// This is the check that matters, and the one that was missing: the cube has a
+// single mesh, so it cannot tell a file-global address map from a per-ID one.
+// The showroom has 29, all recording the same `dna_attributes` address, and it
+// was silently giving all 29 the first mesh's geometry.
+//
+// The expected values come from a python reader implementing the same scoped
+// rule, cross-checked against Blender's own reading of the file (29/29 meshes
+// agree on vertex, polygon and loop counts and on the first vertex).
+//
+// The range check is the free self-check here: every index a triangle carries
+// must be inside the vertex list it indexes. That is what 45% of triangles
+// failed before, and it needs no reference at all to test.
+
+t_all() {
+  t_all_open_report();
+  t_all_count_report();
+  t_range();
+} return void;
+
+t_range() {
+  int t_oob_v = t_oob();
+  print("triangle indices outside the vertex list exp 0 = " + t_oob_v);
+  t_span();
+} return void;
+
+t_oob() {
+  int n = 0;
+  int i = 0;
+  while (i < len((import bl_ti))) {
+    n = n + ((import bl_ti)[i] < 0 || (import bl_ti)[i] >= len((import bl_v)) / 3);
+    i = i + 1;
+  }
+} return int n;

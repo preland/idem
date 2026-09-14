@@ -1,0 +1,5 @@
+jpg_stab1(int p, int k) {
+  int asset_at_v = asset_at(p + k * 2);
+  int asset_at_v2 = asset_at(p + k * 2 + 1);
+  jpg_st1(asset_at_v, asset_at_v2);
+} return void;

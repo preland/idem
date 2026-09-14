@@ -1,0 +1,12 @@
+// The numeric argument's evaluated value.
+ui_tnum_ev(int nd) {
+  int ui_arg0_v = ui_arg0(nd);
+  int ast_ia_v = ast_ia(ui_arg0_v);
+  int ret_i = scr_ev(ast_ia_v, 0 - 1);
+} return int ret_i;
+
+// The drawn number's x/y/colour, once its on-screen width is known.
+ui_tnum_xyc(int nd, int x, int y, int w, int h, int scr_ev_v) {
+  int txt_num_wsc_v = txt_num_wsc(scr_ev_v, (import ui_ts)[0]);
+  int[] xyc = [ui_text_coords(nd, x, y, w, h, txt_num_wsc_v), ui_ty(y, h), ui_tc(nd)];
+} return int[] xyc;

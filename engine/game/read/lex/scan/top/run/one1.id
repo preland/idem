@@ -1,0 +1,10 @@
+lex_one1(string src, int i, int[] out) {
+  int charat_v = charat(src, i);
+  if (lex_is_space(charat_v)) { out[0] = i + 1; }
+  else { lex_one1b(src, i, out); }
+} return void;
+
+lex_one1b(string src, int i, int[] out) {
+  if (charat(src, i) = 10) { out[0] = lex_nl(src, i); }
+  else { lex_one2(src, i, out); }
+} return void;

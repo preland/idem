@@ -1,0 +1,16 @@
+par_dtgt(int[] pos, int ln) {
+  int nd = 0;
+  if (par_kind(pos) = lex_k_ident() && par_line(pos) = ln) { nd = par_ident(pos); }
+} return int nd;
+
+par_goto(int[] pos) {
+  par_next(pos);
+  string name = par_optxt(pos);
+  int ret_i = par_goto_node(name);
+} return int ret_i;
+
+par_play(int[] pos) {
+  par_next(pos);
+  string name = par_optxt(pos);
+  int ret_i = par_play_node(name);
+} return int ret_i;

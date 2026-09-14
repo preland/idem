@@ -1,0 +1,11 @@
+ed_insp_rows_names(int x, int y, int i) {
+  ed_kv(x, y, "name", (import ed_nm)[i]);
+  int ed_rowh_v = ed_rowh();
+  ed_kv(x, y + ed_rowh_v + 2, "kind", (import ed_kd)[i]);
+} return void;
+
+ed_insp_rows(int x, int y, int w, int i) {
+  ed_insp_rows_names(x, y, i);
+  int ed_rowh_v2 = ed_rowh();
+  ed_insp_more(x, y + 2 * (ed_rowh_v2 + 2), w, i);
+} return void;

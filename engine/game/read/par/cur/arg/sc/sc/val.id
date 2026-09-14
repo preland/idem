@@ -1,0 +1,13 @@
+// par_snum's two halves: the scaled value, then the number-check and node
+// build. Split to stay within the action limit.
+
+par_snum_val(int[] pos, int sc) {
+  int par_val_v = par_val(pos);
+  int par_frac_v = par_frac(pos);
+  int ret_i = par_scale(par_val_v, par_frac_v, sc, pos);
+} return int ret_i;
+
+par_snum_fin(int[] pos, int v, int sg) {
+  par_nchk(pos);
+  int ret_i = ast_new_num(v * sg, 0);
+} return int ret_i;

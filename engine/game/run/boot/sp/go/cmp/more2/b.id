@@ -1,0 +1,19 @@
+// Layer, and the first half of body and wrap.
+
+scn_efill_ly(int e, int nd) {
+  int ly = scn_elayer(nd);
+  ent_put(e, 8, ly);
+  scn_efill5(e, nd);
+} return void;
+
+scn_efill_bx(int e, int nd) {
+  int bx = scn_mtup(nd, "body", 0);
+  ent_put(e, 12, bx * 1000);
+  scn_efill6(e, nd);
+} return void;
+
+scn_efill_wy(int e, int nd) {
+  int wy = scn_mtup(nd, "wrap", 0);
+  ent_put(e, 10, wy * 1000);
+  scn_efill7(e, nd);
+} return void;

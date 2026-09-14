@@ -1,0 +1,28 @@
+// The UI item, if the scene declared one.
+
+run_ui2(int nd) {
+  if (nd != 0) {
+    lset((import ui_ts), 0, (import sys_vp)[0]);
+    run_ui3(nd);
+  }
+} return void;
+
+// A scene's `ui` member, by kind.
+scn_ui(int nd, int i) {
+  int u = 0;
+  int[] ks = ast_ks(nd);
+  while (nd != 0 && i < len(ks)) {
+    u = scn_ui2(u, ks[i]);
+    i = i + 1;
+  }
+} return int u;
+
+scn_ui2(int u, int nd) {
+  int v = u;
+  if (ast_kd(nd) = ast_k_ui()) {
+    int[] ks = ast_ks(nd);
+    if (len(ks) > 0) {
+      v = ks[0];
+    }
+  }
+} return int v;

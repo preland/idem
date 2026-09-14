@@ -6,13 +6,12 @@
 
 scr_if(int nd, int e) {
   int fin = 0;
-  int ast_ia_v = ast_ia(nd);
-  if (scr_ev(ast_ia_v, e) != 0) {
-    int ast_ib_v = ast_ib(nd);
-    fin = scr_ex(ast_ib_v, e);
+  if (scr_unrhs(nd, e) != 0) {
+    int ib = ast_ib(nd);
+    fin = scr_ex(ib, e);
   } else {
-    int ast_ic_v = ast_ic(nd);
-    fin = scr_else(ast_ic_v, e);
+    int ic = ast_ic(nd);
+    fin = scr_else(ic, e);
   }
 } return int fin;
 
@@ -28,9 +27,10 @@ scr_else(int nd, int e) {
 // a game that freezes says less about what went wrong than a game that carries on.
 scr_while(int nd, int e, int n) {
   int fin = 0;
-  while (fin = 0 && n < 10000 && scr_ev(ast_ia(nd), e) != 0) {
-    int ast_ib_v = ast_ib(nd);
-    fin = scr_ex(ast_ib_v, e);
+  int go = scr_whilecond(nd, e, fin, n);
+  while (go = 1) {
+    fin = scr_whilebody(nd, e);
     n = n + 1;
+    go = scr_whilecond(nd, e, fin, n);
   }
 } return int fin;

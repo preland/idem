@@ -5,8 +5,12 @@
 // blocks rather than MCUs, which is what makes one function serve both.
 
 jpg_nblk(int ci, int bx, int by) {
-  jpg_rst();
-  int jpg_bat_v = jpg_bat(ci, bx, by);
+  int jpg_bat_v = jpg_nblk_setup(ci, bx, by);
   jpg_blk(ci, jpg_bat_v);
   lset((import jpg_st), 12, (import jpg_st)[12] + 1);
 } return void;
+
+jpg_nblk_setup(int ci, int bx, int by) {
+  jpg_rst();
+  int jpg_bat_v = jpg_bat(ci, bx, by);
+} return int jpg_bat_v;

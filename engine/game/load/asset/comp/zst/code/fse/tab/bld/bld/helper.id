@@ -1,0 +1,7 @@
+// Helper for fse_build initialization.
+
+fse_build_init(int log, int maxs) {
+  int inf_pow2_v = inf_pow2(log);
+  m4_pair((import fse_st), 7, 8, inf_pow2_v, inf_pow2_v - 1);
+  fse_blow(maxs);
+} return void;

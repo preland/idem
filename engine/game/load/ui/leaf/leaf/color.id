@@ -1,0 +1,6 @@
+// An item's colour argument, defaulting to its styled variant's.
+ui_paint_color(int nd) {
+  string ast_tx_v = ast_tx(nd);
+  int ui_vprop_v = ui_vprop(ast_tx_v, "colour", 0);
+  int ret_i = ui_arg(nd, 0, ui_vprop_v);
+} return int ret_i;

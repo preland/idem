@@ -1,0 +1,13 @@
+// The rest of d3_proj's and d3_proj_xy's work -- the colour/depth pack and
+// the y projection -- split out to keep both under the action limit.
+
+d3_proj_b(int[] tri, int i, int[] verts, int p, int z) {
+  int c = tri[9 + i];
+  int dz = d3_dkey(z);
+  d3_proj_c(verts, p, c, dz);
+} return void;
+
+d3_proj_xy_b(int[] tri, int i, int[] verts, int p, int z) {
+  int dy = d3_pscale(tri[i + 1], (import d3_cam)[8], z);
+  lset(verts, p + 1, (import d3_vp)[5] - dy);
+} return void;

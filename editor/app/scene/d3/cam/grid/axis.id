@@ -1,0 +1,14 @@
+// The two coloured axes through the origin.
+// X red, Z blue -- the convention every 3D tool shares, and the fastest way to
+// know which way you are looking when the camera has been spun.
+
+ed_axis_line(int c1, int c2) {
+  ed_gline(0 - 5000, 0, 5000, 0, c1);
+  ed_gline(0, 0 - 5000, 0, 5000, c2);
+} return void;
+
+ed_axis() {
+  int c1 = ed_col(10);
+  int c2 = ed_col(11);
+  ed_axis_line(c1, c2);
+} return void;

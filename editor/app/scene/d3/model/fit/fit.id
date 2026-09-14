@@ -23,9 +23,7 @@ ed_bounds() {
 
 ed_bwalk(int[] bb, int i) {
   while (i < len((import bl_v))) {
-    int fx_min_v = fx_min(bb[i % 3], (import bl_v)[i]);
-    lset(bb, i % 3, fx_min_v);
-    ed_bmax(bb, i);
+    ed_bwalk1(bb, i);
     i = i + 1;
   }
 } return void;

@@ -1,0 +1,5 @@
+huf_wstart_test_a4(int p) {
+  poke8(p, 165);
+  poke8(p + 1, 128);
+  zb_start(p, 2);
+} return void;

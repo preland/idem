@@ -1,0 +1,14 @@
+ed_insp_more_rows_note(int x, int y, int w, int h) {
+  ed_insp_note(x, y + 3 * (h + 2), w);
+} return void;
+
+ed_insp_more_rows(int x, int y, int w, int i) {
+  int h = ed_rowh();
+  ed_kvn(x, y + h + 2, "line", (import ed_ln)[i]);
+  ed_insp_more_rows_note(x, y, w, h);
+} return void;
+
+ed_insp_more(int x, int y, int w, int i) {
+  ed_kv(x, y, "file", (import ed_fl)[i + 1]);
+  ed_insp_more_rows(x, y, w, i);
+} return void;

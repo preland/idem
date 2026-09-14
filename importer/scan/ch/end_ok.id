@@ -1,0 +1,17 @@
+// Whether imp_end should keep walking -- split out of imp_end's while
+// condition, which may not hold a call, and preserving the && short-circuit:
+// imp_space is only reached once charat has proved there is a character left.
+
+imp_end_ok(string src, int i) {
+  int c = charat(src, i);
+  int ok = 0;
+  if (c >= 0) {
+    ok = imp_end_ok2(c);
+  }
+} return int ok;
+
+imp_end_ok2(int c) {
+  int sp = imp_space(c);
+  int ok = 0;
+  if (sp = 0) { ok = 1; }
+} return int ok;

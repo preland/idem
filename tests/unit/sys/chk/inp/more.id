@@ -1,0 +1,9 @@
+t_keys2_show() {
+  string line = "frame 0, W and UP pressed: exp W 1 1, UP 1 1, S 0 0 = " + inp_down(87) + " " + inp_hit(87) + " " + inp_down(258) + " " + inp_hit(258) + " " + inp_down(83) + " " + inp_hit(83);
+  print(line);
+} return void;
+
+t_frame_show() {
+  string line = "frame 1, nothing sent, W still held: exp down 1 hit 0 = " + inp_down(87) + " " + inp_hit(87);
+  print(line);
+} return void;

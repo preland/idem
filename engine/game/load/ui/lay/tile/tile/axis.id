@@ -1,0 +1,6 @@
+// The container's tiling axis, read off its own tag.
+ui_tile_axis(int nd) {
+  string ast_tx_v = ast_tx(nd);
+  string ui_base_v = ui_base(ast_tx_v);
+  int ret_i = ui_axis(ui_base_v);
+} return int ret_i;

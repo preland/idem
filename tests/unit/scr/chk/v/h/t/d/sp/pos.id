@@ -1,0 +1,11 @@
+t_spawn_pos() {
+  int ent_at_v = ent_at(3, 0);
+  int ent_at_v2 = ent_at(3, 1);
+  t_spawn_tag(ent_at_v, ent_at_v2);
+} return void;
+
+t_spawn_tag(int ent_at_v, int ent_at_v2) {
+  int ent_at_v3 = ent_at(3, 20);
+  print("its pos exp 30000 40000, tagged exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 != 0));
+  t_done();
+} return void;

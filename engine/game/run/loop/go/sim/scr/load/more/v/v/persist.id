@@ -1,0 +1,5 @@
+// Closing scr_persist's span in the persistent-variable table.
+scr_persist2() {
+  int len_v = len((import scr_vv));
+  lset((import scr_st), 4, len_v);
+} return void;

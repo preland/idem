@@ -14,7 +14,6 @@ par_hfill(int[] pos, int[] kids) {
 
 par_handler(int[] pos) {
   par_want(pos, "on");
-  string name = par_text(pos);
-  par_next(pos);
+  string name = par_optxt(pos);
   int ret_i = par_h2(pos, name);
 } return int ret_i;

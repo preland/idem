@@ -1,0 +1,7 @@
+huf_wstart_test_check0() {
+  int v = (import huf_ab)[0];
+} return int v;
+
+huf_wstart_test_check1() {
+  int v = (import huf_ab)[1];
+} return int v;

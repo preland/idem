@@ -1,0 +1,9 @@
+jpg_opx_g(int da, int lu, int cb, int cr) {
+  int fx_clamp_v2 = fx_clamp(lu - ((352 * (cb - 128) + 731 * (cr - 128)) >> 10), 0, 255);
+  poke8(da + 1, fx_clamp_v2);
+} return void;
+
+jpg_opx_b(int da, int lu, int cb) {
+  int fx_clamp_v3 = fx_clamp(lu + ((1815 * (cb - 128)) >> 10), 0, 255);
+  poke8(da + 2, fx_clamp_v3);
+} return void;

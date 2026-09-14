@@ -1,0 +1,34 @@
+// One chunk: dispatch on its type, and answer where the next one starts.
+//
+// The type is compared as four bytes rather than as a string, because building a
+// string per chunk to compare it would allocate per chunk in a language that
+// never frees -- and a four-byte comparison is what the format is.
+
+png_chunk(int p, int n) {
+  int asset_at_v = asset_at(p + 5);
+  int asset_at_v2 = asset_at(p + 6);
+  int ret_i = png_chunk2(p, n, asset_at_v, asset_at_v2);
+} return int ret_i;
+
+png_chunk2(int p, int n, int a, int b) {
+  png_kind(p + 8, n, a, b);
+  int ret_i = p + 12 + n;
+} return int ret_i;
+
+// The SECOND and THIRD bytes of the type are what tell the chunks apart: IHDR is
+// 'H' 'D' (72, 68), IDAT is 'D' 'A' (68, 65), IEND is 'E' 'N' (69, 78), PLTE is
+// 'L' 'T' (76, 84) and tRNS is 'R' 'N' (82, 78). The type field starts at p + 4,
+// so those two bytes are at p + 5 and p + 6 -- passing p + 4 and p + 5 compares
+// the 'I' the first three share against a letter no chunk has there, and every
+// chunk falls through as unknown.
+//
+// Two bytes and not four because the five names stay distinct in them, which is
+// all a dispatch needs. A sixth chunk that collided would want the other two, and
+// would say so by breaking a test rather than by drawing wrongly.
+png_kind(int p, int n, int a, int b) {
+  if (a = 72 && b = 68) {
+    png_ihdr(p);
+  } else {
+    png_kind2(p, n, a, b);
+  }
+} return void;

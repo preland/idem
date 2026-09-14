@@ -1,0 +1,17 @@
+ed_nudge_draw_rect(int x, int y, int ok) {
+  int hdr = ed_hdr();
+  int col = ed_col(7 - 5 * (ok = 0));
+  ed_nudge_draw_rect_do(x, y, hdr, hdr, col);
+} return void;
+
+ed_nudge_draw_frame(int x, int y) {
+  int hdr = ed_hdr();
+  int col = ed_col(3);
+  ed_nudge_draw_frame_do(x, y, hdr, hdr, col);
+} return void;
+
+ed_nudge_draw(int x, int y, int ok, int d) {
+  ed_nudge_draw_rect(x, y, ok);
+  ed_nudge_draw_frame(x, y);
+  ed_nudge_draw_text(x, y, d);
+} return void;

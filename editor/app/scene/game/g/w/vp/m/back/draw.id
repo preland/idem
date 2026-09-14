@@ -1,0 +1,10 @@
+ed_pworld_draw2(int x, int y, int scale) {
+  ed_pdraw(x, y, scale, (import sys_vp)[0]);
+  ed_clip_pane();
+} return void;
+
+ed_pdraw(int x, int y, int sc, int was) {
+  ed_pset(x, y, sc);
+  ent_draw(0);
+  ed_pdone(was);
+} return void;

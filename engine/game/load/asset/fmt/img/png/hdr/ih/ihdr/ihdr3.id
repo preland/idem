@@ -1,0 +1,10 @@
+png_chan_inline(int kd) {
+  int n = 0;
+  if (kd = 0) { n = 1; }
+  else { n = png_chan2(kd); }
+} return int n;
+
+png_ihdr3_set(int n) {
+  lset((import png_st), 4, n);
+  png_chk();
+} return void;

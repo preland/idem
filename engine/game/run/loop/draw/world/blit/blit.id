@@ -1,0 +1,30 @@
+// One entity's sprite, placed and scaled on the stage.
+//
+// Two scales multiply here and they are different things. The *stage* scale turns
+// the game's declared units into surface pixels and is the same for everything;
+// the *entity* scale is a component, per-mille, and is what stretches an 8-pixel
+// pipe shaft down 320 pixels of screen. Their product is per-million and comes
+// back to per-mille with one divide -- neither is rounded to a whole number
+// first, because rounding the entity's would turn a 12x stretch into 12 pixels.
+//
+// `pos` is the entity's centre, for its sprite and its collider both, so the blit
+// is offset by half the *scaled* sprite. Half the unscaled one puts a stretched
+// sprite off by however much it grew.
+
+ent_blit(int p, int e) {
+  int ox = ent_blitoffx(p, e);
+  int oy = ent_blitoffy(p, e);
+  ent_blit2(p, e, ox, oy);
+} return void;
+
+ent_sc(int e, int k) {
+  int ret_i = (import sys_vp)[0] * ent_at(e, k) / 1000;
+} return int ret_i;
+
+// Millunits to surface pixels, less half the scaled sprite. One divide by 1000 at
+// the end and not two along the way: the position is in millunits and the stage
+// scale is per-mille, so the product is in milli-pixels, and the half-sprite term
+// is already at surface scale.
+ent_off(int e, int n, int k, int sk) {
+  int ret_i = (ent_at(e, k) * (import sys_vp)[0] / 1000 - n * ent_sc(e, sk) / 2) / 1000;
+} return int ret_i;

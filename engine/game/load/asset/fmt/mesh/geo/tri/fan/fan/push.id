@@ -1,0 +1,12 @@
+// The fan's three loop vertices for one triangle, read and pushed.
+
+bl_fan_push(int cv, int a, int i) {
+  int bl_cv_v = bl_cv(cv, a);
+  int bl_cv_v2 = bl_cv(cv, i);
+  bl_fan_push2(cv, i, bl_cv_v, bl_cv_v2);
+} return void;
+
+bl_fan_push2(int cv, int i, int a, int b) {
+  int bl_cv_v3 = bl_cv(cv, i + 1);
+  bl_tpush(a, b, bl_cv_v3);
+} return void;

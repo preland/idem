@@ -1,0 +1,17 @@
+t_edge_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("tab is not a character exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
+} return void;
+
+t_act_show() {
+  int tin_act_v = tin_act();
+  string tin_text_v = tin_text();
+  print("return exp act 1, text still ac = " + tin_act_v + " " + tin_text_v);
+} return void;
+
+t_esc_show() {
+  int tin_act_v = tin_act();
+  string tin_text_v = tin_text();
+  print("escape exp act 2, text still ac = " + tin_act_v + " " + tin_text_v);
+} return void;

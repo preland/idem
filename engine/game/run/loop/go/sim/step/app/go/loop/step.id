@@ -1,0 +1,7 @@
+// idem_adraw's frame time, pulled out only because its caller has no room
+// left in its own three actions.
+
+idem_adt(func(int) return int gs) {
+  int gs_v = gs(3);
+  int dt = 1000 / fx_max(gs_v, 1);
+} return int dt;

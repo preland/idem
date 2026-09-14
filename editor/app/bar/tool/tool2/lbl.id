@@ -1,0 +1,5 @@
+ed_tool_hit_lbl(int x, int h, string s) {
+  int ui = txt_ui();
+  int col = ed_col(4);
+  txt_draw(s, x + 5 * ui, h + 4, col);
+} return void;

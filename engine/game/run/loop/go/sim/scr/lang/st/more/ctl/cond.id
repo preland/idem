@@ -1,0 +1,16 @@
+// scr_while's condition, and one turn of its body -- pulled out because a
+// `while` guard has to be re-read every turn rather than hoisted once.
+
+scr_whilecond(int nd, int e, int fin, int n) {
+  int v = 0;
+  if (fin = 0 && n < 10000) {
+    int ia = ast_ia(nd);
+    int cv = scr_ev(ia, e);
+    v = cv != 0;
+  }
+} return int v;
+
+scr_whilebody(int nd, int e) {
+  int ib = ast_ib(nd);
+  int fin = scr_ex(ib, e);
+} return int fin;

@@ -1,0 +1,10 @@
+ed_menu_line(int r0, int y) {
+  int r2 = ed_rq(0, 2);
+  ed_menu_line2(r0, y, r2);
+} return void;
+
+ed_menu_line2(int r0, int y, int r2) {
+  int col = ed_col(3);
+  d2_hline(r0, y, r2, col);
+  ed_menu_items();
+} return void;

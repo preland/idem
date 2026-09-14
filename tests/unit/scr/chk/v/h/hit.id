@@ -8,8 +8,7 @@
 
 t_hit() {
   scr_hits(0);
-  int scr_get_v = scr_get(0 - 1, "hits");
-  print("one overlap: hits exp 1 = " + scr_get_v);
+  t_hit_rep();
   t_hit2();
 } return void;
 

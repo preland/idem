@@ -1,0 +1,26 @@
+// The keys that are not in the table, and the two that end an edit.
+
+// 9 is Tab. It is deliberately not handled: a field that swallowed Tab would be
+// one that nothing could move focus out of, so it has to leave the buffer alone
+// AND leave the caret alone, which is a different claim from "it did not crash".
+t_edge() {
+  t_tap(9, 2900);
+  t_edge_show();
+  t_act();
+} return void;
+
+// 13 is Return. It reports and does not edit: what committing means belongs to
+// whoever owns the field, and this module has no idea.
+t_act() {
+  t_tap(13, 3000);
+  t_act_show();
+  t_esc();
+} return void;
+
+// 27 is Escape, which reports 2 and also does not edit -- a cancel that had
+// already cleared the buffer would leave the caller nothing to restore.
+t_esc() {
+  t_tap(27, 3100);
+  t_esc_show();
+  t_quiet();
+} return void;

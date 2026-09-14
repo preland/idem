@@ -1,0 +1,24 @@
+// Filling in each slot's bit count and base state.
+//
+// The nth occurrence of a symbol -- counting from its own starting value -- decides
+// both: nbBits is log minus the highest set bit of that occurrence number, and the
+// base state is that number shifted up by nbBits, less the table size.
+
+fse_bfill() {
+  int u = 0;
+  while (u < (import fse_st)[7]) {
+    fse_bcell(u);
+    u = u + 1;
+  }
+} return void;
+
+fse_bcell(int u) {
+  int kd = (import fse_sy)[(import fse_st)[6] + u];
+  int ns = (import fse_nx)[kd];
+  fse_bcell2(u, kd, ns);
+} return void;
+
+fse_bcell2(int u, int kd, int ns) {
+  lset((import fse_nx), kd, ns + 1);
+  fse_bcell2_fill(u, ns);
+} return void;

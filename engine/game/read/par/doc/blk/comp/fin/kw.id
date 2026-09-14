@@ -1,0 +1,6 @@
+// par_member's keyword lookup, split out to stay within the action limit.
+
+par_member_iskw(int[] pos) {
+  string par_text_v = par_text(pos);
+  int ret_i = par_dk(par_text_v);
+} return int ret_i;

@@ -7,7 +7,12 @@
 scn_mtup2(int nd, int k) {
   int t = scn_arg(nd, 0);
   int v = 0;
-  if (t != 0 && k < len(ast_ks(t))) { int[] ast_ks_v = ast_ks(t); v = ast_ia(ast_ks_v[k]); }
+  if (t != 0) {
+    int[] ks = ast_ks(t);
+    if (k < len(ks)) {
+      v = ast_ia(ks[k]);
+    }
+  }
 } return int v;
 
 // The scene's gravity, declared in stage units per second squared and kept as

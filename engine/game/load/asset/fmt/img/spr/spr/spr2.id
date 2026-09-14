@@ -1,0 +1,11 @@
+spr_png3(string name, int cols, int rows, int cw, int ch, int sw, int sh) {
+  int fx_max_v = fx_max(cols, 1);
+  int fx_max_v2 = fx_max(rows, 1);
+  int ret_i = spr_png3_dims(name, cw, ch, fx_max_v, fx_max_v2, sw, sh);
+} return int ret_i;
+
+spr_png3_dims(string name, int cw, int ch, int fx_max_v, int fx_max_v2, int sw, int sh) {
+  int spr_cell_v = spr_cell(cw, sw);
+  int spr_cell_v2 = spr_cell(ch, sh);
+  int ret_i = spr_dims(name, fx_max_v, fx_max_v2, spr_cell_v, spr_cell_v2, sw, sh);
+} return int ret_i;

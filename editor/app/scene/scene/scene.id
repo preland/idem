@@ -1,0 +1,19 @@
+// The scene view: a real 3D viewport, drawn by the engine's software rasteriser
+// into the panel's rect and nothing else.
+
+ed_scene(int x, int y, int w, int h) {
+  int col_v = ed_col(8);
+  sf_rect(x, y, w, h, col_v);
+  ed_scene_post(x, y, w, h);
+} return void;
+
+ed_scene_post(int x, int y, int w, int h) {
+  d3_viewport(x, y, w, h);
+  ed_scene2(x, y, w, h);
+} return void;
+
+ed_scene2(int x, int y, int w, int h) {
+  d3_zclear();
+  ed_cam();
+  ed_scene3(x, y, w, h);
+} return void;

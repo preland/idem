@@ -1,0 +1,5 @@
+t_one2(int[] xs, int v, int fx_min_v) {
+  lset(xs, 0, fx_min_v);
+  int fx_max_v = fx_max(xs[1], v);
+  lset(xs, 1, fx_max_v);
+} return void;

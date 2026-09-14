@@ -1,0 +1,19 @@
+// The grid lines, and the entry point for rendering the grid.
+
+ed_grid() {
+  ed_grid_run(0 - 5);
+  ed_axis();
+} return void;
+
+ed_grid_run(int i) {
+  while (i <= 5) {
+    ed_grid_pair(i * 1000);
+    i = i + 1;
+  }
+} return void;
+
+ed_grid_pair(int n) {
+  int c = ed_col(9);
+  ed_gline(n, 0 - 5000, n, 5000, c);
+  ed_gline(0 - 5000, n, 5000, n, c);
+} return void;

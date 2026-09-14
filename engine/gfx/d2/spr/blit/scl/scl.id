@@ -42,9 +42,6 @@ d2_scl_rows(int p, int x, int y, int i, int j, int n, int sx, int sy) {
 // destination offset, so it cannot be pre-added.
 d2_scl_clip(int p, int x, int y, int i, int sc) {
   int x0 = fx_max(x, (import sf_cl)[0]);
-  int d2_spr_w_v = d2_spr_w(p);
-  int x1 = fx_min(x + d2_spr_w_v * sc / 1000 - 1, (import sf_cl)[2]);
-  int[] d2_spr_px_v = d2_spr_px(p);
-  int sf_idx_v = sf_idx(x0, y);
-  d2_scl_row(d2_spr_px_v, i, (import sf_fb), sf_idx_v, x1 - x0 + 1, sc, x0 - x);
+  int w = d2_spr_w(p);
+  d2_scl_clip2(p, x, y, i, sc, x0, w);
 } return void;

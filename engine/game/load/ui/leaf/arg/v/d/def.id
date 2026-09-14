@@ -35,7 +35,6 @@ ui_dload(int nd) {
   if (len(ast_ks_v) > 0) {
     string ast_tx_v = ast_tx(nd);
     push((import ui_dn), ast_tx_v);
-    int[] ast_ks_v2 = ast_ks(nd);
-    push((import ui_dd), ast_ks_v2[0]);
+    push((import ui_dd), ast_ks_v[0]);
   }
 } return void;

@@ -15,11 +15,9 @@
 // changes the lens.
 
 d3_viewport(int x, int y, int w, int h) {
-  int fx_clamp_v = fx_clamp(x, 0, (import sf_gw) - 1);
-  int fx_clamp_v2 = fx_clamp(y, 0, (import sf_gh) - 1);
-  m4_pair((import d3_vp), 0, 1, fx_clamp_v, fx_clamp_v2);
-  d3_vp_hi(x + w - 1, y + h - 1);
-  d3_vp_mid();
+  int cx = fx_clamp(x, 0, (import sf_gw) - 1);
+  int cy = fx_clamp(y, 0, (import sf_gh) - 1);
+  d3_viewport_b(cx, cy, w, h, x, y);
 } return void;
 
 d3_vp_hi(int x, int y) {

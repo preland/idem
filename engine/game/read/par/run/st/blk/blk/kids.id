@@ -1,0 +1,7 @@
+// par_block's kid-list fill, split out to stay within the action limit.
+
+par_block_kids(int[] pos) {
+  int[] kids = [];
+  par_want(pos, "{");
+  par_bfill(pos, kids);
+} return int[] kids;

@@ -1,0 +1,8 @@
+ed_insp_sel(int x, int y, int w) {
+  if (ed_nsel(0, 0) > 0) {
+    int ed_first_v = ed_first(0);
+    ed_insp_ent(x, y, w, ed_first_v);
+  } else {
+    ed_insp_decl(x, y, w);
+  }
+} return void;

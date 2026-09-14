@@ -1,0 +1,11 @@
+// Helper for zst_srle setup.
+
+zst_srle_set(int r, int base) {
+  m4_pair((import fse_rl), r * 2, r * 2 + 1, base, 0);
+} return void;
+
+zst_srle_put(int base) {
+  int zst_le_v = zst_le(1);
+  lset((import fse_sy), base, zst_le_v);
+  zst_srle2(base);
+} return void;

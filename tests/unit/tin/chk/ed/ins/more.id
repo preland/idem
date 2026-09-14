@@ -1,0 +1,17 @@
+t_ins_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("X at caret 1 exp aXbc caret 2 = " + tin_text_v + " " + tin_caret_v);
+} return void;
+
+t_bs_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("backspace exp abc caret 1 = " + tin_text_v + " " + tin_caret_v);
+} return void;
+
+t_del_show() {
+  string tin_text_v = tin_text();
+  int tin_caret_v = tin_caret();
+  print("delete exp ac caret 1 = " + tin_text_v + " " + tin_caret_v);
+} return void;

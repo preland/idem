@@ -20,15 +20,13 @@ main(int argc, string[] argv) {
 } return int 0;
 
 t_open() {
-  int bl_open_v = bl_open("tests/unit/mesh/cube.blend");
-  print("open cube.blend exp 1 = " + bl_open_v);
+  t_main_open();
   print("header length exp 17 = " + (import bl_st)[0]);
   t_blocks();
 } return void;
 
 t_blocks() {
   print("blocks before the ENDB sentinel exp 1076 = " + (import bl_st)[1]);
-  int t_count_v = t_count(1145132097);
-  print("DATA blocks exp 1046 = " + t_count_v);
+  t_main_blocks_count();
   t_dna();
 } return void;

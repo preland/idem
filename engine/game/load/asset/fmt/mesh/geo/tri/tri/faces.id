@@ -1,0 +1,13 @@
+// The poly-offset array's block, and the triangulation call it drives.
+
+bl_faces_po(int p, int si) {
+  int bl_foff_v = bl_foff(si, "*poly_offset_indices");
+  word bl_lew_v = bl_lew(p + bl_foff_v);
+  int po = bl_at(bl_lew_v);
+} return int po;
+
+bl_faces_tris(int cv, int po, int p, int si) {
+  int bl_mint_v = bl_mint(p, si, "totpoly");
+  bl_tris(cv, po, bl_mint_v);
+  int ret_i = bl_ok(cv, po);
+} return int ret_i;

@@ -1,0 +1,6 @@
+// scr_ex5's turn count, clamped, closing out what scr_ex5 opened.
+scr_ex5n(int nd, int e) {
+  int ia = ast_ia(nd);
+  int v = scr_ev(ia, e);
+  int n = fx_min(v, 10000);
+} return int n;

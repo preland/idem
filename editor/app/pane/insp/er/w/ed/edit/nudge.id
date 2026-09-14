@@ -1,0 +1,23 @@
+ed_nudge_input(int x, int y) {
+  int ed_hdr_v = ed_hdr();
+  int ed_hdr_v2 = ed_hdr();
+  int ed_in_v = ed_in(x, y, ed_hdr_v, ed_hdr_v2);
+} return int ed_in_v;
+
+// A repeat that is not a click: held down, it moves the value every frame, which
+// is what makes dragging a paddle across the screen possible at all. The first
+// frame of a hold is a click too, so a single tap moves exactly one unit.
+ed_nudge(int x, int y, int e, int k, int d) {
+  int ed_in_v = ed_nudge_input(x, y);
+  ed_nudge_draw(x, y, ed_in_v, d);
+  ed_nudge_do(x, y, e, k, d);
+} return void;
+
+ed_nudge_do(int x, int y, int e, int k, int d) {
+  int ed_hdr_v = ed_hdr();
+  int ed_hdr_v2 = ed_hdr();
+  if (ed_in(x, y, ed_hdr_v, ed_hdr_v2) * inp_mdown(1) = 1) {
+    int ent_at_v = ent_at(e, k);
+    ent_put(e, k, ent_at_v + d);
+  }
+} return void;
