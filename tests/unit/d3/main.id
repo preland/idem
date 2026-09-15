@@ -1,4 +1,4 @@
-// Unit tests for engine/gfx/d3 -- the camera, the view matrix and the near clip.
+// Unit tests for engine/gfx/space -- the camera, the view matrix and the near clip.
 // Every line names the value it expects in its own label, so the whole output
 // diffs against golden.txt and a regression is a one-line diff. The expected
 // values were computed independently with python3, not read off a first run.

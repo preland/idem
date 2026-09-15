@@ -2,7 +2,7 @@
 
 // put() rather than building a line with `+` in a loop: concatenation allocates
 // and never frees, and while eight pixels would not matter, the habit is the
-// engine's own rule (engine/core/util/str.id).
+// engine's own rule (engine/core/rt/str.id).
 t_dump(int p, int n) {
   int i = 0;
   while (i < n) {

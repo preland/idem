@@ -7,8 +7,8 @@ ui_ppage(int nd) {
   }
 } return void;
 
-// The frame's two seam calls, read once each. Kept here because loop.id
-// (app/go/loop.id), where idem_adraw calls this, is already at its 3-function
+// The frame's two seam calls, read once each. Kept here because frame.id
+// (app/go/loop/frame.id), where idem_adraw calls this, is already at its 3-function
 // cap.
 eng_frame(int dt) {
   func(int) return void gt = (import eng_step);

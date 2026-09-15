@@ -2,6 +2,6 @@
 // it rasterises into. It does NOT need backends/gfx: nothing under engine/gfx/
 // calls a native function, which is what makes the whole renderer testable with
 // no window, no display and no dev shell.
-import "../../../engine/core/util"
+import "../../../engine/core/rt"
 import "../../../engine/core/math"
 import "../../../engine/gfx"

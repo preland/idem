@@ -1,0 +1,56 @@
+// idem_app -- the entry point of a game written the right way round.
+//
+// A game is `id`: it owns its state, its rules, its input and its drawing, and
+// it imports the engine as a library. Its `.idml` lays out a screen over the top
+// and decides nothing (docs/IDML.md). This is the loop that runs that
+// arrangement, and it is deliberately thin -- everything interesting is on the
+// game's side of six functions, passed in here as values (SPEC.md §1.1) rather
+// than called by a fixed name:
+//
+//     g_init()            bring the game's state into existence
+//     g_stage(k)          0 width, 1 height, 2 scale, 3 fps -- in the game's units
+//     g_step(dt)          one frame of rules, dt in milliseconds
+//     g_draw()            draw the world into the stage
+//     g_ref(name)         what `@name` in the layout reads
+//     g_act(name)         what a bare identifier in the layout calls
+//
+// A program that links the engine without being a game does not define these:
+// idem_app cannot be called without six arguments of the right types, and
+// nothing downstream can read the exports eng_seam stores (go/open/boot.id,
+// go/loop/frame.id, go/sh/run/loop.id, ui/leaf/arg/t/v/val.id) unless idem_app's first action put them
+// there. That is the whole answer to "what if a frame runs before the seam is
+// set" -- it cannot, because storing them is the first thing this does, and
+// everything that reads them is reachable only through here.
+//
+// There is no dynamic dispatch in `id` and none is wanted: g_ref and g_act are
+// string compares over names the game itself chose, which is a short list, fixed
+// at authoring time and worth writing down.
+//
+// **This directory is in the wrong place and knows it.** It belongs at
+// engine/game/run/app/, and every directory on the way there already holds three
+// entries -- the tree is saturated by the model this one replaces. It moves up
+// when idem_boot and the interpreter under scr/ come out.
+//
+// Contrast idem_boot next door, which interprets a game *out of* a document.
+// That is the model docs/IDML_GAME.md described and docs/IDML.md withdraws; it
+// survives only until flappy and fps are converted, and then it goes.
+
+idem_app(string[] chunks, int argc, string[] argv, func() return void gi, func(int) return int gs, func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
+  eng_seam(gi, gs, gt, gd, gr, ga);
+  idem_app2(chunks, argc, argv);
+  int ret_i = idem_ago(argc, argv);
+} return int ret_i;
+
+// The document is lexed and parsed for its *layout* -- definitions, variants and
+// the `./` page -- and nothing is looked for in it beyond that. Then the game is
+// brought up and the window opened at the size the game asks for.
+idem_alay(string src) {
+  scn_root(src, 0);
+  ui_pinit();
+  idem_alay1(src);
+} return void;
+
+idem_alay1(string src) {
+  lex_init();
+  idem_alay2(src);
+} return void;

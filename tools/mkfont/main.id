@@ -1,4 +1,4 @@
-// mkfont -- engine/gfx/d2/text/glyph/face/glyphs.gen.id from a PSF font.
+// mkfont -- engine/gfx/plane/text/glyph/face/glyphs.gen.id from a PSF font.
 //
 //   mkfont [path/to/font.psf]        (default: test_assets/vga8x16.psf)
 //

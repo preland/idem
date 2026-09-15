@@ -10,7 +10,7 @@
 // plane and is culled from below -- correct, and free. Which winding that is was
 // settled by drawing it: a horizontal quad written in the obvious order came out
 // facing down, because the projection flips y and a front face is the one with
-// negative signed area on screen (gfx/d3/tri/set/tri.id).
+// negative signed area on screen (gfx/space/tri/set/tri/raster.id).
 
 ed_gline(int x0, int z0, int x1, int z1, int c) {
   ed_quad(x0 - 15 * (z0 != z1), z0 - 15 * (x0 != x1), x1 + 15 * (z0 != z1), z1 + 15 * (x0 != x1), 0, c);

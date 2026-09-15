@@ -2,7 +2,7 @@
 // because the strip is what separates one pane from the next when they abut.
 //
 // Every measurement here is in *design pixels multiplied by txt_ui()*. The text
-// scales with the window (engine/gfx/d2/text/font/cell/ui.id), so anything that
+// scales with the window (engine/gfx/plane/text/font/cell/ui/scale.id), so anything that
 // has to sit beside it or contain it must scale by exactly the same step, or the
 // chrome and the type drift apart the first time the window is resized.
 ed_bar(int x, int y, int w, string title) {

@@ -32,14 +32,14 @@ with no prefix is either a language-level shared helper (§3) or a bug.
 | `rnd_` | random numbers | `engine/core/math/` |
 | `sys_` | window, present, timing, the stage, exit | `engine/core/sys/` |
 | `inp_` | input: polling, key state, pointer state, bindings | `engine/core/sys/` |
-| `str_` | string helpers (slice, find, split, parse) | `engine/core/util/` |
-| `lst_` | list helpers (fill, copy, indexed get/set) | `engine/core/util/` |
-| `err_` | diagnostics: report, count, dump | `engine/core/util/` |
+| `str_` | string helpers (slice, find, split, parse) | `engine/core/rt/` |
+| `lst_` | list helpers (fill, copy, indexed get/set) | `engine/core/rt/` |
+| `err_` | diagnostics: report, count, dump | `engine/core/rt/` |
 | `sf_` | surface: framebuffer, resize, clip, pset, spans | `engine/gfx/px/` |
-| `d2_` | 2D primitives: rect, line, circle, blit, sprite | `engine/gfx/d2/` |
-| `txt_` | text: font tables, glyph blit, measure | `engine/gfx/d2/` |
-| `m4_` | 4×4 fixed-point matrices | `engine/gfx/d3/` |
-| `d3_` | 3D pipeline: transform, clip, raster, z-buffer | `engine/gfx/d3/` |
+| `d2_` | 2D primitives: rect, line, circle, blit, sprite | `engine/gfx/plane/` |
+| `txt_` | text: font tables, glyph blit, measure | `engine/gfx/plane/` |
+| `m4_` | 4×4 fixed-point matrices | `engine/gfx/space/` |
+| `d3_` | 3D pipeline: transform, clip, raster, z-buffer | `engine/gfx/space/` |
 | `ppm_` | PPM screenshot dump | `engine/gfx/px/` |
 | `lex_` | idml lexer | `engine/game/read/lex/` |
 | `ast_` | idml AST arena: nodes, children, accessors | `engine/game/read/ast/` |
@@ -241,10 +241,10 @@ file and used everywhere; defining a second copy is a duplicate-logic error.
 
 | helper | file | why it exists |
 | --- | --- | --- |
-| `lset(int[] xs, int i, int v)` | `engine/core/util/lst.id` | an imported list is not an lvalue, but a **parameter** is; this is the only way to write through one |
-| `lget(int[] xs, int i)` | `engine/core/util/lst.id` | symmetry, and one place for a bounds decision |
-| `sset(string[] strs, int i, string s)` | `engine/core/util/lst.id` | `lset` for strings |
-| `lset2(int[][] kidsl, int i, int[] xs)` | `engine/core/util/lst.id` | `lset` for nested lists |
+| `lset(int[] xs, int i, int v)` | `engine/core/rt/lst/assign.id` | an imported list is not an lvalue, but a **parameter** is; this is the only way to write through one |
+| `lget(int[] xs, int i)` | `engine/core/rt/lst/assign.id` | symmetry, and one place for a bounds decision |
+| `sset(string[] strs, int i, string s)` | `engine/core/rt/lst/assign.id` | `lset` for strings |
+| `lset2(int[][] kidsl, int i, int[] xs)` | `engine/core/rt/lst/assign.id` | `lset` for nested lists |
 
 `lset` is not a stylistic preference. The compiler only recognises an
 index-assignment whose target starts with a plain identifier, so
@@ -274,7 +274,7 @@ even where prior art in `id_development` uses a bare name (`gw`, `gh`, `fb`).
 | `sys_st` | `int[]` | `sys_st_init` | window opened / quit asked / frames presented |
 | `d3_zb` | `int[]` | `d3_zalloc` | the depth buffer, one entry per pixel |
 | `d3_vp` | `int[]` | `d3_fill3` | the 3D viewport: x0, y0, x1, y1, centre x, centre y |
-| `d3_vts` `d3_spn` `d3_gs` `d3_clp` | `int[]` | `d3_init` | the rasteriser's scratch records (§`gfx/d3/view/st/st.id`) |
+| `d3_vts` `d3_spn` `d3_gs` `d3_clp` | `int[]` | `d3_init` | the rasteriser's scratch records (§`gfx/space/view/st/init.id`) |
 | `d3_cam` `d3_env` | `int[]` | `d3_init` | camera pose and lens; scene lighting and fog |
 | `d3_vm` `d3_m0` `d3_m1` `d3_m2` | `int[]` | `d3_mats` | the view matrix and the three it is composed in |
 | `fx_sintab` | `int[]` | `fx_trig_init` | sin(0°…90°) × 1000, 91 entries |

@@ -1,4 +1,4 @@
-// Unit tests for engine/core/util. Each check prints an expected/actual line;
+// Unit tests for engine/core/rt. Each check prints an expected/actual line;
 // tools/test.sh diffs the whole output against a golden file, so a regression is
 // a one-line diff rather than a judgement call.
 

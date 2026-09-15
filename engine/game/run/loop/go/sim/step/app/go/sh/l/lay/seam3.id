@@ -1,4 +1,4 @@
-// The seam's last two stores (lay.id).
+// The seam's last two stores (store.id).
 
 eng_seam3(func(string) return int gr, func(string) return void ga) {
   export func(string) return int eng_ref = gr;
