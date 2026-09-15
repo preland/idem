@@ -1,0 +1,12 @@
+// Pack helpers for d2_shade (col/mix.id) and d2_rgb (col/pack.id), split out to stay
+// under the action limit.
+
+d2_shade_pack(int c, int n, int cr, int cg) {
+  int cb = d2_cb(c) * n / 1000;
+  int rgb = d2_rgb(cr, cg, cb);
+} return int rgb;
+
+d2_rgb_cb(int cr_clamped, int cg_clamped, int cb) {
+  int cb_clamped = fx_clamp(cb, 0, 255);
+  int rgb = cr_clamped * 65536 + cg_clamped * 256 + cb_clamped;
+} return int rgb;

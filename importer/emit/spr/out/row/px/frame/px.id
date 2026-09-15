@@ -3,7 +3,7 @@
 // A row is built in the flat store and turned into a string exactly once. Rows
 // are up to 64 characters and a sheet has thousands of them, and `s = s + c` in
 // that loop is the quadratic-in-time-and-memory trap the whole engine is written
-// to avoid (engine/core/util/str.id).
+// to avoid (engine/core/rt/str.id).
 
 spr_frame(int f) {
   int y = 0;

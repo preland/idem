@@ -8,7 +8,7 @@
 // The pass is O(n) and allocates exactly once. Doing it with `+` instead would be
 // O(n^2) in time *and* in retained memory, because concatenation in this language
 // never frees: 200 KB of assets escaped that way is the 1.8 GB failure mode
-// described at the top of engine/core/util/str.id, not a slow build.
+// described at the top of engine/core/rt/str.id, not a slow build.
 
 pack_esc(string src, int p, int n) {
   word ad = alloc(2 * n + 1);

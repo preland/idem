@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# mkfont.sh -- regenerate engine/gfx/d2/text/glyph/face/glyphs.gen.id.
+# mkfont.sh -- regenerate engine/gfx/plane/text/glyph/face/glyphs.gen.id.
 #
 #   tools/mkfont.sh [path/to/font.psf]        (default: test_assets/vga8x16.psf)
 #
@@ -14,7 +14,7 @@
 set -u
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 ID_DEV="${ID_DEV:-$ROOT/../idc}"
-OUT=engine/gfx/d2/text/glyph/face/glyphs.gen.id
+OUT=engine/gfx/plane/text/glyph/face/glyphs.gen.id
 
 cd "$ROOT" || exit 1
 [ -d "$(dirname "$OUT")" ] || { echo "mkfont.sh: no $(dirname "$OUT") under $ROOT" >&2; exit 1; }

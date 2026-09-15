@@ -1,0 +1,28 @@
+// The rest of the load.
+
+idem_alay2(string src) {
+  lex_run(src);
+  idem_apage();
+  idem_aopen();
+} return void;
+
+// The seam itself: idem_app's six arguments, stored where go/open/boot.id,
+// go/loop/frame.id and go/sh/run/loop.id and ui/leaf/arg/t/v/val.id read them back with (import ...). Three
+// functions, two stores each, because six stores plus the two calls that chain
+// them is more than two blocks' worth of the 3-action limit. seam3 is in its
+// own file (lay/seam3.id) because this directory (l/) was already at its
+// 3-entry cap with nowhere left to put a fourth function -- eng_seam moved into
+// its own lay/ to make room, the way idem_app2 (l/go/run.id) and eng_frame (pg.id)
+// found room elsewhere for the same reason: app/, its natural home, is
+// saturated (entry.id's own header comment says so).
+eng_seam(func() return void gi, func(int) return int gs, func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
+  export func() return void eng_init = gi;
+  export func(int) return int eng_stage = gs;
+  eng_seam2(gt, gd, gr, ga);
+} return void;
+
+eng_seam2(func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
+  export func(int) return void eng_step = gt;
+  export func() return void eng_draw = gd;
+  eng_seam3(gr, ga);
+} return void;

@@ -49,4 +49,4 @@ pack_boot3() {
 // `charat(src, p) >= 0` and not `p < len(src)`: len is a strlen on every
 // evaluation, so testing it per turn of a loop over the whole source is
 // quadratic. charat remembers the last string's length and answers -1 past the
-// end, which is the same question asked once (engine/core/util/str.id).
+// end, which is the same question asked once (engine/core/rt/str.id).

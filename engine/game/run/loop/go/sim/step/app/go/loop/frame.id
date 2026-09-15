@@ -1,0 +1,31 @@
+// The frame, and the two ways of running it.
+//
+// Input, then the game's own step, then drawing: a frame that drew first would
+// show the world as it was before its own input was applied.
+//
+// dt is the declared frame time rather than the measured one, so a run is
+// reproducible and `--shot 60` is comparable between builds. sys_pace sleeps out
+// the difference; a game that misses its budget goes slow rather than teleports.
+
+idem_astep() {
+  sys_sync();
+  run_input();
+  idem_adraw();
+} return void;
+
+// g_step and g_draw are read as the function values eng_seam stored (app/entry.id);
+// eng_frame (app/go/sh/l/pg.id) calls both in turn, and idem_aui after them --
+// this function is already at its own 3-action cap without room for either read.
+idem_adraw() {
+  func(int) return int gs = (import eng_stage);
+  int dt = idem_adt(gs);
+  eng_frame(dt);
+} return void;
+
+// The game draws the world; the layout draws the screen over it, at the stage's
+// own scale so a label is as big relative to the game as the thing it labels.
+idem_aui() {
+  lset((import ui_ts), 0, (import sys_vp)[0]);
+  ui_rclear();
+  idem_aui2();
+} return void;

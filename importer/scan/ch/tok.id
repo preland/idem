@@ -1,6 +1,6 @@
 // One whitespace-delimited token, sliced out of the source rather than built up
 // character by character -- `s = s + chr(c)` in a loop is the most expensive
-// thing this language can do (engine/core/util/str.id).
+// thing this language can do (engine/core/rt/str.id).
 
 imp_tok(string src) {
   int i = imp_ws(src, (import imp_p)[0]);
