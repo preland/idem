@@ -1,0 +1,6 @@
+// The restart interval (jpg_st[7]) as a value, for jpg_disp2's DRI case.
+jpg_ri_check() {
+  int v = (import jpg_st)[7];
+} return int v;
+given jpg_init ():(0)
+given jpg_raw_fixture ():(0)

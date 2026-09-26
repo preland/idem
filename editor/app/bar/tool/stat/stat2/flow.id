@@ -3,8 +3,12 @@ ed_status_flow2(int y, int ui, string fit) {
   int len_v = len((import ed_nm));
   ed_status_flow3(y, x, len_v);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (10, 1, "main.idml"):() then calls ed_status_flow3:(10, 86, 3)
+given ed_t_boot stdin "" (10, 1, "<input>"):() then calls ed_status_flow3:(10, 70, 0)
 
 ed_status_flow3(int y, int x, int len_v) {
   int x2 = ed_snum(x, y, "decls", len_v);
   ed_status_n(x2, y);
 } return void;
+given ed_t_boot stdin "" (10, 86, 3):() then calls ed_snum:(86, 10, "decls", 3)
+given ed_t_boot stdin "" (10, 70, 0):() then calls ed_status_n:(130, 10)

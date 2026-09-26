@@ -9,15 +9,21 @@ par_kv(int[] pos) {
   par_next(pos);
   int ret_i = par_kv2(pos, name);
 } return int ret_i;
+given par_dmem_setup ([17]):(2) then calls ast_new_kids:(113, "space", [1])
+given par_dmem_setup ([20]):(2) then calls ast_new_kids:(113, "fire", [1])
 
 par_kv2(int[] pos, string name) {
   int[] kids = par_kv2_kids(pos);
   int ast_k_comp_v = (import ast_k_comp);
   int ret_i = ast_new_kids(ast_k_comp_v, name, kids);
 } return int ret_i;
+given par_dmem_setup ([18], "space"):(2) then calls ast_new_kids:(113, "space", [1])
+given par_dmem_setup ([21], "fire"):(2) then calls ast_new_kids:(113, "fire", [1])
 
 par_kv3(int[] pos, int[] kids) {
   int ast_new_k_v = par_kv3_node(pos);
   push(kids, ast_new_k_v);
   par_kv3_adv(pos);
 } return void;
+given par_dmem_setup ([19], []):([20], [1]) then calls ast_new_k:(133, "jump")
+given par_dmem_setup ([22], []):([23], [1]) then calls ast_new_k:(133, "shoot")

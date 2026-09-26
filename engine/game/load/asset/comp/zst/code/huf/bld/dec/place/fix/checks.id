@@ -1,0 +1,14 @@
+// Checkers for huf build fixtures.
+
+huf_st_log() {
+  int huffcks_v = (import huf_st)[0];
+} return int huffcks_v;
+given huf_init ():(0)
+given huf_init given huf_fill_setup_small ():(2)
+
+huf_rk_w2() {
+  int huffcks_v = (import huf_rk)[2];
+} return int huffcks_v;
+given huf_init ():(0)
+given huf_init given huf_first_setup ():(3)
+

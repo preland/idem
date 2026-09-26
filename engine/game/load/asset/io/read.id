@@ -5,6 +5,8 @@ asset_take(string path, int n) {
   int got = asset_loop(h, 0, n);
   fs_close(h);
 } return int got;
+given asset_pipe_fixture ("../test_assets/vga8x16.psf", 4):(4)
+given asset_pipe_fixture ("../test_assets/vga8x16.psf", 0):(0)
 
 asset_loop(int h, int p, int n) {
   int m = 1;
@@ -14,6 +16,8 @@ asset_loop(int h, int p, int n) {
     p = p + m;
   }
 } return int p;
+given asset_loop_fixture ((import asset_loop_h), 0, 4):(4)
+given asset_loop_fixture ((import asset_loop_h), 0, 0):(0)
 
 // One read, staged through the list and poked into the store. fs_read clamps
 // `n` to the list's own length, so the buffer can never be overrun from the C
@@ -22,3 +26,5 @@ asset_one(int h, int p, int n) {
   int m = fs_read(h, (import asset_buf), n);
   asset_poke(p, m);
 } return int m;
+given asset_loop_fixture ((import asset_loop_h), 0, 4):(4)
+given asset_loop_fixture ((import asset_loop_h), 0, 0):(0)

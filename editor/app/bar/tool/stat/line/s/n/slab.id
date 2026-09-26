@@ -5,9 +5,13 @@ ed_slab(int x, int y, string s) {
   ed_sdraw(x, y, s, ed_col_v);
   int ret_i = x + txt_width(s) + 8 * txt_ui();
 } return int ret_i;
+given ed_t_boot stdin "" (6, 10, "main.idml"):(86)
+given ed_t_boot stdin "" (6, 10, "<input>"):(70)
 
 ed_sdraw(int x, int y, string s, int c) {
   if (x < (import sf_gw)) {
     txt_draw(s, x, y, c);
   }
 } return void;
+given ed_t_boot stdin "" (6, 10, "main.idml", 0x8A8A8A):() then calls txt_draw:("main.idml", 6, 10, 0x8A8A8A)
+given ed_t_boot stdin "" (640, 10, "x", 0x8A8A8A):() then calls txt_draw:[0]

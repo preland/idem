@@ -5,6 +5,8 @@ ed_status_wh(int x, int y) {
   x = ed_snum(x, y, "stage", sw);
   ed_status_wh2(x, y);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_status_wh2:(76, 10)
+given ed_t_boot stdin "" (0, 10):() then calls ed_snum:(0, 10, "stage", 640)
 
 // `ents` and `errs` are here because they are the two numbers that turn "it is
 // behaving oddly" into a fact. An entity count that is twice what the document
@@ -15,9 +17,13 @@ ed_status_f(int x, int y) {
   x = ed_snum(x, y, "at", (import sys_vp)[0]);
   ed_status_e(x, y);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_status_e:(60, 10)
+given ed_t_boot stdin "" (0, 10):() then calls ed_snum:(0, 10, "at", 1000)
 
 ed_status_e(int x, int y) {
   int ents = ent_n();
   x = ed_snum(x, y, "ents", ents);
   ed_status_e2(x, y);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_status_e2:(52, 10)
+given ed_t_boot given ed_t_ent stdin "" (0, 10):() then calls ed_snum:(0, 10, "ents", 1)

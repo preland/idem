@@ -1,0 +1,24 @@
+// The marker-hit flag (jpg_b[3]), and two real cursor positions in grad.jpg:
+// 317 sits right after a stuffed 0xFF (byte 316 is 0xFF, 317 is 0x00 -- a
+// literal 0xFF in the entropy data), 335 sits on the D9 of the file's real
+// trailing 0xFFD9 (EOI) -- both read off the file with xxd.
+
+jpg_marker_check() {
+  int v = (import jpg_b)[3];
+} return int v;
+given jpg_init ():(0)
+given jpg_hit_fixture ():(1)
+
+jpg_bs317_fixture() {
+  jpg_raw_fixture();
+  jpg_bset(317);
+} return void;
+():() then jpg_bcursor_check:(317)
+given jpg_init ():() then jpg_bcursor_check:(317)
+
+jpg_bs335_fixture() {
+  jpg_raw_fixture();
+  jpg_bset(335);
+} return void;
+():() then jpg_bcursor_check:(335)
+given jpg_init ():() then jpg_bcursor_check:(335)

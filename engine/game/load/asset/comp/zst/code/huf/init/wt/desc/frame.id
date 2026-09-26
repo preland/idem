@@ -1,0 +1,34 @@
+// Real bytes for the weight-description readers below, which peek8 off
+// zst_st[0] -- a bare huf_init/zst_init leaves that at 0, and address 0
+// traps ("store address 0 out of range").
+// Every byte is 128 (>= 128, so a b0 read from any of them takes huf_wread's
+// "direct" branch with a single weight pair, never the FSE branch, which
+// needs a fully-built FSE table this fixture doesn't construct) -- and every
+// one of the 8 bytes is poked, so a direct read starting at any small offset
+// this scope's cases use stays in range.
+huf_bytes() {
+  export int huf_p = alloc(8);
+  int hufi_i = 0;
+  while (hufi_i < 8) {
+    poke8((import huf_p) + hufi_i, 128);
+    hufi_i = hufi_i + 1;
+  }
+} return void;
+():() then huf_byte_check:(128)
+given huf_init ():() then huf_byte_check:(128)
+
+// zst_init cascades through zst_tabs -> huf_init, so this alone gives every
+// huf_* export a fully-initialized reader AND a real address to peek8 off.
+huf_frame_setup() {
+  zst_init();
+  huf_bytes();
+  lset((import zst_st), 0, (import huf_p));
+} return void;
+():() then huf_byte_check:(128)
+given huf_init ():() then huf_byte_check:(128)
+
+huf_byte_check() {
+  int hufi_v = peek8((import huf_p));
+} return int hufi_v;
+given huf_bytes ():(128)
+given huf_frame_setup ():(128)

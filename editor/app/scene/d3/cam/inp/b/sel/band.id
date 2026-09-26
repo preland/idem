@@ -17,6 +17,8 @@ ed_band_take(int k) {
     ed_pick(0, ed_bx0_v, ed_by0_v, 0);
   }
 } return void;
+given ed_t_boot given ed_t_click given ed_drag_beg_set_pos stdin "" (3):(3) then calls ed_pick:(0, 200, 150, 0)
+given ed_t_boot stdin "" (0):(0) then calls ed_pick:[0]
 
 // The band, normalised so that dragging up-left and dragging down-right give the
 // same rectangle. Four functions rather than one that answers a record, because
@@ -26,9 +28,13 @@ ed_bx0() {
   int inp_mx_v = inp_mx();
   int ret_i = fx_min(ed_st_v, inp_mx_v);
 } return int ret_i;
+given ed_t_boot given ed_t_click stdin "" ():(0)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():(0)
 
 ed_bx1() {
   int ed_st_v = (import ed_st)[13];
   int inp_mx_v = inp_mx();
   int ret_i = fx_max(ed_st_v, inp_mx_v);
 } return int ret_i;
+given ed_t_boot given ed_t_click stdin "" ():(200)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():(10)

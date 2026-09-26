@@ -4,3 +4,19 @@ jpg_rgo(int a) {
   lset((import jpg_r), 3, 3);
   jpg_radv(a);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then jpg_r1_check:(0) then jpg_r3_check:(0)
+given jpg_rset_fixture ((import jpg_coef_a)):() then jpg_r1_check:(2) then jpg_r3_check:(0)
+
+// jpg_r[0], the coefficient index the refinement machine is looking at.
+jpg_r0_check() {
+  int v = (import jpg_r)[0];
+} return int v;
+given jpg_init ():(0)
+given jpg_rset_fixture ():(1)
+
+// jpg_r[1], zeros still to skip before a new coefficient is placed.
+jpg_r1_check() {
+  int v = (import jpg_r)[1];
+} return int v;
+given jpg_init ():(0)
+given jpg_rset_fixture ():(2)

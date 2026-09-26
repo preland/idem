@@ -10,6 +10,8 @@ jpg_rst() {
     jpg_rst2();
   }
 } return void;
+given jpg_raw_fixture ():() then calls jpg_rst2:[0]
+given jpg_rstbyte_fixture ():() then calls jpg_rst2:[0]
 
 // A restart resets the end-of-band run as well as the predictors: a run is a
 // promise about the blocks that follow, and a restart is where that promise ends.
@@ -18,6 +20,8 @@ jpg_rst2() {
   jpg_preds(0);
   lset((import jpg_st), 17, 0);
 } return void;
+given jpg_rstbyte_fixture ():() then calls jpg_skip:[1] then calls jpg_preds:(0)
+given jpg_raw_fixture ():() then calls jpg_skip:[1] then calls jpg_preds:(0)
 
 // 208..215 are RST0..RST7. The buffer is dropped rather than aligned, because
 // the padding bits before a restart marker are not required to be zero.
@@ -25,3 +29,5 @@ jpg_skip(){
   m4_pair((import jpg_b), 1, 2, 0, 0);
   jpg_seek();
 } return void;
+given jpg_rstbyte_fixture ():() then jpg_bcursor_check:(302)
+given jpg_raw_fixture ():() then calls jpg_seek:[1]

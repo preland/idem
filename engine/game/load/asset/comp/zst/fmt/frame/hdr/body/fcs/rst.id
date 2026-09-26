@@ -15,3 +15,5 @@ zst_frst(int ck) {
   lset((import zst_st), 13, 8);
   zst_blocks(ck);
 } return void;
+given zst_init (0):() then calls zst_blocks:[1]
+given zst_init (1):() then calls zst_blocks:[1]

@@ -15,6 +15,8 @@ main(int argc, string[] argv) {
   ent_init();
   t_boot();
 } return int 0;
+(1, ["prog"]):(0) then calls t_boot:[1]
+(2, ["prog", "x"]):(0) then calls ent_init:[1]
 
 // scn_init too: sim_grav reads the scene's gravity, and an export does not exist
 // until its declaring function has run.
@@ -22,6 +24,8 @@ t_boot() {
   scn_init();
   t_defs();
 } return void;
+given fx_trig_init given ent_init ():() then calls scn_init:[1]
+given fx_trig_init given ent_init ():() then calls t_defs:[1]
 
 // A fresh record is zero everywhere except the four fields whose zero is wrong.
 //
@@ -35,3 +39,5 @@ t_defs() {
   print("ent_n on an empty store exp 0 = " + ent_n_v);
   t_defs_add();
 } return void;
+given sim_ready ():() then calls ent_n:[3]
+given sim_ready ():() then calls t_defs_add:[1]

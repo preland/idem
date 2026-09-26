@@ -3,8 +3,12 @@ ed_tool_row() {
   ed_tool(6 * ui, 0, "pan");
   ed_tool_row2(ui);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_tool:(6, 0, "pan")
+given ed_t_boot stdin "" ():() then calls ed_tool_row2:(1)
 
 ed_tool_row2(int ui) {
   ed_tool(44 * ui, 1, "move");
   ed_tool2();
 } return void;
+given ed_t_boot stdin "" (1):() then calls ed_tool:(44, 1, "move")
+given ed_t_boot stdin "" (2):() then calls ed_tool:(88, 1, "move")

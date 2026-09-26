@@ -6,8 +6,22 @@ idem_aui2() {
   int sx = sys_sx();
   idem_aui3(pg, sx);
 } return void;
+given game_fixture_nd given ui_pinit ():() then calls idem_aui3:(0, 0)
+given game_fixture_nd given ui_pinit given ui_ppg_set ():() then calls idem_aui3:(1, 0)
 
 idem_aui3(int pg, int sx) {
   int sy = sys_sy();
   run_ui4(pg, sx, sy);
 } return void;
+given game_fixture_nd (0, 0):() then calls run_ui4:(0, 0, 0)
+given game_fixture_nd (1, 5):() then calls run_ui4:(1, 5, 0)
+
+// ui_pg[0] set to a real node (1, from scn_ui_t_leaf -- loop/draw/ui/
+// fixture.id), for idem_aui2's second case.
+ui_ppg_set() {
+  ui_pinit();
+  scn_ui_t_leaf();
+  lset((import ui_pg), 0, 1);
+} return void;
+():() then calls scn_ui_t_leaf:[1]
+():() then calls ui_pinit:[1]

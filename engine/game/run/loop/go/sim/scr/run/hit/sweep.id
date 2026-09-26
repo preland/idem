@@ -16,6 +16,8 @@ scr_hits(int a) {
     a = a + 1;
   }
 } return void;
+given idem_init (0):() then calls scr_hpair:[0]
+given grow_fixture (0):() then calls scr_hpair:[1]
 
 scr_hpair(int a, int b) {
   while (b < ent_n()) {
@@ -23,9 +25,13 @@ scr_hpair(int a, int b) {
     b = b + 1;
   }
 } return void;
+given idem_init (0, 0):() then calls scr_htest:[0]
+given grow_fixture (0, 0):() then calls scr_htest:[1]
 
 scr_htest(int a, int b) {
   if (scr_hlive(a) = 1 && scr_hlive(b) = 1 && scr_ovl(a, b) = 1) {
     scr_hboth(a, b);
   }
 } return void;
+given grow_fixture (0, 0):() then calls scr_hlive:[1]
+given grow2_fixture (0, 1):() then calls scr_hlive:[1]

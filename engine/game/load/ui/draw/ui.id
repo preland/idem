@@ -25,6 +25,8 @@ ui_draw(int nd, int x, int y, int w, int h) {
   ui_rput(ast_tx_v, x, y, w, h);
   ui_walk(nd, x, y, w, h);
 } return void;
+given ui_row_t_setup (1, 0, 0, 100, 50):() then calls ui_rput:("Row", 0, 0, 100, 50)
+given ui_leaf_t_setup (3, 0, 0, 100, 50):() then calls ui_rput:("Button", 0, 0, 100, 50)
 
 // Both questions are asked of the **resolved** name, not the written one. A
 // styled variant is what a name *is*: `Page:Col` makes every `Page()` a column,
@@ -41,9 +43,13 @@ ui_walk_inner(string ui_base_v, int nd, int x, int y, int w, int h) {
     ui_leaf(nd, x, y, w, h);
   }
 } return void;
+given ui_row_t_setup ("Row", 1, 0, 0, 100, 50):() then calls ui_tile:[1]
+given ui_leaf_t_setup ("Button", 3, 0, 0, 100, 50):() then calls ui_leaf:[1]
 
 ui_walk(int nd, int x, int y, int w, int h) {
   string ast_tx_v = ast_tx(nd);
   string ui_base_v = ui_base(ast_tx_v);
   ui_walk_inner(ui_base_v, nd, x, y, w, h);
 } return void;
+given ui_row_t_setup (1, 0, 0, 100, 50):() then calls ui_tile:[1]
+given ui_leaf_t_setup (3, 0, 0, 100, 50):() then calls ui_leaf:[1]

@@ -28,15 +28,21 @@ scn_root(string src, int i) {
   }
   scn_rfix();
 } return void;
+given idem_init ("", 0):() then calls scn_rfix:[1]
+given idem_init ("#root /tmp/\n", 0):() then calls scn_rtake:[1]
 
 scn_rline(string src, int i) {
   int e = scn_reol(src, i);
   scn_rtake(src, i, e);
   int next_i = e + 1;
 } return int next_i;
+given idem_init ("#root /tmp/\n", 0):(12)
+given idem_init ("\n", 0):(1)
 
 scn_reol(string src, int i) {
   while (charat(src, i) >= 0 && charat(src, i) != 10) {
     i = i + 1;
   }
 } return int i;
+("", 0):(0)
+("abc", 0):(3)

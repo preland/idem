@@ -16,6 +16,8 @@ ed_pane(int x, int y, int w, int h, string title) {
   d2_frame(x, y, w, h, ed_col_v);
   ed_bar(x, y, w, title);
 } return void;
+given ed_t_boot stdin "" (1, 2, 30, 40, "Hierarchy"):() then calls d2_frame:(1, 2, 30, 40, 0x1C1C1C)
+given ed_t_boot stdin "" (1, 2, 30, 40, "Hierarchy"):() then calls ed_bar:(1, 2, 30, "Hierarchy")
 
 // Is the pointer inside this rect? Every button, row and drag target is this
 // question and the pointer's state, which inp_ sampled once at the top of the
@@ -24,3 +26,5 @@ ed_in(int x, int y, int w, int h) {
   int ok = 0;
   if (inp_mx() >= x && inp_mx() < x + w && inp_my() >= y && inp_my() < y + h) { ok = 1; }
 } return int ok;
+given ed_t_boot stdin "" (0, 0, 10, 10):(1)
+given ed_t_boot stdin "" (5, 5, 10, 10):(0)

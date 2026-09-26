@@ -3,7 +3,21 @@
 ed_gw() {
   int ret_i = (import ed_gu)[2] / 65536;
 } return int ret_i;
+given ed_t_boot stdin "" ():(288)
+given ed_t_boot given ed_t_boot_ui stdin "" ():(150)
 
 ed_gh() {
   int ret_i = (import ed_gu)[2] % 65536;
 } return int ret_i;
+given ed_t_boot stdin "" ():(512)
+given ed_t_boot given ed_t_boot_ui stdin "" ():(250)
+
+// A booted editor with a project that declares a `ui` block and a `clear`
+// colour, for ed_gone/ed_gclear/ed_gparse's true branches -- ed_t_boot_proj's
+// own project has neither.
+ed_t_boot_ui() {
+  string src = ed_rd("../test_assets/editor/ui.idml");
+  ed_read(src);
+} return void;
+given ed_t_boot stdin "" ():() then calls ed_read:[1]
+given ed_t_boot stdin "" ():() then calls lex_run:[1]

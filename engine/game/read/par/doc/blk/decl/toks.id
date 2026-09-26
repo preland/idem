@@ -1,0 +1,20 @@
+// A token stream for doc/blk/decl and the page/declaration/variant
+// productions that read it: a known-keyword declaration with inline args
+// and no body (sprite), an unknown declaration (weird), a variant with two
+// props (Card:Base), and two page items. Placed beside bad.id/blk.id --
+// decl/ had room.
+
+par_decl_setup() {
+  lex_init();
+  ast_init();
+  par_decl_setup2();
+} return void;
+():() then lex_kind_len:(24)
+():() then lex_kind_len:(24) then eprints:("")
+
+par_decl_setup2() {
+  err_init();
+  lex_run("sprite bird from \"x\"\nweird oops\nCard:Base {\n  colour: 5\n  size: 9\n}\n./ box\n./ panel");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(24)
+given lex_init given ast_init ():() then lex_kind_len:(24) then eprints:("")

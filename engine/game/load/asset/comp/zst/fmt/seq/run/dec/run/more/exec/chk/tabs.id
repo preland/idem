@@ -11,14 +11,20 @@ zst_stabs_init() {
   export int[] zst_lx = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   zst_stabs2();
 } return void;
+():() then calls zst_stabs2:[1]
+given zst_pre_init ():() then calls zst_stabs2:[1]
 
 zst_stabs2() {
   export int[] zst_mb = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 39, 41, 43, 47, 51, 59, 67, 83, 99, 131, 259, 515, 1027, 2051, 4099, 8195, 16387, 32771, 65539];
   export int[] zst_mx = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   zst_stabs3();
 } return void;
+():() then calls zst_stabs3:[1]
+given zst_pre_init ():() then calls zst_stabs3:[1]
 
 zst_stabs3() {
   export int[] zst_sq = [0, 0, 0];
   zst_pre_init();
 } return void;
+():() then calls zst_pre_init:[1]
+given zst_pre_init ():() then calls zst_pre_init:[1]

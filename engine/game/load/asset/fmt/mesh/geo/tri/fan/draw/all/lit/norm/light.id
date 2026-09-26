@@ -12,6 +12,8 @@ bl_cross(int a, int b, int c, int d) {
   word wq = b;
   wp = wp * d - wq * c;
 } return word wp;
+(1, 2, 3, 4):(-2)
+(0, 0, 0, 0):(0)
 
 // |cos| between the face and the light, in per-mille.
 //
@@ -33,6 +35,8 @@ bl_lam(int nvx, int nvy, int nvz) {
   word wp = bl_lam_mag(nvx, nvy, nvz);
   int ret_i = bl_lamc(wp);
 } return int ret_i;
+(3, 4, 12):(795)
+(0, 0, 0):(0)
 
 // Ambient plus the directional term. Never black, never blown out: 350 per-mille
 // is the shadow side, 1000 is full light. All three vertex colours are equal --
@@ -42,3 +46,5 @@ bl_tint(int[] tri, int lam) {
   bl_tc(tri, d2_shade_v);
   d3_wtri(tri);
 } return void;
+given bl_vis_t_setup ([0, 0, 0, 0, 0, 0, 0, 0, 0, 16711680, 0, 0], 1000):() then calls d2_shade:(16711680, 1000)
+given bl_vis_t_setup ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 0):() then calls d2_shade:(0, 350)

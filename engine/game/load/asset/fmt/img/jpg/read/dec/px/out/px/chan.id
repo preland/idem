@@ -2,8 +2,12 @@ jpg_opx_g(int da, int lu, int cb, int cr) {
   int fx_clamp_v2 = fx_clamp(lu - ((352 * (cb - 128) + 731 * (cr - 128)) >> 10), 0, 255);
   poke8(da + 1, fx_clamp_v2);
 } return void;
+given jpg_pxbuf_fixture ((import jpg_px_a_m1), 100, 200, 200):() then jpg_px0_check:(24)
+given jpg_pxbuf_fixture ((import jpg_px_a_m1), 50, 200, 200):() then jpg_px0_check:(0)
 
 jpg_opx_b(int da, int lu, int cb) {
   int fx_clamp_v3 = fx_clamp(lu + ((1815 * (cb - 128)) >> 10), 0, 255);
   poke8(da + 2, fx_clamp_v3);
 } return void;
+given jpg_pxbuf_fixture ((import jpg_px_a_m2), 100, 200):() then jpg_px0_check:(227)
+given jpg_pxbuf_fixture ((import jpg_px_a_m2), 200, 255):() then jpg_px0_check:(255)

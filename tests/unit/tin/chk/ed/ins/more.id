@@ -3,15 +3,21 @@ t_ins_show() {
   int tin_caret_v = tin_caret();
   print("X at caret 1 exp aXbc caret 2 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_ins_ready ():() then prints:("X at caret 1 exp aXbc caret 2 = aXbc 2\n")
+given tin_ins_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
 
 t_bs_show() {
   string tin_text_v = tin_text();
   int tin_caret_v = tin_caret();
   print("backspace exp abc caret 1 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_bs_ready ():() then prints:("backspace exp abc caret 1 = abc 1\n")
+given tin_bs_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
 
 t_del_show() {
   string tin_text_v = tin_text();
   int tin_caret_v = tin_caret();
   print("delete exp ac caret 1 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_del_ready ():() then prints:("delete exp ac caret 1 = ac 1\n")
+given tin_del_ready ():() then calls tin_text:[1] then calls tin_caret:[1]

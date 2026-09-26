@@ -16,6 +16,8 @@ main(int argc, string[] argv) {
   rnd_init(7);
   t_boot();
 } return int 0;
+(1, ["prog"]):(0) then calls t_boot:[1]
+(2, ["prog", "x"]):(0) then calls rnd_init:(7)
 
 // The engine's own init chain, in the engine's own order. The interpreter reads
 // the scene tables and the entity store, so both have to exist before a document
@@ -25,9 +27,13 @@ t_boot() {
   ast_init();
   t_boot2();
 } return void;
+given scr_s1_ready ():() then calls err_init:[1]
+given scr_s1_ready ():() then calls t_boot2:[1]
 
 t_boot2() {
   d2_spr_init();
   ent_init();
   t_boot3();
 } return void;
+given scr_s2_ready ():() then calls d2_spr_init:[1]
+given scr_s2_ready ():() then calls t_boot3:[1]

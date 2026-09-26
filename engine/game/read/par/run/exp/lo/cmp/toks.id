@@ -1,0 +1,21 @@
+// A token stream for the whole binary-operator chain (par_expr down through
+// par_mul): one small "1 <op> 2" expression per precedence level, in
+// precedence order, plus a leading unary minus and a trailing bare number
+// ("9", right before EOF) that no level's operator check matches -- the
+// shared "this level saw nothing to fold" case. Placed beside rel.id, moved
+// here to make room: lo/ was already at its 3-entry limit.
+
+par_ops2_setup() {
+  lex_init();
+  ast_init();
+  par_ops2_setup2();
+} return void;
+():() then lex_kind_len:(34)
+():() then lex_kind_len:(34) then eprints:("")
+
+par_ops2_setup2() {
+  err_init();
+  lex_run("1||2 1&&2 1==2 1<2 1|2 1^2 1&2 1<<2 1+2 1*2 -1 9");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(34)
+given lex_init given ast_init ():() then lex_kind_len:(34) then eprints:("")

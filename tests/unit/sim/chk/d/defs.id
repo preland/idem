@@ -5,15 +5,21 @@ t_defs2() {
   t_defs2b();
   t_move();
 } return void;
+given sim_e1_ready ():() then calls t_defs2a:[1]
+given sim_e1_ready ():() then calls t_move:[1]
 
 t_defs2a() {
   int ent_at_v = ent_at(0, 4);
   int ent_at_v2 = ent_at(0, 5);
   t_defs2a2(ent_at_v, ent_at_v2);
 } return void;
+given sim_e1_ready ():() then calls ent_at:(0, 4)
+given sim_e1_ready ():() then calls t_defs2a2:(1000, 1000)
 
 t_defs2b() {
   int ent_at_v5 = ent_at(0, 15);
   int ent_at_v6 = ent_at(0, 16);
   t_defs2b2(ent_at_v5, ent_at_v6);
 } return void;
+given sim_e1_ready ():() then calls ent_at:(0, 15)
+given sim_e1_ready ():() then calls t_defs2b2:(-1, 100)

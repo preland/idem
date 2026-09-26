@@ -1,0 +1,7 @@
+// The real backward-bitstream section's first byte, read straight back --
+// proves zstsq_bytes actually wrote what it claims.
+zstsq_byte_check() {
+  int zstsq_v = peek8((import zstsq_p));
+} return int zstsq_v;
+given zstsq_bytes ():(192)
+given zstsq_setup ():(192)

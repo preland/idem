@@ -3,12 +3,16 @@ par_call(int[] pos) {
   int[] kids = [];
   int ret_i = par_call2(pos, name, kids);
 } return int ret_i;
+given par_prim_setup ([10]):(3) then calls ast_new_kids:(130, "f", [1, 2])
+given par_prim_setup ([10]):(3) then calls par_efill:[1]
 
 par_call2(int[] pos, string name, int[] kids) {
   par_want(pos, "(");
   par_efill(pos, kids);
   int ret_i = par_call_node(name, kids);
 } return int ret_i;
+given par_prim_setup ([11], "f", []):(3) then calls ast_new_kids:(130, "f", [1, 2])
+given par_prim_setup ([11], "g", []):(3) then calls ast_new_kids:(130, "g", [1, 2])
 
 par_efill(int[] pos, int[] kids) {
   while (par_is(pos, ")") = 0 && par_kind(pos) != (import lex_k_eof)) {
@@ -18,3 +22,5 @@ par_efill(int[] pos, int[] kids) {
   }
   par_eat(pos, ")");
 } return void;
+given par_prim_setup ([12], []):([16], [1, 2]) then calls par_expr:[2]
+given par_prim_setup ([15], []):([16], []) then calls par_expr:[0]

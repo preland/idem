@@ -3,3 +3,5 @@ scn_enter3b(int nd) {
   scn_bg(nd, 0);
   scn_enter4(nd);
 } return void;
+given game_fixture_scene ((import fixture_scene)):() then calls scn_bg:[1]
+given idem_init (0):() then calls scn_enter4:[1]

@@ -3,3 +3,23 @@ t_one2(int[] xs, int v, int fx_min_v) {
   int fx_max_v = fx_max(xs[1], v);
   lset(xs, 1, fx_max_v);
 } return void;
+([100, 100], 5, 3):([3, 100])
+([0, 0], 7, 2):([2, 7])
+
+// See rnd_seed0/1/2 in chk/root/wide.id and chk/more/cos/more/rnd.id: each
+// fixture replays one more draw than the last so a case that enters the rnd
+// chain mid-way sees the exact state the full chain would have reached there.
+rnd_seed4() {
+  rnd_seed2();
+  rnd_range(7, 7);
+  rnd_range(7, 7);
+} return void;
+():() then calls rnd_seed2:[1]
+():() then calls rnd_range:(7, 7)
+
+rnd_seed5() {
+  rnd_seed4();
+  rnd_range(3, 0 - 3);
+} return void;
+():() then calls rnd_seed4:[1]
+():() then calls rnd_range:(3, -3)

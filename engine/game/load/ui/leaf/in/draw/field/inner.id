@@ -5,9 +5,13 @@ tin_body_draw(int x, int y, int w, int h, int c, int t) {
   int y_adj = tin_calc_y(y, h);
   tin_txy(x - tin_off_v, y_adj, c, t);
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 8, 16, 9, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup given tin_init (0, 0, 8, 16, 9, 400):() then d2_blit_t_px00:(0)
 
 // The caret, at its own offset from the text's x.
 tin_txy_car(int x, int y, int c, int t) {
   int caret_x = tin_calc_caret_x(0);
   tin_car(x + caret_x, y, c, t);
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 9, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup given tin_init (0, 0, 9, 400):() then d2_blit_t_px00:(0)

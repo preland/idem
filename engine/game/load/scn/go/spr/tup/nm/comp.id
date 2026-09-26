@@ -14,6 +14,9 @@ scn_mtup2(int nd, int k) {
     }
   }
 } return int v;
+given scn_game_fx6 (19, 0):(288)
+given scn_game_fx6 (19, 1):(512)
+given ast_init (0, 0):(0)
 
 // The scene's gravity, declared in stage units per second squared and kept as
 // millunits like every other rate the store holds.
@@ -22,3 +25,15 @@ scn_grav(int nd) {
   int scn_mtup2_v2 = scn_mtup2(nd, 1);
   m4_pair((import scn_st), 7, 8, scn_mtup2_v * 1000, scn_mtup2_v2 * 1000);
 } return void;
+given scn_game_fx6 (19):() then calls m4_pair:[1]
+given ast_init given scn_init (0):() then calls m4_pair:[1]
+
+// A second document (23): the same `game` block (20) beside an empty `scene`
+// (22), so scn_pick has something to skip before it finds one.
+scn_scene_fx() {
+  scn_game_fx6();
+  int n22 = ast_new_k((import ast_k_scene), "scene");
+  int n23 = ast_new_kids((import ast_k_block), "doc2", [20, 22]);
+} return void;
+():() then ast_n:(24)
+given ast_init ():() then ast_n:(24)

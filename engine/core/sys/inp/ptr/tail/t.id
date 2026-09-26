@@ -1,0 +1,13 @@
+// A pointer state with a button held and a known position, for inp_mdown,
+// inp_mhit, inp_mx and inp_my's own true-branch cases -- their false-branch
+// cases use plain inp_init, which leaves everything at zero.
+
+inp_t_state() {
+  sf_open(64, 48);
+  inp_init();
+  inp_sample_tail(1);
+} chain () {
+  inp_sample2_store(7, 9);
+} return void;
+():() then calls inp_sample_tail:(1)
+():() then calls inp_sample2_store:(7, 9)

@@ -8,15 +8,21 @@ zst_ltree(int kd) {
     zst_ltree2();
   }
 } return void;
+given zst_init (0):()
+given zst_init (1):()
 
 zst_ltree2() {
   int used = huf_stats((import zst_st)[1]);
   int tot = huf_ranks((import huf_st)[1]);
   zst_ltree3(used, tot);
 } return void;
+given zst_src_setup ():()
+given zst_src_setup given huf_init ():()
 
 zst_ltree3(int used, int tot) {
   huf_last((import huf_st)[1], tot);
   huf_rstart();
   zst_ltree4(used);
 } return void;
+given zst_init (10, 50):()
+given zst_init (20, 100):()

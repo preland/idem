@@ -4,3 +4,5 @@ zst_pload_set(int r, int[] xs, int log, int base) {
   zst_pcopy(xs);
   m4_pair((import fse_rl), r * 2, r * 2 + 1, base, log);
 } return void;
+given fse_init (0, [], 6, 0):()
+given fse_init (1, [1, 2], 5, 512):()

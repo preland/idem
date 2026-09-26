@@ -3,14 +3,20 @@ t_fxdiv2() {
   int fx_div_v2 = fx_div(0 - 1000, 4, 1000);
   t_fxdiv3(fx_div_v, fx_div_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_div:(1000, 4000, 1000)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxdiv3:(250, -250000)
 
 t_fxdiv3(int fx_div_v, int fx_div_v2) {
   int fx_div_v3 = fx_div(3000000, 7, 1000);
   int fx_div_v4 = fx_div(5, 0, 1000);
   t_fxdiv4(fx_div_v, fx_div_v2, fx_div_v3, fx_div_v4);
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls fx_div:(3000000, 7, 1000)
+given fx_trig_init given rnd_seed0 (1, 2):() then calls t_fxdiv4:(1, 2, 428571428, 0)
 
 t_fxdiv4(int fx_div_v, int fx_div_v2, int fx_div_v3, int fx_div_v4) {
   print("fx_div(1000,4000,1000) exp 250 | (-1000,4,1000) exp -250000 | word (3000000,7,1000) exp 428571428 | (5,0,1000) exp 0 = " + fx_div_v + " " + fx_div_v2 + " " + fx_div_v3 + " " + fx_div_v4);
   t_fxlerp();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2, 3, 4):() then calls t_fxlerp:[1]
+given fx_trig_init given rnd_seed0 (5, 6, 7, 8):() then calls t_fxlerp:[1]

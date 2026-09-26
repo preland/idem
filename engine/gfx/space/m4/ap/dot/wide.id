@@ -10,11 +10,17 @@ m4_dot(int[] xs, int[] ys, int i, int j) {
   int k = 0;
   int ret_i = m4_dot_acc(xs, ys, i, j, wp, k);
 } return int ret_i;
+([1000,0,0,0,0,1000,0,0,0,0,1000,0,0,0,0,1000], [1000,0,0,0,0,1000,0,0,0,0,1000,0,0,0,0,1000], 0, 0):(1000)
+([1000,0,0,0,0,1000,0,0,0,0,1000,0,0,0,0,1000], [1000,0,0,0,0,1000,0,0,0,0,1000,0,0,0,0,1000], 1, 2):(0)
+([1000,2000,3000,4000,0,0,0,0,0,0,0,0,0,0,0,0], [1,0,0,0,2,0,0,0,3,0,0,0,4,0,0,0], 0, 0):(30)
 
 m4_wmul(int a, int b) {
   word wp = a;
   word ret_w = wp * b;
 } return word ret_w;
+(1000, 1000):(1000000)
+(100000, 100000):(10000000000)
+(-1000, 2000):(-2000000)
 
 // cot(deg) x1000, for a projection's focal term. deg is millidegrees; a quarter
 // turn gives 0 and anything approaching zero gives a huge number, so callers
@@ -26,3 +32,5 @@ m4_cot(int deg) {
   int fx_sin_v = fx_sin(deg);
   int ret_i = fx_div(fx_cos_v, fx_sin_v, 1000);
 } return int ret_i;
+given fx_trig_init (30000):(1732)
+given fx_trig_init (1000):(58823)

@@ -2,3 +2,5 @@ jpg_load2(int v) {
   lset((import jpg_st), 8, v);
   int ret_i = (import jpg_st)[8];
 } return int ret_i;
+given jpg_init (1):(1)
+given jpg_init (-1):(-1)

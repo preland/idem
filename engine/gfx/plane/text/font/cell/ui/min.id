@@ -5,3 +5,7 @@ txt_ui_min(int step_w, int step_h) {
   int m = fx_min(step_w, step_h);
   int ui = fx_max(m, 1);
 } return int ui;
+(2, 3):(2)
+(0, 5):(1)
+(1, 2):(1)
+(0, 10):(1)

@@ -5,14 +5,21 @@ bl_tv(int[] tri, int k, int v) {
   lset(tri, k + 1, (import bl_v)[v * 3 + 1]);
   lset(tri, k + 2, (import bl_v)[v * 3 + 2]);
 } return void;
+given bl_mesh_t_load ([0,0,0,0,0,0,0,0,0,0,0,0], 0, 0):([-1000, -1000, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+given bl_mesh_t_load ([0,0,0,0,0,0,0,0,0,0,0,0], 9, 7):([0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, -1000])
 
 bl_tc(int[] tri, int c) {
   lset(tri, 9, c);
   lset(tri, 10, c);
   lset(tri, 11, c);
 } return void;
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 7):([0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7])
+([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 0):([1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0])
 
 bl_in(int a, int n) {
   int ok = 0;
   if (a >= 0 && a < n) { ok = 1; }
 } return int ok;
+(2, 5):(1)
+(5, 5):(0)
+(-1, 5):(0)

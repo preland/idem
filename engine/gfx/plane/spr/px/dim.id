@@ -12,10 +12,14 @@
 d2_spr_w(int p) {
   int w = (import asset_sprw)[p];
 } return int w;
+given d2_spr_t_setup (0):(2)
+given d2_spr_t_setup (1):(3)
 
 d2_spr_h(int p) {
   int h = (import asset_sprh)[p];
 } return int h;
+given d2_spr_t_setup (0):(2)
+given d2_spr_t_setup (1):(1)
 
 // The frame count. Blits clamp the frame index against it rather than trusting
 // a caller: an animation whose `anim(first, last, ms)` runs past the end would
@@ -23,3 +27,5 @@ d2_spr_h(int p) {
 d2_spr_nf(int p) {
   int nf = (import asset_sprf)[p];
 } return int nf;
+given d2_spr_t_setup (0):(1)
+given d2_spr_t_setup (1):(2)

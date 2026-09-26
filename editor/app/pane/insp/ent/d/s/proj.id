@@ -3,6 +3,8 @@ ed_proj(int x, int y, int w, int h) {
   int ed_hdr_v = ed_hdr();
   ed_proj_rows(x, y + ed_hdr_v + 3, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_pane:(0, 0, 100, 100, "Project")
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_proj_rows:(0, 24, 100, 100)
 
 // The files the `#file` markers named, one per column of the browser -- the same
 // left-to-right strip of items every project browser has, without the icons the
@@ -15,3 +17,5 @@ ed_proj_rows(int x, int y, int w, int h) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_proj_one:(6, 10, 0)
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 100):() then calls ed_proj_one:[1]

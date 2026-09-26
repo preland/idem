@@ -1,0 +1,17 @@
+// The progressive flag (jpg_st[10]) as a value, for jpg_sof's cases --
+// prog444.jpg is a real SOF2 file (tests/unit/jpg/img), so the "1" side is
+// a genuine progressive header and not a hand-set stub.
+
+jpg_prog_check() {
+  int v = (import jpg_st)[10];
+} return int v;
+given jpg_init ():(0)
+given jpg_prog_fixture ():(1)
+
+jpg_prog_fixture() {
+  png_init();
+  jpg_init();
+  jpg_load("../tests/unit/jpg/img/prog444.jpg");
+} return void;
+():() then jpg_prog_check:(1)
+given jpg_init ():() then jpg_prog_check:(1)

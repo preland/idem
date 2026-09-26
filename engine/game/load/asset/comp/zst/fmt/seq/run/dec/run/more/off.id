@@ -10,9 +10,11 @@
 // any extra bits are read.
 
 zst_soff(int of, int ll) {
-  int v = inf_pow2(of) + zb_bits(of);
+  int v = fx_pow(2, of) + zb_bits(of);
   int ret_i = zst_srep(v, ll);
 } return int ret_i;
+given zst_init (0, 0):(0)
+given zstsq_setup (1, 0):(0)
 
 zst_srep(int v, int ll) {
   int off = 0;
@@ -22,6 +24,8 @@ zst_srep(int v, int ll) {
     off = zst_srep2(v + (ll = 0));
   }
 } return int off;
+given zst_init (4, 0):(1)
+given zst_init (2, 0):(0)
 
 // A new offset pushes the history down. This is also what repeat code 3 and the
 // shifted code 4 do, so they call it rather than repeating the shuffle.
@@ -30,3 +34,5 @@ zst_snew(int off) {
   lset((import zst_st), 12, (import zst_st)[11]);
   lset((import zst_st), 11, off);
 } return int off;
+given zst_init (1):(1)
+given zst_init (32):(32)

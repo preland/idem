@@ -1,0 +1,7 @@
+// The bit reader after a real marker hit -- for jpg_marker_check's own cases.
+jpg_hit_fixture() {
+  jpg_bs335_fixture();
+  jpg_hit();
+} return void;
+():() then jpg_marker_check:(1)
+given jpg_init ():() then jpg_marker_check:(1)

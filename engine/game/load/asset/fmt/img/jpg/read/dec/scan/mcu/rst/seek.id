@@ -6,11 +6,16 @@ jpg_seek() {
   }
   lset((import jpg_b), 0, (import jpg_b)[0] + 2);
 } return void;
+given jpg_rstbyte_fixture ():() then jpg_bcursor_check:(302)
+given jpg_raw_fixture ():() then calls jpg_isrst:[335]
 
+// 208..215 are RST0..RST7.
 jpg_isrst(int p) {
   int ok = 0;
   if (asset_at(p) = 255 && asset_at(p + 1) >= 208 && asset_at(p + 1) <= 215) { ok = 1; }
 } return int ok;
+given jpg_raw_fixture (300):(0)
+given jpg_rstbyte_fixture (300):(1)
 
 jpg_preds(int ci) {
   while (ci < (import jpg_st)[2]) {
@@ -18,3 +23,5 @@ jpg_preds(int ci) {
     ci = ci + 1;
   }
 } return void;
+given jpg_small_fixture (0):()
+given jpg_small_fixture (5):()

@@ -34,15 +34,21 @@ main(int argc, string[] argv) {
   png_init();
   t_boot();
 } return int 0;
+(1, ["prog"]):(0) then calls t_boot:[1]
+(2, ["prog", "x"]):(0) then calls png_init:[1]
 
 t_boot() {
   jpg_init();
   inf_init();
   t_load();
 } return void;
+given jpg_surf_ready ():() then calls jpg_init:[1]
+given jpg_surf_ready ():() then calls t_load:[1]
 
 t_load() {
-  t_one("grad baseline 4:4:4", "tests/unit/jpg/img/grad.jpg", 24, 16);
-  t_one("plasma baseline 4:2:0", "tests/unit/jpg/img/plasma.jpg", 24, 16);
+  t_one("grad baseline 4:4:4", "img/grad.jpg", 24, 16);
+  t_one("plasma baseline 4:2:0", "img/plasma.jpg", 24, 16);
   t_more();
 } return void;
+given jpg_ready ():() then calls t_one:("grad baseline 4:4:4", "img/grad.jpg", 24, 16)
+given jpg_ready ():() then calls t_more:[1]

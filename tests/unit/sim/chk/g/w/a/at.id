@@ -4,3 +4,15 @@ t_at(int t) {
   lset((import sim_st), 0, t);
   int ret_i = ent_anim(0);
 } return int ret_i;
+given sim_anim_ready (0):(0)
+given sim_anim_ready (120):(1)
+
+// Entity 0, anim assigned then cleared (last = -1) with the anim frame left
+// at 5 -- the "no anim: frame held" state (see t_anim3_rep in ./rep.id).
+sim_anim3_ready() {
+  sim_anim_ready();
+  ent_put(0, 15, 0 - 1);
+  ent_put(0, 7, 5);
+} return void;
+():() then calls sim_anim_ready:[1]
+():() then calls ent_put:(0, 7, 5)

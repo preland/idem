@@ -30,11 +30,15 @@ bl_at(word wp) {
     i = i + 1;
   }
 } return int k;
+given bl_at_t_setup (0):(0)
+given bl_at_t_setup (999):(-1)
 
 bl_apick(int i, word wp) {
   int k = 0 - 1;
   if ((import bl_ba)[i] = wp) { k = i; }
 } return int k;
+given bl_at_t_setup (0, 0):(0)
+given bl_at_t_setup (0, 5):(-1)
 
 // The low half of a 32-bit field, read as an unsigned quantity: bl_le32 builds it
 // with a multiply that makes the top bit negative in an int, and an address's low
@@ -43,3 +47,5 @@ bl_ule32(int p) {
   word wp = asset_at(p + 3);
   word ret_w = wp * 16777216 + asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;
 } return word ret_w;
+given bl_dna_t_bytes (0):(1313164354)
+given bl_dna_t_bytes (17):(826363460)

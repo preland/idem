@@ -1,0 +1,23 @@
+// Setup fixture for val tests with proper state initialization.
+
+fsev_set_state(int r, int t, int b) {
+  lset((import fse_st), 1, r);
+  lset((import fse_st), 2, t);
+  lset((import fse_st), 3, b);
+} return void;
+given fse_init (0, 0, 0):()
+given fse_init (100, 256, 8):()
+
+fsev_setup_state() {
+  fse_init();
+  fsev_set_state(100, 256, 8);
+} return void;
+():()
+given fse_init ():()
+
+fsev_setup_state2() {
+  fse_init();
+  fsev_set_state(200, 512, 9);
+} return void;
+():()
+given fse_init ():()

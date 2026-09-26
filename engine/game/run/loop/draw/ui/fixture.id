@@ -1,0 +1,26 @@
+// A hand-built AST for scn_ui's member search: node 1 is a plain leaf, node 2
+// wraps it as a `ui { }` block (kind ast_k_ui = 136, conf.id), and node 4 is a
+// scene-shaped parent whose children are an unrelated node (3) and the ui block
+// (2), in that order -- so the walk has to skip the first child to find the
+// second.
+scn_ui_t_leaf() {
+  ast_init();
+  int leaf = ast_new_k(5, "Button");
+} return void;
+():() then ast_n:(2)
+given ast_init ():() then ast_n:(2)
+
+scn_ui_t_node() {
+  scn_ui_t_leaf();
+  int uinode = ast_new_kids(136, "ui", [1]);
+} return void;
+():() then ast_n:(3)
+given ast_init ():() then ast_n:(3)
+
+scn_ui_t_scene() {
+  scn_ui_t_node();
+  int other = ast_new_k(5, "entity");
+  int scene = ast_new_kids(5, "scene", [3, 2]);
+} return void;
+():() then ast_n:(5)
+given ast_init ():() then ast_n:(5)

@@ -2,15 +2,21 @@ par_dtgt(int[] pos, int ln) {
   int nd = 0;
   if (par_kind(pos) = (import lex_k_ident) && par_line(pos) = ln) { nd = par_ident(pos); }
 } return int nd;
+given par_stmt_setup ([9], 1):(1) then calls ast_new_k:(133, "x")
+given par_stmt_setup ([9], 99):(0)
 
 par_goto(int[] pos) {
   par_next(pos);
   string name = par_optxt(pos);
   int ret_i = par_goto_node(name);
 } return int ret_i;
+given par_stmt_setup ([5]):(1) then calls ast_new_k:(123, "play")
+given par_stmt_setup ([9]):(1) then calls ast_new_k:(123, "=")
 
 par_play(int[] pos) {
   par_next(pos);
   string name = par_optxt(pos);
   int ret_i = par_play_node(name);
 } return int ret_i;
+given par_stmt_setup ([6]):(1) then calls ast_new_k:(124, "say")
+given par_stmt_setup ([10]):(1) then calls ast_new_k:(124, "5")

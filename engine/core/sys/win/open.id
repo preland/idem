@@ -38,12 +38,16 @@ sys_open(int w, int h, int sc, string title) {
   int ok = gfx_open(w * sc, h * sc, title);
   sys_open_tail(ok, w, h);
 } return void;
+(2, 2, 1, "sys_open_t_a"):() then sys_alive:(1)
+(1, 1, 0, "sys_open_t_b"):() then sys_alive:(0)
 
 sys_open_tail(int ok, int w, int h) {
   sys_st_init(ok);
   sys_vp_init(w, h);
   int r = sys_alive();
 } return int r;
+given sf_t_setup (1, 10, 20):(1)
+given sf_t_setup (0, 10, 20):(0)
 
 // Callable without a window at all -- a test sets a surface size and a stage and
 // asks where the stage lands, with nothing native involved. That is why the
@@ -53,3 +57,5 @@ sys_vp_init(int w, int h) {
   sys_stage();
   sys_sync();
 } return void;
+given sf_t_setup (64, 48):() then sys_sh:(48)
+given sf_t_setup (64, 48):() then sys_sw:(64)

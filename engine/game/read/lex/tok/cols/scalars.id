@@ -1,0 +1,15 @@
+// Readers for the two one-element scalar columns (lex_st, the current line;
+// lex_cur, the current file), used only as `then` checks: lex_bump and
+// lex_setpath are void and have no other way to show what they changed.
+
+lex_st_val() {
+  int v = (import lex_st)[0];
+} return int v;
+given lex_init ():(1)
+given lex_init ():(1) then eprints:("")
+
+lex_cur_val() {
+  string path = (import lex_cur)[0];
+} return string path;
+given lex_init ():("<input>")
+given lex_init ():("<input>") then eprints:("")

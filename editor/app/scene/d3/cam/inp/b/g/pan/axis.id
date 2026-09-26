@@ -2,13 +2,19 @@ ed_pan_cx(int dx, int dy) {
   int pcx_v = ed_pcx(dx, dy);
   lset((import ed_st), 10, (import ed_st)[10] - pcx_v);
 } return void;
+given ed_t_boot stdin "" (1000, 500):(1000, 500) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, -775, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 10, -775)
+given ed_t_boot stdin "" (-500, 0):(-500, 0) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 409, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 10, 409)
 
 ed_pan_cy(int dy) {
   int pcy_v = ed_pcy(dy);
   lset((import ed_st), 11, (import ed_st)[11] - pcy_v);
 } return void;
+given ed_t_boot stdin "" (1000):(1000) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 988, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 11, 988)
+given ed_t_boot stdin "" (-500):(-500) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, -494, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 11, -494)
 
 ed_pan_cz(int dx, int dy) {
   int pcz_v = ed_pcz(dx, dy);
   lset((import ed_st), 12, (import ed_st)[12] - pcz_v);
 } return void;
+given ed_t_boot stdin "" (1000, 500):(1000, 500) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 637, 0, 0, -1, 0, 0, 1000, 0, 0], 12, 637)
+given ed_t_boot stdin "" (-500, 0):(-500, 0) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, -287, 0, 0, -1, 0, 0, 1000, 0, 0], 12, -287)

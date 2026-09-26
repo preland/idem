@@ -14,12 +14,16 @@ ed_fit_mesh(int ok) {
     ed_bounds();
   }
 } return void;
+given ed_t_boot stdin "" (1):(1) then calls ed_bounds:[1]
+given ed_t_boot stdin "" (0):(0) then calls ed_bounds:[0]
 
 ed_bounds() {
   int[] bb = [2000000000, 2000000000, 2000000000, 0 - 2000000000, 0 - 2000000000, 0 - 2000000000];
   ed_bwalk(bb, 0);
   ed_bset(bb);
 } return void;
+given ed_t_boot given bl_mesh_t_load stdin "" ():() then calls ed_bset:([-1000, -1000, -1000, 1000, 1000, 1000])
+given ed_t_boot stdin "" ():() then calls ed_bset:([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000])
 
 ed_bwalk(int[] bb, int i) {
   while (i < len((import bl_v))) {
@@ -27,3 +31,5 @@ ed_bwalk(int[] bb, int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot given bl_mesh_t_load stdin "" ([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000], 0):([-1000, -1000, -1000, 1000, 1000, 1000], 0) then calls ed_bwalk1:[24]
+given ed_t_boot given bl_mesh_t_load stdin "" ([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000], 24):([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000], 24) then calls ed_bwalk1:[0]

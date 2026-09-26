@@ -2,3 +2,30 @@ ed_reopen_dir() {
   string ed_up_v = ed_up((import ed_path)[0]);
   sset((import scn_dir), 0, ed_up_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls sset:[1]
+given ed_t_boot stdin "" ():() then calls ed_up:("")
+
+// ed_doc/ed_path concatenated, so ed_io_init's own cases have a witness that
+// does not need a fresh reader per export -- reading either before ed_io_init
+// (or ed_t_boot, which calls it) has run would trap outright.
+ed_t_io_check() {
+  string s = (import ed_doc)[0] + (import ed_path)[0];
+} return string s;
+given ed_io_init ():("")
+given ed_t_boot ():("")
+
+// Removes whatever ed_save_mkdir/ed_save's own cases left in the scratch
+// directory ed_t_mkdir_setup made: the target file (if ed_save wrote one),
+// the "sub" directory ed_save_mkdir's real `mkdir -p` created, and the
+// fs_mktemp parent itself -- so a suite run leaves nothing behind.
+ed_t_mkdir_check() {
+  string file = (import ed_path)[0];
+  int r0 = fs_remove(file);
+  string sub = (import ed_t_mkdir_parent) + "/sub";
+} chain () {
+  int existed = fs_exists(sub);
+  int r1 = fs_remove(sub);
+  int r2 = fs_remove((import ed_t_mkdir_parent));
+} return int existed;
+given ed_t_boot given ed_t_mkdir_setup given ed_save_mkdir ():(1)
+given ed_t_boot given ed_t_mkdir_setup given ed_save_mkdir ():(1) then ed_t_mkdir_check:(0)

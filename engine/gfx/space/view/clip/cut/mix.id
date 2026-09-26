@@ -11,14 +11,23 @@ d3_cmix(int a, int b, int t) {
   int g = d3_chn(a / 256, b / 256, t);
   int ret_i = d3_cmix_b(a, b, t, r, g);
 } return int ret_i;
+(0, 16777215, 0):(0)
+(0, 16777215, 65536):(16777215)
+(16711680, 65280, 32768):(8421120)
 
 d3_cmix_b(int a, int b, int t, int r, int g) {
   int bl = d3_chn(a, b, t);
   int ret_i = d2_rgb(r, g, bl);
 } return int ret_i;
+(0, 16777215, 0, 0, 0):(0)
+(16711680, 65280, 32768, 200, 100):(13132800)
+(0, 0, 0, 300, -10):(16711680)
 
 // One channel. The shift is the caller's, the mask is here: a / 65536 for red is
 // already the top byte, but a / 256 for green still carries red above it.
 d3_chn(int a, int b, int t) {
   int ret_i = d3_mix(a % 256, b % 256, t);
 } return int ret_i;
+(100, 200, 32768):(150)
+(0, 255, 65536):(255)
+(255, 0, 0):(255)

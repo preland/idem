@@ -19,6 +19,8 @@ txt_draw(string s, int x, int y, int c) {
   int txt_ui_v = txt_ui();
   txt_draw_sc(s, x, y, c, txt_ui_v * 1000);
 } return void;
+given txt_init given sf_t_setup ("H", 0, -2, 9):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup ("", 0, -2, 9):() then d2_blit_t_px00:(0)
 
 // sc is per-mille. The advance is `i * cell * sc / 1000` and not `i * (cell * sc
 // / 1000)`: rounding each glyph's width separately and then summing is how a
@@ -30,6 +32,8 @@ txt_draw_sc(string s, int x, int y, int c, int sc) {
     i = i + 1;
   }
 } return void;
+given txt_init given sf_t_setup ("H", 0, -2, 9, 1000):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup ("", 0, -2, 9, 1000):() then d2_blit_t_px00:(0)
 
 // Anchored text, for the UI: align 0 puts the string's left edge at x, 1 centres
 // it on x, 2 puts its right edge at x. The UI's leaf drawing resolves an item's
@@ -40,3 +44,5 @@ txt_draw_at(string s, int x, int y, int c, int align) {
   int txt_align_v = txt_align(txt_width_v, align);
   txt_draw(s, x - txt_align_v, y, c);
 } return void;
+given txt_init given sf_t_setup ("H", 0, -2, 9, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup ("H", 8, -2, 9, 2):() then d2_blit_t_px00:(9)

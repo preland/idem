@@ -1,0 +1,8 @@
+// How many variable slots the flat table currently holds -- a `then` witness
+// for scr_reset and scr_push, which act on the table's length rather than on
+// anything else observable.
+scr_vvlen() {
+  int n = len((import scr_vv));
+} return int n;
+given idem_init ():(0)
+given scr_fixture ():(3)

@@ -1,0 +1,7 @@
+// The block-header byte, read straight back -- proves zst_hdr_bytes really
+// poked 9 there, and (before that) that zst_hdr_zero zeroed it first.
+zst_hdr_byte2() {
+  int zsth_v = peek8((import zsth_p) + 2);
+} return int zsth_v;
+given zst_hdr_zero ():(0)
+given zst_hdr_bytes ():(9)

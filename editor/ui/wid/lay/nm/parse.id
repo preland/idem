@@ -5,13 +5,19 @@ ed_parse2() {
   ed_parse2_lex();
   ed_parse2_set(pos);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_parse2_lex:() then calls ed_parse2_set:([1])
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_parse2_lex:() then calls ed_parse2_set:([1])
 
 ed_parse2_lex() {
   string ed_src_v = ed_src();
   lex_run(ed_src_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_src:()
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_src:()
 
 ed_parse2_set(int[] pos) {
   int par_item_v = par_item(pos);
   lset((import ed_ui), 0, par_item_v);
 } return void;
+given ed_t_boot stdin "" ([0]):([1])
+given ed_t_boot stdin "" ([2]):([3])

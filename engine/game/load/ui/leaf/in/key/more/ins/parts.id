@@ -5,6 +5,8 @@ tin_ins_parts(string s, int key) {
   string tail = tin_ins_tail(key, s, (import tin_st)[0]);
   string combined = left + tail;
 } return string combined;
+given tin_init ("hi", 72):("Hhi")
+given tin_t_hi_setup ("xy", 72):("xHy")
 
 // The key just typed, followed by the text that was after the caret.
 tin_ins_tail(int key, string s, int i) {
@@ -12,3 +14,5 @@ tin_ins_tail(int key, string s, int i) {
   string right = tin_ins_right(s, i);
   string tail = chr_v + right;
 } return string tail;
+(72, "hi", 0):("Hhi")
+(72, "hi", 1):("Hi")

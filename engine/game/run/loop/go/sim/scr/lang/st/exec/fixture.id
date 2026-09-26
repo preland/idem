@@ -1,0 +1,17 @@
+// A hand-built `score = 99` assignment statement.
+assign_fixture() {
+  ident_fixture();
+  int val = ast_new_num(99, 0);
+  export int fixture_assign = ast_new_abc((import ast_k_assign), "=", (import fixture_ident), val, 0);
+} return void;
+():() then calls ident_fixture:[1]
+():() then calls ast_new_num:(99, 0)
+
+// A block holding that one statement.
+block_fixture() {
+  assign_fixture();
+  int[] kids = [(import fixture_assign)];
+  export int fixture_block = ast_new_kids((import ast_k_block), "", kids);
+} return void;
+():() then calls assign_fixture:[1]
+():() then calls ast_new_kids:[8]

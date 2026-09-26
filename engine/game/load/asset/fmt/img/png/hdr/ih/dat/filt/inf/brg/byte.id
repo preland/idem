@@ -1,0 +1,26 @@
+// Bridging the engine's flat store and the int[] lists idstd's inf_inflate
+// works over -- the same address-to-list and list-to-address loops as
+// idstd's own str_bytes/bytes_str (idstd/.tests/check/conv.id), just over a
+// caller-given address instead of one mem_of_str/alloc hands back.
+
+inf_read(int sa, int slen) {
+  int[] inf_src = [];
+  int inf_i = 0;
+  while (inf_i < slen) {
+    int inf_b = peek8(sa + inf_i);
+    push(inf_src, inf_b);
+    inf_i = inf_i + 1;
+  }
+} return int[] inf_src;
+given png_giobase_fixture ((import png_io0), 3):([137, 80, 78])
+given png_giobase_fixture ((import png_io0), 0):([])
+
+inf_write(int[] inf_dst, int da, int n) {
+  int inf_i = 0;
+  while (inf_i < n) {
+    poke8(da + inf_i, inf_dst[inf_i]);
+    inf_i = inf_i + 1;
+  }
+} return void;
+given png_giobase_fixture ([9, 8, 7], (import png_io0), 3):([9, 8, 7])
+given png_giobase_fixture ([5], (import png_io0), 1):([5])

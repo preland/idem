@@ -1,0 +1,9 @@
+// The fixture entity's `shape` component node, exported by name: scn_ebox and
+// scn_eshape read a comp node directly, not the entity it hangs off of.
+game_fixture_shape() {
+  game_fixture_nd();
+  int shape_nd = scn_mem((import fixture_nd), "shape", 0);
+  export int fixture_shape = shape_nd;
+} return void;
+():() then calls game_fixture_nd:[1]
+():() then calls idem_init:[1]

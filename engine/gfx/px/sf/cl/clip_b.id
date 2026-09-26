@@ -6,3 +6,24 @@ sf_clip_b(int x1, int y1) {
   int cy1 = fx_clamp(y1, 0, (import sf_gh) - 1);
   m4_pair((import sf_cl), 2, 3, cx1, cy1);
 } return void;
+given sf_t_setup (63, 47):() then sf_cl_t_check:([0, 0, 63, 47])
+given sf_t_setup (-10, -10):() then sf_cl_t_check:([0, 0, 0, 0])
+
+// A clip narrowed away from the default full-surface rect, for sf_unclip's and
+// sf_pset's own cases: they need to show a clip that is not already the answer
+// sf_unclip resets to.
+sf_t_clip_narrow() {
+  sf_t_setup();
+  sf_clip(5, 5, 10, 10);
+} return void;
+():() then sf_cl_t_check:([5, 5, 10, 10])
+():()
+
+// A pixel already written under the default (full) clip, for sf_pget's own
+// cases: sf_pget has nothing to hand it but zeroed state otherwise.
+sf_t_px_setup() {
+  sf_t_setup();
+  sf_pset(0, 0, 123);
+} return void;
+():() then sf_t_px0:(123)
+():()

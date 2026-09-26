@@ -21,6 +21,8 @@
 txt_spr_draw(string s, int x, int y, int p, int c) {
   txt_spr_run(s, x, y, p, c, 0);
 } return void;
+given sf_t_setup given txt_spr_t_setup (" ", 0, 0, 0, -1):() then d2_blit_t_px00:(5)
+given sf_t_setup given txt_spr_t_setup ("", 0, 0, 0, -1):() then d2_blit_t_px00:(0)
 
 // Advance is the sprite's own width, so a proportional font is not supported here
 // -- the frames are a grid, and a grid is monospaced by construction.
@@ -30,6 +32,8 @@ txt_spr_run(string s, int x, int y, int p, int c, int i) {
     i = i + 1;
   }
 } return void;
+given sf_t_setup given txt_spr_t_setup (" ", 0, 0, 0, -1, 0):() then d2_blit_t_px00:(5)
+given sf_t_setup given txt_spr_t_setup ("", 0, 0, 0, -1, 0):() then d2_blit_t_px00:(0)
 
 // A character the font does not have becomes a clamped frame index rather than an
 // index past the pixel list, because d2_blit and txt_tint both clamp. So a font of
@@ -41,3 +45,5 @@ txt_spr_one(int f, int x, int y, int p, int c) {
     txt_tint(p, x, y, f, c);
   }
 } return void;
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, -1):() then d2_blit_t_px00:(5)
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)

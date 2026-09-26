@@ -1,0 +1,22 @@
+// Continuing the replay: end-at-end, then Tab (ignored) and Return.
+
+tin_end_ready() {
+  tin_home2_ready();
+  t_tap(257, 2800);
+} return void;
+():() then calls tin_home2_ready:[1]
+():() then calls t_tap:(257, 2800)
+
+tin_edge_ready() {
+  tin_end_ready();
+  t_tap(9, 2900);
+} return void;
+():() then calls tin_end_ready:[1]
+():() then calls t_tap:(9, 2900)
+
+tin_act_ready() {
+  tin_edge_ready();
+  t_tap(13, 3000);
+} return void;
+():() then calls tin_edge_ready:[1]
+():() then calls t_tap:(13, 3000)

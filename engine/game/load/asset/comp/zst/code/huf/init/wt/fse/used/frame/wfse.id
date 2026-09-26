@@ -1,0 +1,12 @@
+// huf_wfse's own forward-reader address, reusing fse_tab_rd's already-cased
+// fser_buf_setup (a real buffer whose first byte is 0 -- a trivial, safe
+// table description; fse_read(fser_buf_p, 1, 256) is already proven to
+// return 2 there) instead of huf_wtop_bytes' marker pattern, which is for
+// the BACKWARD reader's zb_start, not this forward one.
+huf_wfse_setup() {
+  zst_init();
+  fser_buf_setup();
+  lset((import zst_st), 0, (import fser_buf_p));
+} return void;
+():() then zb_done:(0)
+given fse_init ():() then zb_done:(0)

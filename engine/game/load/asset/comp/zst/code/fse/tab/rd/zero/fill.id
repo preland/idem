@@ -4,6 +4,8 @@ fse_z2b() {
   int v = zf_peek(2);
   zf_drop(2);
 } return int v;
+given fse_init ():(0)
+given zf_st_val_setup ():(3)
 
 fse_zfill(int n0) {
   while ((import fse_st)[4] < n0 && (import fse_st)[4] <= (import fse_st)[9]) {
@@ -12,3 +14,5 @@ fse_zfill(int n0) {
   }
   lset((import fse_st), 5, 0);
 } return void;
+given fse_init (10):()
+given zf_st_val_setup (20):()

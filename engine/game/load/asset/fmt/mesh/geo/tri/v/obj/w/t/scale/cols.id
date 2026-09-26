@@ -5,11 +5,15 @@ bl_wts(int p, int si) {
   bl_wts_scale(p, off);
   bl_wtrans(p, si);
 } return void;
+given bl_geo_init given bl_walk_t_setup (49, 0):() then calls bl_wtrans:(49, 0)
+given asset_io_init given bl_geo_init given bl_walk_t_setup (0, 0):() then calls bl_wtrans:(0, 0)
 
 bl_wts_scale(int p, int off) {
   int s0 = bl_f32(p + off);
   bl_wts_scale2(p, off, s0);
 } return void;
+given bl_wm_init given bl_dna_t_bytes (17, 0):() then bl_wm0_t_check:(0)
+given bl_wm_init given bl_dna_t_bytes (0, 0):() then bl_wm0_t_check:(45212112)
 
 // Column j scaled by size[j] -- which is what multiplying by a diagonal matrix on
 // the right does, without the matrix or the product.
@@ -20,3 +24,5 @@ bl_wscale(int a, int b, int c) {
     i = i + 1;
   }
 } return void;
+given bl_wm_init (2000, 500, 300):() then bl_wm0_t_check:(2000)
+given bl_wm_init (100, 9, 9):() then bl_wm0_t_check:(100)

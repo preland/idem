@@ -1,0 +1,22 @@
+// Real Huffman-table state, and readers for it -- grad.jpg's DHT1 (luma DC)
+// has three symbols, code lengths 1,2,3 one each, at payload offset 181
+// (xxd), so jpg_hc[1] is 1 and jpg_hs[1] is 7 after a real decode.
+
+jpg_dht1_fixture() {
+  jpg_raw_fixture();
+  jpg_dht1(181);
+} return void;
+():() then jpg_hc1_check:(1)
+given jpg_init ():() then jpg_hc1_check:(1)
+
+jpg_hc1_check() {
+  int v = (import jpg_hc)[1];
+} return int v;
+given jpg_init ():(0)
+given jpg_dht1_fixture ():(1)
+
+jpg_hs_check() {
+  int v = (import jpg_hs)[1];
+} return int v;
+given jpg_init ():(0)
+given jpg_dht1_fixture ():(7)

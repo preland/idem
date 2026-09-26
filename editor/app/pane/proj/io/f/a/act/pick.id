@@ -2,3 +2,14 @@ ed_pick_file() {
   string s = "";
   if ((import ed_st)[1] >= 0 && (import ed_st)[1] < len((import ed_dir))) { s = (import ed_dir)[(import ed_st)[1]]; }
 } return string s;
+given ed_t_boot stdin "" ():("")
+given ed_t_boot given ed_t_asset_sel stdin "" ():("<input>")
+
+// The project browser's row 0 selected, over the default (single, phantom
+// "<input>") ed_dir a bare boot has -- for ed_pick_file's own "something is
+// picked" case.
+ed_t_asset_sel() {
+  lset((import ed_st), 1, 0);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([-1, 0, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 1, 0)
+given ed_t_boot stdin "" ():() then calls lset:[1]

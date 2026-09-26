@@ -2,11 +2,15 @@ par_val(int[] pos) {
   int v = 0;
   if (pos[0] < len((import lex_val))) { v = (import lex_val)[pos[0]]; }
 } return int v;
+given par_tok_setup ([0]):(35)
+given par_tok_setup ([10]):(0)
 
 par_frac(int[] pos) {
   int fr = 0;
   if (pos[0] < len((import lex_frac))) { fr = (import lex_frac)[pos[0]]; }
 } return int fr;
+given par_tok_setup ([0]):(1)
+given par_tok_setup ([10]):(0)
 
 // The file a token came from, stamped by the lexer from the last `#file` marker.
 // Looked up rather than threaded: every production would otherwise have to carry
@@ -16,3 +20,5 @@ par_pth(int[] pos) {
   string path = "<input>";
   if (pos[0] < len((import lex_file))) { path = (import lex_file)[pos[0]]; }
 } return string path;
+given par_tok_setup ([0]):("game.idml")
+given par_tok_setup ([10]):("<input>")

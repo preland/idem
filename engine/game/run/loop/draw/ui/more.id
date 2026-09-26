@@ -5,9 +5,13 @@ run_ui3(int nd) {
   int sy = sys_sy();
   run_ui4(nd, sx, sy);
 } return void;
+given game_fixture_nd (3):() then calls run_ui4:(3, 0, 0)
+given game_fixture_nd (5):() then calls run_ui4:(5, 0, 0)
 
 run_ui4(int nd, int sx, int sy) {
   int sw = sys_sw();
   int sh = sys_sh();
   ui_draw(nd, sx, sy, sw, sh);
 } return void;
+given game_fixture_nd given scn_ui_t_leaf (1, 0, 0):() then calls ui_draw:(1, 0, 0, 320, 200)
+given game_fixture_nd given scn_ui_t_leaf (1, 5, 5):() then calls ui_draw:(1, 5, 5, 320, 200)

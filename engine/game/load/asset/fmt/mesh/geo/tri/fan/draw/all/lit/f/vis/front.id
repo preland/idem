@@ -3,8 +3,12 @@ bl_front(int[] tri) {
   word wq = (import bl_e)[1] * ((import d3_cam)[1] - tri[1]);
   int ret_i = bl_front_sum(wp, wq, tri);
 } return int ret_i;
+given bl_vis_t_setup ([10, 10, -1000]):(1)
+given bl_vis_t_setup ([10, 10, 1000]):(-1)
 
 bl_front_sum(word wp, word wq, int[] tri) {
   wp = wp + wq + (import bl_e)[2] * ((import d3_cam)[2] - tri[2]);
   int ret_i = (wp > 0) - (wp < 0);
 } return int ret_i;
+given bl_vis_t_setup (500, 500, [0, 0, -1000]):(1)
+given bl_vis_t_setup (0, 0, [0, 0, 50000]):(-1)

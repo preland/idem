@@ -7,14 +7,20 @@ pack_three(string src, int p, int k) {
   p = pack_one(src, p, k + 1);
   p = pack_one(src, p, k + 2);
 } return int p;
+("", 0, 0):(0) then calls pack_one:("", 0, 0)
+("", 0, 0):(0) then calls pack_one:("", 0, 2)
 
 pack_one(string src, int p, int k) {
   int nxt = p;
   if (p < len(src) || k = 0) { nxt = pack_fn(src, p, k); }
 } return int nxt;
+("", 0, 0):(0) then calls pack_fn:("", 0, 0)
+("", 0, 1):(0)
 
 pack_fn(string src, int p, int k) {
   int nxt = pack_cut(src, p);
   pack_sig(k);
   pack_body(src, p, nxt, k);
 } return int nxt;
+("hi", 0, 0):(2) then calls pack_cut:("hi", 0)
+("hi", 0, 0):(2) then calls pack_sig:(0)

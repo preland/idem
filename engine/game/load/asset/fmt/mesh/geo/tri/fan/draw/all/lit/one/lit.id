@@ -32,15 +32,21 @@ bl_lit(int i, int[] tri, int c) {
   bl_tfill(i, tri, c);
   bl_face(tri);
 } return void;
+given d3_t_setup given bl_mesh_t_load (0, [0,0,0,0,0,0,0,0,0,0,0,0], 12155199):() then bl_e0_t_check:(-4000000)
+given d3_t_setup given bl_mesh_t_load (1, [0,0,0,0,0,0,0,0,0,0,0,0], 0):() then bl_e0_t_check:(-4000000)
 
 bl_face(int[] tri) {
   word bl_cross_v = bl_cross(tri[4] - tri[1], tri[5] - tri[2], tri[7] - tri[1], tri[8] - tri[2]);
   wset((import bl_e), 0, bl_cross_v);
   bl_face1(tri);
 } return void;
+given d3_t_setup given bl_lit_init ([0, 0, -1000, 1000, 0, -950, 500, 1000, -1024, 0, 0, 0]):() then bl_e0_t_check:(-50000)
+given d3_t_setup given bl_lit_init ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then bl_e0_t_check:(0)
 
 bl_face2(int[] tri) {
   word bl_cross_v = bl_cross(tri[3] - tri[0], tri[4] - tri[1], tri[6] - tri[0], tri[7] - tri[1]);
   wset((import bl_e), 2, bl_cross_v);
   bl_vis(tri);
 } return void;
+given d3_t_setup given bl_lit_init ([0, 0, -1000, 1000, 0, -950, 500, 1000, -1024, 0, 0, 0]):() then bl_e2_t_check:(1000000)
+given d3_t_setup given bl_lit_init ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then bl_e2_t_check:(0)

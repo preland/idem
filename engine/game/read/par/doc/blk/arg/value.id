@@ -13,3 +13,5 @@ par_darg(int[] pos) {
     nd = par_expr(pos);
   }
 } return int nd;
+given par_dmem_setup ([3]):(3) then calls ast_new_kids:(134, "", [1, 2])
+given par_dmem_setup ([0]):(1) then calls ast_new_k:(133, "tag")

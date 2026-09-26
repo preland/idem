@@ -3,3 +3,5 @@ asset_slurp2(string path, int n) {
   lset((import asset_io), 1, asset_take_v);
   int ret_i = (import asset_io)[1];
 } return int ret_i;
+given asset_pipe_fixture ("../test_assets/vga8x16.psf", 4):(4)
+given asset_pipe_fixture ("../test_assets/vga8x16.psf", 0):(0)

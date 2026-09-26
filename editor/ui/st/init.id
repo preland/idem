@@ -36,12 +36,16 @@ ed_init(string src) {
   export int[] ed_pal = [];
   ed_init2(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls ed_init2:("hello") then ed_pal_len:(14)
+given ed_t_boot stdin "" (""):() then calls ed_init2:("") then ed_pal_len:(14)
 
 ed_init2(string src) {
   ed_colours();
   ed_lay_init();
   ed_read(src);
 } return void;
+given ed_t_boot stdin "" ("abc"):() then calls ed_colours:() then calls ed_read:("abc")
+given ed_t_boot stdin "" ("xyz"):() then calls ed_lay_init:() then calls ed_read:("xyz")
 
 // The theme, in the order ed_col names them:
 // 0 window, 1 pane, 2 header, 3 border, 4 text, 5 dim, 6 selection, 7 hover,
@@ -51,3 +55,5 @@ ed_colours() {
   ed_col_add(0x8A8A8A, 0x2D5C88, 0x4A4A4A, 0x393939, 0x4E4E4E);
   ed_col_more();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_col_add:(0x2B2B2B, 0x3C3C3C, 0x323232, 0x1C1C1C, 0xCFCFCF) then calls ed_col_add:(0x8A8A8A, 0x2D5C88, 0x4A4A4A, 0x393939, 0x4E4E4E)
+given ed_t_boot stdin "" ():() then calls ed_col_add:(0x8A8A8A, 0x2D5C88, 0x4A4A4A, 0x393939, 0x4E4E4E) then calls ed_col_more:()

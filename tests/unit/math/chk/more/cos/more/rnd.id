@@ -3,9 +3,23 @@ t_lin4(int idstd_fx_tab_v, int idstd_fx_tab_v2) {
   print("fx_tab(0,45,90) exp 0 707 1000 = " + idstd_fx_tab_v + " " + idstd_fx_tab_v2 + " " + idstd_fx_tab_v3);
   t_rnd();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls idstd_fx_tab:(90)
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_rnd:[1]
 
 t_rnd2() {
   int rnd_next_v2 = rnd_next();
   print("rnd_next draw 2 exp 2073465073 = " + rnd_next_v2);
   t_rndspan();
 } return void;
+given fx_trig_init given rnd_seed1 ():() then calls rnd_next:()
+given fx_trig_init given rnd_seed1 ():() then calls t_rndspan:[1]
+
+// See rnd_seed0/rnd_seed1 in chk/root/wide.id: each seed fixture replays one
+// more draw than the last, so a case that enters the rnd chain mid-way still
+// sees the exact draw the full chain would have produced at that point.
+rnd_seed2() {
+  rnd_seed1();
+  rnd_next();
+} return void;
+():() then calls rnd_seed1:[1]
+():() then calls rnd_next:()

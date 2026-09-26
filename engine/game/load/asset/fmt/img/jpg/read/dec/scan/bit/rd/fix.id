@@ -1,0 +1,18 @@
+// Two real cursor positions in grad.jpg's entropy-coded scan data (which
+// starts at file offset 291 -- xxd), each landing on a different first byte
+// so jpg_bit's two cases pull genuinely different bits: 0x8F at 291 starts
+// 1, 0x63 at 293 starts 0.
+
+jpg_bs291_fixture() {
+  jpg_raw_fixture();
+  jpg_bset(291);
+} return void;
+():() then jpg_bcursor_check:(291)
+given jpg_init ():() then jpg_bcursor_check:(291)
+
+jpg_bs293_fixture() {
+  jpg_raw_fixture();
+  jpg_bset(293);
+} return void;
+():() then jpg_bcursor_check:(293)
+given jpg_init ():() then jpg_bcursor_check:(293)

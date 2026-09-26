@@ -24,6 +24,7 @@ set -u -o pipefail
 HERE="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd -- "$HERE/../.." && pwd)"
 IDEM="$ROOT/tools/idem"
+IDC="${IDEM_IDC:-${ID_DEV:-$ROOT/../id_development}}/bin/idc"
 
 FAILURES=0
 CHECKS=0
@@ -61,38 +62,14 @@ cp -- "$HERE"/game/*.idml "$GAME/"
 
 # Filler, so the input crosses four 60000-character chunk boundaries and the
 # generated tree therefore has to spill into a second file and a subdirectory.
-# It is generated rather than committed because 250 KB of lorem ipsum in a git
-# history helps nobody -- what is committed is the part a person needs to read.
-python3 - "$GAME" <<'PY'
-import os, sys
-game = sys.argv[1]
-
-# ~120 KB of ordinary lines, each carrying at least one character that needs an
-# escape, so the escape runs over the bulk of the input and not just the corners.
-with open(os.path.join(game, "zz-bulk.idml"), "w") as f:
-    for i in range(2000):
-        f.write('entity filler%04d {\n' % i)
-        f.write('\tsprite = "bird\\up-%04d"\t# %d\n' % (i, i))
-        f.write('\ttag = @wave.%04d { hp = %d, path = "a\\b\\c" }\n' % (i, i % 97))
-        f.write('}\n')
-
-# One line of 130000 characters. No chunk boundary can land on a newline inside
-# it, so this is the case that forces a mid-line cut -- which is safe only because
-# escaping is per-character and independent of where the cuts fall.
-with open(os.path.join(game, "zz-longline.idml"), "w") as f:
-    f.write('huge = "')
-    f.write(('\\"\t#@{}' + 'x' * 94) * 1300)
-    f.write('"\n')
-
-# A file with no trailing newline at all, and one carrying carriage returns.
-# `idem cat` has to add the newline (or the next #file marker would be glued to
-# this file's last line). The CRs are the case that used to break the whole pack:
-# they were left raw, survived the `id` lexer, and then terminated the *C* string
-# literal they were emitted into -- gcc complaining about generated code nobody
-# wrote. They are escaped as \r now, and this file is why.
-with open(os.path.join(game, "zz-noeol.idml"), "wb") as f:
-    f.write(b'crlf { a = 1 }\r\nlast_line_has_no_newline = "\\t\\"end\\""')
-PY
+# gen/ writes it; its conf.id says what each file is for.
+GEN="$WORK/gen"
+"$IDC" "$HERE/gen" -o "$GEN" >"$WORK/gen.log" 2>&1
+if [ ! -x "$GEN" ]; then
+    bad "building the filler generator (tests/pack/gen) failed: $(grep -m1 ': error' "$WORK/gen.log")"
+    exit 1
+fi
+"$GEN" "$GAME" || { bad "the filler generator could not write into $GAME"; exit 1; }
 
 EXPECTED="$WORK/expected.txt"
 "$IDEM" cat "$GAME" > "$EXPECTED" || { bad "idem cat failed"; exit 1; }

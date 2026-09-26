@@ -25,3 +25,5 @@ main(int argc, string[] argv) {
   pack_run();
   flush();
 } return int 0;
+stdin "" (1, ["prog"]):(0) then calls pack_init:(1, ["prog"])
+stdin "" (2, ["prog", "app"]):(0) then calls pack_run:[1]

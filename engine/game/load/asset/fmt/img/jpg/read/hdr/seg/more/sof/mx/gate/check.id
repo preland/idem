@@ -1,0 +1,26 @@
+// MCUs across (jpg_st[5]) as a value, for jpg_gridc's cases.
+jpg_mcux_check() {
+  int v = (import jpg_st)[5];
+} return int v;
+given jpg_init ():(0)
+given jpg_grad_fixture ():(3)
+
+// The largest horizontal sampling factor (jpg_st[3]) as a value, for
+// jpg_max1_h's cases -- grad.jpg is 4:4:4, so every component samples 1x1
+// and the max stays 1.
+jpg_hmax_check() {
+  int v = (import jpg_st)[3];
+} return int v;
+given jpg_init ():(0)
+given jpg_grad_fixture ():(1)
+
+// 357x350, 4:2:0 -- neither dimension is a multiple of 8*hmax, so jpg_gridc's
+// rounding actually has to round up (jpg_grad_fixture's 24 and 16 both
+// happen to divide evenly, and would pass even with the +7 dropped).
+jpg_water_fixture() {
+  png_init();
+  jpg_init();
+  jpg_load("../test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg");
+} return void;
+():() then jpg_hmax_check:(2)
+given jpg_init ():() then jpg_hmax_check:(2)

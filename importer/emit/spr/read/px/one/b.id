@@ -8,9 +8,21 @@ spr_one_b(string src, int n, int cr, int m) {
     spr_rgb(src, cr, m);
   }
 } return void;
+given spr_lists_ready ("x", 1, 10, 255):() then spr_al_last:(10)
+given spr_lists_ready ("x", 3, 10, 255):() then calls spr_rgb:("x", 10, 255)
 
 spr_rgb_b(int cr, int cg, string src, int m) {
   int v2 = imp_int(src);
   int cb = spr_scale(v2, m);
   push((import spr_px), cr * 65536 + cg * 256 + cb);
 } return void;
+given spr_lists_ready given imp_init (10, 20, "30", 255):() then calls spr_scale:(30, 255)
+given spr_lists_ready given imp_init (10, 20, "30", 255):() then spr_px_last:(660510)
+
+spr_al_low_ready() {
+  spr_lists2_ready();
+  push((import spr_al), 127);
+  push((import spr_px), 0);
+} return void;
+():() then calls spr_lists2_ready:[1]
+():() then spr_al_last:(127)

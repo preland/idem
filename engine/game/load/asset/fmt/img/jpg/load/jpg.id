@@ -34,6 +34,8 @@ jpg_init() {
   lst_fill((import jpg_st), 20, 0);
   jpg_init2();
 } return void;
+():() then calls jpg_init2:[1]
+given png_init ():() then calls jpg_init2:[1]
 
 // Load `path`. Answers 1 on success; the pixels are then where a PNG's would be,
 // three bytes per pixel, one dummy byte at the head of each row (the place a
@@ -43,9 +45,13 @@ jpg_load(string path) {
   int jpg_open_v = jpg_open(path);
   int ret_i = jpg_load2(jpg_open_v);
 } return int ret_i;
+given png_init given jpg_init ("../tests/unit/jpg/img/grad.jpg"):(1)
+given png_init given jpg_init ("../test_assets/vga8x16.psf"):(0)
 
 jpg_open(string path) {
   int n = asset_slurp(path);
   int ok = jpg_soi(n);
   int ret_i = jpg_walk(ok);
 } return int ret_i;
+given png_init given jpg_init ("../tests/unit/jpg/img/grad.jpg"):(1)
+given png_init given jpg_init ("../test_assets/vga8x16.psf"):(0)

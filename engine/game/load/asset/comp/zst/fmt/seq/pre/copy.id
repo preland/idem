@@ -11,6 +11,8 @@ zst_pcopy(int[] xs) {
     i = i + 1;
   }
 } return void;
+given fse_init ([1, 2, 3]):()
+given fse_init ([]):()
 
 // The three roles, at the bases the decode tables are laid out in: literal
 // lengths at 0 (up to 512 slots), offsets at 512 (256), match lengths at 768
@@ -20,3 +22,5 @@ zst_pre_all() {
   zst_pload(1, (import zst_pof), 5, 512);
   zst_pload(2, (import zst_pml), 6, 768);
 } return void;
+given fse_init given zst_pre_init ():()
+given zst_init given zst_pre_init given fse_init ():()

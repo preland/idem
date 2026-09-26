@@ -28,13 +28,19 @@ bl_f32(int p) {
   int b = bl_f32_bits(p);
   int ret_i = bl_f32_calc(p, b);
 } return int ret_i;
+given bl_dna_t_bytes (17):(0)
+given bl_dna_t_bytes (0):(45212112)
 
 bl_f32_bits(int p) {
   int b = asset_at(p + 2) + asset_at(p + 3) * 256;
 } return int b;
+given bl_dna_t_bytes (17):(12609)
+given bl_dna_t_bytes (0):(20037)
 
 bl_f32_calc(int p, int b) {
   int e = b / 128 % 256;
   int m = (b % 128) * 65536 + asset_at(p) + asset_at(p + 1) * 256;
   int ret_i = bl_fsc(e, m + 8388608 * (e > 0), 1 - 2 * (b / 32768));
 } return int ret_i;
+given bl_dna_t_bytes (17, 12609):(0)
+given bl_dna_t_bytes (0, 20037):(45212112)

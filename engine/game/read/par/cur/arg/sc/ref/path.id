@@ -7,12 +7,16 @@ par_pathx(int[] pos) {
     nd = par_post_f(pos, nd);
   }
 } return int nd;
+given par_arg_setup ([0]):(3) then calls ast_new_a:(129, "z", 2)
+given par_arg_setup ([2]):(2) then calls ast_new_a:(129, "z", 1)
 
 par_uref(int[] pos) {
   par_next(pos);
   int nd = par_pathx(pos);
   int ret_i = par_uref2(pos, nd);
 } return int ret_i;
+given par_arg_setup ([5]):(2) then calls ast_new_a:(140, "!", 1)
+given par_arg_setup ([15]):(2) then calls ast_new_a:(140, "", 1)
 
 // The trailing `!` is idml's *live* marker: a falling bird must not be eased.
 par_uref2(int[] pos, int nd) {
@@ -20,3 +24,5 @@ par_uref2(int[] pos, int nd) {
   int ast_k_ref_v = (import ast_k_ref);
   int ret_i = ast_new_a(ast_k_ref_v, txt, nd);
 } return int ret_i;
+given par_arg_setup ([7], 5):(1) then calls ast_new_a:(140, "!", 5)
+given par_arg_setup ([17], 9):(1) then calls ast_new_a:(140, "", 9)

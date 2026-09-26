@@ -14,15 +14,21 @@ ed_menu_pop() {
   }
   ed_pop_off();
 } return void;
+given ed_t_boot given ed_t_menu_open stdin "" ():() then calls ed_pop_at:(2)
+given ed_t_boot stdin "" ():() then calls ed_pop_at:[0]
 
 ed_pop_at(int k) {
   int mx = ed_mx(k);
   int ui = txt_ui();
   ed_pop_at2(k, mx, ui);
 } return void;
+given ed_t_boot stdin "" (2):() then calls ed_pop_at2:(2, 90, 1)
+given ed_t_boot stdin "" (0):() then calls ed_pop_at2:(0, 6, 1)
 
 ed_pop_at2(int k, int mx, int ui) {
   int hdr = ed_hdr();
   int w = ed_pop_w(k, 0, 0);
   ed_pop_at3(k, mx, ui, hdr, w);
 } return void;
+given ed_t_boot stdin "" (0, 100, 2):() then calls ed_pop_at3:(0, 100, 2, 21, 80)
+given ed_t_boot stdin "" (2, 50, 1):() then calls ed_pop_at3:(2, 50, 1, 21, 88)

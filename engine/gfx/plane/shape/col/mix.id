@@ -15,6 +15,8 @@
 d2_cb(int c) {
   int b = c % 256;
 } return int b;
+(255):(255)
+(256):(0)
 
 // Scale every channel by n per-mille: the lighting and fog term, and the way a
 // palette gets a darker variant of itself without a second palette.
@@ -23,9 +25,13 @@ d2_shade(int c, int n) {
   int cg = d2_cg(c) * n / 1000;
   int rgb = d2_shade_pack(c, n, cr, cg);
 } return int rgb;
+(16711680, 1000):(16711680)
+(16777215, 0):(0)
 
 // Mix c towards b: t = 0 is c, t = 1000 is b. Per channel through fx_lerp, so
 // the rounding rule is the same one the rest of the engine interpolates with.
 d2_blend(int c, int b, int t) {
   int result = d2_blend_impl(c, b, t);
 } return int result;
+(8421504, 8421504, 500):(8421504)
+(16711680, 255, 500):(8388735)

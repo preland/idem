@@ -1,0 +1,25 @@
+// A real 16-byte scratch pixel, and two addresses one and two bytes before
+// it -- so jpg_opx_g and jpg_opx_b's writes (at da+1 and da+2) land on the
+// same byte jpg_opx_r's does (da+0), and one reader serves all three.
+
+jpg_pxbuf_fixture() {
+  png_init();
+  jpg_init();
+  jpg_pxbuf_set();
+} return void;
+():() then jpg_px0_check:(0)
+given jpg_init ():() then jpg_px0_check:(0)
+
+jpg_pxbuf_set() {
+  export int jpg_px_a = alloc(16);
+  export int jpg_px_a_m1 = (import jpg_px_a) - 1;
+  export int jpg_px_a_m2 = (import jpg_px_a) - 2;
+} return void;
+given png_init ():() then jpg_px0_check:(0)
+given jpg_init ():() then jpg_px0_check:(0)
+
+jpg_px0_check() {
+  int v = peek8((import jpg_px_a));
+} return int v;
+given jpg_pxbuf_fixture ():(0)
+given jpg_px200_fixture ():(200)

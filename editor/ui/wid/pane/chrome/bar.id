@@ -10,15 +10,21 @@ ed_bar(int x, int y, int w, string title) {
   ed_bar_line(x, y, w);
   ed_bar_txt(x, y, title);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, "Hi"):() then calls ed_bar_bg:(1, 2, 3) then calls ed_bar_line:(1, 2, 3)
+given ed_t_boot stdin "" (4, 5, 6, "Yo"):() then calls ed_bar_line:(4, 5, 6) then calls ed_bar_txt:(4, 5, "Yo")
 
 ed_bar_bg(int x, int y, int w) {
   int ed_hdr_v = ed_hdr();
   int col = ed_col(2);
   sf_rect(x + 1, y + 1, w - 2, ed_hdr_v - 2, col);
 } return void;
+given ed_t_boot stdin "" (0, 0, 10):() then calls sf_rect:(1, 1, 8, 19, 0x323232)
+given ed_t_boot stdin "" (5, 6, 20):() then calls sf_rect:(6, 7, 18, 19, 0x323232)
 
 ed_bar_line(int x, int y, int w) {
   int ed_hdr_v = ed_hdr();
   int col = ed_col(3);
   d2_hline(x + 1, y + ed_hdr_v - 1, w - 2, col);
 } return void;
+given ed_t_boot stdin "" (0, 0, 10):() then calls d2_hline:(1, 20, 8, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 6, 20):() then calls d2_hline:(6, 26, 18, 0x1C1C1C)

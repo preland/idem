@@ -6,9 +6,16 @@ jpg_arow(int ci, int by, int bx) {
     bx = bx + 1;
   }
 } return void;
+given jpg_small_fixture (0, 0, 0):() then calls jpg_ablk:[1]
+given jpg_small_fixture (0, 0, 1):() then calls jpg_ablk:[0]
 
+// Real dequantised, transformed and stored: 134, the same value hand-derived
+// for the IDCT's own DC-50 case (jpg_deq_one.id) -- ablk is exactly that
+// chain (prep, transform, store) run once, end to end.
 jpg_ablk(int ci, int bx, int by) {
   jpg_ablk_prep(ci, bx, by);
   jpg_idct();
   jpg_store(ci, bx * 8, by * 8);
 } return void;
+given jpg_final_fixture (0, 0, 0):() then jpg_plane0_check:(134)
+given jpg_final_fixture (0, 0, 0):() then calls jpg_idct:[1] then calls jpg_store:(0, 0, 0)

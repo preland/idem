@@ -13,12 +13,16 @@ spr_frame(int f) {
   }
   print("");
 } return void;
+given spr_px1_ready (0):() then calls spr_row:(0, 0)
+given spr_px_ready (0):() then calls spr_row:[1]
 
 spr_row(int f, int y) {
   word ad = alloc((import spr_d)[0] + 1);
   spr_chars(f, y, ad);
   spr_row_end(ad);
 } return void;
+given spr_px1_ready (0, 0):() then calls spr_row_end:[1]
+given spr_px1_ready (0, 0):() then calls spr_chars:[1]
 
 spr_chars(int f, int y, word ad) {
   int x = 0;
@@ -27,3 +31,5 @@ spr_chars(int f, int y, word ad) {
     x = x + 1;
   }
 } return void;
+given spr_buf_ready (0, 0, (import spr_buf)):() then calls spr_chars_ch:[1]
+given spr_buf2_ready (0, 0, (import spr_buf)):() then calls spr_chars_ch:[1]

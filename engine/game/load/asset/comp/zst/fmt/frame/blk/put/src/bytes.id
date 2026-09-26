@@ -1,0 +1,30 @@
+// 8 real, distinct bytes (1..8), for every case in this group that needs a
+// real source/output address -- zst_reset (already cased) wires sa/da/slen
+// through the SAME cheaply reused buffer.
+zst_src_bytes() {
+  export int zstf_p = alloc(8);
+  int zstf_i = 0;
+  while (zstf_i < 8) {
+    poke8((import zstf_p) + zstf_i, zstf_i + 1);
+    zstf_i = zstf_i + 1;
+  }
+} return void;
+():() then zst_src_byte0:(1)
+given zst_init ():() then zst_src_byte0:(1)
+
+// sa/sp/slen/da/dp/cap/err all real and valid: byte 0 is 1 (the block
+// header's Last_Block bit set), so a case that drives the real block loop
+// terminates after one iteration instead of reading off the end.
+zst_src_setup() {
+  zst_init();
+  zst_src_bytes();
+  zst_reset((import zstf_p), 8, (import zstf_p), 8);
+} return void;
+():() then zst_src_byte0:(1)
+given zst_init ():() then zst_src_byte0:(1)
+
+zst_src_byte0() {
+  int zstf_v = peek8((import zstf_p));
+} return int zstf_v;
+given zst_src_bytes ():(1)
+given zst_src_setup ():(1)

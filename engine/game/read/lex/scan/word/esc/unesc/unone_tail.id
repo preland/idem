@@ -2,3 +2,5 @@ lex_unone_tail(string src, int a, int c, int nxt, word ad) {
   poke8(ad, c);
   if (c = 92) { nxt = lex_unesc1(src, a, ad); }
 } return int nxt;
+given lex_wbuf_setup ("hi", 0, 104, 1, (import lex_wbuf)):(1) then lex_wbuf_sum:(167)
+given lex_wbuf_setup ("\\n", 0, 92, 1, (import lex_wbuf)):(2) then lex_wbuf_sum:(73)

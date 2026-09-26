@@ -10,6 +10,8 @@ shot_n(int argc, string[] argv) {
   int i = 1;
   n = shot_scan(argc, argv, i, n);
 } return int n;
+(2, ["prog", "x"]):(0)
+(2, ["prog", "5"]):(5)
 
 shot_scan(int argc, string[] argv, int i, int n) {
   while (i < argc && n = 0) {
@@ -17,6 +19,8 @@ shot_scan(int argc, string[] argv, int i, int n) {
     i = i + 1;
   }
 } return int n;
+(2, ["prog", "x"], 1, 0):(0)
+(2, ["prog", "5"], 1, 0):(5)
 
 // Digits only, and one non-digit anywhere abandons the whole argument: `--shot`
 // must not read as 0 followed by something, and `3x` is a mistake rather than 3.
@@ -27,3 +31,5 @@ shot_val(string s, int i, int v) {
   }
   int ret_i = shot_ok(s, i, v);
 } return int ret_i;
+("5", 0, 0):(5)
+("x", 0, 0):(0)

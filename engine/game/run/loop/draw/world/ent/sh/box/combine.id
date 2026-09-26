@@ -4,8 +4,12 @@ ent_box2(int e, int ox, int oy) {
   int bsh = ent_bs(e, 26);
   ent_box3(e, ox, oy, bsw, bsh);
 } return void;
+given game_fixture_nd (0, 139, 170):() then calls ent_box3:(0, 139, 170, 10, 60)
+given game_fixture_nd given put_fixture (0, 0, 0):() then calls ent_box3:(0, 0, 0, 1, 1)
 
 ent_box3(int e, int ox, int oy, int bsw, int bsh) {
   int col = ent_at(e, 27);
   sf_rect(ox, oy, bsw, bsh, col);
 } return void;
+given game_fixture_nd (0, 139, 170, 10, 60):() then calls sf_rect:(139, 170, 10, 60, 16777215)
+given game_fixture_nd given put_fixture (0, 0, 0, 1, 1):() then calls sf_rect:(0, 0, 1, 1, 0)

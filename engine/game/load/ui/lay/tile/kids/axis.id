@@ -4,3 +4,5 @@ ui_tile_axis(int nd) {
   string ui_base_v = ui_base(ast_tx_v);
   int ret_i = ui_axis(ui_base_v);
 } return int ret_i;
+given ui_row_t_setup (1):(1)
+given ui_col_t_setup (2):(0)

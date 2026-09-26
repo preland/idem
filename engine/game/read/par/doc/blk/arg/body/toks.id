@@ -1,0 +1,18 @@
+// A tiny whole-document token stream for par_doc/par_doc_kids/par_dfill in
+// doc/top.id: one unknown declaration, so the top-level loop runs once and
+// then meets eof. Placed beside args.id/kids.id -- body/ had room.
+
+par_dtop_setup() {
+  lex_init();
+  ast_init();
+  par_dtop_setup2();
+} return void;
+():() then lex_kind_len:(3)
+():() then lex_kind_len:(3) then eprints:("")
+
+par_dtop_setup2() {
+  err_init();
+  lex_run("weird oops");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(3)
+given lex_init given ast_init ():() then lex_kind_len:(3) then eprints:("")

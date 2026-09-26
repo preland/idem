@@ -35,6 +35,8 @@ txt_glyph_sc(int key, int x, int y, int c, int sc) {
     j = j + 1;
   }
 } return void;
+given txt_init given sf_t_setup (72, 0, -2, 9, 1000):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (200, 0, 0, 9, 1000):() then d2_blit_t_px00:(0)
 
 // The top bit of the packed row is the leftmost column, so column k is bit
 // txt_bit() - 1 - k.
@@ -45,6 +47,8 @@ txt_row_sc(int bits, int x, int y, int c, int sc, int j) {
     k = k + 1;
   }
 } return void;
+given txt_init given sf_t_setup (128, 0, 0, 9, 1000, 0):() then d2_blit_t_px00:(9) then txt_t_px10:(0)
+given txt_init given sf_t_setup (128, 0, 0, 9, 500, 0):() then d2_blit_t_px00:(0)
 
 // Row and column arrive packed because a block's parameters are cheaper to read
 // than to count: `j * 256 + k` is two indices in the space of one. 256 still
@@ -57,3 +61,5 @@ txt_px_sc(int bits, int x, int y, int c, int sc, int jk) {
     sf_rect(x + jk % 256 * sc / 1000, y + jk / 256 * sc / 1000, txt_ext_v, txt_ext_v2, c);
   }
 } return void;
+given txt_init given sf_t_setup (128, 0, 0, 9, 1000, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (128, 0, 0, 9, 0, 0):() then d2_blit_t_px00:(0)

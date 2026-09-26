@@ -17,13 +17,19 @@ par_kind(int[] pos) {
   int kd = (import lex_k_eof);
   if (pos[0] < len((import lex_kind))) { kd = (import lex_kind)[pos[0]]; }
 } return int kd;
+given par_tok_setup ([0]):(13)
+given par_tok_setup ([3]):(11)
 
 par_text(int[] pos) {
   string s = "";
   if (pos[0] < len((import lex_text))) { s = (import lex_text)[pos[0]]; }
 } return string s;
+given par_tok_setup ([0]):("3.5")
+given par_tok_setup ([10]):("")
 
 par_line(int[] pos) {
   int ln = -1;
   if (pos[0] < len((import lex_line))) { ln = (import lex_line)[pos[0]]; }
 } return int ln;
+given par_tok_setup ([0]):(1)
+given par_tok_setup ([10]):(-1)

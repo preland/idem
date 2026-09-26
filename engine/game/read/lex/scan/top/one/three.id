@@ -7,8 +7,12 @@ lex_one3(string src, int i, int[] out) {
   if (lex_is_alpha(charat_v)) { out[0] = lex_ident(src, i); }
   else { lex_one4(src, i, out); }
 } return void;
+given lex_init ("ab", 0, [0]):("ab", 0, [2]) then calls lex_push:(12, "ab", 0, 0)
+given lex_init ("\"hi\"", 0, [0]):("\"hi\"", 0, [4]) then calls lex_push:(14, "hi", 0, 0)
 
 lex_one4(string src, int i, int[] out) {
   if (charat(src, i) = 34) { out[0] = lex_string(src, i); }
   else { out[0] = lex_punct(src, i); }
 } return void;
+given lex_init ("\"hi\"", 0, [0]):("\"hi\"", 0, [4]) then calls lex_push:(14, "hi", 0, 0)
+given lex_init ("+", 0, [0]):("+", 0, [1]) then calls lex_push:(15, "+", 0, 0)

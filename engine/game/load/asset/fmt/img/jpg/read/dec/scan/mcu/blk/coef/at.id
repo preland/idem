@@ -5,3 +5,22 @@
 jpg_bat(int ci, int bx, int by) {
   int ret_i = (import jpg_ca)[ci] + (by * (import jpg_c)[ci * 10 + 8] + bx) * 128;
 } return int ret_i;
+given jpg_bat_fixture (0, 0, 0):(100)
+given jpg_bat_fixture (0, 5, 1):(2020)
+
+// jpg_ca[0] and jpg_c[8] set to plain literals (100 and 10), not a real
+// allocation, since jpg_bat is pure arithmetic and needs no real memory
+// behind it.
+jpg_bat_fixture() {
+  jpg_raw_fixture();
+  jpg_bat_set();
+} return void;
+():() then asset_pipe_len_check:(336)
+given jpg_init ():() then asset_pipe_len_check:(336)
+
+jpg_bat_set() {
+  lset((import jpg_ca), 0, 100);
+  lset((import jpg_c), 8, 10);
+} return void;
+given jpg_raw_fixture ():() then calls jpg_bat:[0]
+given jpg_init ():() then calls jpg_bat:[0]

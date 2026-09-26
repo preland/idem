@@ -5,3 +5,5 @@ d3_gpack_b(int[] xs, int r, int g) {
   int b = fx_clamp(xs[2] / 256, 0, 255);
   int ret_i = d2_rgb(r, g, b);
 } return int ret_i;
+([0, 0, 65280], 255, 255):(16777215)
+([0, 0, 100000], -10, 300):(65535)

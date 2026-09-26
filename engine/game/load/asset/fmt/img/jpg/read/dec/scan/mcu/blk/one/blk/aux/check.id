@@ -1,0 +1,23 @@
+// A real coefficient buffer alongside the real Huffman decode state -- for
+// dc.id's cases, which write real coefficients through jpg_cset/jpg_cget.
+
+jpg_coefbuf_fixture() {
+  jpg_huff_fixture();
+  export int jpg_coef_a = alloc(128);
+} return void;
+():() then jpg_dc0_check:(0)
+given jpg_init ():() then jpg_dc0_check:(0)
+
+jpg_coefbuf2_fixture() {
+  jpg_coefbuf_fixture();
+  jpg_dec(0);
+} return void;
+():() then jpg_dc0_check:(0)
+given jpg_init ():() then jpg_dc0_check:(0)
+
+// Coefficient 0 (the DC slot) of the real buffer, as a value.
+jpg_dc0_check() {
+  int v = jpg_cget((import jpg_coef_a), 0);
+} return int v;
+given jpg_coefbuf_fixture ():(0)
+given jpg_dc_fixture ():(-96)

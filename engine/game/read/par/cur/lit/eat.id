@@ -2,6 +2,8 @@ par_eat(int[] pos, string txt) {
   int ok = par_is(pos, txt);
   if (ok = 1) { par_next(pos); }
 } return int ok;
+given par_lit_setup ([1], "-"):(1) then calls par_next:[1]
+given par_lit_setup ([0], "-"):(0) then calls par_next:[0]
 
 // Report but do not consume on a mismatch. There is no recovery beyond that:
 // every collection loop carries an end-of-input guard, so a wrong token costs one
@@ -10,6 +12,8 @@ par_want(int[] pos, string txt) {
   int ok = par_eat(pos, txt);
   par_wchk(pos, txt, ok);
 } return void;
+given par_lit_setup ([1], "-"):() then calls par_err:[0]
+given par_lit_setup ([0], "-"):() then calls par_err:[1]
 
 // 39 is an apostrophe.
 par_wchk(int[] pos, string txt, int ok) {
@@ -19,3 +23,5 @@ par_wchk(int[] pos, string txt, int ok) {
     par_err(pos, "expected " + chr_v + txt + chr_v + ", found " + chr_v + found + chr_v);
   }
 } return void;
+given par_lit_setup ([0], "-", 0):() then calls par_err:[1]
+given par_lit_setup ([0], "-", 1):() then calls par_err:[0]

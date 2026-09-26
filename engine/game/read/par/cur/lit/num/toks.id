@@ -1,0 +1,19 @@
+// A small token stream for cur/lit: an identifier, a signed number, a
+// fractional number, a string and one token ("]") nothing in the grammar
+// expects, for the error paths. Placed beside scalar.id/val.id -- lit/ itself
+// was already at its 3-entry limit.
+
+par_lit_setup() {
+  lex_init();
+  ast_init();
+  par_lit_setup2();
+} return void;
+():() then lex_kind_len:(7)
+():() then lex_kind_len:(7) then eprints:("")
+
+par_lit_setup2() {
+  err_init();
+  lex_run("ident -5 3.5 \"hi\" ]");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(7)
+given lex_init given ast_init ():() then lex_kind_len:(7) then eprints:("")

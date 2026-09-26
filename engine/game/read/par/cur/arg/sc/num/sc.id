@@ -2,6 +2,8 @@ par_nchk(int[] pos) {
   if (par_kind(pos) != (import lex_k_number)) { par_err(pos, "expected a number"); }
   par_next(pos);
 } return void;
+given par_arg_setup ([10]):() then calls par_err:[0]
+given par_arg_setup ([11]):() then calls par_err:[1]
 
 // A number scaled to a slot whose unit the grammar knows: `35.95` in a UI
 // dimension is 3595 centipercent, `-0.5` in a vertex is -500 millunits. More
@@ -11,8 +13,12 @@ par_snum(int[] pos, int sc) {
   int v = par_snum_val(pos, sc);
   int ret_i = par_snum_fin(pos, v, sg);
 } return int ret_i;
+given par_arg_setup ([10], 2):(1) then calls ast_new_num:(500, 0)
+given par_arg_setup ([10], 0):(1) then calls ast_new_num:(5, 0)
 
 par_scale(int v, int fr, int sc, int[] pos) {
   par_fchk(pos, fr, sc);
   int ret_i = v * fx_pow(10, sc - fr);
 } return int ret_i;
+given par_arg_setup (5, 0, 2, [10]):(500) then calls par_err:[0]
+given par_arg_setup (5, 3, 2, [10]):(5) then calls par_err:[1]

@@ -1,0 +1,17 @@
+// Test fixture for the depth buffer alone: sizes the surface and runs
+// d3_zalloc directly, without the rest of d3_init's chain, for a case that
+// only needs d3_zb and not the camera/matrix state init.id's fixture also
+// brings up.
+
+d3_zt_setup() {
+  sf_t_setup();
+  d3_zalloc();
+} return void;
+():() then d3_zt_len:(3072)
+():() then sf_t_gw:(64)
+
+d3_zt_len() {
+  int n = len((import d3_zb));
+} return int n;
+given d3_zt_setup ():(3072)
+given d3_zt_setup ():(3072) then sf_t_gw:(64)

@@ -9,19 +9,28 @@
 // does.
 
 main(int argc, string[] argv) {
+  export string zst_path = t_main_path(argc, argv);
+  export int zst_n = t_main_n(argc, argv);
   fx_trig_init();
+} chain (int argc, string[] argv) {
   png_init();
-  t_zst();
+  t_zst((import zst_path), (import zst_n));
 } return int 0;
+(3, ["zst", "img/raw.zst", "64"]):(0) then calls t_zst:("img/raw.zst", 64)
+(3, ["zst", "img/raw.zst", "64"]):(0) then calls png_init:[1]
 
-t_zst() {
+t_zst(string path, int n) {
   zst_init();
   t_bits();
-  t_fse();
+  t_fse(path, n);
 } return void;
+given zst_surf_ready ("img/raw.zst", 64):("img/raw.zst", 64) then calls t_bits:[1]
+given zst_surf_ready ("img/raw.zst", 64):("img/raw.zst", 64) then calls t_fse:("img/raw.zst", 64)
 
-t_files() {
-  t_one("raw   Raw block, exp 64 bytes hash 2246337607", "tests/unit/zst/img/raw.zst", 64);
-  t_one("rle   sequences, exp ret 300 hash 4095712833", "tests/unit/zst/img/rle.zst", 300);
-  t_more();
+t_files(string path, int n) {
+  t_one("raw   Raw block, exp 64 bytes hash 2246337607", "img/raw.zst", 64);
+  t_one("rle   sequences, exp ret 300 hash 4095712833", "img/rle.zst", 300);
+  t_more(path, n);
 } return void;
+given zst_ready ("img/raw.zst", 64):() then calls t_one:[9]
+given zst_ready ("img/raw.zst", 64):() then calls t_more:("img/raw.zst", 64)

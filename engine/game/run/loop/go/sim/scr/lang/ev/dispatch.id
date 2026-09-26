@@ -17,6 +17,8 @@ scr_ev(int nd, int e) {
     v = scr_ev2(nd, e);
   }
 } return int v;
+given node_fixture ((import fixture_num), -1):(42)
+given ident_fixture ((import fixture_ident), -1):(1)
 
 scr_ev2(int nd, int e) {
   int v = 0;
@@ -26,6 +28,8 @@ scr_ev2(int nd, int e) {
     v = scr_ev3(nd, e);
   }
 } return int v;
+given ident_fixture ((import fixture_ident), -1):(1)
+given node_fixture ((import fixture_num), -1):(0) then calls scr_ev3:[1]
 
 scr_ev3(int nd, int e) {
   int v = 0;
@@ -35,3 +39,5 @@ scr_ev3(int nd, int e) {
     v = scr_ev4(nd, e);
   }
 } return int v;
+given node_fixture ((import fixture_num), -1):(0) then calls scr_ev4:[1]
+given idem_init (0, -1):(0) then calls scr_ev4:[1]

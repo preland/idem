@@ -5,9 +5,13 @@ pack_main() {
   pack_head();
   pack_boot();
 } return void;
+given pack_mode_ready ():() then calls pack_head:[1]
+given pack_mode_ready ():() then calls pack_boot:[1]
 
 pack_boot() {
   print("");
   print("main(int argc, string[] argv) {");
   pack_boot2();
 } return void;
+given pack_mode_ready ():() then calls pack_boot2:[1]
+given pack_app_ready ():() then calls pack_boot2:[1]

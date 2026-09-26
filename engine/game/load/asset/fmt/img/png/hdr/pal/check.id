@@ -1,0 +1,14 @@
+// The palette entry count (png_st[13]) and the tRNS entry count (png_st[15])
+// as values, for chunks.id's cases.
+
+png_pn_check() {
+  int v = (import png_st)[13];
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(5)
+
+png_tn_check() {
+  int v = (import png_st)[15];
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(1)

@@ -6,9 +6,13 @@ par_page_node(int[] pos) {
   int par_item_v = par_item(pos);
   int ret_i = ast_new_a(ast_k_page_v, "", par_item_v);
 } return int ret_i;
+given par_decl_setup ([19]):(2) then calls ast_new_a:(144, "", 1)
+given par_decl_setup ([22]):(2) then calls ast_new_a:(144, "", 1)
 
 par_decl_kind(int[] pos, string name, int ln) {
   par_next(pos);
   int par_dk_v = par_dk(name);
   int ret_i = par_dkind(pos, name, par_dk_v, ln);
 } return int ret_i;
+given par_decl_setup ([0], "sprite", 1):(4) then calls ast_new:(105, "bird", 3, 0, 0, [])
+given par_decl_setup ([4], "weird", 2):(1) then calls ast_new_k:(145, "weird")

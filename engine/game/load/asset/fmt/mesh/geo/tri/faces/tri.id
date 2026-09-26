@@ -14,11 +14,15 @@ bl_faces(int p, int si) {
   int po = bl_faces_po(p, si);
   int ret_i = bl_faces_tris(cv, po, p, si);
 } return int ret_i;
+given bl_mesh_t_load (349984, 322):(1)
+given asset_io_init given bl_mesh_t_load (349984, 322):(1)
 
 bl_ok(int cv, int po) {
   int ok = 0;
   if (cv >= 0 && po >= 0 && len((import bl_ti)) > 0) { ok = 1; }
 } return int ok;
+given bl_mesh_t_load (0, 0):(1)
+given bl_mesh_t_load (-1, 0):(0)
 
 bl_tris(int cv, int po, int n) {
   int f = 0;
@@ -27,3 +31,5 @@ bl_tris(int cv, int po, int n) {
     f = f + 1;
   }
 } return void;
+given bl_mesh_t_load (0, 1074, 1):() then calls bl_tris_fan:[1]
+given bl_mesh_t_load (0, 1074, 0):() then calls bl_tris_fan:[0]

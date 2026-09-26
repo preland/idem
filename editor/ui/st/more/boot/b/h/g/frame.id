@@ -1,0 +1,8 @@
+// Reads ed_st's frame counter (slot 8), for cases downstream that need to
+// prove a function leaves it alone rather than resetting it.
+
+ed_fr_n() {
+  int n = (import ed_st)[8];
+} return int n;
+given ed_t_boot stdin "" ():(0)
+given ed_t_boot given ed_mark stdin "" ():(1)

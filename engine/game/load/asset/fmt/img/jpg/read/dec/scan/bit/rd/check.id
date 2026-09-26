@@ -1,0 +1,18 @@
+// Bit-reader state (jpg_b) as values, for reader.id's cases.
+jpg_bcursor_check() {
+  int v = (import jpg_b)[0];
+} return int v;
+given jpg_init ():(0)
+given jpg_bs291_fixture ():(291)
+
+jpg_bb_check() {
+  int v = (import jpg_b)[1];
+} return int v;
+given jpg_init ():(0)
+given jpg_bs291_fixture ():(0)
+
+jpg_bl_check() {
+  int v = (import jpg_b)[2];
+} return int v;
+given jpg_init ():(0)
+given jpg_bs291_fixture ():(0)

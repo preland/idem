@@ -9,12 +9,16 @@ png_pcol(int idx) {
   int c = 0;
   if (idx < (import png_st)[13]) { c = png_pcol_rgb(i); }
 } return int c;
+given spr_bird_fixture (1):(2763306)
+given spr_bird_fixture (10):(0)
 
 png_pcol_rgb(int i) {
   int cr = peek8(i);
   int cg = peek8(i + 1);
   int result = png_pcol_rgb2(cr, cg, i);
 } return int result;
+given png_plte_fixture ((import png_plte0)):(0)
+given png_plte_fixture ((import png_plte1)):(2763306)
 
 // Past the end of tRNS is opaque -- the chunk is truncated after its last
 // non-opaque entry, and that truncation is the format's, not a corruption.
@@ -22,3 +26,5 @@ png_palpha(int idx) {
   int a = 255;
   if (idx < (import png_st)[15]) { a = peek8((import png_st)[14] + idx); }
 } return int a;
+given spr_bird_fixture (0):(0)
+given spr_bird_fixture (1):(255)

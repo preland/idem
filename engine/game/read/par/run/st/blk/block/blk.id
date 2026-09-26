@@ -8,6 +8,8 @@ par_block(int[] pos) {
   int ast_k_block_v = (import ast_k_block);
   int ret_i = ast_new_kids(ast_k_block_v, "", kids);
 } return int ret_i;
+given par_stmt_setup ([12]):(4) then calls ast_new_kids:(117, "", [3])
+given par_stmt_setup ([12]):(4) then calls par_block_kids:[1]
 
 par_bfill(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
@@ -16,9 +18,13 @@ par_bfill(int[] pos, int[] kids) {
   }
   par_eat(pos, "}");
 } return void;
+given par_stmt_setup ([13], []):([17], [3]) then calls par_stmt:[1]
+given par_stmt_setup ([16], []):([17], []) then calls par_stmt:[0]
 
 par_stmt(int[] pos) {
   int[] out = [0];
   par_stmt2(pos, out);
   int ret_i = out[0];
 } return int ret_i;
+given par_stmt_setup ([9]):(3) then calls ast_new_ab:(121, "", 1, 2)
+given par_stmt_setup ([13]):(3) then calls ast_new_ab:(121, "", 1, 2)

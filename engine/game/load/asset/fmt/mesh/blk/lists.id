@@ -31,11 +31,15 @@ bl_lists() {
   export int[] bl_bp = [];
   bl_lists3();
 } return void;
+():() then calls bl_lists3:[1]
+given asset_io_init ():() then calls bl_lists3:[1]
 
 bl_lists3() {
   export word[] bl_ba = [];
   bl_lists2();
 } return void;
+():() then calls bl_lists2:[1]
+given asset_io_init ():() then calls bl_lists2:[1]
 
 // asset_io_init is called here as well as from png_init: an export declaration
 // re-assigns, so running it twice re-makes the staging buffer rather than growing
@@ -45,3 +49,5 @@ bl_lists2() {
   export int[] bl_bs = [];
   asset_io_init();
 } return void;
+():() then calls asset_io_init:[1]
+given bl_init ():() then calls asset_io_init:[1]

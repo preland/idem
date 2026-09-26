@@ -21,11 +21,15 @@ ui_dinit() {
   export int[] ui_dd = [];
   ui_dinit2();
 } return void;
+():() then ui_dn_t_check:(0)
+given ast_init ():() then ui_dn_t_check:(0)
 
 ui_dinit2() {
   export int[] ui_dep = [0];
   ui_rinit();
 } return void;
+():() then ui_rclear_t_check:(0)
+given ast_init ():() then ui_rclear_t_check:(0)
 
 // An `import` is the same node kind as a `define` -- both are `ast_k_define` --
 // and is told apart by having no body. A define always has exactly one child: the
@@ -38,3 +42,5 @@ ui_dload(int nd) {
     push((import ui_dd), ast_ks_v[0]);
   }
 } return void;
+given ui_look_fx3 (8):() then ui_dn_t_check:(1)
+given ui_look_fx3 (5):() then ui_dn_t_check:(0)

@@ -34,6 +34,8 @@ zst_init() {
   lst_fill((import zst_st), 16, 0);
   zst_tabs();
 } return void;
+():() then zst_sa_check:(0)
+given zst_dirty_setup ():() then zst_sa_check:(0)
 
 // Decompress the bytes at `sa` into `cap` bytes at `da`. Answers the number of
 // bytes produced, or -1. Mirrors inf_run exactly, so a caller can pick a codec by
@@ -43,9 +45,13 @@ zst_run(int sa, int slen, int da, int cap) {
   zst_frames();
   int ret_i = zst_out();
 } return int ret_i;
+given zst_init (0, 0, 0, 0):(0)
+given zst_init (0, 0, 0, 256):(0)
 
 zst_reset(int sa, int slen, int da, int cap) {
   m4_pair((import zst_st), 0, 1, sa, 0);
   m4_pair((import zst_st), 2, 3, slen, da);
   zst_reset2(cap);
 } return void;
+given zst_init (0, 0, 0, 0):()
+given zst_init (1024, 512, 2048, 256):()

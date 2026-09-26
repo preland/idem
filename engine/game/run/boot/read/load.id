@@ -5,13 +5,19 @@ idem_read(string src) {
   lex_init();
   idem_read1(src);
 } return void;
+given idem_init (""):() then calls scn_root:("", 0)
+given idem_init (""):() then calls idem_read1:("")
 
 idem_read1(string src) {
   lex_run(src);
   idem_read2();
 } return void;
+given read2_fixture (""):() then calls idem_read2:[1]
+given read2_fixture (""):() then calls lex_run:("")
 
 idem_read2() {
   int[] pos = [0];
   idem_read2_tail(pos);
 } return void;
+given read2_fixture ():() then calls idem_read2_tail:([0])
+given read2_fixture ():() then calls par_doc:[1]

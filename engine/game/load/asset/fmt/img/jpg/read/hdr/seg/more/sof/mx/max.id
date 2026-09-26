@@ -6,13 +6,19 @@ jpg_maxes(int ci) {
     ci = ci + 1;
   }
 } return void;
+given jpg_grad_fixture (0):() then calls jpg_max1:[3]
+given jpg_init (0):() then calls jpg_max1:[0]
 
 jpg_grid() {
   jpg_gridc(0, 3, 5);
   jpg_gridc(1, 4, 6);
 } return void;
+given jpg_init ():() then calls jpg_gridc:(0, 3, 5) then calls jpg_gridc:(1, 4, 6)
+given jpg_grad_fixture ():() then calls jpg_gridc:(0, 3, 5) then calls jpg_gridc:(1, 4, 6)
 
 jpg_gridc(int szi, int sfi, int outi) {
   int fx_max_v = fx_max(8 * (import jpg_st)[sfi], 1);
   lset((import jpg_st), outi, ((import jpg_st)[szi] + 8 * (import jpg_st)[sfi] - 1) / fx_max_v);
 } return void;
+given jpg_grad_fixture (0, 3, 5):() then jpg_mcux_check:(3)
+given jpg_water_fixture (0, 3, 5):() then jpg_mcux_check:(23)

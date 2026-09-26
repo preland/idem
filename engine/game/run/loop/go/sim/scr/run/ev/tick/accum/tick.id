@@ -10,6 +10,8 @@ scr_tick(int dt) {
   scr_tfire(0 - 1, (import scn_st)[12]);
   scr_tents(0, dt);
 } return void;
+given idem_init (16):() then calls lset:[1]
+given idem_init (16):() then calls scr_tents:[1]
 
 scr_tents(int e, int dt) {
   while (e < ent_n()) {
@@ -17,9 +19,13 @@ scr_tents(int e, int dt) {
     e = e + 1;
   }
 } return void;
+given idem_init (0, 16):() then calls scr_tent:[0]
+given grow_fixture (0, 16):() then calls scr_tent:[1]
 
 scr_tent(int e, int dt) {
   int age = ent_at(e, 22);
   ent_put(e, 22, age + dt);
   scr_tent2(e, dt);
 } return void;
+given grow_fixture (0, 16):() then calls ent_put:(0, 22, 16)
+given grow_fixture (0, 16):() then calls scr_tent2:[1]

@@ -5,6 +5,8 @@ scr_fone(int h, string evn, int e, string tg) {
     scr_hrun(h, e);
   }
 } return void;
+given idem_init (0, "update", -1, ""):() then calls scr_hrun:[0]
+given block_fixture ((import fixture_assign), "update", -1, ""):() then calls scr_hrun:[0]
 
 // An empty `tg` matches any handler of that event -- `on update` has no argument
 // to compare. A non-empty one must equal the handler's, which is how
@@ -20,3 +22,5 @@ scr_amatch(int h, string tg) {
     }
   }
 } return int ok;
+given idem_init (0, ""):(1)
+given idem_init (0, "enemy"):(0)

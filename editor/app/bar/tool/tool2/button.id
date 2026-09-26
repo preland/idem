@@ -5,6 +5,8 @@ ed_tool(int x, int k, string s) {
   ed_tool_bg(x, w, k);
   ed_tool_hit(x, w, k, s);
 } return void;
+given ed_t_boot stdin "" (6, 0, "pan"):() then calls ed_tool_bg:(6, 34, 0)
+given ed_t_boot stdin "" (44, 1, "move"):() then calls ed_tool_hit:(44, 42, 1, "move")
 
 ed_tool_bg(int x, int w, int k) {
   if ((import ed_st)[9] = k) {
@@ -13,6 +15,8 @@ ed_tool_bg(int x, int w, int k) {
     sf_rect(x, h + 2, w, h, col);
   }
 } return void;
+given ed_t_boot stdin "" (6, 34, 1):() then calls sf_rect:(6, 23, 34, 21, 0x2D5C88)
+given ed_t_boot stdin "" (6, 34, 0):() then calls sf_rect:[0]
 
 ed_tool_hit(int x, int w, int k, string s) {
   int h = ed_hdr();
@@ -21,3 +25,5 @@ ed_tool_hit(int x, int w, int k, string s) {
   }
   ed_tool_hit_lbl(x, h, s);
 } return void;
+given ed_t_boot given ed_t_click_toolbar stdin "" (0, 34, 0, "pan"):() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 9, 0)
+given ed_t_boot stdin "" (0, 34, 0, "pan"):() then calls ed_tool_hit_lbl:(0, 21, "pan")

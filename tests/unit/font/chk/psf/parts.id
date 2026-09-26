@@ -2,8 +2,21 @@ t_psf2_metrics() {
   string msg = "  metrics exp w 8 h 16 bits 8 glyphs 224, last 255 = " + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen() + " " + txt_last();
   print(msg);
 } return void;
+given font_vga_ready ():() then prints:("  metrics exp w 8 h 16 bits 8 glyphs 224, last 255 = 8 16 8 224 255\n")
+given txt_init ():() then prints:("  metrics exp w 8 h 16 bits 8 glyphs 224, last 255 = 8 16 8 95 126\n")
 
 t_rows_block() {
   string msg = "  block 219 rows 0,15 exp 255 255 | shade 176 rows 0,1 exp 17 68 = " + (import txt_glyphs)[txt_glyph_at(219)] + " " + (import txt_glyphs)[txt_glyph_at(219) + 15] + " " + (import txt_glyphs)[txt_glyph_at(176)] + " " + (import txt_glyphs)[txt_glyph_at(176) + 1];
   print(msg);
 } return void;
+given font_vga_ready ():() then prints:("  block 219 rows 0,15 exp 255 255 | shade 176 rows 0,1 exp 17 68 = 255 255 17 68\n")
+given font_lat_ready ():() then calls txt_glyph_at:(219)
+
+// Test-only fixture: the PSF1 face loaded over the PSF2 one, matching main.id's
+// own load order (chk/psf/load.id runs the VGA face, then the latgrkcyr one).
+font_lat_ready() {
+  font_vga_ready();
+  psf_load("../../../test_assets/latgrkcyr8x16.psf");
+} return void;
+():() then calls font_vga_ready:[1]
+():() then calls psf_load:("../../../test_assets/latgrkcyr8x16.psf")

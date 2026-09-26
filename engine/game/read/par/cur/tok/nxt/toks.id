@@ -1,0 +1,12 @@
+// A short token stream for the cursor accessors (par_kind, par_text, par_line,
+// par_val, par_frac, par_pth) and the advance/fold helpers: a #file marker (so
+// par_pth has a real, non-default path to read), a fractional number, a
+// string and an operator. Placed beside advance.id and fold.id, which need it
+// too -- par/cur/tok already held three entries.
+
+par_tok_setup() {
+  lex_init();
+  lex_run("#file game.idml\n3.5 \"hi\" +");
+} return void;
+():() then lex_kind_len:(4)
+():() then lex_kind_len:(4) then eprints:("")

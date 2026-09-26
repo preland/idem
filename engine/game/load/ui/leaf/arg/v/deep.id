@@ -1,0 +1,9 @@
+// The define table from ui_look_fx4, with the expansion depth already at its
+// guard limit -- so ui_def's own cases exercise the guard, not only the name
+// lookup underneath it.
+ui_deep_fx() {
+  ui_look_fx4();
+  lset((import ui_dep), 0, 7);
+} return void;
+():() then ast_n:(9)
+given ast_init ():() then ast_n:(9)

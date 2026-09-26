@@ -11,12 +11,16 @@ t_rel() {
   t_rel_show();
   t_tap();
 } return void;
+given sys_frame_ready ():() then calls t_rel_show:[1]
+given sys_frame_ready ():() then calls t_tap:[1]
 
 t_tap() {
   inp_stamp(87);
   inp_stamp(87 + 65536);
   t_tapp();
 } return void;
+given sys_rel_ready ():() then calls inp_stamp:(87)
+given sys_rel_ready ():() then calls t_tapp:[1]
 
 // The guard on the key code is what stands between a keyboard with one key more
 // than this seam knows about and an out-of-range list store, which aborts the
@@ -26,3 +30,5 @@ t_tapp() {
   t_tapp_show1();
   t_tapp_show2();
 } return void;
+given sys_tap_ready ():() then calls t_tapp_show1:[1]
+given sys_tap_ready ():() then calls t_tapp_show2:[1]

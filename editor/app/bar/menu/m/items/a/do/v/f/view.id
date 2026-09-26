@@ -6,6 +6,8 @@ ed_sel_all(int e, int v) {
     e = e + 1;
   }
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 1):() then calls ent_put:(0, 23, 1)
+given ed_t_boot stdin "" (0, 1):() then calls ent_put:[0]
 
 // Yaw and pitch only: the distance and the centre are where the geometry is, and
 // a "front view" that also flew the camera home would be two commands in one.
@@ -14,8 +16,13 @@ ed_mview_do(int i) {
   int ed_vpit_v = ed_vpit(i);
   m4_pair((import ed_st), 2, 3, ed_vyaw_v, ed_vpit_v);
 } return void;
+given ed_t_boot stdin "" (0):() then calls m4_pair:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 2, 3, 35000, -9000)
+given ed_t_boot stdin "" (1):() then calls m4_pair:([-1, -1, 0, -88000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 2, 3, 0, -88000)
 
 ed_vyaw(int i) {
   int v = 35000;
   if (i > 0) { v = 0; }
 } return int v;
+(0):(35000)
+(1):(0)
+(-1):(35000)

@@ -5,3 +5,5 @@ par_err(int[] pos, string msg) {
   int ln = par_line(pos);
   err_report(pth, ln, msg);
 } return void;
+given par_lit_setup ([0], "test message"):() then calls err_report:("<input>", 1, "test message")
+given par_lit_setup ([5], "other"):() then calls err_report:("<input>", 1, "other")

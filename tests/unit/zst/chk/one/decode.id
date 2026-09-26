@@ -3,11 +3,13 @@
 // Two frames back to back, and a skippable frame in front of a real one -- both
 // shapes showroom.blend actually has (36 frames, one of them skippable), and both
 // testable with only the frame layer built.
-t_more() {
-  t_one("two   two frames, exp 128 bytes hash 1687148429", "tests/unit/zst/img/two.zst", 128);
-  t_one("skip  skippable frame first, exp 64 bytes hash 2246337607", "tests/unit/zst/img/skip.zst", 64);
-  t_todo();
+t_more(string path, int n) {
+  t_one("two   two frames, exp 128 bytes hash 1687148429", "img/two.zst", 128);
+  t_one("skip  skippable frame first, exp 64 bytes hash 2246337607", "img/skip.zst", 64);
+  t_todo(path, n);
 } return void;
+given zst_ready ("img/raw.zst", 64):() then calls t_one:[7]
+given zst_ready ("img/raw.zst", 64):() then calls t_todo:("img/raw.zst", 64)
 
 // Both the returned value and the bytes actually written are reported, and for
 // the two sequence fixtures they disagree in a way that is worth spelling out.
@@ -26,6 +28,8 @@ t_one(string msg, string path, int n) {
   word t_hash_v = t_hash((import zst_st)[4]);
   t_show(msg, got, t_hash_v);
 } return void;
+given zst_ready ("raw", "img/raw.zst", 64):() then calls t_dec:("img/raw.zst", 64)
+given zst_ready ("raw", "img/raw.zst", 64):() then calls t_show:[1]
 
 // The output buffer is sized from what the fixture is known to decompress to, not
 // from what the frame claims -- a decoder that trusts the frame's own size field
@@ -35,3 +39,5 @@ t_dec(string path, int n) {
   int da = t_dec_alloc(n);
   int ret_i = zst_run((import asset_io)[0], slen, da, n);
 } return int ret_i;
+given zst_ready ("img/raw.zst", 64):(64) then calls asset_slurp:("img/raw.zst")
+given zst_ready ("img/raw.zst", 64):(64) then calls t_dec_alloc:(64)

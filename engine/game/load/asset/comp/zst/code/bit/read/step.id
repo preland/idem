@@ -5,13 +5,19 @@ zb_pick(int h, int i, int ok) {
   int n = h;
   if (ok = 1) { n = i; }
 } return int n;
+(5, 7, 0):(5)
+(2, 6, 1):(6)
 
 zb_bit() {
   int v = zb_bitv();
   int result = zb_next(v);
 } return int result;
+given zb_frame_setup ():(1) then zb_rel_check:([1, 5, 0])
+given zb_bi0_setup ():(0) then zb_rel_check:([0, 7, 0])
 
 zb_next(int v) {
   lset((import zb_st), 2, (import zb_st)[2] - 1);
   zb_norm();
 } return int v;
+given zb_frame_setup (1):(1) then zb_rel_check:([1, 5, 0])
+given zb_bi0_setup (0):(0) then zb_rel_check:([0, 7, 0])

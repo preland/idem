@@ -6,3 +6,5 @@ imp_hex6_ch(int c, int i, string s) {
   int d = imp_hexd(c / p % 16);
   s = s + chr(d);
 } return string s;
+(255, 0, ""):("F")
+(255, 1, ""):("F")

@@ -1,0 +1,23 @@
+// Continuing the replay: the delete, then home-at-0 and end-at-end.
+
+tin_del_ready() {
+  tin_bs_ready();
+  t_tap(265, 2400);
+} return void;
+():() then calls tin_bs_ready:[1]
+():() then calls t_tap:(265, 2400)
+
+tin_home_ready() {
+  tin_del_ready();
+  t_tap(260, 2500);
+  t_tap(8, 2600);
+} return void;
+():() then calls tin_del_ready:[1]
+():() then calls t_tap:(8, 2600)
+
+tin_home2_ready() {
+  tin_home_ready();
+  t_tap(261, 2700);
+} return void;
+():() then calls tin_home_ready:[1]
+():() then calls t_tap:(261, 2700)

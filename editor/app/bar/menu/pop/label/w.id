@@ -8,9 +8,13 @@ ed_pop_w(int k, int i, int w) {
   }
   int ret_i = w + 16 * txt_ui();
 } return int ret_i;
+given ed_t_boot stdin "" (2, 0, 0):(88)
+given ed_t_boot stdin "" (0, 0, 0):(80)
 
 ed_pop_w_step(int k, int i, int w) {
   string ed_mitem_v = ed_mitem(k, i);
   int txt_width_v = txt_width(ed_mitem_v);
   int ret_i = fx_max(w, txt_width_v);
 } return int ret_i;
+given ed_t_boot stdin "" (0, 0, 0):(64)
+given ed_t_boot stdin "" (2, 1, 0):(48)

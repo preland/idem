@@ -14,9 +14,23 @@ t_move() {
   sim_move(0, 16);
   t_move2();
 } return void;
+given sim_e1_ready ():() then calls sim_move:(0, 16)
+given sim_e1_ready ():() then calls t_move2:[1]
 
 t_move2() {
   int ent_at_v = ent_at(0, 0);
   print("x after one 16ms step at -120/s exp -1920 = " + ent_at_v);
   t_grav();
 } return void;
+given sim_move_ready ():() then calls ent_at:(0, 0)
+given sim_move_ready ():() then prints:("x after one 16ms step at -120/s exp -1920 = -1920\ndynamic body: vy after 16ms of 1500/s^2 exp 24000 = 24000\nsolid body: vy unchanged exp 24000 = 24000\npast the left bound: x exp 432000 = 432000\ninside it: x unchanged exp -143000 = -143000\nframes at 0, 120, 240, 360 ms exp 0 1 2 0 = 0 1 2 0\nno anim: frame held exp 5 = 5\n")
+
+// Entity 1, at its defaults, alongside entity 0 -- the state the real chain
+// is in by the time anything past t_two runs: sim_move and friends read the
+// whole store, not just entity 0, and trap on a one-entity store.
+sim_e1_ready() {
+  sim_e0_ready();
+  ent_add();
+} return void;
+():() then calls sim_e0_ready:[1]
+():() then calls ent_add:[2]

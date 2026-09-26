@@ -13,3 +13,21 @@
 t_src() {
   string ret_s = "game t {" + chr(10) + "  display (100, 100)" + chr(10) + "  fps 50" + chr(10) + "  persist { best = 7 }" + chr(10) + "  keys { space = press }" + chr(10) + "}" + chr(10) + t_src2();
 } return string ret_s;
+():("game t {\n  display (100, 100)\n  fps 50\n  persist { best = 7 }\n  keys { space = press }\n}\ntemplate Box {\n  pos (0, 0)\n  body (10, 10)\n  solid\n  tag deadly\n}\nscene play {\n  var n = 0\n  var ticks = 0\n  var taps = 0\n  var hits = 0\n  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+given fx_trig_init ():("game t {\n  display (100, 100)\n  fps 50\n  persist { best = 7 }\n  keys { space = press }\n}\ntemplate Box {\n  pos (0, 0)\n  body (10, 10)\n  solid\n  tag deadly\n}\nscene play {\n  var n = 0\n  var ticks = 0\n  var taps = 0\n  var hits = 0\n  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+
+scr_s3_ready() {
+  scr_s2_ready();
+  d2_spr_init();
+  ent_init();
+} return void;
+():() then calls scr_s2_ready:[1]
+():() then calls ent_init:[1]
+
+scr_s4_ready() {
+  scr_s3_ready();
+  scn_init();
+  scn_dir_init();
+} return void;
+():() then calls scr_s3_ready:[1]
+():() then calls scn_dir_init:[1]

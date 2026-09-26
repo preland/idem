@@ -10,8 +10,18 @@ bl_hlen() {
   bl_clear();
   int ret_i = bl_walk((import bl_st)[0]);
 } return int ret_i;
+given bl_dna_t_bytes ():(1)
+given bl_al_t_setup ():(0)
 
 bl_hlen_parse() {
   int hval = (asset_at(7) - 48) * 10 + (asset_at(8) - 48);
   lset((import bl_st), 0, hval);
 } return void;
+given bl_dna_t_bytes ():() then bl_hlen_t_check:(17)
+given bl_al_t_setup ():() then bl_hlen_t_check:(-528)
+
+bl_hlen_t_check() {
+  int v = (import bl_st)[0];
+} return int v;
+given bl_dna_t_bytes ():(0)
+given bl_open2_t_setup ():(17)

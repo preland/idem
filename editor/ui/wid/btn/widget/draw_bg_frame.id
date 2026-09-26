@@ -3,13 +3,19 @@ ed_btn_draw(int x, int y, int w, int h, string s, int ok) {
   ed_btn_frame(x, y, w, h);
   ed_btn_text(x, y, w, h, s);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 4, "go", 1):() then calls ed_btn_bg:(1, 2, 3, 4, 1) then calls ed_btn_frame:(1, 2, 3, 4)
+given ed_t_boot stdin "" (5, 6, 7, 8, "no", 0):() then calls ed_btn_frame:(5, 6, 7, 8) then calls ed_btn_text:(5, 6, 7, 8, "no")
 
 ed_btn_bg(int x, int y, int w, int h, int ok) {
   int col = ed_col(7 - 6 * (ok = 0));
   sf_rect(x, y, w, h, col);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 4, 1):() then calls sf_rect:(1, 2, 3, 4, 0x4A4A4A)
+given ed_t_boot stdin "" (1, 2, 3, 4, 0):() then calls sf_rect:(1, 2, 3, 4, 0x3C3C3C)
 
 ed_btn_frame(int x, int y, int w, int h) {
   int col = ed_col(3);
   d2_frame(x, y, w, h, col);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 4):() then calls d2_frame:(1, 2, 3, 4, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 6, 7, 8):() then calls d2_frame:(5, 6, 7, 8, 0x1C1C1C)

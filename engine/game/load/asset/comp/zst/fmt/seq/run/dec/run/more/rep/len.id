@@ -4,11 +4,15 @@ zst_sllen(int ll) {
   int v = (import zst_lb)[ll];
   int ret_i = v + zb_bits((import zst_lx)[ll]);
 } return int ret_i;
+given zst_stabs_init (0):(0)
+given zst_stabs_init (15):(15)
 
 zst_smlen(int ml) {
   int v = (import zst_mb)[ml];
   int ret_i = v + zb_bits((import zst_mx)[ml]);
 } return int ret_i;
+given zst_stabs_init (0):(3)
+given zstsq_setup (32):(35)
 
 zst_supd(int last) {
   if (last = 0) {
@@ -17,3 +21,5 @@ zst_supd(int last) {
     zst_supd2();
   }
 } return void;
+given zst_init (0):() then calls zst_supd2:[1]
+given zst_init (1):()

@@ -6,3 +6,5 @@ ed_pdone(int was) {
   ed_marks(0);
   ed_pset(0, 0, was);
 } return void;
+given ed_t_boot stdin "" (999):(999) then calls ed_marks:(0)
+given ed_t_boot stdin "" (999):(999) then calls ed_pset:(0, 0, 999)

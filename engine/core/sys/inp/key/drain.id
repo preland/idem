@@ -16,6 +16,8 @@ inp_drain() {
   int ev = inp_pump();
   inp_sample();
 } return int ev;
+given sf_t_setup given inp_init ():(-1) then calls inp_pump:[1]
+given sf_t_setup given inp_init ():(-1) then calls inp_sample:[1]
 
 inp_pump() {
   int ev = gfx_poll();
@@ -24,6 +26,8 @@ inp_pump() {
     ev = gfx_poll();
   }
 } return int ev;
+():(-1)
+():(-1) then calls inp_stamp:[0]
 
 // 65536 is GFX_RELEASED: the release of a key arrives as its code plus that.
 // Written inline rather than as a named constant because it appears twice, in
@@ -36,3 +40,5 @@ inp_stamp(int ev) {
     inp_dn(ev);
   }
 } return void;
+given inp_init (65536):() then calls inp_up:(0)
+given inp_init (100):() then calls inp_dn:(100)

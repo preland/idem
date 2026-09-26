@@ -6,14 +6,20 @@ ed_scene(int x, int y, int w, int h) {
   sf_rect(x, y, w, h, col_v);
   ed_scene_post(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls sf_rect:(0, 10, 100, 100, 0x393939)
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_scene_post:(0, 10, 100, 100)
 
 ed_scene_post(int x, int y, int w, int h) {
   d3_viewport(x, y, w, h);
   ed_scene2(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls d3_viewport:(0, 10, 100, 100)
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_scene2:(0, 10, 100, 100)
 
 ed_scene2(int x, int y, int w, int h) {
   d3_zclear();
   ed_cam();
   ed_scene3(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls d3_zclear:[1]
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_scene3:(0, 10, 100, 100)

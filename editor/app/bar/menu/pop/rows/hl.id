@@ -3,15 +3,21 @@ ed_pop_hl_draw(int k, int i) {
   int ui = txt_ui();
   ed_pop_hl_draw2(k, i, mx, ui);
 } return void;
+given ed_t_boot stdin "" (2, 0):() then calls ed_pop_hl_draw2:(2, 0, 90, 1)
+given ed_t_boot stdin "" (0, 1):() then calls ed_pop_hl_draw2:(0, 1, 6, 1)
 
 ed_pop_hl_draw2(int k, int i, int mx, int ui) {
   int hdr = ed_hdr();
   int rowh = ed_rowh();
   ed_pop_hl_draw3(k, i, mx, ui, hdr, rowh);
 } return void;
+given ed_t_boot stdin "" (2, 0, 90, 1):() then calls ed_pop_hl_draw3:(2, 0, 90, 1, 21, 18)
+given ed_t_boot stdin "" (0, 1, 6, 1):() then calls ed_pop_hl_draw3:(0, 1, 6, 1, 21, 18)
 
 ed_pop_hl_draw3(int k, int i, int mx, int ui, int hdr, int rowh) {
   int w = ed_pop_w(k, 0, 0);
   int col = ed_col(7);
   sf_rect(mx - 4 * ui, hdr + 1 + i * rowh, w, rowh, col);
 } return void;
+given ed_t_boot stdin "" (2, 0, 90, 1, 21, 18):() then calls sf_rect:(86, 22, 88, 18, 0x4A4A4A)
+given ed_t_boot stdin "" (0, 1, 6, 1, 21, 18):() then calls sf_rect:(2, 40, 80, 18, 0x4A4A4A)

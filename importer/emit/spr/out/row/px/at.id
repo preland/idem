@@ -6,6 +6,8 @@ spr_at(int f, int y, int x) {
   int i = (f / (import spr_d)[2] * (import spr_d)[1] + y) * (import spr_d)[8] + f % (import spr_d)[2] * (import spr_d)[0] + x;
   int ret_i = spr_slot(i);
 } return int ret_i;
+given spr_px_ready (0, 0, 0):(0) then calls spr_slot:(0)
+given spr_al_low_ready (0, 0, 0):(0) then calls spr_slot:(0)
 
 spr_slot(int i) {
   int k = 0;
@@ -14,6 +16,8 @@ spr_slot(int i) {
     k = fx_max(spr_find_v, 0);
   }
 } return int k;
+given spr_px_ready (0):(0)
+given spr_pal2_ready (0):(1)
 
 // 0 is '.', the reserved transparent character. 1..10 are '0'..'9', 11..36 are
 // 'a'..'z', 37..62 are 'A'..'Z' -- 62 colours, all of them safe inside a quoted
@@ -23,3 +27,5 @@ spr_char(int k) {
   if (k >= 1 && k <= 10) { c = 47 + k; }
   else { c = spr_char2(k, c); }
 } return int c;
+(0):(46)
+(5):(52)

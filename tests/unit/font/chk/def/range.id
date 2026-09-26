@@ -2,3 +2,5 @@ t_def_range() {
   string msg = "built-in range exp first 32 last 126 = " + (import txt_first) + " " + txt_last();
   print(msg);
 } return void;
+given txt_init ():() then prints:("built-in range exp first 32 last 126 = 32 126\n")
+given txt_init given asset_io_init ():() then prints:("built-in range exp first 32 last 126 = 32 126\n")

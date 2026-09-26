@@ -1,7 +1,13 @@
+// Peek helpers to read decoded weight-stream initial states.
+
 huf_wstart_test_check0() {
   int v = (import huf_ab)[0];
 } return int v;
+given huf_wstart_test_setup_a given huf_wstart_ab ():(0)
+given huf_wstart_test_setup_b given huf_wstart_ab ():(14)
 
 huf_wstart_test_check1() {
   int v = (import huf_ab)[1];
 } return int v;
+given huf_wstart_test_setup_a given huf_wstart_ab ():(1)
+given huf_wstart_test_setup_b given huf_wstart_ab ():(0)

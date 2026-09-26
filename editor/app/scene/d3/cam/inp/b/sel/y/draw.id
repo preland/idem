@@ -3,14 +3,20 @@ ed_band_draw2() {
   int by0_v = ed_by0();
   ed_band_draw3(bx0_v, by0_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_band_draw3:(0, 0)
+given ed_t_boot given ed_t_click given ed_drag_beg_set_pos stdin "" ():() then calls ed_band_draw3:(200, 150)
 
 ed_band_draw3(int bx0, int by0) {
   int bx1_v = ed_bx1();
   int by1_v = ed_by1();
   ed_band_draw4(bx0, by0, bx1_v, by1_v);
 } return void;
+given ed_t_boot stdin "" (10, 20):(10, 20) then calls ed_band_draw4:(10, 20, 0, 0)
+given ed_t_boot given ed_t_click given ed_drag_beg_set_pos stdin "" (200, 150):(200, 150) then calls ed_band_draw4:(200, 150, 200, 150)
 
 ed_band_draw4(int bx0, int by0, int bx1, int by1) {
   int col_v = ed_col(13);
   d2_frame(bx0, by0, bx1 - bx0 + 1, by1 - by0 + 1, col_v);
 } return void;
+given ed_t_boot stdin "" (10, 20, 30, 50):(10, 20, 30, 50) then calls d2_frame:(10, 20, 21, 31, 0xD8A24A)
+given ed_t_boot stdin "" (5, 100, 205, 120):(5, 100, 205, 120) then calls d2_frame:(5, 100, 201, 21, 0xD8A24A)

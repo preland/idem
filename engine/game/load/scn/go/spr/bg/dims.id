@@ -2,3 +2,5 @@
 scn_sprite_dims(int nd) {
   int[] dims = [scn_gx(nd, 0), scn_gx(nd, 1), scn_cx(nd, 0), scn_cx(nd, 1)];
 } return int[] dims;
+given scn_spr_fx5 (10):([1, 3, 2, 2])
+given ast_init (0):([1, 1, 0, 0])

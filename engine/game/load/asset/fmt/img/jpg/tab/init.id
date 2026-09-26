@@ -7,15 +7,21 @@ jpg_init2() {
   export int[] jpg_hc = [];
   jpg_init3();
 } return void;
+():() then calls jpg_init3:[1]
+given png_init ():() then calls jpg_init3:[1]
 
 jpg_init3() {
   export int[] jpg_hs = [];
   export int[] jpg_c = [];
   jpg_init4();
 } return void;
+given jpg_init ():() then calls jpg_init4:[1]
+given jpg_init2 ():() then calls jpg_init4:[1]
 
 jpg_init4() {
   export int[] jpg_b = [];
   export int[] jpg_f = [];
   jpg_init4b();
 } return void;
+given jpg_init ():() then calls jpg_init4b:[1]
+given jpg_init2 ():() then calls jpg_init4b:[1]

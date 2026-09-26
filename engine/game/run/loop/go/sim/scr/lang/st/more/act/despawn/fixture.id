@@ -1,0 +1,16 @@
+// A hand-built `despawn` statement -- no operands, only a kind to match.
+despawn_fixture() {
+  grow_fixture();
+  export int fixture_despawn = ast_new_abc((import ast_k_despawn), "despawn", 0, 0, 0);
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ast_new_abc:[1]
+
+// A hand-built `stop` statement, and a `goto test-scene`.
+stop_fixture() {
+  idem_init();
+  export int fixture_stop = ast_new_abc((import ast_k_stop), "stop", 0, 0, 0);
+  export int fixture_goto = ast_new_abc((import ast_k_goto), "test-scene", 0, 0, 0);
+} return void;
+():() then calls idem_init:[1]
+():() then calls ast_new_abc:[2]

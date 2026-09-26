@@ -14,11 +14,15 @@ d3_cam_set(int x, int y, int z) {
   lset((import d3_cam), 1, y);
   lset((import d3_cam), 2, z);
 } return void;
+given d3_t_setup (500, -300, 1200):() then d3_t_cam:([500, -300, 1200, 0, 0, 40, 40000, 60000, 55424])
+given d3_t_setup (-500, 300, -1200):() then d3_t_cam:([-500, 300, -1200, 0, 0, 40, 40000, 60000, 55424])
 
 d3_cam_aim(int deg, int pit) {
   lset((import d3_cam), 3, deg);
   lset((import d3_cam), 4, pit);
 } return void;
+given d3_t_setup (30000, 60000):() then d3_t_cam:([0, 0, 0, 30000, 60000, 40, 40000, 60000, 55424])
+given d3_t_setup (-90000, -45000):() then d3_t_cam:([0, 0, 0, -90000, -45000, 40, 40000, 60000, 55424])
 
 // Setting the field of view is what re-derives the focal length, so the two can
 // never disagree -- the rasteriser reads slot 8 every vertex and never asks what
@@ -28,3 +32,5 @@ d3_cam_fov(int deg) {
   int d3_cam_focal_v = d3_cam_focal();
   lset((import d3_cam), 8, d3_cam_focal_v);
 } return void;
+given d3_t_setup (90000):() then d3_t_cam:([0, 0, 0, 0, 0, 40, 40000, 90000, 32000])
+given d3_t_setup (120000):() then d3_t_cam:([0, 0, 0, 0, 0, 40, 40000, 120000, 18464])

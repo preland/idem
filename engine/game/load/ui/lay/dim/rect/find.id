@@ -13,3 +13,20 @@ ui_rfind(string name) {
     i = i + 1;
   }
 } return int p;
+given ui_rect_t_setup ("Box"):(0)
+given ui_rect_t_setup ("Nope"):(-1)
+
+// A single rect, "Box" at (10,20,30,40), for the rect-table cases.
+ui_rect_t_setup() {
+  ui_rinit();
+  ui_rput("Box", 10, 20, 30, 40);
+} return void;
+():() then ui_rclear_t_check:(1)
+given ast_init ():() then ui_rclear_t_check:(1)
+
+// A reader for the rect table's size.
+ui_rclear_t_check() {
+  int v = len((import ui_rn));
+} return int v;
+given ui_rect_t_setup ():(1)
+given ui_rinit ():(0)

@@ -5,14 +5,20 @@ lex_string(string src, int i) {
   lex_string_push(src, i, e);
   int ret_i = e + 1;
 } return int ret_i;
+given lex_init ("\"hi\"", 0):(4) then calls lex_push:(14, "hi", 0, 0)
+given lex_init ("\"\"", 0):(2) then calls lex_push:(14, "", 0, 0)
 
 lex_strend(string src, int i) {
   while (charat(src, i) != 34 && charat(src, i) != -1) {
     i = lex_sadv(src, i);
   }
 } return int i;
+("\"hi\"", 1):(3)
+("\"\"", 1):(1)
 
 lex_sadv(string src, int i) {
   int nxt = i + 1;
   if (charat(src, i) = 92) { nxt = i + 2; }
 } return int nxt;
+("ab", 0):(1)
+("\\x", 0):(2)

@@ -1,0 +1,27 @@
+// zb_st's absolute contents -- only meaningful when every field is a
+// deterministic literal (right after zb_init, never a real allocated
+// address).
+zb_state_check() {
+  int[] zb_state_v = (import zb_st);
+} return int[] zb_state_v;
+given zb_init ():([0, 0, 0, 0])
+given zb_frame_setup given zb_init ():([0, 0, 0, 0])
+
+// zb_st's contents relative to its own section start, so a real allocated
+// address never has to appear in a case's expected value: how many bytes
+// in (bp - lo), the bit within that byte, and the fault flag.
+zb_rel_check() {
+  int zb_off = (import zb_st)[1] - (import zb_st)[0];
+  int[] zb_rel_v = [zb_off, (import zb_st)[2], (import zb_st)[3]];
+} return int[] zb_rel_v;
+given zb_frame_setup ():([1, 6, 0])
+given zb_exhausted_setup ():([-1, 6, 0])
+
+// The valid section, with the cursor already run one byte past its start --
+// what zb_left/zb_done/zb_bitv see once the stream is used up.
+zb_exhausted_setup() {
+  zb_frame_setup();
+  lset((import zb_st), 1, (import zb_st)[0] - 1);
+} return void;
+():() then zb_rel_check:([-1, 6, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([-1, 6, 0])

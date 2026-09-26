@@ -3,8 +3,12 @@ t_hash_report(string label) {
   word t_hash_v = t_hash(0, n, 2166136261);
   print(label + t_hash_v);
 } return void;
+given txt_init ("h1 = "):() then prints:("h1 = 1584669841\n")
+given font_vga_ready ("h2 = "):() then prints:("h2 = 3575843923\n")
 
 t_a_rows(string label, int o1, int o2, int o3) {
   string msg = label + (import txt_glyphs)[txt_glyph_at(65) + o1] + " " + (import txt_glyphs)[txt_glyph_at(65) + o2] + " " + (import txt_glyphs)[txt_glyph_at(65) + o3];
   print(msg);
 } return void;
+given txt_init ("a1 = ", 2, 3, 7):() then prints:("a1 = 16 56 254\n")
+given font_lat_ready ("a2 = ", 3, 4, 8):() then prints:("a2 = 24 36 126\n")

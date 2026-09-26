@@ -1,0 +1,16 @@
+// A minimal sprite header, exported once via spr_head so its fields exist
+// for a later case's given, and a second one with a real key colour.
+
+spr_hdr_ready() {
+  imp_init();
+  spr_head("s 1 1 1 1 -1 0 0 0");
+} return void;
+():() then calls imp_init:[1]
+():() then calls spr_head:("s 1 1 1 1 -1 0 0 0")
+
+spr_hdr2_ready() {
+  imp_init();
+  spr_head("t 2 1 1 1 10 20 30 5");
+} return void;
+():() then calls imp_init:[1]
+():() then calls spr_head:("t 2 1 1 1 10 20 30 5")

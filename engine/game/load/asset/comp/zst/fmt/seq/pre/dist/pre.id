@@ -14,10 +14,14 @@ zst_pre_init() {
   export int[] zst_pof = [1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1];
   zst_pre2();
 } return void;
+():()
+given fse_init ():()
 
 zst_pre2() {
   export int[] zst_pml = [1, 4, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1, 0 - 1];
 } return void;
+():()
+given fse_init ():()
 
 // Copy a distribution into the shared count array and build its table. The role's
 // base and log are recorded in fse_rl so the decoder can find them later.
@@ -26,3 +30,5 @@ zst_pload(int r, int[] xs, int log, int base) {
   int len_v = len(xs);
   fse_build(base, log, len_v - 1);
 } return void;
+given fse_init (0, [1, 2, 3], 6, 0):()
+given fse_init (2, [], 6, 768):()

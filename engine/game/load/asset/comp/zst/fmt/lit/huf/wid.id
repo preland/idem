@@ -5,6 +5,9 @@ zst_lwid(int sf) {
   if (sf = 2) { w = 14; }
   else if (sf = 3) { w = 18; }
 } return int w;
+(0):(10)
+(2):(14)
+(3):(18)
 
 // 3, 4 or 5 bytes depending on the field width; the type and format occupy the
 // low four bits and the two sizes follow.
@@ -18,6 +21,8 @@ zst_lval(int w) {
   word wp = zst_lbytes(n);
   lset((import zst_st), 1, (import zst_st)[1] + n);
 } return word wp;
+given zst_src_setup (10):(197121)
+given zst_src_setup (14):(67305985)
 
 // Built from the top byte down, so the accumulator is never multiplied by a power
 // of 256 that an `int` cannot hold.
@@ -29,3 +34,6 @@ zst_lbytes(int n) {
     i = i - 1;
   }
 } return word wp;
+given zst_src_setup (0):(0)
+given zst_src_setup (1):(1)
+given zst_src_setup (2):(513)

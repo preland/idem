@@ -17,6 +17,8 @@ lex_pound(string src, int i) {
     e = lex_pcol(src, i);
   }
 } return int e;
+given lex_init ("#file a.b", 0):(9) then calls lex_setpath:("a.b")
+given lex_init ("y#01", 1):(4) then calls lex_push:(13, "#01", 1, 0)
 
 // Whether only blanks stand between this character and the start of its line.
 // A backward walk, bounded by the line, run once per '#' in a document.
@@ -25,3 +27,5 @@ lex_lead(string src, int i) {
   int j = i - 1;
   ok = lex_lead2(src, j, ok);
 } return int ok;
+("#file", 0):(1)
+("y#", 1):(0)

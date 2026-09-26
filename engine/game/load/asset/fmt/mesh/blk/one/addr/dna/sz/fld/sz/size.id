@@ -11,6 +11,8 @@ bl_fsz(int ti, int np) {
   if (asset_at(np) = 42) { n = 8; }
   int ret_i = n * bl_arr(np);
 } return int ret_i;
+given bl_sfind_t_setup (0, 61):(4)
+given bl_sfind_t_setup (0, 73):(4)
 
 bl_arr(int np) {
   int m = 1;
@@ -19,6 +21,8 @@ bl_arr(int np) {
     np = np + 1;
   }
 } return int m;
+given bl_dim_t_setup (0):(3)
+given bl_dna_t_bytes (73):(1)
 
 // The number after a '[', or 1 anywhere else, so the product over the whole name
 // is the total element count without the loop knowing where the brackets are.
@@ -26,3 +30,5 @@ bl_dim(int np) {
   int m = 1;
   if (asset_at(np) = 91) { m = bl_num(np + 1); }
 } return int m;
+given bl_dim_t_setup (0):(3)
+given bl_dim_t_setup (1):(1)

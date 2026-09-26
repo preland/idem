@@ -5,11 +5,15 @@ run_step() {
   run_input();
   run_sim();
 } return void;
+given game_fixture_nd ():() then calls run_input:[1]
+given game_fixture_nd ():() then calls run_sim:[1]
 
 run_input() {
   int inp_drain_v = inp_drain();
   run_quit(inp_drain_v);
 } return void;
+given game_fixture_nd ():() then calls run_quit:[1]
+given game_fixture_nd ():() then calls inp_drain:[1]
 
 // -2 is the window's close button, 27 is Esc.
 run_quit(int ev) {
@@ -17,3 +21,5 @@ run_quit(int ev) {
     sys_quit();
   }
 } return void;
+given game_fixture_nd (-2):() then calls sys_quit:[1]
+given game_fixture_nd (0):() then calls sys_quit:[0]

@@ -7,6 +7,8 @@ idem_ashot(int n) {
   idem_ashots(n, 0);
   ppm_dump();
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit (1):() then calls idem_ashots:(1, 0)
+given seam_fixture given game_fixture_nd given ui_pinit (0):() then calls ppm_dump:[1]
 
 idem_ashots(int n, int i) {
   while (i < n) {
@@ -14,8 +16,12 @@ idem_ashots(int n, int i) {
     i = i + 1;
   }
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit (0, 0):() then calls idem_astep:[0]
+given seam_fixture given game_fixture_nd given ui_pinit (1, 0):() then calls idem_astep:[1]
 
 // The page's item tree, found once at load.
 ui_pinit() {
   export int[] ui_pg = [0];
 } return void;
+():() then read_ui_pg0:(0)
+given idem_init ():() then read_ui_pg0:(0)

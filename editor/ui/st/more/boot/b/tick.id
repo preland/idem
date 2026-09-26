@@ -15,8 +15,20 @@ ed_tick() {
   }
   lset((import ed_st), 16, (import ed_st)[16] * ((import ed_st)[16] != 2));
 } return void;
+given ed_t_boot stdin "" ():() then calls sim_step:[0] then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 16, 0)
+given ed_t_boot given ed_t_running stdin "" ():() then calls sim_step:[1] then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1000, 0, 0], 16, 1)
+given ed_t_boot given ed_t_step stdin "" ():() then calls sim_step:[1] then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 16, 0)
 
 ed_show() {
   ed_draw();
   sys_present();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_draw:[1] then calls sys_present:[1]
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_draw:[1] then calls sys_present:[1]
+
+// Slot 16 at 2 -- "one frame, then stop" -- for ed_tick's step-once case.
+ed_t_step() {
+  lset((import ed_st), 16, 2);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 2, 0, 1000, 0, 0], 16, 2)
+given ed_t_boot stdin "" ():() then calls lset:[1]

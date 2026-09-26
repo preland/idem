@@ -8,15 +8,29 @@ ed_rq(int p, int i) {
   string ed_pname_v = ed_pname(p);
   int ret_i = ui_rect(ed_pname_v, i);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" (0, 2):(640)
+given ed_t_boot given ed_t_lay stdin "" (0, 3):(21)
+given ed_t_boot given ed_t_lay stdin "" (3, 0):(128)
+given ed_t_boot given ed_t_lay stdin "" (3, 1):(41)
+given ed_t_boot given ed_t_lay stdin "" (3, 2):(360)
+given ed_t_boot given ed_t_lay stdin "" (3, 3):(294)
 
 ed_pname(int p) {
   string name = "MenuBar";
   if (p = 1) { name = "ToolBar"; }
   else { name = ed_pname2(p, name); }
 } return string name;
+(0):("MenuBar")
+(1):("ToolBar")
+(2):("Hierarchy")
+(6):("StatusBar")
 
 ed_pname2(int p, string name) {
   if (p = 2) { name = "Hierarchy"; }
   else if (p = 3) { name = "SceneView"; }
   else { name = ed_pname3(p, name); }
 } return string name;
+(2, "X"):("Hierarchy")
+(3, "X"):("SceneView")
+(6, "X"):("StatusBar")
+(9, "X"):("X")

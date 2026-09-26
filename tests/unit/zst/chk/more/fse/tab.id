@@ -1,6 +1,19 @@
 // The third role, and on to the fixtures.
 
-t_ftab2() {
+t_ftab2(string path, int n) {
   t_frole("ML log 6 base 768", 768, 64);
-  t_files();
+  t_files(path, n);
 } return void;
+given zst_fse_ready ("img/raw.zst", 64):() then calls t_frole:[1]
+given zst_fse_ready ("img/raw.zst", 64):() then calls t_files:("img/raw.zst", 64)
+
+// Test-only fixture: the FSE predefined tables, built once so a case below the
+// top of the chain does not have to re-derive zst_pre_init/zst_pre_all's own
+// 3-action split (see t_fse in ../build.id).
+zst_fse_ready() {
+  zst_ready();
+  zst_pre_init();
+  zst_pre_all();
+} return void;
+():() then calls zst_ready:[1]
+():() then calls zst_pre_all:[1]

@@ -7,6 +7,8 @@ t_hash(int y, word wp) {
     y = y + 1;
   }
 } return word wp;
+given png_rgba_ready (2, 5):(5)
+given png_rgba_ready (0, 2166136261):(2863480400) then calls t_row:[2]
 
 t_row(int r, int i, word wp) {
   while (i < (import png_st)[0] * 4) {
@@ -14,3 +16,14 @@ t_row(int r, int i, word wp) {
     i = i + 1;
   }
 } return word wp;
+given png_rgba_ready (0, 16, 5):(5)
+given png_rgba_row0_ready ((import png_row0), 0, 2166136261):(1419571122)
+
+// A real row address, for t_row's own address-taking parameter (see
+// png_rgba_ready in ../lace/sub/mix.id).
+png_rgba_row0_ready() {
+  png_rgba_ready();
+  export int png_row0 = asset_row(0) + 1;
+} return void;
+():() then calls png_rgba_ready:[1]
+():() then calls asset_row:(0)

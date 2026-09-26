@@ -2,3 +2,5 @@ ed_insp_note(int x, int y, int w) {
   ed_insp_note_line(x, y, w);
   ed_insp_note_texts(x, y);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100):() then calls ed_insp_note_line:(0, 10, 100)
+given ed_t_boot stdin "" (0, 10, 100):() then calls ed_insp_note_texts:(0, 10)

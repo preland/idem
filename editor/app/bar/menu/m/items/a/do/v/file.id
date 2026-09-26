@@ -5,9 +5,16 @@ ed_mfile(int i) {
   if (i = 0) { s = "New Pong"; }
   else if (i = 1) { s = "Open"; }
 } return string s;
+(0):("New Pong")
+(1):("Open")
+(2):("Save")
+(5):("Quit")
 
 ed_mfile2(int i) {
   string s = "Quit";
   if (i = 2) { s = "Save"; }
   else if (i = 3) { s = "Export"; }
 } return string s;
+(2):("Save")
+(3):("Export")
+(0):("Quit")

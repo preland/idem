@@ -6,6 +6,8 @@ scn_mnum(int nd, string name) {
   int v = 0;
   if (c != 0) { v = scn_num(c, 0); }
 } return int v;
+given idem_init (0, "layer"):(0)
+given game_fixture_nd ((import fixture_nd), "layer"):(3)
 
 // Write only if the value is not zero. `scale` and any other component whose
 // default is not zero needs this: writing what a missing component read would
@@ -13,3 +15,5 @@ scn_mnum(int nd, string name) {
 scn_edef(int e, int k, int v) {
   if (v != 0) { ent_put(e, k, v); }
 } return void;
+given game_fixture_nd (1, 5, 100):() then calls ent_put:(1, 5, 100)
+given game_fixture_nd (1, 5, 0):() then calls ent_put:[0]

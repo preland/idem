@@ -16,12 +16,16 @@ t_draw4() {
   sf_clear(0);
   t_draw5();
 } return void;
+given tin_draw3_ready ():() then calls t_draw4_show:[1]
+given tin_draw3_ready ():() then calls sf_clear:(0)
 
 t_draw5() {
   tin_draw(4, 4, 64, 24, 16777215, 5490);
   int t_draw5_sum_i = t_draw5_ink1();
   t_draw5_ink2(t_draw5_sum_i);
 } return void;
+given tin_draw4_ready ():() then calls tin_draw:(4, 4, 64, 24, 16777215, 5490)
+given tin_draw4_ready ():() then calls t_draw5_ink1:[1]
 
 // White pixels in a rect. sf_pget answers 0 outside the surface, so a rect that
 // runs off the edge counts nothing rather than aborting -- which is what lets
@@ -35,3 +39,5 @@ t_ink(int x, int y, int w, int h) {
     i = i + 1;
   }
 } return int n;
+given tin_draw2_ready (0, 0, 160, 32):(522)
+given tin_draw5_ready (0, 4, 4, 24):(0)

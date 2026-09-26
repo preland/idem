@@ -9,6 +9,8 @@ t_press() {
   t_press_rep();
   t_spawn();
 } return void;
+given scr_tick2_ready ():() then calls scr_pall:("press", -1)
+given scr_tick2_ready ():() then calls t_spawn:[1]
 
 // `on enter { spawn Box at (30, 40) }`, fired a second time -- once by the scene
 // load and once here -- so the count moves by exactly one and the new record is
@@ -21,9 +23,13 @@ t_spawn() {
   scr_fire((import scn_st)[9], "enter", 0 - 1, "");
   t_spawn2();
 } return void;
+given scr_press_ready ():() then calls t_spawn_rep:[1]
+given scr_press_ready ():() then calls t_spawn2:[1]
 
 t_spawn2() {
   int ent_n_v = ent_n();
   print("after: entities exp 4 = " + ent_n_v);
   t_spawn_pos();
 } return void;
+given scr_spawn2_ready ():() then calls ent_n:[1]
+given scr_spawn2_ready ():() then prints:("after: entities exp 4 = 4\nits pos exp 30000 40000, tagged exp 1 = 30000 40000 1\nits body exp 10000 10000, solid exp 1 = 10000 10000 1\n")

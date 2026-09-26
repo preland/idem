@@ -1,0 +1,26 @@
+// A hand-built number node -- the AST arena's own constructor, which needs
+// no game source to reach a real, typed leaf.
+node_fixture() {
+  idem_init();
+  export int fixture_num = ast_new_num(42, 0);
+} return void;
+():() then calls idem_init:[1]
+():() then calls ast_new_num:(42, 0)
+
+// A hand-built unary node, `- 42`, wrapping the number node above.
+un_fixture() {
+  node_fixture();
+  export int fixture_un = ast_new_abc((import ast_k_un), "-", (import fixture_num), 0, 0);
+} return void;
+():() then calls node_fixture:[1]
+():() then calls ast_new_abc:[1]
+
+// A hand-built identifier node naming a real, declared variable, and a
+// second one naming the engine's own `time` pseudo-variable.
+ident_fixture() {
+  scr_fixture();
+  export int fixture_ident = ast_new_abc((import ast_k_ident), "score", 0, 0, 0);
+  export int fixture_time = ast_new_abc((import ast_k_ident), "time", 0, 0, 0);
+} return void;
+():() then calls scr_fixture:[1]
+():() then calls ast_new_abc:[2]

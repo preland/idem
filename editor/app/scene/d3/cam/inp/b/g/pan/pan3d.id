@@ -3,9 +3,13 @@ ed_pan3d() {
   int dy_v = inp_my() - (import ed_st)[7];
   ed_pan3d_go(dx_v, dy_v);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls ed_pan3d_go:(200, 150)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls ed_pan3d_go:(10, 30)
 
 ed_pan3d_go(int dx, int dy) {
   int prate_x = ed_prate(dx);
   int prate_y = ed_prate(dy);
   ed_pan_by(prate_x, prate_y);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (1000, 2000):(1000, 2000) then calls ed_pan_by:(25000, 50000)
+given ed_t_boot given ed_t_lay stdin "" (-360, 720):(-360, 720) then calls ed_pan_by:(-9000, 18000)

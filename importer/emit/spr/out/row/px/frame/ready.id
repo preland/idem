@@ -1,0 +1,24 @@
+// A row buffer, big enough for one pixel of the small header spr_hdr_ready
+// declares, so a row-writing case has somewhere real to write.
+
+spr_buf_ready() {
+  spr_px1_ready();
+  export word spr_buf = alloc((import spr_d)[0] + 1);
+  poke8((import spr_buf), 46);
+} return void;
+():() then calls spr_px1_ready:[1]
+():() then eprints:("")
+
+spr_buf2_ready() {
+  spr_buf_ready();
+  poke8((import spr_buf), 65);
+} return void;
+():() then calls spr_buf_ready:[1]
+():() then eprints:("")
+
+spr_pal2_ready() {
+  spr_px_ready();
+  push((import spr_p), 0);
+} return void;
+():() then calls spr_px_ready:[1]
+():() then spr_p_last:(0)

@@ -6,9 +6,23 @@ idem_open() {
   txt_init();
   idem_open2();
 } return void;
+given idem_init ():() then calls txt_init:[1]
+given idem_init ():() then calls idem_open2:[1]
 
 idem_read2_tail(int[] pos) {
   int doc = par_doc(pos);
   scn_load(doc);
   idem_open();
 } return void;
+given read2_fixture ([0]):() then calls idem_open2:[1]
+given read2_fixture ([0]):() then calls scn_load:[1]
+
+// A read pass already reached, so idem_read2_tail's own parse-and-open step
+// has real document state under it instead of a bare idem_init.
+read2_fixture() {
+  idem_init();
+  string src = "";
+  idem_read(src);
+} return void;
+():() then calls idem_read2_tail:[1]
+():() then calls idem_init:[1]

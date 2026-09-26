@@ -21,6 +21,8 @@ zst_pow256(int n) {
     n = n - 1;
   }
 } return int m;
+(0):(1)
+(2):(65536)
 
 zst_frame(int mag) {
   if (mag = 0 - 47205080) {
@@ -29,6 +31,8 @@ zst_frame(int mag) {
     zst_other(mag);
   }
 } return void;
+given zst_src_setup (0):() then calls zst_other:[1]
+given zst_src_setup (1):() then calls zst_other:[1]
 
 // 0xFD2FB528 does not fit an `int` -- it is above 2^31 -- so zst_le's accumulation
 // wraps and the constant is written as the negative it becomes, -47205080.
@@ -44,3 +48,5 @@ zst_other(int mag) {
     lset((import zst_st), 6, 1);
   }
 } return void;
+given zst_src_setup (407710288):() then calls zst_le:[1]
+given zst_src_setup (0):() then zst_err_check:(1)

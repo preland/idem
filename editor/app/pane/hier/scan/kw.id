@@ -4,6 +4,8 @@ ed_is_decl2(string s) {
   int ok = 0;
   if (s = "entity" || s = "template" || s = "game" || s = "font") { ok = 1; }
 } return int ok;
+("entity"):(1)
+("widget"):(0)
 
 // "sprite runner" -- the kind and the name, which is what a hierarchy row is.
 // Concatenated once per visible row per frame, which is at most thirty short
@@ -12,3 +14,13 @@ ed_is_decl2(string s) {
 ed_label(int i) {
   string ret_s = (import ed_kd)[i] + " " + (import ed_nm)[i];
 } return string ret_s;
+given ed_t_boot given ed_t_boot_proj stdin "" (0):("game fixture")
+given ed_t_boot given ed_t_boot_proj stdin "" (1):("scene s")
+
+// The token count ed_ln carries, so ed_item2's own cases can witness a push
+// without a `calls` check -- push is a builtin, which `calls` cannot name.
+ed_t_ln_len() {
+  int n = len((import ed_ln));
+} return int n;
+given ed_t_boot stdin "" ():(0)
+given ed_t_boot given ed_t_boot_proj stdin "" ():(3)

@@ -1,0 +1,14 @@
+// Test checks for sf_cl_init's own cases (rect.id): the clip rect has no
+// argument to show mutated, so a case reads it back through these instead.
+
+sf_cl_t_check() {
+  int[] sf_cl_v = (import sf_cl);
+} return int[] sf_cl_v;
+given sf_cl_init ():([0, 0, 0, 0])
+given sf_cl_init ():([0, 0, 0, 0]) then sf_cl_t_len:(4)
+
+sf_cl_t_len() {
+  int n = len((import sf_cl));
+} return int n;
+given sf_cl_init ():(4)
+given sf_cl_init ():(4) then sf_cl_t_check:([0, 0, 0, 0])

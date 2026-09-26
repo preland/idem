@@ -7,10 +7,14 @@ bl_fan(int cv, int a, int b) {
     i = i + 1;
   }
 } return void;
+given bl_geo_init given bl_walk_t_setup (0, 0, 3):() then calls bl_fan_push:(0, 0, 1)
+given bl_geo_init given bl_walk_t_setup (0, 0, 2):() then calls bl_fan_push:[0]
 
 bl_cv(int cv, int i) {
   int ret_i = bl_le32((import bl_bp)[cv] + i * 4);
 } return int ret_i;
+given bl_walk_t_setup (0, 0):(1095648339)
+given bl_walk_t_setup (0, 1):(1162690894)
 
 // Indices are relative to the mesh they came from, so the base of that mesh in
 // the shared vertex list is added here -- the one place every index passes
@@ -28,3 +32,5 @@ bl_tpush(int a, int b, int c) {
     bl_tpush3(a, b, c);
   }
 } return void;
+given bl_mesh_t_load (0, 1, 7):() then calls bl_tpush3:(0, 1, 7)
+given bl_mesh_t_load (0, 1, 8):() then calls bl_tpush3:[0]

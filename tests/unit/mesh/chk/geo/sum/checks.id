@@ -5,11 +5,13 @@
 // the exhaustive one: every coordinate of every triangle, in order, so a wrong
 // vertex, a wrong winding or a wrong fan changes it.
 
-t_sum() {
+t_sum(string path) {
   t_coords_report();
   t_hash_report();
-  t_fill();
+  t_fill(path);
 } return void;
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_hash_report:[1]
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_fill:("../../../test_assets/cube.blend")
 
 t_coords() {
   int n = 0;
@@ -19,6 +21,8 @@ t_coords() {
     i = i + 1;
   }
 } return int n;
+given mesh_mesh_ready ():(0)
+given mesh_open_ready given mesh_mesh_ready ():(0)
 
 t_hash(int i, word wp) {
   while (i < len((import bl_ti))) {
@@ -26,3 +30,5 @@ t_hash(int i, word wp) {
     i = i + 1;
   }
 } return word wp;
+given mesh_mesh_ready (0, 2166136261):(2593114485)
+given mesh_mesh_ready (36, 5):(5)

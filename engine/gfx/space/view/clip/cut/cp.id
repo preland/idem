@@ -10,8 +10,21 @@ d3_ncopy(int[] tri, int i, int j) {
   lset((import d3_clp), j * 3 + 1, tri[i * 3 + 1]);
   d3_ncopy2(tri, i, j);
 } return void;
+given d3_t_setup ([1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 200, 300], 0, 0):() then d3_t_clp:([1, 2, 3, 0, 0, 0, 0, 0, 0, 100, 0, 0])
+given d3_t_setup ([1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 200, 300], 2, 1):() then d3_t_clp:([0, 0, 0, 7, 8, 9, 0, 0, 0, 0, 300, 0])
 
 d3_ncopy2(int[] tri, int i, int j) {
   lset((import d3_clp), j * 3 + 2, tri[i * 3 + 2]);
   lset((import d3_clp), 9 + j, tri[9 + i]);
 } return void;
+given d3_t_setup ([1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 200, 300], 0, 0):() then d3_t_clp:([0, 0, 3, 0, 0, 0, 0, 0, 0, 100, 0, 0])
+given d3_t_setup ([1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 200, 300], 2, 1):() then d3_t_clp:([0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 300, 0])
+
+// A full read-back of the working triangle record, for cases elsewhere in this
+// batch that check what a clip/cut function left in (import d3_clp) rather than
+// its (unmutated) tri argument or its (void) return.
+d3_t_clp() {
+  int[] clp_v = (import d3_clp);
+} return int[] clp_v;
+given d3_t_setup ():([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+given d3_t_setup ():([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) then d3_t_vts_len:(18)

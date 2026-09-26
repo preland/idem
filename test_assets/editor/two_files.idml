@@ -1,0 +1,4 @@
+#file a.idml
+sprite foo
+#file b.idml
+model bar

@@ -14,6 +14,8 @@ jpg_isum(int v, int x) {
     u = u + 1;
   }
 } return word wp;
+given jpg_idct100_fixture (0, 0):(72400)
+given jpg_idct100_fixture (1, 0):(0)
 
 jpg_icols(int x) {
   while (x < 8) {
@@ -21,6 +23,8 @@ jpg_icols(int x) {
     x = x + 1;
   }
 } return void;
+given jpg_idct_tm_fixture (0):() then calls jpg_icol:[8]
+given jpg_idct_tm_fixture (8):() then calls jpg_icol:[0]
 
 // The result is written back over the coefficient block. That is safe because
 // the column pass reads only jpg_tm, and it saves a third 64-entry scratch.
@@ -31,3 +35,5 @@ jpg_icol(int x) {
     y = y + 1;
   }
 } return void;
+given jpg_idct_tm_fixture (0):() then calls jpg_icol1:(0, 0) then calls jpg_icol1:(0, 7)
+given jpg_idct_tm_fixture (7):() then calls jpg_icol1:(7, 0) then calls jpg_icol1:(7, 7)

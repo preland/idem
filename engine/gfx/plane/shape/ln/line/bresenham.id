@@ -21,6 +21,8 @@ d2_line(int x0, int y0, int x1, int y1, int c) {
   int dy = fx_abs(y1 - y0);
   d2_line_go(x0, y0, x1, y1, dx, dy, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)
 
 // n + 1 pixels, counted rather than compared against the endpoint.
 d2_line_run(int[] st, int dx, int dy, int sx, int sy, int n, int c) {
@@ -29,6 +31,8 @@ d2_line_run(int[] st, int dx, int dy, int sx, int sy, int n, int c) {
     i = i + d2_line_step(st, dx, dy, sx, sy, c);
   }
 } return void;
+given sf_t_setup ([0, 0, 0], 0, 0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup ([0, 0, 0], 0, 0, 0, 0, -1, 7):() then d2_blit_t_px00:(0)
 
 // Plot, then advance. The 1 it returns is the loop's increment: the body of a
 // while has three actions too, and handing the count to the callee's return
@@ -37,3 +41,5 @@ d2_line_step(int[] st, int dx, int dy, int sx, int sy, int c) {
   sf_pset(st[0], st[1], c);
   d2_line_adv(st, dx, dy, sx, sy);
 } return int 1;
+given sf_t_setup ([0, 0, 0], 0, 0, 0, 0, 7):(1) then d2_blit_t_px00:(7)
+given sf_t_setup ([0, 0, 0], 0, 0, 0, 0, 3):(1) then d2_blit_t_px00:(3)

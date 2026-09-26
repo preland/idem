@@ -3,9 +3,13 @@ ed_insp_rows_names(int x, int y, int i) {
   int ed_rowh_v = ed_rowh();
   ed_kv(x, y + ed_rowh_v + 2, "kind", (import ed_kd)[i]);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 0):() then calls ed_kv:(0, 10, "name", "fixture")
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 0):() then calls ed_kv:(0, 30, "kind", "game")
 
 ed_insp_rows(int x, int y, int w, int i) {
   ed_insp_rows_names(x, y, i);
   int ed_rowh_v2 = ed_rowh();
   ed_insp_more(x, y + 2 * (ed_rowh_v2 + 2), w, i);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_insp_rows_names:(0, 10, 0)
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_insp_more:(0, 50, 100, 0)

@@ -1,0 +1,28 @@
+// The title string (17) `display` also takes, joined with the tuple (16) into
+// its own args list (18).
+scn_game_fx4() {
+  scn_game_fx3();
+  int n17 = ast_new_k((import ast_k_str), "flappy");
+  int n18 = ast_new_kids((import ast_k_args), "args", [16, 17]);
+} return void;
+():() then ast_n:(19)
+given ast_init ():() then ast_n:(19)
+
+// The `fps` (13) and `display` (19) components, gathered under a `game` node
+// (20) the way scn_game reads its own children.
+scn_game_fx5() {
+  scn_game_fx4();
+  int n19 = ast_new_a((import ast_k_comp), "display", 18);
+  int n20 = ast_new_kids((import ast_k_game), "game", [13, 19]);
+} return void;
+():() then ast_n:(21)
+given ast_init ():() then ast_n:(21)
+
+// A one-declaration document (21): `game { fps 60 display (288, 512)
+// "flappy" }`.
+scn_game_fx6() {
+  scn_game_fx5();
+  int n21 = ast_new_kids((import ast_k_block), "doc", [20]);
+} return void;
+():() then ast_n:(22)
+given ast_init ():() then ast_n:(22)

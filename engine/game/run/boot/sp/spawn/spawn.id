@@ -1,0 +1,33 @@
+// Populating the world from the current scene.
+//
+// A scene's `entity NAME { … }` members become records in the entity store. This
+// is where a document stops being a tree and starts being a world: after this, a
+// frame indexes a record and never walks an AST.
+
+scn_spawn(int nd, int i) {
+  int[] ks = ast_ks(nd);
+  while (nd != 0 && i < len(ks)) {
+    scn_ent(ks[i]);
+    i = i + 1;
+  }
+} return void;
+given game_fixture_scene ((import fixture_scene), 0):() then calls scn_ent:[1]
+given idem_init (0, 0):() then calls scn_ent:[0]
+
+scn_ent(int nd) {
+  if (ast_kd(nd) = (import ast_k_entity)) {
+    int ent_add_v = ent_add();
+    scn_efill(ent_add_v, nd, 0);
+  }
+} return void;
+given game_fixture_nd ((import fixture_nd)):() then calls ent_add:[1]
+given idem_init (0):() then calls ent_add:[0]
+
+// `pos (x, y)`: member k of the tuple its component carries, in stage units,
+// scaled to the millunits the store keeps.
+scn_ex(int nd, int k) {
+  int mtup = scn_mtup(nd, "pos", k);
+  int ex_val = mtup * 1000;
+} return int ex_val;
+given idem_init (0, 0):(0)
+given game_fixture_nd ((import fixture_nd), 0):(144000)

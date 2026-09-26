@@ -5,3 +5,11 @@ bl_face1(int[] tri) {
   wset((import bl_e), 1, bl_cross_v2);
   bl_face2(tri);
 } return void;
+given d3_t_setup given bl_lit_init ([0, 0, -1000, 1000, 0, -950, 500, 1000, -1024, 0, 0, 0]):() then bl_e1_t_check:(49000)
+given d3_t_setup given bl_lit_init ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then bl_e1_t_check:(0)
+
+bl_e1_t_check() {
+  int v = (import bl_e)[1];
+} return int v;
+given bl_vis_t_setup ():(49000)
+given bl_lit_init ():(0)

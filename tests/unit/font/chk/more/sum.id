@@ -8,6 +8,8 @@ t_sum() {
   t_hash_report("  PSF2 face, FNV-1a of all 3584 rows, exp 3575843923 = ");
   t_psf1();
 } return void;
+given font_vga_ready ():() then calls t_hash_report:("  PSF2 face, FNV-1a of all 3584 rows, exp 3575843923 = ")
+given font_vga_ready ():() then calls t_psf1:[1]
 
 // The PSF1 face's own 'A': 00 18 24 24 42 42 7E, a thin two-stroke letter,
 // against the VGA face's bold 10 38 6C C6 C6 FE. Reading rows 3, 4 and 8 of it
@@ -18,6 +20,8 @@ t_psf1r() {
   t_hash_report("  PSF1 face, FNV-1a of all 3584 rows, exp 485156385 = ");
   t_bad();
 } return void;
+given font_lat_ready ():() then calls t_a_rows:("  'A' rows 3,4,8 exp 24 36 126 = ", 3, 4, 8)
+given font_lat_ready ():() then calls t_bad:[1]
 
 // FNV-1a over the row table, in a word: the multiply overflows an int on the
 // first byte, and the mask is what keeps it to 32 bits so the value matches what
@@ -28,3 +32,5 @@ t_hash(int i, int n, word wp) {
     i = i + 1;
   }
 } return word wp;
+given txt_init (0, 0, 2166136261):(2166136261)
+given txt_init (0, 1, 2166136261):(84696351)

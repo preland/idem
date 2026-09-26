@@ -3,9 +3,13 @@ lex_punct(string src, int i) {
   lex_punct_push(src, i, n);
   int res = i + n;
 } return int res;
+given lex_init ("==", 0):(2) then calls lex_push:(15, "==", 0, 0)
+given lex_init ("+", 0):(1) then calls lex_push:(15, "+", 0, 0)
 
 lex_punct_push(string src, int i, int n) {
   int kd = (import lex_k_punct);
   string s = str_slice(src, i, n);
   lex_push(kd, s, 0, 0);
 } return void;
+given lex_init ("==", 0, 2):() then calls lex_push:(15, "==", 0, 0)
+given lex_init ("+", 0, 1):() then calls lex_push:(15, "+", 0, 0)

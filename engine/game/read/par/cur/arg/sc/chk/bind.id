@@ -6,9 +6,13 @@ par_bind_pre(int[] pos) {
   par_next(pos);
   par_want(pos, "=");
 } return string name;
+given par_arg_setup ([8]):("radius") then calls par_next:[2]
+given par_arg_setup ([0]):("x") then calls par_next:[1]
 
 par_bind_node(int[] pos, string name) {
   int ast_k_var_v = (import ast_k_var);
   int par_arg_v = par_arg(pos);
   int ret_i = ast_new_a(ast_k_var_v, name, par_arg_v);
 } return int ret_i;
+given par_arg_setup ([10], "radius"):(2) then calls ast_new_a:(114, "radius", 1)
+given par_arg_setup ([10], "x"):(2) then calls ast_new_a:(114, "x", 1)

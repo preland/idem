@@ -3,8 +3,12 @@ ed_insp_tag_kv(int x, int y, int e) {
   string tags = ed_tags(e, 0, "");
   ed_kv(x, y + h + 2, "tags", tags);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 0):() then calls ed_kv:(0, 30, "tags", "")
+given ed_t_boot given ed_t_ent_tag0 stdin "" (0, 10, 0):() then calls ed_kv:(0, 30, "tags", "alpha ")
 
 ed_insp_tag_rows(int x, int y, int w, int e) {
   ed_insp_tag_kv(x, y, e);
   ed_insp_tag_draw(x, y, w);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_tag_kv:(0, 10, 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_tag_draw:(0, 10, 100)

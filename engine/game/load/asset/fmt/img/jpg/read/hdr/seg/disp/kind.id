@@ -1,0 +1,37 @@
+// Dispatching one segment.
+
+jpg_kind(int p, int m) {
+  if (m = 217) {
+    lset((import jpg_st), 9, (import asset_io)[1]);
+  } else {
+    int asset_at_v = asset_at(p + 2);
+    int asset_at_v2 = asset_at(p + 3);
+    jpg_kind2(p, m, asset_at_v * 256 + asset_at_v2);
+  }
+} return void;
+given jpg_raw_fixture (100, 217):() then jpg_p9_check:(336)
+given jpg_raw_fixture (2, 224):() then calls jpg_kind2:(2, 224, 16)
+
+// The cursor is advanced past the segment *before* dispatching, so that a scan
+// -- whose entropy data runs past its own header -- can overwrite it with where
+// it actually finished.
+jpg_kind2(int p, int m, int ln) {
+  lset((import jpg_st), 9, p + 2 + ln);
+  jpg_disp(p + 4, m);
+} return void;
+given jpg_raw_fixture (2, 224, 16):() then jpg_p9_check:(20) then calls jpg_disp:(6, 224)
+given jpg_raw_fixture (20, 219, 67):() then jpg_p9_check:(89) then calls jpg_disp:(24, 219)
+
+jpg_disp(int p, int m) {
+  if (m = 219) {
+    int jpg_end_v = jpg_end(p);
+    jpg_dqt(p, jpg_end_v);
+  } else if (m = 196) {
+    int jpg_end_v2 = jpg_end(p);
+    jpg_dht(p, jpg_end_v2);
+  } else {
+    jpg_disp2(p, m);
+  }
+} return void;
+given jpg_p9_89_fixture (24, 219):() then calls jpg_dqt:(24, 89)
+given jpg_p9_201_fixture (181, 196):() then calls jpg_dht:(181, 201)

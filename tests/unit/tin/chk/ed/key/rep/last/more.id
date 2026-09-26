@@ -2,13 +2,19 @@ t_rep6_show() {
   string tin_text_v = tin_text();
   print("second repeat exp 123456 = " + tin_text_v);
 } return void;
+given tin_rep6_ready ():() then prints:("second repeat exp 123456 = 123456\n")
+given tin_rep6_ready ():() then calls tin_text:[1]
 
 t_rep8_text() {
   string tin_text_v = tin_text();
   print("released, three seconds later exp 123456 = " + tin_text_v);
 } return void;
+given tin_rep7_ready ():() then prints:("released, three seconds later exp 123456 = 123456\n")
+given tin_rep7_ready ():() then calls tin_text:[1]
 
 t_rep8_blink() {
   string msg1 = t_rep8_blink1();
   t_rep8_blink2(msg1);
 } return void;
+given tin_rep7_ready ():() then calls t_rep8_blink1:[1]
+given tin_rep7_ready ():() then calls t_rep8_blink2:[1]

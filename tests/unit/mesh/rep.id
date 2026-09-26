@@ -1,9 +1,24 @@
 t_main_open() {
-  int bl_open_v = bl_open("tests/unit/mesh/cube.blend");
+  int bl_open_v = bl_open("../../../test_assets/cube.blend");
   print("open cube.blend exp 1 = " + bl_open_v);
 } return void;
+given mesh_ready ():() then calls bl_open:("../../../test_assets/cube.blend")
+given mesh_ready ():() then prints:("open cube.blend exp 1 = 1\n")
 
 t_main_blocks_count() {
   int t_count_v = t_count(1145132097);
   print("DATA blocks exp 1046 = " + t_count_v);
 } return void;
+given mesh_open_ready ():() then calls t_count:(1145132097)
+given mesh_open_ready ():() then prints:("DATA blocks exp 1046 = 1046\n")
+
+// argv[1], when given, names a small asset a case can afford; tools/test.sh
+// runs the binary with no arguments, so production keeps the real one.
+t_main_path(int argc, string[] argv) {
+  string path = "../../../games/fps/showroom.blend";
+  if (argc > 1) {
+    path = argv[1];
+  }
+} return string path;
+(2, ["mesh", "../../../test_assets/cube.blend"]):("../../../test_assets/cube.blend")
+(1, ["mesh"]):("../../../games/fps/showroom.blend")

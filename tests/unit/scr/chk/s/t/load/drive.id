@@ -6,14 +6,20 @@ t_load() {
   t_lex();
   t_go();
 } return void;
+given scr_ready ():() then calls t_lex:[1]
+given scr_ready ():() then calls t_go:[1]
 
 t_go() {
   t_parse();
   t_vars();
 } return void;
+given scr_loaded_ready ():() then calls t_parse:[1]
+given scr_loaded_ready ():() then calls t_vars:[1]
 
 t_lex() {
   lex_init();
   string t_src_v = t_src();
   lex_run(t_src_v);
 } return void;
+given scr_ready ():() then calls lex_init:[1]
+given scr_ready ():() then calls lex_run:[1]

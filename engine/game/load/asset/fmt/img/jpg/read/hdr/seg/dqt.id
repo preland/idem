@@ -7,6 +7,8 @@
 jpg_end(int p) {
   int ret_i = (import jpg_st)[9];
 } return int ret_i;
+given jpg_p9_89_fixture (24):(89)
+given jpg_init (5):(0)
 
 jpg_disp2(int p, int m) {
   if (m = 192 || m = 193 || m = 194) {
@@ -19,9 +21,13 @@ jpg_disp2(int p, int m) {
     lset((import jpg_st), 7, asset_at_v * 256 + asset_at_v2);
   }
 } return void;
+given jpg_raw_fixture (162, 192):() then calls jpg_sof:(162, 192)
+given jpg_raw_fixture (0, 221):() then jpg_ri_check:(65496)
 
 jpg_dqt(int p, int end) {
   while (p < end && (import jpg_st)[8] = 1) {
     p = jpg_dqt1(p);
   }
 } return void;
+given jpg_walk1_fixture (24, 89):() then calls jpg_dqt1:[1]
+given jpg_init (5, 5):() then calls jpg_dqt1:[0]

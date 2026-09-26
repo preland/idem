@@ -6,18 +6,24 @@
 // multiplier in the NAME table -- was read correctly. A single field wrong by a
 // byte makes these differ.
 
-t_size() {
+t_size(string path) {
   t_one("Mesh", 1960);
   t_one("Object", 1288);
-  t_size2();
+  t_size2(path);
 } return void;
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_one:("Mesh", 1960)
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_size2:("../../../test_assets/cube.blend")
 
-t_size2() {
+t_size2(string path) {
   t_one("MVert", 16);
-  t_geo();
+  t_geo(path);
 } return void;
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_one:("MVert", 16)
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_geo:("../../../test_assets/cube.blend")
 
 t_one(string name, int n) {
   int bl_fwalk_v = t_one_size(name);
   print("walked size of " + name + " exp " + n + " = " + bl_fwalk_v);
 } return void;
+given mesh_open_ready ("Mesh", 1960):() then calls t_one_size:("Mesh")
+given mesh_open_ready ("Mesh", 1960):() then prints:("walked size of Mesh exp 1960 = 1960\n")

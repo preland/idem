@@ -3,3 +3,5 @@ bl_head() {
   int ok = 0;
   if (asset_at(0) = 66 && asset_at(6) = 82) { ok = bl_hlen(); }
 } return int ok;
+given bl_head_t_setup ():(1)
+given bl_head_t_invalid ():(0)

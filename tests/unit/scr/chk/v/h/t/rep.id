@@ -2,8 +2,21 @@ t_tick_rep() {
   int scr_get_v = scr_get(0 - 1, "ticks");
   print("after 80ms: ticks exp 0 = " + scr_get_v);
 } return void;
+given scr_tick_ready ():() then calls scr_get:(-1, "ticks")
+given scr_tick_ready ():() then prints:("after 80ms: ticks exp 0 = 0\n")
 
 t_tick2_rep() {
   int scr_get_v = scr_get(0 - 1, "ticks");
   print("after 100ms: ticks exp 1 = " + scr_get_v);
 } return void;
+given scr_tick2_ready ():() then calls scr_get:(-1, "ticks")
+given scr_tick2_ready ():() then prints:("after 100ms: ticks exp 1 = 1\n")
+
+// The moved-apart collision state (see t_hit3 in ../hit.id).
+scr_hit2_ready() {
+  scr_hit_ready();
+  ent_put(1, 0, 61000);
+  scr_hits(0);
+} return void;
+():() then calls scr_hit_ready:[1]
+():() then calls scr_hits:(0)

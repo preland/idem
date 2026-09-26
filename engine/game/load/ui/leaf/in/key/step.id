@@ -21,6 +21,8 @@ tin_step(int t) {
   tin_scan(0, t);
   int ret_i = (import tin_st)[4];
 } return int ret_i;
+given txt_init given inp_init given tin_init (0):(0)
+given txt_init given tin_t_press_setup (0):(1)
 
 // Every code, not just the printable ones: the arrows, Home, End and Delete are
 // all above 255 (inp/inp.id), and asking inp_hit about a code no keyboard has is
@@ -31,6 +33,8 @@ tin_scan(int key, int t) {
     key = key + 1;
   }
 } return void;
+given txt_init given inp_init given tin_init (0, 0):() then tin_act:(0)
+given txt_init given tin_t_press_setup (0, 0):() then tin_act:(1)
 
 // A press, or the repeat of the key that is already held. The `else if` order
 // matters: a fresh press of the repeating key resets its deadline to the long
@@ -45,3 +49,5 @@ tin_press(int key, int t) {
     tin_fire(key, t, t + tin_rate_v);
   }
 } return void;
+given txt_init given inp_init given tin_init (0, 0):() then tin_act:(0) then calls tin_fire:[0]
+given txt_init given tin_t_press_setup (13, 0):() then tin_act:(1) then calls tin_fire:[1]

@@ -16,6 +16,8 @@ txt_tint(int p, int x, int y, int f, int c) {
   int h = d2_spr_h(p);
   txt_tint_setup(p, x, y, f, c, w, h);
 } return void;
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)
 
 txt_tint_rows(int p, int x, int y, int i, int c, int j) {
   while (j < d2_spr_h(p)) {
@@ -23,6 +25,8 @@ txt_tint_rows(int p, int x, int y, int i, int c, int j) {
     j = j + 1;
   }
 } return void;
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, 7, 0):() then d2_blit_t_px00:(7)
+given sf_t_setup given txt_spr_t_setup (0, 0, 0, 0, 7, 1):() then d2_blit_t_px00:(0)
 
 // Same transparency test as d2_blit_row, different destination: the colour is the
 // caller's, not the sprite's.
@@ -35,3 +39,5 @@ txt_tint_row(int[] xs, int i, int x, int y, int c, int n) {
     k = k + 1;
   }
 } return void;
+given sf_t_setup ([5, -1], 0, 0, 0, 7, 2):() then d2_blit_t_px00:(7)
+given sf_t_setup ([5], 0, 0, 0, 7, 0):() then d2_blit_t_px00:(0)

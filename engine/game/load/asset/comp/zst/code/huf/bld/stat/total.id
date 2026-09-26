@@ -11,16 +11,23 @@ huf_ranks(int n) {
   lst_set_all((import huf_rk), 16, 0);
   int ret_i = huf_ranks_loop(i, n);
 } return int ret_i;
+given huf_init (0):(0)
+given huf_init (1):(0)
 
 huf_total(int n, int i, int v) {
   while (i < n) {
-    v = v + inf_pow2((import huf_wt)[i]) / 2;
+    v = v + fx_pow(2, (import huf_wt)[i]) / 2;
     i = i + 1;
   }
 } return int v;
+given huf_init (0, 0, 0):(0)
+given huf_init (1, 0, 5):(5)
 
 // tableLog = highbit(total) + 1, and the rest of the space is the last symbol's.
 huf_last(int n, int v) {
   int log = fse_hib(v) + 1;
   huf_last_setup(log, n, v);
 } return void;
+given huf_init (0, 0):()
+given huf_init (1, 1):()
+

@@ -12,16 +12,22 @@
 // One component per line, because idml has no statement terminator and a
 // component's arguments run to the end of their line (par_comp).
 //
-// Four lines per function, and that is not fastidiousness: `bin/idc` is quadratic
-// in the size of a single expression, and a return clause concatenating forty
-// literals took the compiler out of memory and killed it. Short expressions,
-// chained.
+// The lines live in conf.id as ed_pong_lines, one element per line, joined
+// here rather than chained through per-line functions: `bin/idc` is
+// quadratic in the size of a single expression, and a return clause
+// concatenating forty literals took the compiler out of memory and killed
+// it, which is what a conf.id list constant and str_join sidestep.
 
 ed_pong() {
-  string ret_s = ed_pong_ln("") + ed_pg0();
+  string joined = str_join((import ed_pong_lines), chr(10));
+  string ret_s = joined + chr(10);
 } return string ret_s;
+():("\n# pong -- created by the idem editor's File > New.\n#\n# Two paddles, a ball, and no art: every visible thing is a `shape box`.\n# w/s move the left paddle, the arrow keys move the right.\n\ngame pong {\n  display (320, 200) \"pong\"\n  fps 60\n  scale 2\n  start play\n  keys { esc = quit }\n  persist { lscore = 0 rscore = 0 }\n}\n\nscene play {\n  clear 0x101820\n\n  entity left {\n    pos (14, 100)\n    shape box (6, 40) 0xF0F0F0\n    body (6, 40)\n    solid\n    tag paddle\n    script {\n      on update {\n        vel.y = 0\n        if (key(119) = 1 && pos.y > 22) { vel.y = 0 - 260 }\n        if (key(115) = 1 && pos.y < 178) { vel.y = 260 }\n      }\n    }\n  }\n\n  entity right {\n    pos (306, 100)\n    shape box (6, 40) 0xF0F0F0\n    body (6, 40)\n    solid\n    tag paddle\n    script {\n      on update {\n        vel.y = 0\n        if (key(258) = 1 && pos.y > 22) { vel.y = 0 - 260 }\n        if (key(259) = 1 && pos.y < 178) { vel.y = 260 }\n      }\n    }\n  }\n\n  entity ball {\n    pos (160, 100)\n    shape box (6, 6) 0xF0E060\n    body (6, 6)\n    vel (150, 95)\n    tag ball\n    script {\n      on update {\n        if (pos.y < 4 && vel.y < 0) { vel.y = 0 - vel.y }\n        if (pos.y > 196 && vel.y > 0) { vel.y = 0 - vel.y }\n        if (pos.x < 2) { game.rscore = game.rscore + 1  pos.x = 160  pos.y = 100 }\n        if (pos.x > 318) { game.lscore = game.lscore + 1  pos.x = 160  pos.y = 100 }\n      }\n      on hit paddle { if ((pos.x < 160) = (vel.x < 0)) { vel.x = 0 - vel.x } }\n    }\n  }\n\n  ui {\n    Col()[100, 100, top-center] {\n      Scores()[12, 100, top-center]{}\n      Spacer()[88, 100, center]{}\n    }\n  }\n}\n\ndefine Scores() {\n  Row()[100, 100, top-center] {\n    Text(@game.lscore)[100, 50, top-center]{}\n    Text(@game.rscore)[100, 50, top-center]{}\n  }\n}\n") then calls str_join:[1]
+():("\n# pong -- created by the idem editor's File > New.\n#\n# Two paddles, a ball, and no art: every visible thing is a `shape box`.\n# w/s move the left paddle, the arrow keys move the right.\n\ngame pong {\n  display (320, 200) \"pong\"\n  fps 60\n  scale 2\n  start play\n  keys { esc = quit }\n  persist { lscore = 0 rscore = 0 }\n}\n\nscene play {\n  clear 0x101820\n\n  entity left {\n    pos (14, 100)\n    shape box (6, 40) 0xF0F0F0\n    body (6, 40)\n    solid\n    tag paddle\n    script {\n      on update {\n        vel.y = 0\n        if (key(119) = 1 && pos.y > 22) { vel.y = 0 - 260 }\n        if (key(115) = 1 && pos.y < 178) { vel.y = 260 }\n      }\n    }\n  }\n\n  entity right {\n    pos (306, 100)\n    shape box (6, 40) 0xF0F0F0\n    body (6, 40)\n    solid\n    tag paddle\n    script {\n      on update {\n        vel.y = 0\n        if (key(258) = 1 && pos.y > 22) { vel.y = 0 - 260 }\n        if (key(259) = 1 && pos.y < 178) { vel.y = 260 }\n      }\n    }\n  }\n\n  entity ball {\n    pos (160, 100)\n    shape box (6, 6) 0xF0E060\n    body (6, 6)\n    vel (150, 95)\n    tag ball\n    script {\n      on update {\n        if (pos.y < 4 && vel.y < 0) { vel.y = 0 - vel.y }\n        if (pos.y > 196 && vel.y > 0) { vel.y = 0 - vel.y }\n        if (pos.x < 2) { game.rscore = game.rscore + 1  pos.x = 160  pos.y = 100 }\n        if (pos.x > 318) { game.lscore = game.lscore + 1  pos.x = 160  pos.y = 100 }\n      }\n      on hit paddle { if ((pos.x < 160) = (vel.x < 0)) { vel.x = 0 - vel.x } }\n    }\n  }\n\n  ui {\n    Col()[100, 100, top-center] {\n      Scores()[12, 100, top-center]{}\n      Spacer()[88, 100, center]{}\n    }\n  }\n}\n\ndefine Scores() {\n  Row()[100, 100, top-center] {\n    Text(@game.lscore)[100, 50, top-center]{}\n    Text(@game.rscore)[100, 50, top-center]{}\n  }\n}\n")
 
 // One line of the document, newline included.
 ed_pong_ln(string s) {
   string ret_s = s + chr(10);
 } return string ret_s;
+("abc"):("abc\n")
+(""):("\n")

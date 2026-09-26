@@ -3,8 +3,12 @@ ed_kv_lbl(int x, int y, string s) {
   int col = ed_col(5);
   txt_draw(s, x + 6 * ui, y, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "label"):() then calls txt_draw:("label", 6, 10, 0x8A8A8A)
+given ed_t_boot stdin "" (5, 20, "other"):() then calls txt_draw:("other", 11, 20, 0x8A8A8A)
 
 ed_kv_text_draw_do(int x, int y, string fit, int ui, int wid) {
   int col = ed_col(4);
   txt_draw(fit, x + 12 * ui + wid, y, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "hi", 1, 64):() then calls txt_draw:("hi", 76, 10, 0xCFCFCF)
+given ed_t_boot stdin "" (5, 20, "bye", 2, 40):() then calls txt_draw:("bye", 69, 20, 0xCFCFCF)

@@ -2,3 +2,5 @@ par_sspawn3(string name, int tup) {
   int kd = (import ast_k_spawn);
   int nd = ast_new_a(kd, name, tup);
 } return int nd;
+given ast_init ("Pipe", 5):(1) then calls ast_new_a:(112, "Pipe", 5)
+given ast_init ("Boom", 9):(1) then calls ast_new_a:(112, "Boom", 9)

@@ -3,9 +3,24 @@ png_bytes_one(int y, int r, int i, int f) {
   int png_pred_v = png_pred(y, r, i, f);
   int next_i = png_bytes_poke(r, i, peek8_v, png_pred_v);
 } return int next_i;
+given png_pd_fixture (0, (import png_row0_data), 2, 1):(3) then calls png_bytes_poke:((import png_row0_data), 2, 128, 64)
+given png_pd_fixture (1, (import png_row0_data), 2, 2):(3) then calls png_bytes_poke:((import png_row0_data), 2, 128, 128)
 
 png_bytes_poke(int r, int i, word peek8_v, int png_pred_v) {
   int val = (peek8_v + png_pred_v) % 256;
   poke8(r + i, val);
   int next_i = i + 1;
 } return int next_i;
+given png_pd_fixture ((import png_row0_data), 2, 128, 64):(3)
+given png_pd_fixture ((import png_row0_data), 0, 200, 100):(1) then png_poke0_check:(44)
+
+// A raddr/rlen pair set to plain literals, not a real allocation -- for
+// asset_row.id's cases, which are pure arithmetic on png_st[7] and png_st[8]
+// and need no real pixel data behind them.
+png_rowfake_fixture() {
+  png_init();
+  lset((import png_st), 7, 100);
+  lset((import png_st), 8, 20);
+} return void;
+():() then spr_img_w:(0)
+given png_init ():() then spr_img_w:(0)

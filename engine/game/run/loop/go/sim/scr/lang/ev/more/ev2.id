@@ -8,6 +8,8 @@ scr_ev4(int nd, int e) {
     v = scr_ev5(nd, e);
   }
 } return int v;
+given node_fixture ((import fixture_num), -1):(0) then calls scr_ev5:[1]
+given idem_init (0, -1):(0) then calls scr_ev5:[1]
 
 scr_ev5(int nd, int e) {
   int v = 0;
@@ -17,6 +19,8 @@ scr_ev5(int nd, int e) {
     v = scr_ev6(nd, e);
   }
 } return int v;
+given node_fixture ((import fixture_num), -1):(0) then calls scr_ev6:[1]
+given idem_init (0, -1):(0) then calls scr_ev6:[1]
 
 // Unary minus and `!`. `~` is the parser's too but no game has wanted one.
 scr_ev6(int nd, int e) {
@@ -27,3 +31,5 @@ scr_ev6(int nd, int e) {
     v = scr_un(tx, rhs);
   }
 } return int v;
+given un_fixture ((import fixture_un), -1):(-42)
+given node_fixture ((import fixture_num), -1):(0) then calls scr_unrhs:[0]

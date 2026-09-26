@@ -11,6 +11,8 @@ ed_io_init() {
   export string[] ed_doc = [""];
   export string[] ed_path = [""];
 } return void;
+given ed_io_init ():() then ed_t_io_check:("")
+given ed_t_boot ():() then ed_t_io_check:("")
 
 // A string to a file. The bytes cross the seam as an int[], one byte a cell
 // (backends/fs), so the string is walked once into a buffer -- charat, never
@@ -21,6 +23,8 @@ ed_wr(string path, string s) {
   ed_wbuf(s, 0, buf);
   int ret_i = ed_wput(path, buf);
 } return int ret_i;
+given ed_t_wpath_setup ((import ed_t_wpath), "Hi"):(1) then ed_t_wpath_check:(1)
+("", "Hi"):(0)
 
 ed_wbuf(string s, int i, int[] buf) {
   while (charat(s, i) >= 0) {
@@ -29,3 +33,5 @@ ed_wbuf(string s, int i, int[] buf) {
     i = i + 1;
   }
 } return void;
+("hi", 0, []):("hi", 0, [104, 105])
+("", 0, []):("", 0, [])

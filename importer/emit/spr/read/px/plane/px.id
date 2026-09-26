@@ -19,12 +19,16 @@ spr_plane(string src, string kd, int n) {
   spr_magic(src, kd, name);
   spr_plane_b(src, n);
 } return void;
+given spr_px_ready given imp_init ("P3 1 1 255 10 20 30", "P3", 3):() then calls spr_magic:("P3 1 1 255 10 20 30", "P3", "P3")
+given spr_px_ready given imp_init ("P3 1 1 255 10 20 30", "P3", 3):() then calls spr_plane_b:("P3 1 1 255 10 20 30", 3)
 
 spr_magic(string src, string kd, string name) {
   if (name != kd) {
     err_report("stdin", 1, "expected a " + kd + " plane, got '" + name + "'");
   }
 } return void;
+given err_init ("x", "P3", "P3"):() then calls err_report:[0]
+given err_init ("x", "P3", "Q3"):() then calls err_report:("stdin", 1, "expected a P3 plane, got 'Q3'")
 
 // Height then maxval: the width was consumed by the caller, which is what keeps
 // both of them inside three actions.
@@ -32,3 +36,5 @@ spr_max(string src) {
   imp_int(src);
   int ret_i = imp_int(src);
 } return int ret_i;
+given imp_init ("0 255"):(255)
+given imp_init ("0 100"):(100)

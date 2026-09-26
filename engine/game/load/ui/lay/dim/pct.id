@@ -7,6 +7,8 @@
 ui_cent(int v, int n) {
   int ret_i = v * n / 10000;
 } return int ret_i;
+(5000, 200):(100)
+(0, 200):(0)
 
 // A `?@ref` gate: the item renders when the variable the ref names is non-zero.
 //
@@ -29,3 +31,5 @@ ui_vis(int nd) {
   int ok = 1;
   if (ast_ic(nd) != 0) { int ast_ic_v = ast_ic(nd); ok = ui_val(ast_ic_v) != 0; }
 } return int ok;
+given ui_vis_t_gate (0):(1) then calls ui_val:[0]
+given ui_vis_t_gate (3):(1) then calls ui_val:[1]

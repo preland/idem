@@ -1,0 +1,9 @@
+// The document root scn_bfind (name.id) walks, exported by name so a case can
+// pass it: game_fixture_nd's scene text ("scene s { entity e { ... } }") is a
+// real, parsed document with one top-level `scene` declaration.
+scn_bfind_t_setup() {
+  game_fixture_nd();
+  export int fixture_doc = (import scn_st)[4];
+} return void;
+():() then calls game_fixture_nd:[1]
+given idem_init ():() then calls game_fixture_nd:[1]

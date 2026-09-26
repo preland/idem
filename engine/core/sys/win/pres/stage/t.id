@@ -1,0 +1,10 @@
+// A fourth stage rect, beside rect/t.id's three: a declared size wider than
+// the 64x48 surface, so the fitted scale is below 1000 -- sys_scale and
+// sys_offx's own cases need that to tell a real fit from the exact-match one.
+
+sys_t_vp4() {
+  sf_open(64, 48);
+  sys_vp_init(128, 48);
+} return void;
+():() then sys_scale:(500)
+():() then sys_sx:(0)

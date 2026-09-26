@@ -4,9 +4,13 @@ fse_rput_upd(int c) {
   fse_rput_do(c);
   fse_rnext(c);
 } return void;
+given fsev_setup_state (0):()
+given fsev_setup_state2 (1):()
 
 fse_rput_do(int c) {
   int fse_st_v = (import fse_st)[1];
   int fx_abs_v = fx_abs(c);
   lset((import fse_st), 1, fse_st_v - fx_abs_v);
 } return void;
+given fsev_setup_state (0):()
+given fsev_setup_state2 (1):()

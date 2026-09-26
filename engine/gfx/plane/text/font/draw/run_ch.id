@@ -6,3 +6,5 @@ txt_spr_run_ch(string s, int x, int y, int p, int c, int i) {
   int w = d2_spr_w(p);
   txt_spr_one(ch - (import txt_first), x + i * w, y, p, c);
 } return void;
+given sf_t_setup given txt_spr_t_setup (" ", 0, 0, 0, -1, 0):() then d2_blit_t_px00:(5)
+given sf_t_setup given txt_spr_t_setup (" ", 0, 0, 0, 7, 0):() then d2_blit_t_px00:(7)

@@ -5,14 +5,20 @@ par_if(int[] pos) {
   int par_expr_v = par_expr(pos);
   int ret_i = par_if2(pos, par_expr_v);
 } return int ret_i;
+given par_if_setup ([0]):(10) then calls ast_new_abc:(118, "", 1, 5, 9)
+given par_if_setup ([0]):(10) then calls par_if2:[1]
 
 par_if2(int[] pos, int cond) {
   par_want(pos, ")");
   int thn = par_block(pos);
   int ret_i = par_if3(pos, cond, thn);
 } return int ret_i;
+given par_if_setup ([3], 1):(9) then calls ast_new_abc:(118, "", 1, 4, 8)
+given par_if_setup ([3], 1):(9) then calls par_if3:[1]
 
 par_if3(int[] pos, int cond, int thn) {
   int els = par_if3_els(pos);
   int ret_i = par_if3_node(cond, thn, els);
 } return int ret_i;
+given par_if_setup ([9], 1, 4):(5) then calls ast_new_abc:(118, "", 1, 4, 4)
+given par_if_setup ([1], 1, 4):(1) then calls ast_new_abc:(118, "", 1, 4, 0)

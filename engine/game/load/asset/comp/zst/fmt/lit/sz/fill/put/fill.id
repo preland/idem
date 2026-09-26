@@ -7,6 +7,8 @@ zst_lfill(int kd, int n) {
     zst_lcopy(n);
   }
 } return void;
+given zst_src_setup (1, 5):() then calls zst_lrle:[1]
+given zst_src_setup (0, 5):() then calls zst_lcopy:[1]
 
 zst_lrle(int n) {
   int v = zst_le(1);
@@ -16,9 +18,13 @@ zst_lrle(int n) {
     i = i + 1;
   }
 } return void;
+given zst_src_setup (3):() then calls zst_le:[1]
+given zst_src_setup (0):() then calls zst_le:[1]
 
 zst_lcopy(int n) {
   int i = 0;
   zst_lcopy_loop(i, n);
   lset((import zst_st), 1, (import zst_st)[1] + n);
 } return void;
+given zst_src_setup (2):() then calls zst_lcopy_loop:[1]
+given zst_src_setup (0):() then calls lset:[1]

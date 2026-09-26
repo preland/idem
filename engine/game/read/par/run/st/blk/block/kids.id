@@ -5,3 +5,5 @@ par_block_kids(int[] pos) {
   par_want(pos, "{");
   par_bfill(pos, kids);
 } return int[] kids;
+given par_stmt_setup ([12]):([3]) then calls par_bfill:[1]
+given par_stmt_setup ([16]):([]) then calls par_err:[1]

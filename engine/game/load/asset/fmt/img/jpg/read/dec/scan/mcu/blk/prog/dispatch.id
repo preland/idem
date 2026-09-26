@@ -25,6 +25,8 @@ jpg_pblk(int ci, int a) {
     jpg_pac(ci, a);
   }
 } return void;
+given jpg_final_fixture (0, (import jpg_coef_a)):() then calls jpg_pdc:(0, (import jpg_coef_a))
+given jpg_ss1_fixture (0, (import jpg_coef_a)):() then calls jpg_pac:(0, (import jpg_coef_a))
 
 // The first DC pass is the baseline DC decoder: a difference against the
 // predictor, shifted left by Al. jpg_dc already applies that shift, so there is
@@ -36,6 +38,8 @@ jpg_pdc(int ci, int a) {
     jpg_pdcr(a);
   }
 } return void;
+given jpg_final_fixture (0, (import jpg_coef_a)):() then calls jpg_dc:(0, (import jpg_coef_a))
+given jpg_ah1_fixture (0, (import jpg_coef_a)):() then calls jpg_pdcr:((import jpg_coef_a))
 
 // A DC refinement is one bit per block, and it is an OR rather than an add: the
 // bit being sent sits above everything already there, and a value that somehow
@@ -43,7 +47,9 @@ jpg_pdc(int ci, int a) {
 jpg_pdcr(int a) {
   if (jpg_bit() = 1) {
     int jpg_cget_v = jpg_cget(a, 0);
-    int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+    int inf_pow2_v = fx_pow(2, (import jpg_st)[16]);
     jpg_cset(a, 0, jpg_cget_v | inf_pow2_v);
   }
 } return void;
+given jpg_final_fixture ((import jpg_coef_a)):() then jpg_dc0_check:(11)
+given jpg_final2_fixture ((import jpg_coef_a)):() then jpg_dc0_check:(10)

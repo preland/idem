@@ -1,0 +1,31 @@
+// A real, minimal, VALID frame body: descriptor byte 0 (every optional flag
+// off), a discarded window byte, then a single last-block Raw block header
+// (last=1, type=0, size=1 -> 1 + 0*2 + 1*8 = 9, little-endian [9,0,0]) and
+// its one data byte -- zst_frst unconditionally drives zst_blocks, so
+// zst_body/zst_hdr2 can only be exercised end to end, not stubbed short.
+zst_hdr_zero() {
+  export int zsth_p = alloc(8);
+  int zsth_i = 0;
+  while (zsth_i < 8) {
+    poke8((import zsth_p) + zsth_i, 0);
+    zsth_i = zsth_i + 1;
+  }
+} return void;
+():() then zst_hdr_byte2:(0)
+given zst_init ():() then zst_hdr_byte2:(0)
+
+zst_hdr_bytes() {
+  zst_hdr_zero();
+  poke8((import zsth_p) + 2, 9);
+  poke8((import zsth_p) + 5, 42);
+} return void;
+():() then zst_hdr_byte2:(9)
+given zst_init ():() then zst_hdr_byte2:(9)
+
+zst_hdr_setup() {
+  zst_init();
+  zst_hdr_bytes();
+  zst_reset((import zsth_p), 8, (import zsth_p), 8);
+} return void;
+():() then zst_hdr_byte2:(9)
+given zst_init ():() then zst_hdr_byte2:(9)

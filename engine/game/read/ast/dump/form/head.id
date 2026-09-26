@@ -6,14 +6,20 @@ ast_fkind(int nd) {
   int ast_kd_v = ast_kd(nd);
   string ast_kname_v = ast_kname(ast_kd_v);
 } return string ast_kname_v;
+given ast_dump_setup (3):("call")
+given ast_init (0):("nil")
 
 ast_fhead(int nd) {
   int ast_ia_v = ast_ia(nd);
   string s = "(" + ast_fkind(nd) + ast_dtx(nd) + ast_dsp(ast_ia_v);
 } return string s;
+given ast_dump_setup (3):("(call f 42")
+given ast_init (0):("(nil")
 
 ast_fmid(int nd) {
   int ast_ib_v = ast_ib(nd);
   int ast_ic_v = ast_ic(nd);
   string s = ast_dsp(ast_ib_v) + ast_dsp(ast_ic_v);
 } return string s;
+given ast_dump_setup (3):(" x")
+given ast_init (0):("")

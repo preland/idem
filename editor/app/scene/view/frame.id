@@ -5,7 +5,11 @@ ed_scene3(int x, int y, int w, int h) {
   ed_band_draw();
   ed_scene_frame(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_content:[1]
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_scene_frame:(0, 10, 100, 100)
 
 ed_scene_frame(int x, int y, int w, int h) {
   ed_btn_frame(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 100):() then calls ed_btn_frame:(0, 10, 100, 100)
+given ed_t_boot stdin "" (5, 20, 50, 50):() then calls ed_btn_frame:(5, 20, 50, 50)

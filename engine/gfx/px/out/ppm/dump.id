@@ -16,6 +16,8 @@ ppm_init() {
   export string[] ppm_num = [];
   ppm_num_fill(0);
 } return void;
+():() then ppm_t_len:(256)
+():() then ppm_t_first:("0")
 
 ppm_num_fill(int i) {
   while (i < 256) {
@@ -23,9 +25,13 @@ ppm_num_fill(int i) {
     i = i + 1;
   }
 } return void;
+given ppm_init (256):() then ppm_t_len:(256)
+given ppm_init (255):() then ppm_t_len:(257)
 
 ppm_dump() {
   print("P3");
   print("" + (import sf_gw) + " " + (import sf_gh));
   ppm_head();
 } return void;
+given ppm_t_small ():() then prints:("P3\n2 1\n255\n255 0 0 0 0 255 \n")
+given ppm_t_small2 ():() then prints:("P3\n1 1\n255\n0 255 0 \n")

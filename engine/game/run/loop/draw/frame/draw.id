@@ -11,11 +11,15 @@ run_draw() {
   run_letterbox();
   run_world();
 } return void;
+given game_fixture_nd ():() then calls run_clear:[1]
+given game_fixture_nd ():() then calls run_world:[1]
 
 run_world() {
   ent_draw(0);
   run_ui();
 } return void;
+given game_fixture_nd ():() then calls ent_draw:[1]
+given game_fixture_nd ():() then calls run_ui:[1]
 
 // The scene's `ui { }` block, resolved over the stage rect by the engine's idml
 // walk -- the same one the editor's own chrome goes through.
@@ -24,3 +28,5 @@ run_ui() {
   int scn_ui_v = scn_ui((import scn_st)[5], 0);
   run_ui2(scn_ui_v);
 } return void;
+given game_fixture_nd ():() then calls ui_rclear:[1]
+given game_fixture_nd ():() then calls scn_ui:[1]

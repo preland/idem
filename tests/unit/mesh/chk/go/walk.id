@@ -2,15 +2,21 @@ t_one_off1(string name) {
   int si = bl_sfind(name);
   int bl_soff_v = bl_soff(si);
 } return int bl_soff_v;
+given mesh_open_ready ("Mesh"):(460542) then calls bl_sfind:("Mesh")
+given mesh_open_ready ("Object"):(471402)
 
 t_one_le16(string name) {
   int si = bl_sfind(name);
   int bl_soff_v2 = bl_soff(si);
   int bl_le16_v = bl_le16(bl_soff_v2 + 2);
 } return int bl_le16_v;
+given mesh_open_ready ("Mesh"):(58) then calls bl_sfind:("Mesh")
+given mesh_open_ready ("Object"):(102)
 
 t_one_size(string name) {
   int bl_soff_v = t_one_off1(name);
   int bl_le16_v = t_one_le16(name);
   int bl_fwalk_v = bl_fwalk(bl_soff_v + 4, bl_le16_v, "");
 } return int bl_fwalk_v;
+given mesh_open_ready ("Mesh"):(1960) then calls t_one_off1:("Mesh")
+given mesh_open_ready ("Object"):(1288) then calls t_one_le16:("Object")

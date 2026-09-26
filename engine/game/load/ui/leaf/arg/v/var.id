@@ -17,6 +17,8 @@ ui_vinit() {
   export int[] ui_ts = [1000];
   ui_vinit2();
 } return void;
+():() then ui_dn_t_check:(0)
+given ast_init ():() then ui_dn_t_check:(0)
 
 // ui_ts is the scale a UI's text is drawn at, per-mille, and it belongs to
 // whoever is about to draw the UI: the runtime sets it to the stage's scale, the
@@ -27,9 +29,13 @@ ui_vinit2() {
   export int[] ui_vd = [];
   ui_dinit();
 } return void;
+():() then ui_dn_t_check:(0)
+given ast_init ():() then ui_dn_t_check:(0)
 
 ui_vload(int nd) {
   string ast_tx_v = ast_tx(nd);
   push((import ui_vn), ast_tx_v);
   push((import ui_vd), nd);
 } return void;
+given ast_init given ui_vinit (0):() then ast_n:(1)
+given ui_look_fx2 (7):() then ast_n:(8)

@@ -3,12 +3,16 @@ par_say(int[] pos) {
   string txt = par_optxt(pos);
   int ret_i = par_say_node(txt);
 } return int ret_i;
+given par_stmt_setup ([7]):(1) then calls ast_new_k:(125, "stop")
+given par_stmt_setup ([13]):(1) then calls ast_new_k:(125, "=")
 
 par_stop(int[] pos) {
   par_next(pos);
   int ast_k_stop_v = (import ast_k_stop);
   int ret_i = ast_new_k(ast_k_stop_v, "");
 } return int ret_i;
+given par_stmt_setup ([8]):(1) then calls ast_new_k:(126, "")
+given par_stmt_setup ([4]):(1) then calls ast_new_k:(126, "")
 
 // A script is a set of handlers and nothing else may sit at its top level.
 par_script(int[] pos) {
@@ -16,3 +20,5 @@ par_script(int[] pos) {
   par_script_pre(pos);
   int ret_i = par_script2(pos, kids);
 } return int ret_i;
+given par_scr_setup ([0]):(6) then calls ast_new_kids:(115, "", [2, 5])
+given par_scr_setup ([6]):(4) then calls ast_new_kids:(115, "", [3])

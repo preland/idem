@@ -6,15 +6,21 @@ par_arg(int[] pos) {
   par_arg2(pos, out);
   int v = out[0];
 } return int v;
+given par_ls_setup ([0]):(1) then calls ast_new_num:(1, 0)
+given par_ls_setup ([2]):(3) then calls ast_new_kids:(134, "", [1, 2])
 
 par_arg2(int[] pos, int[] out) {
   if (par_kind(pos) = (import lex_k_number)) { out[0] = par_num(pos); }
   else if (par_kind(pos) = (import lex_k_string)) { out[0] = par_str(pos); }
   else { par_arg3(pos, out); }
 } return void;
+given par_ls_setup ([0], [0]):([1], [1]) then calls ast_new_num:(1, 0)
+given par_ls_setup ([1], [0]):([2], [1]) then calls ast_new_k:(132, "hi")
 
 par_arg3(int[] pos, int[] out) {
   if (par_is(pos, "(")) { out[0] = par_tuple(pos); }
   else if (par_is(pos, "@")) { out[0] = par_uref(pos); }
   else { par_arg4(pos, out); }
 } return void;
+given par_ls_setup ([2], [0]):([7], [3]) then calls ast_new_kids:(134, "", [1, 2])
+given par_ls_setup ([7], [0]):([9], [2]) then calls ast_new_a:(140, "", 1)

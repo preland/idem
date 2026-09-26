@@ -2,11 +2,18 @@ ed_mitem(int k, int i) {
   string s = ed_mitem2(k, i);
   if (k = 0) { s = ed_mfile(i); }
 } return string s;
+(0, 1):("Open")
+(1, 0):("Undo")
+(2, 0):("Import...")
+(4, 0):("Controls")
 
 ed_mitem2(int k, int i) {
   string s = ed_mitem3(k, i);
   if (k = 1) { s = ed_medit(i); }
 } return string s;
+(1, 1):("Redo")
+(2, 0):("Import...")
+(4, 0):("Controls")
 
 // The last of the dispatch, and the File menu.
 
@@ -15,3 +22,6 @@ ed_mitem3(int k, int i) {
   if (k = 2) { s = ed_masset(i); }
   else if (k = 3) { s = ed_mview(i); }
 } return string s;
+(2, 1):("Reload")
+(3, 0):("Reset View")
+(4, 0):("Controls")

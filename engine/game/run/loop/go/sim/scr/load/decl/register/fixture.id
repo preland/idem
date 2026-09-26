@@ -1,0 +1,25 @@
+// A hand-built `space = press` binding's value node.
+key1_ev_fixture() {
+  game_fixture_nd();
+  export int fixture_key1_ev = ast_new_abc((import ast_k_ident), "press", 0, 0, 0);
+} return void;
+():() then calls game_fixture_nd:[1]
+():() then calls ast_new_abc:[1]
+
+// The binding itself: `space`, whose one child is the value node above.
+key1_node_fixture() {
+  key1_ev_fixture();
+  int[] kids = [(import fixture_key1_ev)];
+  export int fixture_key1 = ast_new_kids((import ast_k_comp), "space", kids);
+} return void;
+():() then calls key1_ev_fixture:[1]
+():() then calls ast_new_kids:[21]
+
+// The binding, already registered -- so a reader has a real, non-empty
+// key map to check.
+key1_fixture() {
+  key1_node_fixture();
+  scr_key1((import fixture_key1));
+} return void;
+():() then calls key1_node_fixture:[1]
+():() then calls scr_key1code:[1]

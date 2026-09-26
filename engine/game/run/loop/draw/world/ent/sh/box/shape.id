@@ -8,6 +8,17 @@ ent_show(int e) {
     ent_box(e);
   }
 } return void;
+given game_fixture_spr0 given d2_blit_t_setup (0):() then calls ent_blit:(0, 0)
+given game_fixture_nd (0):() then calls ent_box:[1]
+
+// An entity with sprite index 0 forced, so ent_show's sprite branch runs
+// instead of the shape one -- both are declared on the same fixture entity.
+game_fixture_spr0() {
+  game_fixture_nd();
+  ent_put(0, 6, 0);
+} return void;
+():() then calls game_fixture_nd:[1]
+():() then calls ent_put:(0, 6, 0)
 
 // An entity's `shape box`, on the stage.
 //
@@ -21,3 +32,5 @@ ent_box(int e) {
   int oy = ent_boxy(e);
   ent_box2(e, ox, oy);
 } return void;
+given game_fixture_nd (0):() then calls ent_box2:(0, 139, 170)
+given game_fixture_nd given put_fixture (0):() then calls ent_box2:(0, 0, 0)

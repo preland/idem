@@ -5,6 +5,8 @@ jpg_one(int mx, int my, int ci, int by, int bx) {
   int jpg_bat_v = jpg_bat(ci, mx * (import jpg_c)[ci * 10 + 1] + bx, my * (import jpg_c)[ci * 10 + 2] + by);
   jpg_blk(ci, jpg_bat_v);
 } return void;
+given jpg_one_fixture (0, 0, 0, 0, 0):() then calls jpg_blk:(0, (import jpg_coef_a))
+given jpg_one_prog_fixture (0, 0, 0, 0, 0):() then calls jpg_blk:(0, (import jpg_coef_a))
 
 // Which decoder a scan wants. Baseline sends DC and the whole AC band in one
 // visit; progressive splits them, and splits the AC band again by precision.
@@ -15,6 +17,8 @@ jpg_blk(int ci, int a) {
     jpg_pblk(ci, a);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_bblk:(0, (import jpg_coef_a))
+given jpg_progflag_fixture (0, (import jpg_coef_a)):() then calls jpg_pblk:(0, (import jpg_coef_a))
 
 // The DC coefficient is sent as a difference from the previous block of the same
 // component, which is why the predictor is per component and survives across
@@ -24,3 +28,5 @@ jpg_dc(int ci, int a) {
   int jpg_diff_v = jpg_diff(sz);
   jpg_dc1(ci, a, jpg_diff_v);
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then jpg_dc0_check:(-96)
+given jpg_coefbuf2_fixture (0, (import jpg_coef_a)):() then jpg_dc0_check:(0)

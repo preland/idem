@@ -27,12 +27,16 @@ pack_entry() {
   string s = "idem_boot";
   if ((import pack_mode)[0] = "app") { s = "idem_app"; }
 } return string s;
+given pack_mode_ready ():("idem_boot")
+given pack_app_ready ():("idem_app")
 
 pack_boot2() {
   print("  string[] chunks = []");
   print("  data_src(chunks)");
   pack_boot3();
 } return void;
+given pack_mode_ready ():() then calls pack_boot3:[1]
+given pack_app_ready ():() then calls pack_boot3:[1]
 
 // idem_app takes its game's six functions as arguments (docs/TODO.md 14) --
 // idem_boot does not, so only "app" mode's call names them, by the fixed names
@@ -42,6 +46,8 @@ pack_boot3() {
   if ((import pack_mode)[0] = "app") { tail = ", g_init, g_stage, g_step, g_draw, g_ref, g_act"; }
   pack_boot3_b(tail);
 } return void;
+given pack_mode_ready ():() then calls pack_boot3_b:("")
+given pack_app_ready ():() then calls pack_boot3_b:(", g_init, g_stage, g_step, g_draw, g_ref, g_act")
 
 // One generated file per turn of this loop. The `|| k = 0` is not a special case
 // for its own sake: a game with no idml at all must still produce a data_src for

@@ -1,0 +1,24 @@
+// A pure-DC coefficient block (100), and the same after a real row pass --
+// isum/icol1's cases, and jpg_tm0_check's, run against these.
+jpg_idct100_fixture() {
+  jpg_raw_fixture();
+  lset((import jpg_f), 0, 100);
+} return void;
+():() then jpg_f0_check:(100)
+given jpg_init ():() then jpg_f0_check:(100)
+
+jpg_idct_tm_fixture() {
+  jpg_idct100_fixture();
+  jpg_irows(0);
+} return void;
+():() then jpg_tm0_check:(283)
+given jpg_init ():() then jpg_tm0_check:(283)
+
+// The all-zero (DC 0) case, after a real row pass -- the level-shift
+// midpoint, 128, once the column pass runs too.
+jpg_idct_tm0_fixture() {
+  jpg_raw_fixture();
+  jpg_irows(0);
+} return void;
+():() then jpg_tm0_check:(0)
+given jpg_init ():() then jpg_tm0_check:(0)

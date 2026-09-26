@@ -6,9 +6,24 @@ jpg_rtail1(int a) {
   }
   lset((import jpg_r), 0, (import jpg_r)[0] + 1);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then jpg_r0_check:(1) then calls jpg_rcorr:[0]
+given jpg_cset_fixture ((import jpg_coef_a)):() then jpg_r0_check:(1) then calls jpg_rcorr:((import jpg_coef_a), 0)
 
 // One block of the run is now accounted for.
 jpg_rdone() {
   lset((import jpg_st), 17, (import jpg_st)[17] - 1);
   lset((import jpg_r), 3, 2);
 } return void;
+given jpg_init ():() then jpg_eob_check:(-1) then jpg_r3_check:(2)
+given jpg_init given jpg_rdone ():() then jpg_eob_check:(-2) then jpg_r3_check:(2)
+
+// jpg_coefbuf_fixture with a real band start (Ss = 1) applied through the
+// real jpg_pacr, so refine.id and sym.id's cases run against a genuinely
+// entered refinement rather than the all-zero state jpg_init leaves.
+jpg_pacr1_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_st), 13, 1);
+  jpg_pacr(0, (import jpg_coef_a));
+} return void;
+():() then jpg_r0_check:(1)
+given jpg_init ():() then jpg_r0_check:(1)

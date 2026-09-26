@@ -2,3 +2,5 @@ ed_frame_pace() {
   int t = sys_now();
   sys_pace(t, 60);
 } return void;
+given ed_t_boot stdin "" ():() then calls sys_now:[1] then calls sys_pace:[1]
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls sys_now:[1] then calls sys_pace:[1]

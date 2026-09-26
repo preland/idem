@@ -12,6 +12,8 @@ ed_marks(int e) {
     e = e + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0):(0) then calls ed_mark1:[0]
+given ed_t_boot given ed_t_ent stdin "" (0):(0) then calls ed_mark1:[1]
 
 ed_mark1(int e) {
   if ((ent_at(e, 23) & 1) = 1) {
@@ -20,6 +22,8 @@ ed_mark1(int e) {
     ed_cross(ed_epx_v, ed_epy_v);
   }
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0):(0) then calls ed_cross:[0]
+given ed_t_boot given ed_t_ent_sel stdin "" (0):(0) then calls ed_cross:[1]
 
 // Clipped to the plane, because a selected entity can scroll off it while the
 // game runs and a cross drawn over the hierarchy is worse than no cross.
@@ -28,3 +32,5 @@ ed_cross(int x, int y) {
   int col_v = ed_col(13);
   ed_cross2(x, y, u, col_v);
 } return void;
+given ed_t_boot stdin "" (10, 20):(10, 20) then calls ed_cross2:(10, 20, 1, 0xD8A24A)
+given ed_t_boot stdin "" (5, 6):(5, 6) then calls ed_cross2:(5, 6, 1, 0xD8A24A)

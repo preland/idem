@@ -2,19 +2,25 @@
 // them.
 
 t_more() {
-  t_one("prog444 progressive 4:4:4", "tests/unit/jpg/img/prog444.jpg", 32, 24);
-  t_one("prog420 progressive 4:2:0", "tests/unit/jpg/img/prog420.jpg", 32, 24);
-  t_one("water progressive 4:2:0", "test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg", 357, 350);
+  t_one("prog444 progressive 4:4:4", "img/prog444.jpg", 32, 24);
+  t_one("prog420 progressive 4:2:0", "img/prog420.jpg", 32, 24);
+  t_one("water progressive 4:2:0", "../../../test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg", 357, 350);
 } return void;
+given jpg_ready ():() then calls t_one:("prog444 progressive 4:4:4", "img/prog444.jpg", 32, 24)
+given jpg_ready ():() then calls t_one:("water progressive 4:2:0", "../../../test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg", 357, 350)
 
 t_one(string msg, string path, int w, int h) {
   t_one_load(msg, path);
   t_one_size(w, h);
   t_px(w, h);
 } return void;
+given jpg_ready ("grad", "img/grad.jpg", 24, 16):() then calls t_one_load:("grad", "img/grad.jpg")
+given jpg_ready ("grad", "img/grad.jpg", 24, 16):() then calls t_px:[1]
 
 t_px(int w, int h) {
   t_at("  (0,0)", 0, 0);
   t_at("  (mid)", w / 2, h / 2);
   t_tail(w, h);
 } return void;
+given jpg_grad_ready (24, 16):() then calls t_at:("  (0,0)", 0, 0)
+given jpg_grad_ready (24, 16):() then calls t_tail:(24, 16)

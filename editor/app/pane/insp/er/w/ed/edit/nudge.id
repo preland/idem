@@ -3,6 +3,8 @@ ed_nudge_input(int x, int y) {
   int ed_hdr_v2 = ed_hdr();
   int ed_in_v = ed_in(x, y, ed_hdr_v, ed_hdr_v2);
 } return int ed_in_v;
+given ed_t_boot stdin "" (0, 0):(1)
+given ed_t_boot stdin "" (30, 30):(0)
 
 // A repeat that is not a click: held down, it moves the value every frame, which
 // is what makes dragging a paddle across the screen possible at all. The first
@@ -12,6 +14,8 @@ ed_nudge(int x, int y, int e, int k, int d) {
   ed_nudge_draw(x, y, ed_in_v, d);
   ed_nudge_do(x, y, e, k, d);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 0, 0, 0, 1000):() then calls ed_nudge_draw:(0, 0, 1, 1000)
+given ed_t_boot given ed_t_ent stdin "" (0, 0, 0, 0, 1000):() then calls ed_nudge_do:(0, 0, 0, 0, 1000)
 
 ed_nudge_do(int x, int y, int e, int k, int d) {
   int ed_hdr_v = ed_hdr();
@@ -21,3 +25,5 @@ ed_nudge_do(int x, int y, int e, int k, int d) {
     ent_put(e, k, ent_at_v + d);
   }
 } return void;
+given ed_t_boot given ed_t_ent given inp_t_state stdin "" (0, 0, 0, 0, 1000):() then calls ent_put:(0, 0, 1000)
+given ed_t_boot given ed_t_ent stdin "" (0, 0, 0, 0, 1000):() then calls ent_put:[0]

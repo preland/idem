@@ -1,0 +1,24 @@
+// Test-only fixtures for the escape buffer: a raw allocation, and two with
+// known bytes already written, so a reader has something predictable to see.
+
+pack_buf_ready() {
+  export word pack_buf = alloc(64);
+} return void;
+():() then prints:("")
+():() then eprints:("")
+
+pack_buf_hi_ready() {
+  pack_buf_ready();
+  poke8((import pack_buf), 72);
+  poke8((import pack_buf) + 1, 73);
+} return void;
+():() then calls pack_buf_ready:[1]
+():() then pack_buf_str:("HI")
+
+pack_buf_ok_ready() {
+  pack_buf_ready();
+  poke8((import pack_buf), 79);
+  poke8((import pack_buf) + 1, 75);
+} return void;
+():() then calls pack_buf_ready:[1]
+():() then pack_buf_str:("OK")

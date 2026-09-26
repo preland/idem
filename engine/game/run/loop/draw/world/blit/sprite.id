@@ -16,10 +16,14 @@ ent_blit(int p, int e) {
   int oy = ent_blitoffy(p, e);
   ent_blit2(p, e, ox, oy);
 } return void;
+given game_fixture_nd given d2_blit_t_setup (0, 0):() then calls ent_blit2:(0, 0, 143, 198)
+given game_fixture_nd given d2_blit_t_setup (1, 0):() then calls ent_blit2:(1, 0, 143, 199)
 
 ent_sc(int e, int k) {
   int ret_i = (import sys_vp)[0] * ent_at(e, k) / 1000;
 } return int ret_i;
+given game_fixture_nd (0, 4):(500)
+given game_fixture_nd (0, 5):(2000)
 
 // Millunits to surface pixels, less half the scaled sprite. One divide by 1000 at
 // the end and not two along the way: the position is in millunits and the stage
@@ -28,3 +32,6 @@ ent_sc(int e, int k) {
 ent_off(int e, int n, int k, int sk) {
   int ret_i = (ent_at(e, k) * (import sys_vp)[0] / 1000 - n * ent_sc(e, sk) / 2) / 1000;
 } return int ret_i;
+given game_fixture_nd (0, 10, 0, 4):(141)
+given game_fixture_nd (0, 10, 1, 5):(190)
+given game_fixture_nd given put_fixture (0, 101, 0, 4):(-39)

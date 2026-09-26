@@ -10,15 +10,21 @@ jpg_out() {
   int da = jpg_out2();
   jpg_orows(0);
 } return void;
+given jpg_pngrow_fixture ():() then calls jpg_out2:[1] then calls jpg_orows:(0)
+given jpg_raw_fixture ():() then calls jpg_out2:[1] then calls jpg_orows:(0)
 
 jpg_out2() {
   int fx_max_v = fx_max((import jpg_st)[1] * (1 + (import jpg_st)[0] * 3), 1);
   int da = alloc(fx_max_v);
   jpg_pngst(da);
 } return int da;
+given jpg_pngrow_fixture ():(408) then calls jpg_pngst:[1]
+given jpg_raw_fixture ():(344) then calls jpg_pngst:[1]
 
 jpg_pngst(int da) {
   m4_pair((import png_st), 0, 1, (import jpg_st)[0], (import jpg_st)[1]);
   m4_pair((import png_st), 4, 7, 3, da);
   jpg_pngst2();
 } return void;
+given jpg_pngrow_fixture (50):() then spr_img_w:(4)
+given jpg_raw_fixture (99):() then spr_img_w:(0)

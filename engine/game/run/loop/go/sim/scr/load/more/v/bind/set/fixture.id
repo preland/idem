@@ -1,0 +1,16 @@
+// The `n = 5` binding's argument wrapper, so a `var` comp has an arg0.
+var_args_fixture() {
+  bind_fixture();
+  int[] args = [(import fixture_bind)];
+  export int fixture_var_args = ast_new_kids(0, "", args);
+} return void;
+():() then calls bind_fixture:[1]
+():() then calls ast_new_kids:[8]
+
+// `var n = 5`, the comp shape a member actually parses to.
+var_fixture() {
+  var_args_fixture();
+  export int fixture_var = ast_new_abc((import ast_k_comp), "var", (import fixture_var_args), 0, 0);
+} return void;
+():() then calls var_args_fixture:[1]
+():() then calls ast_new_abc:[4]

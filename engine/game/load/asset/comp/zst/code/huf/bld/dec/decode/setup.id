@@ -1,0 +1,30 @@
+// A real marker byte for huf_dec's backward bitstream -- zst_init cascades
+// through zst_tabs3 to huf_init, so this alone gives huf_st/huf_sy/huf_nb
+// too. 192 (0b11000000) has a valid top-bit marker.
+huf_dec_bytes() {
+  zst_init();
+  export int hufc_p = alloc(1);
+  poke8((import hufc_p), 192);
+} return void;
+():() then huf_dec_litp_check:(0)
+given zst_init ():() then huf_dec_litp_check:(0)
+
+// zst_tabs_lit (inside zst_init's own cascade) already allocates a real
+// zst_st[8] literals buffer, so only the backward-bitstream position is
+// left to establish here.
+huf_dec_setup() {
+  huf_dec_bytes();
+  zb_start((import hufc_p), 1);
+} return void;
+():() then huf_dec_litp_check:(0)
+given zst_init ():() then huf_dec_litp_check:(0)
+
+// A trivial two-symbol table: tableLog 1, so zb_look/zb_skip work on a
+// single bit; symbol 0 is 'A' (65), symbol 1 is 'B' (66).
+huf_dec_table() {
+  lset((import huf_st), 0, 1);
+  m4_pair((import huf_sy), 0, 1, 65, 66);
+  m4_pair((import huf_nb), 0, 1, 1, 1);
+} return void;
+given huf_init ():() then huf_st_log:(1)
+given huf_init given huf_dec_bytes ():() then huf_st_log:(1)

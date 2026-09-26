@@ -9,12 +9,16 @@ t_boot3() {
   scn_dir_init();
   t_boot4();
 } return void;
+given scr_s3_ready ():() then calls scn_init:[1]
+given scr_s3_ready ():() then calls t_boot4:[1]
 
 t_boot4() {
   png_init();
   inf_init();
   t_boot5();
 } return void;
+given scr_s4_ready ():() then calls png_init:[1]
+given scr_s4_ready ():() then calls t_boot5:[1]
 
 // ui_vinit chains ui_rinit. A document may declare a styled variant, and the
 // registry has to exist before the loader walks a top-level declaration.
@@ -25,3 +29,5 @@ t_boot5() {
   inp_init();
   t_load();
 } return void;
+given scr_s5_ready ():() then calls ui_vinit:[1]
+given scr_s5_ready ():() then calls t_load:[1]

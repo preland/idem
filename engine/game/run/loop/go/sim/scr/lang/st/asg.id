@@ -14,6 +14,8 @@ scr_asg(int tgt, int v, int e) {
     scr_asgf(tgt, v, e);
   }
 } return void;
+given ident_fixture ((import fixture_ident), 5, -1):() then calls scr_set:[1]
+given fld_fixture ((import fixture_fld), 5, 0):() then calls scr_asgf:[1]
 
 scr_asgf(int tgt, int v, int e) {
   if (ast_kd(tgt) = (import ast_k_field)) {
@@ -25,6 +27,8 @@ scr_asgf(int tgt, int v, int e) {
     }
   }
 } return void;
+given fld_fixture ((import fixture_fld), 5, 0):() then calls scr_asgf2:[1]
+given idem_init (0, 5, 0):() then calls scr_asgf2:[0]
 
 scr_asgf2(string bn, string name, int v, int e) {
   if (bn = "scene" || bn = "game") {
@@ -34,3 +38,5 @@ scr_asgf2(string bn, string name, int v, int e) {
     scr_pslot(e, scr_fk_v, v);
   }
 } return void;
+given scr_fixture ("scene", "score", 5, -1):() then calls scr_set:[1]
+given grow_fixture ("pos", "y", 5, 0):() then calls scr_pslot:[1]

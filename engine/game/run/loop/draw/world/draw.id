@@ -15,6 +15,8 @@ ent_draw(int i) {
     i = i + 1;
   }
 } return void;
+given idem_init (0):() then calls ent_layer:[8]
+given idem_init (8):() then calls ent_layer:[0]
 
 ent_layer(int l, int e) {
   while (e < ent_n()) {
@@ -22,6 +24,8 @@ ent_layer(int l, int e) {
     e = e + 1;
   }
 } return void;
+given idem_init (0, 0):() then calls ent_one:[0]
+given grow_fixture (0, 0):() then calls ent_one:[1]
 
 // A sprite if it has one, a shape if it has not. `shape` is what makes a game
 // expressible with no art at all -- a paddle, a ball, a debug marker -- and it is
@@ -32,3 +36,5 @@ ent_one(int l, int e) {
     ent_show(e);
   }
 } return void;
+given grow_fixture (0, 0):() then calls ent_show:[1]
+given grow_fixture (1, 0):() then calls ent_show:[0]

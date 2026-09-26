@@ -7,6 +7,8 @@ ed_row_draw(int x, int y, int w, string s, int k) {
   ed_row_bg(x, y, w, k);
   ed_row_text(x, y, w, s, k);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, "a", 0):() then calls ed_row_bg:(1, 2, 3, 0) then calls ed_row_text:(1, 2, 3, "a", 0)
+given ed_t_boot stdin "" (4, 5, 6, "bc", 2):() then calls ed_row_bg:(4, 5, 6, 2) then calls ed_row_text:(4, 5, 6, "bc", 2)
 
 ed_row_bg(int x, int y, int w, int k) {
   if (k >= 2) {
@@ -19,6 +21,9 @@ ed_row_bg(int x, int y, int w, int k) {
     sf_rect(x, y, w, ed_rowh_v2, ed_col_v2);
   }
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 2):() then calls sf_rect:(1, 2, 3, 18, 0x2D5C88)
+given ed_t_boot stdin "" (1, 2, 3, 1):() then calls sf_rect:(1, 2, 3, 18, 0x4A4A4A)
+given ed_t_boot stdin "" (1, 2, 3, 0):() then calls sf_rect:[0]
 
 // The character budget is the rect's width in *glyphs*, which is why it divides
 // by a scaled cell: the same pane holds the same number of characters at every
@@ -35,3 +40,6 @@ ed_fit(string s, int n) {
     txt = str_slice(s, 0, fx_max_v);
   }
 } return string txt;
+("hello world", 5):("hello")
+("hi", 5):("hi")
+("hello", 5):("hello")

@@ -10,12 +10,16 @@ png_inflate() {
   png_inflate_alloc(n);
   int ret_i = png_inflate2(n);
 } return int ret_i;
+given spr_bird_fixture ():(1) then calls png_inflate_alloc:(360)
+given spr_grey_fixture ():(1) then calls png_inflate_alloc:(10)
 
 png_inflate2(int n) {
   int png_inf2_v = png_inf2(n);
   lset((import png_st), 9, png_inf2_v);
   int ret_i = (import png_st)[9];
 } return int ret_i;
+given spr_bird_fixture (360):(1)
+given spr_bird_fixture (10):(0)
 
 // asset_io[0] + offset: the walk speaks in offsets from the start of the file and
 // the store speaks in addresses. The +2 skips the zlib header.
@@ -24,3 +28,5 @@ png_inf2(int n) {
   int ok = got = n;
   int ret_i = png_unfilt(ok);
 } return int ret_i;
+given spr_bird_fixture (360):(1)
+given spr_bird_fixture (10):(0)

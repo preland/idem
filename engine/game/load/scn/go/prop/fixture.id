@@ -1,0 +1,26 @@
+// Building toward a tiny manifest: `fps 60` first, as a num argument (11)
+// wrapped in an args list (12) under a `fps` component (13).
+scn_game_fx1() {
+  scn_spr_fx5();
+  int n11 = ast_new_num(60, 0);
+  int n12 = ast_new_kids((import ast_k_args), "args", [11]);
+} return void;
+():() then ast_n:(13)
+given ast_init ():() then ast_n:(13)
+
+scn_game_fx2() {
+  scn_game_fx1();
+  int n13 = ast_new_a((import ast_k_comp), "fps", 12);
+  int n14 = ast_new_num(288, 0);
+} return void;
+():() then ast_n:(15)
+given ast_init ():() then ast_n:(15)
+
+// The two numbers `display (288, 512)` needs, joined into a tuple (16).
+scn_game_fx3() {
+  scn_game_fx2();
+  int n15 = ast_new_num(512, 0);
+  int n16 = ast_new_kids((import ast_k_tuple), "", [14, 15]);
+} return void;
+():() then ast_n:(17)
+given ast_init ():() then ast_n:(17)

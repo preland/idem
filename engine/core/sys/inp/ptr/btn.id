@@ -10,7 +10,11 @@
 inp_mdown(int b) {
   int r = ((import inp_mo)[2] & b) != 0;
 } return int r;
+given inp_init (1):(0)
+given inp_t_state (1):(1)
 
 inp_mhit(int b) {
   int r = ((import inp_mo)[2] & b) != 0 && ((import inp_mo)[3] & b) = 0;
 } return int r;
+given inp_init (1):(0)
+given inp_t_state (1):(1)

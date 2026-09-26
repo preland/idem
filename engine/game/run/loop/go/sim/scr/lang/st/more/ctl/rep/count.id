@@ -4,3 +4,5 @@ scr_ex5n(int nd, int e) {
   int v = scr_ev(ia, e);
   int n = fx_min(v, 10000);
 } return int n;
+given repeat_fixture ((import fixture_repeat), -1):(3)
+given idem_init (0, -1):(0)

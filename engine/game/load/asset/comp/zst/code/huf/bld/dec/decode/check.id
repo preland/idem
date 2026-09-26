@@ -1,0 +1,7 @@
+// litp (zst_st[10]), the literals-buffer cursor huf_dec1/huf_dec2 advance --
+// a running count of how many symbols have been decoded so far.
+huf_dec_litp_check() {
+  int hufc_v = (import zst_st)[10];
+} return int hufc_v;
+given huf_dec_setup ():(0)
+given huf_dec_setup given huf_dec_table given huf_dec1 ():(1)

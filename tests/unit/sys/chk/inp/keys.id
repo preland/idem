@@ -14,12 +14,16 @@ t_keys() {
   inp_stamp(87);
   t_keys2();
 } return void;
+():() then calls inp_init:[1]
+():() then calls t_keys2:[1]
 
 t_keys2() {
   inp_stamp(258);
   t_keys2_show();
   t_frame();
 } return void;
+given inp_init ():() then calls t_keys2_show:[1]
+given inp_init ():() then calls t_frame:[1]
 
 // The frame boundary, spelled out: inp_drain bumps this ordinal before it stamps
 // anything, so a press belongs to the frame that is about to run. Auto-repeat is
@@ -30,3 +34,5 @@ t_frame() {
   t_frame_show();
   t_rel();
 } return void;
+given sys_keys_ready ():() then calls t_frame_show:[1]
+given sys_keys_ready ():() then calls t_rel:[1]

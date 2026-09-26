@@ -1,0 +1,9 @@
+// A real, parsed scene var and entity var, so the script language's name
+// lookup has real declarations to scan instead of an empty table.
+scr_fixture() {
+  idem_init();
+  string src = "scene s {\n  var score = 7\n  entity e {\n    var vy = 9\n    script {\n      on start {\n        score = 1\n      }\n    }\n  }\n}";
+  idem_read(src);
+} return void;
+():() then calls idem_read:[1]
+():() then calls idem_init:[1]

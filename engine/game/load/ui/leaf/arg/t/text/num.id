@@ -4,9 +4,13 @@ ui_tnum_ev(int nd) {
   int ast_ia_v = ast_ia(ui_arg0_v);
   int ret_i = scr_ev(ast_ia_v, 0 - 1);
 } return int ret_i;
+given ui_tnum_t_setup (8):(200)
+given ui_tnum_t_setup (8):(200) then ast_n:(9)
 
 // The drawn number's x/y/colour, once its on-screen width is known.
 ui_tnum_xyc(int nd, int x, int y, int w, int h, int scr_ev_v) {
   int txt_num_wsc_v = txt_num_wsc(scr_ev_v, (import ui_ts)[0]);
   int[] xyc = [ui_text_coords(nd, x, y, w, h, txt_num_wsc_v), ui_ty(y, h), ui_tc(nd)];
 } return int[] xyc;
+given txt_init given ui_tnum_t_setup (8, 0, 0, 100, 20, 200):([4, 2, 13158600])
+given txt_init given ui_tnum_t_setup (8, 10, 5, 100, 20, 200):([14, 7, 13158600])

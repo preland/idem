@@ -8,3 +8,5 @@ t_hi(int k) {
     i = i + 3;
   }
 } return int n;
+given mesh_all_ready (0):(1000)
+given mesh_all_ready (1):(1000)

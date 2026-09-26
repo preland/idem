@@ -9,6 +9,8 @@ huf_used(int b0, int p) {
     n = 1 + (b0 - 127 + 1) / 2;
   }
 } return int n;
+(0, 0):(1)
+(128, 0):(2)
 
 // The weights are an FSE stream in their own right, with accuracy log at most 6,
 // decoded by two interleaved states -- a different use of FSE from the sequences,
@@ -17,6 +19,8 @@ huf_wfse(int p, int n) {
   fse_read((import zst_st)[0] + p, n, 255);
   int ret_i = huf_wfse_build(p, n);
 } return int ret_i;
+given huf_init given huf_ab_init given huf_wfse_setup (0, 1):(0)
+given huf_init given huf_ab_init given huf_wfse_setup (0, 2):(0)
 
 // The two initial states are read in SEPARATE statements. Both consume bits, and
 // two side-effecting calls in one expression may evaluate in either order in this
@@ -27,3 +31,5 @@ huf_wrun(int p, int n) {
   int huf_wskip_v = huf_wskip();
   int ret_i = huf_wrun_setup(zst_st_v, p, huf_wskip_v, n);
 } return int ret_i;
+given huf_init given huf_wtop_setup (0, 2):(256)
+given huf_init given huf_wtop_setup (0, 1):(0)

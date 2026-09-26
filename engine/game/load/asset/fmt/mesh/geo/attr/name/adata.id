@@ -4,8 +4,12 @@ bl_adata(int o) {
   int i = bl_at(bl_lew_v);
   int k = bl_adata_get(i);
 } return int k;
+given bl_mesh_t_load (352244):(1063)
+given bl_geo_init given bl_dna_t_bytes (0):(-1)
 
 bl_adata_get(int i) {
   int k = 0 - 1;
   if (i >= 0) { word bl_lew_v2 = bl_lew((import bl_bp)[i]); k = bl_at(bl_lew_v2); }
 } return int k;
+given bl_mesh_t_load (1064):(1063)
+given bl_mesh_t_load (-1):(-1)

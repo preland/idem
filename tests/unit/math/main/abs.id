@@ -3,14 +3,20 @@ t_fxabs2(int fx_abs_v, int fx_abs_v2) {
   print("fx_abs(-7,7,0) exp 7 7 0 = " + fx_abs_v + " " + fx_abs_v2 + " " + fx_abs_v3);
   t_fxminmax();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls fx_abs:(0)
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_fxminmax:[1]
 
 t_fxminmax() {
   int fx_min_v = fx_min(0 - 3, 5);
   int fx_max_v = fx_max(0 - 3, 5);
   t_fxminmax2(fx_min_v, fx_max_v);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_min:(-3, 5)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxminmax2:(-3, 5)
 
 t_fxminmax2(int fx_min_v, int fx_max_v) {
   print("fx_min(-3,5) exp -3 | fx_max(-3,5) exp 5 = " + fx_min_v + " " + fx_max_v);
   t_fxlim();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls t_fxlim:[1]
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_fxlim:[1]

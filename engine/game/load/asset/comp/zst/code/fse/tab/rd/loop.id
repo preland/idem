@@ -10,14 +10,21 @@ fse_rloop() {
     fse_rone();
   }
 } return void;
+given fse_init ():()
+given zf_st_val_setup ():()
 
 fse_rone() {
   fse_zrun();
   fse_rval();
 } return void;
+given fse_init ():()
+given zf_st_val_setup ():()
 
 fse_zrun() {
   if ((import fse_st)[5] = 1) {
     fse_zrun2();
   }
 } return void;
+given fse_init ():()
+given zf_st_val_setup ():()
+

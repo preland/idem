@@ -7,6 +7,8 @@ t_rep3() {
   t_rep3_show();
   t_rep4();
 } return void;
+given tin_rep2_ready ():() then calls t_hold:(5300)
+given tin_rep2_ready ():() then calls t_rep3_show:[1]
 
 // 5450 is the first frame at or after 5420, so this is where the repeat starts.
 t_rep4() {
@@ -14,6 +16,8 @@ t_rep4() {
   t_rep4_show();
   t_rep5();
 } return void;
+given tin_rep3_ready ():() then calls t_hold:(5450)
+given tin_rep3_ready ():() then calls t_rep4_show:[1]
 
 // The next deadline is 5450 + 30 = 5480, so 5470 is 10 ms short of it. This is
 // the frame that catches a repeat which fires on every frame once it has
@@ -23,3 +27,5 @@ t_rep5() {
   t_rep5_show();
   t_rep6();
 } return void;
+given tin_rep4_ready ():() then calls t_hold:(5470)
+given tin_rep4_ready ():() then calls t_rep5_show:[1]

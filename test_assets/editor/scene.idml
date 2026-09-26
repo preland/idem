@@ -1,0 +1,5 @@
+scene t {
+  entity f {
+    pos (20, 30)
+  }
+}

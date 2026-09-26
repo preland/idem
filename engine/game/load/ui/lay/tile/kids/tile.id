@@ -14,11 +14,15 @@ ui_tile(int nd, int x, int y, int w, int h) {
   int ui_axis_v = ui_tile_axis(nd);
   ui_kids(nd, x, y, w, h, ui_axis_v);
 } return void;
+given ui_row_t_setup (1, 0, 0, 100, 50):() then calls ui_kids_loop:([], 0, 0, 100, 50, 1)
+given ui_col_t_setup (2, 0, 0, 100, 50):() then calls ui_kids_loop:([], 0, 0, 100, 50, 0)
 
 ui_kids(int nd, int x, int y, int w, int h, int k) {
   int[] ks = ast_ks(nd);
   ui_kids_loop(ks, x, y, w, h, k);
 } return void;
+given ui_row_t_setup (1, 0, 0, 100, 50, 1):() then calls ui_kids_loop:([], 0, 0, 100, 50, 1)
+given ui_row_t_setup (1, 0, 0, 100, 50, 0):() then calls ui_kids_loop:([], 0, 0, 100, 50, 0)
 
 // One child, at offset p along the main axis. Answers how far it advanced the
 // offset, which is 0 for a stacked child and for a gated one that did not render.
@@ -28,3 +32,5 @@ ui_kid(int nd, int x, int y, int w, int h, int k, int p) {
     n = ui_place(nd, x, y, w, h, k, p);
   }
 } return int n;
+given ui_row_t_setup (1, 0, 0, 100, 50, 1, 0):(100)
+given ui_row_t_setup (1, 0, 0, 100, 50, 0, 5):(50)

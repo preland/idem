@@ -3,3 +3,5 @@ bl_ftype(int p) {
   int bl_le16_v = bl_le16(p + 2);
   int np = bl_nth(bl_st_v, bl_le16_v);
 } return int np;
+given bl_sfind_t_setup (97):(61)
+given bl_sfind_t_setup (93):(63)

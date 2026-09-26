@@ -5,17 +5,23 @@ t_acc2(int c) {
   t_acc2_g(c);
   t_acc2_b(c);
 } return void;
+given spr_ready2 given t_st_export (5):() then calls t_acc2_r:(5)
+given spr_ready2 given t_st_export (5):() then calls t_acc2_b:(5)
 
 // The whole 2560x2560 sheet as ONE frame sampled down to 8x8 -- the cols = rows = 1
 // path at an extreme ratio. Its pixel (4,4) samples source (1280, 1280), the same
 // pixel frame 12 above lands on, so the two paths must agree on it.
 t_whole() {
-  int p = spr_png("thumb", "test_assets/spryte-run.png", 1, 1, 8, 8);
+  int p = spr_png("thumb", "../../../test_assets/spryte-run.png", 1, 1, 8, 8);
   t_whole_show(p);
   t_report(p, 64, "thumb");
 } return void;
+given spr_ready2 given t_st_export ():() then calls spr_png:("thumb", "../../../test_assets/spryte-run.png", 1, 1, 8, 8)
+given spr_ready2 given t_st_export ():() then prints:("thumb: 8x8 frames 1 (4,4) exp 15657421 = 15657421\n  thumb clear 52 sums 2199 1595 1292\n")
 
 t_whole_show(int p) {
   string msg = "thumb: " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p) + " (4,4) exp 15657421 = " + d2_spr_at(p, 4 * 8 + 4);
   print(msg);
 } return void;
+given spr_wide_ready ((import t_wide_p)):() then calls d2_spr_w:((import t_wide_p))
+given spr_wide_ready ((import t_wide_p)):() then prints:("thumb: 10x10 frames 1 (4,4) exp 15657421 = 8421504\n")

@@ -1,0 +1,12 @@
+// The fault flag set, for the branch zst_out takes on a corrupt stream.
+zst_err_setup() {
+  lset((import zst_st), 6, 1);
+} return void;
+given zst_init ():() then zst_err_check:(1)
+given zst_src_setup ():() then zst_err_check:(1)
+
+zst_err_check() {
+  int zstf_v = (import zst_st)[6];
+} return int zstf_v;
+given zst_init ():(0)
+given zst_init given zst_err_setup ():(1)

@@ -2,10 +2,14 @@ ast_new_abc(int kd, string txt, int a, int b, int c) {
   int[] kids = [];
   int v = ast_new(kd, txt, a, b, c, kids);
 } return int v;
+given ast_init (100, "x", 5, 6, 7):(1) then ast_n:(2)
+given ast_init (101, "y", 8, 9, 10):(1) then ast_n:(2)
 
 ast_new_kids(int kd, string txt, int[] kids) {
   int v = ast_new(kd, txt, 0, 0, 0, kids);
 } return int v;
+given ast_init (100, "x", [1, 2]):(1) then ast_n:(2)
+given ast_init (101, "y", []):(1) then ast_n:(2)
 
 // The only node whose a/b are plain integers rather than node ids: the digits as
 // an integer, plus how many are still owed to a slot's scale (0 once scaled).
@@ -14,3 +18,5 @@ ast_new_num(int v, int fr) {
   int kd = (import ast_k_num);
   int result = ast_new(kd, "", v, fr, 0, kids);
 } return int result;
+given ast_init (395, 2):(1) then ast_n:(2)
+given ast_init (0, 0):(1) then ast_n:(2)

@@ -18,7 +18,7 @@ main(int argc, string[] argv) {
 
 t_load() {
   inf_init();
-  int png_load_v = png_load("test_assets/spryte-run.png");
+  int png_load_v = png_load("../../../test_assets/spryte-run.png");
   t_load_p(png_load_v);
 } return void;
 

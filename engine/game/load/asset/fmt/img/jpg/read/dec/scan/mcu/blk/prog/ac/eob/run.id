@@ -1,9 +1,11 @@
 // Starting an end-of-band run, and writing a first-pass coefficient.
 
 jpg_peob2(int rn) {
-  int n = inf_pow2(rn) - 1;
+  int n = fx_pow(2, rn) - 1;
   jpg_eobset(n, rn);
 } return int 0;
+given jpg_coefbuf_fixture (0):(0) then calls jpg_eobset:(0, 0)
+given jpg_coefbuf_fixture (3):(0) then calls jpg_eobset:(7, 3)
 
 // The extra bits are read only when there are any: recv(0) would be harmless but
 // the run length must be computed before them, and keeping the two apart is what
@@ -14,6 +16,8 @@ jpg_eobset(int n, int rn) {
   }
   lset((import jpg_st), 17, n);
 } return void;
+given jpg_coefbuf_fixture (5, 0):() then jpg_eob_check:(5)
+given jpg_coefbuf_fixture (0, 3):() then jpg_eob_check:(4)
 
 jpg_pacv(int ci, int a, int k, int sz) {
   int nk = 0;
@@ -22,3 +26,5 @@ jpg_pacv(int ci, int a, int k, int sz) {
     nk = k + 1;
   }
 } return int nk;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 0, 7):(1) then calls jpg_cwrite1:((import jpg_coef_a), 0, 7)
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 1, 7):(0) then calls jpg_cwrite1:[0]

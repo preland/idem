@@ -1,0 +1,16 @@
+// Two num nodes (index 1 = 42, index 2 = 99) for ui_dim's a/b hop.
+ui_dim_t_nums() {
+  ast_init();
+  int n1 = ast_new_num(42, 0);
+  int n2 = ast_new_num(99, 0);
+} return void;
+():() then ast_n:(3)
+given ast_init ():() then ast_n:(3)
+
+// An item node (index 3) whose a = node 1 (42) and b = node 2 (99).
+ui_dim_t_setup() {
+  ui_dim_t_nums();
+  int n3 = ast_new_ab(5, "item", 1, 2);
+} return void;
+():() then ast_n:(4)
+given ast_init ():() then ast_n:(4)

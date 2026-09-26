@@ -3,8 +3,12 @@ ed_tool2() {
   ed_tool(90 * ui, 2, "turn");
   ed_tool3(ui);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_tool:(90, 2, "turn")
+given ed_t_boot stdin "" ():() then calls ed_tool3:(1)
 
 ed_tool3(int ui) {
   ed_tool(132 * ui, 3, "size");
   ed_play();
 } return void;
+given ed_t_boot stdin "" (1):() then calls ed_tool:(132, 3, "size")
+given ed_t_boot stdin "" (2):() then calls ed_tool:(264, 3, "size")

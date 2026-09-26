@@ -1,0 +1,25 @@
+// The parse cursor (jpg_st[9]) as a value, and two fixtures that leave it at
+// a real segment boundary in grad.jpg -- 89 is DQT1's end (and DQT2's start),
+// 201 is DHT1's end (and DHT2's start), both read straight off the file with
+// xxd. jpg_end.id's cases read the cursor rather than taking it as an
+// argument, so a case has to set it up first.
+
+jpg_p9_check() {
+  int v = (import jpg_st)[9];
+} return int v;
+given jpg_init ():(0)
+given jpg_p9_89_fixture ():(89)
+
+jpg_p9_89_fixture() {
+  jpg_raw_fixture();
+  lset((import jpg_st), 9, 89);
+} return void;
+():() then jpg_p9_check:(89)
+given jpg_init ():() then jpg_p9_check:(89)
+
+jpg_p9_201_fixture() {
+  jpg_raw_fixture();
+  lset((import jpg_st), 9, 201);
+} return void;
+():() then jpg_p9_check:(201)
+given jpg_init ():() then jpg_p9_check:(201)

@@ -34,6 +34,8 @@ tin_init() {
   export int[] tin_st = [0, 0, 0, 0, 0];
   export string[] tin_s = [""];
 } return void;
+():() then tin_text:("")
+():() then tin_caret:(0)
 
 // Put text in the field and drop the caret at its end, which is where someone
 // who has just been handed a value to edit expects it.
@@ -41,7 +43,11 @@ tin_set(string s) {
   int len_v = len(s);
   tin_put(s, len_v);
 } return void;
+given tin_init ("hi"):() then tin_text:("hi") then tin_caret:(2)
+given tin_init (""):() then tin_text:("") then tin_caret:(0)
 
 tin_text() {
   string ret_s = (import tin_s)[0];
 } return string ret_s;
+given tin_init ():("")
+given tin_t_hi_setup ():("hi")

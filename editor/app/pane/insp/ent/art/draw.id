@@ -2,3 +2,24 @@ ed_insp_tag_draw_line(int x, int y, int w, int h, int ui) {
   int col = ed_col(3);
   d2_hline(x + 4 * ui, y + 2 * (h + 2), w - 8 * ui, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 20, 1):() then calls d2_hline:(4, 54, 92, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 0, 50, 10, 2):() then calls d2_hline:(13, 24, 34, 0x1C1C1C)
+
+// One entity, selected (component 23 bit 0 set) -- for ed_nsel/ed_first's own
+// "something is actually selected" case, which ed_t_ent alone never is.
+ed_t_ent_sel() {
+  ent_add();
+  ent_put(0, 23, 1);
+} return void;
+given ed_t_boot stdin "" ():() then calls ent_add:[1]
+given ed_t_boot stdin "" ():() then calls ent_put:(0, 23, 1)
+
+// One entity with tag bit 0 set (component 20) and one script tag name, for
+// ed_tag1's own case that needs a name to actually read from scr_tn.
+ed_t_ent_tag0() {
+  ent_add();
+  ent_put(0, 20, 1);
+  push((import scr_tn), "alpha");
+} return void;
+given ed_t_boot stdin "" ():() then calls ent_put:(0, 20, 1)
+given ed_t_boot stdin "" ():() then calls ent_add:[1]

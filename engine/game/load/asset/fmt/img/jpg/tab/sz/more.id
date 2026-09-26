@@ -6,6 +6,8 @@ jpg_init4b() {
   export int[] jpg_nb = [];
   jpg_init4c();
 } return void;
+given jpg_init ():() then calls jpg_init4c:[1]
+given jpg_init2 ():() then calls jpg_init4c:[1]
 
 // jpg_r is the AC-refinement state machine's record: the coefficient index, the
 // zero run still to skip, the value waiting to be placed, and the phase.
@@ -14,3 +16,5 @@ jpg_init4c() {
   lst_fill((import jpg_r), 4, 0);
   jpg_init5();
 } return void;
+given jpg_init ():() then calls jpg_init5:[1]
+given jpg_init2 ():() then calls jpg_init5:[1]

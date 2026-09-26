@@ -5,12 +5,16 @@ t_boot() {
   t_boot_show();
   t_type1();
 } return void;
+given tin_boot_base ():() then calls tin_init:[1]
+given tin_boot_base ():() then calls t_boot_show:[1]
 
 t_type1() {
   t_type("abc", 0, 1000);
   t_type1_show();
   t_move();
 } return void;
+given tin_ready ():() then calls t_type:("abc", 0, 1000)
+given tin_ready ():() then calls t_type1_show:[1]
 
 // 256 is Left. Two of them from the end of a 3-character buffer leave the caret
 // between 'a' and 'b', which is where the next character has to land.
@@ -19,3 +23,5 @@ t_move() {
   t_tap(256, 2100);
   t_ins();
 } return void;
+given tin_typed_ready ():() then calls t_tap:(256, 2000)
+given tin_typed_ready ():() then calls t_ins:[1]

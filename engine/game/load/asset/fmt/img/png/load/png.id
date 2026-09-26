@@ -25,6 +25,8 @@ png_init() {
   lst_fill((import png_st), 16, 0);
   asset_io_init();
 } return void;
+():() then spr_img_w:(0) then asset_pipe_len_check:(0)
+given png_raw_fixture ():() then spr_img_w:(0) then asset_pipe_len_check:(0)
 
 // Load `path`. Answers 1 on success; the pixels are then at png_st[7], one row
 // after another, four bytes per pixel, with the filter bytes removed.
@@ -33,9 +35,13 @@ png_load(string path) {
   int png_open_v = png_open(path);
   int ret_i = png_load2(png_open_v);
 } return int ret_i;
+given png_init ("../games/flappy/art/bird.png"):(1)
+given png_init ("../test_assets/vga8x16.psf"):(0)
 
 png_open(string path) {
   int n = asset_slurp(path);
   int ok = png_sig(n);
   int ret_i = png_walk(ok, 8);
 } return int ret_i;
+given png_init ("../games/flappy/art/bird.png"):(1)
+given png_init ("../test_assets/vga8x16.psf"):(0)

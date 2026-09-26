@@ -18,6 +18,8 @@ bl_vis(int[] tri) {
     bl_shade(tri);
   }
 } return void;
+given bl_vis_t_setup ([10, 10, -1000, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then calls bl_shade:[1]
+given bl_vis_t_setup ([10, 10, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then calls bl_shade:[0]
 
 // Quartered on the way into the lighting, which is where the components have to
 // fit an int and be squared: 4e8 each, so the sum of squares is 4.8e17 and its
@@ -28,3 +30,5 @@ bl_shade(int[] tri) {
   int nvy = (import bl_e)[1] / 4;
   bl_shade2(tri, nvx, nvy);
 } return void;
+given bl_vis_t_setup ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then calls bl_shade2:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], -12500, 12250)
+given asset_io_init given bl_vis_t_setup ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then calls bl_shade2:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], -12500, 12250)

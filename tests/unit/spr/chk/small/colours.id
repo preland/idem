@@ -1,16 +1,20 @@
 // The four colour types, each loaded whole at its native size.
 
-t_small() {
-  t_one("grey", "tests/unit/spr/img/grey.png");
-  t_one("ga", "tests/unit/spr/img/ga.png");
-  t_small2();
+t_small(string path) {
+  t_one("grey", "img/grey.png");
+  t_one("ga", "img/ga.png");
+  t_small2(path);
 } return void;
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_one:[4]
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_small2:("img/grey.png")
 
-t_small2() {
-  t_one("rgb", "tests/unit/spr/img/rgb.png");
-  t_one("rgba", "tests/unit/spr/img/rgba.png");
-  t_big();
+t_small2(string path) {
+  t_one("rgb", "img/rgb.png");
+  t_one("rgba", "img/rgba.png");
+  t_big(path);
 } return void;
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_one:[2]
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_big:("img/grey.png")
 
 // cols = rows = 1 is a whole image as one frame; 0, 0 keeps the source's size.
 t_one(string name, string path) {
@@ -18,3 +22,5 @@ t_one(string name, string path) {
   t_one_show(name, p);
   t_one_dump(p);
 } return void;
+given spr_ready2 ("grey", "img/grey.png"):() then calls spr_png:("grey", "img/grey.png", 1, 1, 0, 0)
+given spr_ready2 ("grey", "img/grey.png"):() then calls t_one_dump:[1]

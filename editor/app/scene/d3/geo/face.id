@@ -15,11 +15,15 @@
 ed_gline(int x0, int z0, int x1, int z1, int c) {
   ed_quad(x0 - 15 * (z0 != z1), z0 - 15 * (x0 != x1), x1 + 15 * (z0 != z1), z1 + 15 * (x0 != x1), 0, c);
 } return void;
+given ed_t_boot stdin "" (0, 0, 1000, 0, 0xFF):() then calls ed_quad:(0, -15, 1000, 15, 0, 0xFF)
+given ed_t_boot stdin "" (0, 0, 0, 1000, 0xFF):() then calls ed_quad:(-15, 0, 15, 1000, 0, 0xFF)
 
 ed_quad(int x0, int z0, int x1, int z1, int y, int c) {
   ed_face(x0, y, z0, x1, y, z1, x1, y, z0, c);
   ed_face(x0, y, z0, x0, y, z1, x1, y, z1, c);
 } return void;
+given ed_t_boot stdin "" (0, -15, 1000, 15, 0, 0xFF):() then calls ed_face:(0, 0, -15, 1000, 0, 15, 1000, 0, -15, 0xFF)
+given ed_t_boot stdin "" (0, -15, 1000, 15, 0, 0xFF):() then calls ed_face:(0, 0, -15, 0, 0, 15, 1000, 0, 15, 0xFF)
 
 // One triangle, in world space, straight into the pipeline. The record is
 // rebuilt for every triangle rather than kept: d3_wtri transforms it in place, so
@@ -28,3 +32,5 @@ ed_face(int x0, int y0, int z0, int x1, int y1, int z1, int x2, int y2, int z2, 
   int[] tri = [x0, y0, z0, x1, y1, z1, x2, y2, z2, c, c, c];
   d3_wtri(tri);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 4, 5, 6, 7, 8, 9, 10):() then calls d3_wtri:([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10])
+given ed_t_boot stdin "" (0, 0, 0, 0, 0, 0, 0, 0, 0, 0):() then calls d3_wtri:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])

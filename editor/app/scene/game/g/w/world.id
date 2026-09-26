@@ -10,8 +10,12 @@ ed_plane4(int x, int y, int w, int h) {
   lset((import ui_ts), 0, psc);
   ed_plane4_draw(x, y, w, h);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls ed_plane4_draw:(10, 20, 30, 40)
+given ed_t_boot given ed_t_lay stdin "" (5, 6, 7, 8):(5, 6, 7, 8) then calls ed_plane4_draw:(5, 6, 7, 8)
 
 ed_plane4_draw(int x, int y, int w, int h) {
   ui_draw((import ed_gu)[0], x, y, w, h);
   ed_plane5(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls ui_draw:(0, 10, 20, 30, 40)
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls ed_plane5:(10, 20, 30, 40)

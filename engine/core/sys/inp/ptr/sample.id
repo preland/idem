@@ -35,8 +35,12 @@ inp_sample() {
   int b = gfx_mouse_buttons();
   inp_sample_tail(b);
 } return void;
+given sf_t_setup given inp_init ():() then calls inp_sample_tail:(0)
+given sf_t_setup given inp_init ():() then calls inp_sample_get_xy:[1]
 
 inp_sample_tail(int b) {
   lset((import inp_mo), 2, b);
   inp_sample_get_xy();
 } return void;
+given sf_t_setup given inp_init (5):() then calls lset:[3]
+given sf_t_setup given inp_init (1):() then inp_mx:(0) then inp_my:(0)

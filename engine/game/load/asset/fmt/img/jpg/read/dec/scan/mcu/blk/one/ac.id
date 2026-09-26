@@ -8,14 +8,20 @@ jpg_diff(int sz) {
   int v = 0;
   if (sz > 0) { int jpg_recv_v = jpg_recv(sz); v = jpg_ext(jpg_recv_v, sz); }
 } return int v;
+given jpg_huff2_fixture (7):(-96)
+given jpg_huff2_fixture (0):(0)
 
 jpg_ac(int ci, int a, int k) {
   while (k > 0 && k < 64 && (import jpg_st)[8] = 1) {
     k = jpg_ac1(ci, a, k);
   }
 } return void;
+given jpg_acbuf_fixture (0, (import jpg_coef_a), 63):() then calls jpg_ac1:(0, (import jpg_coef_a), 63)
+given jpg_acbuf_fixture (0, (import jpg_coef_a), 64):() then calls jpg_ac1:[0]
 
 jpg_ac1(int ci, int a, int k) {
   int rs = jpg_dec((import jpg_c)[ci * 10 + 5]);
   int ret_i = jpg_ac2(ci, a, k, rs / 16, rs % 16);
 } return int ret_i;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 1):(2) then calls jpg_ac2:(0, (import jpg_coef_a), 1, 0, 7)
+given jpg_coefbuf2_fixture (0, (import jpg_coef_a), 1):(0) then calls jpg_ac2:(0, (import jpg_coef_a), 1, 0, 0)

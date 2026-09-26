@@ -8,3 +8,5 @@ bl_foff(int si, string name) {
   int bl_le16_v = bl_le16(p + 2);
   int ret_i = bl_fwalk_done(p + 4, bl_le16_v, name);
 } return int ret_i;
+given bl_walk_t_setup (0, "x"):(0)
+given bl_walk_t_setup (0, "nope"):(-1)

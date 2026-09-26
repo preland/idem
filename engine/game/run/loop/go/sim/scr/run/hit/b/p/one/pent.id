@@ -6,3 +6,5 @@ scr_pent(string evn, int e) {
     scr_fire(scr_sc_v, evn, e, "");
   }
 } return void;
+given grow_fixture ("press", 0):() then calls scr_sc:[1]
+given grow_fixture ("press", 0):() then calls ent_at:[2]

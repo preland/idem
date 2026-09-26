@@ -1,11 +1,17 @@
 ast_lnof(int nd) {
   int ln = (import ast_line)[nd];
 } return int ln;
+given ast_init (0):(0)
+given ast_known_setup (1):(7)
 
 ast_n() {
   int n = len((import ast_kind));
 } return int n;
+given ast_init ():(1)
+given ast_known_setup ():(2)
 
 ast_kname(int kd) {
   string nm = (import ast_kn)[kd - (import ast_kbase)];
 } return string nm;
+given ast_init (100):("nil")
+given ast_init (101):("file")

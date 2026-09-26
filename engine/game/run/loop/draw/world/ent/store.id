@@ -42,11 +42,17 @@ ent_init() {
   sim_init();
   scr_init();
 } return void;
+():() then calls sim_init:[1]
+():() then calls scr_init:[1]
 
 ent_at(int e, int k) {
   int ret_i = (import ent_r)[e * 28 + k];
 } return int ret_i;
+given grow_fixture (0, 6):(-1)
+given put_fixture (0, 4):(777)
 
 ent_put(int e, int k, int v) {
   lset((import ent_r), e * 28 + k, v);
 } return void;
+given grow_fixture (0, 4, 777):() then calls lset:[1]
+given put_fixture (0, 4, 1000):() then calls lset:[1]

@@ -1,0 +1,19 @@
+// A `Text(200, "hi")` item's two positional arguments (4, 5), for ui_arg and
+// ui_sarg's own cases.
+ui_item_fx1() {
+  ui_leaf_t_setup();
+  int n4 = ast_new_num(200, 0);
+  int n5 = ast_new_k((import ast_k_str), "hi");
+} return void;
+():() then ast_n:(6)
+given ast_init ():() then ast_n:(6)
+
+// The item itself (7): its two arguments (4, 5) gathered under an args node
+// (6), the shape ui_arg and ui_sarg both read.
+ui_item_fx2() {
+  ui_item_fx1();
+  int n6 = ast_new_kids((import ast_k_args), "args", [4, 5]);
+  int n7 = ast_new_a((import ast_k_comp), "Text", 6);
+} return void;
+():() then ast_n:(8)
+given ast_init ():() then ast_n:(8)

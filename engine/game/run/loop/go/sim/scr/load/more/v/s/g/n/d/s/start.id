@@ -7,6 +7,8 @@ scn_enter4(int nd) {
   scr_fire((import scn_st)[9], "enter", 0 - 1, "");
   scn_starts(0);
 } return void;
+given game_fixture_scene ((import fixture_scene)):() then calls scn_spawn:[1]
+given idem_init (0):() then calls scn_starts:[1]
 
 // `on start`, for every entity the scene declared.
 //
@@ -20,8 +22,12 @@ scn_starts(int e) {
     e = e + 1;
   }
 } return void;
+given idem_init (0):() then calls scn_start1:[0]
+given grow_fixture (0):() then calls scn_start1:[1]
 
 scn_start1(int e) {
   int scr_sc_v = scr_sc(e);
   scr_fire(scr_sc_v, "start", e, "");
 } return void;
+given grow_fixture (0):() then calls scr_fire:[1]
+given grow2_fixture (1):() then calls scr_fire:[1]

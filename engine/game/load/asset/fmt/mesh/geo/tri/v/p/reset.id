@@ -5,8 +5,12 @@ bl_geo3() {
   bl_wm_init();
   bl_lit_init();
 } return void;
+():() then calls bl_wm_init:[1] then calls bl_lit_init:[1]
+given asset_io_init ():() then calls bl_wm_init:[1] then calls bl_lit_init:[1]
 
 bl_reset() {
   while (len((import bl_v)) > 0) { pop((import bl_v)); }
   while (len((import bl_ti)) > 0) { pop((import bl_ti)); }
 } return void;
+given bl_geo_init_t_two ():() then bl_geo_init_t_check:(0)
+given bl_geo_init ():() then bl_geo_init_t_check:(0)

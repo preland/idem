@@ -4,3 +4,25 @@ t_two(int e) {
   int ent_add_v = ent_add();
   print("first id exp 0, second exp 1 = " + e + " " + ent_add_v);
 } return void;
+given sim_e0_ready (0):() then calls ent_add:[1]
+given sim_e0_ready (0):() then prints:("first id exp 0, second exp 1 = 0 1\n")
+
+// Entities 0 and 1, entity 0 after sim_move has run once (see t_move in
+// ../../move.id).
+sim_move_ready() {
+  sim_e1_ready();
+  ent_put(0, 2, 0 - 120000);
+  sim_move(0, 16);
+} return void;
+():() then calls sim_e1_ready:[1]
+():() then calls sim_move:(0, 16)
+
+// Entity 1, with a body and gravity set up -- the state t_grav itself builds
+// (see ../g/grav/drive.id), so a case can start from just after it runs.
+sim_grav1_ready() {
+  sim_e1_ready();
+  m4_pair((import scn_st), 7, 8, 0, 1500000);
+  ent_put(1, 9, 5);
+} return void;
+():() then calls sim_e1_ready:[1]
+():() then calls ent_put:(1, 9, 5)

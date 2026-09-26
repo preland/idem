@@ -5,3 +5,5 @@ zst_sone_dsym(int ll, int last) {
   int fse_dsym_v = fse_dsym(2, (import zst_sq)[2]);
   zst_sone2(ll, of, fse_dsym_v, last);
 } return void;
+given zstsq_setup (0, 0):() then calls zst_sone2:[1]
+given zstsq_setup (1, 1):() then calls zst_sone2:[1]

@@ -14,15 +14,21 @@ scn_enter(int nd) {
   lset((import scr_st), 2, 0);
   scn_enter2(nd);
 } return void;
+given game_fixture_scene ((import fixture_scene)):() then calls scn_enter2:[1]
+given idem_init (0):() then calls scn_enter2:[1]
 
 scn_enter2(int nd) {
   ent_clear();
   scn_svars(nd, 0);
   scn_enter3(nd);
 } return void;
+given game_fixture_scene ((import fixture_scene)):() then calls ent_clear:[1]
+given idem_init (0):() then calls scn_enter3:[1]
 
 scn_enter3(int nd) {
   int sc = scn_sscript(nd, 0);
   lset((import scn_st), 9, sc);
   scn_enter3b(nd);
 } return void;
+given game_fixture_scene ((import fixture_scene)):() then calls scn_enter3b:[1]
+given idem_init (0):() then calls scn_enter3b:[1]

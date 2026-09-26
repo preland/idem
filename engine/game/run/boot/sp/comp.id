@@ -11,6 +11,9 @@ scn_mtup(int nd, string name, int k) {
     }
   }
 } return int v;
+given idem_init (0, "pos", 0):(0)
+given game_fixture_nd ((import fixture_nd), "pos", 0):(144)
+given game_fixture_nd ((import fixture_nd), "vel", 0):(-120)
 
 scn_mem(int nd, string name, int i) {
   int c = 0;
@@ -20,8 +23,12 @@ scn_mem(int nd, string name, int i) {
     i = i + 1;
   }
 } return int c;
+given idem_init (0, "pos", 0):(0)
+given game_fixture_nd ((import fixture_nd), "pos", 0):(7)
 
 scn_ifmem(int nd, string name) {
   int c = 0;
   if (ast_kd(nd) = (import ast_k_comp) && ast_tx(nd) = name) { c = nd; }
 } return int c;
+given idem_init (0, "pos"):(0)
+given game_fixture_nd ((import fixture_nd), "pos"):(0)

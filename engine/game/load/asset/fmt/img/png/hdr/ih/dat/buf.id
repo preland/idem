@@ -6,3 +6,15 @@ png_inflate_alloc(int n) {
   int da = alloc(fx_max_v);
   lset((import png_st), 7, da);
 } return void;
+given png_init (10):() then png_raddr_check:(1)
+given png_init (0):() then png_raddr_check:(1)
+
+// Whether the inflate output buffer (png_st[7]) has ever been claimed --
+// alloc's own address is not deterministic across builds, so this asks
+// only whether it moved off its zeroed default.
+png_raddr_check() {
+  int v = 0;
+  if ((import png_st)[7] > 0) { v = 1; }
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(1)

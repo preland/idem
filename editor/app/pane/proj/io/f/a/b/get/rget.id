@@ -3,9 +3,13 @@ ed_rnow(int h, int[] buf) {
   if (h >= 0) { int len_v = len(buf); n = fs_read(h, buf, len_v); }
   ed_wshut(h);
 } return int n;
+given ed_t_rhandle_open ((import ed_t_rhandle), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):(46)
+(-1, []):(0)
 
 ed_rget(string path, int[] buf) {
   int h = fs_open(path, "r");
   int n = ed_rnow(h, buf);
   string ret_s = ed_rstr(buf, 0, n, "");
 } return string ret_s;
+("../test_assets/editor/scene.idml", [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):("scene t {\n  entity f {\n    pos (20, 30)\n  }\n}\n")
+("", []):("")

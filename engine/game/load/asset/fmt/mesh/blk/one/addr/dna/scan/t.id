@@ -1,0 +1,31 @@
+// Fixture for bl_find/bl_dna2: runs the real block walk over the dna
+// cluster's synthetic .blend so bl_bc/bl_bp hold one real DNA1 entry,
+// instead of the file-parsing pipeline (too slow to run per case).
+
+bl_walk_t_setup() {
+  bl_dna_t_bytes();
+  int probe = bl_walk(17);
+} return void;
+():() then asset_pipe_byte0_check:(66)
+given asset_io_init ():() then asset_pipe_byte0_check:(66)
+
+// Pokes a literal byte list into the store, so a fixture can lay out an exact
+// synthetic file without one `lset`/`poke8` statement per byte (the 3-action
+// limit rules that out for anything longer than a couple of bytes).
+bl_dna_t_fill(int[] bl_fillsrc, int n) {
+  int i = 0;
+  while (i < n) {
+    poke8((import asset_io)[0] + i, bl_fillsrc[i]);
+    i = i + 1;
+  }
+} return void;
+given asset_pipe_fixture ([65, 66, 67], 3):() then asset_pipe_byte0_check:(65)
+given asset_pipe_fixture ([9, 8], 2):() then asset_pipe_byte0_check:(9)
+
+bl_num_t_setup() {
+  bl_al_t_setup();
+  int[] digits = [53, 50, 51, 0];
+  bl_dna_t_fill(digits, 4);
+} return void;
+():() then asset_pipe_byte0_check:(53)
+given asset_io_init ():() then asset_pipe_byte0_check:(53)

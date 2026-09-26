@@ -5,8 +5,12 @@ scr_key1code(string tx) {
   int kc = scr_kcode(tx);
   push((import scr_kk), kc);
 } return void;
+given idem_init ("space"):() then scr_kklen:(1)
+given key1_fixture ("a"):() then scr_kklen:(2)
 
 scr_key1ev(int nd) {
   string kev = scr_kev(nd);
   push((import scr_ke), kev);
 } return void;
+given key1_node_fixture ((import fixture_key1)):() then scr_kelen:(1)
+given key1_fixture ((import fixture_key1)):() then scr_kelen:(2)

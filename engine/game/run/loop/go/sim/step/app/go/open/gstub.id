@@ -1,0 +1,23 @@
+// Three of idem_app's six behaviour stand-ins (entry.id's header), small and
+// observable, so idem_app and everything downstream of eng_seam has a real
+// function value to call rather than a mock. The other three are gstub2.id
+// (go/sh/l/go/), the nearest directory with room -- app/'s own three entries
+// are already spoken for (entry.id's header comment).
+
+stub_ginit() {
+  print("ginit");
+} return void;
+():() then prints:("ginit\n")
+given idem_init ():() then prints:("ginit\n")
+
+stub_gstage(int k) {
+  int v = k * 10;
+} return int v;
+(0):(0)
+(3):(30)
+
+stub_gstep(int dt) {
+  print("gstep " + ("" + dt));
+} return void;
+(1):() then prints:("gstep 1\n")
+(2):() then prints:("gstep 2\n")

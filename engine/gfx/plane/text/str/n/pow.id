@@ -8,3 +8,6 @@ txt_num_pow(int m) {
     pw = pw * 10;
   }
 } return int pw;
+(0):(1)
+(100):(100)
+(1):(1)

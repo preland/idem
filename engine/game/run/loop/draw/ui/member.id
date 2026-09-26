@@ -6,6 +6,8 @@ run_ui2(int nd) {
     run_ui3(nd);
   }
 } return void;
+given game_fixture_nd given scn_ui_t_scene (4):() then calls run_ui3:(4)
+(0):() then calls run_ui3:[0]
 
 // A scene's `ui` member, by kind.
 scn_ui(int nd, int i) {
@@ -16,6 +18,8 @@ scn_ui(int nd, int i) {
     i = i + 1;
   }
 } return int u;
+given scn_ui_t_scene (4, 0):(1)
+given ast_init (0, 0):(0)
 
 scn_ui2(int u, int nd) {
   int v = u;
@@ -26,3 +30,5 @@ scn_ui2(int u, int nd) {
     }
   }
 } return int v;
+given scn_ui_t_node (0, 2):(1)
+given scn_ui_t_node (5, 1):(5)

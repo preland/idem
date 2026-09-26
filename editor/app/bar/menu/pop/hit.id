@@ -7,6 +7,8 @@ ed_pop_hit(int k, int i, int ok) {
     lset((import ed_st), 15, 0 - 1);
   }
 } return void;
+given ed_t_boot given inp_t_state stdin "" (0, 1, 1):() then calls ed_mdo:(0, 1)
+given ed_t_boot stdin "" (0, 1, 0):() then calls ed_mdo:[0]
 
 // A click that was not on an item closes the menu. It runs after the items have
 // had their chance, so an item's own click is consumed before this sees it -- and
@@ -21,3 +23,16 @@ ed_pop_off() {
     }
   }
 } return void;
+given ed_t_boot given ed_t_menu_open given ed_t_click_below stdin "" ():() then calls lset:[1]
+given ed_t_boot stdin "" ():() then calls lset:[0]
+
+// A click below the header bar (past every menu title, and past the File
+// menu's own last row), with the button just pressed -- ed_pop_off's own case
+// for the "click missed every item" branch and ed_pop_row3's for a hit that
+// lands, neither of which inp_t_state's fixed (7, 9) can reach.
+ed_t_click_below() {
+  inp_sample_tail(1);
+  inp_sample2_store(10, 94);
+} return void;
+given ed_t_boot stdin "" ():() then calls inp_sample_tail:(1)
+given ed_t_boot stdin "" ():() then calls inp_sample2_store:(10, 94)

@@ -1,8 +1,20 @@
 t_unused() {
   print("");
 } return void;
+():() then prints:("\n")
+given err_init ():() then prints:("\n")
+
+t_read_ready() {
+  lex_init();
+  ast_init();
+  lex_run("script { on start { } }");
+} return void;
+():() then calls lex_run:("script { on start { } }")
+():() then calls ast_init:[1]
 
 t_dump(int[] pos) {
   int par_script_v = par_script(pos);
   ast_dump(par_script_v);
 } return void;
+given t_read_ready ([0]):([7]) then calls ast_dump:[1]
+given t_read_ready ([0]):([7]) then calls par_script:[1]

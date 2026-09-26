@@ -6,3 +6,5 @@ ed_shots(int n, int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (3, 0):() then calls ed_step:[3]
+given ed_t_boot stdin "" (0, 0):() then calls ed_step:[0]

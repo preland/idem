@@ -14,6 +14,8 @@ tin_ins(int key) {
   string parts = tin_ins_parts(s, key);
   tin_put(parts, (import tin_st)[0] + 1);
 } return void;
+given tin_init given txt_init (72):() then tin_text:("H") then tin_caret:(1)
+given tin_t_hi_setup given txt_init (72):() then tin_text:("hHi") then tin_caret:(2)
 
 // Delete the character at i, if there is one. Backspace and Delete are the same
 // operation at two different indices, so the guard is here rather than in each
@@ -29,6 +31,8 @@ tin_del(int i) {
     }
   }
 } return void;
+given tin_t_hi_setup (0):() then tin_text:("i") then tin_caret:(0)
+given tin_init (0):() then tin_text:("")
 
 // Every write to the buffer goes through here, and so does every write to the
 // caret. That is what makes the caret's invariant -- 0 <= caret <= len -- a
@@ -39,3 +43,5 @@ tin_put(string s, int i) {
   int len_v = len(s);
   tin_clamp_caret(i, len_v);
 } return void;
+given tin_init ("abc", 2):() then tin_text:("abc") then tin_caret:(2)
+given tin_init ("abc", 99):() then tin_text:("abc") then tin_caret:(3)

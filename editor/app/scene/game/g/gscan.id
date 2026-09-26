@@ -5,6 +5,8 @@ ed_gparse(int i) {
   int par_item_v = par_item(pos);
   lset((import ed_gu), 0, par_item_v);
 } return void;
+given ed_t_boot stdin "" (18):(18) then calls lset:([99, 7390670, 18874880], 0, 99)
+given ed_t_boot stdin "" (5):(5) then calls lset:([99, 7390670, 18874880], 0, 99)
 
 // `clear 0x70C5CE` in a scene, and `display (288, 512)` in the manifest. Both are
 // a keyword followed by literals, and both have a default that makes a game with
@@ -15,9 +17,13 @@ ed_gclear(int i) {
   }
   ed_gsize(i);
 } return void;
+given ed_t_boot given ed_t_boot_ui stdin "" (14):(14) then calls lset:[1]
+given ed_t_boot stdin "" (0):(0) then calls lset:[0]
 
 ed_gsize(int i) {
   if ((import lex_text)[i] = "display" && (import lex_kind)[i + 2] = (import lex_k_number)) {
     lset((import ed_gu), 2, (import lex_val)[i + 2] * 65536 + (import lex_val)[i + 4]);
   }
 } return void;
+given ed_t_boot given ed_t_boot_ui stdin "" (3):(3) then calls lset:[1]
+given ed_t_boot stdin "" (3):() then traps:("out of bounds")

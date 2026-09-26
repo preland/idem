@@ -9,12 +9,16 @@ zf_start(int sa, int slen) {
   m4_pair((import zf_st), 2, 3, 0, 0);
   m4_pair((import zf_st), 4, 5, slen, 0);
 } return void;
+given fse_init (1, 2):()
+given fse_init (10, 20):()
 
 zf_fill(int n) {
   while ((import zf_st)[3] < n && (import zf_st)[5] = 0) {
     zf_more();
   }
 } return void;
+given fse_init (1):()
+given fse_init (2):()
 
 zf_more() {
   if ((import zf_st)[1] >= (import zf_st)[4]) {
@@ -23,3 +27,6 @@ zf_more() {
     zf_more2();
   }
 } return void;
+given fse_init ():() then calls zf_more2:[0]
+given zf_slen_setup ():() then calls zf_more2:[1]
+

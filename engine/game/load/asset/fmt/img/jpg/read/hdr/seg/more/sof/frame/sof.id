@@ -10,6 +10,8 @@ jpg_sof(int p, int m) {
   lset((import jpg_st), 10, m = 194);
   jpg_sof1(p);
 } return void;
+given jpg_raw_fixture (162, 192):() then jpg_prog_check:(0) then calls jpg_sof1:(162)
+given jpg_raw_fixture (162, 194):() then jpg_prog_check:(1) then calls jpg_sof1:(162)
 
 // Only 8-bit samples. A 12-bit image would need wider coefficients and a
 // different IDCT scaling throughout, so it is refused rather than read as if the
@@ -24,9 +26,13 @@ jpg_sof2(int p, int nc, int prec) {
   lset((import jpg_st), 2, fx_min_v);
   jpg_sof2b(p, nc, prec);
 } return void;
+given jpg_raw_fixture (168, 3, 8):() then calls jpg_sof2b:(168, 3, 8)
+given jpg_raw_fixture (168, 10, 8):() then calls jpg_sof2b:(168, 10, 8)
 
 jpg_prec(int prec, int nc) {
   if (prec != 8 || nc < 1 || nc > 4) {
     lset((import jpg_st), 8, 0);
   }
 } return void;
+given jpg_walk1_fixture (8, 3):() then jpg_ok8_check:(1)
+given jpg_walk1_fixture (7, 3):() then jpg_ok8_check:(0)

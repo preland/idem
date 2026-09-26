@@ -24,11 +24,15 @@ par_doc(int[] pos) {
   int ast_k_file_v = (import ast_k_file);
   int ret_i = ast_new_kids(ast_k_file_v, "", kids);
 } return int ret_i;
+given par_dtop_setup ([0]):(2) then calls ast_new_kids:(101, "", [1])
+given par_dtop_setup ([2]):(1) then calls ast_new_kids:(101, "", [])
 
 par_doc_kids(int[] pos) {
   int[] kids = [];
   par_dfill(pos, kids);
 } return int[] kids;
+given par_dtop_setup ([0]):([1]) then calls ast_new_k:(145, "weird")
+given par_dtop_setup ([2]):([])
 
 par_dfill(int[] pos, int[] kids) {
   while (par_kind(pos) != (import lex_k_eof)) {
@@ -36,3 +40,5 @@ par_dfill(int[] pos, int[] kids) {
     push(kids, par_top_v);
   }
 } return void;
+given par_dtop_setup ([0], []):([2], [1]) then calls ast_new_k:(145, "weird")
+given par_dtop_setup ([2], []):([2], [])

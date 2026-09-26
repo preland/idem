@@ -5,15 +5,21 @@ scr_fn2(string name, int a, int b) {
   if (name = "sin") { v = fx_sin(a); }
   else { v = scr_fn3(name, a, b); }
 } return int v;
+given idem_init ("sin", 0, 0):(0)
+given idem_init ("cos", 0, 0):(1000)
 
 scr_fn3(string name, int a, int b) {
   int v = 0;
   if (name = "cos") { v = fx_cos(a); }
   else { v = scr_fn4(name, a, b); }
 } return int v;
+given idem_init ("cos", 0, 0):(1000)
+given idem_init ("abs", -5, 0):(5)
 
 scr_fn4(string name, int a, int b) {
   int v = 0;
   if (name = "abs") { v = fx_abs(a); }
   else { v = scr_fn5(name, a, b); }
 } return int v;
+given idem_init ("abs", -5, 0):(5)
+given idem_init ("min", 3, 7):(3)

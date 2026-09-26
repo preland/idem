@@ -14,6 +14,8 @@ zst_comp(int n) {
   zst_lits();
   zst_seqs(end);
 } return void;
+given zst_src_setup (0):() then calls zst_lits:[1]
+given zst_src_setup (8):() then calls zst_lits:[1]
 
 // Literals_Section_Header: two bits of type, two of size format, then one to
 // three more bytes of sizes packed against them.
@@ -26,6 +28,8 @@ zst_lits() {
   int h = zst_byte((import zst_st)[1]);
   zst_lkind(h % 4, h / 4 % 4, h);
 } return void;
+given zst_src_setup ():() then calls zst_lkind:[1]
+given zst_src_setup ():() then calls zst_byte:[2]
 
 zst_lkind(int kd, int sf, int h) {
   if (kd = 0 || kd = 1) {
@@ -34,3 +38,5 @@ zst_lkind(int kd, int sf, int h) {
     zst_lhuf(kd, sf, h);
   }
 } return void;
+given zst_src_setup (0, 0, 0):() then calls zst_lraw:[1]
+given zst_src_setup (1, 0, 0):() then calls zst_lraw:[1]

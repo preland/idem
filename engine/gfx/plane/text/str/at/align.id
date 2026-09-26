@@ -15,6 +15,10 @@ txt_align(int n, int align) {
     m = n;
   }
 } return int m;
+(10, 1):(5)
+(7, 3):(0)
+(10, 0):(0)
+(20, 1):(10)
 
 // The pixel width txt_number would draw, at the UI scale, sign included. It has
 // to agree with what txt_number actually draws, or a right-aligned number drifts
@@ -26,6 +30,8 @@ txt_num_width(int v) {
   int ui = txt_ui();
   int w = txt_num_width2(v, cell, ui);
 } return int w;
+given txt_init given sf_t_setup (5):(8)
+given txt_init given sf_t_setup (-5):(16)
 
 // How many decimal digits m has; 0 has one. The loop compares against m / 10
 // rather than multiplying pw by 10 and testing it against m, because the second
@@ -38,3 +44,6 @@ txt_num_dn(int m) {
     n = n + 1;
   }
 } return int n;
+(0):(1)
+(100):(3)
+(1):(1)

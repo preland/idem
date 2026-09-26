@@ -3,3 +3,14 @@ idem_app3(string[] chunks) {
   string src = run_join(chunks, 0, "");
   idem_alay(src);
 } return void;
+given idem_init given seam_fixture ([""]):() then calls idem_alay:("")
+given idem_init given seam_fixture (["a", "b"]):() then calls idem_alay:("ab")
+
+// An empty, EOF-terminated token stream, so idem_apage and idem_alay2's own
+// cases can parse a document without going through a real layout source.
+lay_lex_setup() {
+  lex_init();
+  lex_run("");
+} return void;
+():() then calls lex_init:[1]
+():() then calls lex_run:("")

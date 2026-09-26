@@ -26,13 +26,19 @@
 txt_cellh() {
   int h = (import txt_st)[1];
 } return int h;
+given txt_init ():(16)
+given txt_init ():(16) then txt_bit:(8)
 
 // The width of one packed row in bits: the shift base for column 0.
 txt_bit() {
   int b = (import txt_st)[2];
 } return int b;
+given txt_init ():(8)
+given txt_init ():(8) then txt_facen:(95)
 
 // How many code points the face has, counting from (import txt_first).
 txt_facen() {
   int n = (import txt_st)[3];
 } return int n;
+given txt_init ():(95)
+given txt_init ():(95) then txt_cell:(8)

@@ -1,0 +1,18 @@
+// A token stream for `repeat N { ... }`, which par_if_setup's stream does not
+// shape correctly (its "repeat" is a bare keyword). Placed beside loop.id/
+// node.id -- iter/ had room, ctl/ itself did not.
+
+par_repeat_setup() {
+  lex_init();
+  ast_init();
+  par_repeat_setup2();
+} return void;
+():() then lex_kind_len:(8)
+():() then lex_kind_len:(8) then eprints:("")
+
+par_repeat_setup2() {
+  err_init();
+  lex_run("repeat 3{x=5}");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(8)
+given lex_init given ast_init ():() then lex_kind_len:(8) then eprints:("")

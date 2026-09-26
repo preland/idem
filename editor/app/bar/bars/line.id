@@ -2,9 +2,13 @@ ed_menu_line(int r0, int y) {
   int r2 = ed_rq(0, 2);
   ed_menu_line2(r0, y, r2);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (0, 20):() then calls ed_menu_line2:(0, 20, 640)
+given ed_t_boot given ed_t_lay stdin "" (5, 10):() then calls ed_menu_line2:(5, 10, 640)
 
 ed_menu_line2(int r0, int y, int r2) {
   int col = ed_col(3);
   d2_hline(r0, y, r2, col);
   ed_menu_items();
 } return void;
+given ed_t_boot stdin "" (0, 20, 640):() then calls d2_hline:(0, 20, 640, 0x1C1C1C)
+given ed_t_boot stdin "" (0, 20, 640):() then calls ed_menu_items:[1]

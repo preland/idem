@@ -11,6 +11,8 @@ spr_find(int c) {
     i = i + 1;
   }
 } return int k;
+given spr_lists_ready (999):(-1)
+given spr_pal_ready (999):(1)
 
 // 62 is the number of characters that can stand for a colour (see spr_char), so
 // a 63rd colour has nowhere to go. It is dropped and flagged rather than silently
@@ -24,9 +26,13 @@ spr_push(int c) {
     lset((import spr_d), 9, 1);
   }
 } return void;
+given spr_lists_ready (5):() then spr_p_last:(5)
+given spr_p_full_ready (7):() then spr_d9:(1)
 
 spr_over() {
   if ((import spr_d)[9] = 1) {
     err_report("stdin", 1, "more than 62 distinct colours; re-run with a smaller --colors");
   }
 } return void;
+given spr_hdr_ready ():() then calls err_report:[0]
+given spr_overflow_ready ():() then calls err_report:("stdin", 1, "more than 62 distinct colours; re-run with a smaller --colors")

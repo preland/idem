@@ -8,11 +8,15 @@ t_tail(int w, int h) {
   t_at("  (last)", w - 1, h - 1);
   t_sum();
 } return void;
+given jpg_grad_ready (24, 16):() then calls t_at:("  (last)", 23, 15)
+given jpg_grad_ready (24, 16):() then calls t_sum:[1]
 
 t_sum() {
   word wp = t_hash(0, 2166136261);
   print("  FNV-1a of all pixels = " + wp);
 } return void;
+given jpg_grad_ready ():() then prints:("  FNV-1a of all pixels = 692581917\n")
+given jpg_grad_ready ():() then calls t_hash:(0, 2166136261)
 
 t_hash(int y, word wp) {
   while (y < (import png_st)[1]) {
@@ -21,3 +25,5 @@ t_hash(int y, word wp) {
     y = y + 1;
   }
 } return word wp;
+given jpg_grad_ready (16, 2166136261):(2166136261)
+given jpg_grad_ready (0, 2166136261):(692581917)

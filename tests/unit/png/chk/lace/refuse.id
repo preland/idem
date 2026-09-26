@@ -10,7 +10,7 @@
 // one that gets this wrong the moment an asset pipeline loads two images.
 
 t_lace() {
-  int png_load_v = png_load("tests/unit/png/img/lace.png");
+  int png_load_v = png_load("img/lace.png");
   t_lace_p(png_load_v);
 } return void;
 
@@ -22,7 +22,7 @@ t_lace_p(int png_load_v) {
 
 // And the good file still loads afterwards, so a refusal leaves nothing behind.
 t_again() {
-  int png_load_v = png_load("test_assets/spryte-run.png");
+  int png_load_v = png_load("../../../test_assets/spryte-run.png");
   print("good PNG after a refusal, exp 1 = " + png_load_v);
   t_pal();
 } return void;

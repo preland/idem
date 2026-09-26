@@ -3,8 +3,12 @@ jpg_sof1d(int p) {
   int asset_at_v6 = asset_at(p);
   jpg_sof2(p + 6, asset_at_v5, asset_at_v6);
 } return void;
+given jpg_raw_fixture (162):() then calls jpg_sof2:(168, 3, 8)
+given jpg_raw_fixture (100):() then calls jpg_sof2:(106, 13, 9)
 
 jpg_sof2b(int p, int nc, int prec) {
   jpg_prec(prec, nc);
   jpg_sof3(p);
 } return void;
+given jpg_raw_fixture (168, 3, 8):() then calls jpg_prec:(8, 3) then calls jpg_sof3:(168)
+given jpg_raw_fixture (50, 10, 20):() then calls jpg_prec:(20, 10) then calls jpg_sof3:(50)

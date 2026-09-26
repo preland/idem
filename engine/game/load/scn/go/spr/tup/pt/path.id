@@ -17,10 +17,14 @@
 scn_dir_init() {
   export string[] scn_dir = ["", ""];
 } return void;
+():() then scn_dir_root:("")
+given dirfix ():() then scn_dir_root:("")
 
 scn_path(string s) {
   string ret_s = (import scn_dir)[0] + s;
 } return string ret_s;
+given scn_dir_init ("bird.png"):("bird.png")
+given dirfix ("bird.png"):("nonexistent_test_dir_xyz/bird.png")
 
 // The first string argument: the `from "path"` one. `from` lexes as an identifier
 // and is skipped by looking for the string rather than by counting.
@@ -32,3 +36,5 @@ scn_str(int nd) {
     i = i + 1;
   }
 } return string s;
+given ast_init (0):("")
+given scn_spr_fx5 (10):("art/bird.png")

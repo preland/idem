@@ -22,15 +22,21 @@ scr_bin(int nd, int e) {
   int a = scr_binl(nd, e);
   int ret_i = scr_bin2(nd, e, a);
 } return int ret_i;
+given bin_fixture ((import fixture_bin), -1):(7)
+given idem_init (0, -1):(0) then calls scr_bin2:[1]
 
 scr_op(string op, int a, int b) {
   int v = scr_op2(op, a, b);
   if (op = "+") { v = a + b; }
   else if (op = "-") { v = a - b; }
 } return int v;
+("+", 3, 4):(7)
+("-", 3, 4):(-1)
 
 scr_op2(string op, int a, int b) {
   int v = scr_op3(op, a, b);
   if (op = "*") { v = a * b; }
   else if (op = "/") { v = scr_div(a, b); }
 } return int v;
+("*", 3, 4):(12)
+("/", 12, 4):(3)

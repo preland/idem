@@ -5,8 +5,12 @@ ent_blit2(int p, int e, int ox, int oy) {
   int scx = ent_sc(e, 4);
   ent_blit3(p, e, ox, oy, at, scx);
 } return void;
+given game_fixture_nd given d2_blit_t_setup (0, 0, 10, 20):() then calls ent_blit3:(0, 0, 10, 20, 0, 500)
+given game_fixture_nd given put_fixture given d2_blit_t_setup (0, 0, 10, 20):() then calls ent_blit3:(0, 0, 10, 20, 0, 777)
 
 ent_blit3(int p, int e, int ox, int oy, int at, int scx) {
   int scy = ent_sc(e, 5);
   d2_blit_xy(p, ox, oy, at, scx, scy);
 } return void;
+given game_fixture_nd given d2_blit_t_setup (0, 0, 1, 2, 0, 500):() then calls d2_blit_xy:(0, 1, 2, 0, 500, 2000)
+given game_fixture_nd given put_fixture given d2_blit_t_setup (0, 0, 5, 6, 0, 999):() then calls d2_blit_xy:(0, 5, 6, 0, 999, 1000)

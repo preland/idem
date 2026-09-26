@@ -32,12 +32,16 @@ scr_init() {
   export string[] scr_vn = [];
   scr_init2();
 } return void;
+():() then calls scr_init2:[1]
+():() then calls scr_init4:[1]
 
 scr_init2() {
   export int[] scr_vv = [];
   export string[] scr_tn = [];
   scr_init3();
 } return void;
+():() then calls scr_init3:[1]
+():() then calls scr_init4:[1]
 
 // The template registry: `spawn PipeShaft at (…)` names a `template` declaration,
 // and the spawner needs to find it by name at the moment the statement runs.
@@ -46,3 +50,5 @@ scr_init3() {
   export int[] scr_pd = [];
   scr_init4();
 } return void;
+():() then calls scr_init4:[1]
+():() then scr_pnlen:(0)

@@ -9,12 +9,16 @@ t_fit() {
   t_show("resize to 640x400 exp gw 640 gh 400 cells 256000", 640, 400);
   t_more();
 } return void;
+given sys_open_ready ():() then calls t_show:("opened 320x200 exp gw 320 gh 200 cells 64000", 0, 0)
+given sys_open_ready ():() then calls t_more:[1]
 
 t_show(string msg, int w, int h) {
   t_size(w, h);
   int len_v = len((import sf_fb));
   print(msg + " = gw " + (import sf_gw) + " gh " + (import sf_gh) + " cells " + len_v);
 } return void;
+given sys_open_ready ("opened", 0, 0):() then prints:("opened = gw 320 gh 200 cells 64000\n")
+given sys_open_ready ("resize", 640, 400):() then prints:("resize = gw 640 gh 400 cells 256000\n")
 
 // 0 means "do not resize" -- the value gfx_width answers with no display, and the
 // case that keeps `--shot` working on a machine with no X server.
@@ -23,3 +27,5 @@ t_size(int w, int h) {
     sf_init(w, h);
   }
 } return void;
+given sys_open_ready (0, 0):() then calls sf_init:[0]
+given sys_open_ready (640, 400):() then calls sf_init:(640, 400)

@@ -1,0 +1,19 @@
+// A token stream for the script/handler productions: a script block with two
+// handlers, one with no argument and an empty body, one with a bound
+// argument and an empty body. Placed beside node.id/say_stop.id -- act2/
+// had room.
+
+par_scr_setup() {
+  lex_init();
+  ast_init();
+  par_scr_setup2();
+} return void;
+():() then lex_kind_len:(13)
+():() then lex_kind_len:(13) then eprints:("")
+
+par_scr_setup2() {
+  err_init();
+  lex_run("script {\n  on start {\n  }\n  on key space {\n  }\n}");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(13)
+given lex_init given ast_init ():() then lex_kind_len:(13) then eprints:("")

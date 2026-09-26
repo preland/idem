@@ -8,6 +8,8 @@ spr_dims(string name, int cols, int rows, int cw, int ch, int sw, int sh) {
   int p = d2_spr_add(name, cw, ch, cols * rows);
   spr_fill(p, cols, cw, ch, sw, sh);
 } return int p;
+given spr_native_fixture ("g1", 1, 1, 2, 2, 2, 2):(1) then calls d2_spr_add:("g1", 2, 2, 1) then calls spr_fill:(1, 1, 2, 2, 2, 2)
+given spr_native_fixture ("g2", 2, 1, 2, 2, 2, 2):(1) then calls d2_spr_add:("g2", 2, 2, 2) then calls spr_fill:(1, 2, 2, 2, 2, 2)
 
 spr_fill(int p, int cols, int cw, int ch, int sw, int sh) {
   int f = 0;
@@ -16,6 +18,8 @@ spr_fill(int p, int cols, int cw, int ch, int sw, int sh) {
     f = f + 1;
   }
 } return void;
+given spr_native_fixture (0, 1, 2, 2, 2, 2):() then calls spr_frame:(0, 0, 1, 2, 2, 2, 2) then calls spr_frame:[1]
+given spr_native_fixture (0, 3, 5, 6, 7, 8):() then calls spr_frame:(0, 0, 3, 5, 6, 7, 8) then calls spr_frame:[1]
 
 // Frame f sits at column f % cols and row f / cols of the sheet. Its destination
 // base is f * cw * ch (the sprite table's frames are consecutive) and its source
@@ -29,3 +33,5 @@ spr_frame(int p, int f, int cols, int cw, int ch, int sw, int sh) {
     y = y + 1;
   }
 } return void;
+given spr_native_fixture (0, 0, 1, 2, 4, 2, 7):() then calls asset_row:(5) then calls spr_row:[4]
+given spr_native_fixture (0, 1, 2, 2, 2, 2, 3):() then calls asset_row:(0) then calls asset_row:(1) then calls spr_row:[2]

@@ -1,0 +1,20 @@
+// A token stream for cur/arg/ls: a bare number, a string, a parenthesised
+// pair (for the tuple path), a live ref, a bound name, a plain ident, a
+// signed number and a stray token nothing in the grammar expects, plus an
+// empty parenthesised pair for the zero-element boundary. Placed beside
+// disp.id/tuple.id -- ls/ itself was already at its 3-entry limit.
+
+par_ls_setup() {
+  lex_init();
+  ast_init();
+  par_ls_setup2();
+} return void;
+():() then lex_kind_len:(19)
+():() then lex_kind_len:(19) then eprints:("")
+
+par_ls_setup2() {
+  err_init();
+  lex_run("1 \"hi\" ( 2 , 3 ) @c bar = 4 baz -5 ] ( )");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(19)
+given lex_init given ast_init ():() then lex_kind_len:(19) then eprints:("")

@@ -7,6 +7,8 @@ scn_efill9(int e, int nd) {
   scn_eshape(e, scn_mem_v);
   scr_evars(e, nd, 0);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_eshape:[1]
+given game_fixture_nd (1, (import fixture_nd)):() then calls scr_evars:[1]
 
 // -1 rather than 0 when there is no anim: frame 0 to frame 0 is a one-frame cycle
 // and would be indistinguishable from a still sprite anyway, but the ms default
@@ -15,6 +17,8 @@ scn_manim(int nd, int k) {
   int v = 0 - 1;
   if (scn_mem(nd, "anim", 0) != 0) { v = scn_mtup(nd, "anim", k); }
 } return int v;
+given idem_init (0, 1):(-1)
+given game_fixture_nd ((import fixture_nd), 1):(5)
 
 // Reading a `shape` component into the record.
 
@@ -28,3 +32,5 @@ scn_eshape(int e, int nd) {
     }
   }
 } return void;
+given game_fixture_shape (1, (import fixture_shape)):() then calls ent_put:(1, 24, 1)
+given idem_init (1, 0):() then calls scn_ebox:[0]

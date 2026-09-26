@@ -2,9 +2,20 @@ jpg_comp1(int ci, int p, int asset_at_v, int asset_at_v2) {
   m4_pair((import jpg_c), ci * 10, ci * 10 + 1, asset_at_v, asset_at_v2 / 16);
   jpg_comp2(ci, p);
 } return void;
+given jpg_raw_fixture (0, 168, 1, 17):() then calls jpg_comp2:(0, 168)
+given jpg_raw_fixture (1, 171, 2, 17):() then calls jpg_comp2:(1, 171)
 
 jpg_comp2(int ci, int p) {
   int asset_at_v3 = asset_at(p + 1);
   int asset_at_v4 = asset_at(p + 2);
   m4_pair((import jpg_c), ci * 10 + 2, ci * 10 + 3, asset_at_v3 % 16, asset_at_v4);
 } return void;
+given jpg_raw_fixture (0, 168):() then jpg_c3_check:(0)
+given jpg_raw_fixture (0, 171):() then jpg_c3_check:(1)
+
+// jpg_c[3], component 0's quantisation table id, as a value.
+jpg_c3_check() {
+  int v = (import jpg_c)[3];
+} return int v;
+given jpg_init ():(0)
+given jpg_grad_fixture ():(0)

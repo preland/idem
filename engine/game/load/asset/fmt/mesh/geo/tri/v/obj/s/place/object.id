@@ -5,6 +5,8 @@ bl_obj2(int i) {
   bl_scope(i);
   bl_obj2_data(i, si);
 } return void;
+given fx_trig_init given bl_scene_t_setup (1033):() then calls bl_obj2_data:(1033, 692)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (1033):() then calls bl_obj2_data:(1033, 692)
 
 // The world matrix is built while the Object's own scope is current -- it reads
 // only plain fields, but bl_foff and the scope go together -- and the mesh is then
@@ -13,6 +15,8 @@ bl_obj3(int i, int si, int mi) {
   bl_world((import bl_bp)[i], si);
   bl_obj4(mi);
 } return void;
+given fx_trig_init given bl_scene_t_setup (1033, 692, 1034):() then calls bl_obj4:(1034)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (1033, 692, -1):() then calls bl_obj4:(-1)
 
 bl_obj4(int mi) {
   if (mi >= 0 && (import bl_bc)[mi] = 1296367616) {
@@ -21,3 +25,5 @@ bl_obj4(int mi) {
     bl_mone(mi);
   }
 } return void;
+given fx_trig_init given bl_scene_t_setup (1034):() then calls bl_mone:(1034)
+given fx_trig_init given bl_scene_t_setup (-1):() then calls bl_mone:[0]

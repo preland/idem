@@ -104,9 +104,10 @@ for m in "${mods[@]}"; do
     fi
 
     # A test binary's exit code is its own error count, so a nonzero exit is only
-    # a failure when the golden file does not expect it. Run from the repo root,
-    # because a suite that opens a real asset names it relative to the project.
-    ( cd "$ROOT" && "$WORK/$m.bin" ) >"$WORK/$m.out" 2>&1
+    # a failure when the golden file does not expect it. Run from the suite's own
+    # directory, where its cases run too, because a suite names a real asset
+    # relative to its own tree.
+    ( cd "$dir" && "$WORK/$m.bin" ) >"$WORK/$m.out" 2>&1
 
     if [ -f "$dir/golden.txt" ]; then
         if diff -u "$dir/golden.txt" "$WORK/$m.out" >"$WORK/$m.diff"; then

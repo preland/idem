@@ -9,21 +9,27 @@
 // the origin -- a check that catches a sign error in the axis conversion, which
 // the checksum alone would only tell you about after the fact.
 
-t_geo() {
+t_geo(string path) {
   t_open_report();
   t_count_report();
-  t_verts();
+  t_verts(path);
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_open_report:[1]
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_verts:("../../../test_assets/cube.blend")
 
 // Blender (-1,-1,-1) with Z up becomes (-1000,-1000,1000) with Y up and -Z
 // forward: x keeps, y takes Blender's z, z takes Blender's negated y.
-t_verts() {
+t_verts(string path) {
   print("v0 exp -1000 -1000 1000 = " + (import bl_v)[0] + " " + (import bl_v)[1] + " " + (import bl_v)[2]);
   print("v7 exp 1000 1000 -1000 = " + (import bl_v)[21] + " " + (import bl_v)[22] + " " + (import bl_v)[23]);
-  t_tris();
+  t_tris(path);
 } return void;
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_tris:("../../../test_assets/cube.blend")
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_sum:("../../../test_assets/cube.blend")
 
-t_tris() {
+t_tris(string path) {
   print("tri0 exp 0 1 3, tri1 exp 0 3 2 = " + (import bl_ti)[0] + " " + (import bl_ti)[1] + " " + (import bl_ti)[2] + " | " + (import bl_ti)[3] + " " + (import bl_ti)[4] + " " + (import bl_ti)[5]);
-  t_sum();
+  t_sum(path);
 } return void;
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_sum:("../../../test_assets/cube.blend")
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_coords_report:[1]

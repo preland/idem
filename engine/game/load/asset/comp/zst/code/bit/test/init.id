@@ -1,0 +1,30 @@
+// A valid two-byte section: a real payload byte, then a marker byte whose
+// top bit is set (192 = 0b11000000), so zb_mark finds bit 7 and starts
+// reading at bit 6.
+
+zb_frame_bytes() {
+  export int zb_frame_p = alloc(2);
+  poke8((import zb_frame_p), 214);
+  poke8((import zb_frame_p) + 1, 192);
+} return void;
+():() then zb_frame_bytes_check:([214, 192])
+given zb_frame_bytes ():() then zb_frame_bytes_check:([214, 192])
+
+// A corrupt section: the same payload byte, but a zero marker byte -- there
+// is no top bit to find.
+zb_frame_bad_bytes() {
+  export int zb_frame_bad_p = alloc(2);
+  poke8((import zb_frame_bad_p), 214);
+  poke8((import zb_frame_bad_p) + 1, 0);
+} return void;
+():() then zb_frame_bad_bytes_check:([214, 0])
+given zb_frame_bad_bytes ():() then zb_frame_bad_bytes_check:([214, 0])
+
+// A fully-initialized reader over the valid section.
+zb_frame_setup() {
+  zb_init();
+  zb_frame_bytes();
+  zb_start((import zb_frame_p), 2);
+} return void;
+():() then zb_rel_check:([1, 6, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, 6, 0])

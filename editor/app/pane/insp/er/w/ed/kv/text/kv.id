@@ -3,13 +3,19 @@ ed_kv_text_draw(int x, int y, string fit) {
   int wid = txt_width("selected");
   ed_kv_text_draw_do(x, y, fit, ui, wid);
 } return void;
+given ed_t_boot stdin "" (0, 10, "hi"):() then calls ed_kv_text_draw_do:(0, 10, "hi", 1, 64)
+given ed_t_boot stdin "" (5, 20, "bye"):() then calls ed_kv_text_draw_do:(5, 20, "bye", 1, 64)
 
 ed_kv_text(int x, int y, string txt) {
   string fit = ed_fit(txt, 12);
   ed_kv_text_draw(x, y, fit);
 } return void;
+given ed_t_boot stdin "" (0, 10, "hi"):() then calls ed_kv_text_draw:(0, 10, "hi")
+given ed_t_boot stdin "" (0, 10, "this is a long string"):() then calls ed_kv_text_draw:(0, 10, "this is a lo")
 
 ed_kv(int x, int y, string s, string txt) {
   ed_kv_lbl(x, y, s);
   ed_kv_text(x, y, txt);
 } return void;
+given ed_t_boot stdin "" (0, 10, "label", "value"):() then calls ed_kv_lbl:(0, 10, "label")
+given ed_t_boot stdin "" (0, 10, "label", "value"):() then calls ed_kv_text:(0, 10, "value")

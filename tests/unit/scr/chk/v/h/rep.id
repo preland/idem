@@ -2,3 +2,21 @@ t_hit_rep() {
   int scr_get_v = scr_get(0 - 1, "hits");
   print("one overlap: hits exp 1 = " + scr_get_v);
 } return void;
+given scr_hit_ready ():() then calls scr_get:(-1, "hits")
+given scr_hit_ready ():() then prints:("one overlap: hits exp 1 = 1\n")
+
+// Test-only fixtures: the loaded scene, then one update (see t_upd in
+// ../vars/scope.id), then one collision sweep (see t_hit in ./hit.id).
+scr_upd_ready() {
+  scr_scene_ready();
+  scr_upd(0);
+} return void;
+():() then calls scr_scene_ready:[1]
+():() then calls scr_upd:(0)
+
+scr_hit_ready() {
+  scr_upd_ready();
+  scr_hits(0);
+} return void;
+():() then calls scr_upd_ready:[1]
+():() then calls scr_hits:(0)

@@ -12,10 +12,12 @@
 // are there to say *which* when it does.
 
 t_pal() {
-  int png_load_v = png_load("games/flappy/art/bird.png");
+  int png_load_v = png_load("../../../games/flappy/art/bird.png");
   print("bird.png exp 1 = " + png_load_v);
   t_pal_h();
 } return void;
+given png_ready ():() then calls png_load:("../../../games/flappy/art/bird.png")
+given png_ready ():() then calls t_pal_h:[1]
 
 // Filter stride 1 because a 4-bit pixel is smaller than a byte; row stride 10
 // because 17 four-bit samples are 8.5 bytes rounded up, plus the filter byte.
@@ -26,9 +28,13 @@ t_pal2() {
   int png_samp_v = t_pal_s(0, 0);
   t_pal2b(png_samp_v);
 } return void;
+given png_bird_ready ():() then calls t_pal_s:(0, 0)
+given png_bird_ready ():() then calls t_pal2b:[1]
 
 t_pal3() {
   int png_pcol_v = png_pcol(0);
   int png_pcol_v2 = png_pcol(2);
   t_pal3b(png_pcol_v, png_pcol_v2);
 } return void;
+given png_bird_ready ():() then calls png_pcol:(0)
+given png_bird_ready ():() then calls t_pal3b:[1]

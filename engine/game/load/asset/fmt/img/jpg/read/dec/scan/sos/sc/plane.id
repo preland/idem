@@ -13,6 +13,8 @@ jpg_cpick(int ci, int k, int cid) {
   int n = ci;
   if ((import jpg_c)[k * 10] = cid) { n = k; }
 } return int n;
+given jpg_init (5, 0, 0):(0)
+given jpg_init (5, 0, 1):(5)
 
 // Ss and Se name the band, Ah and Al its precision. Baseline writes 0, 63, 0, 0
 // and is decoded by the same machinery, which is why there is no separate
@@ -22,6 +24,8 @@ jpg_scan(int p) {
   jpg_sinit();
   jpg_run();
 } return void;
+given jpg_nint_fixture (288):() then calls jpg_band:(288) then calls jpg_sinit:[1]
+given jpg_nint_fixture (0):() then calls jpg_band:(0) then calls jpg_sinit:[1]
 
 // **Every scan resets the DC predictors**, which the standard requires and which
 // is easy to miss because a single-scan baseline image decodes correctly without
@@ -33,3 +37,5 @@ jpg_sinit() {
   jpg_preds(0);
   m4_pair((import jpg_st), 12, 17, 0, 0);
 } return void;
+given jpg_small_fixture ():() then calls jpg_preds:(0)
+given jpg_init ():() then calls jpg_preds:(0)

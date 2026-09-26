@@ -3,15 +3,24 @@ par_stmt2(int[] pos, int[] out) {
   else if (par_is(pos, "while")) { out[0] = par_while(pos); }
   else { par_stmt3(pos, out); }
 } return void;
+given par_stmt_setup ([0], [0]):() then calls par_if:[1]
+given par_stmt_setup ([1], [0]):() then calls par_while:[1]
+given par_stmt_setup ([9], [0]):() then calls par_stmt3:[1]
 
 par_stmt3(int[] pos, int[] out) {
   if (par_is(pos, "repeat")) { out[0] = par_repeat(pos); }
   else if (par_is(pos, "spawn")) { out[0] = par_sspawn(pos); }
   else { par_stmt4(pos, out); }
 } return void;
+given par_stmt_setup ([2], [0]):() then calls par_repeat:[1]
+given par_stmt_setup ([3], [0]):() then calls par_sspawn:[1]
+given par_stmt_setup ([9], [0]):() then calls par_stmt4:[1]
 
 par_stmt4(int[] pos, int[] out) {
   if (par_is(pos, "despawn")) { out[0] = par_despawn(pos); }
   else if (par_is(pos, "goto")) { out[0] = par_goto(pos); }
   else { par_stmt5(pos, out); }
 } return void;
+given par_stmt_setup ([4], [0]):() then calls par_despawn:[1]
+given par_stmt_setup ([5], [0]):() then calls par_goto:[1]
+given par_stmt_setup ([9], [0]):() then calls par_stmt5:[1]

@@ -14,6 +14,8 @@ jpg_dht(int p, int end) {
     p = jpg_dht1(p);
   }
 } return void;
+given jpg_walk1_fixture (181, 201):() then calls jpg_dht1:[1]
+given jpg_init (5, 5):() then calls jpg_dht1:[0]
 
 jpg_hcnt(int p, int t) {
   int k = 1;
@@ -23,3 +25,5 @@ jpg_hcnt(int p, int t) {
     k = k + 1;
   }
 } return void;
+given jpg_raw_fixture (182, 0):() then jpg_hc1_check:(1)
+given png_init given jpg_init (0, 0):() then jpg_hc1_check:(0)

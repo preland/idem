@@ -9,12 +9,16 @@ bl_fstep(int p, string name, int o) {
   bl_fhit(np, name, o);
   int ret_i = bl_fsz_at(p, np);
 } return int ret_i;
+given bl_sfind_t_setup (97, "x", 0):(4) then bl_fdone:(0)
+given bl_sfind_t_setup (97, "y", 1):(4) then bl_fdone:(-1)
 
 bl_fhit(int np, string name, int o) {
   if (bl_streq(np, name) = 1) {
     lset((import bl_st), 3, o + 1);
   }
 } return void;
+given bl_sfind_t_setup (61, "x", 5):() then bl_fdone:(5)
+given bl_sfind_t_setup (61, "y", 3):() then bl_fdone:(-1)
 
 // bl_st[3] holds the hit as offset+1, so 0 means "no such field" and offset 0 is
 // still expressible. The struct's total size is the walk's return value.
@@ -22,3 +26,5 @@ bl_fdone() {
   int k = (import bl_st)[3] - 1;
   lset((import bl_st), 3, 0);
 } return int k;
+given bl_walk_t_setup ():(-1)
+given bl_fhit_t_setup ():(5)

@@ -9,7 +9,19 @@ ed_menu_pick(int k) {
     lset((import ed_st), 15, k);
   }
 } return void;
+given ed_t_boot given inp_t_state stdin "" (2):() then calls ed_mtog:(2)
+given ed_t_boot given ed_t_menu_open stdin "" (5):() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 0, 0, 1000, 0, 0], 15, 5)
 
 ed_menu_items() {
   ed_menu_run(0);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_menu_run:(0)
+given ed_t_boot stdin "" ():() then calls ed_menu_run_one:[5]
+
+// A menu open on pane 2 (Asset), for a case that needs ed_mtog/ed_menu_pick to
+// see one already open rather than the boot default of none.
+ed_t_menu_open() {
+  lset((import ed_st), 15, 2);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 1000, 0, 0], 15, 2)
+given ed_t_boot stdin "" ():() then calls lset:[1]

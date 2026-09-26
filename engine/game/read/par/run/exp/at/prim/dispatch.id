@@ -3,12 +3,16 @@ par_prim2(int[] pos, int[] out) {
   else if (par_kind(pos) = (import lex_k_string)) { out[0] = par_str(pos); }
   else { par_prim3(pos, out); }
 } return void;
+given par_prim_setup ([0], [0]):([1], [1]) then calls ast_new_num:(5, 0)
+given par_prim_setup ([1], [0]):([2], [1]) then calls ast_new_k:(132, "hi")
 
 par_prim3(int[] pos, int[] out) {
   if (par_is(pos, "(")) { out[0] = par_paren(pos); }
   else if (par_is(pos, "@")) { out[0] = par_uref(pos); }
   else { par_prim4(pos, out); }
 } return void;
+given par_prim_setup ([5], [0]):([7], [2]) then calls ast_new_a:(140, "", 1)
+given par_prim_setup ([7], [0]):([8], [1]) then calls ast_new_k:(133, "x")
 
 // A call is an identifier immediately followed by '('. That covers random(0,100),
 // count(enemy), nearest(enemy) and every other engine builtin without a name list
@@ -18,3 +22,5 @@ par_prim4(int[] pos, int[] out) {
   else if (par_text2(pos) = "(") { out[0] = par_call(pos); }
   else { out[0] = par_ident(pos); }
 } return void;
+given par_prim_setup ([16], [0]):([17], [1]) then calls ast_new_k:(145, "]")
+given par_prim_setup ([6], [0]):([7], [1]) then calls ast_new_k:(133, "a")

@@ -11,9 +11,13 @@ ed_input() {
   sys_sync();
   ed_input2();
 } return void;
+given ed_t_boot stdin "" ():() then calls sys_sync:[1]
+given ed_t_boot stdin "" ():() then calls ed_input2:[1]
 
 ed_input2() {
   int drain_v = inp_drain();
   run_quit(drain_v);
   ed_orbit();
 } return void;
+given ed_t_boot stdin "" ():() then calls inp_drain:[1]
+given ed_t_boot stdin "" ():() then calls ed_orbit:[1]

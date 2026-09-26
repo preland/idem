@@ -12,6 +12,8 @@ scr_tag(string name) {
   int i = scr_tfind(name, 0);
   if (i < 0) { i = scr_tadd(name); }
 } return int i;
+given idem_init ("enemy"):(0) then calls scr_tadd:[1]
+given idem_init ("enemy"):(0) then calls scr_tfind:[1]
 
 scr_tfind(string name, int i) {
   int at = 0 - 1;
@@ -20,9 +22,13 @@ scr_tfind(string name, int i) {
     i = i + 1;
   }
 } return int at;
+given idem_init ("enemy", 0):(-1)
+given idem_init ("enemy", 5):(-1)
 
 scr_tadd(string name) {
   int len_v = len((import scr_tn));
   int i = fx_min(len_v, 30);
   push((import scr_tn), name);
 } return int i;
+given idem_init ("enemy"):(0)
+given idem_init ("player"):(0)

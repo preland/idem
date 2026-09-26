@@ -16,7 +16,11 @@
 ed_hdr() {
   int ret_i = (txt_cellh() + 5) * txt_ui();
 } return int ret_i;
+given ed_t_boot stdin "" ():(21)
+given ed_t_boot stdin "" ():(21) then calls txt_cellh:[1]
 
 ed_rowh() {
   int ret_i = (txt_cellh() + 2) * txt_ui();
 } return int ret_i;
+given ed_t_boot stdin "" ():(18)
+given ed_t_boot stdin "" ():(18) then calls txt_ui:[1]

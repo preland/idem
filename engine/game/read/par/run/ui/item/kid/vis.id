@@ -11,11 +11,15 @@ par_uvis(int[] pos) {
     nd = par_uref(pos);
   }
 } return int nd;
+given par_item_setup ([13]):(2) then calls ast_new_a:(140, "", 1)
+given par_item_setup ([18]):(0)
 
 par_ukids(int[] pos) {
   int[] kids = [];
   par_ufill2(pos, kids);
 } return int[] kids;
+given par_item_setup ([16]):([1]) then calls ast_new:(137, "child", 0, 0, 0, [])
+given par_item_setup ([18]):([])
 
 par_ufill2(int[] pos, int[] kids) {
   if (par_eat(pos, "{") = 1) {
@@ -23,3 +27,5 @@ par_ufill2(int[] pos, int[] kids) {
     par_want(pos, "}");
   }
 } return void;
+given par_item_setup ([16], []):([19], [1]) then calls ast_new:(137, "child", 0, 0, 0, [])
+given par_item_setup ([18], []):([18], [])

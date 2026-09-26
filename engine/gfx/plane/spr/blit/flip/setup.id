@@ -6,9 +6,13 @@ d2_flip_setup(int p, int x, int y, int f, int w, int h) {
   int i = w * h * fx_clamp(f, 0, nf - 1);
   d2_flip_clip_y(p, x, y, w, h, i);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 2, 2):() then d2_blit_t_px00:(9)
+given d2_blit_t_setup (1, 0, 0, 99, 3, 1):() then d2_blit_t_px00:(0)
 
 d2_flip_clip_y(int p, int x, int y, int w, int h, int i) {
   int n = fx_min(h, (import sf_gh) - y);
   int j0 = fx_max(0, 0 - y);
   d2_flip_rows(p, x, y, i, j0, n);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 2, 2, 0):() then d2_blit_t_px00:(9)
+given d2_blit_t_setup (0, 0, 48, 2, 2, 0):() then d2_blit_t_px00:(0)

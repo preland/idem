@@ -14,6 +14,8 @@ imp_hex6(int c) {
     i = i - 1;
   }
 } return string s;
+(16711680):("FF0000")
+(0):("000000")
 
 // 48 is '0', 65 is 'A'. Upper case because that is how every colour in
 // IDML_GAME.md and in the hand-written games is written.
@@ -23,6 +25,8 @@ imp_hexd(int n) {
     c = 55 + n;
   }
 } return int c;
+(5):(53)
+(15):(70)
 
 imp_pow16(int n) {
   int m = 1;
@@ -31,3 +35,5 @@ imp_pow16(int n) {
     n = n - 1;
   }
 } return int m;
+(0):(1)
+(2):(256)

@@ -19,8 +19,21 @@ d3_wtri(int[] tri) {
   m4_apply((import d3_vm), tri, 3);
   d3_wtri2(tri);
 } return void;
+given d3_t_setup ([0, 0, 40, 300, 0, 0, 0, 300, 0, 1000, 2000, 3000]):() then d3_t_clp:([0, 0, 40, 0, 0, 40, 0, 0, 40, 1000, 1000, 1000])
+given d3_t_setup ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):() then d3_t_clp:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 d3_wtri2(int[] tri) {
   m4_apply((import d3_vm), tri, 6);
   d3_nclip(tri);
 } return void;
+given d3_t_setup ([0, 0, 40, 300, 0, 0, 0, 300, 0, 1000, 2000, 3000]):() then d3_t_clp:([0, 0, 40, 0, 0, 40, 0, 0, 40, 1000, 1000, 1000])
+given d3_t_setup ([100, 200, 0, 300, 400, 0, 7, 8, 40, 11, 22, 33]):() then d3_t_clp:([7, 8, 40, 7, 8, 40, 7, 8, 40, 33, 33, 33])
+
+// d3_m0's own contents, for cases in the cam/mat batch that need to show what
+// d3_view_eye or d3_view_rot left there rather than the (void) return each
+// gives.
+d3_t_m0() {
+  int[] m0_v = (import d3_m0);
+} return int[] m0_v;
+given d3_t_setup ():([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+given d3_t_dirty ():([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])

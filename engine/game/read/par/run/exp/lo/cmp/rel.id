@@ -1,0 +1,24 @@
+par_eq_f(int[] pos, int lv) {
+  string txt = par_optxt(pos);
+  int nd = par_rel(pos);
+  int ret_i = par_binnode(txt, lv, nd);
+} return int ret_i;
+given par_ops2_setup ([7], 1):(2) then calls ast_new_ab:(127, "==", 1, 1)
+given par_ops2_setup ([10], 9):(2) then calls ast_new_ab:(127, "<", 9, 1)
+
+par_rel(int[] pos) {
+  int lv = par_bor(pos);
+  while (par_is_relop(pos)) {
+    lv = par_rel_f(pos, lv);
+  }
+} return int lv;
+given par_ops2_setup ([9]):(3) then calls par_rel_f:[1]
+given par_ops2_setup ([32]):(1) then calls par_rel_f:[0]
+
+par_rel_f(int[] pos, int lv) {
+  string txt = par_optxt(pos);
+  int nd = par_bor(pos);
+  int ret_i = par_binnode(txt, lv, nd);
+} return int ret_i;
+given par_ops2_setup ([10], 1):(2) then calls ast_new_ab:(127, "<", 1, 1)
+given par_ops2_setup ([13], 9):(2) then calls ast_new_ab:(127, "|", 9, 1)

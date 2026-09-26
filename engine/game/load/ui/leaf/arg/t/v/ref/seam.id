@@ -1,0 +1,25 @@
+// eng_ref, wired to str_hash so ui_val has a real (string) -> int to call
+// without needing the whole game boot.
+ui_val_t_seam() {
+  eng_seam3(str_hash, err_say);
+  ui_val_t_path();
+} return void;
+():() then ast_n:(3)
+given ast_init ():() then ast_n:(3)
+
+// A gate node (index 3) whose `c` names the ref node (index 2) above.
+ui_vis_t_gate() {
+  ui_val_t_seam();
+  int ng = ast_new_abc(3, "gate", 0, 0, 2);
+} return void;
+():() then ast_n:(4)
+given ast_init ():() then ast_n:(4)
+
+// The define (8) from ui_look_fx3 registered, so ui_def and ui_expand have a
+// name to resolve.
+ui_look_fx4() {
+  ui_look_fx3();
+  ui_dload(8);
+} return void;
+():() then ast_n:(9)
+given ast_init ():() then ast_n:(9)

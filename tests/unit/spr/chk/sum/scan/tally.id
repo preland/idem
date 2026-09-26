@@ -1,0 +1,35 @@
+// A whole sprite, reduced to four numbers: how many pixels are transparent, and
+// the channel sums of the ones that are not.
+//
+// That is the strong assertion. A wrong sampling stride, an off-by-one in the
+// frame origin, a channel swapped, or a threshold on the wrong side all move at
+// least one of these -- and unlike a spot check, it covers every pixel.
+
+t_report(int p, int n, string msg) {
+  lst_set_all((import t_st), 4, 0);
+  t_scan(p, n);
+  print("  " + msg + " clear " + (import t_st)[0] + " sums " + (import t_st)[1] + " " + (import t_st)[2] + " " + (import t_st)[3]);
+} return void;
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p), 4, "x"):() then calls t_scan:((import t_grid_p), 4)
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p), 4, "x"):() then calls lst_set_all:((import t_st), 4, 0)
+
+t_scan(int p, int n) {
+  int i = 0;
+  while (i < n) {
+    int d2_spr_at_v = d2_spr_at(p, i);
+    t_acc(d2_spr_at_v);
+    i = i + 1;
+  }
+} return void;
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p), 4):() then calls t_acc:[4]
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p), 0):() then calls t_acc:[0]
+
+t_acc(int c) {
+  if (c = (import d2_clear)) {
+    lset((import t_st), 0, (import t_st)[0] + 1);
+  } else {
+    t_acc2(c);
+  }
+} return void;
+given spr_ready2 given t_st_export (-1):() then calls lset:((import t_st), 0, 1)
+given spr_ready2 given t_st_export (0):() then calls t_acc2:(0)

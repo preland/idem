@@ -13,17 +13,21 @@
 // must be inside the vertex list it indexes. That is what 45% of triangles
 // failed before, and it needs no reference at all to test.
 
-t_all() {
-  t_all_open_report();
+t_all(string path) {
+  t_all_open_report(path);
   t_all_count_report();
-  t_range();
+  t_range(path);
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_all_open_report:("../../../test_assets/cube.blend")
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_range:("../../../test_assets/cube.blend")
 
-t_range() {
+t_range(string path) {
   int t_oob_v = t_oob();
   print("triangle indices outside the vertex list exp 0 = " + t_oob_v);
-  t_span();
+  t_span(path);
 } return void;
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_oob:[2]
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_span:("../../../test_assets/cube.blend")
 
 t_oob() {
   int n = 0;
@@ -33,3 +37,6 @@ t_oob() {
     i = i + 1;
   }
 } return int n;
+given mesh_all_ready ():(0)
+given mesh_scene_ready ():(0)
+given mesh_oob_ready ():(1)

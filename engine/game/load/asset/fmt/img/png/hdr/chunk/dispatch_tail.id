@@ -7,3 +7,21 @@ png_kind2(int p, int n, int a, int b) {
     png_kind3(p, n, a, b);
   }
 } return void;
+given png_raw_fixture (307, 102, 68, 65):() then calls png_idat:(307, 102)
+given png_init (1, 5, 69, 78):() then png_ok_check:(2)
+given png_raw_fixture (85, 15, 76, 84):() then calls png_kind3:(85, 15, 76, 84)
+
+// The refusal-or-success flag (png_st[9]) as a value, for cases -- a `then`
+// check must return something, and nothing else here reads that slot alone.
+png_ok_check() {
+  int v = (import png_st)[9];
+} return int v;
+given png_init ():(0)
+given png_ok2_fixture ():(2)
+
+png_ok2_fixture() {
+  png_init();
+  lset((import png_st), 9, 2);
+} return void;
+():() then png_ok_check:(2)
+given png_init ():() then png_ok_check:(2)

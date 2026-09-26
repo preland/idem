@@ -17,6 +17,8 @@ ui_rinit() {
   export string[] ui_rn = [];
   export int[] ui_rv = [];
 } return void;
+():() then ui_rclear_t_check:(0)
+given ast_init ():() then ui_rclear_t_check:(0)
 
 // A list only grows in this language; the one way back is pop. Clearing by
 // popping is O(n) in a table of a few dozen entries, once a frame.
@@ -27,6 +29,8 @@ ui_rclear() {
     pop((import ui_rv));
   }
 } return void;
+given ui_rect_t_setup ():() then ui_rclear_t_check:(0)
+given ui_rinit ():() then ui_rclear_t_check:(0)
 
 // Four numbers per name, in one list, because parallel lists of four scalars
 // would be four exports to keep in step for no gain.
@@ -35,3 +39,5 @@ ui_rput(string name, int x, int y, int w, int h) {
   push((import ui_rv), x * 65536 + y);
   push((import ui_rv), w * 65536 + h);
 } return void;
+given ui_rinit ("Panel", 1, 2, 3, 4):() then ui_rclear_t_check:(1)
+given ui_rect_t_setup ("Panel", 1, 2, 3, 4):() then ui_rclear_t_check:(2)

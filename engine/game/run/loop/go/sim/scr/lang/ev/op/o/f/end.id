@@ -9,12 +9,16 @@ scr_fn5(string name, int a, int b) {
   if (name = "min") { v = fx_min(a, b); }
   else { v = scr_fn6(name, a, b); }
 } return int v;
+given idem_init ("min", 3, 7):(3)
+given idem_init ("max", 3, 7):(7)
 
 scr_fn6(string name, int a, int b) {
   int v = 0;
   if (name = "max") { v = fx_max(a, b); }
   else { v = scr_fn7(name, a, b); }
 } return int v;
+given idem_init ("max", 3, 7):(7)
+given game_fixture_nd ("key", 32, 0):(0)
 
 // `key(code)` is 1 while that key is held. It is the one input question a script
 // cannot ask any other way: `on press` is an edge, and a paddle that moves while
@@ -25,3 +29,5 @@ scr_fn7(string name, int a, int b) {
   if (name = "key") { v = inp_down(a); }
   else { string chr_v = chr(39); string chr_v2 = chr(39); err_report("script", 0, "unknown function " + chr_v + name + chr_v2); }
 } return int v;
+given game_fixture_nd ("key", 32, 0):(0)
+given idem_init ("nope", 0, 0):(0) then calls err_report:[1]

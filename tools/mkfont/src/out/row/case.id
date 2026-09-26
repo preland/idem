@@ -1,0 +1,27 @@
+// The two honest cases printed after txt_glyph_data() -- generated, not
+// hand-copied: the metrics come straight from psh, the same numbers mkf_st
+// prints into txt_st, and the one glyph row is read back through mkf_row at
+// code point 65 ('A'), row 2 -- the built-in face's top two rows of a capital
+// letter are blank, and this is the first row with any ink, so it tells a
+// real table from a zeroed one.
+
+mkf_cases(int[] xs, int[] psh) {
+  int bits = (psh[3] + 7) / 8 * 8;
+  string case1 = "():() then txt_cell:(" + psh[3] + ") then txt_cellh:(" + psh[2] + ") then txt_bit:(" + bits + ") then txt_facen:(95)\n";
+  int nb = (psh[3] + 7) / 8;
+} chain (int[] xs, int[] psh) {
+  int at = psh[0] + 65 * psh[1] + 2 * nb;
+  int v = mkf_row(xs, at, nb);
+  string case2 = "():() then txt_glyph_arow:(" + v + ")\n";
+} chain (int[] xs, int[] psh) {
+  string text = case1 + case2;
+} return string text;
+([9, 9, 4], [0, 0, 1, 8, 127]):("():() then txt_cell:(8) then txt_cellh:(1) then txt_bit:(8) then txt_facen:(95)\n():() then txt_glyph_arow:(4)\n")
+([0, 0, 0, 0, 0, 7, 2], [1, 0, 2, 16, 95]):("():() then txt_cell:(16) then txt_cellh:(2) then txt_bit:(16) then txt_facen:(95)\n():() then txt_glyph_arow:(1794)\n")
+
+mkf_cases_print(int[] xs, int[] psh) {
+  string cases = mkf_cases(xs, psh);
+  put(cases);
+} return void;
+([9, 9, 4], [0, 0, 1, 8, 127]):() then prints:("():() then txt_cell:(8) then txt_cellh:(1) then txt_bit:(8) then txt_facen:(95)\n():() then txt_glyph_arow:(4)\n")
+([0, 0, 0, 0, 0, 7, 2], [1, 0, 2, 16, 95]):() then prints:("():() then txt_cell:(16) then txt_cellh:(2) then txt_bit:(16) then txt_facen:(95)\n():() then txt_glyph_arow:(1794)\n")

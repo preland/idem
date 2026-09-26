@@ -6,8 +6,12 @@ ed_plane5(int x, int y, int w, int h) {
   lset((import ui_ts), 0, txt_val);
   ed_plane5_frame(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls lset:([1000], 0, 1000)
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls ed_plane5_frame:(10, 20, 30, 40)
 
 ed_plane5_frame(int x, int y, int w, int h) {
   int ed_col_v = ed_col(3);
   d2_frame(x - 1, y - 1, w + 2, h + 2, ed_col_v);
 } return void;
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls d2_frame:(9, 19, 32, 42, 0x1C1C1C)
+given ed_t_boot stdin "" (100, 50, 5, 6):(100, 50, 5, 6) then calls d2_frame:(99, 49, 7, 8, 0x1C1C1C)

@@ -7,8 +7,12 @@ d3_tri_go(int[] tri) {
     d3_tri2((import d3_vts));
   }
 } return void;
+given d3_t_setup ([]):() then calls d3_area:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) then calls d3_tri2:[0]
+given d3_t_setup ([1, 2, 3]):() then calls d3_area:([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) then calls d3_tri2:[0]
 
 d3_proj3_b(int[] tri, int[] verts) {
   d3_proj(tri, 2, verts, 12);
   int ret_i = d3_flatc(tri);
 } return int ret_i;
+given d3_t_setup ([0, 0, 0, 0, 0, 0, 60, 40, 1000, 16711680, 16711680, 16711680], [9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0]):(16711680)
+given d3_t_setup ([0, 0, 0, 0, 0, 0, 100, 50, -20, 1, 2, 1], [7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0]):(-1)

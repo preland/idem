@@ -6,6 +6,8 @@ ed_as_take(string src, int i, int e) {
     push((import ed_as), str_slice_v);
   }
 } return void;
+given ed_t_boot stdin "" ("#asset a.png", 0, 12):() then calls str_slice:("#asset a.png", 7, 5)
+given ed_t_boot stdin "" ("hello world", 0, 11):() then calls str_slice:[0]
 
 // The first .blend in the project, loaded at boot so the scene view has something
 // real in it.
@@ -20,6 +22,8 @@ ed_load_as(int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0):() then calls ed_try_as:[0]
+given ed_t_boot given ed_t_asset stdin "" (0):() then calls ed_try_as:("x.png")
 
 // 6 characters back from the end is where ".blend" starts.
 ed_try_as(string path) {
@@ -29,3 +33,5 @@ ed_try_as(string path) {
     ed_fit_mesh(bl_scene_v);
   }
 } return void;
+given ed_t_boot stdin "" ("x.png"):() then calls bl_scene:[0]
+given ed_t_boot stdin "" ("m.blend"):() then calls bl_scene:("m.blend")

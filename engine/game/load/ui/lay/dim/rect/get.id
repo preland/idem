@@ -9,13 +9,19 @@ ui_rect(string name, int i) {
   int v = 0;
   if (p >= 0) { v = ui_rpair(p, i); }
 } return int v;
+given ui_rect_t_setup ("Box", 2):(30)
+given ui_rect_t_setup ("Nope", 0):(0)
 
 ui_rpair(int p, int i) {
   int v = (import ui_rv)[p * 2 + i / 2];
   int ret_i = ui_half(v, i % 2);
 } return int ret_i;
+given ui_rect_t_setup (0, 0):(10)
+given ui_rect_t_setup (0, 3):(40)
 
 ui_half(int v, int k) {
   int n = v / 65536;
   if (k = 1) { n = v % 65536; }
 } return int n;
+(655380, 0):(10)
+(655380, 1):(20)

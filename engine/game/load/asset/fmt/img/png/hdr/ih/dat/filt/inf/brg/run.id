@@ -1,0 +1,35 @@
+// The seam between the engine's asset loader and idstd's inf_inflate. idem
+// used to carry its own address-based DEFLATE decoder here, the way zst_run
+// (comp/zst/entry.id) still does its own; that decoder is gone -- idstd's
+// copy under core/data/seq/byte/inflate/ is now the only one, since the two
+// were a duplicate-logic error the moment both were in one program. inf_init
+// and inf_run just move bytes across the store/list boundary idstd's
+// api/deflate.id draws.
+
+// idstd builds its Huffman tables inside every inf_inflate call, so there is
+// nothing left to prepare ahead of time. Every boot chain still calls this
+// (idem_init4, ed_boot8, and the unit tests' own mains), so it stays as the
+// seam they already know.
+inf_init() {
+} return void;
+():()
+given png_init ():()
+
+// Reads slen bytes at sa, inflates them, and writes up to cap bytes at da --
+// the same contract the flat-store decoder kept: the count actually
+// written, or -1 if the stream was corrupt (inf_failed) or decoded to more
+// than cap allows. png_inf2 (../inflate.id) is the one caller, and needs no
+// change: nothing outside this file has to know the decoder moved.
+inf_run(int sa, int slen, int da, int cap) {
+  int[] inf_src = inf_read(sa, slen);
+  int[] inf_dst = inf_inflate(inf_src, 0);
+  int inf_n = len(inf_dst);
+} chain (int sa, int slen, int da, int cap) {
+  int ret_i = 0 - 1;
+  if (inf_failed() = 0 && inf_n <= cap) {
+    inf_write(inf_dst, da, inf_n);
+    ret_i = inf_n;
+  }
+} return int ret_i;
+given png_inf_fixture ((import png_inf_sa), 100, (import png_inf_da), 360):(360)
+given png_inf_fixture ((import png_inf_sa), 100, (import png_inf_da), 10):(-1)

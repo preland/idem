@@ -10,12 +10,16 @@ ui_tx_off(int x, int w, int n, string txt) {
   int ui_al_v = ui_al(txt);
   int ret_i = x + ui_ax_v - txt_align(n, ui_al_v);
 } return int ret_i;
+(0, 100, 10, "center"):(45)
+(0, 100, 10, "left"):(4)
 
 ui_tx(int nd, int x, int w, int n) {
   int ast_ib_v = ast_ib(nd);
   string ast_tx_v = ast_tx(ast_ib_v);
   int ret_i = ui_tx_off(x, w, n, ast_tx_v);
 } return int ret_i;
+given ui_leaf_t_setup (3, 0, 100, 5):(4)
+given ui_leaf_t_setup (3, 10, 100, 5):(14)
 
 // Centred on the rect at the *UI's* scale, so a label stays in the middle of its
 // box as the view zooms rather than creeping toward the top of it.
@@ -28,3 +32,5 @@ ui_tx(int nd, int x, int w, int n) {
 ui_ty(int y, int h) {
   int ret_i = y + (h - txt_cellh() * (import ui_ts)[0] / 1000) / 2;
 } return int ret_i;
+given txt_init given ui_row_t_setup (10, 20):(12)
+given txt_init given ui_row_t_setup (0, 16):(0)

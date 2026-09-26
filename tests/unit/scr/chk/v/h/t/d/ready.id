@@ -1,0 +1,7 @@
+// The box spawned a second time, past the press (see t_spawn in ./sp/press.id).
+scr_spawn2_ready() {
+  scr_press_ready();
+  scr_fire((import scn_st)[9], "enter", 0 - 1, "");
+} return void;
+():() then calls scr_press_ready:[1]
+():() then calls scr_fire:[14]

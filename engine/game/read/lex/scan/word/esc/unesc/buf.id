@@ -1,0 +1,33 @@
+// A destination buffer with known, distinct contents (all 9s), for the string-
+// unescape writers (lex_unfill, lex_unone, lex_unone_tail, lex_unesc1,
+// lex_unesc1_tail): each writes through a `word ad` it does not own, so a case
+// hands one in by name (docs/TESTS.md's `(import NAME)` recipe) and reads it
+// back as a checksum, the same shape as idstd's core/data/seq/buf/known.id.
+
+lex_wbuf_setup() {
+  export word lex_wbuf = alloc(8);
+  lex_wbuf_mark();
+} return void;
+():() then lex_wbuf_sum:(72)
+():() then eprints:("")
+
+lex_wbuf_mark() {
+  int i = 0;
+  while (i < 8) {
+    poke8((import lex_wbuf) + i, 9);
+    i = i + 1;
+  }
+} return void;
+given lex_wbuf_setup ():() then lex_wbuf_sum:(72)
+given lex_wbuf_setup ():() then eprints:("")
+
+lex_wbuf_sum() {
+  int i = 0;
+  int wsum = 0;
+  while (i < 8) {
+    wsum = wsum + peek8((import lex_wbuf) + i);
+    i = i + 1;
+  }
+} return int wsum;
+given lex_wbuf_setup ():(72)
+given lex_wbuf_setup ():(72) then eprints:("")

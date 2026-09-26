@@ -8,6 +8,8 @@ png_sig(int n) {
   int ok = 0;
   if (n > 8 && asset_at(0) = 137 && asset_at(1) = 80 && asset_at(2) = 78 && asset_at(3) = 71) { ok = 1; }
 } return int ok;
+given png_raw_fixture (425):(1)
+given png_raw_fixture (8):(0)
 
 // Each chunk is a big-endian length, a four-byte type, the payload, and a CRC.
 // The CRC is not checked: it would cost a pass over every byte of the file to
@@ -21,6 +23,8 @@ png_walk(int ok, int p) {
   }
   int ret_i = png_done();
 } return int ret_i;
+given png_raw_fixture (1, 8):(1)
+given png_raw_fixture (1, 425):(0)
 
 // A refusal has to stop the walk, not merely be recorded. It was only recorded:
 // png_chk set slot 9 to -1, the walk carried on, and IEND then overwrote it with
@@ -31,3 +35,5 @@ png_more(int p) {
   int ok = 1;
   if ((import png_st)[9] = 2 || (import png_st)[9] < 0 || p < 0) { ok = 0; }
 } return int ok;
+given png_init (5):(1)
+given png_init (-1):(0)

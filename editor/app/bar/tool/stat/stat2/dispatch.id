@@ -19,9 +19,20 @@ ed_status_txt(int y) {
     ed_status_flow(y);
   }
 } return void;
+given ed_t_boot stdin "" (10):() then calls ed_status_flow:(10)
+given ed_t_boot given ed_t_note_open stdin "" (10):() then calls ed_note:(10)
 
 ed_status_flow(int y) {
   int ui = txt_ui();
   string fit = ed_fit((import ed_fl)[0], 22);
   ed_status_flow2(y, ui, fit);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (10):() then calls ed_status_flow2:(10, 1, "main.idml")
+given ed_t_boot stdin "" (10):() then calls ed_status_flow2:(10, 1, "<input>")
+
+// A help note showing, for ed_status_txt's own "note replaces the line" branch.
+ed_t_note_open() {
+  lset((import ed_st), 17, 1);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 1, 1000, 0, 0], 17, 1)
+given ed_t_boot stdin "" ():() then calls lset:[1]

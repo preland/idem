@@ -6,3 +6,13 @@ t_boot() {
   zst_init();
   bl_geo_init();
 } return void;
+given fx_trig_init ():() then calls zst_init:[1]
+given fx_trig_init ():() then calls bl_geo_init:[1]
+
+// Test-only fixture: main.id's own init order.
+mesh_ready() {
+  fx_trig_init();
+  t_boot();
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls t_boot:[1]

@@ -1,0 +1,26 @@
+// A real scratch file path, for a case that writes -- fs_mktemp rather than a
+// fixed name, per idstd's own fixture (sys/io/fs/path/edit/mktemp/fixture.id).
+// The check reads it back and removes it, so a suite run leaves nothing behind
+// even though the write it is proving never runs through this file itself.
+
+ed_t_wpath_setup() {
+  export string ed_t_wpath = fs_mktemp("ed_case_", 0);
+} return void;
+():() then calls fs_mktemp:("ed_case_", 0) then ed_t_wpath_check:(1)
+():() then ed_t_wpath_check:(1)
+
+ed_t_wpath_check() {
+  string s = (import ed_t_wpath);
+  int ok = fs_exists(s);
+  int gone = fs_remove(s);
+} return int ok;
+given ed_t_wpath_setup ():(1)
+given ed_t_wpath_setup ():(1) then ed_t_wpath_check:(0)
+
+// The scratch path, opened for writing -- for ed_wnow/ed_wshut's own cases,
+// which take an already-open handle rather than a path.
+ed_t_whandle_open() {
+  export int ed_t_whandle = fs_open((import ed_t_wpath), "w");
+} return void;
+given ed_t_wpath_setup ():() then ed_t_whandle_check:(1)
+given ed_t_wpath_setup ():() then ed_t_whandle_check:(1) then ed_t_wpath_check:(0)

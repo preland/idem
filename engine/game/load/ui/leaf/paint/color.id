@@ -4,3 +4,5 @@ ui_paint_color(int nd) {
   int ui_vprop_v = ui_vprop(ast_tx_v, "colour", 0);
   int ret_i = ui_arg(nd, 0, ui_vprop_v);
 } return int ret_i;
+given ui_leaf_t_setup (3):(0)
+given ui_item_fx2 (7):(200)

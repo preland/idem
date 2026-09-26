@@ -1,0 +1,26 @@
+// jpg_coefbuf_fixture's real buffer, aimed by jpg_ca[0] too, so jpg_one's own
+// address arithmetic lands somewhere real instead of the reserved address 0.
+jpg_one_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_ca), 0, (import jpg_coef_a));
+} return void;
+():() then jpg_dc0_check:(0)
+given jpg_init ():() then jpg_dc0_check:(0)
+
+// The same buffer, with the frame flagged progressive -- so jpg_blk's other
+// branch runs against a real address too.
+jpg_progflag_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_st), 10, 1);
+} return void;
+():() then jpg_dc0_check:(0)
+given jpg_init ():() then jpg_dc0_check:(0)
+
+// jpg_one_fixture, flagged progressive -- so jpg_one's own address arithmetic
+// is exercised on the progressive branch too, not just baseline's.
+jpg_one_prog_fixture() {
+  jpg_one_fixture();
+  lset((import jpg_st), 10, 1);
+} return void;
+():() then jpg_dc0_check:(0)
+given jpg_init ():() then jpg_dc0_check:(0)

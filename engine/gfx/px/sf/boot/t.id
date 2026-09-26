@@ -1,0 +1,22 @@
+// Test fixture for the surface: opens a small surface through sf_open (the
+// alloc-then-init pair open.id documents), so a case elsewhere can `given`
+// this and read back sf_gw/sf_gh/sf_fb through the small checks below rather
+// than repeating sf_open's own two calls.
+
+sf_t_setup() {
+  sf_open(64, 48);
+} return void;
+():() then sf_t_gw:(64)
+():() then sf_t_gh:(48)
+
+sf_t_gw() {
+  int w = (import sf_gw);
+} return int w;
+given sf_t_setup ():(64)
+given sf_t_setup ():(64) then sf_t_gh:(48)
+
+sf_t_gh() {
+  int h = (import sf_gh);
+} return int h;
+given sf_t_setup ():(48)
+given sf_t_setup ():(48) then sf_t_gw:(64)

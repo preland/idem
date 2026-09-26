@@ -1,0 +1,26 @@
+// A real component plane (jpg_c[7], jpg_c[8]=10 blocks wide) alongside the
+// pure-DC row-pass state -- for jpg_store.id's cases, which write real
+// pixel bytes through it.
+
+jpg_plane_fixture() {
+  jpg_idct_tm_fixture();
+  jpg_plane_set();
+} return void;
+():() then jpg_plane0_check:(0)
+given jpg_init ():() then jpg_plane0_check:(0)
+
+jpg_plane_set() {
+  int jpg_plane_addr = alloc(2048);
+  lset((import jpg_c), 7, jpg_plane_addr);
+  lset((import jpg_c), 8, 10);
+} return void;
+given jpg_idct_tm_fixture ():() then jpg_plane0_check:(0)
+given jpg_init ():() then jpg_plane0_check:(0)
+
+// The byte at the component plane's own address, plus 0 -- 100 once
+// jpg_srow(0,0,0,0) has written jpg_f[0] (100, the pure-DC input) there.
+jpg_plane0_check() {
+  int v = peek8((import jpg_c)[7]);
+} return int v;
+given jpg_plane_fixture ():(0)
+given jpg_plane_store_fixture ():(100)

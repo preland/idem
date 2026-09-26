@@ -1,0 +1,9 @@
+game fixture {
+  display (320, 200) "fixture"
+}
+
+scene s {
+  entity e {
+    pos (10, 10)
+  }
+}

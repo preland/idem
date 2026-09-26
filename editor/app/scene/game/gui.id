@@ -13,6 +13,8 @@ ed_gui() {
   export int[] ed_gu = [0, 0x70C5CE, 288 * 65536 + 512];
   ed_gscan(0);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_gscan:(0)
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_gscan:(0)
 
 ed_gscan(int i) {
   while (i < len((import lex_kind))) {
@@ -20,6 +22,8 @@ ed_gscan(int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot given ed_t_boot_ui stdin "" (0):(0) then calls ed_gone:(0)
+given ed_t_boot given ed_t_boot_ui stdin "" (100):(100) then calls ed_gone:[0]
 
 ed_gone(int i) {
   if ((import lex_text)[i] = "ui" && (import lex_text)[i + 1] = "{") {
@@ -27,3 +31,5 @@ ed_gone(int i) {
   }
   ed_gclear(i);
 } return void;
+given ed_t_boot given ed_t_boot_ui stdin "" (0):(0) then calls ed_gclear:(0)
+given ed_t_boot given ed_t_boot_ui stdin "" (16):(16) then calls ed_gparse:(18)

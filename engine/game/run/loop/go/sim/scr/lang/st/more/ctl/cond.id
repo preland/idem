@@ -9,8 +9,12 @@ scr_whilecond(int nd, int e, int fin, int n) {
     v = cv != 0;
   }
 } return int v;
+given while_fixture ((import fixture_while), -1, 0, 0):(1)
+given while_fixture ((import fixture_while), -1, 0, 10000):(0)
 
 scr_whilebody(int nd, int e) {
   int ib = ast_ib(nd);
   int fin = scr_ex(ib, e);
 } return int fin;
+given while_fixture ((import fixture_while), -1):(0) then calls scr_ex:[1]
+given idem_init (0, -1):(0) then calls scr_ex:[1]

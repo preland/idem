@@ -2,3 +2,24 @@ t_grav2_rep() {
   int ent_at_v = ent_at(1, 3);
   print("dynamic body: vy after 16ms of 1500/s^2 exp 24000 = " + ent_at_v);
 } return void;
+given sim_grav_done_ready ():() then calls ent_at:(1, 3)
+given sim_grav_done_ready ():() then prints:("dynamic body: vy after 16ms of 1500/s^2 exp 24000 = 24000\n")
+
+// Entity 1, solid, right after the dynamic-body gravity check has already run
+// once -- the exact ordering t_grav3 relies on (see ../drive.id).
+sim_solid_ready() {
+  sim_grav_done_ready();
+  ent_put(1, 9, 7);
+  sim_grav(1, 16);
+} return void;
+():() then calls sim_grav_done_ready:[1]
+():() then calls sim_grav:(1, 16)
+
+// Entity 0, with the wrap flag and bound set (see t_wrap in ../w/wrap.id).
+sim_wrap_ready() {
+  sim_e0_ready();
+  ent_put(0, 9, 1 + 8);
+  m4_pair((import ent_r), 10, 11, 0 - 144000, 432000);
+} return void;
+():() then calls sim_e0_ready:[1]
+():() then calls ent_put:(0, 9, 9)

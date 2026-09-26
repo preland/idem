@@ -1,0 +1,26 @@
+// A hand-built `n = 5` binding, the shape a `persist`/`var` initialiser
+// actually parses to.
+bind_fixture() {
+  ident_fixture();
+  int val = ast_new_num(5, 0);
+  export int fixture_bind = ast_new_abc((import ast_k_bin), "=", (import fixture_ident), val, 0);
+} return void;
+():() then calls ident_fixture:[1]
+():() then calls ast_new_abc:[3]
+
+// A binding's digit-text value node.
+digit_ev_fixture() {
+  idem_init();
+  export int fixture_digit_ev = ast_new_abc((import ast_k_ident), "5", 0, 0, 0);
+} return void;
+():() then calls idem_init:[1]
+():() then calls ast_new_abc:[1]
+
+// The binding itself, `high = 5`, whose one child is the digit node above.
+digit_fixture() {
+  digit_ev_fixture();
+  int[] kids = [(import fixture_digit_ev)];
+  export int fixture_digit = ast_new_kids((import ast_k_comp), "high", kids);
+} return void;
+():() then calls digit_ev_fixture:[1]
+():() then calls ast_new_kids:[1]

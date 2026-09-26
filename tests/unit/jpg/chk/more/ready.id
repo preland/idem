@@ -1,0 +1,21 @@
+// Test-only fixture: most of the per-pixel checks below need a real decoded
+// image in png_st/the pixel buffer, not just the init chain -- see jpg_ready
+// in row.id. grad.jpg is the smallest fixture (24x16), so it is the default
+// unless a case is specifically about a different image.
+jpg_grad_ready() {
+  jpg_ready();
+  jpg_load("img/grad.jpg");
+} return void;
+():() then calls jpg_ready:[1]
+():() then calls jpg_load:("img/grad.jpg")
+
+// t_row takes the address of a decoded row rather than a row number, and that
+// address is only known once a real image is loaded -- so it cannot be a case
+// literal. This exports it the same way a `given` composes any other state a
+// case's own tuple cannot build.
+jpg_row0_ready() {
+  jpg_grad_ready();
+  export int jpg_row0 = asset_row(0) + 1;
+} return void;
+():() then calls jpg_grad_ready:[1]
+():() then calls asset_row:(0)

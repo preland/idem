@@ -3,13 +3,19 @@ t_run() {
   t_str();
   t_lst();
 } return void;
+():() then prints:("slice bird-up = bird-up\neqat 1,0,1 = 101\nfill 11199 = 11199\nlget 9 = 9 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+():() then calls err_report:("fake.idml", 7, "a reported error is counted")
 
 t_str_slice(string s) {
   string line = "slice bird-up = " + str_slice(s, 7, 7);
   print(line);
 } return void;
+("sprite bird-up(17, 12)"):() then prints:("slice bird-up = bird-up\n")
+("camera drone-fly(3, 8)"):() then prints:("slice bird-up = drone-f\n")
 
 t_str_eqat(string s) {
   string line = "eqat 1,0,1 = " + str_eqat(s, 0, "sprite") + str_eqat(s, 0, "model") + str_eqat(s, 7, "bird");
   print(line);
 } return void;
+("sprite bird-up(17, 12)"):() then prints:("eqat 1,0,1 = 101\n")
+("camera drone-fly(3, 8)"):() then prints:("eqat 1,0,1 = 000\n")

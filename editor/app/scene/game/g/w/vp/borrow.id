@@ -7,3 +7,5 @@ ed_pset(int x, int y, int sc) {
   m4_pair((import sys_vp), 1, 2, x, y);
   lset((import sys_vp), 0, sc);
 } return void;
+given ed_t_boot stdin "" (10, 20, 500):(10, 20, 500) then calls m4_pair:([500, 10, 20, 640, 400], 1, 2, 10, 20)
+given ed_t_boot stdin "" (10, 20, 500):(10, 20, 500) then calls lset:([500, 10, 20, 640, 400], 0, 500)

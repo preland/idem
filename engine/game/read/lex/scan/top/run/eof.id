@@ -5,3 +5,5 @@ lex_run_eof() {
   int lex_k_eof_v = (import lex_k_eof);
   lex_push(lex_k_eof_v, "", 0, 0);
 } return void;
+given lex_init ():() then calls lex_push:(11, "", 0, 0)
+given lex_init ():() then calls lex_push:[1]

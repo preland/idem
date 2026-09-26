@@ -19,6 +19,8 @@ asset_io_init() {
   export int[] asset_buf = [];
   lst_fill((import asset_buf), (import asset_chunk), 0);
 } return void;
+():() then asset_pipe_len_check:(0)
+given asset_pipe_fixture ():() then asset_pipe_len_check:(0)
 
 // Slurp `path`. Answers the number of bytes read, and leaves the address in
 // asset_io[0] -- two values, one of which has to travel by a side channel.
@@ -27,9 +29,13 @@ asset_slurp(string path) {
   asset_slurp_alloc(n);
   int ret_i = asset_slurp2(path, n);
 } return int ret_i;
+given asset_io_init ("../test_assets/vga8x16.psf"):(4969)
+given asset_io_init ("../test_assets/latgrkcyr8x16.psf"):(10508)
 
 asset_slurp_alloc(int n) {
   int fx_max_v = fx_max(n, 1);
   int da = alloc(fx_max_v);
   lset((import asset_io), 0, da);
 } return void;
+given asset_io_init (8):() then asset_pipe_probe_check:(9)
+given asset_be32_fixture (8):() then asset_pipe_probe_check:(9)

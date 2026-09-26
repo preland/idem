@@ -14,19 +14,27 @@
 // field offset in between is right rather than merely plausible.
 
 main(int argc, string[] argv) {
+  export string mesh_path = t_main_path(argc, argv);
   fx_trig_init();
   t_boot();
-  t_open();
+} chain (int argc, string[] argv) {
+  t_open((import mesh_path));
 } return int 0;
+(2, ["mesh", "../../../test_assets/cube.blend"]):(0) then calls t_open:("../../../test_assets/cube.blend")
+(2, ["prog", "../../../test_assets/cube.blend"]):(0) then calls t_boot:[1]
 
-t_open() {
+t_open(string path) {
   t_main_open();
   print("header length exp 17 = " + (import bl_st)[0]);
-  t_blocks();
+  t_blocks(path);
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_main_open:[1]
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_blocks:("../../../test_assets/cube.blend")
 
-t_blocks() {
+t_blocks(string path) {
   print("blocks before the ENDB sentinel exp 1076 = " + (import bl_st)[1]);
   t_main_blocks_count();
-  t_dna();
+  t_dna(path);
 } return void;
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_main_blocks_count:[1]
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_dna:("../../../test_assets/cube.blend")

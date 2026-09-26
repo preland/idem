@@ -3,9 +3,21 @@ bl_types(int p) {
   int bl_skip_v = bl_skip(p + 8, (import bl_st)[5]);
   bl_tlens(bl_skip_v);
 } return void;
+given bl_dna_t_bytes (65):() then calls bl_types_setup:(65) then calls bl_tlens:[1]
+given bl_dna_t_bytes (29):() then calls bl_types_setup:(29) then calls bl_tlens:[1]
 
 bl_types_setup(int p) {
   int bl_le32_v = bl_le32(p + 4);
   lset((import bl_st), 5, bl_le32_v);
   lset((import bl_st), 8, p + 8);
 } return void;
+given bl_dna_t_bytes (65):() then bl_dna_t_st5_check:(1)
+given bl_dna_t_bytes (29):() then bl_dna_t_st5_check:(52)
+
+// A reader for bl_types_setup's side effect: the count it parses out of a
+// real 4-byte little-endian field.
+bl_dna_t_st5_check() {
+  int v = (import bl_st)[5];
+} return int v;
+given bl_dna_t_bytes ():(0)
+given bl_walk_t_setup ():(1)

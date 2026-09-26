@@ -7,12 +7,16 @@ ed_drag_beg(int k) {
   lset((import ed_st), 5, k);
   ed_drag_beg_set_pos();
 } return void;
+given ed_t_boot stdin "" (3):(3) then calls m4_pair:([-1, -1, 35000, -9000, 9000, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 13, 14, 0, 0)
+given ed_t_boot stdin "" (7):(7) then calls lset:([-1, -1, 35000, -9000, 9000, 7, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 5, 7) then calls ed_drag_beg_set_pos:[1]
 
 ed_drag_beg_set_pos() {
   int mx = inp_mx();
   int my = inp_my();
   m4_pair((import ed_st), 13, 14, mx, my);
 } return void;
+given ed_t_boot stdin "" ():() then calls m4_pair:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 13, 14, 0, 0)
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 200, 150, -1, 0, 0, 1000, 0, 0], 13, 200)
 
 // A selection band commits when the button comes up; an orbit and a pan have
 // already done their work frame by frame and only need clearing.
@@ -20,3 +24,5 @@ ed_drag_fin(int k) {
   lset((import ed_st), 5, 0);
   ed_band_take(k);
 } return void;
+given ed_t_boot stdin "" (2):(2) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 5, 0) then calls ed_band_take:(2)
+given ed_t_boot stdin "" (0):(0) then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 5, 0) then calls ed_band_take:(0)

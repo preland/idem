@@ -13,11 +13,15 @@ idem_aopen() {
   func(int) return int gs = (import eng_stage);
   idem_aopen1(gi, gs);
 } return void;
+given seam_fixture ():() then calls idem_aopen1:(stub_ginit, stub_gstage)
+given seam_fixture given idem_init ():() then calls idem_aopen1:(stub_ginit, stub_gstage)
 
 idem_aopen1(func() return void gi, func(int) return int gs) {
   gi();
   idem_aopen1b(gs);
 } return void;
+(stub_ginit, stub_gstage):() then prints:("ginit\n") then calls idem_aopen1b:(stub_gstage)
+(idem_init, fx_abs):() then calls idem_aopen1b:(fx_abs)
 
 // Input last, because it sizes nothing and needs the surface to exist before it
 // clamps a pointer against it.
@@ -26,3 +30,5 @@ idem_aopen2() {
   inp_init();
   tin_init();
 } return void;
+given game_fixture_nd ():() then calls inp_init:[1]
+given game_fixture_nd ():() then calls tin_init:[1]

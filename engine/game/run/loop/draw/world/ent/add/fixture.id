@@ -1,0 +1,23 @@
+// One grown, still-default record, so a store write has room to land in.
+grow_fixture() {
+  idem_init();
+  ent_add();
+} return void;
+():() then calls idem_init:[1]
+():() then calls ent_add:[1]
+
+// The same record, after one write, so a read has something real to find.
+put_fixture() {
+  grow_fixture();
+  ent_put(0, 4, 777);
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ent_put:(0, 4, 777)
+
+// A second record, for a case that needs two.
+grow2_fixture() {
+  grow_fixture();
+  ent_add();
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ent_add:[2]

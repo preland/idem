@@ -5,8 +5,12 @@ par_goto_node(string name) {
   int ast_k_goto_v = (import ast_k_goto);
   int ret_i = ast_new_k(ast_k_goto_v, name);
 } return int ret_i;
+given ast_init ("play"):(1) then calls ast_new_k:(123, "play")
+given ast_init ("next"):(1) then calls ast_new_k:(123, "next")
 
 par_play_node(string name) {
   int ast_k_play_v = (import ast_k_play);
   int ret_i = ast_new_k(ast_k_play_v, name);
 } return int ret_i;
+given ast_init ("say"):(1) then calls ast_new_k:(124, "say")
+given ast_init ("boom"):(1) then calls ast_new_k:(124, "boom")

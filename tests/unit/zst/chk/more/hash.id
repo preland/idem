@@ -9,7 +9,21 @@ t_hash(int n) {
     i = i + 1;
   }
 } return word wp;
+given zst_ready (0):(2166136261)
+given zst_raw_ready (8):(1778417723)
 
 t_show(string msg, int got, word wp) {
   print(msg + " -> ret " + got + ", " + (import zst_st)[4] + " bytes, hash " + wp);
 } return void;
+given zst_ready ("test", 1, 2166136261):() then prints:("test -> ret 1, 0 bytes, hash 2166136261\n")
+given zst_raw_ready ("test2", 64, 1):() then prints:("test2 -> ret 64, 64 bytes, hash 1\n")
+
+// A tiny real decode -- the smallest fixture, one raw block -- so t_hash and
+// t_show have real bytes and a real zst_st[4] to read instead of the empty
+// state zst_ready alone leaves.
+zst_raw_ready() {
+  zst_ready();
+  t_dec("img/raw.zst", 64);
+} return void;
+():() then calls zst_ready:[1]
+():() then calls t_dec:("img/raw.zst", 64)

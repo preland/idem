@@ -7,6 +7,8 @@ scr_pev(string evn) {
     scr_pall(evn, 0 - 1);
   }
 } return void;
+given game_fixture_nd ("quit"):() then calls sys_quit:[1]
+given idem_init ("press"):() then calls scr_pall:[1]
 
 // The scene's script first, then every live entity's. A press is tg world event,
 // not an entity's: the bird flaps and the scene starts the run, and both are
@@ -16,6 +18,8 @@ scr_pall(string evn, int e) {
   scr_fire(scr_sc_v, evn, e, "");
   scr_pents(evn, 0);
 } return void;
+given game_fixture_nd ("press", -1):() then calls scr_pents:[1]
+given grow_fixture ("press", 0):() then calls scr_sc:[2]
 
 scr_pents(string evn, int e) {
   while (e < ent_n()) {
@@ -23,3 +27,5 @@ scr_pents(string evn, int e) {
     e = e + 1;
   }
 } return void;
+given idem_init ("press", 0):() then calls scr_pent:[0]
+given grow_fixture ("press", 0):() then calls scr_pent:[1]

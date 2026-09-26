@@ -3,3 +3,5 @@
 sys_sy() {
   int y = (import sys_vp)[2];
 } return int y;
+given sys_t_vp ():(0)
+given sys_t_vp3 ():(16)

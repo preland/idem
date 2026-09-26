@@ -4,3 +4,5 @@ scr_find2(int e, string name, int lo) {
   int i = scr_scan(lo, lo + n, name);
   if (i < 0) { i = scr_sfind(name); }
 } return int i;
+given scr_fixture (1, "vy", 2):(2)
+given scr_fixture (1, "score", 2):(0)

@@ -21,6 +21,8 @@ d2_spr_find(string name) {
   int clear_val = 0 - 1;
   int id = d2_spr_scan(name, 0, clear_val);
 } return int id;
+given d2_spr_t_setup ("t2"):(0)
+given d2_spr_t_setup ("nope"):(-1)
 
 // p walks the table; i carries the answer, -1 until a name matches. The `i < 0`
 // guard makes the FIRST declaration win if a game declares one name twice (the
@@ -33,3 +35,5 @@ d2_spr_scan(string name, int p, int i) {
     p = p + 1;
   }
 } return int i;
+given d2_spr_t_setup ("t3", 0, -1):(1)
+given d2_spr_t_setup ("t2", 1, -1):(-1)

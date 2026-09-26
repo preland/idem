@@ -3,3 +3,15 @@ ed_tool_hit_lbl(int x, int h, string s) {
   int col = ed_col(4);
   txt_draw(s, x + 5 * ui, h + 4, col);
 } return void;
+given ed_t_boot stdin "" (0, 21, "pan"):() then calls txt_draw:("pan", 5, 25, 0xCFCFCF)
+given ed_t_boot stdin "" (10, 21, "move"):() then calls txt_draw:("move", 15, 25, 0xCFCFCF)
+
+// A click inside the toolbar row (below the header, y in [h+2, h+2+h) for
+// h = ed_hdr()'s 21), with the button just pressed -- ed_tool_hit's own case
+// for a button actually hit, which inp_t_state's fixed (7, 9) is above.
+ed_t_click_toolbar() {
+  inp_sample_tail(1);
+  inp_sample2_store(10, 30);
+} return void;
+given ed_t_boot stdin "" ():() then calls inp_sample_tail:(1)
+given ed_t_boot stdin "" ():() then calls inp_sample2_store:(10, 30)

@@ -2,15 +2,21 @@ ed_pop_draw_item(int k, int i) {
   string txt = ed_mitem(k, i);
   ed_pop_draw_xy(k, i, txt);
 } return void;
+given ed_t_boot stdin "" (3, 0):() then calls ed_pop_draw_xy:(3, 0, "Reset View")
+given ed_t_boot stdin "" (2, 1):() then calls ed_pop_draw_xy:(2, 1, "Reload")
 
 ed_pop_draw_xy(int k, int i, string txt) {
   int x = ed_mx(k) - 4 * txt_ui();
   int y = ed_hdr() + 1 + i * ed_rowh() + txt_ui();
   ed_pop_draw_txt(k, i, txt, x, y);
 } return void;
+given ed_t_boot stdin "" (3, 0, "Reset View"):() then calls ed_pop_draw_txt:(3, 0, "Reset View", 136, 23)
+given ed_t_boot stdin "" (2, 1, "Reload"):() then calls ed_pop_draw_txt:(2, 1, "Reload", 86, 41)
 
 ed_pop_draw_txt(int k, int i, string txt, int x, int y) {
   int mon = ed_mon(k, i);
   int col = ed_col(4 + 1 * (mon = 0));
   txt_draw(txt, x, y, col);
 } return void;
+given ed_t_boot stdin "" (3, 0, "Reset View", 136, 23):() then calls txt_draw:("Reset View", 136, 23, 0xCFCFCF)
+given ed_t_boot stdin "" (2, 1, "Reload", 86, 41):() then calls txt_draw:("Reload", 86, 41, 0x8A8A8A)

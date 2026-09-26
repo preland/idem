@@ -3,3 +3,5 @@ ed_err_row_msg_fit(int w, int i) {
   int cell = txt_cell();
   string fit = ed_fit((import err_ms)[i], (w - 12 * ui) / (cell * ui));
 } return string fit;
+given ed_t_boot given idstd_err_t_one stdin "" (100, 0):("one")
+given ed_t_boot given idstd_err_t_one stdin "" (19, 0):("")

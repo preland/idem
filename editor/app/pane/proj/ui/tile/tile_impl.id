@@ -1,7 +1,11 @@
 ed_proj_tile_rect_do(int x, int y, int ui, int scale, int col) {
   sf_rect(x, y, 72 * ui, 24 * scale, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 1, 1, 0x4A4A4A):() then calls sf_rect:(0, 10, 72, 24, 0x4A4A4A)
+given ed_t_boot stdin "" (5, 20, 2, 1, 0x1C1C1C):() then calls sf_rect:(5, 20, 144, 24, 0x1C1C1C)
 
 ed_proj_tile_frame_do(int x, int y, int ui, int scale, int col) {
   d2_frame(x, y, 72 * ui, 24 * scale, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 1, 1, 0x1C1C1C):() then calls d2_frame:(0, 10, 72, 24, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 20, 1, 2, 0x4A4A4A):() then calls d2_frame:(5, 20, 72, 48, 0x4A4A4A)

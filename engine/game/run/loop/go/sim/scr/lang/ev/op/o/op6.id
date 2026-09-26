@@ -10,15 +10,21 @@ scr_op6(string op, int a, int b) {
   if (op = ">=") { v = a >= b; }
   else if (op = "&&") { v = a != 0 && b != 0; }
 } return int v;
+(">=", 5, 5):(1)
+("&&", 1, 0):(0)
 
 scr_op7(string op, int a, int b) {
   int v = scr_op8(op, a, b);
   if (op = "||") { v = a != 0 || b != 0; }
   else if (op = "&") { v = a & b; }
 } return int v;
+("||", 0, 1):(1)
+("&", 6, 3):(2)
 
 scr_op8(string op, int a, int b) {
   int v = 0;
   if (op = "|") { v = a | b; }
   else if (op = "^") { v = a ^ b; }
 } return int v;
+("|", 6, 3):(7)
+("^", 6, 3):(5)

@@ -3,8 +3,19 @@ png_chan_inline(int kd) {
   if (kd = 0) { n = 1; }
   else { n = png_chan2(kd); }
 } return int n;
+(0):(1)
+(2):(3)
 
 png_ihdr3_set(int n) {
   lset((import png_st), 4, n);
   png_chk();
 } return void;
+given png_init (5):() then png_ch4_check:(5) then calls png_chk:[1]
+given png_init (2):() then png_ch4_check:(2) then calls png_chk:[1]
+
+// The channel count (png_st[4]) as a value, for cases downstream of it.
+png_ch4_check() {
+  int v = (import png_st)[4];
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(1)

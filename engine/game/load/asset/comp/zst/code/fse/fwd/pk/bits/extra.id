@@ -1,0 +1,23 @@
+// The remaining-bits and declared-length fields, read the same way
+// zf_st_val reads buf -- witnesses for cases where buf alone can't
+// distinguish a call's two behaviours.
+zf_nbits_check() {
+  int zf_nbits_v = (import zf_st)[3];
+} return int zf_nbits_v;
+given fse_init ():(0)
+given zf_st_val_setup ():(-1)
+
+// slen set past sp, so zf_more takes its real branch instead of the
+// err-and-stop one.
+zf_slen_setup() {
+  zf_frame_setup();
+  lset((import zf_st), 4, 10);
+} return void;
+():() then zf_slen_check:(10)
+given fse_init ():() then zf_slen_check:(10)
+
+zf_slen_check() {
+  int zf_slen_v = (import zf_st)[4];
+} return int zf_slen_v;
+given fse_init ():(0)
+given zf_slen_setup ():(10)

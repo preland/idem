@@ -9,6 +9,8 @@ scr_hboth(int a, int b) {
   scr_hside(a, b, 0);
   scr_hside(b, a, 0);
 } return void;
+given grow2_fixture (0, 1):() then calls scr_hside:[2]
+given idem_init (0, 0):() then calls scr_hside:[2]
 
 scr_hside(int e, int o, int i) {
   while (i < len((import scr_tn))) {
@@ -16,10 +18,14 @@ scr_hside(int e, int o, int i) {
     i = i + 1;
   }
 } return void;
+given idem_init (0, 0, 0):() then calls scr_htag:[0]
+given idem_init (1, 0, 0):() then calls scr_htag:[0]
 
 scr_htag(int e, int o, int i) {
-  if (ent_at(o, 20) / inf_pow2(i) % 2 = 1) {
+  if (ent_at(o, 20) / fx_pow(2, i) % 2 = 1) {
     int scr_sc_v = scr_sc(e);
     scr_fire(scr_sc_v, "hit", e, (import scr_tn)[i]);
   }
 } return void;
+given grow2_fixture (0, 1, 0):() then calls ent_at:[1]
+given put_fixture (0, 0, 0):() then calls ent_at:[1]

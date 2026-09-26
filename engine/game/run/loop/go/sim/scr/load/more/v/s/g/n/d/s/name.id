@@ -8,11 +8,15 @@ scn_bfind(int doc, string name, int i) {
     i = i + 1;
   }
 } return int nd;
+given scn_bfind_t_setup ((import fixture_doc), "nope", 0):(0)
+given scn_bfind_t_setup ((import fixture_doc), "s", 0):(48)
 
 scn_bone(int nd, string name) {
   int at = 0;
   if (ast_kd(nd) = (import ast_k_scene) && ast_tx(nd) = name) { at = nd; }
 } return int at;
+given idem_init (0, "s"):(0)
+given ident_fixture ((import fixture_ident), "score"):(0)
 
 // The record list is shortened rather than replaced: `id` frees nothing, so a
 // scene change that allocated a new list would retain the old one, and a game
@@ -22,3 +26,5 @@ ent_clear() {
     pop((import ent_r));
   }
 } return void;
+given idem_init ():() then ent_n:(0)
+given grow2_fixture ():() then ent_n:(0)

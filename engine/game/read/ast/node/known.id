@@ -1,0 +1,19 @@
+// A second, known-content node atop the nil node ast_init always creates: the
+// accessors (ast_kd, ast_tx, ast_ia, ast_ib, ast_ic, ast_ks, ast_lnof) are one
+// line each and have nothing to read until some node holds distinct values in
+// every column, the same shape as lex/tok/cols and idstd's buf/known.id.
+
+ast_known_setup() {
+  ast_init();
+  ast_known_mark();
+} return void;
+():() then ast_n:(2)
+():() then ast_n:(2) then eprints:("")
+
+ast_known_mark() {
+  ast_mark(7);
+  int[] ks = [1, 2];
+  int nid = ast_new((import ast_k_call), "known", 3, 4, 5, ks);
+} return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_cur_val:(7)

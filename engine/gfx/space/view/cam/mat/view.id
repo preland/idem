@@ -25,6 +25,8 @@ d3_view_matrix() {
   d3_view_eye();
   d3_view_fin();
 } return void;
+given d3_t_setup ():() then d3_t_vm:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 1000])
+given d3_t_pitched ():() then d3_t_vm:([1000, 0, 0, 0, 0, 500, 866, 0, 0, 866, -500, 0, 0, 0, 0, 1000])
 
 // m2 = Rx(-pitch) * Ry(-yaw). The slot quadruples are m4_rot_x's and m4_rot_y's,
 // used directly rather than through those builders because both of them allocate
@@ -34,9 +36,13 @@ d3_view_rot() {
   m4_rot4((import d3_m0), 5, 6, 9, 10, 0 - (import d3_cam)[4]);
   d3_view_rot2();
 } return void;
+given d3_t_setup ():() then d3_t_m0:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000]) then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+given d3_t_pitched ():() then d3_t_m0:([1000, 0, 0, 0, 0, 500, 866, 0, 0, -866, 500, 0, 0, 0, 0, 1000]) then d3_t_m2:([1000, 0, 0, 0, 0, 500, 866, 0, 0, -866, 500, 0, 0, 0, 0, 1000])
 
 d3_view_rot2() {
   m4_ident((import d3_m1));
   m4_rot4((import d3_m1), 0, 8, 2, 10, 0 - (import d3_cam)[3]);
   m4_muli((import d3_m2), (import d3_m0), (import d3_m1));
 } return void;
+given d3_t_setup ():() then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+given d3_t_yawed ():() then d3_t_m2:([866, 0, -500, 0, 0, 1000, 0, 0, 500, 0, 866, 0, 0, 0, 0, 1000])

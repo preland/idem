@@ -5,14 +5,20 @@ inp_sample_get_xy() {
   int y = gfx_mouse_y();
   inp_sample2(x, y);
 } return void;
+given sf_t_setup given inp_init ():() then calls inp_sample2:(0, 0)
+given sf_t_setup given inp_init ():() then inp_mx:(0)
 
 inp_sample2(int x, int y) {
   int cx = fx_clamp(x, 0, (import sf_gw) - 1);
   int cy = fx_clamp(y, 0, (import sf_gh) - 1);
   inp_sample2_store(cx, cy);
 } return void;
+given sf_t_setup given inp_init (10, 10):() then calls inp_sample2_store:(10, 10)
+given sf_t_setup given inp_init (-5, 999):() then calls inp_sample2_store:(0, 47)
 
 inp_sample2_store(int cx, int cy) {
   lset((import inp_mo), 0, cx);
   lset((import inp_mo), 1, cy);
 } return void;
+given inp_init (3, 4):() then inp_mx:(3) then inp_my:(4)
+given inp_init (0, 0):() then inp_mx:(0) then inp_my:(0)

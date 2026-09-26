@@ -10,15 +10,21 @@ scn_efill4(int e, int nd) {
   ent_put(e, 6, spr);
   scn_efill_ly(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 6, -1)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_ly:[1]
 
 scn_efill5(int e, int nd) {
   int flags = scn_eflags(nd);
   ent_put(e, 9, flags);
   scn_efill_bx(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 9, 15)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_bx:[1]
 
 scn_efill6(int e, int nd) {
   int by = scn_mtup(nd, "body", 1);
   ent_put(e, 13, by * 1000);
   scn_efill_wy(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 13, 8000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_wy:[1]

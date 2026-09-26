@@ -4,3 +4,5 @@ idem_boot2(string[] chunks, int argc, string[] argv) {
   idem_read(src);
   int ret_i = idem_go(argc, argv);
 } return int ret_i;
+given idem_init ([""], 2, ["prog", "x"]):(0) then calls idem_shot:(1)
+given idem_init ([""], 2, ["prog", "5"]):(0) then calls idem_shot:(5)

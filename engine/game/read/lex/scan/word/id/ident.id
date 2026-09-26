@@ -7,6 +7,8 @@ lex_ident(string src, int i) {
   int e = lex_idend(src, i);
   lex_ident_push(src, i, e);
 } return int e;
+given lex_init ("abc", 0):(3) then calls lex_push:(12, "abc", 0, 0)
+given lex_init ("a-b", 0):(3) then calls lex_push:(12, "a-b", 0, 0)
 
 lex_idend(string src, int i) {
   int e = i;
@@ -14,3 +16,5 @@ lex_idend(string src, int i) {
     e = e + 1;
   }
 } return int e;
+("abc", 0):(3)
+("a-1", 0):(1)

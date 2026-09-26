@@ -10,6 +10,8 @@ scr_push(string name, int v) {
   push((import scr_vv), v);
   int ret_i = len((import scr_vv)) - 1;
 } return int ret_i;
+given idem_init ("x", 5):(0) then scr_vvlen:(1)
+given scr_fixture ("z", 9):(3) then scr_vvlen:(4)
 
 // `var name = expr` inside a declaration. The initialiser is evaluated with no
 // entity, so it may name a game variable and may not name a sibling -- which is
@@ -20,6 +22,8 @@ scr_dvar(int nd) {
   int v = scr_dvarv(nd);
   scr_push(tx, v);
 } return void;
+given scr_dvar_t_setup ((import fixture_dvar)):() then calls scr_push:("n", 42)
+given scr_dvar_t_setup2 ((import fixture_dvar2)):() then calls scr_push:("m", -42)
 
 // Everything after the game's own block, dropped. `id` frees nothing, so this
 // shortens the lists rather than reallocating them -- and the strings the names
@@ -30,3 +34,5 @@ scr_reset() {
     pop((import scr_vv));
   }
 } return void;
+given idem_init ():() then scr_vvlen:(0)
+given scr_fixture ():() then scr_vvlen:(0)

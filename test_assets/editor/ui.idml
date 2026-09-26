@@ -1,0 +1,11 @@
+#file main.idml
+game fixture {
+  display (150, 250) "fixture"
+}
+
+scene s {
+  clear 0xFF6600
+  ui {
+    Stack()[100, 100, top-left] {}
+  }
+}

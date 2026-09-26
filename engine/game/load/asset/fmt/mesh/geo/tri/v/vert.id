@@ -13,6 +13,8 @@ bl_verts(int p, int si) {
   int n = bl_mint(p, si, "totvert");
   bl_vfill(k, n);
 } return void;
+given bl_mesh_t_load (349984, 322):() then calls bl_vfill:(1063, 8)
+given asset_io_init given bl_mesh_t_load (349984, 322):() then calls bl_vfill:(1063, 8)
 
 bl_vfill(int k, int n) {
   int i = 0;
@@ -21,6 +23,8 @@ bl_vfill(int k, int n) {
     i = i + 1;
   }
 } return void;
+given bl_geo_init given bl_walk_t_setup (0, 1):() then calls bl_vone:[1]
+given bl_geo_init given bl_walk_t_setup (0, 0):() then calls bl_vone:[0]
 
 // Transform first, in Blender's own space, then swap axes. The other order would
 // need the matrix expressed on the engine's axes, which is a second convention to
@@ -30,3 +34,5 @@ bl_vone(int o) {
   int y = bl_f32(o + 4);
   bl_vone2(o, x, y);
 } return void;
+given bl_geo_init given bl_dna_t_bytes (0):() then bl_v_t_check:([45212112, 0, 0])
+given bl_geo_init given bl_dna_t_bytes (17):() then bl_v_t_check:([0, 0, 0])

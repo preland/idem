@@ -2,8 +2,12 @@ ed_pan2d_x() {
   int mx_v = inp_mx();
   lset((import ed_st), 19, (import ed_st)[19] + mx_v - (import ed_st)[6]);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 200, 0], 19, 200)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 10, 0], 19, 10)
 
 ed_pan2d_y() {
   int my_v = inp_my();
   lset((import ed_st), 20, (import ed_st)[20] + my_v - (import ed_st)[7]);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 150], 20, 150)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 30], 20, 30)

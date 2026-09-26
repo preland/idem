@@ -35,11 +35,15 @@ pack_cut(string src, int p) {
   int hi = p + 4096;
   int nxt = pack_at(src, p, hi, n);
 } return int nxt;
+("hi", 0):(2)
+("hello", 0):(5)
 
 pack_at(string src, int p, int hi, int n) {
   int nxt = n;
   if (hi < n) { nxt = pack_nl(src, p, hi); }
 } return int nxt;
+("hello\nworld", 0, 8, 12):(6) then calls pack_nl:("hello\nworld", 0, 8)
+("hi", 0, 100, 2):(2)
 
 // Walk back from hi to just after the last newline in [p, hi). If there was none,
 // j arrives at p and the branchless fixup returns the hard limit instead -- an
@@ -52,3 +56,5 @@ pack_nl(string src, int p, int hi) {
   }
   int ret_i = j + (j = p) * (hi - p);
 } return int ret_i;
+("hello\nworld", 0, 8):(6)
+("hello", 0, 3):(3)

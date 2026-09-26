@@ -5,14 +5,20 @@ scn_ebox(int e, int nd) {
   ent_put(e, 25, sz * 1000);
   scn_ebox2(e, nd);
 } return void;
+given game_fixture_shape (1, (import fixture_shape)):() then calls ent_put:(1, 25, 10000)
+given game_fixture_shape (1, (import fixture_shape)):() then calls scn_ebox2:[1]
 
 scn_ebox2(int e, int nd) {
   int sz = scn_smem(nd, 1);
   ent_put(e, 26, sz * 1000);
   scn_ebox3(e, nd);
 } return void;
+given game_fixture_shape (1, (import fixture_shape)):() then calls ent_put:(1, 26, 60000)
+given game_fixture_shape (1, (import fixture_shape)):() then calls scn_ebox3:[1]
 
 scn_ebox3(int e, int nd) {
   int col = scn_num(nd, 1);
   ent_put(e, 27, col);
 } return void;
+given game_fixture_shape (1, (import fixture_shape)):() then calls ent_put:(1, 27, 16777215)
+given game_fixture_shape (0, (import fixture_shape)):() then calls ent_put:(0, 27, 16777215)

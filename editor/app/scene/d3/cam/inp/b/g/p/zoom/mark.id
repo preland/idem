@@ -2,8 +2,20 @@ ed_mark_x() {
   int mx_v = inp_mx();
   lset((import ed_st), 6, mx_v);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 200, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 6, 200)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 10, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 6, 10)
 
 ed_mark_y() {
   int my_v = inp_my();
   lset((import ed_st), 7, my_v);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 150, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 7, 150)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 30, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 7, 30)
+
+// A UI project with no loaded mesh, for ed_zoom's 2D branch -- the plainest way
+// to reach ed_is2d()'s true side without reading a project through stdin.
+ed_t_2d() {
+  lset((import ed_gu), 0, 1);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([1, 0x70C5CE, 18874880], 0, 1)
+given ed_t_boot stdin "" ():() then ed_is2d:(1)

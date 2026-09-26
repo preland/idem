@@ -3,15 +3,21 @@ t_edge_show() {
   int tin_caret_v = tin_caret();
   print("tab is not a character exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_edge_ready ():() then prints:("tab is not a character exp ac caret 2 = ac 2\n")
+given tin_edge_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
 
 t_act_show() {
   int tin_act_v = tin_act();
   string tin_text_v = tin_text();
   print("return exp act 1, text still ac = " + tin_act_v + " " + tin_text_v);
 } return void;
+given tin_act_ready ():() then prints:("return exp act 1, text still ac = 1 ac\n")
+given tin_act_ready ():() then calls tin_act:[1] then calls tin_text:[1]
 
 t_esc_show() {
   int tin_act_v = tin_act();
   string tin_text_v = tin_text();
   print("escape exp act 2, text still ac = " + tin_act_v + " " + tin_text_v);
 } return void;
+given tin_esc_ready ():() then prints:("escape exp act 2, text still ac = 2 ac\n")
+given tin_esc_ready ():() then calls tin_act:[1] then calls tin_text:[1]

@@ -14,6 +14,8 @@ inp_down(int key) {
     ok = (import inp_keys)[key];
   }
 } return int ok;
+given inp_init (13):(0)
+given tin_t_press_setup (13):(1)
 
 inp_hit(int key) {
   int ok = 0;
@@ -21,6 +23,8 @@ inp_hit(int key) {
     ok = (import inp_hits)[key] = (import inp_st)[0];
   }
 } return int ok;
+given inp_init (13):(0)
+given tin_t_press_setup (13):(1)
 
 // Did any of the keys bound to "action" fire this frame? Space, Return and W all
 // mean the same thing in a one-button game, and deciding which of them the
@@ -28,3 +32,5 @@ inp_hit(int key) {
 inp_hit_any() {
   int r = inp_hit(32) || inp_hit(13) || inp_hit(119);
 } return int r;
+given inp_init ():(0)
+given tin_t_press_setup ():(1)

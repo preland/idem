@@ -17,15 +17,21 @@ fse_read(int sa, int slen, int maxs) {
   int zf_bits_v = zf_bits(4);
   int ret_i = fse_read_loop(zf_bits_v, maxs);
 } return int ret_i;
+given fse_init given fser_buf_setup ((import fser_buf_p), 1, 256):(2)
+given zf_st_val_setup given fser_buf_setup ((import fser_buf_p), 2, 256):(3)
 
 fse_rinit(int log, int maxs) {
-  int inf_pow2_v = inf_pow2(log);
-  int inf_pow2_v2 = inf_pow2(log);
+  int inf_pow2_v = fx_pow(2, log);
+  int inf_pow2_v2 = fx_pow(2, log);
   fse_rinit_setup(log, inf_pow2_v, inf_pow2_v2, maxs);
 } return void;
+given fse_init (3, 256):()
+given zf_st_val_setup (4, 512):()
 
 fse_rinit2(int maxs) {
   m4_pair((import fse_st), 4, 5, 0, 0);
   lset((import fse_st), 9, maxs);
   lst_set_all((import fse_ct), 256, 0);
 } return void;
+given fse_init (256):()
+given zf_st_val_setup (512):()

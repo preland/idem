@@ -11,11 +11,15 @@
 asset_row(int y) {
   int ret_i = (import png_st)[7] + y * (import png_st)[8];
 } return int ret_i;
+given png_rowfake_fixture (3):(160)
+given png_rowfake_fixture (0):(100)
 
 png_row(int y, int r) {
   int f = peek8(r);
   png_bytes(y, r + 1, f);
 } return void;
+given spr_grey_fixture (0, (import spr_row_grey)):() then calls png_bytes:[1]
+given spr_grey_fixture (1, (import spr_row_grey)):() then calls png_bytes:[1]
 
 png_bytes(int y, int r, int f) {
   int i = 0;
@@ -24,3 +28,5 @@ png_bytes(int y, int r, int f) {
     i = next_i;
   }
 } return void;
+given png_pd_fixture (0, (import png_row0_data), 0):() then calls png_bytes_one:[4]
+given spr_bird_fixture (0, (import spr_row_bird), 0):() then calls png_bytes_one:[9]

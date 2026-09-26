@@ -9,6 +9,8 @@ t_vars() {
   t_vars_scene();
   t_vars2();
 } return void;
+given scr_scene_ready ():() then calls t_vars_best:[1]
+given scr_scene_ready ():() then calls t_vars2:[1]
 
 // Three, not two: the scene declares a bird and a wall, and its `on enter`
 // spawned a Box while the document was still loading. That handler firing at load
@@ -19,6 +21,8 @@ t_vars2() {
   t_vars2_own();
   t_upd();
 } return void;
+given scr_scene_ready ():() then calls t_vars2_ent:[1]
+given scr_scene_ready ():() then calls t_upd:[1]
 
 // One update. `n = 3 * 4 + 2` is 14 and not 18: `*` binds tighter than `+`,
 // which is `id`'s rule and every other language's.
@@ -27,3 +31,5 @@ t_upd() {
   t_upd_rep();
   t_hit();
 } return void;
+given scr_scene_ready ():() then calls scr_upd:(0)
+given scr_scene_ready ():() then calls t_hit:[1]

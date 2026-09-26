@@ -10,6 +10,8 @@ zst_reset2(int cap) {
   m4_pair((import zst_st), 6, 7, 0, 0);
   zst_reset3();
 } return void;
+given zst_init (256):()
+given zst_init (1024):()
 
 // Slot 8 is NOT cleared: it holds the literals buffer, allocated once by zst_tabs
 // and reused by every block of every frame. Clearing it here zeroed the address
@@ -23,6 +25,8 @@ zst_reset3() {
   m4_pair((import zst_st), 11, 12, 1, 4);
   lset((import zst_st), 13, 8);
 } return void;
+given zst_init ():() then zst_o1_check:(1)
+given zst_dirty_setup ():() then zst_o1_check:(1)
 
 zst_frames() {
   while ((import zst_st)[1] + 4 <= (import zst_st)[2] && (import zst_st)[6] = 0) {
@@ -30,3 +34,7 @@ zst_frames() {
     zst_frame(zst_le_v);
   }
 } return void;
+given zst_init ():() then calls zst_frame:[0]
+given zst_dirty_setup ():() then calls zst_frame:[0]
+
+

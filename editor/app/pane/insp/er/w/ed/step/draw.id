@@ -3,15 +3,21 @@ ed_nudge_draw_rect(int x, int y, int ok) {
   int col = ed_col(7 - 5 * (ok = 0));
   ed_nudge_draw_rect_do(x, y, hdr, hdr, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 1):() then calls ed_nudge_draw_rect_do:(0, 10, 21, 21, 0x4A4A4A)
+given ed_t_boot stdin "" (0, 10, 0):() then calls ed_nudge_draw_rect_do:(0, 10, 21, 21, 0x323232)
 
 ed_nudge_draw_frame(int x, int y) {
   int hdr = ed_hdr();
   int col = ed_col(3);
   ed_nudge_draw_frame_do(x, y, hdr, hdr, col);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_nudge_draw_frame_do:(0, 10, 21, 21, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 20):() then calls ed_nudge_draw_frame_do:(5, 20, 21, 21, 0x1C1C1C)
 
 ed_nudge_draw(int x, int y, int ok, int d) {
   ed_nudge_draw_rect(x, y, ok);
   ed_nudge_draw_frame(x, y);
   ed_nudge_draw_text(x, y, d);
 } return void;
+given ed_t_boot stdin "" (0, 10, 1, 5):() then calls ed_nudge_draw_rect:(0, 10, 1)
+given ed_t_boot stdin "" (0, 10, 1, 5):() then calls ed_nudge_draw_text:(0, 10, 5)

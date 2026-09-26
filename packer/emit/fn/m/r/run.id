@@ -5,4 +5,12 @@ pack_run() {
   string read_all_v = read_all();
   pack_files(read_all_v, 0, 0);
 } return void;
+given pack_mode_ready stdin "hi" ():() then calls pack_main:[1]
+given pack_mode_ready stdin "hi" ():() then calls pack_files:[1]
+
+pack_buf_str() {
+  string s = str_of_mem((import pack_buf), 2);
+} return string s;
+given pack_buf_hi_ready ():("HI")
+given pack_buf_ok_ready ():("OK")
 

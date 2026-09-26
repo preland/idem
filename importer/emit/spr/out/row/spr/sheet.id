@@ -6,6 +6,8 @@ spr_pal_rows(int i) {
     i = i + 1;
   }
 } return void;
+given spr_pal_ready (1):() then calls spr_pal_row:[1]
+given spr_lists_ready (1):() then calls spr_pal_row:[0]
 
 // The three-argument form of `sprite` is the animated one (IDML_GAME.md §2), and
 // a sheet is always animated even when it has one cell -- a one-frame animation
@@ -16,6 +18,8 @@ spr_spr() {
   print("sprite " + (import spr_nm)[0] + "(" + (import spr_d)[0] + ", " + (import spr_d)[1] + ", " + (import spr_d)[2] * (import spr_d)[3] + ") using " + (import spr_nm)[0] + "-pal {");
   spr_frames();
 } return void;
+given spr_px1_ready ():() then calls spr_frames:[1]
+given spr_px_ready ():() then calls spr_frames:[1]
 
 spr_frames() {
   int f = 0;
@@ -25,3 +29,5 @@ spr_frames() {
   }
   print("}");
 } return void;
+given spr_px1_ready ():() then calls spr_frame:[1]
+given spr_px_ready ():() then calls spr_frame:[1]

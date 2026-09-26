@@ -1,0 +1,18 @@
+// See sys_open_ready/sys_stage_ready/sys_keys_ready in ready.id and
+// sys_frame_ready in ../more.id: each later fixture replays one more input
+// event than the last, so a case entering the key-state chain mid-way sees
+// the exact state the full chain would have reached there.
+sys_rel_ready() {
+  sys_frame_ready();
+  inp_stamp(87 + 65536);
+} return void;
+():() then calls sys_frame_ready:[1]
+():() then calls inp_stamp:(65623)
+
+sys_tap_ready() {
+  sys_rel_ready();
+  inp_stamp(87);
+  inp_stamp(87 + 65536);
+} return void;
+():() then calls sys_rel_ready:[1]
+():() then calls inp_stamp:(65623)

@@ -18,6 +18,8 @@ png_kind3(int p, int n, int a, int b) {
     png_trns(p, n);
   }
 } return void;
+given png_raw_fixture (85, 15, 76, 84):() then calls png_plte:(85, 15)
+given spr_bird_fixture (100, 1, 82, 78):() then calls png_trns:(100, 1)
 
 // Stored as store *addresses*, not as offsets into the file. The chunk walk
 // speaks in offsets from byte zero of the file; the store speaks in addresses,
@@ -27,7 +29,11 @@ png_kind3(int p, int n, int a, int b) {
 png_plte(int p, int n) {
   m4_pair((import png_st), 12, 13, (import asset_io)[0] + p, n / 3);
 } return void;
+given png_raw_fixture (85, 15):() then png_pn_check:(5)
+given png_raw_fixture (0, 30):() then png_pn_check:(10)
 
 png_trns(int p, int n) {
   m4_pair((import png_st), 14, 15, (import asset_io)[0] + p, n);
 } return void;
+given png_raw_fixture (104, 1):() then png_tn_check:(1)
+given png_raw_fixture (0, 5):() then png_tn_check:(5)

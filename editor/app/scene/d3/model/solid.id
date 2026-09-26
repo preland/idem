@@ -9,6 +9,8 @@ ed_solid() {
   ed_grid();
   ed_model();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_grid:[1] then calls ed_model:[1]
+given ed_t_boot given bl_mesh_t_load stdin "" ():() then calls ed_grid:[1] then calls ed_mesh:(0)
 
 ed_model() {
   if (bl_ntri() > 0) {
@@ -17,6 +19,8 @@ ed_model() {
     ed_props();
   }
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_props:[1]
+given ed_t_boot given bl_mesh_t_load stdin "" ():() then calls ed_mesh:(0)
 
 // Every triangle of the loaded mesh, through one scratch record. d3_wtri
 // transforms in place, so the record is refilled per triangle by contract -- and
@@ -28,3 +32,5 @@ ed_mesh(int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot given bl_mesh_t_load stdin "" (0):() then calls ed_mtri:[12]
+given ed_t_boot given bl_mesh_t_load stdin "" (12):() then calls ed_mtri:[0]

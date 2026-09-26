@@ -8,6 +8,8 @@ ed_err_hit(int x, int y, int w, int i, int ok) {
   }
   ed_err_bg(x, y, w, ok);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0, 1):() then calls ed_err_bg:(0, 10, 100, 1)
+given ed_t_boot given idstd_err_t_one given inp_t_state stdin "" (0, 10, 100, 0, 1):() then calls ed_dirfind:("t.id", 0)
 
 ed_err_bg(int x, int y, int w, int ok) {
   if (ok = 1) {
@@ -16,3 +18,5 @@ ed_err_bg(int x, int y, int w, int ok) {
     sf_rect(x, y, w, ed_rowh_v * 2, ed_col_v);
   }
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 1):() then calls sf_rect:(0, 10, 100, 36, 0x4A4A4A)
+given ed_t_boot stdin "" (0, 10, 100, 0):() then calls sf_rect:[0]

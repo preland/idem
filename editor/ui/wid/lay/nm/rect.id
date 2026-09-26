@@ -5,3 +5,6 @@ ed_pname3(int p, string name) {
   else if (p = 5) { name = "Project"; }
   else if (p = 6) { name = "StatusBar"; }
 } return string name;
+(4, "X"):("Inspector")
+(5, "X"):("Project")
+(9, "X"):("X")

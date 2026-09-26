@@ -20,6 +20,8 @@ txt_number(int v, int x, int y, int c) {
   int txt_ui_v = txt_ui();
   txt_num_sc(v, x, y, c, txt_ui_v * 1000);
 } return void;
+given txt_init given sf_t_setup (0, 0, -3, 9):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (-5, -8, -2, 9):() then d2_blit_t_px00:(9)
 
 // The same, at a given per-mille scale -- what a game's UI draws a score with,
 // where the scale belongs to the stage rather than to the window.
@@ -30,6 +32,8 @@ txt_num_sc(int v, int x, int y, int c, int sc) {
   }
   txt_num_sc2(m, v, x, y, c, sc);
 } return void;
+given txt_init given sf_t_setup (0, 0, -3, 9, 1000):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (-5, -8, -2, 9, 1000):() then d2_blit_t_px00:(9)
 
 // pw walks 10^(digits-1) down to 1, so the digits come out most significant first
 // -- which is the order they have to be drawn in, and the reason the power is
@@ -43,3 +47,5 @@ txt_num_run(int m, int x, int y, int c, int pwsc) {
     pwsc = pwsc / 65536 / 10 * 65536 + pwsc % 65536;
   }
 } return void;
+given txt_init given sf_t_setup (0, 0, -3, 9, 66536):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (5, 0, -2, 9, 66536):() then d2_blit_t_px00:(9)

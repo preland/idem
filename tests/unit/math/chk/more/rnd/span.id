@@ -13,14 +13,20 @@ t_rndspan() {
   int rnd_range_v2 = rnd_range(7, 7);
   t_rndspan2(rnd_range_v, rnd_range_v2);
 } return void;
+given fx_trig_init given rnd_seed2 ():() then calls rnd_range:(7, 7)
+given fx_trig_init given rnd_seed2 ():() then calls t_rndspan2:[1]
 
 t_rndspan2(int rnd_range_v, int rnd_range_v2) {
   print("rnd_range(7,7) twice exp 7 7 = " + rnd_range_v + " " + rnd_range_v2);
   int rnd_range_v3 = rnd_range(3, 0 - 3);
   t_rndspan3(rnd_range_v3);
 } return void;
+given fx_trig_init given rnd_seed4 (1, 2):() then calls rnd_range:(3, -3)
+given fx_trig_init given rnd_seed4 (3, 4):() then calls t_rndspan3:[1]
 
 t_rndspan3(int rnd_range_v3) {
   print("rnd_range(3,-3) reversed bounds exp 2 in -3..3 = " + rnd_range_v3);
   t_rndloop();
 } return void;
+given fx_trig_init given rnd_seed5 (1):() then calls t_rndloop:[1]
+given fx_trig_init given rnd_seed5 (2):() then calls t_rndloop:[1]

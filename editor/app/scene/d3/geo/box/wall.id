@@ -7,6 +7,8 @@
 ed_box_x(int x, int y, int z, int n, int c) {
   ed_wall_pair(x, y, z, n, c);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xFF):() then calls ed_wall_pair:(0, 0, 0, 700, 0xFF)
+given ed_t_boot stdin "" (5, 10, 15, 100, 0xAA):() then calls ed_wall_pair:(5, 10, 15, 100, 0xAA)
 
 // The lid, wound the same way the grid is -- upward-facing horizontal quads are
 // the one case where the obvious vertex order is the wrong one.
@@ -15,6 +17,8 @@ ed_box_top(int x, int y, int z, int n, int c) {
   ed_face(x - n, y + 2 * n, z - n, x + n, y + 2 * n, z + n, x + n, y + 2 * n, z - n, c_top);
   ed_face(x - n, y + 2 * n, z - n, x - n, y + 2 * n, z + n, x + n, y + 2 * n, z + n, c_top);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xFF):() then calls d2_shade:(0xFF, 1200)
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xFF):() then calls ed_face:[2]
 
 // A vertical wall from one ground corner to the opposite top corner. The two
 // x/z pairs give the footprint and y0/y1 the height, so one call is one side.
@@ -22,3 +26,5 @@ ed_wall(int x0, int y0, int z0, int x1, int y1, int z1, int c) {
   ed_face(x0, y0, z0, x1, y0, z1, x1, y1, z1, c);
   ed_face(x0, y0, z0, x1, y1, z1, x0, y1, z0, c);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 1, 2, 3, 0xFF):() then calls ed_face:(0, 0, 0, 1, 0, 3, 1, 2, 3, 0xFF)
+given ed_t_boot stdin "" (0, 0, 0, 1, 2, 3, 0xFF):() then calls ed_face:(0, 0, 0, 1, 2, 3, 0, 2, 0, 0xFF)

@@ -6,6 +6,8 @@ ed_rstr(int[] buf, int i, int n, string s) {
     i = i + 1;
   }
 } return string s;
+([104, 105], 0, 2, ""):("hi")
+([72], 0, 0, "Y"):("Y")
 
 // Where the toolchain is: the executable's own directory is `<root>/build/`, so
 // the root is one above it. That is how Export finds `tools/idem` without being
@@ -13,3 +15,14 @@ ed_rstr(int[] buf, int i, int n, string s) {
 ed_root() {
   string ret_s = ed_up((import scn_dir)[1]);
 } return string ret_s;
+given ed_t_boot stdin "" ():("")
+given ed_t_boot given ed_t_scn_dir stdin "" ():("a/")
+
+// The project directory set directly (sset, not a stdin `#root` line, which
+// scn_rfix may fall back away from if the directory does not exist) -- for
+// ed_root's own case that needs scn_dir[1] to actually hold something.
+ed_t_scn_dir() {
+  sset((import scn_dir), 1, "a/b/");
+} return void;
+given ed_t_boot stdin "" ():() then calls sset:[1]
+given ed_t_boot stdin "" ():() then calls sset:(["", "a/b/"], 1, "a/b/")

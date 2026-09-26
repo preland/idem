@@ -1,0 +1,29 @@
+// The same two real fixtures as zst_lhuf's own (mix.zst, four.zst), taken
+// one step further: past the literals-section header, with the regenerated
+// size already read off (zst_lreg) and the literals buffer already sized
+// (zst_lbuf) -- exactly the state zst_lhuf2 expects on entry.
+
+zst_lhuf2_mix_setup() {
+  zst_lhuf_mix_setup();
+  int reg = zst_lreg(0, 66);
+  zst_lbuf(reg);
+} return void;
+():() then calls zst_lhuf_mix_setup:[1]
+():() then calls zst_lbuf:(116)
+
+zst_lhuf2_four_setup() {
+  zst_lhuf_four_setup();
+  int reg = zst_lreg(3, 222);
+  zst_lbuf(reg);
+} return void;
+():() then calls zst_lhuf_four_setup:[1]
+():() then calls zst_lbuf:(17805)
+
+// The read cursor, past the tree and both stream(s) only once zst_lhuf2 has
+// actually consumed them -- a body that decoded nothing would leave it at
+// the literals buffer setup's own p0.
+zst_sp_check() {
+  int sp = (import zst_st)[1];
+} return int sp;
+given zst_lhuf2_mix_setup ():(13)
+given zst_lhuf2_four_setup ():(17)

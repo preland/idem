@@ -3,15 +3,21 @@ t_lst_show(int[] xs) {
   print("fill 11199 = " + xs[0] + xs[1] + xs[2] + xs[3] + xs[4]);
   t_err_show(xs);
 } return void;
+given err_init ([9, 9, 9, 9, 9]):([1, 1, 1, 9, 9]) then prints:("fill 11199 = 11199\nlget 9 = 9 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+given err_init ([5, 5, 5, 5, 5]):([1, 1, 1, 5, 5]) then prints:("fill 11199 = 11155\nlget 9 = 5 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
 
 t_err_show(int[] xs) {
   string line = "lget 9 = " + lget(xs, 4) + " len 5 = " + len(xs);
   print(line);
   t_err_report();
 } return void;
+given err_init ([1, 1, 1, 9, 9]):([1, 1, 1, 9, 9]) then prints:("lget 9 = 9 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+given err_init ([2, 4, 6, 8, 10]):([2, 4, 6, 8, 10]) then prints:("lget 9 = 10 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
 
 t_err_report() {
   err_report("fake.idml", 7, "a reported error is counted");
   string line = "errs 1 = " + err_count();
   print(line);
 } return void;
+given err_init ():() then prints:("fake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+given err_init ():() then calls err_report:("fake.idml", 7, "a reported error is counted")

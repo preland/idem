@@ -5,15 +5,21 @@ idem_aloop(int alive) {
     alive = idem_aframe();
   }
 } return void;
+(0):()
+given seam_fixture given game_fixture_nd given ui_pinit given sys_quit (1):() then calls idem_aframe:[1]
 
 idem_aframe() {
   int t = sys_now();
   idem_aframe2(t);
   int ret_i = sys_alive();
 } return int ret_i;
+given seam_fixture given game_fixture_nd given ui_pinit ():(1) then calls idem_aframe2:[1]
+given seam_fixture given game_fixture_nd given ui_pinit given sys_quit ():(0) then calls idem_aframe2:[1]
 
 idem_apace(int t) {
   sys_present();
   int fps = idem_apacefps();
   sys_pace(t, fps);
 } return void;
+given seam_fixture given game_fixture_nd (0):() then calls sys_pace:(0, 30)
+given seam_fixture given game_fixture_nd (5):() then calls sys_pace:(5, 30)

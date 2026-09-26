@@ -32,12 +32,16 @@
 bl_wm_init() {
   export int[] bl_wm = m4_new();
 } return void;
+():() then bl_wm_init_t_check:(16)
+given asset_io_init ():() then bl_wm_init_t_check:(16)
 
 bl_world(int p, int si) {
   m4_ident((import bl_wm));
   bl_wrot(p, si);
   bl_wts(p, si);
 } return void;
+given fx_trig_init given bl_scene_t_setup (348664, 692):() then calls bl_wrot:(348664, 692)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (348664, 692):() then calls bl_wts:(348664, 692)
 
 // Rotation, as Rz * Ry * Rx built straight into the destination.
 bl_wrot(int p, int si) {
@@ -45,3 +49,5 @@ bl_wrot(int p, int si) {
   m4_rot4((import bl_wm), 0, 1, 4, 5, bl_deg_v);
   bl_wrx(p, si);
 } return void;
+given fx_trig_init given bl_scene_t_setup (348664, 692):() then calls bl_wrx:(348664, 692)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (348664, 692):() then calls bl_wrx:(348664, 692)

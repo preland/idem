@@ -6,3 +6,5 @@ ed_read4(string src) {
   export string[] ed_dir = [];
   ed_read3(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls ed_read3:("hello")
+given ed_t_boot stdin "" (""):() then calls ed_read3:("")

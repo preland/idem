@@ -5,6 +5,8 @@ png_chan2(int kd) {
   if (kd = 2) { n = 3; }
   else { n = png_chan3(kd); }
 } return int n;
+(2):(3)
+(0):(0)
 
 // The filter stride and the row stride, both of which depend on the depth.
 //
@@ -21,9 +23,13 @@ png_chk() {
   lset((import png_st), 11, fx_max_v);
   png_chk1();
 } return void;
+given png_init ():() then png_bpp_check:(1) then calls png_chk1:[1]
+given spr_rgba_fixture ():() then png_bpp_check:(4) then calls png_chk1:[1]
 
 png_chk1() {
   int stride = ((import png_st)[0] * (import png_st)[4] * (import png_st)[2] + 7) / 8 + 1;
   lset((import png_st), 8, stride);
   png_chk2();
 } return void;
+given png_init ():() then png_stride_check:(1) then calls png_chk2:[1]
+given spr_bird_fixture ():() then png_stride_check:(10) then calls png_chk2:[1]

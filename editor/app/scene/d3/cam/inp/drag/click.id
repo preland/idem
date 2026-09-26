@@ -1,0 +1,9 @@
+// A pointer press inside the scene view's real rect (128, 41, 360, 294 under
+// ed_t_lay), for the drag-start and hit-test cases in this directory that need
+// the click to land where a real gesture would rather than at the origin.
+ed_t_click() {
+  inp_sample_tail(1);
+  inp_sample2_store(200, 150);
+} return void;
+given ed_t_boot ():() then calls inp_sample_tail:(1)
+given ed_t_boot ():() then calls inp_sample2_store:(200, 150)

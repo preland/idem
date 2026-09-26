@@ -3,8 +3,12 @@ ed_wall_pair(int x, int y, int z, int n, int c) {
   int c2 = d2_shade(c, 600);
   ed_wall_pair2(x, y, z, n, c1, c2);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xFF):() then calls d2_shade:(0xFF, 850)
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xFF):() then calls ed_wall_pair2:[1]
 
 ed_wall_pair2(int x, int y, int z, int n, int c1, int c2) {
   ed_wall(x + n, y, z + n, x + n, y + 2 * n, z - n, c1);
   ed_wall(x - n, y, z - n, x - n, y + 2 * n, z + n, c2);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xAA, 0xBB):() then calls ed_wall:(700, 0, 700, 700, 1400, -700, 0xAA)
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xAA, 0xBB):() then calls ed_wall:(-700, 0, -700, -700, 1400, 700, 0xBB)

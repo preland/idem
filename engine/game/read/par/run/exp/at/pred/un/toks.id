@@ -1,0 +1,12 @@
+// Every operator text the pred/ predicates (shop, addop, mulop, eqop, relop,
+// unop) alternate on, in one stream so each alternative gets its own case --
+// a first pass that tested only one alternative per predicate stayed green
+// under a mutant that deleted another one. Moved in beside unary.id to make
+// room: pred/ already held three files.
+
+par_ops_setup() {
+  lex_init();
+  lex_run("<< >> + - * / % = == != < <= > >= ! ~");
+} return void;
+():() then lex_kind_len:(17)
+():() then lex_kind_len:(17) then eprints:("")

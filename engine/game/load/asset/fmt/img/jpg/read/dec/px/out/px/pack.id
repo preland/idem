@@ -2,6 +2,8 @@ jpg_orow2(int x, int y, int ra, int lu, int cb) {
   int jpg_samp_v3 = jpg_samp(2, x, y);
   jpg_opx(ra + 1 + x * 3, lu, cb, jpg_samp_v3);
 } return void;
+given jpg_pxbuf_fixture (0, 0, (import jpg_px_a_m1), 100, 200):() then jpg_px0_check:(100)
+given jpg_pxbuf_fixture (0, 0, (import jpg_px_a_m1), 50, 200):() then jpg_px0_check:(50)
 
 // YCbCr to RGB, JFIF's coefficients at x1024. The shifts floor rather than
 // truncate, which matters because Cb and Cr are signed once centred.
@@ -10,8 +12,13 @@ jpg_opx(int da, int lu, int cb, int cr) {
   jpg_opx_g(da, lu, cb, cr);
   jpg_opx_b(da, lu, cb);
 } return void;
+given jpg_pxbuf_fixture ((import jpg_px_a), 100, 200, 200):() then jpg_px0_check:(200)
+given jpg_pxbuf_fixture ((import jpg_px_a), 200, 255, 255):() then jpg_px0_check:(255)
 
+// R = luma + 1.402*(Cr-128), JFIF's coefficient at x1024 = 1436.
 jpg_opx_r(int da, int lu, int cr) {
   int fx_clamp_v = fx_clamp(lu + ((1436 * (cr - 128)) >> 10), 0, 255);
   poke8(da, fx_clamp_v);
 } return void;
+given jpg_pxbuf_fixture ((import jpg_px_a), 100, 200):() then jpg_px0_check:(200)
+given jpg_pxbuf_fixture ((import jpg_px_a), 200, 255):() then jpg_px0_check:(255)

@@ -1,0 +1,23 @@
+// Continuing the replay: Escape, a quiet frame, then the repeat setup.
+
+tin_esc_ready() {
+  tin_act_ready();
+  t_tap(27, 3100);
+} return void;
+():() then calls tin_act_ready:[1]
+():() then calls t_tap:(27, 3100)
+
+tin_quiet_ready() {
+  tin_esc_ready();
+  t_hold(3200);
+} return void;
+():() then calls tin_esc_ready:[1]
+():() then calls t_hold:(3200)
+
+tin_rep_ready() {
+  tin_quiet_ready();
+  tin_set("123456789");
+  t_down(8, 5000);
+} return void;
+():() then calls tin_quiet_ready:[1]
+():() then calls t_down:(8, 5000)

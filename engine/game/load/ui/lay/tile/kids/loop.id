@@ -7,3 +7,5 @@ ui_kids_loop(int[] ks, int x, int y, int w, int h, int k) {
     i = i + 1;
   }
 } return void;
+given ui_leaf_t_setup ([], 0, 0, 100, 50, 1):() then calls ui_rput:[0]
+given ui_leaf_t_setup ([3], 0, 0, 100, 50, 1):() then calls ui_rput:[1]

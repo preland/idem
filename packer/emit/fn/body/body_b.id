@@ -5,3 +5,5 @@ pack_body_b(string es, string src, int nxt, int k) {
   put(es);
   pack_tail(src, nxt, k);
 } return void;
+("hi", "hi", 2, 0):() then calls pack_tail:("hi", 2, 0)
+("bye", "hello", 2, 0):() then calls pack_tail:("hello", 2, 0)

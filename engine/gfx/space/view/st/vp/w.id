@@ -5,3 +5,26 @@
 d3_vp_w() {
   int ret_i = (import d3_vp)[2] - (import d3_vp)[0] + 1;
 } return int ret_i;
+given d3_t_setup ():(64)
+given d3_t_vp_odd_setup ():(10)
+
+// d3_vp[4], the viewport's centre x -- read by cases that mutate d3_vp_mid's
+// input rect but have no other way to observe slot 4 from outside.
+d3_t_vp_cx() {
+  int cx = (import d3_vp)[4];
+} return int cx;
+given d3_t_setup ():(32)
+given d3_t_vp_odd_setup ():(8)
+
+// A camera moved off the origin and given a wide-ish fov, for cases in the
+// cam/mat batch that need a non-zero eye or a re-derived focal length without
+// disturbing the aim. The eye change and the fov change are independent
+// slots, so one setup covers both a d3_view_eye case and a d3_cam_focal/
+// d3_start case.
+d3_t_fixture2() {
+  d3_t_setup();
+  d3_cam_set(500, 0 - 300, 1200);
+  d3_cam_fov(90000);
+} return void;
+():() then d3_t_cam:([500, -300, 1200, 0, 0, 40, 40000, 90000, 32000])
+():() then d3_vp_w:(64)

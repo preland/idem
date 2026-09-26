@@ -12,12 +12,16 @@ t_yaw() {
   t_pt("yaw +90 deg: world (-1000,0,0) is ahead, exp 0 0 1000", 0 - 1000, 0, 0);
   t_pitch();
 } return void;
+given d3_ready ():() then calls t_pose:(0, 0, 90000, 0)
+given d3_ready ():() then calls t_pitch:[1]
 
 t_pitch() {
   t_pose(0, 0, 0, 90000);
   t_pt("pitch +90 deg: world (0,1000,0) is ahead, exp 0 0 1000", 0, 1000, 0);
   t_back();
 } return void;
+given d3_ready ():() then calls t_pose:(0, 0, 0, 90000)
+given d3_ready ():() then calls t_back:[1]
 
 // Moving the eye back along +Z pushes the world forward by the same amount: the
 // origin is five units ahead of a camera standing at z = 5000.
@@ -26,3 +30,5 @@ t_back() {
   t_pt("cam at z 5000: world origin exp 0 0 5000", 0, 0, 0);
   t_cut();
 } return void;
+given d3_ready ():() then calls t_pose:(0, 5000, 0, 0)
+given d3_ready ():() then calls t_cut:[1]

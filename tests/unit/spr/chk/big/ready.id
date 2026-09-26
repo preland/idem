@@ -1,0 +1,25 @@
+// Test-only fixture. Every case here needs img/spryte-run.png's real geometry
+// (a 5x5 grid of 40x40 cells) but not its real bytes -- the file is
+// 2560x2560, and a case is capped at 1 GiB (idc/README.md, "Memory ceiling"):
+// png_load decodes the whole source before spr_png2 ever divides it down, so
+// loading the real file inside a case traps on that ceiling even though the
+// resulting sprite would fit easily. Resampling grey.png (a few bytes) to the
+// same 5x5x40x40 shape gives every offset chk/big/more.id's cases use without
+// paying for the real decode.
+spr_grid_ready() {
+  spr_ready2();
+  export int t_grid_p = spr_png("grey", "img/grey.png", 5, 5, 40, 40);
+} return void;
+():() then calls spr_ready2:[1]
+():() then calls spr_png:("grey", "img/grey.png", 5, 5, 40, 40)
+
+// argv[1], when given, names a small asset a case can afford; tools/test.sh
+// runs the binary with no arguments, so production keeps the real one.
+t_main_path(int argc, string[] argv) {
+  string path = "../../../test_assets/spryte-run.png";
+  if (argc > 1) {
+    path = argv[1];
+  }
+} return string path;
+(2, ["spr", "img/grey.png"]):("img/grey.png")
+(1, ["spr"]):("../../../test_assets/spryte-run.png")

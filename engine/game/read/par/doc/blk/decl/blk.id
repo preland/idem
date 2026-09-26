@@ -8,6 +8,8 @@ par_dkind(int[] pos, string name, int kd, int ln) {
     nd = par_dblock(pos, kd, ln);
   }
 } return int nd;
+given par_decl_setup ([5], "weird", 0, 2):(1) then calls ast_new_k:(145, "weird")
+given par_decl_setup ([1], "sprite", 105, 1):(4) then calls ast_new:(105, "bird", 3, 0, 0, [])
 
 // An unknown keyword costs one diagnostic and one skipped token. Every collection
 // loop in this parser carries an end-of-input guard, so a malformed document
@@ -17,6 +19,8 @@ par_dbad(int[] pos, string name) {
   par_dbad_err(pos, name);
   int ret_i = par_badtok_tail(pos, name);
 } return int ret_i;
+given par_decl_setup ([5], "weird"):(1) then calls ast_new_k:(145, "weird")
+given par_decl_setup ([18], "X"):(1) then calls ast_new_k:(145, "X")
 
 // `import "path"` has a string where a name goes, which is the one exception --
 // so the name is whatever token follows, taken as text either way.
@@ -25,3 +29,5 @@ par_dblock(int[] pos, int kd, int ln) {
   par_next(pos);
   int ret_i = par_dbody(pos, kd, name, ln);
 } return int ret_i;
+given par_decl_setup ([1], 105, 1):(4) then calls ast_new:(105, "bird", 3, 0, 0, [])
+given par_decl_setup ([20], 105, 8):(4) then calls ast_new:(105, ".", 3, 0, 0, [])

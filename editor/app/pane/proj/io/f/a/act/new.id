@@ -6,14 +6,20 @@ ed_new_init() {
   string ed_pong_v = ed_pong();
   sset((import ed_doc), 0, ed_pong_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls sset:[1]
+given ed_t_boot stdin "" ():() then calls ed_pong:[1]
 
 ed_new_path() {
   string ed_up_v = ed_up((import scn_dir)[0]);
   sset((import ed_path), 0, ed_up_v + "pong/pong.idml");
 } return void;
+given ed_t_boot stdin "" ():() then calls sset:(["pong/pong.idml"], 0, "pong/pong.idml")
+given ed_t_boot stdin "" ():() then calls ed_up:("")
 
 ed_new() {
   ed_new_init();
   ed_new_path();
   ed_reopen(8);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_new_init:[1]
+given ed_t_boot stdin "" ():() then calls ed_reopen:(8)

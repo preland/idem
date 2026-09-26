@@ -5,12 +5,16 @@ jpg_loop() {
     jpg_seg();
   }
 } return void;
+given jpg_walk1_fixture ():() then calls jpg_seg:[10]
+given jpg_init ():() then calls jpg_seg:[0]
 
 jpg_seg() {
   int p = jpg_mark((import jpg_st)[9]);
   int asset_at_v = asset_at(p + 1);
   jpg_kind(p, asset_at_v);
 } return void;
+given jpg_raw_fixture ():() then calls jpg_kind:(0, 216)
+given jpg_seg1_fixture ():() then calls jpg_kind:(2, 224)
 
 // A real marker is 0xFF followed by something that is neither 0x00 (a stuffed
 // data byte) nor 0xFF (fill). Scanning for one rather than trusting the cursor
@@ -21,3 +25,5 @@ jpg_mark(int p) {
     p = p + 1;
   }
 } return int p;
+given jpg_raw_fixture (0):(0)
+given jpg_raw_fixture (1):(2)

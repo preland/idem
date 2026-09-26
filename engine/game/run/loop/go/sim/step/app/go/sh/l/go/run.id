@@ -4,7 +4,13 @@ idem_ago(int argc, string[] argv) {
   int n = err_count();
   idem_ago2(argc, argv);
 } return int n;
+given seam_fixture given game_fixture_nd given ui_pinit (2, ["prog", "1"]):(0) then calls idem_ashot:(1)
+given seam_fixture given game_fixture_nd given ui_pinit (2, ["prog", "3"]):(0) then calls idem_ashot:(3)
 
+// argc <= 1 (idem_aloop(1)) is not cased directly here: with the window left
+// alive it would not return, so idem_aloop has its own case (go/sh/run/loop.id)
+// that pre-quits the window before entering, and that is the only place this
+// branch is exercised.
 idem_ago2(int argc, string[] argv) {
   if (argc > 1) {
     int shot_n_v = shot_n(argc, argv);
@@ -15,6 +21,8 @@ idem_ago2(int argc, string[] argv) {
   }
   gfx_close();
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit (2, ["prog", "1"]):() then calls idem_ashot:(1)
+given seam_fixture given game_fixture_nd given ui_pinit (2, ["prog", "3"]):() then calls idem_ashot:(3)
 
 // idem_app's own three actions, moved here because app.id -- its home file and
 // directory -- is already at the 3-function, 3-entry caps app.id's own header
@@ -25,3 +33,5 @@ idem_app2(string[] chunks, int argc, string[] argv) {
   idem_pre(argc, argv);
   idem_app3(chunks);
 } return void;
+given seam_fixture ([""], 2, ["prog", "1"]):() then calls idem_app3:([""])
+given seam_fixture ([""], 2, ["prog", "3"]):() then calls idem_pre:(2, ["prog", "3"])

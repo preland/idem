@@ -19,6 +19,8 @@
 txt_init() {
   txt_glyph_data();
 } return void;
+():() then calls txt_glyph_data:()
+():() then calls txt_glyph_data:[1]
 
 // Where a code point's rows start in the table -- txt_cellh() of them, not 8:
 // the face is 8x16 and a game may load one that is 8x14 or 12x24. Anything
@@ -33,7 +35,11 @@ txt_glyph_at(int key) {
   }
   int offset = (n - (import txt_first)) * txt_cellh();
 } return int offset;
+given txt_init (72):(640)
+given txt_init (200):(0)
 
 txt_glyph(int key, int x, int y, int c) {
   txt_glyph_sc(key, x, y, c, 1000);
 } return void;
+given txt_init given sf_t_setup (72, 0, -2, 9):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (200, 0, 0, 9):() then d2_blit_t_px00:(0)

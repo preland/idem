@@ -1,12 +1,18 @@
 ed_nudge_draw_rect_do(int x, int y, int w, int hgt, int col) {
   sf_rect(x, y, w, hgt, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 21, 21, 0x4A4A4A):() then calls sf_rect:(0, 10, 21, 21, 0x4A4A4A)
+given ed_t_boot stdin "" (5, 20, 10, 15, 0x1C1C1C):() then calls sf_rect:(5, 20, 10, 15, 0x1C1C1C)
 
 ed_nudge_draw_frame_do(int x, int y, int w, int hgt, int col) {
   d2_frame(x, y, w, hgt, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 21, 21, 0x1C1C1C):() then calls d2_frame:(0, 10, 21, 21, 0x1C1C1C)
+given ed_t_boot stdin "" (5, 20, 10, 15, 0x4A4A4A):() then calls d2_frame:(5, 20, 10, 15, 0x4A4A4A)
 
 ed_nudge_draw_text_do(int x, int y, string sign, int hdr, int wid) {
   int col = ed_col(4);
   txt_draw(sign, x + (hdr - wid) / 2, y + 1, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "+", 21, 8):() then calls txt_draw:("+", 6, 11, 0xCFCFCF)
+given ed_t_boot stdin "" (5, 20, "-", 21, 8):() then calls txt_draw:("-", 11, 21, 0xCFCFCF)

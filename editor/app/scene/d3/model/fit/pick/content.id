@@ -14,6 +14,8 @@ ed_content() {
     ed_solid();
   }
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_solid:[1]
+given ed_t_boot given ed_t_2d stdin "" ():() then calls ed_plane:[1]
 
 // Asked here and by the navigation, so that the wheel and the middle button move
 // whichever view is actually on screen. Two views with one set of bindings is the
@@ -21,3 +23,5 @@ ed_content() {
 ed_is2d() {
   int ret_i = bl_ntri() = 0 && (import ed_gu)[0] != 0;
 } return int ret_i;
+given ed_t_boot stdin "" ():(0)
+given ed_t_boot given ed_t_2d stdin "" ():(1)

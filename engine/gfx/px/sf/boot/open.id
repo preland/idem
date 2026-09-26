@@ -1,0 +1,33 @@
+// Opening the surface, once.
+//
+// sf_alloc declares the framebuffer and must run exactly once; sf_init sets the
+// size and may run as often as the window changes. sf_open is the pair, and is
+// what a program calls at boot -- calling sf_init first would read a list that
+// does not exist yet, which segfaults rather than diagnosing itself.
+//
+// This file opens no window and calls nothing native: a program can open a
+// surface, draw into it and dump a PPM with no display and no backend linked at
+// all. That is the engine's whole off-screen test path.
+
+sf_open(int w, int h) {
+  sf_alloc();
+  sf_init(w, h);
+} return void;
+(64, 48):() then sf_t_gw:(64) then sf_t_gh:(48)
+(1, 1):() then sf_t_gw:(1) then sf_t_gh:(1)
+
+// The clip rect is declared here and not in sf_init, for the same reason the
+// framebuffer is: sf_init runs on every resize, and re-running an `export` on a
+// list would abandon the old one in a language that frees nothing.
+sf_alloc() {
+  export int[] sf_fb = [];
+  sf_cl_init();
+} return void;
+():() then sf_alloc_t_check:([])
+():() then calls sf_cl_init:[1]
+
+sf_alloc_t_check() {
+  int[] fb = (import sf_fb);
+} return int[] fb;
+given sf_alloc ():([])
+given sf_alloc ():([]) then sf_cl_t_len:(4)

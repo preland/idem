@@ -14,3 +14,5 @@ par_dim(int[] pos) {
     nd = par_snum(pos, 2);
   }
 } return int nd;
+given par_item_setup ([7]):(1) then calls ast_new_num:(5000, 0)
+given par_item_setup ([14]):(2) then calls ast_new_a:(140, "", 1)

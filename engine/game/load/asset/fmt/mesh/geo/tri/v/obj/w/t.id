@@ -1,0 +1,9 @@
+// The cube's own Object block address (bl_bp[1033], scene/obj.id) -- for
+// bl_world/bl_wrot/bl_wrx/bl_wry/bl_wts/bl_wtrans's own cases, which need a
+// real p rather than a fabricated one (a wrong p still reads real bytes, but
+// not the ones the field offsets mean).
+bl_obj_t_p() {
+  int p = (import bl_bp)[1033];
+} return int p;
+given fx_trig_init given bl_scene_t_setup ():(348664)
+given fx_trig_init given asset_io_init given bl_scene_t_setup ():(348664)

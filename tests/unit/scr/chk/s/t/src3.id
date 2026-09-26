@@ -3,3 +3,20 @@
 t_src3() {
   string ret_s = "  entity bird {" + chr(10) + "    pos (50, 50)" + chr(10) + "    body (10, 10)" + chr(10) + "    tag player" + chr(10) + "    var own = 5" + chr(10) + "    script {" + chr(10) + "      on update { n = 3 * 4 + 2  own = own + 1 }" + chr(10) + "      on press { taps = taps + 1 }" + chr(10) + "      on hit deadly { hits = hits + 1 }" + chr(10) + "    }" + chr(10) + "  }" + chr(10) + t_src4();
 } return string ret_s;
+():("  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+given fx_trig_init ():("  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+
+scr_lex_ready() {
+  scr_ready();
+  lex_init();
+} return void;
+():() then calls scr_ready:[1]
+():() then calls lex_init:[1]
+
+scr_loaded_ready() {
+  scr_lex_ready();
+  string s = t_src();
+  lex_run(s);
+} return void;
+():() then calls scr_lex_ready:[1]
+():() then calls lex_run:[1]

@@ -5,14 +5,20 @@ ast_new(int kd, string txt, int a, int b, int c, int[] kids) {
   push((import ast_text), txt);
   int result = ast_new2(a, b, c, kids);
 } return int result;
+given ast_init (100, "x", 1, 2, 3, [9]):(1) then ast_n:(2)
+given ast_init (101, "y", 0, 0, 0, []):(1) then ast_n:(2)
 
 ast_new2(int a, int b, int c, int[] kids) {
   push((import ast_a), a);
   push((import ast_b), b);
   int result = ast_new3(c, kids);
 } return int result;
+given ast_init (5, 6, 7, [1]):(0) then ast_b_len:(2)
+given ast_init (10, 20, 30, []):(0) then ast_c_len:(2)
 
 ast_new3(int c, int[] kids) {
   push((import ast_c), c);
   int v = ast_new3_tail(c, kids);
 } return int v;
+given ast_init (7, [1]):(0) then ast_c_len:(2)
+given ast_init (9, []):(0) then ast_line_len:(2)

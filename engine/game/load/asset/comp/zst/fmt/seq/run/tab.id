@@ -11,6 +11,8 @@ zst_stab(int r, int md, int log, int base) {
     zst_stab2(r, md, log, base);
   }
 } return void;
+given zst_pre_init given fse_init (0, 0, 6, 0):() then calls zst_spre:[1]
+given zst_src_setup given fse_init (0, 1, 6, 0):() then calls zst_stab2:[1]
 
 zst_stab2(int r, int md, int log, int base) {
   if (md = 2) {
@@ -19,6 +21,8 @@ zst_stab2(int r, int md, int log, int base) {
     zst_srle(r, base);
   }
 } return void;
+given zst_src_setup given fse_init (0, 2, 6, 0):() then calls zst_sfse:[1]
+given zst_src_setup given fse_init (0, 1, 6, 0):() then calls zst_srle:[1]
 
 // Mode 3 is repeat: the previous block's table is still in place, so there is
 // nothing to do. That only holds because the tables live in fse_sy/fse_nb/fse_bs
@@ -28,3 +32,5 @@ zst_spre(int r, int base) {
   int zst_plog_v = zst_plog(r);
   zst_pload(r, zst_pdist_v, zst_plog_v, base);
 } return void;
+given zst_pre_init given fse_init (0, 0):()
+given zst_pre_init given fse_init (1, 512):()

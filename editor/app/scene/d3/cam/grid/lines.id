@@ -4,6 +4,8 @@ ed_grid() {
   ed_grid_run(0 - 5);
   ed_axis();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_grid_run:(-5)
+given ed_t_boot stdin "" ():() then calls ed_axis:[1]
 
 ed_grid_run(int i) {
   while (i <= 5) {
@@ -11,9 +13,13 @@ ed_grid_run(int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (-5):() then calls ed_grid_pair:[11]
+given ed_t_boot stdin "" (5):() then calls ed_grid_pair:(5000)
 
 ed_grid_pair(int n) {
   int c = ed_col(9);
   ed_gline(n, 0 - 5000, n, 5000, c);
   ed_gline(0 - 5000, n, 5000, n, c);
 } return void;
+given ed_t_boot stdin "" (1000):() then calls ed_gline:(1000, -5000, 1000, 5000, 0x4E4E4E)
+given ed_t_boot stdin "" (0):() then calls ed_gline:(-5000, 0, 5000, 0, 0x4E4E4E)

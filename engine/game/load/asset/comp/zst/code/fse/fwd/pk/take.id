@@ -4,6 +4,8 @@ zf_bits(int n) {
   int v = zf_peek(n);
   zf_drop(n);
 } return int v;
+given fse_init (1):(0)
+given fse_init (2):(0)
 
 // The description ends at the byte holding its last bit, and the sequences
 // section begins at the next one. `sp` counts bytes pulled into the buffer and
@@ -12,3 +14,14 @@ zf_bits(int n) {
 zf_used() {
   int result = ((import zf_st)[1] * 8 - (import zf_st)[3] + 7) / 8;
 } return int result;
+given fse_init ():(0)
+given zf_used_setup ():(2)
+
+// sp*8 - nbits = 16 - 7 = 9, one past a multiple of 8 -- the boundary where
+// ceil(9/8) = 2 only holds with the exact "+7" rounding constant.
+zf_used_setup() {
+  fse_init();
+  m4_pair((import zf_st), 1, 3, 2, 7);
+} return void;
+():() then zf_nbits_check:(7)
+given fse_init ():() then zf_nbits_check:(7)

@@ -5,9 +5,13 @@ par_str_node(string txt) {
   int ast_k_str_v = (import ast_k_str);
   int ret_i = ast_new_k(ast_k_str_v, txt);
 } return int ret_i;
+given ast_init ("hi"):(1) then calls ast_new_k:(132, "hi")
+given ast_init ("x"):(1) then calls ast_new_k:(132, "x")
 
 par_num_val(int[] pos, int sg) {
   int par_val_v = par_val(pos);
   int par_frac_v = par_frac(pos);
   int nd = ast_new_num(par_val_v * sg, par_frac_v);
 } return int nd;
+given par_lit_setup ([2], -1):(1) then calls ast_new_num:(-5, 0)
+given par_lit_setup ([3], 1):(1) then calls ast_new_num:(35, 1)

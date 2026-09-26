@@ -10,15 +10,21 @@ t_fxscale() {
   int fx_mul_v2 = fx_mul(0 - 2000, 3000, 1000);
   t_fxmul2(fx_mul_v, fx_mul_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_mul:(2000, 3000, 1000)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxmul2:(6000, -6000)
 
 t_fxdiv() {
   int fx_mul_v = fx_mul(5, 5, 0);
   print("fx_mul(5,5,0) exp 0 not a crash = " + fx_mul_v);
   t_fxdiv2();
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_mul:(5, 5, 0)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxdiv2:[1]
 
 t_fxlerp() {
   int fx_lerp_v = fx_lerp(0, 1000, 500);
   int fx_lerp_v2 = fx_lerp(100, 200, 250);
   t_fxlerp2(fx_lerp_v, fx_lerp_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_lerp:(0, 1000, 500)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxlerp2:(500, 125)

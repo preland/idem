@@ -3,3 +3,5 @@ ed_hier_rows_h(int x, int y, int w, int h) {
   int hdr = ed_hdr();
   ed_hier_rows(x, y + hdr + 1, w, (h - hdr - 3) / rowh);
 } return void;
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_hier_rows:(0, 22, 100, 4)
+given ed_t_boot stdin "" (5, 10, 100, 40):() then calls ed_hier_rows:(5, 32, 100, 0)

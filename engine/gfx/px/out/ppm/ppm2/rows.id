@@ -9,6 +9,8 @@ ppm_head() {
   ppm_rows(0);
   flush();
 } return void;
+given ppm_t_small ():() then prints:("255\n255 0 0 0 0 255 \n")
+given ppm_t_small2 ():() then prints:("255\n0 255 0 \n")
 
 ppm_rows(int y) {
   while (y < (import sf_gh)) {
@@ -17,6 +19,8 @@ ppm_rows(int y) {
     y = y + 1;
   }
 } return void;
+given ppm_t_small (0):() then prints:("255 0 0 0 0 255 \n")
+given ppm_t_small2 (0):() then prints:("0 255 0 \n")
 
 ppm_row(int[] xs, int i, int n) {
   int x = 0;
@@ -26,3 +30,5 @@ ppm_row(int[] xs, int i, int n) {
   }
   ppm_row_end();
 } return void;
+given ppm_init ([5], 0, 1):() then prints:("0 0 5 \n")
+given ppm_init ([5, 6, 7], 0, 0):() then prints:("\n")

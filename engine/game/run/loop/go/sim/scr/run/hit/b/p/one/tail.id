@@ -3,8 +3,12 @@ scr_ovl_tail(int a, int b) {
   int sy = scr_ovl_ax(a, b, 1, 13);
   int v = sx = 1 && sy = 1;
 } return int v;
+given grow_fixture (0, 0):(1)
+given grow2_fixture (0, 1):(1)
 
 scr_span_tail(int ac, int aw, int bc, int bw) {
   int abs_diff = fx_abs(ac - bc);
   int span_val = abs_diff * 2 <= aw + bw;
 } return int span_val;
+(10, 10, 5, 10):(1)
+(0, 10, 20, 10):(0)

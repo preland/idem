@@ -1,0 +1,28 @@
+pad4(int gp_n) {
+  string gp_d = "" + gp_n;
+  int gp_k = 4 - len(gp_d);
+  string gp_r = str_slice("0000", 0, gp_k) + gp_d;
+} return string gp_r;
+(7):("0007")
+(1234):("1234")
+
+// One filler entity. hp wraps at 97, so entity 97 is the first to repeat a
+// value -- the second case pins that.
+fixture_entity(int gp_n) {
+  string gp_p = pad4(gp_n);
+  int gp_hp = gp_n % 97;
+  string gp_e = "entity filler" + gp_p + " {\n\tsprite = \"bird\\up-" + gp_p + "\"\t# " + gp_n + "\n\ttag = @wave." + gp_p + " { hp = " + gp_hp + ", path = \"a\\b\\c\" }\n}\n";
+} return string gp_e;
+(0):("entity filler0000 {\n\tsprite = \"bird\\up-0000\"\t# 0\n\ttag = @wave.0000 { hp = 0, path = \"a\\b\\c\" }\n}\n")
+(98):("entity filler0098 {\n\tsprite = \"bird\\up-0098\"\t# 98\n\ttag = @wave.0098 { hp = 1, path = \"a\\b\\c\" }\n}\n")
+
+fill_bulk(int[] gp_buf, int gp_count) {
+  int gp_i = 0;
+  while(gp_i < gp_count) {
+    string gp_e = fixture_entity(gp_i);
+    put_bytes(gp_buf, gp_e);
+    gp_i = gp_i + 1;
+  }
+} return void;
+([], 0):([])
+([], 1):([101, 110, 116, 105, 116, 121, 32, 102, 105, 108, 108, 101, 114, 48, 48, 48, 48, 32, 123, 10, 9, 115, 112, 114, 105, 116, 101, 32, 61, 32, 34, 98, 105, 114, 100, 92, 117, 112, 45, 48, 48, 48, 48, 34, 9, 35, 32, 48, 10, 9, 116, 97, 103, 32, 61, 32, 64, 119, 97, 118, 101, 46, 48, 48, 48, 48, 32, 123, 32, 104, 112, 32, 61, 32, 48, 44, 32, 112, 97, 116, 104, 32, 61, 32, 34, 97, 92, 98, 92, 99, 34, 32, 125, 10, 125, 10])

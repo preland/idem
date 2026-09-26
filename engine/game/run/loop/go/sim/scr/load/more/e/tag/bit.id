@@ -2,5 +2,7 @@
 scr_etagbit(int nd) {
   string tx = ast_tx(nd);
   int tag = scr_tag(tx);
-  int bit = inf_pow2(tag);
+  int bit = fx_pow(2, tag);
 } return int bit;
+given ident_fixture ((import fixture_ident)):(1)
+given ident_fixture ((import fixture_time)):(1)

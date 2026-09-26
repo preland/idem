@@ -3,3 +3,25 @@ ui_tstr_xyc(int nd, int x, int y, int w, int h, string sarg) {
   int txt_width_sc_v = txt_width_sc(sarg, (import ui_ts)[0]);
   int[] xyc = [ui_text_coords(nd, x, y, w, h, txt_width_sc_v), ui_ty(y, h), ui_tc(nd)];
 } return int[] xyc;
+given txt_init given sf_t_setup given ui_leaf_t_setup (3, 0, 0, 100, 20, "hi"):([4, 2, 13158600])
+given txt_init given sf_t_setup given ui_leaf_t_setup (3, 10, 5, 100, 20, "hi"):([14, 7, 13158600])
+
+// A `@ref` node (6) whose `a` refers back to the 200 argument (4) already
+// built by ui_item_fx1, gathered under a second args list (7) -- the
+// indirection ui_tnum_ev's own scr_ev hop expects, and the kind ui_text's
+// dispatch itself keys on.
+ui_tnum_t_arg() {
+  ui_item_fx1();
+  int n6 = ast_new_a((import ast_k_ref), "!", 4);
+  int n7 = ast_new_kids((import ast_k_args), "args", [6]);
+} return void;
+():() then ast_n:(8)
+given ast_init ():() then ast_n:(8)
+
+// The item itself (8), for ui_tnum_ev's and ui_tnum_xyc's own cases.
+ui_tnum_t_setup() {
+  ui_tnum_t_arg();
+  int n8 = ast_new_a((import ast_k_comp), "Text", 7);
+} return void;
+():() then ast_n:(9)
+given ast_init ():() then ast_n:(9)

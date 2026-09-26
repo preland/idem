@@ -6,3 +6,19 @@ png_idat(int p, int n) {
   png_gather(p, n);
   lset((import png_st), 6, (import png_st)[6] + n);
 } return void;
+given png_raw_fixture (307, 102):() then png_zlen_check:(102) then calls png_gather:(307, 102)
+given png_raw_fixture (16, 5):() then png_zlen_check:(5) then calls png_gather:(16, 5)
+
+// The gathered-so-far length (png_st[6]) as a value, for cases.
+png_zlen_check() {
+  int v = (import png_st)[6];
+} return int v;
+given png_init ():(0)
+given png_zlen5_fixture ():(5)
+
+png_zlen5_fixture() {
+  png_init();
+  lset((import png_st), 6, 5);
+} return void;
+():() then png_zlen_check:(5)
+given png_init ():() then png_zlen_check:(5)

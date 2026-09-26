@@ -1,0 +1,28 @@
+// A real backward-bitstream section, so fse_dstart/fse_dnext (which read
+// real bits, not just zst_sq/zst_lb/etc.) have something to read -- zb_init
+// alone (from zst_init's own cascade) leaves sa/bp at 0, which traps.
+zstsq_bytes() {
+  export int zstsq_p = alloc(2);
+  poke8((import zstsq_p), 192);
+  poke8((import zstsq_p) + 1, 128);
+} return void;
+():() then zstsq_byte_check:(192)
+given zst_init ():() then zstsq_byte_check:(192)
+
+// zst_sq/zst_lb/zst_lx/zst_mb/zst_mx and the predefined-table distribution
+// arrays, all via the real zst_stabs_init chain (not a bare zst_init, which
+// does not reach zst_sq at all).
+zstsq_pre() {
+  zst_init();
+  zst_stabs_init();
+} return void;
+():() then zb_done:(0)
+given zst_init ():() then zb_done:(0)
+
+zstsq_setup() {
+  zstsq_pre();
+  zstsq_bytes();
+  zb_start((import zstsq_p), 2);
+} return void;
+():() then zstsq_byte_check:(192)
+given zst_init ():() then zstsq_byte_check:(192)

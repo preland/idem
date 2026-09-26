@@ -3,9 +3,13 @@ bl_wmul() {
   m4_muli((import bl_m2), (import bl_wm), (import bl_m0));
   m4_muli((import bl_wm), (import bl_m2), (import bl_m1));
 } return void;
+given bl_geo_init ():() then calls m4_muli:[2]
+given asset_io_init given bl_geo_init ():() then calls m4_muli:[2]
 
 bl_rot_angle(int p, int si, int offset) {
   int bl_foff_v = bl_foff(si, "rot[3]");
   int bl_f32_v = bl_f32(p + bl_foff_v + offset);
   int bl_deg_v = bl_deg(bl_f32_v);
 } return int bl_deg_v;
+given bl_walk_t_setup (49, 0, 4):(-480615)
+given bl_walk_t_setup (0, 0, 0):(-1728071)

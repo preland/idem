@@ -1,0 +1,14 @@
+// A recorded root that does not exist, so scn_rfix has a fallback to take.
+dirfix() {
+  idem_init();
+  sset((import scn_dir), 0, "nonexistent_test_dir_xyz/");
+} return void;
+():() then calls idem_init:[1]
+():() then calls sset:[1]
+
+// The recorded root, for a case to read back after scn_dir changes.
+scn_dir_root() {
+  string ret_s = (import scn_dir)[0];
+} return string ret_s;
+given scn_dir_init ():("")
+given dirfix ():("nonexistent_test_dir_xyz/")

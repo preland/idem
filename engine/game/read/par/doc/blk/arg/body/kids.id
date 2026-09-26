@@ -4,3 +4,5 @@ par_dargs_kids(int[] pos, int ln) {
   int[] kids = [];
   par_dafill(pos, kids, ln);
 } return int[] kids;
+given par_dmem_setup ([1], 1):([1]) then calls ast_new_num:(1, 0)
+given par_dmem_setup ([9], 3):([])

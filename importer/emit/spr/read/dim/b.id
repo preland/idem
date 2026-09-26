@@ -6,15 +6,21 @@ spr_dim4_b(string src) {
   lset((import spr_d), 1, v1);
   spr_dim2(src);
 } return void;
+given spr_hdr_ready ("5"):() then calls spr_dim2:("5")
+given spr_hdr_ready ("9"):() then calls spr_dim2:("9")
 
 spr_dim2_b(string src) {
   int v3 = imp_int(src);
   lset((import spr_d), 3, v3);
   lset((import spr_d), 8, (import spr_d)[0] * (import spr_d)[2]);
 } return void;
+given spr_hdr_ready given imp_init ("5"):() then spr_d3:(5)
+given spr_hdr_ready given imp_init ("9"):() then spr_d3:(9)
 
 spr_dim5_b(string src) {
   int v5 = imp_int(src);
   lset((import spr_d), 5, v5);
   spr_dim3(src);
 } return void;
+given spr_hdr_ready ("5"):() then calls spr_dim3:("5")
+given spr_hdr_ready ("9"):() then calls spr_dim3:("9")

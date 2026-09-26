@@ -5,11 +5,15 @@ zst_pdist(int r) {
   if (r = 1) { xs = (import zst_pof); }
   else if (r = 2) { xs = (import zst_pml); }
 } return int[] xs;
+given zst_pre_init (0):((import zst_pll))
+given zst_pre_init (1):((import zst_pof))
 
 zst_plog(int r) {
   int log = 6;
   if (r = 1) { log = 5; }
 } return int log;
+(0):(6)
+(1):(5)
 
 // One symbol, one state, no bits ever read. Accuracy log 0 is what makes every
 // decode of this table answer the same symbol and consume nothing.
@@ -17,3 +21,5 @@ zst_srle(int r, int base) {
   zst_srle_set(r, base);
   zst_srle_put(base);
 } return void;
+given zst_src_setup given fse_init (0, 0):()
+given zst_src_setup given fse_init (1, 512):()

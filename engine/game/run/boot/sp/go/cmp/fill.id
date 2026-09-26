@@ -14,12 +14,16 @@ scn_efill(int e, int nd, int i) {
   ent_put(e, 0, p);
   scn_efill_p2(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd), 0):() then calls ent_put:(1, 0, 144000)
+given game_fixture_nd (1, (import fixture_nd), 0):() then calls scn_efill_p2:[1]
 
 scn_efill2(int e, int nd) {
   int vx = scn_mtup(nd, "vel", 0);
   ent_put(e, 2, vx * 1000);
   scn_efill_v2(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 2, -120000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_v2:[1]
 
 // `scale` is already per-mille and defaults to 1000 rather than to 0, so an
 // absent one has to leave the slot alone instead of writing what it read.
@@ -28,3 +32,5 @@ scn_efill3(int e, int nd) {
   scn_edef(e, 4, sx);
   scn_efill_s2(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_edef:(1, 4, 500)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_s2:[1]

@@ -5,3 +5,5 @@ zst_fval(int f, int n) {
   if (n > 0) { v = zst_le(n); }
   if (f = 1) { v = v + 256; }
 } return int v;
+given zst_src_setup (0, 1):(1)
+given zst_src_setup (1, 2):(769)

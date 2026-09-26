@@ -2,6 +2,8 @@ ast_ktake(string[] strs, string s, int i) {
   int e = ast_kend(s, i);
   int v = ast_ktake_tail(strs, s, i, e);
 } return int v;
+([], "nil file", 0):(4)
+([], "nil file import", 4):(9)
 
 // The `find` idiom that stands in for `break`: the loop bound is the result, so
 // assigning it on a hit ends the loop. 32 is a space. Missing separator yields
@@ -13,7 +15,11 @@ ast_kend(string s, int i) {
     i = i + 1;
   }
 } return int e;
+("nil file", 0):(3)
+("nil", 0):(3)
 
 ast_mark(int ln) {
   lset((import ast_cur), 0, ln);
 } return void;
+given ast_init (7):() then ast_cur_val:(7)
+given ast_init (0):() then ast_cur_val:(0)

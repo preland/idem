@@ -1,0 +1,15 @@
+// Column-length readers for the token store, used only as `then` checks: the
+// push chain (lex_push, lex_push2, lex_push3) has no return value of its own,
+// so a case witnesses it by asking how far a specific column grew.
+
+lex_kind_len() {
+  int n = len((import lex_kind));
+} return int n;
+given lex_init ():(0)
+given lex_init ():(0) then eprints:("")
+
+lex_line_len() {
+  int n = len((import lex_line));
+} return int n;
+given lex_init ():(0)
+given lex_init ():(0) then eprints:("")

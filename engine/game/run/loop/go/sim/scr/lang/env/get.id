@@ -9,6 +9,8 @@ scr_get(int e, string name) {
   int v = 0;
   if (i >= 0) { v = (import scr_vv)[i]; }
 } return int v;
+given scr_fixture (-1, "score"):(1)
+given scr_fixture (-1, "nope"):(0)
 
 // An assignment to a name nothing declared is a diagnostic and a no-op. `id`
 // itself has no implicit declaration and neither does this: a typo that silently
@@ -23,3 +25,5 @@ scr_set(int e, string name, int v) {
     err_report("script", 0, "assignment to undeclared variable " + chr_v + name + chr_v2);
   }
 } return void;
+given scr_fixture (-1, "score", 5):() then calls lset:[1]
+given scr_fixture (-1, "nope", 5):() then calls err_report:[1]

@@ -7,8 +7,12 @@ png_chan3(int kd) {
   if (kd = 4) { n = 2; }
   else if (kd = 6) { n = 4; }
 } return int n;
+(4):(2)
+(3):(1)
 
 png_chan4(int kd) {
   int n = 0;
   if (kd = 3) { n = 1; }
 } return int n;
+(3):(1)
+(5):(0)

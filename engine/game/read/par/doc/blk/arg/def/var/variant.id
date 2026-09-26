@@ -19,12 +19,16 @@ par_dvar(int[] pos, string name, int ln) {
     nd = par_dbad(pos, name);
   }
 } return int nd;
+given par_decl_setup ([7], "Card", 3):(6) then calls ast_new_kids:(143, "Card", [1, 3, 5])
+given par_decl_setup ([5], "weird", 2):(1) then calls ast_new_k:(145, "weird")
 
 par_variant(int[] pos, string name) {
   par_next(pos);
   string par_text_v = par_text(pos);
   int ret_i = par_variant2(pos, name, par_text_v);
 } return int ret_i;
+given par_decl_setup ([7], "Card"):(6) then calls ast_new_kids:(143, "Card", [1, 3, 5])
+given par_decl_setup ([7], "Different"):(6) then calls ast_new_kids:(143, "Different", [1, 3, 5])
 
 // `bn` and not `base`: `base` is already an int elsewhere in the program, and a
 // name carries one type across the whole of it.
@@ -37,3 +41,5 @@ par_variant2(int[] pos, string name, string bn) {
   par_next(pos);
   int ret_i = par_vbody(pos, name, ks);
 } return int ret_i;
+given par_decl_setup ([8], "Card", "Base"):(6) then calls ast_new_kids:(143, "Card", [1, 3, 5])
+given par_decl_setup ([8], "Different", "Base2"):(6) then calls ast_new_kids:(143, "Different", [1, 3, 5])

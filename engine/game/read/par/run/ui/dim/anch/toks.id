@@ -1,0 +1,19 @@
+// A token stream for run/ui/dim and run/ui/item: a full item (args, dims,
+// visibility gate, one child), a bare child item with none of those, and a
+// second dimension slot with no anchor word, for the anchor fallback.
+// Placed beside anchor.id/node.id -- anch/ had room.
+
+par_item_setup() {
+  lex_init();
+  ast_init();
+  par_item_setup2();
+} return void;
+():() then lex_kind_len:(25)
+():() then lex_kind_len:(25) then eprints:("")
+
+par_item_setup2() {
+  err_init();
+  lex_run("Panel(1, 2)[50, 60, top]?@gate{\n  child\n}[10, 20]");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(25)
+given lex_init given ast_init ():() then lex_kind_len:(25) then eprints:("")

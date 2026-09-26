@@ -12,6 +12,8 @@
 scr_press() {
   scr_pscan(0);
 } return void;
+given idem_init ():() then calls scr_pscan:[1]
+given key1_fixture ():() then calls scr_pscan:[1]
 
 scr_pscan(int i) {
   while (i < len((import scr_kk))) {
@@ -19,9 +21,13 @@ scr_pscan(int i) {
     i = i + 1;
   }
 } return void;
+given idem_init (0):() then calls scr_pkey:[0]
+given key1_fixture (0):() then calls scr_pkey:[1]
 
 scr_pkey(int i) {
   if (inp_hit((import scr_kk)[i]) = 1) {
     scr_pev((import scr_ke)[i]);
   }
 } return void;
+given key1_fixture (0):() then calls inp_hit:[1]
+given key1_fixture (0):() then calls scr_pev:[0]

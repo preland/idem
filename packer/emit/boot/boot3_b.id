@@ -6,3 +6,5 @@ pack_boot3_b(string tail) {
   print("  int rc = " + e + "(chunks, argc, argv" + tail + ");");
   print("} return int rc;");
 } return void;
+given pack_mode_ready (""):() then prints:("  int rc = idem_boot(chunks, argc, argv);\n} return int rc;\n")
+given pack_app_ready (", g_init, g_stage, g_step, g_draw, g_ref, g_act"):() then prints:("  int rc = idem_app(chunks, argc, argv, g_init, g_stage, g_step, g_draw, g_ref, g_act);\n} return int rc;\n")

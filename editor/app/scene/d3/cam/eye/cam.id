@@ -11,6 +11,8 @@ ed_cam() {
   ed_cam_eye((import ed_st)[4], (import ed_st)[2], (import ed_st)[3]);
   d3_view_matrix();
 } return void;
+given ed_t_boot stdin "" ():() then calls d3_cam_aim:(35000, -9000)
+given ed_t_boot stdin "" ():() then calls ed_cam_eye:(9000, 35000, -9000)
 
 // eye = centre - dist * forward. The centre is where the geometry is; orbiting
 // the origin shows the inside of a wall for any scene an artist did not happen to
@@ -18,3 +20,5 @@ ed_cam() {
 ed_cam_eye(int d, int deg, int pit) {
   ed_cam_set_eye(d, deg, pit);
 } return void;
+given ed_t_boot stdin "" (1000, 90000, 0):() then calls ed_cam_set_eye:(1000, 90000, 0)
+given ed_t_boot stdin "" (1000, 0, 0):() then calls ed_cam_set_eye:(1000, 0, 0)

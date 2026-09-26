@@ -33,6 +33,8 @@ inp_init() {
   export int[] inp_hits = [];
   inp_init2();
 } return void;
+():() then calls inp_init2:[1]
+():() then calls inp_fill:[1]
 
 // The pointer record inp_mo, four slots: x, y in *surface* pixels (the backend
 // speaks window pixels, which is a different thing the moment the window is
@@ -43,9 +45,13 @@ inp_init2() {
   export int[] inp_mo = [0, 0, 0, 0];
   inp_fill();
 } return void;
+given inp_init ():() then calls inp_fill:[1]
+given inp_init ():() then calls lst_fill:[2]
 
 inp_fill() {
   int kmax = (import inp_kmax);
   lst_fill((import inp_keys), kmax, 0);
   lst_fill((import inp_hits), kmax, 0 - 1);
 } return void;
+given inp_init ():() then calls lst_fill:[2]
+():() then traps:("uninitialised export")

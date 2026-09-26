@@ -6,6 +6,8 @@ ui_ppage(int nd) {
     lset((import ui_pg), 0, ast_ia_v);
   }
 } return void;
+given page_t_node given ui_pinit (1):() then read_ui_pg0:(42)
+given page_t_leaf given ui_pinit (1):() then read_ui_pg0:(0)
 
 // The frame's two seam calls, read once each. Kept here because frame.id
 // (app/go/loop/frame.id), where idem_adraw calls this, is already at its 3-function
@@ -15,9 +17,13 @@ eng_frame(int dt) {
   gt(dt);
   eng_frame2();
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit (1):() then prints:("gstep 1\ngdraw\n") then calls eng_frame2:[1]
+given seam_fixture given game_fixture_nd given ui_pinit (2):() then prints:("gstep 2\ngdraw\n") then calls eng_frame2:[1]
 
 eng_frame2() {
   func() return void gd = (import eng_draw);
   gd();
   idem_aui();
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit ():() then prints:("gdraw\n") then calls idem_aui:[1]
+given seam_fixture given game_fixture_nd given ui_pinit given idem_init ():() then prints:("gdraw\n") then calls idem_aui:[1]

@@ -9,6 +9,8 @@ ed_pitch() {
   int fx_clamp_v = fx_clamp((import ed_st)[3] - (inp_my_v - (import ed_st)[7]) * 500, 0 - 88000, 88000);
   lset((import ed_st), 3, fx_clamp_v);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, 35000, -84000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 3, -84000)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 35000, -24000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 3, -24000)
 
 // Where the pointer was, recorded every frame rather than only while dragging, so
 // that the first frame of a drag has a delta of zero instead of jumping by
@@ -18,6 +20,8 @@ ed_mark() {
   ed_mark_y();
   lset((import ed_st), 8, (import ed_st)[8] + 1);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_mark_x:[1]
+given ed_t_boot stdin "" ():() then calls ed_mark_y:[1]
 
 // Wheel up is bit 3 of the button mask, wheel down bit 4. Each notch is an eighth
 // nearer or further, so zoom is geometric -- the same gesture covers the last
@@ -35,3 +39,5 @@ ed_zoom() {
     ed_zoom3d();
   }
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_zoom3d:[1]
+given ed_t_boot given ed_t_2d stdin "" ():() then calls ed_zoom2d:[1]

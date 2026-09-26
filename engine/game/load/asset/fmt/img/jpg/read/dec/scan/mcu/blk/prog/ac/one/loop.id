@@ -1,0 +1,10 @@
+// jpg_coefbuf_fixture flagged ok (jpg_walk1(1)) with a real five-coefficient
+// band (Se = 5) -- for jpg_pacf2's own case, whose loop otherwise never
+// enters against jpg_init's all-zero Se and unset ok flag.
+jpg_pacf2_fixture() {
+  jpg_coefbuf_fixture();
+  jpg_walk1(1);
+  lset((import jpg_st), 14, 5);
+} return void;
+():() then jpg_eob_check:(0)
+given jpg_init ():() then jpg_eob_check:(0)

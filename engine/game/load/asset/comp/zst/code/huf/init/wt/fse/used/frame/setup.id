@@ -1,0 +1,22 @@
+// zst_init cascades through zst_tabs -> fse_init/huf_init/huf_ab_init AND
+// zb_init, giving every export huf_wrun/huf_wfse touch except a real
+// zst_st[0] address (left at 0, which traps -- see huf_wtop_bytes) and a
+// non-degenerate role-3 table shape.
+huf_wtop_full_setup() {
+  zst_init();
+  huf_wtop_bytes();
+  lset((import zst_st), 0, (import huf_wtop_p));
+} return void;
+():() then huf_wtop_byte_check:(165)
+given fse_init ():() then huf_wtop_byte_check:(165)
+
+// The role-3 FSE table shape (base 0, log 4) huf_wstart/huf_wloop's
+// fse_dstart/fse_dsym/fse_dnext calls read -- same shape as
+// huf_wstart_test_setup_a/b use, established directly since this fixture
+// doesn't go through huf_wstart_test_a2/a3.
+huf_wtop_setup() {
+  huf_wtop_full_setup();
+  m4_pair((import fse_rl), 6, 7, 0, 4);
+} return void;
+():() then huf_wtop_byte_check:(165)
+given fse_init ():() then huf_wtop_byte_check:(165)

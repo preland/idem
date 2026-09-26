@@ -17,9 +17,14 @@ jpg_coefs_alloc(int ci) {
   int da = alloc(fx_max_v);
   lset((import jpg_ca), ci, da);
 } return void;
+given jpg_small_fixture (0):()
+given jpg_small_fixture (1):()
 
 // ceil(ceil(n * s / smax) / 8) -- the component's own size in samples, rounded
 // up to whole blocks.
 jpg_cdim(int n, int sf, int smax) {
   int ret_i = ((n * sf + smax - 1) / fx_max(smax, 1) + 7) / 8;
 } return int ret_i;
+(357, 2, 2):(45)
+(350, 2, 2):(44)
+(81, 1, 10):(2)

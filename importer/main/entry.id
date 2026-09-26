@@ -30,12 +30,16 @@ main(int argc, string[] argv) {
   string src = read_all();
   int ret_i = main_run(src);
 } return int ret_i;
+stdin "model cube 0 0" (1, ["prog"]):(0) then calls main_run:("model cube 0 0")
+stdin "" (1, ["prog"]):(1)
 
 imp_go(string src) {
   imp_init();
   string imp_tok_v = imp_tok(src);
   imp_kind(src, imp_tok_v);
 } return void;
+given err_init ("sprite x"):() then calls imp_kind:("sprite x", "sprite")
+("model x"):() then calls imp_kind:("model x", "model")
 
 imp_kind(string src, string name) {
   if (name = "sprite") {
@@ -46,3 +50,5 @@ imp_kind(string src, string name) {
     err_report("stdin", 1, "expected a `sprite` or `model` header, got '" + name + "'");
   }
 } return void;
+given imp_ready ("sprite x 1 1 1 1 -1 0 0 0", "sprite"):() then calls spr_go:("sprite x 1 1 1 1 -1 0 0 0")
+given imp_init ("model x 0 0", "model"):() then calls mdl_go:("model x 0 0")

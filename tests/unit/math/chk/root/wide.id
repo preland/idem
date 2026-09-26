@@ -21,3 +21,23 @@ t_wide() {
   int fx_hyp_v2 = fx_hyp(710000, 0);
   t_wide2(fx_hyp_v, fx_hyp_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_hyp:(2000000, 2000000)
+given fx_trig_init given rnd_seed0 ():() then calls t_wide2:(2828427, 710000)
+
+// Test-only fixtures: rnd_init takes a seed, so it cannot be a zero-parameter
+// `given` by itself. rnd_seed0 wraps the seed the whole chain below is
+// verified against; rnd_seed1 advances it by exactly one draw, so a case that
+// enters the chain after t_rnd's own draw (rather than through t_rnd itself)
+// still sees the same sequence.
+rnd_seed0() {
+  rnd_init(12345);
+} return void;
+():() then calls rnd_init:(12345)
+():() then calls rnd_init:[1]
+
+rnd_seed1() {
+  rnd_seed0();
+  rnd_next();
+} return void;
+():() then calls rnd_seed0:[1]
+():() then calls rnd_next:[1]

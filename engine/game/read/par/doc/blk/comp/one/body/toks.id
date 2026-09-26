@@ -1,0 +1,22 @@
+// A token stream for doc/blk/comp and doc/blk/arg/body: a bare-number
+// component, a tuple component, an empty script block, a one-item ui block,
+// a keys block with two bindings, a nested entity with one component, and a
+// second ui block, then two same-line entities (`entity a{tag 9}entity
+// b{tag 8}}`) whose closing braces share their argument's line, to witness
+// par_dafill stopping at a same-line `}` (it used to run past one).
+// Placed beside node.id/one.id -- body/ had room.
+
+par_dmem_setup() {
+  lex_init();
+  ast_init();
+  par_dmem_setup2();
+} return void;
+():() then lex_kind_len:(48)
+():() then lex_kind_len:(48) then eprints:("")
+
+par_dmem_setup2() {
+  err_init();
+  lex_run("tag 1\npos (10, 20)\nscript {\n}\nui {\n  box\n}\nkeys {\n  space = jump\n  fire = shoot\n}\nentity bird {\n  tag 5\n}\nui {\n  panel\n}\nentity a{tag 9}entity b{tag 8}}");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(48)
+given lex_init given ast_init ():() then lex_kind_len:(48) then eprints:("")

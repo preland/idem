@@ -3,3 +3,21 @@ jpg_icol1(int x, int y) {
   int fx_clamp_v = fx_clamp(cv, 0, 255);
   lset((import jpg_f), y * 8 + x, fx_clamp_v);
 } return void;
+given jpg_idct_tm_fixture (0, 0):() then jpg_f0_check:(141)
+given jpg_idct_tm0_fixture (0, 0):() then jpg_f0_check:(128)
+
+// jpg_f[0], and jpg_tm[0], as values -- a pure-DC block (only coefficient 0
+// set) makes a uniform IDCT output, hand-derived from the cosine table's DC
+// row (jpg_t[0..7], all 724): DC 100 -> row pass 283 -> column pass 141; DC
+// 0 -> the level-shift midpoint, 128.
+jpg_f0_check() {
+  int v = (import jpg_f)[0];
+} return int v;
+given jpg_init ():(0)
+given jpg_idct100_fixture ():(100)
+
+jpg_tm0_check() {
+  int v = (import jpg_tm)[0];
+} return int v;
+given jpg_init ():(0)
+given jpg_idct_tm_fixture ():(283)

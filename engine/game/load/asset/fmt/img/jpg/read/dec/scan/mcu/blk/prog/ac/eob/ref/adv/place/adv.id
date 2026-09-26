@@ -5,9 +5,11 @@
 // expression may evaluate in either order.
 jpg_rsign(int a) {
   int bt = jpg_bit();
-  int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  int inf_pow2_v = fx_pow(2, (import jpg_st)[16]);
   jpg_rsign1(a, inf_pow2_v, bt);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then calls jpg_rsign1:((import jpg_coef_a), 1, 1)
+given jpg_coefbuf2_fixture ((import jpg_coef_a)):() then calls jpg_rsign1:((import jpg_coef_a), 1, 0)
 
 // A run of 15 with size 0 is a ZRL: skip sixteen zero coefficients, placing
 // nothing. Anything else ends the band and starts a run over the blocks that
@@ -19,8 +21,12 @@ jpg_rzrl(int a, int rn) {
     jpg_reob(rn);
   }
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a), 15):() then calls jpg_rgo:((import jpg_coef_a)) then calls jpg_reob:[0]
+given jpg_coefbuf_fixture ((import jpg_coef_a), 3):() then calls jpg_reob:(3) then calls jpg_rgo:[0]
 
 jpg_reob(int rn) {
-  int n = inf_pow2(rn);
+  int n = fx_pow(2, rn);
   jpg_reob2(n, rn);
 } return void;
+given jpg_coefbuf_fixture (0):() then calls jpg_reob2:(1, 0)
+given jpg_coefbuf_fixture (3):() then calls jpg_reob2:(8, 3)

@@ -2,3 +2,5 @@ png_load2(int ok) {
   lset((import png_st), 9, ok);
   int ret_i = (import png_st)[9];
 } return int ret_i;
+given png_init (1):(1)
+given png_init (-1):(-1)

@@ -5,9 +5,13 @@ sim_movex(int e, int dt) {
   int vx = ent_at(e, 2);
   ent_put(e, 0, x + vx * dt / 1000);
 } return void;
+given vel_fixture (0, 1000):() then calls ent_put:(0, 0, 5000)
+given grow_fixture (0, 1000):() then calls ent_put:(0, 0, 0)
 
 sim_movey(int e, int dt) {
   int y = ent_at(e, 1);
   int vy = ent_at(e, 3);
   ent_put(e, 1, y + vy * dt / 1000);
 } return void;
+given vel_fixture (0, 1000):() then calls ent_put:(0, 1, 3000)
+given grow_fixture (0, 1000):() then calls ent_put:(0, 1, 0)

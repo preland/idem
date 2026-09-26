@@ -4,6 +4,8 @@ par_dims4(int[] pos, int a, int b) {
   string name = par_dims4_name(pos);
   int ret_i = par_dims4_node(name, a, b);
 } return int ret_i;
+given par_item_setup ([10], 1, 2):(1) then calls ast_new_ab:(138, "top", 1, 2)
+given par_item_setup ([23], 5, 9):(1) then calls ast_new_ab:(138, "top-left", 5, 9)
 
 // The third slot is one identifier -- `top-left`, `center`, `bottom-right`. An
 // unrecognised word is not an error here: stock idml falls back to the start of
@@ -14,6 +16,8 @@ par_anchor(int[] pos) {
   par_want(pos, ",");
   name = par_aname(pos, name);
 } return string name;
+given par_item_setup ([10]):("top")
+given par_item_setup ([23]):("top-left")
 
 par_aname(int[] pos, string name) {
   if (par_kind(pos) = (import lex_k_ident)) {
@@ -21,3 +25,5 @@ par_aname(int[] pos, string name) {
     par_next(pos);
   }
 } return string name;
+given par_item_setup ([11], "top-left"):("top")
+given par_item_setup ([23], "top-left"):("top-left")

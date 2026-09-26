@@ -1,0 +1,26 @@
+// A reader for bl_dna2's side effect: bl_st[2], the SDNA payload base it
+// records, is the thing that actually verifies the write landed -- bl_dna2's
+// own return value is a hardcoded 1 regardless of what it did.
+
+bl_dna2_st2_check() {
+  int v = (import bl_st)[2];
+} return int v;
+given bl_walk_t_setup ():(49)
+given bl_init ():(0)
+
+// A field-name buffer carrying a real "[3]" array suffix, for bl_arr/bl_dim.
+bl_dim_t_setup() {
+  bl_al_t_setup();
+  int[] bl_dimname = [91, 51, 93, 0];
+  bl_dna_t_fill(bl_dimname, 4);
+} return void;
+():() then asset_pipe_byte0_check:(91)
+given asset_io_init ():() then asset_pipe_byte0_check:(91)
+
+// A reader for bl_names_setup/bl_types_setup's side effect: the count they
+// parse out of a real 4-byte little-endian field.
+bl_dna_t_st4_check() {
+  int v = (import bl_st)[4];
+} return int v;
+given bl_dna_t_bytes ():(0)
+given bl_walk_t_setup ():(1)

@@ -1,0 +1,21 @@
+// The other three of idem_app's six behaviour stand-ins; gstub.id (go/open/)
+// has the first three, for the same reason both live away from entry.id.
+
+stub_gdraw() {
+  print("gdraw");
+} return void;
+():() then prints:("gdraw\n")
+given idem_init ():() then prints:("gdraw\n")
+
+stub_gref(string name) {
+  int v = len(name);
+} return int v;
+("a"):(1)
+("bb"):(2)
+
+stub_gact(string name) {
+  print("gact " + name);
+  export int stub_gact_n = len(name);
+} return void;
+("x"):() then prints:("gact x\n")
+("y"):() then prints:("gact y\n")

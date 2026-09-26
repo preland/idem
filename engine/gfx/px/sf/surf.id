@@ -34,3 +34,20 @@ sf_init(int w, int h) {
   export int sf_gh = h;
   sf_init2(w, h);
 } return void;
+given sf_t_setup (10, 20):() then sf_t_gw:(10) then sf_t_gh:(20)
+given sf_t_setup (1, 1):() then sf_t_gw:(1) then sf_t_gh:(1)
+
+// Readers for sf_pset/sf_span's own cases (pixel.id, out/span/go.id, cl/grow.id):
+// a pixel write has nothing in ARGS to show mutated (it lands on the imported
+// sf_fb, not a parameter), so a case reads it back through these instead.
+sf_t_px0() {
+  int c = (import sf_fb)[0];
+} return int c;
+given sf_t_setup ():(0)
+given sf_t_setup ():(0) then sf_t_gw:(64)
+
+sf_t_fblen() {
+  int n = len((import sf_fb));
+} return int n;
+given sf_t_setup ():(3072)
+given sf_t_setup ():(3072) then sf_t_gh:(48)

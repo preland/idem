@@ -5,11 +5,15 @@ zst_supd2() {
   zst_supd2_sq2();
   zst_supd2_sq1();
 } return void;
+given zstsq_setup ():() then calls zst_supd2_sq2:[1]
+given zst_init given zstsq_setup ():() then calls zst_supd2_sq2:[1]
 
 zst_sexec(int llen, int off, int mlen) {
   zst_slits(llen);
   zst_smatch(off, mlen);
 } return void;
+given zst_src_setup (0, 1, 1):() then calls zst_slits:[1]
+given zst_src_setup (1, 2, 1):() then calls zst_slits:[1]
 
 // Literals come out of the block's own buffer, in order; the cursor is why a
 // sequence needs no idea where in the buffer it is.
@@ -18,3 +22,5 @@ zst_slits(int n) {
   zst_lrun2(n, 0);
   lset((import zst_st), 10, (import zst_st)[10] + n);
 } return void;
+given zst_src_setup (0):() then calls zst_lchk2:[1]
+given zst_src_setup (1):() then calls zst_lchk2:[1]

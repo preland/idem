@@ -13,8 +13,12 @@ ed_turn_yaw() {
   int inp_mx_v = inp_mx();
   lset((import ed_st), 2, ed_st_v - (inp_mx_v - (import ed_st)[6]) * 500);
 } return void;
+given ed_t_boot given ed_t_click stdin "" ():() then calls lset:([-1, -1, -65000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 2, -65000)
+given ed_t_boot given ed_t_click_toolbar stdin "" ():() then calls lset:([-1, -1, 30000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 2, 30000)
 
 ed_turn() {
   ed_turn_yaw();
   ed_pitch();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_turn_yaw:[1]
+given ed_t_boot stdin "" ():() then calls ed_pitch:[1]

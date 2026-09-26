@@ -10,6 +10,8 @@ zst_rle(int n) {
     i = i + 1;
   }
 } return void;
+given zst_src_setup (0):()
+given zst_src_setup (10):()
 
 // The capacity check is not optional: a stream claiming more output than the
 // caller sized for would poke past the allocation, and the flat store turns that
@@ -21,8 +23,12 @@ zst_put(int v) {
     zst_put2(v);
   }
 } return void;
+given zst_src_setup (42):()
+given zst_src_setup (255):()
 
 zst_put2(int v) {
   poke8((import zst_st)[3] + (import zst_st)[4], v);
   lset((import zst_st), 4, (import zst_st)[4] + 1);
 } return void;
+given zst_src_setup (42):()
+given zst_src_setup (0):()

@@ -3,13 +3,20 @@ ed_nudge_draw_text_paint(int x, int y, string sign) {
   int wid = txt_width("+");
   ed_nudge_draw_text_do(x, y, sign, hdr, wid);
 } return void;
+given ed_t_boot stdin "" (0, 10, "+"):() then calls ed_nudge_draw_text_do:(0, 10, "+", 21, 8)
+given ed_t_boot stdin "" (5, 20, "-"):() then calls ed_nudge_draw_text_do:(5, 20, "-", 21, 8)
 
 ed_nudge_draw_text(int x, int y, int d) {
   string sign = ed_sign(d);
   ed_nudge_draw_text_paint(x, y, sign);
 } return void;
+given ed_t_boot stdin "" (0, 10, 5):() then calls ed_nudge_draw_text_paint:(0, 10, "+")
+given ed_t_boot stdin "" (5, 20, -3):() then calls ed_nudge_draw_text_paint:(5, 20, "-")
 
 ed_sign(int d) {
   string s = "+";
   if (d < 0) { s = "-"; }
 } return string s;
+(5):("+")
+(-3):("-")
+(0):("+")

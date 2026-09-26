@@ -2,6 +2,8 @@ lex_unesc1(string src, int a, word ad) {
   int c = charat(src, a + 1);
   int result = lex_unesc1_tail(src, a, ad, c);
 } return int result;
+given lex_wbuf_setup ("\\n", 0, (import lex_wbuf)):(2) then lex_wbuf_sum:(73)
+given lex_wbuf_setup ("\\x", 0, (import lex_wbuf)):(2) then lex_wbuf_sum:(183)
 
 // 110 is 'n', 116 is 't'. Anything else after a backslash is itself, which gives
 // \" and \\ for free.
@@ -9,3 +11,6 @@ lex_escch(int c) {
   int v = c;
   if (c = 110) { v = 10; } else if (c = 116) { v = 9; }
 } return int v;
+(110):(10)
+(116):(9)
+(120):(120)

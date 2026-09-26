@@ -1,0 +1,15 @@
+// The filter stride (png_st[11]) and the row stride (png_st[8]) as values,
+// for stride.id's cases -- both are real numbers bird.png pins independently
+// (tests/unit/png/golden.txt: "bpp/stride/palette/trns exp 1 10 5 1").
+
+png_bpp_check() {
+  int v = (import png_st)[11];
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(1)
+
+png_stride_check() {
+  int v = (import png_st)[8];
+} return int v;
+given png_init ():(0)
+given spr_bird_fixture ():(10)

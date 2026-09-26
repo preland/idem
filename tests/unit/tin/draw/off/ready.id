@@ -1,0 +1,24 @@
+// Continuing the replay into the drawing half: the surface, the first draw
+// and the wider text that has to scroll.
+
+tin_draw_ready() {
+  tin_ready();
+  sf_open(160, 32);
+  tin_set("hello");
+} return void;
+():() then calls sf_open:(160, 32)
+():() then calls tin_set:("hello")
+
+tin_draw2_ready() {
+  tin_draw_ready();
+  tin_draw(0, 0, 160, 32, 16777215, 5490);
+} return void;
+():() then calls tin_draw_ready:[1]
+():() then calls tin_draw:(0, 0, 160, 32, 16777215, 5490)
+
+tin_draw3_ready() {
+  tin_draw2_ready();
+  tin_set("0123456789ABCDEFGHIJ");
+} return void;
+():() then calls tin_draw2_ready:[1]
+():() then calls tin_set:("0123456789ABCDEFGHIJ")

@@ -1,0 +1,24 @@
+// bi pushed to -3, just past the previous byte -- zb_borrow needs one pass
+// through its loop to land back in range.
+zb_neg_bi_setup1() {
+  zb_frame_setup();
+  lset((import zb_st), 2, -3);
+} return void;
+():() then zb_rel_check:([1, -3, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, -3, 0])
+
+// bi pushed to -9, two bytes back -- zb_borrow needs two passes.
+zb_neg_bi_setup2() {
+  zb_frame_setup();
+  lset((import zb_st), 2, -9);
+} return void;
+():() then zb_rel_check:([1, -9, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, -9, 0])
+
+// bi at the top of its byte -- the boundary zb_bit/zb_next normalize across.
+zb_bi0_setup() {
+  zb_frame_setup();
+  lset((import zb_st), 2, 0);
+} return void;
+():() then zb_rel_check:([1, 0, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, 0, 0])

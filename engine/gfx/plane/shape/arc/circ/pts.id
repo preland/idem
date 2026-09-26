@@ -13,14 +13,20 @@ d2_circ_pts(int x, int y, int i, int j, int c) {
   d2_circ_4(x, y, i, j, c);
   d2_circ_4(x, y, j, i, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)
 
 d2_circ_4(int x, int y, int i, int j, int c) {
   sf_pset(x + i, y + j, c);
   sf_pset(x - i, y + j, c);
   d2_circ_2(x, y, i, j, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)
 
 d2_circ_2(int x, int y, int i, int j, int c) {
   sf_pset(x + i, y - j, c);
   sf_pset(x - i, y - j, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)

@@ -5,9 +5,24 @@ ed_save_mkdir() {
   string up = ed_up((import ed_path)[0]);
   fs_run("mkdir -p " + q + up + q);
 } return void;
+given ed_t_boot given ed_t_mkdir_setup stdin "" ():() then ed_t_mkdir_check:(1)
+given ed_t_boot stdin "" ():()
 
 ed_save() {
   ed_save_mkdir();
   int ed_wr_v = ed_wr((import ed_path)[0], (import ed_doc)[0]);
   lset((import ed_st), 17, 3 + (ed_wr_v != 1));
 } return void;
+given ed_t_boot given ed_t_mkdir_setup stdin "" ():() then ed_t_mkdir_check:(1)
+given ed_t_boot given ed_t_mkdir_setup stdin "" ():() then calls lset:[1] then ed_t_mkdir_check:(1)
+
+// A real scratch directory (fs_mktemp, dir = 1) with ed_path pointed at a file
+// one level under a "sub" directory that does not exist yet -- for
+// ed_save_mkdir/ed_save's own cases, which run a real `mkdir -p`.
+ed_t_mkdir_setup() {
+  string parent = fs_mktemp("ed_case_", 1);
+  export string ed_t_mkdir_parent = parent;
+  sset((import ed_path), 0, parent + "/sub/x.idml");
+} return void;
+given ed_t_boot stdin "" ():() then calls fs_mktemp:("ed_case_", 1) then ed_t_mkdir_check:(0)
+given ed_t_boot stdin "" ():() then calls sset:[1] then ed_t_mkdir_check:(0)

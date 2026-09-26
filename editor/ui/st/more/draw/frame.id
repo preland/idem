@@ -16,14 +16,20 @@ ed_draw() {
   ed_lay();
   ed_panes();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_draw_setup:[1] then calls ed_lay:[1]
+given ed_t_boot stdin "" ():() then calls ed_lay:[1] then calls ed_panes:[1]
 
 ed_draw_setup() {
   int ed_col_v = ed_col(0);
   sf_clear(ed_col_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls sf_clear:(0x2B2B2B)
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_col:(0)
 
 ed_panes() {
   ed_panes_s();
   ed_panes_h();
   ed_panes2();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_panes_s:[1] then calls ed_panes_h:[1]
+given ed_t_boot stdin "" ():() then calls ed_panes_h:[1] then calls ed_panes2:[1]

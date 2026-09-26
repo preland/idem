@@ -1,0 +1,8 @@
+// A hand-built `pos.y` field node, over the one grown entity record.
+fld_fixture() {
+  grow_fixture();
+  int pos_ident = ast_new_abc((import ast_k_ident), "pos", 0, 0, 0);
+  export int fixture_fld = ast_new_abc((import ast_k_field), "y", pos_ident, 0, 0);
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ast_new_abc:[2]

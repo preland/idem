@@ -3,9 +3,13 @@ ed_err_where_txt_draw(int x, int y, string fit, int ln) {
   int col = ed_col(10);
   txt_draw(fit + ":" + ln, x + 6 * ui, y, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "a.id", 5):() then calls txt_draw:("a.id:5", 6, 10, 0x9B4A4A)
+given ed_t_boot stdin "" (5, 20, "b.id", 9):() then calls txt_draw:("b.id:9", 11, 20, 0x9B4A4A)
 
 ed_err_where_txt(int x, int y, int i) {
   string fit = ed_fit((import err_fs)[i], 14);
   int ln = (import err_ls)[i];
   ed_err_where_txt_draw(x, y, fit, ln);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 0):() then calls ed_err_where_txt_draw:(0, 10, "t.id", 1)
+given ed_t_boot given idstd_err_t_one stdin "" (5, 20, 0):() then calls ed_err_where_txt_draw:(5, 20, "t.id", 1)

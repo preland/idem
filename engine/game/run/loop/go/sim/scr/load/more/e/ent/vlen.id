@@ -4,3 +4,5 @@ scr_evars3(int e) {
   int at = ent_at(e, 17);
   ent_put(e, 18, len_v - at);
 } return void;
+given grow_fixture (0):() then calls ent_put:(0, 18, 0)
+given game_fixture_nd (1):() then calls ent_put:[1]

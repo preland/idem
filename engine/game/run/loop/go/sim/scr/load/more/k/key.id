@@ -10,14 +10,20 @@ scr_kcode(string name) {
   int c = scr_knamed(name);
   if (len(name) = 1) { int charat_v = charat(name, 0); c = scr_klower(charat_v); }
 } return int c;
+("a"):(97)
+("space"):(32)
 
 scr_klower(int c) {
   int v = c;
   if (c >= 65 && c <= 90) { v = c + 32; }
 } return int v;
+(65):(97)
+(97):(97)
 
 scr_knamed(string name) {
   int c = scr_knamed2(name);
   if (name = "space") { c = 32; }
   else if (name = "enter" || name = "return") { c = 13; }
 } return int c;
+("space"):(32)
+("enter"):(13)

@@ -13,11 +13,17 @@
 sys_st_init(int ok) {
   export int[] sys_st = [ok, 0, 0];
 } return void;
+(1):() then sys_alive:(1)
+(0):() then sys_alive:(0)
 
 sys_alive() {
   int r = ((import sys_st)[0] = 1) && ((import sys_st)[1] = 0);
 } return int r;
+given sys_t_open ():(1)
+given sys_t_open given sys_quit ():(0)
 
 sys_quit() {
   lset((import sys_st), 1, 1);
 } return void;
+given sys_t_open ():() then sys_alive:(0)
+given sys_t_open ():() then calls lset:[1]

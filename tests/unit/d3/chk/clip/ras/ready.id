@@ -1,0 +1,12 @@
+// Test-only fixture: t_cutp reads d3_clp, which only exists once d3_ncut has
+// run -- but t_cut itself also calls t_cutp, whose own cascade reaches
+// t_raster and overwrites d3_clp with a later clip's result. This repeats
+// just t_cut's own setup, without the call onward, so d3_clp still holds the
+// near-clip's own answer when t_cutp is the one under test.
+d3_cut_ready() {
+  d3_ready();
+  int[] tri = [0, 0, 2000, 1000, 0, 0, 0, 0, 0, 0xFF0000, 0x0000FF, 0];
+  d3_ncut(tri, 0, 1, 0);
+} return void;
+():() then calls d3_ready:[1]
+():() then calls d3_ncut:([0, 0, 2000, 1000, 0, 0, 0, 0, 0, 16711680, 255, 0], 0, 1, 0)

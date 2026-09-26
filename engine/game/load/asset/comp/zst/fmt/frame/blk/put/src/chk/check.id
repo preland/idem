@@ -1,0 +1,24 @@
+// zst_st[0] (sa) and zst_st[11] (o1), read back plainly -- witnesses for
+// zst_init/zst_reset3 actually overwriting state rather than leaving
+// whatever a prior run left behind.
+zst_sa_check() {
+  int zstf_v = (import zst_st)[0];
+} return int zstf_v;
+given zst_init ():(0)
+given zst_dirty_setup ():(99)
+
+zst_o1_check() {
+  int zstf_v = (import zst_st)[11];
+} return int zstf_v;
+given zst_init ():(0)
+given zst_dirty_setup ():(99)
+
+// A zst_st with sa and o1 pushed to a nonzero value, so a reset case has
+// something other than the default zero to prove it overwrote.
+zst_dirty_setup() {
+  zst_init();
+  lset((import zst_st), 0, 99);
+  lset((import zst_st), 11, 99);
+} return void;
+():() then zst_sa_check:(99)
+given zst_init ():() then zst_sa_check:(99)

@@ -5,6 +5,8 @@ huf_last2(int n, int rest) {
   lset((import huf_wt), n, fse_hib_v + 1);
   huf_last2_setup(rest, n);
 } return void;
+given huf_init (0, 0):()
+given huf_init (1, 1):()
 
 // rankStart[w] is where weight w's symbols begin in the ordered list; symbols are
 // then dropped into place in one pass, which is what makes the table fill below a
@@ -18,6 +20,8 @@ huf_rstart() {
     w = w + 1;
   }
 } return void;
+given huf_init given huf_fill_setup_small ():()
+given huf_init given huf_fill_setup_large ():()
 
 huf_syms() {
   int i = 0;
@@ -26,3 +30,6 @@ huf_syms() {
     i = i + 1;
   }
 } return void;
+given huf_init ():()
+given huf_init given huf_fill_setup_small ():()
+

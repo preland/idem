@@ -1,10 +1,22 @@
 t_open_report() {
-  int bl_mesh_v = bl_mesh("tests/unit/mesh/cube.blend");
+  int bl_mesh_v = bl_mesh("../../../test_assets/cube.blend");
   print("mesh cube.blend exp 1 = " + bl_mesh_v);
 } return void;
+given mesh_open_ready ():() then calls bl_mesh:("../../../test_assets/cube.blend")
+given mesh_open_ready ():() then prints:("mesh cube.blend exp 1 = 1\n")
 
 t_count_report() {
   int len_v = len((import bl_v));
   int bl_ntri_v = bl_ntri();
   print("verts exp 8, triangles exp 12 = " + len_v / 3 + " " + bl_ntri_v);
 } return void;
+given mesh_mesh_ready ():() then calls bl_ntri:[1]
+given mesh_mesh_ready ():() then prints:("verts exp 8, triangles exp 12 = 8 12\n")
+
+// Test-only fixture: cube.blend's mesh extracted (see t_open_report above).
+mesh_mesh_ready() {
+  mesh_open_ready();
+  bl_mesh("../../../test_assets/cube.blend");
+} return void;
+():() then calls mesh_open_ready:[1]
+():() then calls bl_mesh:("../../../test_assets/cube.blend")

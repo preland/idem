@@ -6,3 +6,27 @@ d3_ncut6_b(int[] tri, int i, int k, int j, int t) {
   lset((import d3_clp), j * 3 + 1, m1);
   d3_ncut3(tri, i, k, j, t);
 } return void;
+given d3_t_setup ([0, 111, 0, 0, 222, 0, 0, 0, 0, 500, 700, 0], 0, 1, 0, 0):() then d3_t_clp:([0, 111, 40, 0, 0, 0, 0, 0, 0, 500, 0, 0])
+given d3_t_setup ([0, 111, 0, 0, 222, 0, 0, 0, 0, 500, 700, 0], 0, 1, 1, 65536):() then d3_t_clp:([0, 0, 0, 0, 222, 40, 0, 0, 0, 0, 700, 0])
+
+// A camera aim of yaw 30 degrees, pitch 0, eye at the origin -- for cases in
+// the cam/mat batch that need a non-identity d3_m1/d3_m2 without also
+// disturbing d3_m0's pitch row. d3_t_setup's own d3_init chain never calls
+// d3_view_rot/d3_view_matrix, so d3_m0..d3_m2 stay the fresh identities
+// d3_mats made until a case's own call, or a composed setup like this one's
+// caller, runs one of them.
+d3_t_yawed() {
+  d3_t_setup();
+  d3_cam_aim(30000, 0);
+} return void;
+():() then d3_t_cam:([0, 0, 0, 30000, 0, 40, 40000, 60000, 55424])
+():() then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+
+// A camera aim of pitch 60 degrees, yaw 0, eye at the origin -- the pitch
+// counterpart of d3_t_yawed, isolating d3_m0's own rotation from d3_m1's.
+d3_t_pitched() {
+  d3_t_setup();
+  d3_cam_aim(0, 60000);
+} return void;
+():() then d3_t_cam:([0, 0, 0, 0, 60000, 40, 40000, 60000, 55424])
+():() then d3_t_m0:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])

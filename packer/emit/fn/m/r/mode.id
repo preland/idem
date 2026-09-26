@@ -6,9 +6,13 @@ pack_init(int argc, string[] argv) {
   export string[] pack_mode = [""];
   pack_arg(argc, argv);
 } return void;
+(1, ["prog"]):() then pack_mode0:("")
+(2, ["prog", "app"]):() then pack_mode0:("app")
 
 pack_arg(int argc, string[] argv) {
   if (argc > 1) { sset((import pack_mode), 0, argv[1]); }
 } return void;
+given pack_mode_ready (1, ["prog"]):() then pack_mode0:("")
+given pack_mode_ready (2, ["prog", "app"]):() then pack_mode0:("app")
 
 // main.id, the whole of a packed game's own code.

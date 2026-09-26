@@ -12,15 +12,21 @@ t_sqrt() {
   int fx_sqrt_v2 = fx_sqrt(1);
   t_sqrt2(fx_sqrt_v, fx_sqrt_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_sqrt:(0)
+given fx_trig_init given rnd_seed0 ():() then calls t_sqrt2:(0, 1)
 
 t_sqrtbig() {
   int fx_sqrt_v = fx_sqrt(999999);
   int fx_sqrt_v2 = fx_sqrt(1000000);
   t_sqrtbig2(fx_sqrt_v, fx_sqrt_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_sqrt:(999999)
+given fx_trig_init given rnd_seed0 ():() then calls t_sqrtbig2:(999, 1000)
 
 t_hyp() {
   int fx_hyp_v = fx_hyp(3, 4);
   int fx_hyp_v2 = fx_hyp(0, 0);
   t_hyp2(fx_hyp_v, fx_hyp_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_hyp:(3, 4)
+given fx_trig_init given rnd_seed0 ():() then calls t_hyp2:(5, 0)

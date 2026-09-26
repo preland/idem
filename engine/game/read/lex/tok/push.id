@@ -8,15 +8,21 @@ lex_init4() {
   export int[] lex_st = [1];
   export string[] lex_cur = ["<input>"];
 } return void;
+():() then lex_st_val:(1)
+():() then lex_cur_val:("<input>")
 
 lex_push(int kd, string txt, int v, int fr) {
   push((import lex_kind), kd);
   push((import lex_text), txt);
   lex_push2(v, fr);
 } return void;
+given lex_init (13, "1", 1, 0):() then lex_kind_len:(1)
+given lex_init (13, "1", 1, 0):() then calls lex_push2:(1, 0)
 
 lex_push2(int v, int fr) {
   push((import lex_val), v);
   push((import lex_frac), fr);
   lex_push3();
 } return void;
+given lex_init (1, 0):() then calls lex_push3:[1]
+given lex_init (1, 0):() then lex_line_len:(1)

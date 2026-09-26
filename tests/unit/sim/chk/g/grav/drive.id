@@ -14,12 +14,16 @@ t_grav() {
   ent_put(1, 9, 5);
   t_grav2();
 } return void;
+given sim_e1_ready ():() then calls m4_pair:((import scn_st), 7, 8, 0, 1500000)
+given sim_e1_ready ():() then calls ent_put:(1, 9, 5) then calls t_grav2:[1]
 
 t_grav2() {
   sim_grav(1, 16);
   t_grav2_rep();
   t_grav3();
 } return void;
+given sim_grav1_ready ():() then calls sim_grav:(1, 16)
+given sim_grav1_ready ():() then calls t_grav2_rep:[1]
 
 // The same entity made solid stops falling, and one with no body never started.
 t_grav3() {
@@ -27,3 +31,5 @@ t_grav3() {
   sim_grav(1, 16);
   t_grav4();
 } return void;
+given sim_grav1_ready ():() then calls ent_put:(1, 9, 7)
+given sim_grav1_ready ():() then calls t_grav4:[1]

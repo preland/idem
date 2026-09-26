@@ -4,3 +4,5 @@ par_while_node(int cond, int block) {
   int ast_k_while_v = (import ast_k_while);
   int nd = ast_new_ab(ast_k_while_v, "", cond, block);
 } return int nd;
+given ast_init (1, 2):(1) then calls ast_new_ab:(119, "", 1, 2)
+given ast_init (5, 6):(1) then calls ast_new_ab:(119, "", 5, 6)

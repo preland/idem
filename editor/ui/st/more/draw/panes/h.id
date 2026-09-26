@@ -3,9 +3,13 @@ ed_panes_h() {
   int r1 = ed_rq(2, 1);
   ed_panes_h2(r0, r1);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_rq:(2, 0) then calls ed_rq:(2, 1)
+given ed_t_boot stdin "" ():() then calls ed_rq:(2, 1) then calls ed_panes_h2:[1]
 
 ed_panes_h2(int r0, int r1) {
   int r2 = ed_rq(2, 2);
   int r3 = ed_rq(2, 3);
   ed_hier(r0, r1, r2, r3);
 } return void;
+given ed_t_boot stdin "" (10, 20):() then calls ed_rq:(2, 3)
+given ed_t_boot stdin "" (30, 40):() then calls ed_hier:[1]

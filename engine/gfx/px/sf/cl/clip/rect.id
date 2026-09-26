@@ -17,13 +17,19 @@
 sf_cl_init() {
   export int[] sf_cl = [0, 0, 0, 0];
 } return void;
+():() then sf_cl_t_check:([0, 0, 0, 0])
+():() then sf_cl_t_len:(4)
 
 sf_clip(int x0, int y0, int x1, int y1) {
   int cx0 = fx_clamp(x0, 0, (import sf_gw) - 1);
   int cy0 = fx_clamp(y0, 0, (import sf_gh) - 1);
   sf_clip_a(cx0, cy0, x1, y1);
 } return void;
+given sf_t_setup (-5, -5, 200, 200):() then sf_cl_t_check:([0, 0, 63, 47])
+given sf_t_setup (10, 10, 20, 20):() then sf_cl_t_check:([10, 10, 20, 20])
 
 sf_unclip() {
   sf_clip(0, 0, (import sf_gw) - 1, (import sf_gh) - 1);
 } return void;
+given sf_t_clip_narrow ():() then sf_cl_t_check:([0, 0, 63, 47])
+given sf_t_setup ():() then sf_cl_t_check:([0, 0, 63, 47])

@@ -5,3 +5,5 @@ huf_last2_setup(int rest, int n) {
   lset((import huf_rk), fse_hib_v + 1, (import huf_rk)[fse_hib_v + 1] + 1);
   lset((import huf_st), 1, n + 1);
 } return void;
+given huf_init (0, 0):()
+given huf_init (1, 1):()

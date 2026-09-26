@@ -1,0 +1,31 @@
+// Test fixtures for the text-drawing layer: a one-sprite table for the
+// sprite-font and tint paths (txt_spr_*, txt_tint_*), and two pixel readers
+// so a case can witness a single drawn pixel without a `given` of its own --
+// same reasoning as sf/boot/t.id's sf_t_gw/sf_t_gh.
+//
+// The sprite is 2x2, one frame, with only pixel 0 (row 0, col 0) opaque
+// (colour 5); the other three stay (import d2_clear) from d2_spr_add's fill.
+// That is enough to tell a blit's own colour apart from a tint's, and enough
+// to prove a row or a frame boundary really stops the draw rather than
+// happening to draw nothing.
+
+txt_spr_t_setup() {
+  d2_spr_init();
+  int id = d2_spr_add("t", 2, 2, 1);
+  d2_spr_put(id, 0, 5);
+} return void;
+():() then d2_spr_t_w_len:(1)
+():() then d2_spr_t_f_len:(1)
+
+// The surface pixel at (0, 0) is read back through d2_blit_t_px00
+// (plane/spr/tab/init/fx.id) -- same body, so a second reader here would be
+// a duplicate-logic error; every case in this layer that draws anything is
+// arranged to land its one checked pixel there.
+
+// The surface pixel at (1, 0), the immediate neighbour -- used to prove a
+// draw touched exactly one pixel and not its row-mate.
+txt_t_px10() {
+  int c = sf_pget(1, 0);
+} return int c;
+given sf_t_setup ():(0)
+given sf_t_setup ():(0) then sf_t_gh:(48)

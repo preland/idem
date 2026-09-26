@@ -1,0 +1,17 @@
+// The filler roundtrip.sh packs, generated rather than committed because 250 KB
+// of it in git history helps nobody.
+//
+// bulk_n: entities in zz-bulk.idml, each carrying characters that need an
+// escape, so escaping runs over the bulk of the input and not just its corners.
+//
+// long_unit, long_reps: zz-longline.idml is one line of long_unit repeated
+// long_reps times -- 131300 characters with no newline for a chunk boundary to
+// land on, which forces a mid-line cut.
+//
+// noeol_text: a CRLF, and a last line with no newline at all. `idem cat` has to
+// add the newline, and the CR once survived the lexer and ended the C string
+// literal it was emitted into.
+int bulk_n = 2000;
+int long_reps = 1300;
+string long_unit = "\\\"\t#@{}xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+string noeol_text = "crlf { a = 1 }\r\nlast_line_has_no_newline = \"\\t\\\"end\\\"\"";

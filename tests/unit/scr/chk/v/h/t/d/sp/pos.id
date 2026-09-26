@@ -3,9 +3,21 @@ t_spawn_pos() {
   int ent_at_v2 = ent_at(3, 1);
   t_spawn_tag(ent_at_v, ent_at_v2);
 } return void;
+given scr_spawn2_ready ():() then calls ent_at:(3, 0)
+given scr_spawn2_ready ():() then calls t_spawn_tag:(30000, 40000)
 
 t_spawn_tag(int ent_at_v, int ent_at_v2) {
   int ent_at_v3 = ent_at(3, 20);
   print("its pos exp 30000 40000, tagged exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 != 0));
   t_done();
 } return void;
+given scr_spawn2_ready (30000, 40000):() then calls ent_at:(3, 20)
+given scr_spawn2_ready (30000, 40000):() then prints:("its pos exp 30000 40000, tagged exp 1 = 30000 40000 1\nits body exp 10000 10000, solid exp 1 = 10000 10000 1\n")
+
+// Five ticks in (100ms) -- the state t_press starts from (see ../tick.id).
+scr_tick2_ready() {
+  scr_tick_ready();
+  t_ticks(1, 20);
+} return void;
+():() then calls scr_tick_ready:[1]
+():() then calls t_ticks:(1, 20)

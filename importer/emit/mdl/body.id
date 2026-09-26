@@ -9,6 +9,8 @@ mdl_body(string src) {
   print("  }");
   mdl_faces(src);
 } return void;
+given mdl_hdr_ready ("0"):() then calls mdl_verts:("0")
+given mdl_hdr_ready ("3"):() then calls mdl_faces:("3")
 
 mdl_verts(string src) {
   int i = 0;
@@ -17,9 +19,13 @@ mdl_verts(string src) {
     i = i + 1;
   }
 } return void;
+given mdl_hdr_ready ("0 0 0"):() then calls mdl_vert:[0]
+given mdl_hdr2_ready ("0 0 0 0 0 0"):() then calls mdl_vert:[2]
 
 mdl_vert(string src) {
   int x = imp_int(src);
   int y = imp_int(src);
   mdl_v3(src, x, y);
 } return void;
+given imp_init ("100 200 300"):() then calls mdl_v3:("100 200 300", 100, 200)
+given imp_init ("1 2 3"):() then calls mdl_v3:("1 2 3", 1, 2)

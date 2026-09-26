@@ -4,6 +4,8 @@ huf_fill1(int w, int p, int s0) {
   int i = 0;
   int ret_p = huf_fill1_loop(w, p, s0, i);
 } return int ret_p;
+given huf_init (0, 0, 0):(0)
+given huf_init (1, 1, 2):(1)
 
 huf_frun(int p, int kd, int nb, int n) {
   int i = 0;
@@ -13,8 +15,13 @@ huf_frun(int p, int kd, int nb, int n) {
   }
   int ret_i = p + n;
 } return int ret_i;
+given huf_init (0, 5, 2, 0):(0)
+given huf_init (10, 5, 2, 3):(13)
 
 huf_fput(int p, int kd, int nb) {
   lset((import huf_sy), p, kd);
   lset((import huf_nb), p, nb);
 } return void;
+given huf_init (0, 5, 2):()
+given huf_init (1, 42, 3):()
+

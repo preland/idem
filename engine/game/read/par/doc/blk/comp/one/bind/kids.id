@@ -6,14 +6,20 @@ par_kv2_kids(int[] pos) {
   par_eat(pos, "=");
   par_kv3(pos, kids);
 } return int[] kids;
+given par_dmem_setup ([18]):([1]) then calls ast_new_k:(133, "jump")
+given par_dmem_setup ([21]):([1]) then calls ast_new_k:(133, "shoot")
 
 par_kv3_node(int[] pos) {
   int ast_k_ident_v = (import ast_k_ident);
   string par_text_v = par_text(pos);
   int ret_i = ast_new_k(ast_k_ident_v, par_text_v);
 } return int ret_i;
+given par_dmem_setup ([19]):(1) then calls ast_new_k:(133, "jump")
+given par_dmem_setup ([22]):(1) then calls ast_new_k:(133, "shoot")
 
 par_kv3_adv(int[] pos) {
   par_next(pos);
   par_eat(pos, ",");
 } return void;
+given par_dmem_setup ([19]):([20])
+given par_dmem_setup ([22]):([23])

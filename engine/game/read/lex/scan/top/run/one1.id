@@ -3,8 +3,12 @@ lex_one1(string src, int i, int[] out) {
   if (lex_is_space(charat_v)) { out[0] = i + 1; }
   else { lex_one1b(src, i, out); }
 } return void;
+(" ", 0, [0]):(" ", 0, [1])
+given lex_init ("1", 0, [0]):("1", 0, [1]) then calls lex_push:(13, "1", 1, 0)
 
 lex_one1b(string src, int i, int[] out) {
   if (charat(src, i) = 10) { out[0] = lex_nl(src, i); }
   else { lex_one2(src, i, out); }
 } return void;
+given lex_init ("\n", 0, [0]):("\n", 0, [1]) then calls lex_bump:[1]
+given lex_init ("1", 0, [0]):("1", 0, [1]) then calls lex_push:(13, "1", 1, 0)

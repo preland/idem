@@ -6,8 +6,12 @@ par_snum_val(int[] pos, int sc) {
   int par_frac_v = par_frac(pos);
   int ret_i = par_scale(par_val_v, par_frac_v, sc, pos);
 } return int ret_i;
+given par_arg_setup ([10], 2):(500) then calls fx_pow:(10, 2)
+given par_arg_setup ([10], 0):(5) then calls fx_pow:(10, 0)
 
 par_snum_fin(int[] pos, int v, int sg) {
   par_nchk(pos);
   int ret_i = ast_new_num(v * sg, 0);
 } return int ret_i;
+given par_arg_setup ([10], 500, 1):(1) then calls ast_new_num:(500, 0)
+given par_arg_setup ([10], 500, -1):(1) then calls ast_new_num:(-500, 0)

@@ -5,6 +5,8 @@ ed_read5() {
   ed_scan(0);
   ed_gui();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_scan:(0)
+given ed_t_boot stdin "" ():() then calls ed_gui:[1]
 
 // Assets are scanned out of the raw text first, then the idml is lexed over the
 // top of it, then the meshes and the world are built. scn_root has to happen
@@ -16,8 +18,12 @@ ed_read6(string src) {
   lex_init();
   ed_read8(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls scn_root:("hello", 0)
+given ed_t_boot stdin "" ("hello"):() then calls ed_read8:("hello")
 
 ed_read8(string src) {
   lex_run(src);
   ed_read7();
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls lex_run:("hello")
+given ed_t_boot stdin "" ("hello"):() then calls ed_read7:[1]

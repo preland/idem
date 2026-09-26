@@ -14,8 +14,12 @@ d2_disc_spans(int x, int y, int i, int j, int c) {
   sf_span(x - j, x + j, y - i, c);
   d2_disc_spans2(x, y, i, j, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)
 
 d2_disc_spans2(int x, int y, int i, int j, int c) {
   sf_span(x - i, x + i, y + j, c);
   sf_span(x - i, x + i, y - j, c);
 } return void;
+given sf_t_setup (0, 0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 3):() then d2_blit_t_px00:(3)

@@ -1,0 +1,29 @@
+// A property value (291, wrapped as a `colour` comp at 5) for the lookup
+// cluster's cases.
+ui_look_fx1() {
+  ui_leaf_t_setup();
+  int n4 = ast_new_num(291, 0);
+  int n5 = ast_new_a((import ast_k_comp), "colour", 4);
+} return void;
+():() then ast_n:(6)
+given ast_init ():() then ast_n:(6)
+
+// A styled variant (7): `Title:Text { colour: 291 }`, its base name (6) first
+// among its children the way ui_base and ui_pscan both expect.
+ui_look_fx2() {
+  ui_look_fx1();
+  int n6 = ast_new_k((import ast_k_comp), "Text");
+  int n7 = ast_new_kids((import ast_k_variant), "Title", [6, 5]);
+} return void;
+():() then ast_n:(8)
+given ast_init ():() then ast_n:(8)
+
+// The variant (7) registered, and a `define` node (8) over the `Row` item
+// ui_leaf_t_setup already built, ready for ui_dload.
+ui_look_fx3() {
+  ui_look_fx2();
+  ui_vload(7);
+  int n8 = ast_new_kids((import ast_k_define), "MyDef", [1]);
+} return void;
+():() then ast_n:(9)
+given ast_init ():() then ast_n:(9)

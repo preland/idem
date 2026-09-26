@@ -6,3 +6,23 @@ t_bstart(word ad) {
   zb_start(ad_i, 1);
   int a = zb_bits(3);
 } return int a;
+given zst_buf_ready ((import zst_buf)):(0)
+given zst_buf_ready ((import zst_buf)):(0) then calls zb_start:[1]
+
+// Test-only fixtures: main.id's own init order, then a 4-byte buffer holding
+// 0x8C (1000 1100) -- the known byte chk/bits/reader.id's own comment reasons
+// about -- so a case can start the bit reader without alloc()'s address
+// (unknown ahead of time) as a case literal.
+zst_surf_ready() {
+  fx_trig_init();
+  png_init();
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls png_init:[1]
+
+zst_ready() {
+  zst_surf_ready();
+  zst_init();
+} return void;
+():() then calls zst_surf_ready:[1]
+():() then calls zst_init:[1]

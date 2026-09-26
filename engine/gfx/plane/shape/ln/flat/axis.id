@@ -14,6 +14,8 @@
 d2_hline(int x, int y, int n, int c) {
   sf_span(x, x + n - 1, y, c);
 } return int n;
+given sf_t_setup (0, 0, 1, 7):(1) then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 7):(0) then d2_blit_t_px00:(0)
 
 d2_vline(int x, int y, int n, int c) {
   int j = 0;
@@ -22,6 +24,8 @@ d2_vline(int x, int y, int n, int c) {
     j = j + 1;
   }
 } return int n;
+given sf_t_setup (0, 0, 1, 7):(1) then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 7):(0) then d2_blit_t_px00:(0)
 
 // A 1px outline of the rect (x, y, w, h), corners included. The verticals run
 // the full height, so the corner pixels are written twice -- cheaper than four
@@ -31,3 +35,5 @@ d2_frame(int x, int y, int w, int h, int c) {
   d2_vline(x, y, h, c);
   int n = d2_vline(x + w - 1, y, h, c);
 } return int n;
+given sf_t_setup (0, 0, 1, 1, 7):(1) then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, 0, 0, 7):(0) then d2_blit_t_px00:(0)

@@ -8,6 +8,8 @@ t_edge() {
   t_edge_show();
   t_act();
 } return void;
+given tin_end_ready ():() then calls t_tap:(9, 2900)
+given tin_end_ready ():() then calls t_edge_show:[1]
 
 // 13 is Return. It reports and does not edit: what committing means belongs to
 // whoever owns the field, and this module has no idea.
@@ -16,6 +18,8 @@ t_act() {
   t_act_show();
   t_esc();
 } return void;
+given tin_edge_ready ():() then calls t_tap:(13, 3000)
+given tin_edge_ready ():() then calls t_act_show:[1]
 
 // 27 is Escape, which reports 2 and also does not edit -- a cancel that had
 // already cleared the buffer would leave the caller nothing to restore.
@@ -24,3 +28,5 @@ t_esc() {
   t_esc_show();
   t_quiet();
 } return void;
+given tin_act_ready ():() then calls t_tap:(27, 3100)
+given tin_act_ready ():() then calls t_esc_show:[1]

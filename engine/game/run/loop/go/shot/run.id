@@ -10,6 +10,8 @@ shot_frames(int n) {
     i = i + 1;
   }
 } return void;
+given game_fixture_nd (0):() then calls run_step:[0]
+given game_fixture_nd (2):() then calls run_step:[2]
 
 // i is where the digit scan stopped. It has to be the end of the string, and at
 // least one digit has to have been consumed.
@@ -17,3 +19,5 @@ shot_ok(string s, int i, int v) {
   int n = 0;
   if (i > 0 && charat(s, i) < 0) { n = v; }
 } return int n;
+("5", 1, 5):(5)
+("5x", 1, 5):(0)

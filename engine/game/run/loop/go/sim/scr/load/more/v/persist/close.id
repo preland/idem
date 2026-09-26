@@ -3,3 +3,5 @@ scr_persist2() {
   int len_v = len((import scr_vv));
   lset((import scr_st), 4, len_v);
 } return void;
+given idem_init ():() then calls lset:[1]
+given scr_fixture ():() then calls lset:[1]

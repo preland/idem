@@ -3,14 +3,20 @@ png_gather_one(int p, int i) {
   int png_st_v = (import png_st)[5];
   int next_i = png_gather_val(p, i, asset_io_v, png_st_v);
 } return int next_i;
+given png_giobase_fixture (307, 0):(1) then calls png_gather_val:(307, 0, (import png_io0), 0)
+given png_giobase_fixture (16, 3):(4) then calls png_gather_val:(16, 3, (import png_io0), 0)
 
 png_gather_val(int p, int i, int asset_io_v, int png_st_v) {
   int png_st_v2 = (import png_st)[6];
   int asset_at_v = asset_at(p + i);
   int next_i = png_gather_poke(asset_io_v, png_st_v, png_st_v2, i, asset_at_v);
 } return int next_i;
+given png_giobase_fixture (307, 0, (import png_io0), 0):(1) then calls png_gather_poke:[1]
+given png_giobase_fixture (16, 3, (import png_io0), 0):(4) then calls png_gather_poke:[1]
 
 png_gather_poke(int asset_io_v, int png_st_v, int png_st_v2, int i, int asset_at_v) {
   poke8(asset_io_v + png_st_v + png_st_v2 + i, asset_at_v);
   int next_i = i + 1;
 } return int next_i;
+given png_giobase_fixture ((import png_io0), 0, 0, 5, 99):(6)
+given png_giobase_fixture ((import png_io0), 10, 0, 2, 50):(3)

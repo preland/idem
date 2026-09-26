@@ -1,0 +1,26 @@
+// The gathered stream's start (png_st[5]) as a value, and a fixture that has
+// already claimed one -- for gather.id's png_first cases, which are about
+// whether a SECOND IDAT can overwrite the first's claim.
+
+png_zaddr_check() {
+  int v = (import png_st)[5];
+} return int v;
+given png_init ():(0)
+given png_zaddr5_fixture ():(5)
+
+png_zaddr5_fixture() {
+  png_init();
+  lset((import png_st), 5, 5);
+} return void;
+():() then png_zaddr_check:(5)
+given png_init ():() then png_zaddr_check:(5)
+
+// The store address the raw file bytes actually landed at -- for
+// gather_tail.id's cases, which take that address as an explicit parameter
+// rather than reading it from the store themselves.
+png_giobase_fixture() {
+  png_raw_fixture();
+  export int png_io0 = (import asset_io)[0];
+} return void;
+():() then asset_pipe_len_check:(425)
+given png_init ():() then asset_pipe_len_check:(425)

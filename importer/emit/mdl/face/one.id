@@ -5,14 +5,20 @@ mdl_face(string src) {
   int b = imp_int(src);
   mdl_f3(src, a, b);
 } return void;
+given imp_init ("0 1 2 255"):() then calls mdl_f3:("0 1 2 255", 0, 1)
+given imp_init ("5 6 7 8"):() then calls mdl_f3:("5 6 7 8", 5, 6)
 
 mdl_f3(string src, int a, int b) {
   int c = imp_int(src);
   int v = imp_int(src);
   mdl_f3_b(a, b, c, v);
 } return void;
+given imp_init ("2 255", 0, 1):() then calls mdl_f3_b:(0, 1, 2, 255)
+given imp_init ("7 8", 5, 6):() then calls mdl_f3_b:(5, 6, 7, 8)
 
 mdl_f3_b(int a, int b, int c, int v) {
   string h = imp_hex6(v);
   print("    (" + a + ", " + b + ", " + c + ", 0x" + h + ")");
 } return void;
+(0, 1, 2, 255):() then prints:("    (0, 1, 2, 0x0000FF)\n")
+(1, 2, 3, 16711680):() then prints:("    (1, 2, 3, 0xFF0000)\n")

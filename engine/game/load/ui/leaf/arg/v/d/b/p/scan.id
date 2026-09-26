@@ -7,6 +7,8 @@ ui_pscan(int nd, string prop, int i, int dv) {
     i = i + 1;
   }
 } return int dv;
+given ui_look_fx2 (7, "colour", 1, 0):(291)
+given ui_look_fx2 (7, "nope", 1, 5):(5)
 
 // A property's value is the node hanging off the comp's `a` slot directly, not
 // an argument list: par_vprop builds `colour: 0xFFFFFF` with ast_new_a, whose
@@ -17,3 +19,5 @@ ui_pone(int nd, string prop, int dv) {
   int v = dv;
   if (ast_tx(nd) = prop) { int ast_ia_v = ast_ia(nd); v = ast_ia(ast_ia_v); }
 } return int v;
+given ui_look_fx1 (5, "colour", 0):(291)
+given ui_look_fx1 (5, "nope", 7):(7)

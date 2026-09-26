@@ -1,0 +1,32 @@
+// Loaded rows for the two colour types col.id's cases sample directly: grey
+// (colour type 0) and truecolour (colour type 2), both opaque so spr_alpha2's
+// default branch is what a caller sees through them.
+//
+// Row addresses are alloc'd, not literal, so each fixture exports the row
+// this decoder actually placed -- (import NAME) is the only way a case can
+// hand one to a function under test (docs/TESTS.md, "Module state").
+
+spr_grey_fixture() {
+  png_init();
+  png_load("../tests/unit/spr/img/grey.png");
+  export int spr_row_grey = asset_row(0);
+} return void;
+():() then spr_img_w:(4)
+given png_init ():() then spr_img_w:(4)
+
+spr_rgb_fixture() {
+  png_init();
+  png_load("../tests/unit/spr/img/rgb.png");
+  export int spr_row_rgb = asset_row(0);
+} return void;
+():() then spr_img_w:(4)
+given png_init ():() then spr_img_w:(4)
+
+// The width column of whichever image the given fixture just loaded, 0 if
+// none has (png_init resets png_st to all zero). Shared across every fixture
+// in fill/px, since it asks nothing colour-type-specific.
+spr_img_w() {
+  int v = (import png_st)[0];
+} return int v;
+given spr_grey_fixture ():(4)
+given png_init ():(0)

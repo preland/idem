@@ -14,6 +14,8 @@ scn_tup(int nd, string name, int k, int dv) {
     }
   }
 } return int v;
+given scn_spr_fx5 (10, "grid", 0, 1):(1)
+given scn_spr_fx5 (10, "nope", 0, 99):(99)
 
 scn_after(int nd, string name, int i) {
   int t = 0;
@@ -22,8 +24,12 @@ scn_after(int nd, string name, int i) {
     i = i + 1;
   }
 } return int t;
+given scn_spr_fx5 (10, "cell", 0):(8)
+given scn_spr_fx5 (10, "nope", 0):(0)
 
 scn_nargs(int nd) {
   int n = 0;
   if (ast_ia(nd) != 0) { int ast_ia_v = ast_ia(nd); int[] ast_ks_v = ast_ks(ast_ia_v); n = len(ast_ks_v); }
 } return int n;
+given scn_spr_fx5 (10):(4)
+given ast_init (0):(0)

@@ -1,14 +1,20 @@
 ed_insp_more_rows_note(int x, int y, int w, int h) {
   ed_insp_note(x, y + 3 * (h + 2), w);
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 18):() then calls ed_insp_note:(0, 70, 100)
+given ed_t_boot stdin "" (5, 0, 50, 20):() then calls ed_insp_note:(5, 66, 50)
 
 ed_insp_more_rows(int x, int y, int w, int i) {
   int h = ed_rowh();
   ed_kvn(x, y + h + 2, "line", (import ed_ln)[i]);
   ed_insp_more_rows_note(x, y, w, h);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_insp_more_rows_note:(0, 10, 100, 18)
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_kvn:[1]
 
 ed_insp_more(int x, int y, int w, int i) {
   ed_kv(x, y, "file", (import ed_fl)[i + 1]);
   ed_insp_more_rows(x, y, w, i);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_kv:(0, 10, "file", "main.idml")
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 100, 0):() then calls ed_insp_more_rows:(0, 10, 100, 0)

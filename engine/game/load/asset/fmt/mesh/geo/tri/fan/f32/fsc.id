@@ -3,6 +3,9 @@ bl_fsc(int e, int m, int sg) {
   wp = bl_fshift(wp * 1000, e - 150);
   int ret_i = sg * wp;
 } return int ret_i;
+(150, 1000, 1):(1000000)
+(147, 1000, 1):(125000)
+(150, 500, -1):(-500000)
 
 // A signed binary shift by whatever the exponent asks for. Positive shifts up,
 // negative shifts down; beyond the range of the quantity either way the answer
@@ -11,3 +14,7 @@ bl_fshift(word wp, int e) {
   while (e > 0 && wp < 1000000000) { wp = wp * 2; e = e - 1; }
   while (e < 0 && wp != 0) { wp = wp / 2; e = e + 1; }
 } return word wp;
+(1, 3):(8)
+(100, -2):(25)
+(100, 0):(100)
+(600000000, 5):(1200000000)

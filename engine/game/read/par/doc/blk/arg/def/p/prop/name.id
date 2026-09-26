@@ -6,8 +6,12 @@ par_vprop_name(int[] pos) {
   par_next(pos);
   par_eat(pos, ":");
 } return string name;
+given par_decl_setup ([10]):("colour")
+given par_decl_setup ([13]):("size")
 
 par_vprop_node(string name, int arg) {
   int ast_k_comp_v = (import ast_k_comp);
   int ret_i = ast_new_a(ast_k_comp_v, name, arg);
 } return int ret_i;
+given ast_init ("colour", 5):(1) then calls ast_new_a:(113, "colour", 5)
+given ast_init ("size", 9):(1) then calls ast_new_a:(113, "size", 9)

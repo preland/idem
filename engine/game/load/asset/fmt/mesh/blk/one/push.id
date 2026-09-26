@@ -12,10 +12,14 @@ bl_push2(int n, int i) {
   push((import bl_bs), i);
   lset((import bl_st), 1, (import bl_st)[1] + 1);
 } return void;
+given bl_init (1, 2):() then bl_clear2_t_check:(1)
+given bl_init (3, 4):() then bl_clear2_t_check:(1)
 
 bl_le32(int p) {
   int ret_i = asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536 + asset_at(p + 3) * 16777216;
 } return int ret_i;
+given bl_dna_t_bytes (33):(52)
+given bl_dna_t_bytes (17):(826363460)
 
 // A 64-bit little-endian field -- an address, or one of the lengths the newer
 // block header widened. The high half is multiplied in a `word` so the shift does
@@ -24,3 +28,5 @@ bl_le64(int p) {
   word wp = bl_le32(p + 4);
   word ret_w = wp * 4294967296 + bl_ule32(p);
 } return word ret_w;
+given bl_dna_t_bytes (17):(826363460)
+given bl_dna_t_bytes (0):(3553979215621999682)

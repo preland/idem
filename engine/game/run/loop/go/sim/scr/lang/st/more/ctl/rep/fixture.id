@@ -1,0 +1,27 @@
+// A hand-built `if (1) { score = 99 }`, condition true, one branch.
+if_fixture() {
+  assign_fixture();
+  int cond = ast_new_num(1, 0);
+  export int fixture_if = ast_new_abc((import ast_k_if), "if", cond, (import fixture_assign), 0);
+} return void;
+():() then calls assign_fixture:[1]
+():() then calls ast_new_abc:[4]
+
+// A hand-built `while (1) { score = 99 }` -- the caller supplies the turn
+// count, so building it once true is enough for every case.
+while_fixture() {
+  assign_fixture();
+  int cond = ast_new_num(1, 0);
+  export int fixture_while = ast_new_abc((import ast_k_while), "while", cond, (import fixture_assign), 0);
+} return void;
+():() then calls assign_fixture:[1]
+():() then calls ast_new_abc:[4]
+
+// A hand-built `repeat 3 { score = 99 }`.
+repeat_fixture() {
+  assign_fixture();
+  int cnt = ast_new_num(3, 0);
+  export int fixture_repeat = ast_new_abc((import ast_k_repeat), "repeat", cnt, (import fixture_assign), 0);
+} return void;
+():() then calls assign_fixture:[1]
+():() then calls ast_new_abc:[4]

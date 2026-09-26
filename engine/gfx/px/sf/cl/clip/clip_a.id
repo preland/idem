@@ -5,3 +5,5 @@ sf_clip_a(int cx0, int cy0, int x1, int y1) {
   m4_pair((import sf_cl), 0, 1, cx0, cy0);
   sf_clip_b(x1, y1);
 } return void;
+given sf_t_setup (0, 0, 200, 200):() then sf_cl_t_check:([0, 0, 63, 47])
+given sf_t_setup (-5, -5, 10, 10):() then sf_cl_t_check:([-5, -5, 10, 10])

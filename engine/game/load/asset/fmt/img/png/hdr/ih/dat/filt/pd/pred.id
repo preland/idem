@@ -9,14 +9,20 @@ png_pred(int y, int r, int i, int f) {
   if (f = 1) { v = png_left(r, i); }
   else { v = png_pred2(y, r, i, f); }
 } return int v;
+given png_pd_fixture (0, (import png_row0_data), 2, 1):(64)
+given png_pd_fixture (1, (import png_row0_data), 2, 2):(128)
 
 png_pred2(int y, int r, int i, int f) {
   int v = 0;
   if (f = 2) { v = png_up(y, i); }
   else { v = png_pred3(y, r, i, f); }
 } return int v;
+given png_pd_fixture (1, (import png_row0_data), 2, 2):(128)
+given png_pd_fixture (0, (import png_row0_data), 0, 3):(0) then calls png_pred3:(0, (import png_row0_data), 0, 3)
 
 png_left(int r, int i) {
   int v = 0;
   if (i >= (import png_st)[11]) { v = peek8(r + i - (import png_st)[11]); }
 } return int v;
+given png_pd_fixture ((import png_row0_data), 0):(0)
+given png_pd_fixture ((import png_row0_data), 2):(64)

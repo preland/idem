@@ -1,0 +1,27 @@
+// A real, parsed entity with most components set, so the component fillers
+// downstream of scn_spawn have real node structure to read instead of a
+// hand-built one -- the parser already knows the shape better than a test does.
+game_fixture() {
+  idem_init();
+  string src = "scene s {\n  entity e {\n    pos (144, 200)\n    vel (-120, 50)\n    scale (500, 2000)\n    body (12, 8)\n    solid\n    wrap (0, 288)\n    anim (2, 5, 100)\n    layer 3\n    shape box (10, 60) 0xFFFFFF\n    sprite bird\n  }\n}";
+  idem_read(src);
+} return void;
+():() then calls idem_read:[1]
+():() then calls idem_init:[1]
+
+// The current scene, exported so a case can pass it by name.
+game_fixture_scene() {
+  game_fixture();
+  export int fixture_scene = (import scn_st)[5];
+} return void;
+():() then calls game_fixture:[1]
+():() then calls idem_init:[1]
+
+// The scene's one entity, exported so a case can pass it by name.
+game_fixture_nd() {
+  game_fixture_scene();
+  int[] ks = ast_ks((import fixture_scene));
+  export int fixture_nd = ks[0];
+} return void;
+():() then calls game_fixture_scene:[1]
+():() then calls idem_read:[1]

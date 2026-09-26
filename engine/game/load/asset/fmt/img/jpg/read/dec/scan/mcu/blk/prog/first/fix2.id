@@ -1,0 +1,10 @@
+// jpg_final_fixture with the first real Huffman code already decoded (the
+// same "10" -> 7 consumed in the bit-reader/Huffman cases), landing the bit
+// reader on bit 3 of grad.jpg's first byte (0x8F = 10001111), which is 0 --
+// for jpg_pdcr's case that must NOT set the refinement bit.
+jpg_final2_fixture() {
+  jpg_final_fixture();
+  jpg_dec(0);
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)

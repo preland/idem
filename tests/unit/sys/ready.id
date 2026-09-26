@@ -1,0 +1,26 @@
+// Test-only fixtures for chk/: sf_alloc runs exactly once (see main.id), so
+// every case below main's own chain needs a zero-parameter `given` that has
+// already opened the surface -- these wrap the parameterised setup calls that
+// a `given` cannot name directly. Each later fixture builds on the previous
+// one, mirroring the exact sequence chk/fit.id and chk/more.id run for real.
+sys_open_ready() {
+  sf_open(320, 200);
+} return void;
+():() then calls sf_open:(320, 200)
+():() then calls sf_open:[1]
+
+sys_stage_ready() {
+  sys_open_ready();
+  sf_init(640, 400);
+  sys_vp_init(288, 512);
+} return void;
+():() then calls sys_open_ready:[1]
+():() then calls sys_vp_init:(288, 512)
+
+sys_keys_ready() {
+  inp_init();
+  inp_stamp(87);
+  inp_stamp(258);
+} return void;
+():() then calls inp_init:[1]
+():() then calls inp_stamp:(258)

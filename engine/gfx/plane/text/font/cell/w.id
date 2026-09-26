@@ -9,6 +9,8 @@ txt_width_sc(string s, int sc) {
   int cell = txt_cell();
   int width = slen * cell * sc / 1000;
 } return int width;
+given txt_init ("H", 1000):(8)
+given txt_init ("", 1000):(0)
 
 // At the UI scale, because txt_draw is: a width that disagreed with what is drawn
 // would centre and right-align every label wrongly the moment the window changed
@@ -18,6 +20,8 @@ txt_width(string s) {
   int sc_arg = ui * 1000;
   int width = txt_width_sc(s, sc_arg);
 } return int width;
+given txt_init given sf_t_setup ("H"):(8)
+given txt_init given sf_t_setup (""):(0)
 
 // A power of ten and a per-mille scale, packed into one int: the power in the
 // high half, the scale in the low. txt_num_run carries five parameters already
@@ -26,3 +30,5 @@ txt_width(string s) {
 txt_num_pw(int pw, int sc) {
   int packed = pw * 65536 + sc;
 } return int packed;
+(1, 1000):(66536)
+(0, 0):(0)

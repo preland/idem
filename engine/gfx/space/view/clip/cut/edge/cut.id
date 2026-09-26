@@ -20,15 +20,21 @@ d3_ncut(int[] tri, int i, int k, int j) {
   d3_ncut6(tri, i, k, j,
            fx_div_v);
 } return void;
+given d3_t_setup ([0, 0, 0, 100, 200, 80, 0, 0, 0, 1000, 3000, 0], 0, 1, 0):() then d3_t_clp:([50, 100, 40, 0, 0, 0, 0, 0, 0, 2000, 0, 0])
+given d3_t_setup ([10, 20, 40, 50, 60, 100, 0, 0, 0, 500, 1500, 0], 0, 1, 1):() then d3_t_clp:([0, 0, 0, 10, 20, 40, 0, 0, 0, 0, 500, 0])
 
 d3_ncut6(int[] tri, int i, int k, int j, int t) {
   int m0 = d3_mix(tri[i * 3], tri[k * 3], t);
   lset((import d3_clp), j * 3, m0);
   d3_ncut6_b(tri, i, k, j, t);
 } return void;
+given d3_t_setup ([0, 0, 0, 100, 200, 80, 0, 0, 0, 1000, 3000, 0], 0, 1, 0, 32768):() then d3_t_clp:([50, 100, 40, 0, 0, 0, 0, 0, 0, 2000, 0, 0])
+given d3_t_setup ([10, 20, 40, 50, 60, 100, 0, 0, 0, 500, 1500, 0], 0, 1, 1, 65536):() then d3_t_clp:([0, 0, 0, 50, 60, 40, 0, 0, 0, 0, 1500, 0])
 
 d3_ncut3(int[] tri, int i, int k, int j, int t) {
   lset((import d3_clp), j * 3 + 2, (import d3_cam)[5]);
   int d3_cmix_v = d3_cmix(tri[9 + i], tri[9 + k], t);
   lset((import d3_clp), 9 + j, d3_cmix_v);
 } return void;
+given d3_t_setup ([0, 0, 0, 100, 200, 80, 0, 0, 0, 1000, 3000, 0], 0, 1, 0, 32768):() then d3_t_clp:([0, 0, 40, 0, 0, 0, 0, 0, 0, 2000, 0, 0])
+given d3_t_setup ([10, 20, 40, 50, 60, 100, 0, 0, 0, 500, 1500, 0], 0, 1, 1, 0):() then d3_t_clp:([0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 500, 0])

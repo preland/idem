@@ -4,15 +4,21 @@ bl_end(int p) {
   int ok = 0;
   if (asset_at(p) = 69 && asset_at(p + 1) = 78 && asset_at(p + 2) = 68 && asset_at(p + 3) = 66) { ok = 1; }
 } return int ok;
+given bl_endb_t_setup (0):(1)
+given bl_dna_t_bytes (0):(0)
 
 bl_block(int p) {
   int n = bl_block_addr(p);
   bl_block_code(p, n);
   int ret_i = p + 32 + n;
 } return int ret_i;
+given bl_dna_t_bytes (17):(101)
+given bl_dna_t_bytes (0):(1095648288)
 
 bl_push(int kd, int p, int n, int i) {
   push((import bl_bc), kd);
   push((import bl_bp), p);
   bl_push2(n, i);
 } return void;
+given bl_init (5, 10, 1, 2):() then bl_block_code_t_check:(5) then calls bl_push2:(1, 2)
+given bl_init (7, 20, 3, 4):() then bl_block_code_t_check:(7) then calls bl_push2:(3, 4)

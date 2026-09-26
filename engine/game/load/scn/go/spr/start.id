@@ -3,6 +3,8 @@
 scn_start(int doc) {
   scn_pick(doc, 0);
 } return void;
+given scn_scene_fx given ent_init (23):() then calls scn_pick:(23, 0) then calls scn_enter:(22)
+given ast_init given scn_init (0):() then calls scn_enter:[0]
 
 // The first scene declared. `start NAME` should select it; until the name lookup
 // exists, first-declared is the honest approximation and is what a one-scene game
@@ -14,9 +16,13 @@ scn_pick(int doc, int i) {
     i = i + 1;
   }
 } return void;
+given scn_scene_fx given ent_init (23, 0):() then calls scn_take:(20) then calls scn_take:(22) then calls scn_enter:(22)
+given scn_game_fx6 (21, 0):() then calls scn_take:(20) then calls scn_enter:[0]
 
 scn_take(int nd) {
   if (ast_kd(nd) = (import ast_k_scene)) {
     scn_enter(nd);
   }
 } return void;
+given scn_scene_fx given ent_init (22):() then calls scn_enter:(22)
+given scn_scene_fx (20):() then calls scn_enter:[0]

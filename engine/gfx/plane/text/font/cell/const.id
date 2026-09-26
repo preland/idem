@@ -18,6 +18,8 @@
 txt_cell() {
   int cell = (import txt_st)[0];
 } return int cell;
+given txt_init ():(8)
+given txt_init ():(8) then txt_cellh:(16)
 
 // The last one the loaded face can draw. 126 for the built-in table -- printable
 // ASCII and nothing above it, because a byte over 126 is a UTF-8 continuation and
@@ -28,3 +30,5 @@ txt_last() {
   int facen = txt_facen();
   int last = first + facen - 1;
 } return int last;
+given txt_init ():(126)
+given txt_init ():(126) then txt_facen:(95)

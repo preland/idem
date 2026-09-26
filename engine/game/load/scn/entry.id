@@ -21,6 +21,8 @@ scn_init() {
   lst_fill((import scn_st), 13, 0);
   scn_def();
 } return void;
+():() then calls lst_fill:[1]
+():() then calls scn_def:[1]
 
 // A game that declares nothing still runs: 320x200, 60 fps, unscaled, sky blue.
 scn_def() {
@@ -28,6 +30,8 @@ scn_def() {
   m4_pair((import scn_st), 2, 3, 60, 1);
   lset((import scn_st), 6, 0x70C5CE);
 } return void;
+given scn_init ():() then calls m4_pair:[2]
+given scn_init ():() then calls lset:[5]
 
 // Read the manifest and find the starting scene. `start NAME` names it; with no
 // `start`, the first scene declared is it, which is what a one-scene game means.
@@ -36,3 +40,5 @@ scn_load(int doc) {
   scn_walk(doc, 0);
   scn_start(doc);
 } return void;
+given ast_init given scn_init (0):() then calls lset:[1] then calls scn_walk:(0, 0) then calls scn_start:(0) then calls scn_enter:[0]
+given scn_game_fx6 (21):() then calls lset:[4] then calls scn_walk:(21, 0) then calls scn_game:(20, 0) then calls scn_enter:[0]

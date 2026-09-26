@@ -5,11 +5,15 @@ zst_sfse(int r, int base) {
   m4_pair((import fse_rl), r * 2, r * 2 + 1, base, (import fse_st)[0]);
   zst_sfse2(base, used);
 } return void;
+given zst_src_setup given fse_init (0, 0):()
+given zst_src_setup given fse_init (1, 512):()
 
 zst_sfse2(int base, int used) {
   fse_build(base, (import fse_st)[0], (import fse_st)[4] - 1);
   lset((import zst_st), 1, (import zst_st)[1] + used);
 } return void;
+given zst_src_setup given fse_init (0, 0):()
+given zst_src_setup given fse_init (768, 5):()
 
 // The largest symbol each alphabet can carry: 35 literal-length codes, 31 offset
 // codes, 52 match-length codes.
@@ -18,3 +22,5 @@ zst_smax(int r) {
   if (r = 1) { n = 31; }
   else if (r = 2) { n = 52; }
 } return int n;
+(0):(35)
+(1):(31)

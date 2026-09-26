@@ -21,6 +21,9 @@ ed_drag_st() {
   ed_drag_on(2, 2);
   ed_drag_on(4, 1);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_drag_on:(1, 3)
+given ed_t_boot stdin "" ():() then calls ed_drag_on:(2, 2)
+given ed_t_boot stdin "" ():() then calls ed_drag_on:(4, 1)
 
 // The button that started the drag owns it until it is released: a second button
 // pressed mid-drag changes nothing, which is what stops a stray middle-click from
@@ -30,9 +33,14 @@ ed_drag_on(int btn, int k) {
   int in_v = ed_in_panel();
   ed_drag_on2(inp_mhit_v, in_v, btn, k);
 } return void;
+given ed_t_boot stdin "" (1, 3):(1, 3) then calls ed_drag_on2:(0, 0, 1, 3)
+given ed_t_boot given ed_t_lay given ed_t_click stdin "" (1, 3):(1, 3) then calls ed_drag_on2:(1, 1, 1, 3)
 
 ed_drag_end(int btn, int k) {
   if (inp_mdown(btn) = 0 && (import ed_st)[5] = k) {
     ed_drag_fin(k);
   }
 } return void;
+given ed_t_boot stdin "" (1, 3):(1, 3) then calls ed_drag_fin:[0]
+given ed_t_boot stdin "" (1, 0):(1, 0) then calls ed_drag_fin:(0)
+given ed_t_boot given ed_t_click stdin "" (1, 0):(1, 0) then calls ed_drag_fin:[0]

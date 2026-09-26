@@ -3,8 +3,12 @@ ed_proj_init(int x, int y, int i) {
   int txt_ui_v2 = txt_ui();
   int ok = ed_in(x, y, 72 * txt_ui_v, 24 * txt_ui_v2);
 } return int ok;
+given ed_t_boot stdin "" (0, 0, 0):(1)
+given ed_t_boot stdin "" (100, 100, 0):(0)
 
 ed_proj_one(int x, int y, int i) {
   int ok = ed_proj_init(x, y, i);
   ed_proj_tile(x, y, i, ok);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0):() then calls ed_proj_tile:(0, 0, 0, 1)
+given ed_t_boot stdin "" (100, 100, 0):() then calls ed_proj_tile:(100, 100, 0, 0)

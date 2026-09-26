@@ -4,6 +4,8 @@ zst_sone(int last) {
   int ll = fse_dsym(0, (import zst_sq)[0]);
   zst_sone_dsym(ll, last);
 } return void;
+given zstsq_setup (0):() then calls zst_sone_dsym:[1]
+given zstsq_setup (1):() then calls zst_sone_dsym:[1]
 
 // Each extra-bit read is its own statement: two side-effecting reads in one
 // expression may evaluate in either order, and here that would take the offset's
@@ -13,9 +15,13 @@ zst_sone2(int ll, int of, int ml, int last) {
   int mlen = zst_smlen(ml);
   zst_sone3(ll, off, mlen, last);
 } return void;
+given zstsq_setup (0, 0, 0, 0):() then calls zst_sone3:[1]
+given zstsq_setup (1, 1, 1, 1):() then calls zst_sone3:[1]
 
 zst_sone3(int ll, int off, int mlen, int last) {
   int llen = zst_sllen(ll);
   zst_sexec(llen, off, mlen);
   zst_supd(last);
 } return void;
+given zst_src_setup (0, 1, 1, 0):() then calls zst_sexec:[1]
+given zst_src_setup (1, 1, 1, 1):() then calls zst_sexec:[1]

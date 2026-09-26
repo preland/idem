@@ -1,0 +1,28 @@
+// Fixtures for bl_head: a valid header (reusing the dna cluster's synthetic
+// .blend, which also exercises the whole block walk) and an unpoked buffer
+// that fails the magic check.
+
+bl_head_t_setup() {
+  bl_dna_t_bytes();
+} return void;
+():() then asset_pipe_byte0_check:(66)
+given asset_io_init ():() then asset_pipe_byte0_check:(66)
+
+bl_head_t_invalid() {
+  bl_init();
+  asset_slurp_alloc(10);
+  lset((import asset_io), 1, 10);
+} return void;
+():() then asset_pipe_byte0_check:(0)
+given asset_io_init ():() then asset_pipe_byte0_check:(0)
+
+// The real cube.blend's raw bytes, staged but not yet walked -- for
+// bl_open2_ret's own case, which needs the file on the pipe without going
+// through bl_open's path argument.
+bl_cube_t_stage() {
+  zst_init();
+  bl_init();
+  asset_slurp("../test_assets/cube.blend");
+} return void;
+():() then asset_pipe_byte0_check:(66)
+given asset_io_init ():() then asset_pipe_byte0_check:(66)

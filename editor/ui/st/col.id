@@ -8,12 +8,16 @@ ed_col_add(int a, int b, int c, int d, int e) {
   push((import ed_pal), b);
   ed_col3(c, d, e);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, 4, 5):() then calls ed_col3:(3, 4, 5) then ed_pal_len:(19)
+given ed_t_boot stdin "" (100, 200, 7, 8, 9):() then calls ed_col3:(7, 8, 9) then ed_pal_last:(9)
 
 ed_col3(int c, int d, int e) {
   push((import ed_pal), c);
   push((import ed_pal), d);
   push((import ed_pal), e);
 } return void;
+given ed_t_boot stdin "" (11, 22, 33):() then ed_pal_len:(17) then ed_pal_last:(33)
+given ed_t_boot stdin "" (44, 55, 66):() then ed_pal_len:(17) then ed_pal_last:(66)
 
 // Clamped rather than trusted: a colour index is written by hand at every call
 // site, and an out-of-range list read aborts the process.
@@ -21,3 +25,6 @@ ed_col(int i) {
   int len_v = len((import ed_pal));
   int ret_i = (import ed_pal)[fx_clamp(i, 0, len_v - 1)];
 } return int ret_i;
+given ed_t_boot stdin "" (0):(0x2B2B2B)
+given ed_t_boot stdin "" (13):(0xD8A24A)
+given ed_t_boot stdin "" (20):(0xD8A24A)

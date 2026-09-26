@@ -1,0 +1,31 @@
+// What a 0xFF means, and reading a fixed number of bits.
+
+jpg_fill2(int v) {
+  if (v = 255) {
+    v = jpg_ff();
+  }
+  m4_pair((import jpg_b), 1, 2, v, 8);
+} return void;
+given jpg_bs291_fixture (143):() then jpg_bb_check:(143) then jpg_bl_check:(8)
+given jpg_bs317_fixture (255):() then calls jpg_ff:[1]
+
+jpg_ff() {
+  int v = 255;
+  if (asset_at((import jpg_b)[0]) = 0) {
+    lset((import jpg_b), 0, (import jpg_b)[0] + 1);
+  } else {
+    v = jpg_hit();
+  }
+} return int v;
+given jpg_bs317_fixture ():(255) then jpg_bcursor_check:(318)
+given jpg_bs335_fixture ():(0) then jpg_marker_check:(1) then jpg_bcursor_check:(334)
+
+// A marker ends the data. The cursor is stepped back onto the 0xFF so that the
+// marker walk finds it, and zeros are fed from here on -- a decoder that ran off
+// the end of a scan would otherwise read the next segment's bytes as coefficients.
+jpg_hit() {
+  lset((import jpg_b), 3, 1);
+  lset((import jpg_b), 0, (import jpg_b)[0] - 1);
+} return int 0;
+given jpg_bs335_fixture ():(0) then jpg_marker_check:(1) then jpg_bcursor_check:(334)
+given jpg_bs291_fixture ():(0) then jpg_marker_check:(1) then jpg_bcursor_check:(290)

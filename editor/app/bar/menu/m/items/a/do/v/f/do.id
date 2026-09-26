@@ -7,6 +7,8 @@ ed_mfile_do(int i) {
     ed_mfile_do2(i);
   }
 } return void;
+given ed_t_boot stdin "" (0):() then calls ed_new:[1]
+given ed_t_boot stdin "" (1):() then calls ed_mfile_do2:(1)
 
 ed_mfile_do2(int i) {
   if (i = 1) {
@@ -15,6 +17,8 @@ ed_mfile_do2(int i) {
     ed_mfile_do3(i);
   }
 } return void;
+given ed_t_boot stdin "" (1):() then calls ed_open:[1]
+given ed_t_boot stdin "" (2):() then calls ed_mfile_do3:(2)
 
 // Export saves first, so what is packed is what is on screen.
 ed_mfile_do3(int i) {
@@ -22,3 +26,6 @@ ed_mfile_do3(int i) {
   else if (i = 3) { ed_export(); }
   else { sys_quit(); }
 } return void;
+given ed_t_boot stdin "" (2):() then calls ed_save:[1]
+given ed_t_boot stdin "" (3):() then calls ed_export:[1]
+given ed_t_boot stdin "" (9):() then calls sys_quit:[1]

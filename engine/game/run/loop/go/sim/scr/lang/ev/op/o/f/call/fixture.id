@@ -1,0 +1,15 @@
+// A hand-built `abs(-5)` call node, one argument.
+call_num_fixture() {
+  idem_init();
+  export int fixture_call_arg = ast_new_num(0 - 5, 0);
+} return void;
+():() then calls idem_init:[1]
+():() then calls ast_new_num:(-5, 0)
+
+call_fixture() {
+  call_num_fixture();
+  int[] args = [(import fixture_call_arg)];
+  export int fixture_call = ast_new_kids((import ast_k_call), "abs", args);
+} return void;
+():() then calls call_num_fixture:[1]
+():() then calls ast_new_kids:[1]

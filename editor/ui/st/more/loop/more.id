@@ -4,12 +4,16 @@ ed_col_more() {
   ed_col3(0x9B4A4A, 0x4A79A8, 0xFFFFFF);
   push((import ed_pal), 0xD8A24A);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_col3:(0x9B4A4A, 0x4A79A8, 0xFFFFFF) then ed_pal_len:(18)
+given ed_t_boot stdin "" ():() then ed_pal_len:(18) then ed_pal_last:(0xD8A24A)
 
 ed_frame() {
   ed_step();
   ed_frame_pace();
   int ret_i = sys_alive();
 } return int ret_i;
+given ed_t_boot stdin "" ():(1) then calls ed_step:[1] then calls ed_frame_pace:[1]
+given ed_t_boot given sys_quit stdin "" ():(0) then calls ed_step:[1] then calls ed_frame_pace:[1]
 
 // Input, then drawing, then present. Input first so that a click is acted on in
 // the frame it happened rather than the one after -- an editor that lags its own
@@ -19,3 +23,5 @@ ed_step() {
   ed_tick();
   ed_show();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_input:[1] then calls ed_tick:[1]
+given ed_t_boot stdin "" ():() then calls ed_tick:[1] then calls ed_show:[1]

@@ -4,15 +4,21 @@ ed_drag_on2(int hit, int in, int btn, int k) {
   }
   ed_drag_end(btn, k);
 } return void;
+given ed_t_boot stdin "" (0, 1, 1, 3):(0, 1, 1, 3) then calls ed_drag_end:(1, 3)
+given ed_t_boot stdin "" (1, 1, 1, 3):(1, 1, 1, 3) then calls ed_drag_beg:(3) then calls ed_drag_end:(1, 3)
 
 ed_in_panel() {
   int x0 = ed_rq(3, 0);
   int y0 = ed_rq(3, 1);
   int ret_i = ed_in_panel2(x0, y0);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" ():(0) then calls ed_in_panel2:(128, 41)
+given ed_t_boot given ed_t_lay given ed_t_click stdin "" ():(1) then calls ed_in_panel2:(128, 41)
 
 ed_in_panel2(int x0, int y0) {
   int w = ed_rq(3, 2);
   int h = ed_rq(3, 3);
   int ret_i = ed_in(x0, y0, w, h);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" (128, 41):(0) then calls ed_in:(128, 41, 360, 294)
+given ed_t_boot given ed_t_lay given ed_t_click stdin "" (128, 41):(1) then calls ed_in:(128, 41, 360, 294)

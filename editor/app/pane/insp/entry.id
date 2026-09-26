@@ -11,6 +11,8 @@ ed_insp(int x, int y, int w, int h) {
   int ed_hdr_v = ed_hdr();
   ed_insp_body(x, y + ed_hdr_v + 3, w);
 } return void;
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_pane:(0, 0, 100, 100, "Inspector")
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_insp_body:(0, 24, 100)
 
 // Three things can be selected and they are checked in the order a person means
 // them: entities picked with the band in the scene view, then a declaration
@@ -26,3 +28,5 @@ ed_insp_body(int x, int y, int w) {
     ed_insp_sel(x, y, w);
   }
 } return void;
+given ed_t_boot stdin "" (0, 24, 100):() then calls ed_insp_sel:(0, 24, 100)
+given ed_t_boot given idstd_err_t_one stdin "" (0, 24, 100):() then calls ed_insp_err:(0, 24, 100, 0)

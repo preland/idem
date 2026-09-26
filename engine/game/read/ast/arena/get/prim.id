@@ -3,11 +3,17 @@
 ast_kd(int nd) {
   int k = (import ast_kind)[nd];
 } return int k;
+given ast_init (0):(100)
+given ast_known_setup (1):(130)
 
 ast_tx(int nd) {
   string tx = (import ast_text)[nd];
 } return string tx;
+given ast_init (0):("")
+given ast_known_setup (1):("known")
 
 ast_ia(int nd) {
   int a = (import ast_a)[nd];
 } return int a;
+given ast_init (0):(0)
+given ast_known_setup (1):(3)

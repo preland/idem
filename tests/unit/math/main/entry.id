@@ -14,15 +14,21 @@ main(int argc, string[] argv) {
   rnd_init(12345);
   t_fxbase();
 } return int 0;
+(1, ["prog"]):(0)
+(2, ["prog", "arg1"]):(0)
 
 t_fxbase() {
   int fx_abs_v = fx_abs(0 - 7);
   int fx_abs_v2 = fx_abs(7);
   t_fxabs2(fx_abs_v, fx_abs_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_abs:(-7)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxabs2:(7, 7)
 
 t_fxlim() {
   int fx_clamp_v = fx_clamp(5, 0, 10);
   int fx_clamp_v2 = fx_clamp(0 - 5, 0, 10);
   t_fxclamp2(fx_clamp_v, fx_clamp_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_clamp:(5, 0, 10)
+given fx_trig_init given rnd_seed0 ():() then calls t_fxclamp2:(5, 0)

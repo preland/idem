@@ -1,0 +1,13 @@
+// One glyph row of the loaded face, read back through the real offset
+// formula (txt_glyph_at) rather than a hand-computed index -- so this stays
+// correct however tall a loaded face's cell is. Code point 65 ('A'), row 2:
+// the built-in face's top two rows of a capital letter are blank, and this is
+// the first row with any ink, so it distinguishes a real table from a zeroed
+// one.
+
+txt_glyph_arow() {
+  int off = txt_glyph_at(65);
+  int v = (import txt_glyphs)[off + 2];
+} return int v;
+given txt_init ():(16)
+given txt_init ():(16) then txt_cell:(8)

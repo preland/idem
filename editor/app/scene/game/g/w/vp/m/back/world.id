@@ -6,9 +6,13 @@ ed_pworld(int x, int y, int w) {
   ed_pclip(x, y, w);
   ed_pworld_draw(x, y, w);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (10, 20, 30):(10, 20, 30) then calls ed_pclip:(10, 20, 30)
+given ed_t_boot given ed_t_lay stdin "" (10, 20, 30):(10, 20, 30) then calls ed_pworld_draw:(10, 20, 30)
 
 ed_pworld_draw(int x, int y, int w) {
   int gw_v = ed_gw();
   int scale = w * 1000 / fx_max(gw_v, 1);
   ed_pworld_draw2(x, y, scale);
 } return void;
+given ed_t_boot stdin "" (10, 20, 288):(10, 20, 288) then calls ed_pworld_draw2:(10, 20, 1000)
+given ed_t_boot stdin "" (10, 20, 100):(10, 20, 100) then calls ed_pworld_draw2:(10, 20, 347)

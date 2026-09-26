@@ -6,3 +6,5 @@ txt_draw_sc_ch(string s, int x, int y, int c, int sc, int i) {
   int cell = txt_cell();
   txt_glyph_sc(ch, x + i * cell * sc / 1000, y, c, sc);
 } return void;
+given txt_init given sf_t_setup ("H", 0, -2, 9, 1000, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup ("AH", -8, -2, 9, 1000, 1):() then d2_blit_t_px00:(9)

@@ -4,6 +4,8 @@ fse_bhigh(int kd) {
   lset((import fse_st), 8, (import fse_st)[8] - 1);
   lset((import fse_nx), kd, 1);
 } return void;
+given fse_init (0):()
+given fse_init (1):()
 
 // The stride is size/2 + size/8 + 3. It is coprime with the table size for every
 // legal size, which is what makes the walk a permutation -- every slot visited
@@ -13,6 +15,8 @@ fse_spread(int maxs) {
   fse_sp1(maxs, step, 0);
   fse_bfill();
 } return void;
+given fse_init (0):()
+given fse_init (1):()
 
 fse_sp1(int maxs, int step, int p) {
   int kd = 0;
@@ -21,3 +25,7 @@ fse_sp1(int maxs, int step, int p) {
     kd = kd + 1;
   }
 } return void;
+given fse_init (0, 1, 0):()
+given fse_init (1, 2, 0):()
+given fse_init (0, 2, 0):()
+given fse_init (1, 3, 1):()

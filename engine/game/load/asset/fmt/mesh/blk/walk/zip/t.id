@@ -1,0 +1,24 @@
+// A reader for bl_open2's side effect: bl_st[11], whether the header it
+// found after decompressing (or not) actually looked valid.
+bl_open2_t_check() {
+  int v = (import bl_st)[11];
+} return int v;
+given bl_dna_t_bytes ():(0)
+given bl_open2_t_setup ():(1)
+
+bl_open2_t_setup() {
+  bl_dna_t_bytes();
+  bl_open2();
+} return void;
+():() then bl_open2_t_check:(1)
+given asset_io_init ():() then bl_open2_t_check:(1)
+
+// The zstd frame magic (28 B5 2F FD), otherwise empty -- enough to make
+// bl_unz try zst_run, not enough for it to find real content.
+bl_unz_t_setup() {
+  bl_al_t_setup();
+  int[] magic = [40, 181, 47, 253];
+  bl_dna_t_fill(magic, 4);
+} return void;
+():() then asset_pipe_byte0_check:(40)
+given asset_io_init ():() then asset_pipe_byte0_check:(40)

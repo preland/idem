@@ -7,3 +7,15 @@ bl_one_mesh(int i) {
     bl_mone(i);
   }
 } return void;
+given bl_mesh_t_load (1034):() then bl_ntri:(24)
+given bl_mesh_t_load (1033):() then bl_ntri:(12)
+
+// The cube, loaded through bl_all -- for bl_all2's own cases, which need a
+// real bl_bc/bl_st[11] rather than an empty file.
+bl_all_t_setup() {
+  zst_init();
+  bl_geo_init();
+  bl_all("../test_assets/cube.blend");
+} return void;
+():() then bl_ntri:(12)
+given asset_io_init ():() then bl_ntri:(12)

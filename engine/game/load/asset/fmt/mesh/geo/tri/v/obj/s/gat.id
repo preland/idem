@@ -14,3 +14,5 @@ bl_gat(word wp) {
     i = i + 1;
   }
 } return int k;
+given bl_at_t_setup (0):(0)
+given bl_at_t_setup (999):(-1)

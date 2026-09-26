@@ -1,11 +1,17 @@
 ast_ib(int nd) {
   int b = (import ast_b)[nd];
 } return int b;
+given ast_init (0):(0)
+given ast_known_setup (1):(4)
 
 ast_ic(int nd) {
   int c = (import ast_c)[nd];
 } return int c;
+given ast_init (0):(0)
+given ast_known_setup (1):(5)
 
 ast_ks(int nd) {
   int[] ks = (import ast_kids)[nd];
 } return int[] ks;
+given ast_init (0):([])
+given ast_known_setup (1):([1, 2])

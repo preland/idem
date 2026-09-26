@@ -18,12 +18,16 @@ main(int argc, string[] argv) {
   sf_open(320, 200);
   t_start();
 } return int 0;
+(1, ["prog"]):(0) then calls t_start:[1]
+(2, ["prog", "x"]):(0) then calls sf_open:(320, 200)
 
 t_start() {
   d3_init();
   print("focal for fov 60 deg at width 320 exp 277120 = " + (import d3_cam)[8]);
   t_view();
 } return void;
+given d3_surf_ready ():() then calls d3_init:[1]
+given d3_surf_ready ():() then calls t_view:[1]
 
 // Camera at the origin, looking along world -Z. The flip is the whole point: a
 // point one unit in FRONT of that camera is at world z -1000 and must come out at
@@ -32,3 +36,5 @@ t_view() {
   t_pose(0, 0, 0, 0);
   t_ahead();
 } return void;
+given d3_ready ():() then calls t_pose:(0, 0, 0, 0)
+given d3_ready ():() then calls t_ahead:[1]

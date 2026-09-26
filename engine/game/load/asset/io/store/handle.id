@@ -1,0 +1,24 @@
+// Three ways read.id's cases need the store already valid: a real file
+// handle to read from, a known byte in the staging list to poke, and real
+// file bytes already sitting in the store to read back out.
+
+asset_loop_fixture() {
+  asset_pipe_fixture();
+  export int asset_loop_h = fs_open("../test_assets/vga8x16.psf", "r");
+} return void;
+():() then asset_pipe_len_check:(8)
+given asset_io_init ():() then asset_pipe_len_check:(8)
+
+asset_poke_fixture() {
+  asset_pipe_fixture();
+  lset((import asset_buf), 0, 77);
+} return void;
+():() then asset_pipe_len_check:(8)
+given asset_io_init ():() then asset_pipe_len_check:(8)
+
+asset_be32_fixture() {
+  asset_pipe_fixture();
+  asset_take("../test_assets/vga8x16.psf", 8);
+} return void;
+():() then asset_pipe_byte0_check:(114)
+given asset_io_init ():() then asset_pipe_byte0_check:(114)

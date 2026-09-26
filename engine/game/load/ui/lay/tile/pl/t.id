@@ -1,0 +1,25 @@
+// A Row-titled node (index 1) with an empty variant table, for the tile/
+// place/axis cluster's cases.
+ui_row_t_setup() {
+  ast_init();
+  ui_vinit();
+  int n1 = ast_new_k(5, "Row");
+} return void;
+():() then ast_n:(2)
+given ast_init ():() then ast_n:(2)
+
+// A second node (index 2), titled "Col".
+ui_col_t_setup() {
+  ui_row_t_setup();
+  int n2 = ast_new_k(5, "Col");
+} return void;
+():() then ast_n:(3)
+given ast_init ():() then ast_n:(3)
+
+// A third node (index 3), titled "Button" -- a leaf, not a container.
+ui_leaf_t_setup() {
+  ui_col_t_setup();
+  int n3 = ast_new_k(5, "Button");
+} return void;
+():() then ast_n:(4)
+given ast_init ():() then ast_n:(4)

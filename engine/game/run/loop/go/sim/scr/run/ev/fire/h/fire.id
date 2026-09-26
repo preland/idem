@@ -5,12 +5,16 @@ scr_hdone(int h, int e, int was) {
   scr_ex(ast_ib_v, e);
   scr_hset(was, 0);
 } return void;
+given idem_init (0, -1, 0):() then calls scr_hset:[1]
+given idem_init (0, 0, 5):() then calls scr_ex:[1]
 
 scr_fire(int sc, string evn, int e, string tg) {
   if (sc != 0) {
     scr_floop(sc, evn, e, tg, 0);
   }
 } return void;
+given idem_init (0, "update", -1, ""):() then calls scr_floop:[0]
+given block_fixture ((import fixture_block), "update", -1, ""):() then calls scr_floop:[1]
 
 scr_floop(int sc, string evn, int e, string tg, int i) {
   int[] ks = ast_ks(sc);
@@ -19,3 +23,5 @@ scr_floop(int sc, string evn, int e, string tg, int i) {
     i = i + 1;
   }
 } return void;
+given idem_init (0, "update", -1, "", 0):() then calls scr_fone:[0]
+given block_fixture ((import fixture_block), "update", -1, "", 0):() then calls scr_fone:[1]

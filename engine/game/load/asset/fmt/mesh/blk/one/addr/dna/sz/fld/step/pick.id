@@ -3,3 +3,5 @@ bl_fpick(int i, int kd) {
   int k = 0 - 1;
   if ((import bl_bc)[i] = kd) { k = i; }
 } return int k;
+given bl_walk_t_setup (0, 1145979185):(0)
+given bl_walk_t_setup (0, 999):(-1)

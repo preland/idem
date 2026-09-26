@@ -10,6 +10,8 @@ zst_win(int ss) {
     zst_le(1);
   }
 } return void;
+given zst_src_setup (0):() then calls zst_le:[1]
+given zst_src_setup (1):() then calls zst_le:[0]
 
 zst_did(int f) {
   if (f > 0) {
@@ -17,6 +19,8 @@ zst_did(int f) {
     zst_le(zst_dsz_v);
   }
 } return void;
+given zst_src_setup (1):() then calls zst_le:[1]
+given zst_src_setup (0):() then calls zst_le:[0]
 
 // Flag 1, 2, 3 -> 1, 2, 4 bytes. Flag 0 means absent.
 zst_dsz(int f) {
@@ -24,3 +28,5 @@ zst_dsz(int f) {
   if (f = 3) { n = 4; }
   else if (f = 2) { n = 2; }
 } return int n;
+(1):(1)
+(3):(4)

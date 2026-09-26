@@ -2,8 +2,24 @@ t_one_show(string name, int p) {
   string msg = name + ": id " + p + " " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p);
   print(msg);
 } return void;
+given spr_grey_ready ("grey", (import t_grey_p)):() then prints:("grey: id 0 4x2 frames 1\n")
+given spr_grey_ready ("test", (import t_grey_p)):() then calls d2_spr_w:((import t_grey_p))
 
 t_one_dump(int p) {
   int n = d2_spr_w(p) * d2_spr_h(p);
   t_dump(p, n);
 } return void;
+given spr_grey_ready ((import t_grey_p)):() then calls t_dump:[1]
+given spr_grey_ready ((import t_grey_p)):() then calls d2_spr_h:((import t_grey_p))
+
+// Test-only fixture: main.id's own init order, without the export d2_spr_init
+// itself needs (see spr_ready2 in ../big/more.id) -- a `given` cannot run
+// fx_trig_init/d2_spr_init/png_init and then inf_init/the t_st export in one
+// call, past the 3-action limit.
+spr_ready() {
+  fx_trig_init();
+  d2_spr_init();
+  png_init();
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls png_init:[1]

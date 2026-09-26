@@ -4,3 +4,22 @@ eng_seam3(func(string) return int gr, func(string) return void ga) {
   export func(string) return int eng_ref = gr;
   export func(string) return void eng_act = ga;
 } return void;
+(stub_gref, stub_gact):() then read_eng_ref:(1) then read_eng_act:(3)
+given idem_init (stub_gref, stub_gact):() then read_eng_ref:(1) then read_eng_act:(3)
+
+// The one read eng_seam3's own cases have: (import eng_ref) called with a
+// fixed probe so a case can compare its result like any other return value.
+read_eng_ref() {
+  func(string) return int gr = (import eng_ref);
+  int v = gr("z");
+} return int v;
+given seam_fixture ():(1)
+given seam_fixture given idem_init ():(1)
+
+// ui_pg[0], for ui_ppage's own cases (app/go/sh/l/pg.id) -- pg.id has no room
+// left for a reader of its own.
+read_ui_pg0() {
+  int v = (import ui_pg)[0];
+} return int v;
+given ui_pinit ():(0)
+given ui_ppg_set ():(1)

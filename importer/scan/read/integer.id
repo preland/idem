@@ -14,11 +14,15 @@ imp_int(string src) {
   int sg = imp_sign(src, i);
   int ret_i = imp_int_b(sg, i, src);
 } return int ret_i;
+given imp_init ("42"):(42)
+given imp_init (" -7"):(-7)
 
 // 45 is '-'. A comparison is an int here, so this is the sign without a branch.
 imp_sign(string src, int i) {
   int ret_i = 1 - 2 * (charat(src, i) = 45);
 } return int ret_i;
+("-7", 0):(-1)
+("42", 0):(1)
 
 imp_digits(string src, int i) {
   int n = 0;
@@ -28,3 +32,5 @@ imp_digits(string src, int i) {
   }
   lset((import imp_p), 0, i);
 } return int n;
+given imp_init ("42", 0):(42)
+given imp_init ("7x", 0):(7)

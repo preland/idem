@@ -5,8 +5,12 @@ ed_zoom3d() {
   int down_v = inp_mdown(16);
   ed_zoom3d_set(up_v, down_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_zoom3d_set:(0, 0)
+given ed_t_boot given ed_t_wheelup stdin "" ():() then calls ed_zoom3d_set:(1, 0)
 
 ed_zoom3d_set(int up_v, int down_v) {
   int clamp_v = fx_clamp((import ed_st)[4] - (import ed_st)[4] / 8 * up_v + (import ed_st)[4] / 8 * down_v, 1200, 60000);
   lset((import ed_st), 4, clamp_v);
 } return void;
+given ed_t_boot (1, 0):(1, 0) then calls lset:([-1, -1, 35000, -9000, 7875, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 4, 7875)
+given ed_t_boot (0, 1):(0, 1) then calls lset:([-1, -1, 35000, -9000, 10125, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 4, 10125)

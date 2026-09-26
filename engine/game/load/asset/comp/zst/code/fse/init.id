@@ -29,11 +29,15 @@ fse_init() {
   export int[] fse_ct = [];
   fse_init2();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_val:(0)
 
 fse_init2() {
   lst_fill((import fse_ct), 256, 0);
   fse_init3();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_val:(0)
 
 // One decode table per role, sized for the largest accuracy log each may use:
 // literal lengths 9, offsets 8, match lengths 9. Three columns each -- symbol,
@@ -44,3 +48,5 @@ fse_init3() {
   export int[] fse_nb = [];
   fse_init4();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_val:(0)

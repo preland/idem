@@ -1,0 +1,18 @@
+// jpg_small_fixture with a real 1x1 MCU grid (jpg_st[5]/[6]=1) -- so
+// grid.id's loop-walking cases run a real, complete MCU pass. jpg_c[2] (the
+// one component's v-factor) is still 0, so jpg_cblks's own inner loop never
+// runs -- the walk reaches every level safely without needing real blocks.
+jpg_mcu_fixture() {
+  jpg_small_fixture();
+  jpg_mcu_set();
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)
+
+jpg_mcu_set() {
+  lset((import jpg_st), 5, 1);
+  lset((import jpg_st), 6, 1);
+  lset((import jpg_st), 8, 1);
+} return void;
+given jpg_small_fixture ():() then jpg_dc0_check:(10)
+given jpg_final_fixture ():() then jpg_dc0_check:(10)

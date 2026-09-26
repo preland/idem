@@ -1,0 +1,10 @@
+// jpg_small_fixture, flagged non-interleaved (jpg_st[11]=1) -- so jpg_run
+// takes the single-component walk (jpg_nint), which is safe with the empty
+// jpg_nb (jpg_st[2]=1's only component has zero blocks, so the walk's own
+// loop never runs) rather than the untested interleaved MCU grid.
+jpg_nint_fixture() {
+  jpg_small_fixture();
+  lset((import jpg_st), 11, 1);
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)

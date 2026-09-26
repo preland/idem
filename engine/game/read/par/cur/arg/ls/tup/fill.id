@@ -8,6 +8,8 @@ par_tfill(int[] pos, int[] kids) {
   }
   par_eat(pos, ")");
 } return void;
+given par_ls_setup ([3], []):([7], [1, 2]) then calls ast_new_num:(2, 0)
+given par_ls_setup ([17], []):([18], [])
 
 par_sfill(int[] pos, int[] kids, int sc) {
   while (par_is(pos, ")") = 0 && par_kind(pos) != (import lex_k_eof)) {
@@ -17,3 +19,5 @@ par_sfill(int[] pos, int[] kids, int sc) {
   }
   par_eat(pos, ")");
 } return void;
+given par_ls_setup ([3], [], 2):([7], [1, 2]) then calls ast_new_num:(200, 0)
+given par_ls_setup ([17], [], 2):([18], [])

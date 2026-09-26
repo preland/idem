@@ -3,3 +3,5 @@
 bl_lew(int p) {
   word ret_w = bl_le64(p);
 } return word ret_w;
+given bl_dna_t_bytes (17):(826363460)
+given bl_dna_t_bytes (0):(3553979215621999682)

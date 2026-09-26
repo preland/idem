@@ -5,6 +5,8 @@ ed_menu_click(int x, int k, string s) {
   int txt_width_v = txt_width(s);
   ed_menu_click2(x, k, s, txt_ui_v, txt_width_v);
 } return void;
+given ed_t_boot stdin "" (10, 0, "File"):() then calls ed_menu_click2:(10, 0, "File", 1, 32)
+given ed_t_boot stdin "" (5, 2, "New"):() then calls ed_menu_click2:(5, 2, "New", 1, 24)
 
 ed_menu_click2(int x, int k, string s, int txt_ui_v, int txt_width_v) {
   int ed_hdr_v = ed_hdr();
@@ -12,3 +14,5 @@ ed_menu_click2(int x, int k, string s, int txt_ui_v, int txt_width_v) {
     ed_menu_pick(k);
   }
 } return void;
+given ed_t_boot stdin "" (0, 3, "File", 1, 10):() then calls ed_menu_pick:(3)
+given ed_t_boot stdin "" (100, 3, "File", 1, 10):() then calls ed_menu_pick:[0]

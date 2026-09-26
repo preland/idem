@@ -2,14 +2,20 @@ ed_kvn_text_do(int x, int y, int v, int ui, int wid) {
   int col = ed_col(4);
   txt_number(v, x + 12 * ui + wid, y, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, 5, 1, 64):() then calls txt_number:(5, 76, 10, 0xCFCFCF)
+given ed_t_boot stdin "" (5, 20, 3, 2, 40):() then calls txt_number:(3, 69, 20, 0xCFCFCF)
 
 ed_kvn_text(int x, int y, int v) {
   int ui = txt_ui();
   int wid = txt_width("selected");
   ed_kvn_text_do(x, y, v, ui, wid);
 } return void;
+given ed_t_boot stdin "" (0, 10, 5):() then calls ed_kvn_text_do:(0, 10, 5, 1, 64)
+given ed_t_boot stdin "" (5, 20, 3):() then calls ed_kvn_text_do:(5, 20, 3, 1, 64)
 
 ed_kvn(int x, int y, string s, int v) {
   ed_kv_lbl(x, y, s);
   ed_kvn_text(x, y, v);
 } return void;
+given ed_t_boot stdin "" (0, 10, "count", 5):() then calls ed_kv_lbl:(0, 10, "count")
+given ed_t_boot stdin "" (0, 10, "count", 5):() then calls ed_kvn_text:(0, 10, 5)

@@ -6,9 +6,13 @@ sf_span_go(int x0, int x1, int y, int c) {
   int i = sf_idx(x0c, y);
   sf_span_go2(x1, y, c, i);
 } return void;
+given sf_t_setup (0, 10, 0, 42):() then sf_t_px0:(42)
+given sf_t_setup (5, 10, 0, 42):() then sf_t_px0:(0)
 
 sf_span_go2(int x1, int y, int c, int i) {
   int x1c = fx_min(x1, (import sf_cl)[2]);
   int j = sf_idx(x1c, y);
   sf_span_row((import sf_fb), i, j, c);
 } return void;
+given sf_t_setup (10, 0, 42, 0):() then sf_t_px0:(42)
+given sf_t_setup (-1, 0, 42, 0):() then sf_t_px0:(0)

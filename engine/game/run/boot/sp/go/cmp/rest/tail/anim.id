@@ -9,9 +9,13 @@ scn_efill7(int e, int nd) {
   ent_put(e, 11, wx * 1000);
   scn_efill_af(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 11, 288000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_af:[1]
 
 scn_efill8(int e, int nd) {
   int al = scn_manim(nd, 1);
   ent_put(e, 15, al);
   scn_efill_ams(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 15, 5)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill_ams:[1]

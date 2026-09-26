@@ -20,6 +20,8 @@ psf_copy(int sa, int n, int cs, int h, int w) {
   txt_face_set(w, h, (w + 7) / 8 * 8, fx_min_v - (import txt_first));
   psf_copy2(sa, fx_min_v, cs, h, w);
 } return int 1;
+given psf_vga_fixture (32, 256, 16, 16, 8):(1) then calls txt_face_set:(8, 16, 8, 224) then calls psf_copy2:(32, 256, 16, 16, 8)
+given psf_vga_fixture (32, 64, 16, 16, 8):(1) then calls txt_face_set:(8, 16, 8, 32) then calls psf_copy2:(32, 64, 16, 16, 8)
 
 // One glyph after another. `cs` steps the source because a glyph may be padded;
 // `h` steps the destination because the table is not.
@@ -30,6 +32,8 @@ psf_glyphs(int sa, int n, int cs, int h, int nb) {
     i = i + 1;
   }
 } return void;
+given psf_vga_fixture (32, 3, 16, 16, 1):() then calls psf_glyph:(32, 0, 16, 1)
+given psf_vga_fixture (32, 0, 16, 16, 1):() then calls psf_glyph:[0]
 
 psf_glyph(int sa, int p, int h, int nb) {
   int j = 0;
@@ -39,3 +43,5 @@ psf_glyph(int sa, int p, int h, int nb) {
     j = j + 1;
   }
 } return void;
+given psf_vga_fixture (32, 0, 1, 1):() then calls psf_row:(32, 1)
+given psf_vga_fixture (32, 0, 0, 1):() then calls psf_row:[0]

@@ -3,3 +3,5 @@ jpg_dqt2(int p, int pq) {
   jpg_qfill(p + 1, asset_at_v % 16, pq);
   int ret_i = p + 1 + 64 * (pq + 1);
 } return int ret_i;
+given jpg_raw_fixture (24, 0):(89) then calls jpg_qfill:(25, 0, 0)
+given jpg_raw_fixture (93, 0):(158) then calls jpg_qfill:(94, 1, 0)

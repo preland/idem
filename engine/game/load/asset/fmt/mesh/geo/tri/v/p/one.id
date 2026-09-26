@@ -4,9 +4,13 @@ bl_vone2(int o, int x, int y) {
   int m4_pt_v = m4_pt((import bl_wm), 0, x, y, z);
   bl_vone3(x, y, z, m4_pt_v);
 } return void;
+given bl_geo_init given bl_dna_t_bytes (9, 100, 200):() then bl_v_t_check:([100, 0, -200])
+given bl_geo_init given bl_dna_t_bytes (-8, 50, 60):() then bl_v_t_check:([50, 45212112, -60])
 
 bl_vone3(int x, int y, int z, int m4_pt_v) {
   int m4_pt_v2 = m4_pt((import bl_wm), 4, x, y, z);
   int m4_pt_v3 = m4_pt((import bl_wm), 8, x, y, z);
   bl_vpush(m4_pt_v, m4_pt_v2, m4_pt_v3);
 } return void;
+given bl_geo_init (100, 200, 300, 999):() then bl_v_t_check:([999, 300, -200])
+given bl_geo_init (0, 0, 0, 555):() then bl_v_t_check:([555, 0, 0])

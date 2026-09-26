@@ -7,6 +7,8 @@ scr_emem2(int e, int nd) {
     scr_etags(e, nd, 0);
   }
 } return void;
+given var_fixture (0, (import fixture_var)):() then calls scr_etags:[0]
+given grow_fixture (0, 0):() then calls ent_put:[0]
 
 // `tag pipe deadly` is one component with two arguments, so every argument is a
 // tag and the entity's bitset is the union.
@@ -17,9 +19,13 @@ scr_etags(int e, int nd, int i) {
     i = i + 1;
   }
 } return void;
+given grow_fixture (0, 0, 0):() then calls scr_etag:[0]
+given var_fixture (0, (import fixture_var), 0):() then calls scr_etag:[1]
 
 scr_etag(int e, int nd) {
   int at = ent_at(e, 20);
   int bit = scr_etagbit(nd);
   ent_put(e, 20, at | bit);
 } return void;
+given ident_fixture (1, (import fixture_ident)):() then calls ent_put:(1, 20, 1)
+given ident_fixture (1, (import fixture_time)):() then calls ent_put:[1]

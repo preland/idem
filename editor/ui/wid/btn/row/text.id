@@ -3,9 +3,13 @@ ed_row_text(int x, int y, int w, string s, int k) {
   int cell = txt_cell();
   ed_row_text_fit(x, y, w, s, k, ui1, cell);
 } return void;
+given ed_t_boot stdin "" (1, 2, 3, "hi", 0):() then calls ed_row_text_fit:(1, 2, 3, "hi", 0, 1, 8)
+given ed_t_boot stdin "" (4, 5, 6, "yo", 1):() then calls ed_row_text_fit:(4, 5, 6, "yo", 1, 1, 8)
 
 ed_row_text_fit(int x, int y, int w, string s, int k, int ui1, int cell) {
   int ui2 = txt_ui();
   string fit = ed_fit(s, (w - 8 * ui1) / (cell * ui2));
   ed_row_text_draw(x, y, fit, k);
 } return void;
+given ed_t_boot stdin "" (0, 0, 50, "hello world", 0, 1, 8):() then calls ed_fit:("hello world", 5) then calls ed_row_text_draw:(0, 0, "hello", 0)
+given ed_t_boot stdin "" (10, 20, 100, "hi", 1, 2, 8):() then calls ed_fit:("hi", 10) then calls ed_row_text_draw:(10, 20, "hi", 1)

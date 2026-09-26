@@ -26,6 +26,8 @@ sf_span(int x0, int x1, int y, int c) {
     sf_span_go(x0, x1, y, c);
   }
 } return void;
+given sf_t_setup (0, 10, 0, 42):() then sf_t_px0:(42)
+given sf_t_setup (0, 10, -1, 42):() then sf_t_px0:(0)
 
 // Inclusive index range. Nothing in here tests anything: sf_span already proved
 // the range is inside the surface.
@@ -35,6 +37,10 @@ sf_span_row(int[] xs, int i, int n, int c) {
     i = i + 1;
   }
 } return void;
+([0, 0, 0, 0], 0, 2, 5):([5, 5, 5, 0])
+([1, 2, 3, 4], 3, 2, 9):([1, 2, 3, 4])
+([1, 2, 3], 1, 2, 99):([1, 99, 99])
+([5], 0, 0, 7):([7])
 
 sf_rect(int x, int y, int w, int h, int c) {
   int j = 0;
@@ -43,3 +49,5 @@ sf_rect(int x, int y, int w, int h, int c) {
     j = j + 1;
   }
 } return void;
+given sf_t_setup (0, 0, 5, 5, 77):() then sf_t_px0:(77)
+given sf_t_setup (1, 0, 5, 5, 77):() then sf_t_px0:(0)

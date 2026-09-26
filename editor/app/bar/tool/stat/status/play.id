@@ -19,15 +19,21 @@ ed_play() {
   int ui = txt_ui();
   ed_play2(txt_width_v, ui);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_play2:(32, 1)
+given ed_t_boot stdin "" ():() then calls txt_width:("play")
 
 ed_play2(int txt_width_v, int ui) {
   string lbl = ed_play_lbl();
   int btn1 = ed_play_btn((import sf_gw) / 2 - txt_width_v - 12 * ui, lbl);
   ed_play3(ui, btn1);
 } return void;
+given ed_t_boot stdin "" (32, 1):() then calls ed_play3:(1, 0)
+given ed_t_boot stdin "" (32, 1):() then calls ed_play_btn:(276, "play")
 
 ed_play3(int ui, int btn1) {
   ed_play_hit(btn1, 1);
   int btn2 = ed_play_btn((import sf_gw) / 2 + 4 * ui, "step");
   ed_play_hit(btn2, 2);
 } return void;
+given ed_t_boot stdin "" (1, 0):() then calls ed_play_hit:(0, 1)
+given ed_t_boot stdin "" (1, 0):() then calls ed_play_btn:(324, "step")

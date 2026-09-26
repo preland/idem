@@ -6,15 +6,21 @@ main(int argc, string[] argv) {
   t_run();
   int ret_i = err_count();
 } return int ret_i;
+(1, ["prog"]):(1) then prints:("slice bird-up = bird-up\neqat 1,0,1 = 101\nfill 11199 = 11199\nlget 9 = 9 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+(2, ["prog", "x"]):(1)
 
 t_str() {
   string s = "sprite bird-up(17, 12)";
   t_str_slice(s);
   t_str_eqat(s);
 } return void;
+():() then prints:("slice bird-up = bird-up\neqat 1,0,1 = 101\n")
+():() then calls t_str_eqat:[1]
 
 t_lst() {
   int[] xs = [];
   lst_fill(xs, 5, 9);
   t_lst_show(xs);
 } return void;
+given err_init ():() then prints:("fill 11199 = 11199\nlget 9 = 9 len 5 = 5\nfake.idml:7: error: a reported error is counted\nerrs 1 = 1\n")
+given err_init ():() then calls t_lst_show:[1]

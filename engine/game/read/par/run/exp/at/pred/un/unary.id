@@ -1,0 +1,8 @@
+par_is_unop(int[] pos) {
+  int ok = 0;
+  if (par_kind(pos) = (import lex_k_punct) && (par_text(pos) = "-" || par_text(pos) = "!" || par_text(pos) = "~")) { ok = 1; }
+} return int ok;
+given par_ops_setup ([3]):(1)
+given par_ops_setup ([14]):(1)
+given par_ops_setup ([15]):(1)
+given par_ops_setup ([4]):(0)

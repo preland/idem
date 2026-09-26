@@ -13,6 +13,8 @@ zst_smatch(int off, int n) {
     i = i + 1;
   }
 } return void;
+given zst_src_setup given zst_put_twice (1, 1):() then calls zst_back:[1]
+given zst_src_setup (10, 1):() then zst_err_check:(1)
 
 // Whatever literals the sequences did not consume are appended, and the cursor
 // jumps to the end of the block -- the bitstream's own length is not otherwise
@@ -21,3 +23,5 @@ zst_sfin(int end) {
   zst_slits((import zst_st)[9] - (import zst_st)[10]);
   lset((import zst_st), 1, end);
 } return void;
+given zst_src_setup (1):() then calls zst_slits:[1]
+given zst_src_setup (8):() then calls zst_slits:[1]

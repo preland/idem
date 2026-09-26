@@ -6,15 +6,21 @@ scn_efill_p2(int e, int nd) {
   ent_put(e, 1, py);
   scn_efill2(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 1, 200000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill2:[1]
 
 scn_efill_v2(int e, int nd) {
   int vy = scn_mtup(nd, "vel", 1);
   ent_put(e, 3, vy * 1000);
   scn_efill3(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 3, 50000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill3:[1]
 
 scn_efill_s2(int e, int nd) {
   int sy = scn_mtup(nd, "scale", 1);
   scn_edef(e, 5, sy);
   scn_efill4(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_edef:(1, 5, 2000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill4:[1]

@@ -1,14 +1,11 @@
 // Moving the cursor without producing a value, in either direction.
-//
-// Forwards through the stream means *downwards* through memory, so skipping
-// decreases the bit index and borrows from the byte below; rewinding does the
-// reverse. The two are separate rather than one signed step because the carry and
-// the borrow are loops in opposite directions and merging them reads worse.
 
 zb_rew(int n) {
   lset((import zb_st), 2, (import zb_st)[2] + n);
   zb_carry();
 } return void;
+given zb_frame_setup (2):() then zb_rel_check:([2, 0, 0])
+given zb_frame_setup (0):() then zb_rel_check:([1, 6, 0])
 
 zb_carry() {
   while ((import zb_st)[2] > 7) {
@@ -16,8 +13,12 @@ zb_carry() {
     lset((import zb_st), 1, (import zb_st)[1] + 1);
   }
 } return void;
+given zb_over_bi_setup ():() then zb_rel_check:([2, 2, 0])
+given zb_over_bi_setup2 ():() then zb_rel_check:([3, 4, 0])
 
 zb_skip(int n) {
   lset((import zb_st), 2, (import zb_st)[2] - n);
   zb_borrow();
 } return void;
+given zb_frame_setup (3):() then zb_rel_check:([1, 3, 0])
+given zb_frame_setup (10):() then zb_rel_check:([0, 4, 0])

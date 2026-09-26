@@ -9,3 +9,5 @@ bl_skip(int p, int n) {
   }
   int ret_i = bl_al(p);
 } return int ret_i;
+given bl_walk_t_setup (61, 1):(65)
+given bl_walk_t_setup (61, 0):(61)

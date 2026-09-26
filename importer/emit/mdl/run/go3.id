@@ -5,3 +5,12 @@ mdl_go3(string src) {
   mdl_head();
   mdl_body(src);
 } return void;
+given mdl_hdr_ready ("0"):() then calls mdl_head:[1]
+given mdl_hdr_ready ("3"):() then calls mdl_body:("3")
+
+mdl_hdr_ready() {
+  imp_init();
+  mdl_go("cube 0 0");
+} return void;
+():() then calls imp_init:[1]
+():() then calls mdl_go:("cube 0 0")

@@ -4,6 +4,8 @@ zst_l4c(int reg, int n, int seg, int l1, int l2, int l3) {
   zst_l4run(2 * seg, seg, 6 + l1 + l2, l3);
   zst_l4d(reg, n, seg, l1 + l2 + l3);
 } return void;
+given zst_init (100, 50, 25, 10, 5, 2):()
+given zst_init (200, 75, 40, 20, 10, 5):()
 
 // The fourth stream's length is the section's remainder after the jump table and
 // the three declared lengths, and its symbol count is the remainder of the output
@@ -11,11 +13,15 @@ zst_l4c(int reg, int n, int seg, int l1, int l2, int l3) {
 zst_l4d(int reg, int n, int seg, int lsum) {
   zst_l4run(3 * seg, reg - 3 * seg, 6 + lsum, n - 6 - lsum);
 } return void;
+given zst_init (200, 100, 50, 25):()
+given zst_init (400, 200, 75, 50):()
 
 // Slot 14's write for zst_lreg, split out so the caller's own block still fits
 // its action budget. The compressed size is a word (Size_Format 3 puts two
 // 18-bit fields above a nibble, forty bits) and slot 14 is an int slot.
 zst_lregv(word wp, int w) {
-  int v = wp / inf_pow2(4 + w) % inf_pow2(w);
+  int v = wp / fx_pow(2, 4 + w) % fx_pow(2, w);
   lset((import zst_st), 14, v);
 } return void;
+given zst_init (0, 10):()
+given zst_init (256, 14):()

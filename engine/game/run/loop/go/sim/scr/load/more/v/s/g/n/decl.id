@@ -7,3 +7,5 @@ scn_one3(int nd) {
     scn_one4(nd);
   }
 } return void;
+given idem_init (0):() then calls scn_one4:[1]
+given game_fixture_nd ((import fixture_nd)):() then calls scn_one4:[1]

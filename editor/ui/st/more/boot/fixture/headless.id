@@ -1,0 +1,32 @@
+// The editor's boot chain (main.id, ed_boot..ed_boot11), without a window: the
+// same surface, viewport and state setup sys_open does, minus the one native
+// call in it (gfx_open) that needs a real display. sf_open, sys_st_init and
+// sys_vp_init are exactly what sys_open_tail (core/sys/win/open.id) calls once
+// gfx_open has answered; a case gives them the "opened" answer directly, the
+// same way sys_t_open (core/sys/win/tail/t.id) already does for sys_alive's own
+// cases. From there the real chain, ed_boot3 on, runs unchanged, so a `given`
+// case's `stdin` text is what ed_boot11 reads as the project.
+
+ed_t_boot() {
+  fx_trig_init();
+  rnd_init(20260730);
+  ed_t_boot2();
+} return void;
+stdin "" ():() then calls eng_seam:[1]
+stdin "#file a.id\n" ():() then calls ed_read:[1]
+
+ed_t_boot2() {
+  sf_open(640, 400);
+  sys_st_init(1);
+  ed_t_boot3();
+} return void;
+given fx_trig_init stdin "" ():() then calls sys_st_init:(1)
+given fx_trig_init stdin "" ():() then sf_t_gw:(640)
+
+ed_t_boot3() {
+  sys_vp_init(640, 400);
+  txt_init();
+  ed_boot3();
+} return void;
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls txt_init:[1]
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls ed_boot3:[1]

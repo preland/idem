@@ -19,6 +19,8 @@ fse_build(int base, int log, int maxs) {
   m4_pair((import fse_st), 0, 6, log, base);
   fse_build_init(log, maxs);
 } return void;
+given fse_init (0, 3, 0):()
+given fse_init (100, 4, 1):()
 
 fse_blow(int maxs) {
   int kd = 0;
@@ -28,6 +30,8 @@ fse_blow(int maxs) {
   }
   fse_spread(maxs);
 } return void;
+given fse_init (0):()
+given fse_init (1):()
 
 // A -1 count takes a slot at the top and starts its next-state counter at 1; any
 // other count starts it at the count itself.
@@ -39,3 +43,7 @@ fse_blow1(int kd) {
     lset((import fse_nx), kd, (import fse_ct)[kd]);
   }
 } return void;
+given fse_init (0):()
+given fse_init (1):()
+given fse_init (2):()
+given fse_init (255):()

@@ -7,6 +7,8 @@
 zst_l1(int reg, int n) {
   zst_l4run(0, reg, 0, n);
 } return void;
+given zst_init (10, 100):()
+given zst_init (20, 200):()
 
 // `off` is where in the literals buffer this stream's output starts, `m` how
 // many symbols it owes, `p` where its bytes begin relative to the section, and
@@ -16,9 +18,13 @@ zst_l4run(int off, int m, int p, int len) {
   zb_start((import zst_st)[0] + (import zst_st)[1] + p, len);
   huf_dec(m);
 } return void;
+given zst_init (0, 100, 50, 0):()
+given zst_init (10, 100, 50, 0):()
 
 // The jump table is three little-endian 16-bit lengths; the fourth stream's
 // length is whatever is left, which is why only three are written down.
 zst_l16(int k) {
   int ret_i = zst_byte((import zst_st)[1] + k) + zst_byte((import zst_st)[1] + k + 1) * 256;
 } return int ret_i;
+given zst_src_setup (0):(513)
+given zst_src_setup (2):(1027)

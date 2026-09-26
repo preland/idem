@@ -25,6 +25,8 @@ scr_fld(int nd, int e) {
     v = scr_fld2(bn, name, e);
   }
 } return int v;
+given fld_fixture ((import fixture_fld), 0):(0)
+given idem_init (0, 0):(0) then calls scr_fld2:[0]
 
 scr_fld2(string bn, string name, int e) {
   int v = 0;
@@ -35,6 +37,8 @@ scr_fld2(string bn, string name, int e) {
     v = scr_slot(e, scr_fk_v);
   }
 } return int v;
+given scr_fixture ("scene", "score", -1):(1)
+given grow_fixture ("pos", "y", 0):(0)
 
 // -1 for a base or a field this does not know, which scr_slot reads as "no slot".
 scr_fk(string bn, string name) {
@@ -42,3 +46,5 @@ scr_fk(string bn, string name) {
   if (bn = "pos") { k = scr_axis(name, 0); }
   else if (bn = "vel") { k = scr_axis(name, 2); }
 } return int k;
+("pos", "y"):(1)
+("vel", "y"):(3)

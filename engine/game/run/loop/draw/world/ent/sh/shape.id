@@ -8,6 +8,8 @@ ent_bx(int e, int k, int sk) {
   int vp_x = (import sys_vp)[0];
   int bx_val = (center - ent_at(e, sk) / 2) * vp_x / 1000000;
 } return int bx_val;
+given game_fixture_nd (0, 0, 25):(139)
+given game_fixture_nd (0, 1, 26):(170)
 
 // Floored at one pixel: a shape thinner than a pixel is still a thing the author
 // asked to see, and a zero-width rect draws nothing at all.
@@ -16,3 +18,5 @@ ent_bs(int e, int sk) {
   int vp_x = (import sys_vp)[0];
   int bs_val = fx_max(at_val * vp_x / 1000000, 1);
 } return int bs_val;
+given game_fixture_nd (0, 25):(10)
+given game_fixture_nd given put_fixture (0, 25):(1)

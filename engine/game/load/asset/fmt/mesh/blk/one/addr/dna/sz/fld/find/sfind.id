@@ -14,15 +14,21 @@ bl_sfind(string name) {
     i = i + 1;
   }
 } return int k;
+given bl_sfind_t_setup ("int"):(0)
+given bl_sfind_t_setup ("nope"):(-1)
 
 bl_spick(int i, string name) {
   int p = bl_soff(i);
   int k = 0 - 1;
   if (bl_pick_match(p, name) = 1) { k = i; }
 } return int k;
+given bl_sfind_t_setup (0, "int"):(0)
+given bl_sfind_t_setup (0, "nope"):(-1)
 
 bl_pick_match(int p, string name) {
   int bl_le16_v = bl_le16(p);
   int bl_nth_v = bl_nth((import bl_st)[8], bl_le16_v);
   int ret_c = bl_streq(bl_nth_v, name);
 } return int ret_c;
+given bl_sfind_t_setup (93, "int"):(1)
+given bl_sfind_t_setup (93, "nope"):(0)

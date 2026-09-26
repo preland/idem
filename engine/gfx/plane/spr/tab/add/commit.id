@@ -5,3 +5,21 @@ d2_spr_add2(string name, int w, int h, int n, int[] xs) {
   d2_spr_push(name, w, h, n, xs);
   int id = len((import asset_sprw)) - 1;
 } return int id;
+given d2_spr_init ("s1", 1, 1, 1, [7]):(0)
+given d2_spr_init ("s2", 2, 3, 1, [1, 2, 3, 4, 5, 6]):(0) then d2_spr_t_w_len:(1)
+
+// Zero-arg readers of sprite id 0's pixel list, for `then` checks elsewhere
+// in spr/px and spr/blit: a check takes no parameters, so the index has to be
+// fixed here rather than passed in. One at each end of the fixture's 2x2
+// sprite (index 0 and the last index, 3) so a case can witness either corner.
+d2_spr_t_at0() {
+  int c = d2_spr_at(0, 0);
+} return int c;
+given d2_spr_t_setup ():(5)
+given d2_spr_t_setup ():(5) then d2_spr_t_w_len:(2)
+
+d2_spr_t_at3() {
+  int c = d2_spr_at(0, 3);
+} return int c;
+given d2_spr_t_setup ():(3)
+given d2_spr_t_setup ():(3) then d2_spr_t_at0:(5)

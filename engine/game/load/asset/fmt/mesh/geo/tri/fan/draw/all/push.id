@@ -4,3 +4,5 @@ bl_tpush3(int a, int b, int c) {
   push((import bl_ti), b + (import bl_st)[12]);
   push((import bl_ti), c + (import bl_st)[12]);
 } return void;
+given bl_geo_init (1, 2, 3):() then bl_ntri:(1)
+given bl_geo_init (9, 8, 7):() then bl_ntri:(1)

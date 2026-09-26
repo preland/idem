@@ -26,12 +26,16 @@ jpg_pacr(int ci, int a) {
   m4_pair((import jpg_r), 2, 3, 0, 1 - ((import jpg_st)[17] = 0));
   jpg_racr(ci, a);
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then jpg_r0_check:(0) then jpg_r3_check:(0) then calls jpg_racr:(0, (import jpg_coef_a))
+given jpg_init given jpg_rdone (0, 0):() then jpg_r0_check:(0) then jpg_r3_check:(1) then calls jpg_racr:(0, 0)
 
 jpg_racr(int ci, int a) {
   while ((import jpg_r)[3] != 2 && (import jpg_st)[8] = 1) {
     jpg_rstep(ci, a);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_rstep:[0]
+given jpg_acbuf_fixture (0, (import jpg_coef_a)):() then jpg_r3_check:(2) then calls jpg_rstep:[2]
 
 jpg_rstep(int ci, int a) {
   if ((import jpg_r)[3] = 0) {
@@ -40,3 +44,5 @@ jpg_rstep(int ci, int a) {
     jpg_rtail(a);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_rsym:(0, (import jpg_coef_a)) then calls jpg_rtail:[0]
+given jpg_rset_fixture (0, (import jpg_coef_a)):() then calls jpg_rtail:((import jpg_coef_a)) then calls jpg_rsym:[0]

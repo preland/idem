@@ -8,15 +8,22 @@ huf_init4() {
   lst_fill((import huf_st), 4, 0);
   huf_init5();
 } return void;
+given zst_init ():()
+given huf_init ():()
 
 huf_init5() {
   lst_fill((import huf_wt), 256, 0);
   lst_fill((import huf_rk), 16, 0);
   huf_init6();
 } return void;
+given zst_init ():()
+given huf_init ():()
 
 huf_init6() {
   lst_fill((import huf_rs), 16, 0);
   lst_fill((import huf_sm), 256, 0);
   huf_init7();
 } return void;
+given zst_init ():()
+given huf_init ():()
+

@@ -4,3 +4,22 @@ zf_drop_update(int zf_st_v, int inf_pow2_v, int n) {
   lset((import zf_st), 2, zf_st_v / inf_pow2_v);
   lset((import zf_st), 3, (import zf_st)[3] - n);
 } return void;
+given fse_init (255, 2, 1):()
+given fse_init (64, 4, 2):()
+
+zf_st_val() {
+  int zf_v = (import zf_st)[2];
+} return int zf_v;
+given fse_init ():(0)
+given zf_st_val_setup ():(127)
+
+// buf forced to a real, non-default value (via zf_drop_update, one of the
+// target functions itself) so a reader case has something other than 0 to
+// witness.
+zf_st_val_setup() {
+  fse_init();
+  zf_drop_update(255, 2, 1);
+} return void;
+():() then zf_st_val:(127)
+given fse_init ():() then zf_st_val:(127)
+

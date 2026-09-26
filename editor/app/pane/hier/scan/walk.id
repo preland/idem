@@ -12,6 +12,8 @@ ed_scan(int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0):() then calls ed_scan1:[26]
+given ed_t_boot given ed_t_boot_proj stdin "" (20):() then calls ed_scan1:[6]
 
 ed_scan1(int i) {
   if (ed_is_decl((import lex_text)[i]) = 1 && (import lex_kind)[i + 1] = (import lex_k_ident)) {
@@ -19,9 +21,13 @@ ed_scan1(int i) {
   }
   ed_file(i);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0):() then calls ed_item:(0)
+given ed_t_boot given ed_t_boot_proj stdin "" (1):() then calls ed_item:[0]
 
 ed_item(int i) {
   push((import ed_kd), (import lex_text)[i]);
   push((import ed_nm), (import lex_text)[i + 1]);
   ed_item2(i);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0):() then calls ed_item2:(0)
+given ed_t_boot given ed_t_boot_proj stdin "" (12):() then calls ed_item2:(12)

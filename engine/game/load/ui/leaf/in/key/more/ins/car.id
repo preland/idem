@@ -2,3 +2,15 @@ tin_clamp_caret(int i, int len_s) {
   int fx_clamp_v = fx_clamp(i, 0, len_s);
   lset((import tin_st), 0, fx_clamp_v);
 } return void;
+given tin_init (5, 10):() then tin_caret:(5)
+given tin_init (15, 10):() then tin_caret:(10)
+
+// A buffer "hi" with the caret parked mid-string (index 1, between the two
+// characters), for cases that need a non-empty, non-boundary caret rather
+// than tin_init's empty field.
+tin_t_hi_setup() {
+  tin_init();
+  tin_put("hi", 1);
+} return void;
+():() then tin_text:("hi")
+():() then tin_caret:(1)

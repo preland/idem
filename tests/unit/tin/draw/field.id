@@ -24,12 +24,16 @@ t_draw() {
   tin_set("hello");
   t_draw2();
 } return void;
+given tin_ready ():() then calls sf_open:(160, 32)
+given tin_ready ():() then calls tin_set:("hello")
 
 t_draw2() {
   tin_draw(0, 0, 160, 32, 16777215, 5490);
   t_draw2_show();
   t_draw3();
 } return void;
+given tin_draw_ready ():() then calls tin_draw:(0, 0, 160, 32, 16777215, 5490)
+given tin_draw_ready ():() then calls t_draw2_show:[1]
 
 // The clip has to come back. tin_body narrows it to the field's inside and there
 // is one clip in the engine (gfx/px/sf/cl/clip.id), so a widget that forgot to
@@ -40,3 +44,5 @@ t_draw3() {
   tin_set("0123456789ABCDEFGHIJ");
   t_draw4();
 } return void;
+given tin_draw2_ready ():() then calls tin_set:("0123456789ABCDEFGHIJ")
+given tin_draw2_ready ():() then calls t_draw4:[1]

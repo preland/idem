@@ -21,6 +21,8 @@ d2_rgb(int cr, int cg, int cb) {
   int cg_clamped = fx_clamp(cg, 0, 255);
   int rgb = d2_rgb_cb(cr_clamped, cg_clamped, cb);
 } return int rgb;
+(255, 255, 255):(16777215)
+(0, 0, 0):(0)
 
 // The channel extractors mask with % 256 on every channel, including the top
 // one, so a colour carrying junk above bit 24 still yields three legal channels
@@ -28,7 +30,11 @@ d2_rgb(int cr, int cg, int cb) {
 d2_cr(int c) {
   int r = (c / 65536) % 256;
 } return int r;
+(16711680):(255)
+(0):(0)
 
 d2_cg(int c) {
   int g = (c / 256) % 256;
 } return int g;
+(65280):(255)
+(0):(0)

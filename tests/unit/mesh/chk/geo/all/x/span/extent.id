@@ -4,16 +4,20 @@
 // side. Printing the extent rather than a checksum makes a regression legible --
 // a wrong pointer shows up as millions, not as a different hash.
 
-t_span() {
+t_span(string path) {
   t_span_x();
   t_span_y();
-  t_span2();
+  t_span2(path);
 } return void;
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_span_x:[1]
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_span2:("../../../test_assets/cube.blend")
 
-t_span2() {
+t_span2(string path) {
   t_span_z();
-  t_scene();
+  t_scene(path);
 } return void;
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_span_z:[1]
+given mesh_all_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_scene:("../../../test_assets/cube.blend")
 
 t_lo(int k) {
   int n = 2147483647;
@@ -23,3 +27,5 @@ t_lo(int k) {
     i = i + 3;
   }
 } return int n;
+given mesh_all_ready (0):(-1000)
+given mesh_all_ready (1):(-1000)

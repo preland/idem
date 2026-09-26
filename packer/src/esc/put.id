@@ -5,8 +5,12 @@ pack_esc_put(int ch, int esc, word ad) {
   if (esc = 0) { poke8(ad, ch); }
   else { pack_esc_pair(esc, ad); n = 2; }
 } return int n;
+given pack_buf_ready (65, 0, (import pack_buf)):(1)
+given pack_buf_ready (110, 110, (import pack_buf)):(2) then pack_buf_str:("\\n")
 
 pack_esc_pair(int esc, word ad) {
   poke8(ad, 92);
   poke8(ad + 1, esc);
 } return void;
+given pack_buf_ready (110, (import pack_buf)):() then pack_buf_str:("\\n")
+given pack_buf_ready (114, (import pack_buf)):() then pack_buf_str:("\\r")

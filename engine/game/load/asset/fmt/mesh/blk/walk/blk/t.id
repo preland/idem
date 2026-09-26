@@ -1,0 +1,24 @@
+// A reader for bl_clear's side effect: how many block codes remain.
+bl_clear_t_check() {
+  int v = len((import bl_bc));
+} return int v;
+given bl_walk_t_setup ():(1)
+given bl_init ():(0)
+
+// A second synthetic block's bn/bs columns, pushed by hand so bl_clear2 has
+// two real entries to pop instead of one (popping the only entry traps).
+bl_clear2_t_bns() {
+  bl_walk_t_setup();
+  push((import bl_bn), 99);
+  push((import bl_bs), 88);
+} return void;
+():() then bl_clear_t_check:(1)
+given asset_io_init ():() then bl_clear_t_check:(1)
+
+bl_clear2_t_two() {
+  bl_clear2_t_bns();
+  word wv = 77;
+  push((import bl_ba), wv);
+} return void;
+():() then bl_clear2_t_check:(2)
+given asset_io_init ():() then bl_clear2_t_check:(2)

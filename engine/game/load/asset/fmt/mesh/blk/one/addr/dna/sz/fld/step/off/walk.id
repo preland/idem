@@ -10,8 +10,12 @@ bl_fwalk(int p, int n, string name) {
     i = i + 1;
   }
 } return int o;
+given bl_walk_t_setup (97, 1, "x"):(4)
+given bl_walk_t_setup (97, 0, "x"):(0)
 
 bl_fwalk_done(int p, int n, string name) {
   bl_fwalk(p, n, name);
   int ret_i = bl_fdone();
 } return int ret_i;
+given bl_walk_t_setup (97, 1, "x"):(0)
+given bl_walk_t_setup (97, 1, "y"):(-1)

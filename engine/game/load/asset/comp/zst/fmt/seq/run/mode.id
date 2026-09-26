@@ -14,15 +14,21 @@ zst_smode(int n, int end) {
   zst_stabs(m, end);
   zst_sdec(n, end);
 } return void;
+given zst_init (0, 256):()
+given zst_init (8, 256):()
 
 zst_stabs(int m, int end) {
   zst_stab(0, m / 64, 6, 0);
   zst_stab(1, m / 16 % 4, 5, 512);
   zst_stab(2, m / 4 % 4, 6, 768);
 } return void;
+given zst_pre_init given fse_init (0, 256):()
+given zst_pre_init given fse_init (255, 256):()
 
 // A block with no sequences is literals and nothing else.
 zst_lonly(int end) {
   zst_slits((import zst_st)[9]);
   lset((import zst_st), 1, end);
 } return void;
+given zst_src_setup (0):()
+given zst_src_setup (8):()

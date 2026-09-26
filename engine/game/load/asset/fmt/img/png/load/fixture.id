@@ -1,0 +1,9 @@
+// Raw file bytes, no chunk walk done yet -- for sig.id's cases, which are
+// about what happens BEFORE a byte of the format is trusted.
+
+png_raw_fixture() {
+  png_init();
+  asset_slurp("../games/flappy/art/bird.png");
+} return void;
+():() then asset_pipe_len_check:(425)
+given png_init ():() then asset_pipe_len_check:(425)

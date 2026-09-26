@@ -14,14 +14,21 @@
 jpg_cset(int a, int k, int v) {
   poke16(a + k * 2, v & 65535);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a), 0, 12345):() then jpg_dc0_check:(12345)
+given jpg_coefbuf_fixture ((import jpg_coef_a), 0, -500):() then jpg_dc0_check:(-500)
 
 jpg_cget(int a, int k) {
   int v = peek16(a + k * 2);
   if (v >= 32768) { v = v - 65536; }
 } return int v;
+given jpg_coefbuf_fixture ((import jpg_coef_a), 0):(0)
+given jpg_cset_fixture ((import jpg_coef_a), 0):(777)
+given jpg_csetneg_fixture ((import jpg_coef_a), 0):(-32768)
 
 // Add to one, which is what a refinement scan does.
 jpg_cadd(int a, int k, int v) {
   int jpg_cget_v = jpg_cget(a, k);
   jpg_cset(a, k, jpg_cget_v + v);
 } return void;
+given jpg_cset_fixture ((import jpg_coef_a), 0, 3):() then jpg_dc0_check:(780)
+given jpg_coefbuf_fixture ((import jpg_coef_a), 0, 9):() then jpg_dc0_check:(9)

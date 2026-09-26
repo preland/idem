@@ -11,11 +11,15 @@ psf_two() {
   int sa = psf_fld(8);
   int ret_i = psf_two2(sa);
 } return int ret_i;
+given psf_vga_fixture ():(1)
+given psf_lat_fixture ():(0)
 
 psf_two2(int sa) {
   int n = psf_fld(16);
   int ret_i = psf_two3(sa, n);
 } return int ret_i;
+given psf_vga_fixture (32):(1)
+given psf_vga_fixture (0):(0)
 
 // One header field: 32-bit little-endian, of which only the low three bytes are
 // taken -- a fourth byte that is not zero answers -1 and refuses the file.
@@ -35,3 +39,5 @@ psf_fld(int p) {
     v = asset_at(p) + asset_at(p + 1) * 256 + asset_at(p + 2) * 65536;
   }
 } return int v;
+given psf_vga_fixture (8):(32)
+given psf_vga_fixture (16):(256)

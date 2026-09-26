@@ -13,3 +13,26 @@ jpg_dsym(int t, int[] st) {
     v = (import jpg_hs)[t * 256 + st[2] + st[0] - st[1]];
   }
 } return int v;
+given jpg_dht1_fixture (0, [2, 2, 1, 2]):(7)
+given jpg_dht1_fixture given jpg_walk1_fixture (0, [0, 0, 0, 17]):(0) then jpg_ok8_check:(0)
+
+// Real DHT1 (luma DC) plus the bit reader on grad.jpg's real entropy data
+// (offset 291) -- jpg_dec.id and dec/walk.id's cases decode against this,
+// and the expected symbols (7, then 0) come from hand-walking the canonical
+// codes DHT1 assigns: length 1 has one code ("0" -> symbol 0), length 2 has
+// one ("10" -> symbol 7) -- against grad.jpg's first byte 0x8F = 10001111.
+jpg_huff_fixture() {
+  jpg_dht1_fixture();
+  jpg_bset(291);
+} return void;
+():() then jpg_bcursor_check:(291)
+given jpg_init ():() then jpg_bcursor_check:(291)
+
+// The same, one symbol ("10" -> 7) already consumed -- so the next decode
+// starts on bit 3 of 0x8F, which is "0" -> symbol 0.
+jpg_huff2_fixture() {
+  jpg_huff_fixture();
+  jpg_dec(0);
+} return void;
+():() then jpg_bcursor_check:(292)
+given jpg_init ():() then jpg_bcursor_check:(292)

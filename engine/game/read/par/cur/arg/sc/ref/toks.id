@@ -1,0 +1,20 @@
+// A token stream for cur/arg/sc: a three-deep field path, a live ref, a
+// `name = value` bind pair (twice, for two independent par_bind cases), a
+// stray ident where a number is expected, and a bare ref with no live
+// marker. Placed beside path.id/txt.id -- ref/ had room, chk/ and num/ did
+// not.
+
+par_arg_setup() {
+  lex_init();
+  ast_init();
+  par_arg_setup2();
+} return void;
+():() then lex_kind_len:(18)
+():() then lex_kind_len:(18) then eprints:("")
+
+par_arg_setup2() {
+  err_init();
+  lex_run("x.y.z @a! radius = 5 num speed = 5 @b");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(18)
+given lex_init given ast_init ():() then lex_kind_len:(18) then eprints:("")

@@ -1,0 +1,14 @@
+// Two bytes already written, so zst_back has real in-bounds history to
+// address instead of reading before the buffer at a fresh dp=0.
+zst_put_twice() {
+  zst_put(65);
+  zst_put(66);
+} return void;
+given zst_src_setup ():() then zst_dp_check:(2)
+given zst_src_setup given zst_put_twice ():() then zst_dp_check:(4)
+
+zst_dp_check() {
+  int zstf_v = (import zst_st)[4];
+} return int zstf_v;
+given zst_src_setup ():(0)
+given zst_src_setup given zst_put_twice ():(2)

@@ -9,12 +9,16 @@ huf_sput(int i, int w) {
   lset((import huf_sm), (import huf_rs)[w], i);
   lset((import huf_rs), w, (import huf_rs)[w] + 1);
 } return void;
+given huf_init (0, 0):()
+given huf_init (42, 1):()
 
 huf_fill() {
   int w = 1;
   int p = 0;
   huf_fill_loop(w, p);
 } return void;
+given huf_init given huf_fill_setup_small ():()
+given huf_init given huf_fill_setup_large ():()
 
 // Where weight w's symbols start in the ordered list: the running total of every
 // lower weight's count, weight 0 excluded because it holds no table entries.
@@ -26,3 +30,5 @@ huf_first(int w) {
     k = k + 1;
   }
 } return int p;
+given huf_init given huf_first_setup (1):(0)
+given huf_init given huf_first_setup (3):(5)

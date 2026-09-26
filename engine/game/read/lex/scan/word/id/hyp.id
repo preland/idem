@@ -6,6 +6,8 @@ lex_idcont(string src, int e) {
   int ok = lex_is_alnum(charat_v);
   if (ok = 0) { ok = lex_hyp(src, e); }
 } return int ok;
+("ab", 0):(1)
+("a b", 1):(0)
 
 // 45 is '-'
 lex_hyp(string src, int e) {
@@ -15,3 +17,5 @@ lex_hyp(string src, int e) {
     if (lex_is_alpha(charat_v)) { ok = 1; }
   }
 } return int ok;
+("a-b", 1):(1)
+("a-1", 1):(0)

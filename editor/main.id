@@ -33,12 +33,16 @@ main(int argc, string[] argv) {
   ed_boot();
   ed_run(argc, argv);
 } return int 0;
+stdin "" (2, ["idem", "1"]):(0) then calls ed_boot:[1] then calls ed_run:(2, ["idem", "1"])
+stdin "" (3, ["idem", "5", "x"]):(0) then calls ed_run:(3, ["idem", "5", "x"])
 
 ed_boot() {
   fx_trig_init();
   rnd_init(20260730);
   ed_boot2();
 } return void;
+stdin "" ():() then calls fx_trig_init:[1] then calls rnd_init:(20260730)
+stdin "" ():() then calls rnd_init:(20260730) then calls ed_boot2:[1]
 
 // 640x400 at scale 2. The window manager gets the last word on the size of the
 // window and sys_present re-fits every frame, so this is a request, not a layout
@@ -48,3 +52,5 @@ ed_boot2() {
   txt_init();
   ed_boot3();
 } return void;
+given fx_trig_init stdin "" ():() then calls sys_open:(640, 400, 2, "idem editor") then calls txt_init:[1]
+given fx_trig_init stdin "" ():() then calls txt_init:[1] then calls ed_boot3:[1]

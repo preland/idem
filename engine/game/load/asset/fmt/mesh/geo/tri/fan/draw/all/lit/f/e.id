@@ -16,15 +16,21 @@ bl_lit_init() {
   export word[] bl_e = [];
   bl_efill(0);
 } return void;
+():() then calls bl_efill:[1] then bl_e_len_t_check:(3)
+given asset_io_init ():() then calls bl_efill:[1] then bl_e_len_t_check:(3)
 
 bl_efill(int i) {
   word wz = 0;
   while (i < 3) { push((import bl_e), wz); i = i + 1; }
   bl_init();
 } return void;
+given bl_lit_init (0):() then bl_e_len_t_check:(6)
+given bl_lit_init (3):() then bl_e_len_t_check:(3)
 
 bl_shade2(int[] tri, int nvx, int nvy) {
   int nvz = (import bl_e)[2] / 4;
   int bl_lam_v = bl_lam(nvx, nvy, nvz);
   bl_tint(tri, bl_lam_v);
 } return void;
+given bl_vis_t_setup ([0,0,0,0,0,0,0,0,0,0,0,0], 3, 4):() then calls bl_lam:(3, 4, 250000)
+given bl_vis_t_setup ([0,0,0,0,0,0,0,0,0,0,0,0], 0, 0):() then calls bl_lam:(0, 0, 250000)

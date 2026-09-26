@@ -12,6 +12,11 @@ d3_mix(int a, int b, int t) {
   wp = (wp - a) * t / 65536;
   int ret_i = a + wp;
 } return int ret_i;
+(100, 200, 0):(100)
+(100, 200, 65536):(200)
+(0, 100, 32768):(50)
+(0, 100, 0):(0)
+(10, 0, 32768):(5)
 
 // Twice the signed area of the screen triangle, as a sign: -1 front-facing, +1
 // back-facing, 0 degenerate. The two edge vectors reach 2 * 10^6 pixels after
@@ -23,9 +28,17 @@ d3_area(int[] verts) {
   word sm = verts[7] - verts[1];
   int ret_i = d3_area_b(verts, wp, sm);
 } return int ret_i;
+([0,0,0,0,0,0,10,0,0,0,0,0,0,10]):(1)
+([0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0]):(-1)
+([0,0,0,0,0,0,0,0,0,0,0,0,0,0]):(0)
 
 d3_area_b(int[] verts, word wp, word sm) {
   wp = wp * (verts[13] - verts[1]) - sm * (verts[12] - verts[0]);
   int ret_i = (wp > 0) - (wp < 0);
 } return int ret_i;
+([0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10], 10, 0):(1)
+([0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0], 0, 10):(-1)
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 5, 5):(0)
+([0,0,0,0,0,0,0,0,0,0,0,0,5,3], 2, 1):(1)
+([0,0,0,0,0,0,0,0,0,0,0,0,4,6], 2, 3):(0)
 

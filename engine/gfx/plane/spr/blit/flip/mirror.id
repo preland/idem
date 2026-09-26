@@ -16,6 +16,8 @@ d2_blit_flip(int p, int x, int y, int f) {
   int h = d2_spr_h(p);
   d2_flip_setup(p, x, y, f, w, h);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0):() then d2_blit_t_px00:(9)
+given d2_blit_t_setup (0, -1, 0, 0):() then d2_blit_t_px00:(5)
 
 d2_flip_rows(int p, int x, int y, int i, int j, int n) {
   while (j < n) {
@@ -24,6 +26,8 @@ d2_flip_rows(int p, int x, int y, int i, int j, int n) {
     j = j + 1;
   }
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 0, 2):() then d2_blit_t_px00:(9)
+given d2_blit_t_setup (0, 0, 0, 0, 0, 0):() then d2_blit_t_px00:(0)
 
 // The source index for surface column x0 is the sprite's column
 // w - 1 - (x0 - x), counted from the row's start.
@@ -32,3 +36,5 @@ d2_flip_clip(int p, int x, int y, int i) {
   int w = d2_spr_w(p);
   d2_flip_clip2(p, x, y, i, x0, w);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0):() then d2_blit_t_px00:(9)
+given d2_blit_t_setup (0, 0, 1, 2):() then d2_blit_t_px00:(0)

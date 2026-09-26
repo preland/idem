@@ -1,0 +1,41 @@
+// Test fixtures that need a populated sprite table: d2_spr_init alone leaves
+// all five lists empty, so a case reading d2_spr_w(0) or blitting sprite 0
+// would index out of range. These push two known sprites so the rest of the
+// spr/px and spr/blit cases have real data to read.
+//
+// id0 "t2" is 2x2, one frame, [5, 9, 7, 3] (row-major: row0 [5, 9], row1
+// [7, 3]) -- four distinct, opaque values so a case can tell which corner it
+// read. id1 "t3" is 3x1, two frames, [11, -1, 4, 8, 2, -1] -- a second name
+// for d2_spr_find, a second size for d2_spr_w/h, a frame count above one for
+// the blitters' clamp, and a transparent pixel in each frame.
+//
+// d2_blit_t_setup composes this with sf_t_setup (given fixture composition):
+// the blit functions need both a surface to draw into and a sprite table to
+// draw from, and a case names one `given`, so the two are combined here
+// rather than in every blit file.
+
+d2_spr_t_setup() {
+  d2_spr_init();
+  int a = d2_spr_add2("t2", 2, 2, 1, [5, 9, 7, 3]);
+  int b = d2_spr_add2("t3", 3, 1, 2, [11, 0 - 1, 4, 8, 2, 0 - 1]);
+} return void;
+():() then d2_spr_t_w_len:(2)
+():() then d2_spr_t_n_len:(2)
+
+d2_blit_t_setup() {
+  sf_t_setup();
+  d2_spr_t_setup();
+} return void;
+():() then sf_t_gw:(64)
+():() then d2_spr_t_w_len:(2)
+
+// The one surface-pixel probe every blit case reads back: a blit's effect is
+// module state (the framebuffer), and a `then` check takes no parameters, so
+// this fixes the read at (0, 0) and every blit case chooses its own x/y (and
+// which sprite/frame) so that the pixel landing on (0, 0) is the one under
+// test.
+d2_blit_t_px00() {
+  int c = sf_pget(0, 0);
+} return int c;
+given d2_blit_t_setup ():(0)
+given d2_blit_t_setup ():(0) then sf_t_gw:(64)

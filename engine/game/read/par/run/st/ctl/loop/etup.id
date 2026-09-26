@@ -16,9 +16,13 @@ par_etuple(int[] pos) {
   int ast_k_tuple_v = (import ast_k_tuple);
   int ret_i = ast_new_kids(ast_k_tuple_v, "", ks);
 } return int ret_i;
+given par_prim_setup ([11]):(3) then calls ast_new_kids:(134, "", [1, 2])
+given par_prim_setup ([2]):(2) then calls ast_new_kids:(134, "", [1])
 
 par_etuple_ks(int[] pos) {
   int[] ks = [];
   par_want(pos, "(");
   par_efill(pos, ks);
 } return int[] ks;
+given par_prim_setup ([11]):([1, 2]) then calls ast_new_num:(2, 0)
+given par_prim_setup ([2]):([1]) then calls ast_new_num:(5, 0)

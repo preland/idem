@@ -3,8 +3,12 @@
 zst_back(int d) {
   int ret_i = peek8((import zst_st)[3] + (import zst_st)[4] - d);
 } return int ret_i;
+given zst_src_setup given zst_put_twice (1):(66)
+given zst_src_setup given zst_put_twice (2):(65)
 
 zst_out() {
   int n = (import zst_st)[4];
   if ((import zst_st)[6] != 0) { n = 0 - 1; }
 } return int n;
+given zst_init ():(0)
+given zst_init given zst_err_setup ():(-1)

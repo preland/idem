@@ -35,6 +35,8 @@ bl_init() {
   lst_fill((import bl_st), 15, 0);
   bl_lists();
 } return void;
+():() then calls bl_lists:[1]
+given asset_io_init ():() then calls bl_lists:[1]
 
 // A .blend may be compressed, and Blender has compressed by default since 3.0.
 // So the file is read, decompressed if it needs it, and only then parsed --
@@ -45,8 +47,12 @@ bl_open(string path) {
   asset_slurp(path);
   int ret_i = bl_open2_ret();
 } return int ret_i;
+given zst_init given bl_init ("../test_assets/cube.blend"):(1)
+given zst_init given bl_init ("../test_assets/vga8x16.psf"):(0)
 
 bl_open2_ret() {
   bl_open2();
   int ret_i = (import bl_st)[11];
 } return int ret_i;
+given bl_cube_t_stage ():(1)
+given bl_head_t_invalid ():(0)

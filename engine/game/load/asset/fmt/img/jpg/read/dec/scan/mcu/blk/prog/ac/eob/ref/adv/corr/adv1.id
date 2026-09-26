@@ -12,6 +12,8 @@ jpg_radv1(int a) {
   }
   lset((import jpg_r), 0, (import jpg_r)[0] + 1);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then jpg_r0_check:(1) then calls jpg_rzero:((import jpg_coef_a))
+given jpg_cset_fixture ((import jpg_coef_a)):() then jpg_r0_check:(1) then calls jpg_rcorr:((import jpg_coef_a), 0)
 
 jpg_rzero(int a) {
   if ((import jpg_r)[1] = 0) {
@@ -20,6 +22,8 @@ jpg_rzero(int a) {
     lset((import jpg_r), 1, (import jpg_r)[1] - 1);
   }
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then calls jpg_rput:((import jpg_coef_a))
+given jpg_rset_fixture ((import jpg_coef_a)):() then jpg_r1_check:(1) then calls jpg_rput:[0]
 
 // The new coefficient. Phase goes back to 0 so the outer machine reads the next
 // symbol; the caller's own increment moves past this position.
@@ -27,3 +31,5 @@ jpg_rput(int a) {
   jpg_cset(a, (import jpg_zz)[(import jpg_r)[0]], (import jpg_r)[2]);
   lset((import jpg_r), 3, 0);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then calls jpg_cset:((import jpg_coef_a), 0, 0) then jpg_r3_check:(0)
+given jpg_rset_fixture ((import jpg_coef_a)):() then calls jpg_cset:((import jpg_coef_a), 1, 3) then jpg_r3_check:(0)

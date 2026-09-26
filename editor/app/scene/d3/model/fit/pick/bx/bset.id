@@ -4,6 +4,8 @@ ed_bmax(int[] bb, int i) {
   int fx_max_v = fx_max(bb[3 + i % 3], (import bl_v)[i]);
   lset(bb, 3 + i % 3, fx_max_v);
 } return void;
+given ed_t_boot given bl_mesh_t_load stdin "" ([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000], 0):([2000000000, 2000000000, 2000000000, -1000, -2000000000, -2000000000], 0)
+given ed_t_boot given bl_mesh_t_load stdin "" ([2000000000, 2000000000, 2000000000, -2000000000, -2000000000, -2000000000], 4):([2000000000, 2000000000, 2000000000, -2000000000, 1000, -2000000000], 4)
 
 // The centre is the box's middle. The distance is **half** the half-diagonal, not
 // a multiple of it, and that is a deliberate choice about what a scene view is
@@ -15,9 +17,13 @@ ed_bset(int[] bb) {
   lset((import ed_st), 11, (bb[1] + bb[4]) / 2);
   ed_bset2(bb);
 } return void;
+given ed_t_boot stdin "" ([100, 200, 300, 500, 700, 900]):([100, 200, 300, 500, 700, 900]) then calls lset:([-1, -1, 35000, -9000, 1000, 0, 0, 0, 0, 1, 300, 450, 600, 0, 0, -1, 0, 0, 1000, 0, 0], 10, 300)
+given ed_t_boot stdin "" ([0, 0, 0, 8, 6, 0]):([0, 0, 0, 8, 6, 0]) then calls lset:([-1, -1, 35000, -9000, 1000, 0, 0, 0, 0, 1, 4, 3, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 11, 3)
 
 ed_bset2(int[] bb) {
   lset((import ed_st), 12, (bb[2] + bb[5]) / 2);
   int diag_v = ed_diag(bb);
   ed_bdist(diag_v);
 } return void;
+given ed_t_boot stdin "" ([0, 0, 0, 8, 6, 0]):([0, 0, 0, 8, 6, 0]) then calls ed_bdist:(5)
+given ed_t_boot stdin "" ([0, 0, 0, 0, 0, 16]):([0, 0, 0, 0, 0, 16]) then calls lset:([-1, -1, 35000, -9000, 1000, 0, 0, 0, 0, 1, 0, 0, 8, 0, 0, -1, 0, 0, 1000, 0, 0], 12, 8)

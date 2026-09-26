@@ -8,6 +8,8 @@ t_home() {
   t_tap(8, 2600);
   t_home2();
 } return void;
+given tin_del_ready ():() then calls t_tap:(260, 2500)
+given tin_del_ready ():() then calls t_tap:(8, 2600)
 
 // 261 is End.
 t_home2() {
@@ -15,6 +17,8 @@ t_home2() {
   t_tap(261, 2700);
   t_end();
 } return void;
+given tin_home_ready ():() then calls t_home2_show:[1]
+given tin_home_ready ():() then calls t_tap:(261, 2700)
 
 // 257 is Right, pressed at the end of the buffer: the caret must stay put rather
 // than index past the last character.
@@ -23,3 +27,5 @@ t_end() {
   t_end_show();
   t_edge();
 } return void;
+given tin_home2_ready ():() then calls t_tap:(257, 2800)
+given tin_home2_ready ():() then calls t_end_show:[1]

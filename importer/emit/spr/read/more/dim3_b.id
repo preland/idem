@@ -4,3 +4,18 @@ spr_dim3_b(string src) {
   int v7 = imp_int(src);
   lset((import spr_d), 7, v7);
 } return void;
+given spr_hdr_ready given imp_init ("5"):() then spr_d7:(5)
+given spr_hdr_ready given imp_init ("9"):() then spr_d7:(9)
+
+spr_d7() {
+  int v = (import spr_d)[7];
+} return int v;
+given spr_hdr_ready ():(0)
+given spr_hdr2_ready ():(5)
+
+spr_d3() {
+  int v = (import spr_d)[3];
+} return int v;
+given spr_hdr_ready ():(1)
+given spr_hdr2_ready ():(1)
+

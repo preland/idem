@@ -3,9 +3,13 @@ spr_png3(string name, int cols, int rows, int cw, int ch, int sw, int sh) {
   int fx_max_v2 = fx_max(rows, 1);
   int ret_i = spr_png3_dims(name, cw, ch, fx_max_v, fx_max_v2, sw, sh);
 } return int ret_i;
+given spr_native_fixture ("j1", 0, 0, 2, 2, 2, 2):(1) then calls spr_png3_dims:("j1", 2, 2, 1, 1, 2, 2)
+given spr_native_fixture ("j2", 3, 2, 2, 2, 2, 2):(1) then calls spr_png3_dims:("j2", 2, 2, 3, 2, 2, 2)
 
 spr_png3_dims(string name, int cw, int ch, int fx_max_v, int fx_max_v2, int sw, int sh) {
   int spr_cell_v = spr_cell(cw, sw);
   int spr_cell_v2 = spr_cell(ch, sh);
   int ret_i = spr_dims(name, fx_max_v, fx_max_v2, spr_cell_v, spr_cell_v2, sw, sh);
 } return int ret_i;
+given spr_native_fixture ("k1", 2, 2, 1, 1, 0, 0):(1) then calls spr_cell:(2, 0) then calls spr_dims:("k1", 1, 1, 2, 2, 0, 0)
+given spr_native_fixture ("k2", 1, 1, 0, 0, 5, 6):(1) then calls spr_cell:(1, 5) then calls spr_dims:("k2", 0, 0, 1, 1, 5, 6)

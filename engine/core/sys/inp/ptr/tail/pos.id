@@ -4,7 +4,11 @@
 inp_mx() {
   int r = (import inp_mo)[0];
 } return int r;
+given inp_init ():(0)
+given inp_t_state ():(7)
 
 inp_my() {
   int r = (import inp_mo)[1];
 } return int r;
+given inp_init ():(0)
+given inp_t_state ():(9)

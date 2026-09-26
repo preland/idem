@@ -11,11 +11,17 @@
 fse_dstart(int r) {
   int ret_i = zb_bits((import fse_rl)[r * 2 + 1]);
 } return int ret_i;
+given fse_init (0):(0)
+given fse_init (1):(0)
 
 fse_dsym(int r, int fs) {
   int ret_i = (import fse_sy)[(import fse_rl)[r * 2] + fs];
 } return int ret_i;
+given fse_init (0, 0):(0)
+given fse_init (1, 0):(0)
 
 fse_dnext(int r, int fs) {
   int ret_i = (import fse_bs)[(import fse_rl)[r * 2] + fs] + zb_bits((import fse_nb)[(import fse_rl)[r * 2] + fs]);
 } return int ret_i;
+given fse_init (0, 0):(0)
+given fse_init (1, 1):(0)

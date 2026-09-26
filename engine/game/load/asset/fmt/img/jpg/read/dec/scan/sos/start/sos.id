@@ -12,12 +12,16 @@ jpg_planes(int ci) {
     ci = ci + 1;
   }
 } return void;
+given jpg_small_fixture (0):() then calls jpg_plane:(0)
+given jpg_init (5):() then calls jpg_plane:[0]
 
 jpg_plane(int ci) {
   m4_pair((import jpg_c), ci * 10 + 8, ci * 10 + 9, (import jpg_st)[5] * (import jpg_c)[ci * 10 + 1], (import jpg_st)[6] * (import jpg_c)[ci * 10 + 2]);
   jpg_plane_alloc(ci);
   jpg_coefs(ci);
 } return void;
+given jpg_small_fixture (0):() then calls jpg_plane_alloc:(0) then calls jpg_coefs:(0)
+given jpg_init (0):() then calls jpg_plane_alloc:(0) then calls jpg_coefs:(0)
 
 // The scan header names which components are in this scan and which Huffman
 // tables each uses. Baseline sends one scan with every component; progressive
@@ -27,3 +31,5 @@ jpg_sos(int p) {
   lset((import jpg_st), 11, asset_at_v);
   jpg_sos1(p);
 } return void;
+given jpg_raw_fixture (281):() then calls jpg_sos1:(281)
+given jpg_raw_fixture (0):() then calls jpg_sos1:(0)

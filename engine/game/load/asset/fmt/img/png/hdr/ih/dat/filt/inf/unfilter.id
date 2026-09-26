@@ -10,3 +10,5 @@ png_unfilt(int ok) {
     y = y + 1;
   }
 } return int ok;
+given spr_bird_fixture (1):(1) then calls png_row:[36]
+given spr_bird_fixture (0):(0) then calls png_row:[0]

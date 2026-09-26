@@ -1,0 +1,19 @@
+// Test-only fixture: grey.png loaded on its own, the smallest of the four
+// colour-type fixtures. t_grey_p reads back the id spr_png hands out, since
+// that id depends on load order and a case here does not run main.id first.
+spr_grey_ready() {
+  spr_ready2();
+  export int t_grey_p = spr_png("grey", "img/grey.png", 1, 1, 0, 0);
+} return void;
+():() then calls spr_ready2:[1]
+():() then calls spr_png:("grey", "img/grey.png", 1, 1, 0, 0)
+
+// 10x10, one frame: enough pixels (t_whole_show reads offset 4*8+4 = 36) to
+// stand in for img/spryte-run.png without decoding the real 2560x2560 source
+// inside a case's 1 GiB ceiling -- see spr_grid_ready in ../big/ready.id.
+spr_wide_ready() {
+  spr_ready2();
+  export int t_wide_p = spr_png("grey", "img/grey.png", 1, 1, 10, 10);
+} return void;
+():() then calls spr_ready2:[1]
+():() then calls spr_png:("grey", "img/grey.png", 1, 1, 10, 10)

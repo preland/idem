@@ -15,12 +15,16 @@ bl_open2() {
   int bl_head_v = bl_head();
   lset((import bl_st), 11, bl_head_v);
 } return void;
+given bl_dna_t_bytes ():() then bl_open2_t_check:(1)
+given bl_al_t_setup ():() then bl_open2_t_check:(0)
 
 bl_unz() {
   if (asset_at(1) = 181 && asset_at(2) = 47 && asset_at(3) = 253) {
     bl_unz2();
   }
 } return void;
+given bl_dna_t_bytes ():() then calls bl_unz2:[0]
+given zst_init given bl_unz_t_setup ():() then calls bl_unz2:[1]
 
 // Four times the compressed size, plus a floor. zstd carries a content size per
 // frame and a .blend has dozens of them, so summing it would need a pre-pass over
@@ -31,3 +35,5 @@ bl_unz2() {
   int da = alloc(n);
   bl_unz3(da, n);
 } return void;
+given zst_init given bl_unz_t_setup ():() then calls bl_unz3:[1]
+given zst_init given bl_al_t_setup ():() then calls bl_unz3:[1]

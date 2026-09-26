@@ -1,0 +1,20 @@
+// A small, valid tree for the dump chain (ast/dump): a num leaf (node 1), an
+// ident leaf (node 2), and a call node (node 3, built in dump_tail.id) whose
+// a/b genuinely point at those two -- unlike ast/node/known.id's node, whose
+// a/b/c are plain numbers with no node behind them, which the dump functions
+// cannot walk.
+
+ast_dump_setup() {
+  ast_init();
+  ast_dump_mark();
+} return void;
+():() then ast_n:(5)
+():() then ast_n:(5) then eprints:("")
+
+ast_dump_mark() {
+  int nid1 = ast_new_num(42, 0);
+  int nid2 = ast_new_k((import ast_k_ident), "x");
+  ast_dump_mark2();
+} return void;
+given ast_init ():() then ast_n:(5)
+given ast_init ():() then ast_n:(5) then eprints:("")

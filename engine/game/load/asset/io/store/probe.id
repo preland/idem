@@ -1,0 +1,9 @@
+// Whether asset_slurp_alloc actually left a writable address behind: poke a
+// byte at it and read the same byte straight back.
+
+asset_pipe_probe_check() {
+  poke8((import asset_io)[0], 9);
+  int v = peek8((import asset_io)[0]);
+} return int v;
+given asset_pipe_fixture ():(9)
+given asset_be32_fixture ():(9)

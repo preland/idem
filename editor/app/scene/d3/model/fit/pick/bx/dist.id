@@ -2,3 +2,5 @@ ed_bdist(int diag) {
   int max_v = fx_max(diag / 2, 1000);
   lset((import ed_st), 4, max_v);
 } return void;
+given ed_t_boot stdin "" (4000):(4000) then calls lset:([-1, -1, 35000, -9000, 2000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 4, 2000)
+given ed_t_boot stdin "" (500):(500) then calls lset:([-1, -1, 35000, -9000, 1000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 4, 1000)

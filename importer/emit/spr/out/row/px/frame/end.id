@@ -5,9 +5,19 @@ spr_row_end(word ad) {
   string s = str_of_mem(ad, (import spr_d)[0]);
   print("  \"" + s + "\"");
 } return void;
+given spr_buf_ready ((import spr_buf)):() then prints:("  \".\"\n")
+given spr_buf2_ready ((import spr_buf)):() then prints:("  \"A\"\n")
 
 spr_chars_ch(int f, int y, word ad, int x) {
   int at = spr_at(f, y, x);
   int ch = spr_char(at);
   poke8(ad + x, ch);
 } return void;
+given spr_buf_ready (0, 0, (import spr_buf), 0):() then calls spr_at:(0, 0, 0)
+given spr_buf_ready (0, 0, (import spr_buf), 0):() then calls spr_char:[1]
+
+spr_px_last() {
+  int v = (import spr_px)[len((import spr_px)) - 1];
+} return int v;
+given spr_px_ready ():(0)
+given spr_al_low_ready ():(0)

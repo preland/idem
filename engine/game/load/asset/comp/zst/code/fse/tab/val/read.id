@@ -15,6 +15,8 @@ fse_rval() {
   int c = fse_rcnt(mx);
   fse_rput(c - 1);
 } return void;
+given fsev_setup_state ():()
+given fsev_setup_state2 ():()
 
 fse_rcnt(int mx) {
   int c = zf_peek((import fse_st)[3] - 1);
@@ -24,6 +26,8 @@ fse_rcnt(int mx) {
     c = fse_rbig(mx);
   }
 } return int c;
+given fsev_setup_state (0):(0)
+given fsev_setup_state2 (1):(0)
 
 // The wide form. A comparison is an int here, so subtracting `max` only when the
 // value reached the threshold needs no branch -- the idiom this engine uses
@@ -33,3 +37,5 @@ fse_rbig(int mx) {
   zf_drop((import fse_st)[3]);
   c = c - mx * (c >= (import fse_st)[2]);
 } return int c;
+given fsev_setup_state (0):(0)
+given fsev_setup_state2 (1):(0)

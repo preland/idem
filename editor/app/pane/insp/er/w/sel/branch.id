@@ -6,3 +6,5 @@ ed_insp_sel(int x, int y, int w) {
     ed_insp_decl(x, y, w);
   }
 } return void;
+given ed_t_boot stdin "" (0, 10, 100):() then calls ed_insp_decl:(0, 10, 100)
+given ed_t_boot given ed_t_ent_sel stdin "" (0, 10, 100):() then calls ed_insp_ent:(0, 10, 100, 0)

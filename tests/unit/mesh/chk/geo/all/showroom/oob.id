@@ -1,0 +1,18 @@
+// Test-only fixture: a genuine boundary witness for t_oob. The real assets
+// (cube.blend, showroom.blend) both parse cleanly, so no triangle index in
+// bl_ti ever sits at or past bl_v's own end -- t_oob's own two cases pass
+// with the loop guard weakened by one, and no smaller/real .blend fixture
+// changes that. Appending one index one past the last valid vertex, on top
+// of the cheap cube.blend parse, is the boundary without a new binary asset.
+mesh_oob_ready() {
+  mesh_mesh_ready();
+  push((import bl_ti), 8);
+} return void;
+():() then calls mesh_mesh_ready:[1]
+():() then mesh_oob_len:(37)
+
+mesh_oob_len() {
+  int v = len((import bl_ti));
+} return int v;
+given mesh_oob_ready ():(37)
+given mesh_mesh_ready ():(36)

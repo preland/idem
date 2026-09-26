@@ -6,6 +6,8 @@ ed_nsel(int e, int n) {
     e = e + 1;
   }
 } return int n;
+given ed_t_boot stdin "" (0, 0):(0)
+given ed_t_boot given ed_t_ent_sel stdin "" (0, 0):(1)
 
 // The lowest selected id. A band picks many and the inspector shows one, which is
 // what every editor does; the count beside it says how many more there are.
@@ -17,8 +19,12 @@ ed_first(int e) {
     e = e + 1;
   }
 } return int at;
+given ed_t_boot given ed_t_ent stdin "" (0):(-1)
+given ed_t_boot given ed_t_ent_sel stdin "" (0):(0)
 
 ed_tag1(int e, int i) {
   string s = "";
-  if (ent_at(e, 20) / inf_pow2(i) % 2 = 1) { s = (import scr_tn)[i] + " "; }
+  if (ent_at(e, 20) / fx_pow(2, i) % 2 = 1) { s = (import scr_tn)[i] + " "; }
 } return string s;
+given ed_t_boot given ed_t_ent stdin "" (0, 0):("")
+given ed_t_boot given ed_t_ent_tag0 stdin "" (0, 0):("alpha ")

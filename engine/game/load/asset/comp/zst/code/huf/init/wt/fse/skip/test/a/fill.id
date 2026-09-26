@@ -1,5 +1,17 @@
+// A real address for huf_wstart_test_a4's own cases, isolated from the
+// setup_a chain (which calls a4 itself, further down).
+huf_wa4_p_setup() {
+  fse_init();
+  zb_init();
+  export int huf_wa4_p = alloc(2);
+} return void;
+():() then zb_done:(0)
+given fse_init ():() then zb_done:(0)
+
 huf_wstart_test_a4(int p) {
   poke8(p, 165);
   poke8(p + 1, 128);
   zb_start(p, 2);
 } return void;
+given huf_wa4_p_setup ((import huf_wa4_p)):() then zb_done:(0)
+given huf_wa4_p_setup given huf_wa4_p_setup ((import huf_wa4_p)):() then zb_done:(0)

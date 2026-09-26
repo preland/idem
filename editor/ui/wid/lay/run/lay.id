@@ -24,6 +24,8 @@ ed_lay_init() {
   ui_vinit();
   ed_parse();
 } return void;
+given ed_t_boot stdin "" ():() then calls ui_vinit:() then calls ed_parse:()
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ui_vinit:() then calls ed_parse:()
 
 // lex_init before lex_run, because the token store is an exported list and an
 // export is NULL until its declaring function has run. The game's own sources are
@@ -33,3 +35,5 @@ ed_parse() {
   lex_init();
   ed_parse2();
 } return void;
+given ed_t_boot stdin "" ():() then calls lex_init:() then calls ed_parse2:()
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls lex_init:() then calls ed_parse2:()

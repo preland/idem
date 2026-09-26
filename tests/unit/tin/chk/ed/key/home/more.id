@@ -3,9 +3,20 @@ t_home2_show() {
   int tin_caret_v = tin_caret();
   print("home, then backspace at 0 exp ac caret 0 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_home_ready ():() then prints:("home, then backspace at 0 exp ac caret 0 = ac 0\n")
+given tin_home_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
 
 t_end_show() {
   string tin_text_v = tin_text();
   int tin_caret_v = tin_caret();
   print("end, then right at the end exp ac caret 2 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_end_ready ():() then prints:("end, then right at the end exp ac caret 2 = ac 2\n")
+given tin_end_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
+
+tin_rep6_ready() {
+  tin_rep5_ready();
+  t_hold(5490);
+} return void;
+():() then calls tin_rep5_ready:[1]
+():() then calls t_hold:(5490)

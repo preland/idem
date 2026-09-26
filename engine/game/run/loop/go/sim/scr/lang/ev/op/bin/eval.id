@@ -3,14 +3,20 @@
 scr_binl(int nd, int e) {
   int a = scr_unrhs(nd, e);
 } return int a;
+given bin_fixture ((import fixture_bin), -1):(3)
+given idem_init (0, -1):(0)
 
 scr_binr(int nd, int e) {
   int ib = ast_ib(nd);
   int b = scr_ev(ib, e);
 } return int b;
+given bin_fixture ((import fixture_bin), -1):(4)
+given idem_init (0, -1):(0)
 
 scr_bin2(int nd, int e, int a) {
   int b = scr_binr(nd, e);
   string op = ast_tx(nd);
   int ret_i = scr_op(op, a, b);
 } return int ret_i;
+given bin_fixture ((import fixture_bin), -1, 3):(7)
+given bin_fixture ((import fixture_bin), -1, 10):(14)

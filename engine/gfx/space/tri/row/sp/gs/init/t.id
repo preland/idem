@@ -1,0 +1,17 @@
+// A reader for d3_gs_st's own cases (gs.id): the flat-step slots it writes
+// have no argument to show mutated, so a case reads them back through this.
+// d3_gs_t_setup2 gives the reader's own cases a state where d3_gs_st has
+// already run, since its own args are always empty.
+
+d3_gs_t_st() {
+  int[] d3_gs_t_r = [(import d3_gs)[3], (import d3_gs)[4], (import d3_gs)[5]];
+} return int[] d3_gs_t_r;
+given d3_t_setup ():([0, 0, 0])
+given d3_gs_t_setup2 ():([11, 22, 33])
+
+d3_gs_t_setup2() {
+  d3_t_setup();
+  d3_gs_st([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 22, 33]);
+} return void;
+():() then d3_gs_t_st:([11, 22, 33])
+():() then calls d3_gs_st:[1]

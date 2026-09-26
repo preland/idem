@@ -5,8 +5,12 @@ sys_scale() {
   int sys_snap_v = sys_snap();
   int fx_max_v = fx_max(sys_snap_v, 1);
 } return int fx_max_v;
+given sys_t_vp ():(1000)
+given sys_t_vp4 ():(500)
 
 sys_offx() {
   int sys_sw_v = sys_sw();
   lset((import sys_vp), 1, ((import sf_gw) - sys_sw_v) / 2);
 } return void;
+given sys_t_vp ():() then sys_sx:(0)
+given sys_t_vp2 ():() then sys_sx:(16)

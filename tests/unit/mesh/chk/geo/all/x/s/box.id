@@ -6,9 +6,23 @@ t_sbox() {
   t_sbox_y();
   t_sbox2();
 } return void;
+given mesh_scene_ready ():() then calls t_sbox_x:[1]
+given mesh_scene_ready ():() then calls t_sbox2:[1]
 
 t_sbox2() {
   t_sbox_z();
   int t_oob_v = t_oob();
   print("scene triangle indices out of range exp 0 = " + t_oob_v);
 } return void;
+given mesh_scene_ready ():() then calls t_sbox_z:[1]
+given mesh_scene_ready ():() then prints:("scene z exp -6719 4239 = -1000 1000\nscene triangle indices out of range exp 0 = 0\n")
+
+// Test-only fixture: the small cube.blend loaded via bl_scene, the same code
+// path t_scene_open_report exercises on the real showroom, without paying for
+// the real decode -- t_scene_open_report's own second case checks that one.
+mesh_scene_ready() {
+  mesh_ready();
+  bl_scene("../../../test_assets/cube.blend");
+} return void;
+():() then calls mesh_ready:[1]
+():() then calls bl_scene:("../../../test_assets/cube.blend")

@@ -3,6 +3,8 @@ ed_orbit() {
   ed_drag_do();
   ed_zoom();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_drag_st:[1]
+given ed_t_boot stdin "" ():() then calls ed_zoom:[1]
 
 // Orbit and pan move the camera; a selection band only draws itself and is
 // committed on release. Splitting on the drag kind here rather than inside each
@@ -15,3 +17,5 @@ ed_drag_do() {
   }
   ed_mark();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_mark:[1]
+given ed_t_boot stdin "" ():() then calls ed_turn:[0]

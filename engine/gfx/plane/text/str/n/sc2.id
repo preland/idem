@@ -6,8 +6,12 @@ txt_num_sc2(int m, int v, int x, int y, int c, int sc) {
   int pow = txt_num_pow(m);
   txt_num_sc3(m, v, x, y, c, sc, cell, pow);
 } return void;
+given txt_init given sf_t_setup (0, 0, 0, -3, 9, 1000):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (5, -5, -8, -2, 9, 1000):() then d2_blit_t_px00:(9)
 
 txt_num_sc3(int m, int v, int x, int y, int c, int sc, int cell, int pow) {
   int pw = txt_num_pw(pow, sc);
   txt_num_run(m, x + cell * sc / 1000 * (v < 0), y, c, pw);
 } return void;
+given txt_init given sf_t_setup (0, 0, 0, -3, 9, 1000, 8, 1):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup (5, -5, -8, -2, 9, 1000, 8, 1):() then d2_blit_t_px00:(9)

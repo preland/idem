@@ -29,6 +29,8 @@ spr_png(string name, string path, int cols, int rows, int cw, int ch) {
     p = spr_png2(name, cols, rows, cw, ch);
   }
 } return int p;
+given d2_spr_init given png_init ("s1", "../games/flappy/art/bird.png", 1, 1, 2, 2):(0) then calls spr_png2:("s1", 1, 1, 2, 2)
+given d2_spr_init given png_init ("s2", "../test_assets/vga8x16.psf", 1, 1, 2, 2):(-1) then calls spr_png2:[0]
 
 // The source cell is the image divided by the grid. Integer division, so a sheet
 // whose width is not a multiple of its column count loses the last few pixels of
@@ -38,6 +40,8 @@ spr_png2(string name, int cols, int rows, int cw, int ch) {
   int sh = (import png_st)[1] / fx_max(rows, 1);
   int ret_i = spr_png3(name, cols, rows, cw, ch, sw, sh);
 } return int ret_i;
+given spr_native_fixture ("m1", 5, 5, 4, 4):(1) then calls spr_png3:("m1", 5, 5, 4, 4, 3, 7)
+given spr_native_fixture ("m2", 1, 1, 0, 0):(1) then calls spr_png3:("m2", 1, 1, 0, 0, 17, 36)
 
 // 0 or less means the source cell's own size. Floored at 1 either way: a zero
 // dimension would make d2_spr_add allocate nothing and every later index abort.
@@ -46,3 +50,5 @@ spr_cell(int v, int n) {
   if (v <= 0) { m = n; }
   int ret_i = fx_max(m, 1);
 } return int ret_i;
+(5, 100):(5)
+(-3, 0):(1)

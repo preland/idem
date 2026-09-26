@@ -21,6 +21,8 @@ ed_zoom2d() {
   int down_v = inp_mdown(16);
   ed_zoom2d_set(up_v, down_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_zoom2d_set:(0, 0)
+given ed_t_boot given ed_t_wheelup stdin "" ():() then calls ed_zoom2d_set:(1, 0)
 
 // Panning a flat view is the drag itself: one pixel of pointer is one pixel of
 // picture, with no basis to project through and no distance to scale by. That it
@@ -30,3 +32,14 @@ ed_pan2d() {
   ed_pan2d_x();
   ed_pan2d_y();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_pan2d_x:[1]
+given ed_t_boot stdin "" ():() then calls ed_pan2d_y:[1]
+
+// A wheel-up notch, for ed_zoom2d's true branch -- ed_t_click's own position,
+// since only the button mask is under test here.
+ed_t_wheelup() {
+  inp_sample_tail(8);
+  inp_sample2_store(200, 150);
+} return void;
+given ed_t_boot ():() then calls inp_sample_tail:(8)
+given ed_t_boot ():() then calls inp_sample2_store:(200, 150)

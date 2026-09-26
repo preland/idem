@@ -1,0 +1,18 @@
+// The valid section's two bytes, read straight back out of the flat store --
+// proof zb_frame_bytes actually wrote what it claims to.
+zb_frame_bytes_check() {
+  int zb_b0 = peek8((import zb_frame_p));
+  int zb_b1 = peek8((import zb_frame_p) + 1);
+  int[] zb_bytes_v = [zb_b0, zb_b1];
+} return int[] zb_bytes_v;
+given zb_frame_bytes ():([214, 192])
+given zb_frame_setup ():([214, 192])
+
+// Same, for the corrupt section.
+zb_frame_bad_bytes_check() {
+  int zb_b0 = peek8((import zb_frame_bad_p));
+  int zb_b1 = peek8((import zb_frame_bad_p) + 1);
+  int[] zb_bytes_v = [zb_b0, zb_b1];
+} return int[] zb_bytes_v;
+given zb_frame_bad_bytes ():([214, 0])
+given zb_frame_bad_setup ():([214, 0])

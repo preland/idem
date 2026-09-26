@@ -5,3 +5,23 @@ imp_int_b(int sg, int i, string src) {
   lset((import imp_p), 0, i + (sg < 0));
   int ret_i = sg * imp_digits(src, (import imp_p)[0]);
 } return int ret_i;
+given imp_init (1, 0, "42"):(42)
+given imp_init (-1, 0, "-7"):(-7)
+
+imp_init_at5() {
+  imp_init();
+  imp_digits("12345", 0);
+} return void;
+():() then calls imp_init:[1]
+():() then imp_p0:(5)
+
+spr_p_full_ready() {
+  spr_lists_ready();
+  int i = 0;
+  while (i < 63) {
+    push((import spr_p), i);
+    i = i + 1;
+  }
+} return void;
+():() then calls spr_lists_ready:[1]
+():() then spr_p_last:(62)

@@ -14,11 +14,15 @@ par_uargs(int[] pos) {
     nd = par_uargs2(pos);
   }
 } return int nd;
+given par_item_setup ([1]):(3) then calls ast_new_kids:(135, "", [1, 2])
+given par_item_setup ([18]):(0)
 
 par_uargs2(int[] pos) {
   int[] kids = par_uargs2_kids(pos);
   int ret_i = par_uargs2_node(kids);
 } return int ret_i;
+given par_item_setup ([2]):(3) then calls ast_new_kids:(135, "", [1, 2])
+given par_item_setup ([5]):(1) then calls ast_new_kids:(135, "", [])
 
 // Every collection loop carries an end-of-input guard, so malformed input costs
 // one diagnostic and terminates rather than hanging.
@@ -29,3 +33,5 @@ par_ufill(int[] pos, int[] kids) {
     par_eat(pos, ",");
   }
 } return void;
+given par_item_setup ([2], []):([5], [1, 2]) then calls ast_new_num:(2, 0)
+given par_item_setup ([5], []):([5], [])

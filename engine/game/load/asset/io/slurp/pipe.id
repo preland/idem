@@ -1,0 +1,24 @@
+// A backing allocation for read.id/store's cases: the store rejects address
+// 0, so nothing downstream can poke or peek until something has alloc'd and
+// set a real length -- the same two steps asset_slurp itself takes before
+// its first asset_take.
+
+asset_pipe_fixture() {
+  asset_io_init();
+  asset_slurp_alloc(8);
+  lset((import asset_io), 1, 8);
+} return void;
+():() then asset_pipe_len_check:(8)
+given asset_io_init ():() then asset_pipe_len_check:(8)
+
+asset_pipe_len_check() {
+  int v = (import asset_io)[1];
+} return int v;
+given asset_pipe_fixture ():(8)
+given asset_io_init ():(0)
+
+asset_pipe_byte0_check() {
+  int v = asset_at(0);
+} return int v;
+given asset_be32_fixture ():(114)
+given asset_io_init ():(0)

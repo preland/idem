@@ -6,8 +6,22 @@ t_pal2c(int png_samp_v, int png_samp_v2, int png_samp_v3) {
   int png_samp_v5 = t_pal_s(35, 16);
   t_pal2d(png_samp_v, png_samp_v2, png_samp_v3, png_samp_v4, png_samp_v5);
 } return void;
+given png_bird_ready (1, 2, 3):() then calls t_pal_s:(20, 10)
+given png_bird_ready (1, 2, 3):() then calls t_pal2d:(1, 2, 3, 3, 0)
 
 t_pal2d(int png_samp_v, int png_samp_v2, int png_samp_v3, int png_samp_v4, int png_samp_v5) {
   print("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = " + png_samp_v + " " + png_samp_v2 + " " + png_samp_v3 + " " + png_samp_v4 + " " + png_samp_v5);
   t_pal3();
 } return void;
+given png_bird_ready (0, 2, 0, 3, 0):() then prints:("  samples at (0,0)(8,6)(3,12)(10,20)(16,35) exp 0 2 0 3 0 = 0 2 0 3 0\n  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = 0 16245020 0 16777215 0\n  those alphas exp 0 255 0 255 0 = 0 255 0 255 0\ndigits.png exp 1 = 1\n  w/h/depth/colour/stride exp 4 60 1 0 2 = 4 60 1 0 2\n  rows 0..2 exp 1111 1001 1001 = 1111 1001 1001\n  every sample, hash exp 680646057 = 680646057\n  bird.png every sample, hash exp 880280616 = 880280616\n")
+given png_bird_ready (0, 2, 0, 3, 0):() then calls t_pal3:[1]
+
+// Test-only fixture: the game's own bird.png loaded, the state t_pal builds
+// (see ../indexed.id).
+png_bird_ready() {
+  png_ready();
+  inf_init();
+  png_load("../../../games/flappy/art/bird.png");
+} return void;
+():() then calls png_ready:[1]
+():() then calls png_load:("../../../games/flappy/art/bird.png")

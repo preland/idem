@@ -1,0 +1,26 @@
+// A grown entity with a real velocity, so integration has something to
+// integrate.
+vel_fixture() {
+  grow_fixture();
+  ent_put(0, 2, 5000);
+  ent_put(0, 3, 3000);
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ent_put:[2]
+
+// A grown entity flagged live-and-has-a-body, so gravity has something to
+// apply itself to.
+grav_fixture() {
+  grow_fixture();
+  ent_put(0, 9, 5);
+} return void;
+():() then calls grow_fixture:[1]
+():() then calls ent_put:(0, 9, 5)
+
+// sim_st[0] (physics.id), for sim_init's own cases -- there is no room left
+// in physics.id for a reader of its own.
+read_sim_st0() {
+  int v = (import sim_st)[0];
+} return int v;
+given idem_init ():(0)
+given grow_fixture ():(0)

@@ -5,3 +5,5 @@ ppm_row_end() {
   string nl = chr(10);
   put(nl);
 } return void;
+():() then prints:("\n")
+():()

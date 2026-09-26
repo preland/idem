@@ -5,12 +5,16 @@ idem_init2() {
   ast_init();
   idem_init4();
 } return void;
+():() then calls err_init:[1]
+():() then calls idem_init4:[1]
 
 idem_init4() {
   png_init();
   inf_init();
   idem_init3();
 } return void;
+():() then calls png_init:[1]
+():() then calls idem_init3:[1]
 
 // One string from many, built by repeated concatenation -- which is the expensive
 // shape in this language, and is correct here: it happens once, over a handful of
@@ -21,3 +25,5 @@ run_join(string[] chunks, int i, string s) {
     i = i + 1;
   }
 } return string s;
+(["a", "b", "c"], 0, ""):("abc")
+([], 0, "x"):("x")

@@ -14,11 +14,15 @@ scr_ex8(int nd, int e) {
     fin = scr_ex9(nd, e);
   }
 } return int fin;
+given stop_fixture ((import fixture_goto), -1):(1) then calls scr_goto:("test-scene")
+given idem_init (0, -1):(0) then calls scr_ex9:[1]
 
 scr_goto(string name) {
   int scn_byname_v = scn_byname(name);
   lset((import scr_st), 2, scn_byname_v);
 } return int 1;
+given idem_init ("test-scene"):(1) then calls lset:[1]
+given idem_init ("nope"):(1) then calls lset:[1]
 
 // `stop` ends the handler and nothing else. `say` and `play` are accepted and do
 // nothing: there is no console and no audio backend, and a statement that parses
@@ -28,3 +32,5 @@ scr_ex9(int nd, int e) {
   int fin = 0;
   if (ast_kd(nd) = (import ast_k_stop)) { fin = 1; }
 } return int fin;
+given stop_fixture ((import fixture_stop), -1):(1)
+given idem_init (0, -1):(0)

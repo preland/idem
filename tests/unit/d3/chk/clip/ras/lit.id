@@ -6,3 +6,23 @@ t_lit() {
     i = i + 1;
   }
 } return int n;
+given d3_ready ():(0)
+given d3_ready given t_raster ():(38074)
+
+// Test-only fixtures: t_pt reads d3_vm, which only exists once a pose has run
+// d3_view_matrix -- see chk/view.id's t_pose, which this cannot call directly
+// (it would also run t_ahead and cascade to the end of the chain).
+d3_pose0_ready() {
+  d3_ready();
+  d3_cam_set(0, 0, 0);
+  d3_cam_aim(0, 0);
+} return void;
+():() then calls d3_cam_set:(0, 0, 0)
+():() then calls d3_cam_aim:(0, 0)
+
+d3_vm0_ready() {
+  d3_pose0_ready();
+  d3_view_matrix();
+} return void;
+():() then calls d3_pose0_ready:[1]
+():() then calls d3_view_matrix:[1]

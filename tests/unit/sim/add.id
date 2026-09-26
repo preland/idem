@@ -3,3 +3,23 @@ t_defs_add() {
   t_two(ent_add_v);
   t_defs2();
 } return void;
+given sim_ready ():() then calls ent_add:[2]
+given sim_ready ():() then calls t_defs2:[1]
+
+// Test-only fixtures: main.id's own init order (fx_trig_init, ent_init,
+// scn_init -- sim_grav reads the scene's gravity, an export that does not
+// exist until scn_init has run), then the first entity, at its defaults.
+sim_ready() {
+  fx_trig_init();
+  ent_init();
+  scn_init();
+} return void;
+():() then calls ent_init:[1]
+():() then calls scn_init:[1]
+
+sim_e0_ready() {
+  sim_ready();
+  ent_add();
+} return void;
+():() then calls sim_ready:[1]
+():() then calls ent_add:[1]

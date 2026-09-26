@@ -4,6 +4,8 @@ par_vbody(int[] pos, string name, int[] ks) {
   par_vbody_props(pos, ks);
   int ret_i = par_vbody_node(name, ks);
 } return int ret_i;
+given par_decl_setup ([9], "Card", []):(5) then calls ast_new_kids:(143, "Card", [2, 4])
+given par_dmem_setup ([9], "X", []):(1) then calls ast_new_kids:(143, "X", [])
 
 par_vprops(int[] pos, int[] ks) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
@@ -11,6 +13,8 @@ par_vprops(int[] pos, int[] ks) {
     push(ks, par_vprop_v);
   }
 } return void;
+given par_decl_setup ([10], []):([16], [2, 4]) then calls ast_new_a:(113, "size", 3)
+given par_dmem_setup ([10], []):([10], [])
 
 // The colon is eaten rather than demanded: `colour 0xFFFFFF` is the same
 // statement with one fewer character, and refusing it would buy nothing.
@@ -19,3 +23,5 @@ par_vprop(int[] pos) {
   int arg = par_arg(pos);
   int ret_i = par_vprop_node(name, arg);
 } return int ret_i;
+given par_decl_setup ([10]):(2) then calls ast_new_a:(113, "colour", 1)
+given par_decl_setup ([13]):(2) then calls ast_new_a:(113, "size", 1)

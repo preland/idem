@@ -3,6 +3,8 @@ par_str(int[] pos) {
   par_next(pos);
   int ret_i = par_str_node(txt);
 } return int ret_i;
+given par_lit_setup ([4]):(1) then calls ast_new_k:(132, "hi")
+given par_lit_setup ([4]):(1) then calls par_next:[1]
 
 // A leading minus is a separate token (the lexer never folds it), so every place
 // that reads a signed literal folds it here instead.
@@ -10,6 +12,8 @@ par_sign(int[] pos) {
   int sg = 1;
   if (par_is(pos, "-")) { sg = -1; par_next(pos); }
 } return int sg;
+given par_lit_setup ([1]):(-1) then calls par_next:[1]
+given par_lit_setup ([2]):(1) then calls par_next:[0]
 
 // A number left at the scale the author wrote it: the digits as an integer plus
 // the count still owed. Used everywhere the grammar does not name the slot.
@@ -18,3 +22,5 @@ par_num(int[] pos) {
   int nd = par_num_val(pos, sg);
   par_nchk(pos);
 } return int nd;
+given par_lit_setup ([1]):(1) then calls ast_new_num:(-5, 0)
+given par_lit_setup ([2]):(1) then calls ast_new_num:(5, 0)

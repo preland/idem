@@ -2,5 +2,7 @@
 
 zst_lreg_comp(word wp, int w) {
   zst_lregv(wp, w);
-  int ret_i = wp / 16 % inf_pow2(w);
+  int ret_i = wp / 16 % fx_pow(2, w);
 } return int ret_i;
+given zst_init (0, 10):(0)
+given zst_init (256, 10):(16)

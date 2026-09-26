@@ -3,8 +3,12 @@ ed_err_where_input(int x, int y, int w, int i) {
   int in = ed_in(x, y, w, h * 2);
   ed_err_hit(x, y, w, i, in);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 0, 100, 0):() then calls ed_err_hit:(0, 0, 100, 0, 1)
+given ed_t_boot given idstd_err_t_one stdin "" (0, 50, 100, 0):() then calls ed_err_hit:(0, 50, 100, 0, 0)
 
 ed_err_where(int x, int y, int w, int i) {
   ed_err_where_input(x, y, w, i);
   ed_err_where_txt(x, y, i);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 0, 100, 0):() then calls ed_err_where_input:(0, 0, 100, 0)
+given ed_t_boot given idstd_err_t_one stdin "" (0, 0, 100, 0):() then calls ed_err_where_txt:(0, 0, 0)

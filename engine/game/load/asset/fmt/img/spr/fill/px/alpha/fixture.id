@@ -1,0 +1,31 @@
+// Loaded rows for al.id's cases: grey+alpha (colour type 4) and truecolour+
+// alpha (colour type 6) drive spr_alpha2's two inline branches, and the
+// indexed bird.png (colour type 3, a real tRNS chunk) drives spr_alpha's own
+// branch -- the one al.id's fixtures alone cannot reach, since neither type 4
+// nor type 6 is a palette.
+
+spr_ga_fixture() {
+  png_init();
+  png_load("../tests/unit/spr/img/ga.png");
+  export int spr_row_ga = asset_row(0);
+} return void;
+():() then spr_img_w:(4)
+given png_init ():() then spr_img_w:(4)
+
+spr_rgba_fixture() {
+  png_init();
+  png_load("../tests/unit/spr/img/rgba.png");
+  export int spr_row_rgba = asset_row(0);
+} return void;
+():() then spr_img_w:(4)
+given png_init ():() then spr_img_w:(4)
+
+// 17x36, 4-bit indexed, one tRNS byte (index 0 is the only transparent
+// palette entry -- png/hdr/pal/samp/col.id).
+spr_bird_fixture() {
+  png_init();
+  png_load("../games/flappy/art/bird.png");
+  export int spr_row_bird = asset_row(0);
+} return void;
+():() then spr_img_w:(17)
+given png_init ():() then spr_img_w:(17)

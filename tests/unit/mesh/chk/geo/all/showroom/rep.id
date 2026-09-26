@@ -1,10 +1,24 @@
-t_all_open_report() {
-  int bl_all_v = bl_all("games/fps/showroom.blend");
+t_all_open_report(string path) {
+  int bl_all_v = bl_all(path);
   print("bl_all showroom exp 1 = " + bl_all_v);
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls bl_all:("../../../test_assets/cube.blend")
+given mesh_ready ("../../../games/fps/showroom.blend"):("../../../games/fps/showroom.blend") then prints:("bl_all showroom exp 1 = 1\n")
 
 t_all_count_report() {
   int len_v = len((import bl_v));
   int bl_ntri_v = bl_ntri();
   print("total verts exp 94443, triangles exp 167934 = " + len_v / 3 + " " + bl_ntri_v);
 } return void;
+given mesh_all_ready ():() then calls bl_ntri:[1]
+given mesh_all_ready ():() then prints:("total verts exp 94443, triangles exp 167934 = 8 12\n")
+
+// Test-only fixture: the small cube.blend loaded via bl_all, the same code
+// path t_all_open_report exercises on the real showroom, without paying for
+// the real decode -- t_all_open_report's own second case checks that one.
+mesh_all_ready() {
+  mesh_ready();
+  bl_all("../../../test_assets/cube.blend");
+} return void;
+():() then calls mesh_ready:[1]
+():() then calls bl_all:("../../../test_assets/cube.blend")

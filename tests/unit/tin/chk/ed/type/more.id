@@ -3,9 +3,20 @@ t_boot_show() {
   int tin_caret_v = tin_caret();
   print("empty field exp '' caret 0 = '" + tin_text_v + "' " + tin_caret_v);
 } return void;
+given tin_ready ():() then prints:("empty field exp '' caret 0 = '' 0\n")
+given tin_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
 
 t_type1_show() {
   string tin_text_v = tin_text();
   int tin_caret_v = tin_caret();
   print("typed abc exp abc caret 3 = " + tin_text_v + " " + tin_caret_v);
 } return void;
+given tin_typed_ready ():() then prints:("typed abc exp abc caret 3 = abc 3\n")
+given tin_typed_ready ():() then calls tin_text:[1] then calls tin_caret:[1]
+
+tin_rep5_ready() {
+  tin_rep4_ready();
+  t_hold(5470);
+} return void;
+():() then calls tin_rep4_ready:[1]
+():() then calls t_hold:(5470)

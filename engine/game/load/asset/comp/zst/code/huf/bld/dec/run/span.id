@@ -7,9 +7,15 @@ huf_fill1_loop(int w, int p, int s0, int i) {
     i = i + 1;
   }
 } return int p;
+given huf_init (0, 0, 0, 0):(0)
+given huf_init (1, 5, 1, 0):(5)
 
 huf_fill1_frun(int p, int w, int huf_sm_v) {
   int huf_st_v = (import huf_st)[0];
-  int inf_pow2_v = inf_pow2(w);
+  int inf_pow2_v = fx_pow(2, w);
   p = huf_frun(p, huf_sm_v, huf_st_v + 1 - w, inf_pow2_v / 2);
 } return int p;
+given huf_init (0, 1, 42):(1)
+given huf_init (5, 2, 100):(7)
+
+

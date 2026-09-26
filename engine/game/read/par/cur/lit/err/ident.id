@@ -2,9 +2,13 @@ par_ident(int[] pos) {
   string name = par_text(pos);
   int v = par_ident_tail(pos, name);
 } return int v;
+given par_lit_setup ([0]):(1) then calls ast_new_k:(133, "ident")
+given par_lit_setup ([0]):(1) then calls par_next:[1]
 
 par_ident_tail(int[] pos, string name) {
   par_next(pos);
   int kd = (import ast_k_ident);
   int v = ast_new_k(kd, name);
 } return int v;
+given par_lit_setup ([0], "ident"):(1) then calls ast_new_k:(133, "ident")
+given par_lit_setup ([0], "x"):(1) then calls ast_new_k:(133, "x")

@@ -1,0 +1,9 @@
+// jpg_coefbuf_fixture with an end-of-band run already outstanding (3) --
+// for jpg_pacf's own case, whose "consume the run" branch otherwise never
+// runs against jpg_init's all-zero state.
+jpg_eobrun_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_st), 17, 3);
+} return void;
+():() then jpg_eob_check:(3)
+given jpg_init ():() then jpg_eob_check:(3)

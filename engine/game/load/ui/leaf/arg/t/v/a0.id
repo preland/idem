@@ -3,12 +3,16 @@ ui_tc(int nd) {
   int c = ui_vprop(s, "colour", 0xC8C8C8);
   int result = ui_arg(nd, 1, c);
 } return int result;
+given ui_leaf_t_setup (3):(13158600)
+given ui_row_t_setup (1):(13158600)
 
 // A Text's first argument, and how wide a number drawn at a scale is.
 
 ui_arg0(int nd) {
   int result = scn_arg(nd, 0);
 } return int result;
+given ui_item_fx2 (7):(4)
+given ast_init (0):(0)
 
 // It has to agree with what txt_num_sc actually draws, or a centred score drifts
 // by half a digit as it crosses a power of ten.
@@ -17,3 +21,5 @@ txt_num_wsc(int v, int sc) {
   int dn = txt_num_wdn(v);
   int result = txt_num_wsc_tail(v, sc, cell, dn);
 } return int result;
+given txt_init (5, 1000):(8)
+given txt_init (-100, 1000):(32)

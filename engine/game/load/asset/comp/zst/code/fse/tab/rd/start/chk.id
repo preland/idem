@@ -1,0 +1,20 @@
+// Fixture for FSE read tests needing allocated memory.
+
+fser_buf_setup() {
+  export int fser_buf_p = alloc(8);
+  poke8((import fser_buf_p), 0);
+} return void;
+():()
+given fse_init ():()
+
+fser_st_idx(int idx) {
+  int fser_v = (import fse_st)[idx];
+} return int fser_v;
+given fse_init (0):(0)
+given fse_init (1):(0)
+
+fser_zf_idx(int idx) {
+  int fser_z = (import zf_st)[idx];
+} return int fser_z;
+given fse_init (0):(0)
+given fse_init (1):(0)

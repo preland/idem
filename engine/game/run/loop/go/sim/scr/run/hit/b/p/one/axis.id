@@ -4,9 +4,13 @@ scr_ovl_ax(int a, int b, int k, int sk) {
   int aw = ent_at(a, sk);
   int v = scr_ovl_ax2(b, k, sk, ac, aw);
 } return int v;
+given grow_fixture (0, 0, 0, 12):(1)
+given grow2_fixture (0, 1, 0, 12):(1)
 
 scr_ovl_ax2(int b, int k, int sk, int ac, int aw) {
   int bc = ent_at(b, k);
   int bw = ent_at(b, sk);
   int v = scr_span(ac, aw, bc, bw);
 } return int v;
+given grow_fixture (0, 0, 12, 0, 0):(1)
+given grow2_fixture (1, 0, 12, 0, 0):(1)

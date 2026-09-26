@@ -17,6 +17,8 @@ sim_wrap(int e) {
   int ent_anim_v = ent_anim(e);
   ent_put(e, 7, ent_anim_v);
 } return void;
+given grow_fixture (0):() then calls ent_anim:[1]
+given put_fixture (0):() then calls ent_put:[1]
 
 // first + (elapsed / ms) mod the cycle length. An entity with no anim holds
 // whatever frame it has, which for a still sprite is 0.
@@ -26,9 +28,13 @@ ent_anim(int e) {
     f = ent_at(e, 14) + (import sim_st)[0] / ent_at(e, 16) % (ent_at(e, 15) - ent_at(e, 14) + 1);
   }
 } return int f;
+given grow_fixture (0):(0)
+given grow2_fixture (1):(0)
 
 sim_one(int e, int dt) {
   sim_grav(e, dt);
   sim_move(e, dt);
   sim_wrap(e);
 } return void;
+given vel_fixture (0, 1000):() then calls sim_move:[1]
+given vel_fixture (0, 1000):() then calls sim_wrap:[1]

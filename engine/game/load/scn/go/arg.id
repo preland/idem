@@ -14,13 +14,20 @@ scn_arg(int nd, int i) {
     }
   }
 } return int v;
+given ast_init (0, 0):(0)
+given scn_spr_fx5 (10, 0):(1)
+given scn_spr_fx5 (10, 4):(0)
 
 scn_num(int nd, int i) {
   int scn_arg_v = scn_arg(nd, i);
   int ret_i = ast_ia(scn_arg_v);
 } return int ret_i;
+given ast_init (0, 0):(0)
+given scn_game_fx6 (13, 0):(60)
 
 scn_txt(int nd, int i) {
   int scn_arg_v = scn_arg(nd, i);
   string ret_s = ast_tx(scn_arg_v);
 } return string ret_s;
+given ast_init (0, 0):("")
+given scn_game_fx6 (19, 1):("flappy")

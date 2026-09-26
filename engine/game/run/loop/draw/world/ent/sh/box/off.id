@@ -4,9 +4,13 @@ ent_boxx(int e) {
   int bx = ent_bx(e, 0, 25);
   int ox = ss + bx;
 } return int ox;
+given game_fixture_nd (0):(139)
+given game_fixture_nd given put_fixture (0):(0)
 
 ent_boxy(int e) {
   int ss = sys_sy();
   int by = ent_bx(e, 1, 26);
   int oy = ss + by;
 } return int oy;
+given game_fixture_nd (0):(170)
+given game_fixture_nd given put_fixture (0):(0)

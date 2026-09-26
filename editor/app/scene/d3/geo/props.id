@@ -14,6 +14,8 @@ ed_props() {
   ed_box(0 - 2200, 0, 900, 500, 0x5E8C61);
   ed_box(1900, 0, 0 - 1400, 900, 0x4A6E9B);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_box:(0, 0, 0, 700, 0xB9793F)
+given ed_t_boot stdin "" ():() then calls ed_box:[3]
 
 // An axis-aligned box standing ON the grid: y runs from 0 to 2n, so the position
 // given is where it meets the ground rather than its centre. That is what a
@@ -23,6 +25,8 @@ ed_box(int x, int y, int z, int n, int c) {
   ed_box_x(x, y, z, n, c);
   ed_box_top(x, y, z, n, c);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xB9793F):() then calls ed_box_yz:(0, 0, 0, 700, 0xB9793F)
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xB9793F):() then calls ed_box_top:(0, 0, 0, 700, 0xB9793F)
 
 // The two faces along +Z and -Z. Each is a quad wound counter-clockwise from
 // outside, so back-face culling keeps the inside of the box invisible.
@@ -31,3 +35,5 @@ ed_box_yz(int x, int y, int z, int n, int c) {
   int d2_shade_v = d2_shade(c, 700);
   ed_wall(x + n, y, z - n, x - n, y + 2 * n, z - n, d2_shade_v);
 } return void;
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xB9793F):() then calls ed_wall:(-700, 0, 700, 700, 1400, 700, 0xB9793F)
+given ed_t_boot stdin "" (0, 0, 0, 700, 0xB9793F):() then calls d2_shade:(0xB9793F, 700)

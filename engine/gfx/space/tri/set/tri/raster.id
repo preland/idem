@@ -33,6 +33,8 @@ d3_tri(int[] tri) {
   lset((import d3_gs), 6, c);
   d3_tri_go(tri);
 } return void;
+given d3_t_setup ([0, 0, 40, 0, 0, 40, 0, 0, 40, 65280, 65280, 65280]):() then calls d3_proj3:([0, 0, 40, 0, 0, 40, 0, 0, 40, 65280, 65280, 65280], [32, 24, 1717986918, 0, 255, 0, 32, 24, 1717986918, 0, 255, 0, 32, 24, 1717986918, 0, 255, 0]) then calls d3_tri2:[0]
+given d3_t_setup ([0, 0, 1000, 190, 0, 1000, 0, -190, 1000, 0, 0, 0]):() then calls d3_proj3:([0, 0, 1000, 190, 0, 1000, 0, -190, 1000, 0, 0, 0], [32, 24, 68719476, 0, 0, 0, 42, 24, 68719476, 0, 0, 0, 32, 34, 68719476, 0, 0, 0]) then calls d3_tri2:[0]
 
 // Project all three vertices into the screen-vertex record, and answer the flat
 // colour for the triangle (-1 if the three vertices disagree and it must be
@@ -43,6 +45,8 @@ d3_proj3(int[] tri, int[] verts) {
   d3_proj(tri, 1, verts, 6);
   int ret_i = d3_proj3_b(tri, verts);
 } return int ret_i;
+given d3_t_setup ([60, 40, 1000, 20, 10, -5, 60, 40, 1000, 16711680, 65280, 16711680], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):(-1)
+given d3_t_setup ([0, 0, 40, 0, 0, 40, 0, 0, 40, 65280, 65280, 65280], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]):(65280)
 
 d3_flatc(int[] tri) {
   int c = 0 - 1;
@@ -50,3 +54,6 @@ d3_flatc(int[] tri) {
     c = tri[9];
   }
 } return int c;
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 16711680, 16711680, 16711680]):(16711680)
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1]):(-1)
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 6]):(-1)

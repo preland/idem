@@ -3,9 +3,13 @@ scn_svars3() {
   int len_v = len((import scr_vv));
   lset((import scn_st), 11, len_v - (import scn_st)[10]);
 } return void;
+given idem_init ():() then calls lset:[1]
+given scr_fixture ():() then calls lset:[1]
 
 // A scene member and an entity member declare variables the same way, so both go
 // through scr_dmem and neither knows how a binding is spelled.
 scn_svar(int nd) {
   scr_dmem(nd);
 } return void;
+given var_fixture ((import fixture_var)):() then calls scr_dbind:[1]
+given idem_init (0):() then calls scr_dmem:[1]

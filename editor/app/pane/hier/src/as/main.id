@@ -2,3 +2,5 @@ ed_hier(int x, int y, int w, int h) {
   ed_pane(x, y, w, h, "Hierarchy");
   ed_hier_rows_h(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_pane:(0, 0, 100, 100, "Hierarchy")
+given ed_t_boot stdin "" (0, 0, 100, 100):() then calls ed_hier_rows_h:(0, 0, 100, 100)

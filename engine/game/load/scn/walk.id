@@ -7,6 +7,8 @@ scn_walk(int doc, int i) {
     i = i + 1;
   }
 } return void;
+given ast_init (0, 0):() then calls scn_one:[0]
+given scn_game_fx6 (21, 0):() then calls scn_one:(20)
 
 scn_one(int nd) {
   if (ast_kd(nd) = (import ast_k_game)) {
@@ -15,6 +17,8 @@ scn_one(int nd) {
     scn_one2(nd);
   }
 } return void;
+given scn_game_fx6 (20):() then calls scn_game:(20, 0)
+given scn_game_fx6 (13):() then calls scn_game:[0]
 
 // The manifest's components, each a `comp` node whose args are literals.
 scn_game(int nd, int i) {
@@ -24,3 +28,5 @@ scn_game(int nd, int i) {
     i = i + 1;
   }
 } return void;
+given scn_game_fx6 (20, 0):() then calls scn_prop:(13) then calls scn_prop:(19)
+given scn_game_fx6 (20, 1):() then calls scn_prop:(19) then calls scn_prop:[1]

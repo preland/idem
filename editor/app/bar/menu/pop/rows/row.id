@@ -3,14 +3,20 @@ ed_pop_row3(int k, int i, int mx, int ui, int hdr, int rowh) {
   int ok = ed_in(mx - 4 * ui, hdr + 1 + i * rowh, w, rowh) * ed_mon(k, i);
   ed_pop_row4(k, i, ok);
 } return void;
+given ed_t_boot stdin "" (2, 0, 90, 1, 21, 18):() then calls ed_pop_row4:(2, 0, 0)
+given ed_t_boot given ed_t_click_below stdin "" (0, 4, 6, 1, 21, 18):() then calls ed_pop_row4:(0, 4, 1)
 
 ed_pop_row4(int k, int i, int ok) {
   ed_pop_hl(k, i, ok);
   ed_pop_hit(k, i, ok);
 } return void;
+given ed_t_boot stdin "" (2, 0, 1):() then calls ed_pop_hl:(2, 0, 1)
+given ed_t_boot stdin "" (2, 0, 0):() then calls ed_pop_hit:(2, 0, 0)
 
 ed_pop_hl(int k, int i, int ok) {
   if (ok = 1) {
     ed_pop_hl_draw(k, i);
   }
 } return void;
+given ed_t_boot stdin "" (2, 0, 1):() then calls ed_pop_hl_draw:(2, 0)
+given ed_t_boot stdin "" (2, 0, 0):() then calls ed_pop_hl_draw:[0]

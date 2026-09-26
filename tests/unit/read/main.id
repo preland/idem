@@ -2,15 +2,21 @@ main(int argc, string[] argv) {
   err_init();
   t_one("script { on start { vy = 0 } on key space { vy = -400 say \"flap\" } on update { if (pos.y > 480) { goto over } else if (a) { stop } else { despawn other } while (i < 3) { i = i + 1 } repeat 4 { spawn Pipe at (288, 0) } play beep } on timer 500 { pos.x = pos.x + 1 } }");
 } return int 0;
+(1, ["prog"]):(0) then calls t_one:[1]
+(2, ["prog", "x"]):(0) then calls lex_init:[1]
 
 t_one(string src) {
   lex_init();
   ast_init();
   t_two(src);
 } return void;
+("script { on start { } }"):("script { on start { } }") then calls t_two:("script { on start { } }")
+("script { on start { } }"):("script { on start { } }") then calls ast_init:[1]
 
 t_two(string src) {
   int[] pos = [0];
   lex_run(src);
   t_dump(pos);
 } return void;
+given lex_init given ast_init ("script { on start { } }"):("script { on start { } }") then calls t_dump:[1]
+given lex_init given ast_init ("script { on start { } }"):("script { on start { } }") then calls lex_run:("script { on start { } }")

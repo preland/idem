@@ -2,7 +2,21 @@ t_one_load(string msg, string path) {
   string line = msg + ": load exp 1 = " + jpg_load(path);
   print(line);
 } return void;
+given jpg_ready ("grad", "img/grad.jpg"):() then prints:("grad: load exp 1 = 1\n")
+given jpg_ready ("bad", "img/nope.jpg"):() then prints:("bad: load exp 1 = 0\n")
 
 t_one_size(int w, int h) {
   print("  size exp " + w + " " + h + " = " + (import png_st)[0] + " " + (import png_st)[1] + "  channels exp 3 = " + (import png_st)[4]);
 } return void;
+given jpg_grad_ready (24, 16):() then prints:("  size exp 24 16 = 24 16  channels exp 3 = 3\n")
+given jpg_grad_ready (1, 1):() then prints:("  size exp 1 1 = 24 16  channels exp 3 = 3\n")
+
+// Test-only fixture: jpg_load needs the engine's own init order (see main.id),
+// which a `given` cannot run directly because fx_trig_init/png_init/jpg_init/
+// inf_init together are 4 actions -- past the 3-action limit for one block.
+jpg_surf_ready() {
+  fx_trig_init();
+  png_init();
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls png_init:[1]

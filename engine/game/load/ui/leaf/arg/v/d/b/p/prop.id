@@ -5,6 +5,8 @@ ui_vfind(string name) {
   int i = 0;
   p = ui_vscan(name, i, p);
 } return int p;
+given ui_look_fx3 ("Title"):(0)
+given ui_look_fx3 ("Nope"):(-1)
 
 ui_vscan(string name, int i, int p) {
   while (i < len((import ui_vn))) {
@@ -12,6 +14,8 @@ ui_vscan(string name, int i, int p) {
     i = i + 1;
   }
 } return int p;
+given ui_look_fx3 ("Title", 0, -1):(0)
+given ui_look_fx3 ("Nope", 0, -1):(-1)
 
 // A named property of a variant, or the caller's default. The variant's children
 // are its base name followed by one comp per property, so the scan starts at 1.
@@ -20,3 +24,5 @@ ui_vprop(string name, string prop, int dv) {
   int v = dv;
   if (i >= 0) { v = ui_pscan((import ui_vd)[i], prop, 1, dv); }
 } return int v;
+given ui_look_fx3 ("Title", "colour", 0):(291)
+given ui_look_fx3 ("Nope", "colour", 5):(5)

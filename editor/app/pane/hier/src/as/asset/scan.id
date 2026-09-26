@@ -13,6 +13,8 @@ ed_scan_as(string src, int i) {
     i = ed_as_line(src, i);
   }
 } return void;
+given ed_t_boot stdin "" ("#asset x.png\n", 0):() then calls ed_as_line:[1]
+given ed_t_boot stdin "" ("", 0):() then calls ed_as_line:[0]
 
 // scn_reol, not a second copy: finding the end of a line is one piece of logic
 // however many markers are being looked for, and the compiler rejects a duplicate
@@ -23,3 +25,13 @@ ed_as_line(string src, int i) {
   ed_as_take(src, i, e);
   int ret_i = e + 1;
 } return int ret_i;
+given ed_t_boot stdin "" ("#asset x.png\n", 0):(13) then calls ed_as_take:("#asset x.png\n", 0, 12)
+given ed_t_boot stdin "" ("hi\n", 0):(3) then calls ed_as_take:("hi\n", 0, 2)
+
+// One asset ("x.png", not a .blend, so ed_try_as's own scan never risks
+// bl_scene on a file that does not exist), on top of a booted editor.
+ed_t_asset() {
+  ed_scan_as("#asset x.png\n", 0);
+} return void;
+given ed_t_boot stdin "" ():() then calls ed_as_take:("#asset x.png\n", 0, 12)
+given ed_t_boot stdin "" ():() then calls ed_as_line:[1]

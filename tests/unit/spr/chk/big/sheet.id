@@ -12,12 +12,16 @@ t_dump(int p, int n) {
   }
   print("");
 } return void;
+given spr_grey_ready ((import t_grey_p), 8):() then prints:("0 4210752 8421504 16777215 65793 131586 197379 16711422 \n")
+given spr_grey_ready ((import t_grey_p), 0):() then prints:("\n")
 
-t_big() {
-  int p = spr_png("runner", "test_assets/spryte-run.png", 5, 5, 40, 40);
+t_big(string path) {
+  int p = spr_png("runner", path, 5, 5, 40, 40);
   t_big_show(p);
   t_probe(p);
 } return void;
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_big_show:[1]
+given spr_ready2 given t_st_export ("img/grey.png"):("img/grey.png") then calls t_probe:[1]
 
 // Frame 12 is the middle cell of the 5x5 grid and its pixel (20,20) samples source
 // (1280, 1280) -- the pixel tests/unit/png pins at 238 233 205 255, which packs to
@@ -28,3 +32,5 @@ t_probe(int p) {
   t_report(p, 40000, "sheet");
   t_whole();
 } return void;
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p)):() then calls t_report:[2]
+given spr_ready2 given t_st_export given spr_grid_ready ((import t_grid_p)):() then calls t_whole:[1]

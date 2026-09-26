@@ -10,15 +10,21 @@ t_anim() {
   ent_put(0, 16, 120);
   t_anim2();
 } return void;
+given sim_e0_ready ():() then calls ent_put:(0, 16, 120)
+given sim_e0_ready ():() then calls t_anim2:[1]
 
 t_anim2() {
   int t_at_v = t_at(0);
   int t_at_v2 = t_at(120);
   t_anim2b(t_at_v, t_at_v2);
 } return void;
+given sim_anim_ready ():() then calls t_at:(0)
+given sim_anim_ready ():() then calls t_anim2b:(0, 1)
 
 t_anim3() {
   ent_put(0, 15, 0 - 1);
   ent_put(0, 7, 5);
   t_anim3_rep();
 } return void;
+given sim_anim_ready ():() then calls ent_put:(0, 15, -1)
+given sim_anim_ready ():() then calls t_anim3_rep:[1]

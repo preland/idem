@@ -7,9 +7,14 @@ huf_ranks_loop(int i, int n) {
   }
   int ret_i = huf_total(n, 0, 0);
 } return int ret_i;
+given huf_init (0, 0):(0)
+given huf_init (0, 1):(0)
 
 huf_last_setup(int log, int n, int v) {
   lset((import huf_st), 0, log);
-  int inf_pow2_v = inf_pow2(log);
+  int inf_pow2_v = fx_pow(2, log);
   huf_last2(n, inf_pow2_v - v);
 } return void;
+given huf_init (0, 0, 0):()
+given huf_init (3, 1, 5):()
+

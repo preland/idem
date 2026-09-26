@@ -9,19 +9,25 @@
 // cell, and the sum of every column: a wrong stride, a mislaid low-probability
 // symbol or an off-by-one in the next-state counter moves at least one of them.
 
-t_fse() {
+t_fse(string path, int n) {
   zst_pre_init();
   zst_pre_all();
-  t_ftab();
+  t_ftab(path, n);
 } return void;
+given zst_ready ("img/raw.zst", 64):() then calls zst_pre_all:[1]
+given zst_ready ("img/raw.zst", 64):() then calls t_ftab:("img/raw.zst", 64)
 
-t_ftab() {
+t_ftab(string path, int n) {
   t_frole("LL log 6 base 0  ", 0, 64);
   t_frole("OF log 5 base 512", 512, 32);
-  t_ftab2();
+  t_ftab2(path, n);
 } return void;
+given zst_fse_ready ("img/raw.zst", 64):() then calls t_frole:[3]
+given zst_fse_ready ("img/raw.zst", 64):() then calls t_ftab2:("img/raw.zst", 64)
 
 t_frole(string msg, int base, int n) {
   print(msg + " first (" + (import fse_sy)[base] + "," + (import fse_nb)[base] + "," + (import fse_bs)[base] + ")" + " last (" + (import fse_sy)[base + n - 1] + "," + (import fse_nb)[base + n - 1] + "," + (import fse_bs)[base + n - 1] + ")");
   t_fsum(base, n);
 } return void;
+given zst_fse_ready ("test", 0, 64):() then calls t_fsum:(0, 64)
+given zst_fse_ready ("test2", 512, 32):() then calls t_fsum:(512, 32)

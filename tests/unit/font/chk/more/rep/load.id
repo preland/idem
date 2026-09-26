@@ -2,8 +2,24 @@ t_psf_load_report(string path, string label) {
   string msg = label + psf_load(path);
   print(msg);
 } return void;
+given txt_init given asset_io_init ("../../../test_assets/vga8x16.psf", "probe = "):() then prints:("probe = 1\n")
+given txt_init given asset_io_init ("nope.psf", "probe2 = "):() then prints:("probe2 = 0\n")
 
 t_metrics_report(string label) {
   string msg = label + txt_cell() + " " + txt_cellh() + " " + txt_bit() + " " + txt_facen();
   print(msg);
 } return void;
+given txt_init ("m1 = "):() then prints:("m1 = 8 16 8 95\n")
+given font_vga_ready ("m2 = "):() then prints:("m2 = 8 16 8 224\n")
+
+// Test-only fixture: psf_load takes a path a `given` cannot supply, so this
+// wraps the real load main.id's own init order needs -- txt_init, then
+// asset_io_init, then the load itself -- so a case can start from "the VGA
+// face is already loaded" instead of the built-in table.
+font_vga_ready() {
+  txt_init();
+  asset_io_init();
+  psf_load("../../../test_assets/vga8x16.psf");
+} return void;
+():() then calls txt_init:[1]
+():() then calls psf_load:("../../../test_assets/vga8x16.psf")

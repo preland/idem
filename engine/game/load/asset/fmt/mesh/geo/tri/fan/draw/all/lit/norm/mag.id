@@ -5,9 +5,13 @@ bl_lam_mag(int nvx, int nvy, int nvz) {
   word wp = bl_lam_sum(nvx, nvy, nvz);
   wp = wp / fx_max(fx_hyp3_v, 1);
 } return word wp;
+(3, 4, 12):(795)
+(0, 0, 0):(0)
 
 bl_lam_sum(int nvx, int nvy, int nvz) {
   word wp = nvx;
   word wq = nvy;
   wp = wp * 300 + wq * 800 + nvz * 520;
 } return word wp;
+(1, 1, 1):(1620)
+(0, 0, 0):(0)

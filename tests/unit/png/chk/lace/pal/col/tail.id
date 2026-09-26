@@ -5,9 +5,23 @@ t_pal3e(int png_palpha_v, int png_palpha_v2) {
   int png_palpha_v4 = png_palpha(3);
   t_pal3f(png_palpha_v, png_palpha_v2, png_palpha_v3, png_palpha_v4);
 } return void;
+given png_bird_ready (0, 255):() then calls png_palpha:(0)
+given png_bird_ready (0, 255):() then calls t_pal3f:(0, 255, 0, 255)
 
 t_pal3f(int png_palpha_v, int png_palpha_v2, int png_palpha_v3, int png_palpha_v4) {
   int png_palpha_v5 = png_palpha(0);
   print("  those alphas exp 0 255 0 255 0 = " + png_palpha_v + " " + png_palpha_v2 + " " + png_palpha_v3 + " " + png_palpha_v4 + " " + png_palpha_v5);
   t_grey();
 } return void;
+given png_bird_ready (0, 255, 0, 255):() then calls png_palpha:(0)
+given png_bird_ready (0, 255, 0, 255):() then calls t_grey:[1]
+
+// Test-only fixture: the game's own digits.png loaded, the state t_grey
+// builds (see ../../sub/grey/bitmap.id).
+png_digits_ready() {
+  png_ready();
+  inf_init();
+  png_load("../../../games/flappy/art/digits.png");
+} return void;
+():() then calls png_ready:[1]
+():() then calls png_load:("../../../games/flappy/art/digits.png")

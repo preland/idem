@@ -6,3 +6,11 @@ spr_char2(int k, int c) {
   if (k >= 11 && k <= 36) { c = 86 + k; }
   else if (k >= 37) { c = 28 + k; }
 } return int c;
+(15, 46):(101)
+(40, 46):(68)
+
+spr_d9() {
+  int v = (import spr_d)[9];
+} return int v;
+given spr_hdr_ready ():(0)
+given spr_overflow_ready ():(1)

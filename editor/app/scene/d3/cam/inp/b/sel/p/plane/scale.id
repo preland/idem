@@ -2,13 +2,19 @@ ed_pscw() {
   int gw_v = ed_gw();
   int ret_i = ed_rq(3, 2) * 1000 / fx_max(gw_v, 1);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" ():(1250)
+given ed_t_boot given ed_t_lay given ed_t_boot_proj stdin "" ():(1125)
 
 ed_psch() {
   int gh_v = ed_gh();
   int ret_i = ed_rq(3, 3) * 1000 / fx_max(gh_v, 1);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" ():(574)
+given ed_t_boot given ed_t_lay given ed_t_boot_proj stdin "" ():(1470)
 
 ed_psc_ret(int w, int h) {
   int min_v = fx_min(w, h);
   int ret_i = fx_max(min_v * (import ed_st)[18] / 1000, 1);
 } return int ret_i;
+given ed_t_boot (1250, 574):(574)
+given ed_t_boot (574, 1250):(574)

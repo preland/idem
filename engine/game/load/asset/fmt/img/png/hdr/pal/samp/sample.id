@@ -19,10 +19,25 @@
 png_samp(int r, int x) {
   int d = (import png_st)[2];
   int by = peek8(r + 1 + x * d * (import png_st)[4] / 8);
-  int ret_i = by / inf_pow2(8 - d - x * d % 8) % inf_pow2(d);
+  int ret_i = by / fx_pow(2, 8 - d - x * d % 8) % fx_pow(2, d);
 } return int ret_i;
+given spr_bird_fixture ((import spr_row_bird), 0):(0)
+given spr_bird_fixture ((import spr_row_bird), 5):(1)
 
 png_pcol_rgb2(int cr, int cg, int i) {
   int cb = peek8(i + 2);
   int result = d2_rgb(cr, cg, cb);
 } return int result;
+given png_plte_fixture (0, 0, (import png_plte0)):(0)
+given png_plte_fixture (42, 42, (import png_plte1)):(2763306)
+
+// PLTE entry 0 (black) and entry 1 (42,42,42), as store addresses -- for
+// pcol_rgb.id and sample.id's cases, which take a palette entry's address
+// directly rather than an index.
+png_plte_fixture() {
+  spr_bird_fixture();
+  export int png_plte0 = (import png_st)[12];
+  export int png_plte1 = (import png_st)[12] + 3;
+} return void;
+():() then png_pn_check:(5)
+given png_init ():() then png_pn_check:(5)

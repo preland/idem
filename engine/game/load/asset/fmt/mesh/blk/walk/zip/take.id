@@ -7,6 +7,8 @@ bl_unz3(int da, int cap) {
   int zst_run_v = zst_run((import asset_io)[0], (import asset_io)[1], da, cap);
   bl_unz4(da, zst_run_v);
 } return void;
+given zst_init given asset_io_init (5, 256):() then calls zst_run:(0, 0, 5, 256) then calls bl_unz4:(5, 0)
+given zst_init given asset_io_init (7, 128):() then calls zst_run:(0, 0, 7, 128) then calls bl_unz4:(7, 0)
 
 bl_unz4(int da, int got) {
   if (got > 0) {
@@ -14,3 +16,12 @@ bl_unz4(int da, int got) {
     lset((import asset_io), 1, got);
   }
 } return void;
+given asset_io_init (5, 0):() then asset_pipe_len_check:(0)
+given asset_io_init (5, 10):() then asset_pipe_len_check:(10)
+
+// A reader for bl_clear2's side effect: how many block sizes remain.
+bl_clear2_t_check() {
+  int v = len((import bl_bn));
+} return int v;
+given bl_walk_t_setup ():(1)
+given bl_init ():(0)

@@ -5,8 +5,22 @@ bl_afind_walk(int p, int foff, string name) {
   int n = bl_le32(p + foff + 8);
   int ret_i = bl_awalk(ap, n, name);
 } return int ret_i;
+given bl_mesh_t_load (349984, 456, "position"):(1063)
+given bl_mesh_t_load (349984, 456, "nope"):(-1)
 
 bl_afind_ap(int p, int foff) {
   word bl_lew_v = bl_lew(p + foff);
   int ap = bl_at(bl_lew_v);
 } return int ap;
+given bl_mesh_t_load (349984, 456):(1037)
+given bl_geo_init given bl_dna_t_bytes (0, 0):(-1)
+
+// The address of the "position" Attribute record within the cube's own
+// attribute array (index 8 of the array bl_afind_ap resolves), discovered by
+// re-running bl_awalk's own search -- for bl_apk/bl_aname/bl_adata's own
+// cases, which need a real Attribute rather than a raw block address.
+bl_apk_t_addr() {
+  int addr = (import bl_bp)[1037] + 8 * 24;
+} return int addr;
+given bl_mesh_t_load ():(352244)
+given asset_io_init given bl_mesh_t_load ():(352244)

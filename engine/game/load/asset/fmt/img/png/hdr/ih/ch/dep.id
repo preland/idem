@@ -9,14 +9,20 @@ png_chk2() {
     lset((import png_st), 9, 0 - 1);
   }
 } return void;
+given png_init ():() then png_ok_check:(-1)
+given spr_bird_fixture ():() then png_ok_check:(1)
 
 png_baddep() {
   int bad = 1;
   if ((import png_st)[2] = 8) { bad = 0; }
   else { bad = png_subdep((import png_st)[2], (import png_st)[4]); }
 } return int bad;
+given png_init ():(1)
+given spr_bird_fixture ():(0)
 
 png_subdep(int d, int n) {
   int bad = 1;
   if (n = 1 && (d = 1 || d = 2 || d = 4)) { bad = 0; }
 } return int bad;
+(2, 1):(0)
+(3, 1):(1)

@@ -15,15 +15,21 @@ t_more() {
   t_show("shrink to 320x200 exp gw 320 gh 200 cells still 256000", 320, 200);
   t_stage();
 } return void;
+given sys_stage_ready ():() then calls t_show:("shrink to 320x200 exp gw 320 gh 200 cells still 256000", 320, 200)
+given sys_stage_ready ():() then calls t_stage:[1]
 
 t_stage() {
   sf_init(640, 400);
   sys_vp_init(288, 512);
   t_sshow("288x512 game in a 640x400 surface exp sc 781 x 208 y 0 w 224 h 399");
 } return void;
+given sys_open_ready ():() then calls sf_init:(640, 400)
+given sys_open_ready ():() then calls sys_vp_init:(288, 512)
 
 t_sshow(string msg) {
   string line = msg + " = sc " + (import sys_vp)[0] + " x " + sys_sx() + " y " + sys_sy() + " w " + sys_sw() + " h " + sys_sh();
   print(line);
   t_keys();
 } return void;
+given sys_stage_ready ("test"):() then prints:("test = sc 781 x 208 y 0 w 224 h 399\nframe 0, W and UP pressed: exp W 1 1, UP 1 1, S 0 0 = 1 1 1 1 0 0\nframe 1, nothing sent, W still held: exp down 1 hit 0 = 1 0\nW released: exp down 0 hit 0 = 0 0\nW tapped inside one frame: exp down 0 hit 1 = 0 1\nout of range: inp_down(-1), inp_down(512), inp_hit(99999) exp 0 0 0 = 0 0 0\n")
+given sys_stage_ready ("test2"):() then calls t_keys:[1]

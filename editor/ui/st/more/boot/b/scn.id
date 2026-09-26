@@ -10,12 +10,16 @@ ed_boot9() {
   scn_dir_init();
   ed_boot10();
 } return void;
+given ed_t_boot stdin "" ():() then calls scn_init:() then calls scn_dir_init:()
+given ed_t_boot stdin "" ():() then calls scn_dir_init:() then calls ed_boot10:()
 
 ed_boot10() {
   err_mute(1);
   ed_io_init();
   ed_boot11();
 } return void;
+given ed_t_boot stdin "" ():() then calls err_mute:(1) then calls ed_io_init:()
+given ed_t_boot stdin "" ():() then calls ed_io_init:() then calls ed_boot11:()
 
 // eng_seam last, and unconditional, so it has run before ed_run (main.id) can
 // call the first frame -- the editor's own g_ref (host.id) is what ui_val calls
@@ -25,3 +29,5 @@ ed_boot11() {
   ed_init(read_all_v);
   eng_seam(g_init, g_stage, g_step, g_draw, g_ref, g_act);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_init:("") then calls eng_seam:(g_init, g_stage, g_step, g_draw, g_ref, g_act)
+given ed_t_boot stdin "" ():() then calls eng_seam:(g_init, g_stage, g_step, g_draw, g_ref, g_act)

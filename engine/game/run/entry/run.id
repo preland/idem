@@ -22,15 +22,21 @@ idem_boot(string[] chunks, int argc, string[] argv) {
   err_mute(0);
   int ret_i = idem_boot2(chunks, argc, argv);
 } return int ret_i;
+([""], 2, ["prog", "x"]):(0) then calls idem_shot:(1)
+([""], 2, ["prog", "5"]):(0) then calls idem_shot:(5)
 
 idem_init() {
   fx_trig_init();
   rnd_init(20260730);
   idem_init2();
 } return void;
+():() then calls fx_trig_init:[1]
+():() then calls rnd_init:(20260730)
 
 idem_init3() {
   d2_spr_init();
   ent_init();
   idem_init5();
 } return void;
+():() then calls d2_spr_init:[1]
+():() then calls ent_init:[1]

@@ -1,0 +1,43 @@
+// One manifest property.
+//
+// `display (288, 512) "flappy"` -- the tuple is the size and the string is the
+// window title. `fps 60`, `scale 2`, `start play`. Anything else is ignored here
+// rather than refused: a manifest may carry things this stage does not read yet
+// (`keys`, `persist`), and the loader that does read them will find them.
+
+scn_prop(int nd) {
+  if (ast_tx(nd) = "display") {
+    int scn_arg_v = scn_arg(nd, 0);
+    scn_disp(scn_arg_v);
+  } else {
+    scn_prop2(nd);
+  }
+} return void;
+given scn_game_fx6 (19):() then calls scn_disp:(16) then calls m4_pair:[1]
+given scn_game_fx6 (13):() then calls scn_prop2:(13) then calls scn_disp:[0]
+
+scn_prop2(int nd) {
+  if (ast_tx(nd) = "fps") {
+    int scn_num_v = scn_num(nd, 0);
+    int fx_max_v = fx_max(scn_num_v, 1);
+    lset((import scn_st), 2, fx_max_v);
+  } else {
+    scn_prop3(nd);
+  }
+} return void;
+given scn_game_fx6 (13):() then calls lset:[1] then calls scn_prop3:[0]
+given scn_game_fx6 (19):() then calls scn_prop3:(19) then calls lset:[0]
+
+// A tuple node's two numbers are its first two children.
+scn_disp(int t) {
+  if (t != 0) {
+    int[] ks = ast_ks(t);
+    if (len(ks) >= 2) {
+      int v0 = ast_ia(ks[0]);
+      int v1 = ast_ia(ks[1]);
+      m4_pair((import scn_st), 0, 1, v0, v1);
+    }
+  }
+} return void;
+given ast_init (0):() then calls m4_pair:[0]
+given scn_game_fx6 (16):() then calls m4_pair:[1]

@@ -1,0 +1,23 @@
+// jpg_final_fixture (real DC coefficient 10, real bit reader at grad.jpg's
+// entropy data) flagged Ss=1 (an AC band) and Ah=1 (a refinement scan) --
+// for dispatch.id's cases, which route on exactly those two fields.
+
+jpg_ss1_fixture() {
+  jpg_final_fixture();
+  jpg_ss1_set();
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)
+
+jpg_ss1_set() {
+  lset((import jpg_st), 13, 1);
+} return void;
+given jpg_final_fixture ():() then jpg_dc0_check:(10)
+given jpg_coefbuf_fixture ():() then jpg_dc0_check:(0)
+
+jpg_ah1_fixture() {
+  jpg_final_fixture();
+  lset((import jpg_st), 15, 1);
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)

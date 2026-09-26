@@ -5,6 +5,8 @@ ed_insp_decl_none(int x, int y) {
   int col = ed_col(5);
   txt_draw("nothing selected", x + 6 * ui, y + 4 * ui, col);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls txt_draw:("nothing selected", 6, 14, 0x8A8A8A)
+given ed_t_boot stdin "" (5, 20):() then calls txt_draw:("nothing selected", 11, 24, 0x8A8A8A)
 
 ed_insp_decl(int x, int y, int w) {
   if ((import ed_st)[0] >= 0 && (import ed_st)[0] < len((import ed_nm))) {
@@ -13,3 +15,13 @@ ed_insp_decl(int x, int y, int w) {
     ed_insp_decl_none(x, y);
   }
 } return void;
+given ed_t_boot stdin "" (0, 10, 100):() then calls ed_insp_decl_none:(0, 10)
+given ed_t_boot given ed_t_boot_proj given ed_t_decl_sel stdin "" (0, 10, 100):() then calls ed_insp_rows:(0, 10, 100, 0)
+
+// Declaration 0 selected, on top of a real project (ed_t_boot_proj), so
+// ed_insp_decl's "something is selected" branch has a real ed_nm to index.
+ed_t_decl_sel() {
+  lset((import ed_st), 0, 0);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([0, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 0, 0)
+given ed_t_boot stdin "" ():() then calls lset:[1]

@@ -1,0 +1,28 @@
+// `grid (1, 3)` as a call node (5) over the two numbers fx2 built, then the two
+// numbers `cell (2, 2)` needs (6, 7).
+scn_spr_fx3() {
+  scn_spr_fx2();
+  int n5 = ast_new_kids((import ast_k_call), "grid", [3, 4]);
+  int n6 = ast_new_num(2, 0);
+} return void;
+():() then ast_n:(7)
+given ast_init ():() then ast_n:(7)
+
+// `cell (2, 2)` as a call node (8) over 6 and the second 2 built here (7).
+scn_spr_fx4() {
+  scn_spr_fx3();
+  int n7 = ast_new_num(2, 0);
+  int n8 = ast_new_kids((import ast_k_call), "cell", [6, 7]);
+} return void;
+():() then ast_n:(9)
+given ast_init ():() then ast_n:(9)
+
+// The full sprite comp node (10): `bird from "art/bird.png" grid (1, 3) cell
+// (2, 2)`, its four arguments (1, 2, 5, 8) collected under an args node (9).
+scn_spr_fx5() {
+  scn_spr_fx4();
+  int n9 = ast_new_kids((import ast_k_args), "args", [1, 2, 5, 8]);
+  int n10 = ast_new_a((import ast_k_comp), "bird", 9);
+} return void;
+():() then ast_n:(11)
+given ast_init ():() then ast_n:(11)

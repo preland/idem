@@ -1,0 +1,16 @@
+// A second header state, with a non-zero vertex count, so a loop-wiring case
+// has something to count.
+
+mdl_hdr2_ready() {
+  imp_init();
+  mdl_go("box 2 0");
+} return void;
+():() then calls imp_init:[1]
+():() then calls mdl_go:("box 2 0")
+
+mdl_hdr3_ready() {
+  imp_init();
+  mdl_go("box 0 2");
+} return void;
+():() then calls imp_init:[1]
+():() then calls mdl_go:("box 0 2")

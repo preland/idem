@@ -12,12 +12,16 @@ t_cut() {
   d3_ncut(tri, 0, 1, 0);
   t_cutp();
 } return void;
+given d3_ready ():() then calls d3_ncut:[6]
+given d3_ready ():() then calls t_cutp:[1]
 
 t_cutp() {
   print("ncut z2000->z0 at near 40: exp x 979 y 0 z 40 = " + (import d3_clp)[0] + " " + (import d3_clp)[1] + " " + (import d3_clp)[2]);
   print("ncut colour red->blue exp 393465 = " + (import d3_clp)[9]);
   t_raster();
 } return void;
+given d3_cut_ready ():() then calls t_raster:[1]
+given d3_cut_ready ():() then prints:("ncut z2000->z0 at near 40: exp x 979 y 0 z 40 = 979 0 40\nncut colour red->blue exp 393465 = 393465\nnclip wholly in front (exp ~19044, the triangle's area) lit = 19049\nnclip wholly behind (exp 0 lit) lit = 0\nnclip two vertices in front, quad (exp ~42416) lit = 42483\nnclip one vertex in front, corner (exp ~38080) lit = 38074\n")
 
 // The same triangle at four sets of depths, one per branch of the case analysis:
 // wholly in front, wholly behind, two vertices in front (the quad, split into two
@@ -32,3 +36,5 @@ t_raster() {
   t_case("wholly behind (exp 0 lit)", 0 - 2000, 0 - 2000, 0 - 2000);
   t_raster2();
 } return void;
+given d3_ready ():() then calls t_case:("wholly in front (exp ~19044, the triangle's area)", 2000, 2000, 2000)
+given d3_ready ():() then calls t_raster2:[1]

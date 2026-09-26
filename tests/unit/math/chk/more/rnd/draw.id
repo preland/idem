@@ -15,6 +15,8 @@ t_rndloop() {
   t_draw(xs, 1000);
   print("rnd_range(10,20) x1000 min exp 10, max exp 20 = " + xs[0] + " " + xs[1]);
 } return void;
+given fx_trig_init given rnd_seed5 ():() then calls t_draw:[1]
+given fx_trig_init given rnd_seed5 ():() then prints:("rnd_range(10,20) x1000 min exp 10, max exp 20 = 10 20\n")
 
 t_draw(int[] xs, int n) {
   int i = 0;
@@ -23,9 +25,13 @@ t_draw(int[] xs, int n) {
     i = i + 1;
   }
 } return void;
+given rnd_seed0 ([5, 5], 0):([5, 5]) then calls t_one:[0]
+given rnd_seed0 ([5, 5], 3):([5, 19]) then calls t_one:[3]
 
 t_one(int[] xs) {
   int v = rnd_range(10, 20);
   int fx_min_v = fx_min(xs[0], v);
   t_one2(xs, v, fx_min_v);
 } return void;
+given rnd_seed0 ([5, 5]):([5, 17]) then calls rnd_range:(10, 20)
+given rnd_seed0 ([5, 5]):([5, 17]) then calls t_one2:[1]

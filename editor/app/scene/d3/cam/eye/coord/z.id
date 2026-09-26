@@ -5,9 +5,13 @@ ed_cam_coord_z(int d, int deg, int pit) {
   int m = fx_mul(d, cos_p, 1000);
   int v = ed_cam_z_with_m(m, deg);
 } return int v;
+given ed_t_boot stdin "" (1000, 0, 0):(1000)
+given ed_t_boot stdin "" (1000, 90000, 0):(0)
 
 ed_cam_z_with_m(int m, int deg) {
   int cos_d = fx_cos(deg);
   int cz = (import ed_st)[12];
   int v = cz + fx_mul(m, cos_d, 1000);
 } return int v;
+given ed_t_boot stdin "" (1000, 0):(1000)
+given ed_t_boot stdin "" (1000, 90000):(0)

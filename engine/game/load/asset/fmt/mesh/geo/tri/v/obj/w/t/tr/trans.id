@@ -5,14 +5,20 @@ bl_wtrans(int p, int si) {
   bl_wtrans_xy(p, off);
   bl_wtrans_z(p, off);
 } return void;
+given bl_geo_init given bl_walk_t_setup (49, 0):() then bl_wtrans_xy_t_check:(-18597888)
+given asset_io_init given bl_geo_init given bl_walk_t_setup (0, 0):() then bl_wtrans_xy_t_check:(3268125)
 
 bl_wtrans_xy(int p, int off) {
   int bl_f32_v = bl_f32(p + off);
   int bl_f32_v2 = bl_f32(p + off + 4);
   m4_pair((import bl_wm), 3, 7, bl_f32_v, bl_f32_v2);
 } return void;
+given bl_wm_init given bl_dna_t_bytes (17, 0):() then bl_wtrans_xy_t_check:(0)
+given bl_wm_init given bl_dna_t_bytes (0, 0):() then bl_wtrans_xy_t_check:(45212112)
 
 bl_wtrans_z(int p, int off) {
   int bl_f32_v3 = bl_f32(p + off + 8);
   lset((import bl_wm), 11, bl_f32_v3);
 } return void;
+given bl_wm_init given bl_dna_t_bytes (17, -8):() then bl_wtrans_z_t_check:(0)
+given bl_wm_init given bl_dna_t_bytes (0, -8):() then bl_wtrans_z_t_check:(45212112)

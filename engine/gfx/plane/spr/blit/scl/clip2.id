@@ -6,8 +6,12 @@ d2_scl_clip2(int p, int x, int y, int i, int sc, int x0, int w) {
   int[] px = d2_spr_px(p);
   d2_scl_clip3(x, y, i, sc, x0, x1, px);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 2000, 0, 2):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (1, 0, 0, 3, 1000, 0, 3):() then d2_blit_t_px00:(8)
 
 d2_scl_clip3(int x, int y, int i, int sc, int x0, int x1, int[] px) {
   int idx = sf_idx(x0, y);
   d2_scl_row(px, i, (import sf_fb), idx, x1 - x0 + 1, sc, x0 - x);
 } return void;
+given sf_t_setup (0, 0, 0, 1000, 0, 1, [5, 9]):() then d2_blit_t_px00:(5)
+given sf_t_setup (0, 0, 0, 1000, 0, 0, [-1, 9]):() then d2_blit_t_px00:(0)

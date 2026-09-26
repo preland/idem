@@ -11,6 +11,8 @@ fse_zrun2() {
   int b = fse_z2();
   fse_zfill((import fse_st)[4] + a + b);
 } return void;
+given fse_init ():()
+given zf_st_val_setup ():()
 
 fse_z16() {
   int n = 0;
@@ -19,6 +21,8 @@ fse_z16() {
     n = n + 24;
   }
 } return int n;
+given fse_init ():(0)
+given zf_st_val_setup ():(0)
 
 fse_z2() {
   int n = 0;
@@ -28,3 +32,5 @@ fse_z2() {
   }
   int ret_i = n + fse_z2b();
 } return int ret_i;
+given fse_init ():(0)
+given zf_st_val_setup ():(3)

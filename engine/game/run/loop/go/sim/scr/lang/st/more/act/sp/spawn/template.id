@@ -19,15 +19,21 @@ scr_spawn(int nd, int e) {
     scr_spawn2(t, ast_ia_v, e);
   }
 } return void;
+given spawn_fixture ((import fixture_spawn), -1):() then calls scr_spawn2:[1]
+given idem_init (0, -1):() then calls scr_tpl:[1]
 
 scr_spawn2(int t, int tup, int e) {
   int ne = ent_add();
   scn_efill(ne, t, 0);
   scr_place(ne, tup, e);
 } return void;
+given idem_init (0, 0, -1):() then calls scr_place:[1]
+given idem_init (0, 0, -1):() then calls ent_add:[1]
 
 scr_place(int ne, int tup, int e) {
   int x = scr_tup(tup, 0, e);
   ent_put(ne, 0, x * 1000);
   scr_place2(ne, tup, e);
 } return void;
+given grow_fixture (0, 0, -1):() then calls ent_put:(0, 0, 0)
+given grow_fixture (0, 0, -1):() then calls scr_place2:[1]

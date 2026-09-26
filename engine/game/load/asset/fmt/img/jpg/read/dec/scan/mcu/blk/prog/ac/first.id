@@ -14,6 +14,8 @@ jpg_pac(int ci, int a) {
     jpg_pacr(ci, a);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_pacf:(0, (import jpg_coef_a)) then calls jpg_pacr:[0]
+given jpg_ah1_fixture (0, (import jpg_coef_a)):() then calls jpg_pacr:(0, (import jpg_coef_a)) then calls jpg_pacf:[0]
 
 jpg_pacf(int ci, int a) {
   if ((import jpg_st)[17] > 0) {
@@ -22,9 +24,13 @@ jpg_pacf(int ci, int a) {
     jpg_pacf2(ci, a, (import jpg_st)[13]);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_pacf2:(0, (import jpg_coef_a), 0) then jpg_eob_check:(0)
+given jpg_eobrun_fixture (0, (import jpg_coef_a)):() then jpg_eob_check:(2) then calls jpg_pacf2:[0]
 
 jpg_pacf2(int ci, int a, int k) {
   while (k > 0 && k <= (import jpg_st)[14] && (import jpg_st)[8] = 1) {
     k = jpg_pacf3(ci, a, k);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 1):() then calls jpg_pacf3:[0]
+given jpg_pacf2_fixture (0, (import jpg_coef_a), 1):() then calls jpg_pacf3:[2]

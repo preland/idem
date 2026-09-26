@@ -17,3 +17,23 @@ t_raster2() {
   t_case("two vertices in front, quad (exp ~42416)", 3000, 3000, 0 - 1000);
   t_case("one vertex in front, corner (exp ~38080)", 0 - 1000, 0 - 1000, 3000);
 } return void;
+given d3_ready ():() then calls t_case:("two vertices in front, quad (exp ~42416)", 3000, 3000, -1000)
+given d3_ready ():() then calls t_case:("one vertex in front, corner (exp ~38080)", -1000, -1000, 3000)
+
+// Test-only fixture: engine/gfx needs a surface (for the depth buffer and its
+// width, which the focal length is derived from) before d3_init, and d3_init
+// before anything that reads d3_cam/d3_vm -- see main.id's own comment on the
+// init order.
+d3_surf_ready() {
+  fx_trig_init();
+  sf_open(320, 200);
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls sf_open:(320, 200)
+
+d3_ready() {
+  d3_surf_ready();
+  d3_init();
+} return void;
+():() then calls d3_surf_ready:[1]
+():() then calls d3_init:[1]

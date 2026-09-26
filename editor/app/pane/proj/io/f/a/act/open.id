@@ -6,14 +6,20 @@ ed_open_path() {
   string ed_pick_file_v = ed_pick_file();
   sset((import ed_path), 0, scn_dir_v + ed_pick_file_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls sset:([""], 0, "")
+given ed_t_boot given ed_t_asset_sel stdin "" ():() then calls sset:(["<input>"], 0, "<input>")
 
 ed_open_read() {
   string ed_rd_v = ed_rd((import ed_path)[0]);
   sset((import ed_doc), 0, ed_rd_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_rd:("")
+given ed_t_boot stdin "" ():() then calls sset:[1]
 
 ed_open() {
   ed_open_path();
   ed_open_read();
   ed_reopen(7);
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_open_path:[1]
+given ed_t_boot stdin "" ():() then calls ed_reopen:(7)

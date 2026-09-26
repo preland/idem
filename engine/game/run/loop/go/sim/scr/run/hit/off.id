@@ -11,6 +11,8 @@ scr_offs(int e) {
     e = e + 1;
   }
 } return void;
+given idem_init (0):() then calls scr_off:[0]
+given grow_fixture (0):() then calls scr_off:[1]
 
 scr_off(int e) {
   if (ent_at(e, 9) % 2 = 1 && ent_at(e, 0) < 0 - (import scn_st)[0] * 1000) {
@@ -18,6 +20,8 @@ scr_off(int e) {
     scr_fire(scr_sc_v, "offscreen", e, "");
   }
 } return void;
+given grow_fixture (0):() then calls ent_at:[2]
+given put_fixture (0):() then calls ent_at:[2]
 
 // The scene a handler asked for, applied now that every walk has finished.
 scr_jump() {
@@ -25,3 +29,5 @@ scr_jump() {
     scn_enter((import scr_st)[2]);
   }
 } return void;
+given idem_init ():() then calls scn_enter:[0]
+given grow_fixture ():() then calls scn_enter:[0]

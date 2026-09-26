@@ -15,6 +15,8 @@ pack_esc(string src, int p, int n) {
   int nxt = pack_esc_run(src, p, n, ad);
   string ret_s = str_of_mem(ad, nxt);
 } return string ret_s;
+("AB", 0, 2):("AB")
+("A\nB", 0, 3):("A\\nB")
 
 // j is the write cursor and runs ahead of the read cursor i, by one for every
 // character that needed a backslash.
@@ -27,8 +29,12 @@ pack_esc_run(string src, int p, int n, word ad) {
     i = i + 1;
   }
 } return int j;
+given pack_buf_ready ("AB", 0, 2, (import pack_buf)):(2) then pack_buf_str:("AB")
+given pack_buf_ready ("A\n", 0, 2, (import pack_buf)):(3) then pack_buf_str:("A\\")
 
 pack_esc_ch(int ch, word ad) {
   int esc = pack_esc_kd(ch);
   int n = pack_esc_put(ch, esc, ad);
 } return int n;
+given pack_buf_ready (65, (import pack_buf)):(1)
+given pack_buf_ready (10, (import pack_buf)):(2) then pack_buf_str:("\\n")

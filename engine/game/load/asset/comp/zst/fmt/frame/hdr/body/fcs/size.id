@@ -15,14 +15,20 @@ zst_fcs(int f, int ss) {
   int zst_fval_v = zst_fval(f, n);
   lset((import zst_st), 7, zst_fval_v);
 } return void;
+given zst_src_setup (0, 1):() then calls zst_fval:[1]
+given zst_src_setup (1, 0):() then calls zst_fval:[1]
 
 zst_fsz(int f, int ss) {
   int n = ss;
   if (f = 1) { n = 2; }
   else { n = zst_fsz2(f, n); }
 } return int n;
+(1, 5):(2)
+(0, 5):(5)
 
 zst_fsz2(int f, int n) {
   if (f = 2) { n = 4; }
   else if (f = 3) { n = 8; }
 } return int n;
+(2, 10):(4)
+(3, 10):(8)

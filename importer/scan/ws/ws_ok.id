@@ -6,8 +6,18 @@ imp_ws_ok(string src, int i) {
   int sp = imp_space(c);
   int ok = imp_ws_ok2(sp, c);
 } return int ok;
+(" ", 0):(1)
+("hi", 0):(0)
 
 imp_ws_ok2(int sp, int c) {
   int ok = 0;
   if (sp = 1 || c = 35) { ok = 1; }
 } return int ok;
+(1, 0):(1)
+(0, 65):(0)
+
+imp_p0() {
+  int v = (import imp_p)[0];
+} return int v;
+given imp_init ():(0)
+given imp_init_at5 ():(5)

@@ -10,12 +10,16 @@ mdl_v3(string src, int x, int y) {
   int imp_int_v = imp_int(src);
   print("    (" + x + ", " + y + ", " + imp_int_v + ")");
 } return void;
+given imp_init ("300", 1, 2):() then prints:("    (1, 2, 300)\n")
+given imp_init ("5", 0, 0):() then prints:("    (0, 0, 5)\n")
 
 mdl_faces(string src) {
   print("  faces {");
   mdl_face_all(src);
   print("  }");
 } return void;
+given mdl_hdr_ready ("0"):() then calls mdl_face_all:("0")
+given mdl_hdr2_ready ("1 2 3 255"):() then calls mdl_face_all:("1 2 3 255")
 
 mdl_face_all(string src) {
   int i = 0;
@@ -25,3 +29,5 @@ mdl_face_all(string src) {
   }
   print("}");
 } return void;
+given mdl_hdr_ready ("x"):() then calls mdl_face:[0]
+given mdl_hdr3_ready ("0 1 2 255 0 1 2 255"):() then calls mdl_face:[2]

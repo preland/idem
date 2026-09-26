@@ -7,3 +7,6 @@ ui_axis(string name) {
   if (name = "Row") { k = 1; }
   else if (name = "Col") { k = 0; }
 } return int k;
+("Row"):(1)
+("Col"):(0)
+("Stack"):(-1)

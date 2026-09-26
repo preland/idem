@@ -7,6 +7,8 @@ scn_bg(int nd, int i) {
     i = i + 1;
   }
 } return void;
+given scn_bg_fx2 (26, 0):() then calls scn_bg1:(24) then calls scn_bg1:(25)
+given scn_bg_fx2 (26, 1):() then calls scn_bg1:(25) then calls scn_bg1:[1]
 
 // `clear` and `gravity`, the two scene properties a frame reads. Gravity is
 // declared in stage units per second squared and kept in millunits, like every
@@ -19,6 +21,8 @@ scn_bg1(int nd) {
     scn_grav(nd);
   }
 } return void;
+given scn_bg_fx1 (24):() then calls lset:[1] then calls scn_grav:[0]
+given scn_bg_fx1 (25):() then calls scn_grav:(25) then calls m4_pair:[1]
 
 // `sprite NAME from "path" grid (c, r) cell (w, h)` -- a reference, decoded by the
 // engine. The path is relative to the game's directory, which the runtime knows
@@ -28,3 +32,5 @@ scn_sprite(int nd) {
   int[] scn_sprite_dims_v = scn_sprite_dims(nd);
   spr_png(scn_sprite_info_v[0], scn_sprite_info_v[1], scn_sprite_dims_v[0], scn_sprite_dims_v[1], scn_sprite_dims_v[2], scn_sprite_dims_v[3]);
 } return void;
+given scn_spr_fx5 given png_init given d2_spr_init (10):() then calls spr_png:("bird", "art/bird.png", 1, 3, 2, 2)
+given scn_spr_fx5 given png_init given d2_spr_init (10):() then calls spr_png2:[0]

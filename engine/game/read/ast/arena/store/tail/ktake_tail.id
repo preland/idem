@@ -3,3 +3,5 @@ ast_ktake_tail(string[] strs, string s, int i, int e) {
   push(strs, sl);
   int result = e + 1;
 } return int result;
+([], "nil file", 0, 3):(4)
+([], "abcdef", 2, 5):(6)

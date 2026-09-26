@@ -10,6 +10,8 @@ scr_evars(int e, int nd, int i) {
   ent_put(e, 17, len_v);
   scr_evars2(e, nd, i);
 } return void;
+given grow_fixture (0, 0, 0):() then calls ent_put:(0, 17, 0)
+given grow_fixture (0, 0, 0):() then calls scr_evars2:[1]
 
 scr_evars2(int e, int nd, int i) {
   int[] ks = ast_ks(nd);
@@ -19,6 +21,8 @@ scr_evars2(int e, int nd, int i) {
   }
   scr_evars3(e);
 } return void;
+given grow_fixture (0, 0, 0):() then calls scr_evars3:[1]
+given block_fixture (0, (import fixture_block), 0):() then calls scr_emem:[1]
 
 // Three member kinds matter here: a `var` declares, a `script` is kept by node,
 // and a `tag` contributes bits. scr_dmem does nothing to a member that is not a
@@ -27,3 +31,5 @@ scr_emem(int e, int nd) {
   scr_dmem(nd);
   scr_emem2(e, nd);
 } return void;
+given assign_fixture (0, (import fixture_assign)):() then calls scr_dmem:[1]
+given assign_fixture (0, (import fixture_assign)):() then calls scr_emem2:[1]

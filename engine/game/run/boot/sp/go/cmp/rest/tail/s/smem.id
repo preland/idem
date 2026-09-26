@@ -16,3 +16,5 @@
 scn_smem(int nd, int k) {
   int ret_i = scn_mtup2(nd, k);
 } return int ret_i;
+given game_fixture_shape ((import fixture_shape), 0):(10)
+given game_fixture_shape ((import fixture_shape), 1):(60)

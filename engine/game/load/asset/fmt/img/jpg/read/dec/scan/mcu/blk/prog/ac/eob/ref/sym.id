@@ -12,12 +12,16 @@ jpg_rsym(int ci, int a) {
     jpg_rsym2(ci, a, jpg_dec_v);
   }
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_rsym2:(0, (import jpg_coef_a), 7)
+given jpg_rset_fixture (0, (import jpg_coef_a)):() then jpg_r3_check:(2) then calls jpg_rsym2:[0]
 
 jpg_rsym2(int ci, int a, int rs) {
   lset((import jpg_r), 1, rs / 16);
   lset((import jpg_r), 2, 0);
   jpg_rsym3(a, rs / 16, rs % 16);
 } return void;
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 7):() then calls jpg_rsym3:((import jpg_coef_a), 0, 7)
+given jpg_coefbuf_fixture (0, (import jpg_coef_a), 20):() then calls jpg_rsym3:((import jpg_coef_a), 1, 4)
 
 // The sign bit is read here and nowhere else, in its own statement, because it
 // must be consumed immediately after the symbol and before any correction bit.
@@ -28,3 +32,5 @@ jpg_rsym3(int a, int rn, int sz) {
     jpg_rzrl(a, rn);
   }
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a), 0, 7):() then calls jpg_rsign:((import jpg_coef_a)) then calls jpg_rzrl:[0]
+given jpg_coefbuf_fixture ((import jpg_coef_a), 3, 0):() then calls jpg_rzrl:((import jpg_coef_a), 3) then calls jpg_rsign:[0]

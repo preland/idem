@@ -20,15 +20,21 @@ d3_fill() {
   lst_fill((import d3_spn), 16, 0);
   d3_fill2();
 } return void;
+given d3_t_setup ():() then d3_t_vts_len:(36)
+given d3_t_vp_odd_setup ():() then d3_vp_w:(64)
 
 d3_fill2() {
   lst_fill((import d3_gs), 7, 0);
   lst_fill((import d3_clp), 12, 0);
   d3_fill3();
 } return void;
+given d3_t_setup ():() then d3_t_vts_len:(18)
+given d3_t_vp_odd_setup ():() then d3_vp_w:(64)
 
 d3_fill3() {
   export int[] d3_vp = [0, 0, 0, 0, 0, 0];
   d3_viewport(0, 0, (import sf_gw), (import sf_gh));
   d3_mats();
 } return void;
+given d3_t_setup ():() then d3_t_vts_len:(18)
+given d3_t_vp_odd_setup ():() then d3_vp_w:(64)

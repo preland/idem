@@ -7,9 +7,14 @@ huf_fill_loop(int w, int p) {
     w = w + 1;
   }
 } return void;
+given huf_init (1, 0):()
+given huf_init (1, 10):()
 
 huf_fill_vals(int w) {
   int huf_rk_v = (import huf_rk)[0];
   int huf_first_v = huf_first(w);
   int ret_i = huf_rk_v + huf_first_v;
 } return int ret_i;
+given huf_init (0):(0)
+given huf_init (2):(0)
+

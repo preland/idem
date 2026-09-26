@@ -5,9 +5,23 @@ t_wrap3() {
   sim_wrap(0);
   t_wrap3b();
 } return void;
+given sim_wrap_ready ():() then calls sim_wrap:(0)
+given sim_wrap_ready ():() then calls t_wrap3b:[1]
 
 t_wrap3b() {
   int ent_at_v = ent_at(0, 0);
   print("inside it: x unchanged exp -143000 = " + ent_at_v);
   t_anim();
 } return void;
+given sim_wrap_in_ready ():() then calls ent_at:(0, 0)
+given sim_wrap_in_ready ():() then prints:("inside it: x unchanged exp -143000 = -143000\nframes at 0, 120, 240, 360 ms exp 0 1 2 0 = 0 1 2 0\nno anim: frame held exp 5 = 5\n")
+
+// Entity 0, wrap-bound aside, with an anim assigned (see t_anim in
+// ./a/anim.id).
+sim_anim_ready() {
+  sim_e0_ready();
+  m4_pair((import ent_r), 14, 15, 0, 2);
+  ent_put(0, 16, 120);
+} return void;
+():() then calls sim_e0_ready:[1]
+():() then calls ent_put:(0, 16, 120)

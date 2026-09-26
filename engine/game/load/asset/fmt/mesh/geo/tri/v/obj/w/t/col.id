@@ -3,8 +3,21 @@ bl_wcol(int i, int a, int b, int c) {
   bl_wcol_set(i, 1, b);
   bl_wcol_set(i, 2, c);
 } return void;
+given bl_wm_init (0, 2000, 3, 4):() then bl_wm0_t_check:(2000)
+given bl_wm_init (0, 500, 3, 4):() then bl_wm0_t_check:(500)
 
 bl_wcol_set(int i, int j, int v) {
   int fx_mul_v = fx_mul((import bl_wm)[i * 4 + j], v, 1000);
   lset((import bl_wm), i * 4 + j, fx_mul_v);
 } return void;
+given bl_wcol_t_setup (0, 0, 500):() then bl_wm0_t_check:(150)
+given bl_wcol_t_setup (0, 0, 1000):() then bl_wm0_t_check:(300)
+
+// wm[0] left at 300 (neither 0 nor 1000, the two values that hide a wrong
+// bl_wcol_set from a fresh identity) -- for bl_wcol_set's own cases above.
+bl_wcol_t_setup() {
+  bl_wm_init();
+  bl_wcol_set(0, 0, 300);
+} return void;
+():() then bl_wm0_t_check:(300)
+given asset_io_init ():() then bl_wm0_t_check:(300)

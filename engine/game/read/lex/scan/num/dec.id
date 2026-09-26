@@ -5,12 +5,16 @@ lex_num(string src, int i) {
   int nxt = 0;
   if (lex_ishex0(src, i)) { nxt = lex_hex(src, i); } else { nxt = lex_dec(src, i); }
 } return int nxt;
+given lex_init ("0x1F", 0):(4) then calls lex_push:(13, "0x1F", 31, 0)
+given lex_init ("42", 0):(2) then calls lex_push:(13, "42", 42, 0)
 
 lex_dec(string src, int i) {
   int e = lex_digend(src, i);
   int fe = lex_fracend(src, e);
   int v = lex_dnum(src, i, e, fe);
 } return int v;
+given lex_init ("42", 0):(2) then calls lex_push:(13, "42", 42, 0)
+given lex_init ("3.5", 0):(3) then calls lex_push:(13, "3.5", 35, 1)
 
 lex_digend(string src, int i) {
   int e = i;
@@ -20,3 +24,5 @@ lex_digend(string src, int i) {
     c = charat(src, e);
   }
 } return int e;
+("12a", 0):(2)
+("", 0):(0)

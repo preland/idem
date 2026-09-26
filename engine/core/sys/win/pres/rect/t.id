@@ -1,0 +1,26 @@
+// Stage rects for sys_sw/sys_sh/sys_sx/sys_sy and sys_stage/sys_soff's own
+// cases: sys_vp_init needs a surface (sf_gw/sf_gh) to fit a non-degenerate
+// scale, and its own args are a literal a zero-parameter given cannot pass.
+// A 64x48 surface throughout, at three declared display sizes, so the three
+// getters land on different, checkable numbers.
+
+sys_t_vp() {
+  sf_open(64, 48);
+  sys_vp_init(64, 48);
+} return void;
+():() then sys_sw:(64)
+():() then sys_sh:(48)
+
+sys_t_vp2() {
+  sf_open(64, 48);
+  sys_vp_init(32, 48);
+} return void;
+():() then sys_sx:(16)
+():() then sys_sw:(32)
+
+sys_t_vp3() {
+  sf_open(64, 48);
+  sys_vp_init(64, 16);
+} return void;
+():() then sys_sy:(16)
+():() then sys_sh:(16)

@@ -9,14 +9,20 @@ ed_bars() {
   ed_tools();
   ed_bars2();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_menu:[1]
+given ed_t_boot stdin "" ():() then calls ed_bars2:[1]
 
 ed_bars2() {
   ed_status();
   ed_menu_pop();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_status:[1]
+given ed_t_boot stdin "" ():() then calls ed_menu_pop:[1]
 
 ed_menu() {
   int r0 = ed_rq(0, 0);
   int y = ed_rq(0, 1) + ed_rq(0, 3) - 1;
   ed_menu_line(r0, y);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" ():() then calls ed_menu_line:(0, 20)
+given ed_t_boot given ed_t_lay stdin "" ():() then calls ed_rq:[4]

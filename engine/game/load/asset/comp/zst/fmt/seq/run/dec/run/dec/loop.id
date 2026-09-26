@@ -18,10 +18,14 @@ zst_sdec(int n, int end) {
   zst_sinit();
   zst_sloop(n, end);
 } return void;
+given zst_src_setup (0, 1):() then calls zst_sinit:[1]
+given zst_src_setup (0, 1):() then calls zst_sloop:[1]
 
 zst_sinit() {
   zst_sinit_st();
 } return void;
+given zstsq_setup ():() then calls zst_sinit_st:[1]
+given zst_init given zstsq_setup ():() then calls zst_sinit_st:[1]
 
 // The last sequence does not advance the states -- there are no bits left for it
 // to read, and asking would fault on a stream that is exactly the right length.
@@ -33,3 +37,5 @@ zst_sloop(int n, int end) {
   }
   zst_sfin(end);
 } return void;
+given zst_src_setup (0, 8):() then calls zst_sfin:[1]
+given zst_src_setup (1, 8):() then calls zst_sfin:[1]

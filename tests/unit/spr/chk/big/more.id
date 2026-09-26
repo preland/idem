@@ -2,8 +2,22 @@ t_big_show(int p) {
   string msg = "sheet: id " + p + " " + d2_spr_w(p) + "x" + d2_spr_h(p) + " frames " + d2_spr_nf(p);
   print(msg);
 } return void;
+given spr_grid_ready (0):() then prints:("sheet: id 0 40x40 frames 25\n")
+given spr_grid_ready (0):() then calls d2_spr_nf:(0)
 
 t_probe_show(int p) {
   string msg = "  frame0 (0,0) exp -1 = " + d2_spr_at(p, 0) + " | frame12 (20,20) exp 15657421 = " + d2_spr_at(p, 12 * 1600 + 20 * 40 + 20);
   print(msg);
 } return void;
+given spr_grid_ready (0):() then prints:("  frame0 (0,0) exp -1 = 0 | frame12 (20,20) exp 15657421 = 0\n")
+given spr_grid_ready (0):() then calls d2_spr_at:[2]
+
+// Test-only fixtures: spr_png takes parameters a `given` cannot supply, and
+// each build sits on the previous, mirroring main.id's own init order (see
+// spr_ready in ../small/more.id).
+spr_ready2() {
+  spr_ready();
+  inf_init();
+} return void;
+():() then calls spr_ready:[1]
+():() then calls inf_init:[1]

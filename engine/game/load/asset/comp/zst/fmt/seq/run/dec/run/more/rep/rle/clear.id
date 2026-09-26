@@ -9,3 +9,5 @@ zst_srle2(int base) {
   lset((import fse_nb), base, 0);
   lset((import fse_bs), base, 0);
 } return void;
+given zst_init (0):()
+given zst_init (512):()

@@ -7,13 +7,14 @@ mkf_out(string msg, string path, int[] xs, int[] psh) {
   int rc = 1;
   if (msg = "") {
     mkf_emit(path, xs, psh);
+    mkf_cases_print(xs, psh);
     rc = 0;
   } else {
     print(msg);
   }
 } return int rc;
 ("bad", "p.psf", [], []):(1)
-("", "q.psf", [0], [0, 0, 1, 8, 127]):(0)
+("", "q.psf", [0, 0, 0], [0, 0, 1, 8, 127]):(0)
 
 mkf_check(string path, int[] xs, int[] psh) {
   string msg = mkf_magic(path, xs, psh);

@@ -26,12 +26,16 @@ bl_all(string path) {
   bl_reset();
   int ret_i = bl_all_open(path);
 } return int ret_i;
+given zst_init given bl_geo_init ("../test_assets/cube.blend"):(1)
+given zst_init given bl_geo_init ("../test_assets/vga8x16.psf"):(0)
 
 bl_all_open(string path) {
   int bl_open_v = bl_open(path);
   lset((import bl_st), 11, bl_open_v);
   int ret_i = bl_all2();
 } return int ret_i;
+given zst_init given bl_geo_init ("../test_assets/cube.blend"):(1) then calls bl_all2:[1]
+given zst_init given bl_geo_init ("../test_assets/vga8x16.psf"):(0) then calls bl_all2:[1]
 
 bl_all2() {
   int i = 0;
@@ -41,3 +45,5 @@ bl_all2() {
   }
   int ret_i = len((import bl_ti)) > 0;
 } return int ret_i;
+given bl_all_t_setup ():(1)
+given bl_geo_init ():(0)

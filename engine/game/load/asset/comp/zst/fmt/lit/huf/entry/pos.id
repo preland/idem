@@ -1,0 +1,36 @@
+// Real fixtures for the Huffman literal-section entry points: mix.zst
+// (Size_Format 0, one stream) and four.zst (Size_Format 3, four streams),
+// each positioned at their file's only block's literals-section header byte
+// (offsets 10 and 12, read off the real bytes -- the frame header widths of
+// the two fixtures differ) so zst_lhuf's own cases decode real Huffman-coded
+// bytes instead of a synthetic buffer.
+
+zst_lhuf_mix_setup() {
+  png_init();
+  zst_init();
+  int slen = asset_slurp("../tests/unit/zst/img/mix.zst");
+} chain () {
+  int da = alloc(slen);
+  zst_reset((import asset_io)[0], slen, da, slen);
+  lset((import zst_st), 1, 10);
+} return void;
+():() then calls zst_reset:[1]
+():() then calls asset_slurp:("../tests/unit/zst/img/mix.zst")
+
+zst_lhuf_four_setup() {
+  png_init();
+  zst_init();
+  int slen = asset_slurp("../tests/unit/zst/img/four.zst");
+} chain () {
+  int da = alloc(slen);
+  zst_reset((import asset_io)[0], slen, da, slen);
+  lset((import zst_st), 1, 12);
+} return void;
+():() then calls zst_reset:[1]
+():() then calls asset_slurp:("../tests/unit/zst/img/four.zst")
+
+zst_litn_check() {
+  int litn = (import zst_st)[9];
+} return int litn;
+given zst_lhuf_mix_setup ():(0)
+given zst_lhuf_four_setup ():(0)

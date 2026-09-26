@@ -22,6 +22,8 @@ sys_sync() {
   int h = gfx_height();
   sys_fit(w, h);
 } return void;
+():() then calls sys_fit:(0, 0)
+given sf_t_setup ():() then calls sys_fit:(0, 0)
 
 sys_present() {
   if ((import sf_gw) = gfx_width() && (import sf_gh) = gfx_height()) {
@@ -39,3 +41,6 @@ sys_fit(int w, int h) {
     sys_stage();
   }
 } return void;
+(0, 0):() then calls sf_init:[0]
+given sys_t_vp (64, 48):() then calls sf_init:[0]
+given sys_t_vp (128, 96):() then calls sf_init:(128, 96)

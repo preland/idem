@@ -5,9 +5,13 @@ fse_read_loop(int zf_bits_v, int maxs) {
   fse_rloop();
   int ret_i = zf_used();
 } return int ret_i;
+given fse_init (0, 256):(1)
+given zf_st_val_setup (1, 128):(1)
 
 fse_rinit_setup(int log, int inf_pow2_v, int inf_pow2_v2, int maxs) {
   m4_pair((import fse_st), 0, 1, log, inf_pow2_v + 1);
   m4_pair((import fse_st), 2, 3, inf_pow2_v2, log + 1);
   fse_rinit2(maxs);
 } return void;
+given fse_init (3, 8, 8, 256):()
+given zf_st_val_setup (4, 16, 16, 512):()

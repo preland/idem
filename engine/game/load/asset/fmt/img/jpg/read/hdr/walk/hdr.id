@@ -10,12 +10,16 @@ jpg_soi(int n) {
   int ok = 0;
   if (n > 4 && asset_at(0) = 255 && asset_at(1) = 216) { ok = 1; }
 } return int ok;
+given jpg_raw_fixture (336):(1)
+given jpg_raw_fixture (4):(0)
 
 jpg_walk(int ok) {
   jpg_walk1(ok);
   jpg_loop();
   int ret_i = jpg_fin();
 } return int ret_i;
+given jpg_raw_fixture (1):(1)
+given jpg_raw_fixture (0):(0)
 
 // The pixels are built after the whole file has been walked, not at the end of
 // the scan: a progressive image has several scans and only the last completes
@@ -27,3 +31,5 @@ jpg_fin() {
   }
   int ret_i = (import jpg_st)[8];
 } return int ret_i;
+given jpg_init ():(0)
+given jpg_grad_fixture ():(1) then calls jpg_all:[1]

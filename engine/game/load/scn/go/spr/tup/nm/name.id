@@ -12,3 +12,23 @@ scn_ifname(int nd, string name, int i) {
   int scn_arg_v = scn_arg(nd, i);
   if (ast_tx(scn_arg_v) = name) { t = scn_arg(nd, i); }
 } return int t;
+given scn_spr_fx5 (10, "grid", 2):(5)
+given scn_spr_fx5 (10, "grid", 0):(0)
+
+// Two argument-less scene properties (24, 25): enough for scn_bg1's own
+// dispatch, which never reads past the name before handing off.
+scn_bg_fx1() {
+  scn_scene_fx();
+  int n24 = ast_new_k((import ast_k_comp), "clear");
+  int n25 = ast_new_k((import ast_k_comp), "gravity");
+} return void;
+():() then ast_n:(26)
+given ast_init ():() then ast_n:(26)
+
+// A scene (26) whose body is those two properties, for scn_bg's own loop.
+scn_bg_fx2() {
+  scn_bg_fx1();
+  int n26 = ast_new_kids((import ast_k_scene), "scene", [24, 25]);
+} return void;
+():() then ast_n:(27)
+given ast_init ():() then ast_n:(27)

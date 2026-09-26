@@ -1,0 +1,7 @@
+// A reader for the define table's size, for ui_dload's own cases: push is a
+// builtin and cannot be recorded with `calls`.
+ui_dn_t_check() {
+  int v = len((import ui_dn));
+} return int v;
+given ui_look_fx3 ():(0)
+given ui_dinit ():(0)

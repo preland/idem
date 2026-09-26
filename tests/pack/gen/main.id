@@ -1,0 +1,45 @@
+// gen DIR: write roundtrip.sh's three generated filler files into DIR. Exit 0
+// when all three are written, 1 when any is not, 2 when DIR is missing.
+main(int argc, string[] argv) {
+  int gp_rc = 2;
+  if(argc >= 2) {
+    gp_rc = gen_fixtures(argv[1] + "/zz-bulk.idml", argv[1] + "/zz-longline.idml", argv[1] + "/zz-noeol.idml");
+  }
+} return int gp_rc;
+(1, ["gen"]):(2)
+(2, ["gen", "/nonexistent/gp"]):(1)
+
+gen_fixtures(string gp_p1, string gp_p2, string gp_p3) {
+  int[] gp_bulk = [];
+  fill_bulk(gp_bulk, (import bulk_n));
+  int gp_w1 = write_bytes(gp_p1, gp_bulk);
+} chain (string gp_p1, string gp_p2, string gp_p3) {
+  int[] gp_long = [];
+  put_repeat(gp_long, (import long_unit), (import long_reps));
+  int gp_w2 = write_bytes(gp_p2, gp_long);
+} chain (string gp_p1, string gp_p2, string gp_p3) {
+  int[] gp_noeol = [];
+  put_bytes(gp_noeol, (import noeol_text));
+  int gp_w3 = write_bytes(gp_p3, gp_noeol);
+} chain (string gp_p1, string gp_p2, string gp_p3) {
+  int gp_rc = 0;
+  if(gp_w1 < 0 || gp_w2 < 0 || gp_w3 < 0) {
+    gp_rc = 1;
+  }
+} return int gp_rc;
+("/dev/null", "/dev/null", "/dev/null"):(0)
+("/dev/null", "/nonexistent/gp/x", "/dev/null"):(1)
+
+// The bytes written, or -1 when the file cannot be opened.
+write_bytes(string gp_path, int[] gp_b) {
+  int gp_h = fs_open(gp_path, "w");
+  int gp_len = len(gp_b);
+  int gp_n = 0 - 1;
+} chain (string gp_path, int[] gp_b) {
+  if(gp_h >= 0) {
+    gp_n = fs_write(gp_h, gp_b, gp_len);
+    int gp_closed = fs_close(gp_h);
+  }
+} return int gp_n;
+("/dev/null", [1, 2]):(2)
+("/nonexistent/gp/x", [1]):(-1)

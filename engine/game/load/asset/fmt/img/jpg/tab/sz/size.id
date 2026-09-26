@@ -4,3 +4,5 @@ jpg_init7b() {
   lst_fill((import jpg_nb), 8, 0);
   jpg_init8();
 } return void;
+given jpg_init ():() then calls jpg_init8:[1]
+given jpg_init2 ():() then calls jpg_init8:[1]

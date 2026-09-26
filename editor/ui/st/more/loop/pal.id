@@ -1,0 +1,16 @@
+// Readers for ed_pal, so a case can witness a push without a builtin's own
+// call being recordable: the length after a batch of colours, and the last
+// one added.
+
+ed_pal_len() {
+  int n = len((import ed_pal));
+} return int n;
+given ed_t_boot stdin "" ():(14)
+given ed_t_boot given ed_colours stdin "" ():(28)
+
+ed_pal_last() {
+  int n = len((import ed_pal));
+  int ret_i = (import ed_pal)[n - 1];
+} return int ret_i;
+given ed_t_boot stdin "" ():(0xD8A24A)
+given ed_t_boot given ed_colours stdin "" ():(0xD8A24A)

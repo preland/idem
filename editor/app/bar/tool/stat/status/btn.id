@@ -3,11 +3,15 @@ ed_play_btn(int x, string s) {
   int txt_width_v = txt_width(s);
   int ret_i = ed_play_btn2(x, s, hdr, txt_width_v);
 } return int ret_i;
+given ed_t_boot stdin "" (10, "play"):(0) then calls ed_play_btn2:(10, "play", 21, 32)
+given ed_t_boot stdin "" (5, "step"):(0) then calls ed_play_btn2:(5, "step", 21, 32)
 
 ed_play_btn2(int x, string s, int hdr, int txt_width_v) {
   int ui = txt_ui();
   int ret_i = ed_btn(x, hdr + 2, txt_width_v + 8 * ui, hdr, s);
 } return int ret_i;
+given ed_t_boot stdin "" (10, "play", 21, 32):(0) then calls ed_btn:(10, 23, 40, 21, "play")
+given ed_t_boot stdin "" (5, "step", 21, 32):(0) then calls ed_btn:(5, 23, 40, 21, "step")
 
 // 1 toggles running, 2 asks for one frame. Slot 16 carries both, and ed_tick
 // clears a 2 after simulating -- so a step is exactly one frame however long the
@@ -18,3 +22,5 @@ ed_play_hit(int ok, int k) {
     lset((import ed_st), 16, ed_play_next_v);
   }
 } return void;
+given ed_t_boot stdin "" (1, 1):() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1000, 0, 0], 16, 1)
+given ed_t_boot stdin "" (0, 1):() then calls lset:[0]

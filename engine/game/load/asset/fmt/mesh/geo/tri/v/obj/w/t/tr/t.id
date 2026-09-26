@@ -1,0 +1,13 @@
+// A reader for bl_wtrans_xy's side effect: the x it wrote into bl_wm[3].
+bl_wtrans_xy_t_check() {
+  int v = (import bl_wm)[3];
+} return int v;
+given bl_wm_init ():(0)
+given bl_geo_init ():(0)
+
+// A reader for bl_wtrans_z's side effect: the z it wrote into bl_wm[11].
+bl_wtrans_z_t_check() {
+  int v = (import bl_wm)[11];
+} return int v;
+given bl_wm_init ():(0)
+given bl_geo_init ():(0)

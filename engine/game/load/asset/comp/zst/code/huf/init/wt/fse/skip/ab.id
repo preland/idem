@@ -12,3 +12,5 @@ huf_wstart_ab2() {
   int fse_dstart_v2 = fse_dstart(3);
   lset((import huf_ab), 1, fse_dstart_v2);
 } return void;
+given huf_wstart_test_setup_a ():() then huf_wstart_test_check1:(0)
+given huf_wstart_test_setup_b ():() then huf_wstart_test_check1:(14)

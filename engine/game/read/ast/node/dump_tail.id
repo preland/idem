@@ -1,0 +1,16 @@
+// ast_dump_mark's tail: the call node (3) whose a is the num leaf and b the
+// ident leaf, then a str leaf (4) for ast_sexp3's quoted-string case.
+
+ast_dump_mark2() {
+  int[] ks = [2];
+  int nid3 = ast_new((import ast_k_call), "f", 1, 2, 0, ks);
+  ast_dump_mark3();
+} return void;
+given ast_init ():() then ast_n:(3)
+given ast_init ():() then ast_n:(3) then eprints:("")
+
+ast_dump_mark3() {
+  int nid4 = ast_new_k((import ast_k_str), "hi");
+} return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_n:(2) then eprints:("")

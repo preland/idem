@@ -1,0 +1,24 @@
+// Test fixtures for time.id's own cases. A wall clock has no literal to
+// compare against, so a case stamps ticks() just before the call under test
+// and these read it back: sys_t0 brackets "now", sys_t_after proves ticks()
+// never runs backward, and sys_t_wgood proves a real sleep elapsed rather than
+// a no-op.
+
+sys_t_clock() {
+  export int sys_t0 = ticks();
+} return void;
+():() then sys_t_after:(1)
+():() then sys_t_wgood:(0)
+
+sys_t_after() {
+  int r = (ticks() >= (import sys_t0));
+} return int r;
+given sys_t_clock ():(1)
+given sys_t_clock ():(1) then sys_t_wgood:(0)
+
+sys_t_wgood() {
+  int e = ticks() - (import sys_t0);
+  int r = (e >= 20);
+} return int r;
+given sys_t_clock ():(0)
+given sys_t_clock ():(0) then sys_t_after:(1)

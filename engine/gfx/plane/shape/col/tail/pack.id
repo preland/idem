@@ -5,8 +5,13 @@ d2_shade_pack(int c, int n, int cr, int cg) {
   int cb = d2_cb(c) * n / 1000;
   int rgb = d2_rgb(cr, cg, cb);
 } return int rgb;
+(16711680, 1000, 255, 0):(16711680)
+(16711680, 500, 127, 0):(8323072)
 
 d2_rgb_cb(int cr_clamped, int cg_clamped, int cb) {
   int cb_clamped = fx_clamp(cb, 0, 255);
   int rgb = cr_clamped * 65536 + cg_clamped * 256 + cb_clamped;
 } return int rgb;
+(255, 255, 255):(16777215)
+(0, 0, 0):(0)
+(0, 0, 300):(255)

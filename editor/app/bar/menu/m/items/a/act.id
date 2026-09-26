@@ -5,14 +5,22 @@ ed_masset(int i) {
   if (i = 0) { s = "Import..."; }
   else if (i = 1) { s = "Reload"; }
 } return string s;
+(0):("Import...")
+(1):("Reload")
+(2):("Frame All")
 
 ed_mview(int i) {
   string s = "Front View";
   if (i = 0) { s = "Reset View"; }
   else if (i = 1) { s = "Top View"; }
 } return string s;
+(0):("Reset View")
+(1):("Top View")
+(2):("Front View")
 
 ed_mhelp(int i) {
   string s = "About";
   if (i = 0) { s = "Controls"; }
 } return string s;
+(0):("Controls")
+(1):("About")

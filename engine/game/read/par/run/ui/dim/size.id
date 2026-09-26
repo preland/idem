@@ -18,14 +18,20 @@ par_dims(int[] pos) {
     nd = par_dims2(pos);
   }
 } return int nd;
+given par_item_setup ([6]):(3) then calls ast_new_ab:(138, "top", 1, 2)
+given par_item_setup ([18]):(0)
 
 par_dims2(int[] pos) {
   int a = par_dim(pos);
   int b = par_dims3(pos);
   int ret_i = par_dims4(pos, a, b);
 } return int ret_i;
+given par_item_setup ([7]):(3) then calls ast_new_ab:(138, "top", 1, 2)
+given par_item_setup ([20]):(3) then calls ast_new_ab:(138, "top-left", 1, 2)
 
 par_dims3(int[] pos) {
   par_want(pos, ",");
   int ret_i = par_dim(pos);
 } return int ret_i;
+given par_item_setup ([8]):(1) then calls ast_new_num:(6000, 0)
+given par_item_setup ([21]):(1) then calls ast_new_num:(2000, 0)

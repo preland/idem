@@ -9,14 +9,20 @@ scr_tdue(int h, int e, int acc) {
   int due = acc >= ms;
   scr_tdrain(e, ms, due);
 } return int due;
+given idem_init (0, -1, 2000):(1)
+given idem_init (0, -1, 0):(0)
 
 scr_tms(int h, int e) {
   int ia = ast_ia(h);
   int v = scr_ev(ia, e);
   int ms = fx_max(v, 1);
 } return int ms;
+given idem_init (0, -1):(1)
+given un_fixture ((import fixture_un), -1):(42)
 
 scr_tdrain(int e, int ms, int due) {
   if (due = 1 && e < 0) { lset((import scn_st), 12, (import scn_st)[12] - ms); }
   else if (due = 1) { int ent_at_v = ent_at(e, 21); ent_put(e, 21, ent_at_v - ms); }
 } return void;
+given idem_init (-1, 50, 1):() then calls lset:[1]
+given grow_fixture (0, 50, 1):() then calls ent_put:(0, 21, -50)

@@ -1,0 +1,30 @@
+// Where the executable is, and choosing between the two roots.
+
+// The one thing idem_boot has to do between initialising and reading: mute the
+// diagnostics if this is a screenshot, and record where the executable is before
+// anything asks for an asset.
+idem_pre(int argc, string[] argv) {
+  err_mute(argc > 1);
+  scn_exe(argv);
+} return void;
+given idem_init (2, ["prog", "x"]):() then calls err_mute:(1)
+given idem_init (1, ["prog"]):() then calls err_mute:(0)
+
+scn_exe(string[] argv) {
+  string dir = scn_dirof(argv[0]);
+  sset((import scn_dir), 1, dir);
+} return void;
+given idem_init (["dist/flappy/flappy"]):() then calls scn_dirof:("dist/flappy/flappy")
+given idem_init (["flappy"]):() then calls scn_dirof:("flappy")
+
+// An empty root means no `#root` line was in the stream at all -- a unit test, or
+// a hand-fed source -- and the right behaviour there is the working directory,
+// which is what an empty prefix gives. Only a root that was *stated* and is
+// *missing* falls back.
+scn_rfix() {
+  if ((import scn_dir)[0] != "" && fs_exists((import scn_dir)[0]) = 0) {
+    sset((import scn_dir), 0, (import scn_dir)[1]);
+  }
+} return void;
+given idem_init ():() then calls sset:[0]
+given dirfix ():() then calls sset:[1]

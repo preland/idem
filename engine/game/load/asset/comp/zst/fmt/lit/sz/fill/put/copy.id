@@ -6,9 +6,13 @@ zst_lcopy_loop(int i, int n) {
     i = i + 1;
   }
 } return void;
+given zst_src_setup (0, 3):() then calls zst_lcopy_put:[3]
+given zst_src_setup (1, 0):() then calls zst_lcopy_put:[0]
 
 zst_lcopy_put(int i) {
   int zst_st_v = (import zst_st)[8];
   int zst_byte_v = zst_byte((import zst_st)[1] + i);
   poke8(zst_st_v + i, zst_byte_v);
 } return void;
+given zst_src_setup (0):() then calls zst_byte:[1]
+given zst_src_setup (1):() then calls zst_byte:[1]

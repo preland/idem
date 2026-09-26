@@ -9,16 +9,20 @@
 // A file that is not there. fs_size answers -1, so nothing is read at all and
 // psf_head sees a zero-length file.
 t_bad() {
-  t_psf_load_report("test_assets/no-such-font.psf", "psf_load of a missing file exp 0 = ");
+  t_psf_load_report("../../../test_assets/no-such-font.psf", "psf_load of a missing file exp 0 = ");
   t_hash_report("  face untouched, hash still 485156385 = ");
   t_bad2();
 } return void;
+given txt_init given asset_io_init ():() then calls t_psf_load_report:("../../../test_assets/no-such-font.psf", "psf_load of a missing file exp 0 = ")
+given txt_init given asset_io_init ():() then calls t_bad2:[1]
 
 // A file that is there and is not a font. tools/mkfont.sh starts with '#!', so
 // it fails both magics -- and it is a file this repository is guaranteed to
 // have, which a purpose-built fixture would not be any better at proving.
 t_bad2() {
-  t_psf_load_report("tools/mkfont.sh", "psf_load of a non-font file exp 0 = ");
+  t_psf_load_report("../../../tools/mkfont.sh", "psf_load of a non-font file exp 0 = ");
   t_hash_report("  face untouched, hash still 485156385 = ");
   t_metrics_report("  metrics untouched exp 8 16 8 224 = ");
 } return void;
+given txt_init given asset_io_init ():() then calls t_psf_load_report:("../../../tools/mkfont.sh", "psf_load of a non-font file exp 0 = ")
+given txt_init given asset_io_init ():() then calls t_metrics_report:("  metrics untouched exp 8 16 8 224 = ")

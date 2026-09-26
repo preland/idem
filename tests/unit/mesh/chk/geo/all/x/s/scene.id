@@ -4,19 +4,25 @@
 // times -- so the vertex total is larger than the meshes' own, and the bounding
 // box is the room rather than one mesh's local space. Both come from Blender's
 // own reading of the file, transforms included.
-t_scene() {
-  t_scene_open_report();
+t_scene(string path) {
+  t_scene_open_report(path);
   t_scene_count_report();
   t_sbox();
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_scene_open_report:("../../../test_assets/cube.blend")
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_sbox:[1]
 
-t_scene_open_report() {
-  int bl_scene_v = bl_scene("games/fps/showroom.blend");
+t_scene_open_report(string path) {
+  int bl_scene_v = bl_scene(path);
   print("bl_scene showroom exp 1 = " + bl_scene_v);
 } return void;
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls bl_scene:("../../../test_assets/cube.blend")
+given mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then prints:("bl_scene showroom exp 1 = 1\n")
 
 t_scene_count_report() {
   int len_v = len((import bl_v));
   int bl_ntri_v = bl_ntri();
   print("scene verts exp 130657, triangles exp 233552 = " + len_v / 3 + " " + bl_ntri_v);
 } return void;
+given mesh_scene_ready ():() then calls bl_ntri:[1]
+given mesh_scene_ready ():() then prints:("scene verts exp 130657, triangles exp 233552 = 8 12\n")

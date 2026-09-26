@@ -3,3 +3,20 @@ jpg_plane_alloc(int ci) {
   int da = alloc(fx_max_v);
   lset((import jpg_c), ci * 10 + 7, da);
 } return void;
+given jpg_small_fixture (0):() then jpg_plane0_check:(0)
+given jpg_init (0):() then jpg_plane0_check:(0)
+
+// The scan band's start (jpg_st[13]) as a value, for band_coef's cases.
+jpg_ss_check() {
+  int v = (import jpg_st)[13];
+} return int v;
+given jpg_init ():(0)
+given jpg_raw_fixture ():(0)
+
+// The successive-approximation low bit (jpg_st[16]) as a value, for
+// band_prec's cases.
+jpg_al_check() {
+  int v = (import jpg_st)[16];
+} return int v;
+given jpg_init ():(0)
+given jpg_raw_fixture ():(0)

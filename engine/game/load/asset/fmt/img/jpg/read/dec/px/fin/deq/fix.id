@@ -1,0 +1,20 @@
+// jpg_one_fixture (a real coefficient buffer, addressed by jpg_ca[0]), plus
+// a real pixel plane and a single quantiser value -- so a real dequantise
+// puts exactly one nonzero coefficient (jpg_f[0]) where the DC-only IDCT
+// case (jpg_idct100_fixture) already pins the arithmetic by hand: coefficient
+// 10 x quantiser 5 = DC 50 -> row pass 141 -> column pass 134.
+
+jpg_final_fixture() {
+  jpg_one_fixture();
+  jpg_final_set();
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)
+
+jpg_final_set() {
+  jpg_plane_set();
+  jpg_cset((import jpg_coef_a), 0, 10);
+  lset((import jpg_q), 0, 5);
+} return void;
+given jpg_one_fixture ():() then jpg_dc0_check:(10)
+given jpg_coefbuf_fixture ():() then jpg_dc0_check:(10)

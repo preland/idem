@@ -17,12 +17,16 @@ png_ihdr(int p) {
   int asset_be32_v2 = asset_be32(p + 4);
   int ret_i = png_ihdr_p(p, asset_be32_v, asset_be32_v2);
 } return void;
+given png_raw_fixture (16):() then calls png_ihdr_p:(16, 17, 36)
+given png_raw_fixture (0):() then calls png_ihdr_p:(0, -1991225785, 218765834)
 
 png_ihdr1(int p) {
   int asset_at_v = asset_at(p + 8);
   int asset_at_v2 = asset_at(p + 9);
   int ret_i = png_ihdr1_p(p, asset_at_v, asset_at_v2);
 } return void;
+given png_raw_fixture (16):() then calls png_ihdr1_p:(16, 4, 3)
+given png_raw_fixture (0):() then calls png_ihdr1_p:(0, 0, 0)
 
 // IHDR + 12 is the interlace method. It was never read, which meant an Adam7
 // file decoded as garbage rather than being refused: the seven passes are laid
@@ -33,3 +37,5 @@ png_ihdr2(int p) {
   lset((import png_st), 10, asset_at_v);
   png_ihdr3();
 } return void;
+given png_raw_fixture (16):() then calls png_ihdr3:[1]
+given png_raw_fixture (0):() then calls png_ihdr3:[1]

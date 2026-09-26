@@ -5,11 +5,15 @@ par_mui(int[] pos) {
   par_want(pos, "{");
   int ret_i = par_mui2(pos);
 } return int ret_i;
+given par_dmem_setup ([11]):(2) then calls ast_new_kids:(136, "", [1])
+given par_dmem_setup ([30]):(2) then calls ast_new_kids:(136, "", [1])
 
 par_mui2(int[] pos) {
   int[] kids = par_mui2_kids(pos);
   int ret_i = par_mui2_node(kids);
 } return int ret_i;
+given par_dmem_setup ([13]):(2) then calls ast_new_kids:(136, "", [1])
+given par_dmem_setup ([32]):(2) then calls ast_new_kids:(136, "", [1])
 
 // A component: a name and its arguments, to the end of its line. `pos (144, 200)`,
 // `body (12, 8)`, `tag player`, `anim (0, 24, 40)`.
@@ -22,3 +26,5 @@ par_comp(int[] pos) {
   int ln = par_line(pos);
   int ret_i = par_comp_fin(pos, name, ln);
 } return int ret_i;
+given par_dmem_setup ([0]):(3) then calls ast_new:(113, "tag", 2, 0, 0, [])
+given par_dmem_setup ([27]):(3) then calls ast_new:(113, "tag", 2, 0, 0, [])

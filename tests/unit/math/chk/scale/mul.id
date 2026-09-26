@@ -3,9 +3,13 @@ t_fxmul2(int fx_mul_v, int fx_mul_v2) {
   int fx_mul_v3 = fx_mul(100000, 100000, 1000);
   t_fxmul3(fx_mul_v3);
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls fx_mul:(100000, 100000, 1000)
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_fxmul3:[1]
 
 t_fxmul3(int fx_mul_v3) {
   int fx_mul_v4 = fx_mul(46341, 46341, 1000);
   print("fx_mul word intermediate (100000,100000,1000) exp 10000000 | (46341,46341,1000) exp 2147488 = " + fx_mul_v3 + " " + fx_mul_v4);
   t_fxdiv();
 } return void;
+given fx_trig_init given rnd_seed0 (1):() then calls fx_mul:(46341, 46341, 1000)
+given fx_trig_init given rnd_seed0 (2):() then calls t_fxdiv:[1]

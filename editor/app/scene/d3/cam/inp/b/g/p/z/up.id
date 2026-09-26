@@ -10,3 +10,5 @@ ed_pup(int dy, int sv) {
   int fx_mul_v = fx_mul(dy, fx_sin_v, 1000);
   int ret_i = 0 - fx_mul(fx_mul_v, sv, 1000);
 } return int ret_i;
+given ed_t_boot stdin "" (800, 500):(62)
+given ed_t_boot stdin "" (-2000, -1947):(607)

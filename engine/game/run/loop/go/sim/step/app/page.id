@@ -7,6 +7,8 @@ idem_apage() {
   int par_doc_v = par_doc(pos);
   ui_pgset(par_doc_v, 0);
 } return void;
+given ast_init given lay_lex_setup given ui_pinit ():() then calls ui_pgset:[1]
+given idem_init given lay_lex_setup given ui_pinit ():() then calls ui_pgset:[1]
 
 ui_pgset(int doc, int i) {
   int[] ks = ast_ks(doc);
@@ -15,6 +17,8 @@ ui_pgset(int doc, int i) {
     i = i + 1;
   }
 } return void;
+given ast_init (0, 0):() then calls ui_pgone:[0]
+given page_t_doc given ui_pinit (3, 0):() then calls ui_pgone:(1) then calls ui_pgone:(2)
 
 // scn_one4 already registers a variant and a define, and the compiler rejected a
 // second copy of that dispatch -- correctly: a document's definitions mean the
@@ -31,3 +35,5 @@ ui_pgone(int nd) {
   scn_one4(nd);
   ui_ppage(nd);
 } return void;
+given page_t_leaf given ui_pinit (1):() then calls scn_one4:[1] then calls ui_ppage:[1]
+given page_t_doc given ui_pinit (2):() then calls scn_one4:[1] then calls ui_ppage:[1]

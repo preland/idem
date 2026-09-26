@@ -5,15 +5,21 @@ scn_efill_ly(int e, int nd) {
   ent_put(e, 8, ly);
   scn_efill5(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 8, 3)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill5:[1]
 
 scn_efill_bx(int e, int nd) {
   int bx = scn_mtup(nd, "body", 0);
   ent_put(e, 12, bx * 1000);
   scn_efill6(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 12, 12000)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill6:[1]
 
 scn_efill_wy(int e, int nd) {
   int wy = scn_mtup(nd, "wrap", 0);
   ent_put(e, 10, wy * 1000);
   scn_efill7(e, nd);
 } return void;
+given game_fixture_nd (1, (import fixture_nd)):() then calls ent_put:(1, 10, 0)
+given game_fixture_nd (1, (import fixture_nd)):() then calls scn_efill7:[1]

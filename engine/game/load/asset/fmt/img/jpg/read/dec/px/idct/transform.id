@@ -20,6 +20,8 @@ jpg_idct() {
   jpg_irows(0);
   jpg_icols(0);
 } return void;
+given jpg_idct100_fixture ():() then jpg_f0_check:(141)
+given jpg_init ():() then jpg_f0_check:(128)
 
 jpg_irows(int v) {
   while (v < 8) {
@@ -27,6 +29,8 @@ jpg_irows(int v) {
     v = v + 1;
   }
 } return void;
+given jpg_idct100_fixture (0):() then calls jpg_irow:[8]
+given jpg_idct100_fixture (8):() then calls jpg_irow:[0]
 
 jpg_irow(int v) {
   int x = 0;
@@ -36,3 +40,5 @@ jpg_irow(int v) {
     x = x + 1;
   }
 } return void;
+given jpg_idct100_fixture (0):() then jpg_tm0_check:(283)
+given jpg_init (0):() then jpg_tm0_check:(0)

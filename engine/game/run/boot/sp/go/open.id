@@ -11,6 +11,8 @@ idem_init5() {
   scn_dir_init();
   ui_vinit();
 } return void;
+():() then calls scn_init:[1]
+():() then calls ui_vinit:[1]
 
 // Entities last: the sprites they name have to be in the table before they are
 // looked up, and the window has to exist before a surface is measured.
@@ -24,3 +26,5 @@ idem_open2() {
   tin_init();
   scn_spawn((import scn_st)[5], 0);
 } return void;
+given idem_init ():() then calls inp_init:[1]
+given idem_init ():() then calls tin_init:[1]

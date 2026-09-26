@@ -1,0 +1,19 @@
+// Raw file bytes, no marker walk done yet -- for the pre-parse cases (jpg_soi
+// and friends), which are about what happens before a byte of the format is
+// trusted. And a real completed load, for cases downstream of a valid file.
+
+jpg_raw_fixture() {
+  png_init();
+  jpg_init();
+  asset_slurp("../tests/unit/jpg/img/grad.jpg");
+} return void;
+():() then asset_pipe_len_check:(336)
+given png_init ():() then asset_pipe_len_check:(336)
+
+jpg_grad_fixture() {
+  png_init();
+  jpg_init();
+  jpg_load("../tests/unit/jpg/img/grad.jpg");
+} return void;
+():() then asset_pipe_len_check:(336)
+given png_init ():() then asset_pipe_len_check:(336)

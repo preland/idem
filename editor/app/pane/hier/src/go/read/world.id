@@ -11,6 +11,8 @@ ed_read7() {
   ed_load_as(0);
   ed_world();
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" ():() then calls ed_read5:[1]
+given ed_t_boot given ed_t_boot_proj stdin "" ():() then calls ed_world:[1]
 
 // scn_load spawns the starting scene itself -- it ends in scn_start, which
 // enters that scene, and entering a scene is what fills the world. Spawning again
@@ -26,3 +28,5 @@ ed_world() {
   int par_doc_v = par_doc(pos);
   scn_load(par_doc_v);
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" ():() then calls par_doc:[1]
+given ed_t_boot given ed_t_boot_proj stdin "" ():() then calls scn_load:[1]

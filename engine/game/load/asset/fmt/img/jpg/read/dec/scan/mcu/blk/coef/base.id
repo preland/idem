@@ -3,3 +3,23 @@ jpg_bblk(int ci, int a) {
   jpg_dc(ci, a);
   jpg_ac(ci, a, 1);
 } return void;
+given jpg_acbuf_fixture (0, (import jpg_coef_a)):() then calls jpg_dc:(0, (import jpg_coef_a)) then calls jpg_ac:(0, (import jpg_coef_a), 1)
+given jpg_coefbuf2_fixture (0, (import jpg_coef_a)):() then calls jpg_dc:(0, (import jpg_coef_a)) then calls jpg_ac:(0, (import jpg_coef_a), 1)
+
+// A real coefficient (777) already poked at position 0 -- for jpg_cget's
+// own case.
+jpg_cset_fixture() {
+  jpg_coefbuf_fixture();
+  jpg_cset((import jpg_coef_a), 0, 777);
+} return void;
+():() then jpg_dc0_check:(777)
+given jpg_init ():() then jpg_dc0_check:(777)
+
+// The most negative 16-bit value (-32768 & 65535 = 32768) -- the one input
+// that pins the sign-extension boundary in jpg_cget (>= 32768, not > 32768).
+jpg_csetneg_fixture() {
+  jpg_coefbuf_fixture();
+  jpg_cset((import jpg_coef_a), 0, -32768);
+} return void;
+():() then jpg_dc0_check:(-32768)
+given jpg_init ():() then jpg_dc0_check:(-32768)

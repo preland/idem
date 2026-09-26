@@ -8,14 +8,18 @@ jpg_recv(int n) {
     k = k + 1;
   }
 } return int v;
+given jpg_bs291_fixture (3):(4)
+given jpg_bs293_fixture (3):(3)
 
 // A coefficient is sent as a magnitude category and that many bits. The bits are
 // the value itself when the top one is set, and the value minus (2^n - 1) when it
 // is not -- which is how a symmetric range is packed without a sign bit.
 jpg_ext(int v, int n) {
   int m = v;
-  if (n > 0 && v < inf_pow2(n - 1)) { m = v - inf_pow2(n) + 1; }
+  if (n > 0 && v < fx_pow(2, n - 1)) { m = v - fx_pow(2, n) + 1; }
 } return int m;
+(4, 3):(4)
+(3, 3):(-4)
 
 // The same canonical walk the inflate uses -- counts per length, symbols in
 // canonical order -- but over JPEG's sixteen lengths and its own bit reader.
@@ -24,3 +28,5 @@ jpg_dec(int t) {
   jpg_dwalk(t, st);
   int ret_i = jpg_dsym(t, st);
 } return int ret_i;
+given jpg_huff_fixture (0):(7)
+given jpg_huff2_fixture (0):(0)

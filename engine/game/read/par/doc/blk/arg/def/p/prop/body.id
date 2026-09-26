@@ -6,8 +6,12 @@ par_vbody_props(int[] pos, int[] ks) {
   par_vprops(pos, ks);
   par_want(pos, "}");
 } return void;
+given par_decl_setup ([9], []):([17], [2, 4]) then calls ast_new_a:(113, "size", 3)
+given par_dmem_setup ([9], []):([11], [])
 
 par_vbody_node(string name, int[] ks) {
   int ast_k_variant_v = (import ast_k_variant);
   int ret_i = ast_new_kids(ast_k_variant_v, name, ks);
 } return int ret_i;
+given ast_init ("Card", [1, 3, 5]):(1) then calls ast_new_kids:(143, "Card", [1, 3, 5])
+given ast_init ("Other", []):(1) then calls ast_new_kids:(143, "Other", [])

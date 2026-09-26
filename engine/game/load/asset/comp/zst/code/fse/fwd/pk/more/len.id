@@ -1,0 +1,21 @@
+// zf_st's own length. fse_init6's lst_fill APPENDS rather than resetting
+// (see idstd's lst_fill/grow.id: "has to happen exactly once, at init"), and
+// only fse_init4 re-`export`s zf_st fresh -- so calling any of
+// fse_init5/6/7/8 a second time, on top of an already-initialized zf_st,
+// grows it from 6 to 12 rather than leaving it at 6. That growth is exactly
+// what distinguishes "the real body ran again" from "the body was a no-op".
+zf_st_len_check() {
+  int zf_len_v = len((import zf_st));
+} return int zf_len_v;
+given fse_init ():(6)
+given zf_st_val_setup ():(6)
+
+// fse_st (not zf_st) is what fse_init7/fse_init8 actually reach, via
+// fse_init8's own lst_fill -- neither of them re-`export`s it, so calling
+// either a second time on top of an already-initialized fse_st grows it
+// from 12 to 24.
+zf_fse_st_len_check() {
+  int zf_len_v = len((import fse_st));
+} return int zf_len_v;
+given fse_init ():(12)
+given zf_st_val_setup ():(12)

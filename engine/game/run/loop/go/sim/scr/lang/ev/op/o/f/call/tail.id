@@ -4,3 +4,5 @@ scr_call2(int nd, int e, int a) {
   string tx = ast_tx(nd);
   int ret_i = scr_fn(tx, a, b);
 } return int ret_i;
+given call_fixture ((import fixture_call), -1, -5):(5)
+given call_fixture ((import fixture_call), -1, 100):(100)

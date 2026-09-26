@@ -3,3 +3,23 @@
 t_src2() {
   string ret_s = "template Box {" + chr(10) + "  pos (0, 0)" + chr(10) + "  body (10, 10)" + chr(10) + "  solid" + chr(10) + "  tag deadly" + chr(10) + "}" + chr(10) + "scene play {" + chr(10) + "  var n = 0" + chr(10) + "  var ticks = 0" + chr(10) + "  var taps = 0" + chr(10) + "  var hits = 0" + chr(10) + t_src3();
 } return string ret_s;
+():("template Box {\n  pos (0, 0)\n  body (10, 10)\n  solid\n  tag deadly\n}\nscene play {\n  var n = 0\n  var ticks = 0\n  var taps = 0\n  var hits = 0\n  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+given fx_trig_init ():("template Box {\n  pos (0, 0)\n  body (10, 10)\n  solid\n  tag deadly\n}\nscene play {\n  var n = 0\n  var ticks = 0\n  var taps = 0\n  var hits = 0\n  entity bird {\n    pos (50, 50)\n    body (10, 10)\n    tag player\n    var own = 5\n    script {\n      on update { n = 3 * 4 + 2  own = own + 1 }\n      on press { taps = taps + 1 }\n      on hit deadly { hits = hits + 1 }\n    }\n  }\n  entity wall {\n    pos (55, 50)\n    body (10, 10)\n    solid\n    tag deadly\n  }\n  script {\n    on timer 100 { ticks = ticks + 1 }\n    on enter { spawn Box at (30, 40) }\n  }\n}\n")
+
+scr_s5_ready() {
+  scr_s4_ready();
+  png_init();
+  inf_init();
+} return void;
+():() then calls scr_s4_ready:[1]
+():() then calls inf_init:[1]
+
+// Every stage of main.id's own init chain, all the way to just before
+// t_load runs.
+scr_ready() {
+  scr_s5_ready();
+  ui_vinit();
+  inp_init();
+} return void;
+():() then calls scr_s5_ready:[1]
+():() then calls inp_init:[1]

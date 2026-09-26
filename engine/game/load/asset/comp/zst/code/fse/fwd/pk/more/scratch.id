@@ -15,9 +15,13 @@ fse_init7() {
   export int[] fse_rl = [];
   fse_init8();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_fse_st_len_check:(24)
 
 fse_init8() {
   lst_fill((import fse_nx), 256, 0);
   lst_fill((import fse_rl), 8, 0);
   lst_fill((import fse_st), 12, 0);
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_fse_st_len_check:(24)

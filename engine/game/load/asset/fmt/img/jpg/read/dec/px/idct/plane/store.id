@@ -1,0 +1,8 @@
+// jpg_plane_fixture, with block (0,0) actually stored -- jpg_f[0] (100)
+// lands at the plane's first byte.
+jpg_plane_store_fixture() {
+  jpg_plane_fixture();
+  jpg_store(0, 0, 0);
+} return void;
+():() then jpg_plane0_check:(100)
+given jpg_init ():() then jpg_plane0_check:(100)

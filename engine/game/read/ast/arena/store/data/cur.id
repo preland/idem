@@ -1,0 +1,8 @@
+// ast_mark is void and has no other way to show which line it set: a reader,
+// used only as a `then` check.
+
+ast_cur_val() {
+  int v = (import ast_cur)[0];
+} return int v;
+given ast_init ():(0)
+given ast_init ():(0) then eprints:("")

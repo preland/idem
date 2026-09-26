@@ -26,15 +26,21 @@ huf_init() {
   export int[] huf_wt = [];
   huf_init2();
 } return void;
+():()
+given huf_init ():()
 
 huf_init2() {
   export int[] huf_rk = [];
   export int[] huf_rs = [];
   huf_init3();
 } return void;
+given huf_init ():()
+given zst_init ():()
 
 huf_init3() {
   export int[] huf_sm = [];
   export int[] huf_sy = [];
   huf_init4();
 } return void;
+given huf_init ():()
+given zst_init ():()

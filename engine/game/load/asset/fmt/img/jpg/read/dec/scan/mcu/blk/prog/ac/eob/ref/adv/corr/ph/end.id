@@ -7,3 +7,19 @@ jpg_rend() {
     lset((import jpg_r), 3, 0);
   }
 } return void;
+given jpg_coefbuf_fixture ():() then jpg_r3_check:(0)
+given jpg_rset_fixture ():() then jpg_r3_check:(0)
+
+// jpg_st[17], the end-of-band run still outstanding.
+jpg_eob_check() {
+  int v = (import jpg_st)[17];
+} return int v;
+given jpg_init ():(0)
+given jpg_init given jpg_rdone ():(-1)
+
+// jpg_r[3], the refinement machine's phase.
+jpg_r3_check() {
+  int v = (import jpg_r)[3];
+} return int v;
+given jpg_init ():(0)
+given jpg_rset_fixture ():(3)

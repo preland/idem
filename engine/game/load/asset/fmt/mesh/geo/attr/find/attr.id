@@ -15,6 +15,8 @@ bl_afind(int p, int si, string name) {
   int bl_foff_v = bl_foff(si, "attribute_storage");
   int ret_i = bl_afind_walk(p, bl_foff_v, name);
 } return int ret_i;
+given bl_mesh_t_load (349984, 322, "position"):(1063)
+given bl_mesh_t_load (349984, 322, "nope"):(-1)
 
 bl_awalk(int ap, int n, string name) {
   int k = 0 - 1;
@@ -24,6 +26,8 @@ bl_awalk(int ap, int n, string name) {
     i = i + 1;
   }
 } return int k;
+given bl_mesh_t_load (1037, 20, "position"):(1063)
+given bl_mesh_t_load (1037, 0, "position"):(-1)
 
 // Answers the block index of the VALUES, or -1. Two hops: the name has to match,
 // and the storage has to be an array rather than a single.
@@ -31,3 +35,5 @@ bl_apk(int o, string name) {
   int k = 0 - 1;
   if (bl_aname(o, name) = 1 && asset_at(o + 11) = 0) { k = bl_adata(o); }
 } return int k;
+given bl_mesh_t_load (352244, "position"):(1063)
+given bl_mesh_t_load (352244, "nope"):(-1)

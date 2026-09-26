@@ -9,13 +9,19 @@ ed_note(int y) {
   string ed_ntxt_v = ed_ntxt();
   ed_note2(y, txt_ui_v, ed_ntxt_v);
 } return void;
+given ed_t_boot stdin "" (10):() then calls ed_note2:(10, 1, "idem editor -- the engine drawing itself, in id")
+given ed_t_boot given ed_t_note_open stdin "" (10):() then calls ed_note2:(10, 1, "left drag: select   middle: pan   right: orbit   wheel: zoom")
 
 ed_note2(int y, int txt_ui_v, string ed_ntxt_v) {
   int ed_col_v = ed_col(13);
   ed_sdraw(6 * txt_ui_v, y, ed_ntxt_v, ed_col_v);
 } return void;
+given ed_t_boot stdin "" (10, 1, "hello"):() then calls ed_sdraw:(6, 10, "hello", 0xD8A24A)
+given ed_t_boot stdin "" (20, 2, "world"):() then calls ed_sdraw:(12, 20, "world", 0xD8A24A)
 
 ed_ntxt() {
   string s = "idem editor -- the engine drawing itself, in id";
   if ((import ed_st)[17] = 1) { s = "left drag: select   middle: pan   right: orbit   wheel: zoom"; }
 } return string s;
+given ed_t_boot stdin "" ():("idem editor -- the engine drawing itself, in id")
+given ed_t_boot given ed_t_note_open stdin "" ():("left drag: select   middle: pan   right: orbit   wheel: zoom")

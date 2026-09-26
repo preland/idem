@@ -11,6 +11,8 @@ ed_mdo(int k, int i) {
     ed_mdo2(k, i);
   }
 } return void;
+given ed_t_boot stdin "" (0, 5):() then calls ed_mfile_do:(5)
+given ed_t_boot stdin "" (1, 5):() then calls ed_mdo2:(1, 5)
 
 ed_mdo2(int k, int i) {
   if (k = 1) {
@@ -19,6 +21,8 @@ ed_mdo2(int k, int i) {
     ed_mdo3(k, i);
   }
 } return void;
+given ed_t_boot stdin "" (1, 2):() then calls ed_sel_all:(0, 1)
+given ed_t_boot stdin "" (2, 5):() then calls ed_mdo3:(2, 5)
 
 ed_mdo3(int k, int i) {
   if (k = 2) {
@@ -29,3 +33,6 @@ ed_mdo3(int k, int i) {
     lset((import ed_st), 17, i + 1);
   }
 } return void;
+given ed_t_boot stdin "" (2, 5):() then calls ed_fit_mesh:(1)
+given ed_t_boot stdin "" (3, 5):() then calls ed_mview_do:(5)
+given ed_t_boot stdin "" (9, 5):() then calls lset:((import ed_st), 17, 6)

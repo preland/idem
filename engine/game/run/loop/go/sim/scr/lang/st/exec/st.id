@@ -12,6 +12,8 @@ scr_ex(int nd, int e) {
   int fin = (import scr_st)[1];
   if (fin = 0) { fin = scr_ex1(nd, e); }
 } return int fin;
+given assign_fixture ((import fixture_assign), -1):(0) then calls scr_asg:[1]
+given idem_init (0, -1):(0) then calls scr_ex1:[1]
 
 scr_ex1(int nd, int e) {
   int fin = 0;
@@ -23,6 +25,8 @@ scr_ex1(int nd, int e) {
     fin = scr_ex2(nd, e);
   }
 } return int fin;
+given assign_fixture ((import fixture_assign), -1):(0) then calls scr_asg:[1]
+given idem_init (0, -1):(0) then calls scr_ex2:[1]
 
 // A block is a node whose kids are its statements, and it is the only kind that
 // folds a status out of more than one thing.
@@ -34,3 +38,5 @@ scr_ex2(int nd, int e) {
     fin = scr_ex3(nd, e);
   }
 } return int fin;
+given block_fixture ((import fixture_block), -1):(0) then calls scr_seq:[1]
+given idem_init (0, -1):(0) then calls scr_ex3:[1]

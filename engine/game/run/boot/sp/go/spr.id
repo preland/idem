@@ -14,6 +14,8 @@ scn_espr(int nd) {
   string sname = scn_sname(nd, 0);
   int spr_id = d2_spr_find(sname);
 } return int spr_id;
+given idem_init (0):(-1)
+given game_fixture_nd ((import fixture_nd)):(-1)
 
 // The first sprite-kind child. A `""` name reaches d2_spr_find as a name nothing
 // is registered under, so an entity with no sprite needs no separate test.
@@ -25,8 +27,12 @@ scn_sname(int nd, int i) {
     i = i + 1;
   }
 } return string s;
+given idem_init (0, 0):("")
+given game_fixture_nd ((import fixture_nd), 0):("bird")
 
 scn_ifspr(int nd) {
   string s = "";
   if (ast_kd(nd) = (import ast_k_sprite)) { s = ast_tx(nd); }
 } return string s;
+given idem_init (0):("")
+given game_fixture_nd ((import fixture_nd)):("")

@@ -3,9 +3,13 @@ ed_insp_vel_rows(int x, int y, int w, int e) {
   int ed_rowh_v = ed_rowh();
   ed_kve(x, y + ed_rowh_v + 2, w, "vel y", e, 3);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_kve:(0, 10, 100, "vel x", 0, 2)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_kve:(0, 30, 100, "vel y", 0, 3)
 
 ed_insp_vel(int x, int y, int w, int e) {
   ed_insp_vel_rows(x, y, w, e);
   int h = ed_rowh();
   ed_insp_art(x, y + 2 * (h + 2), w, e);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_vel_rows:(0, 10, 100, 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_art:(0, 50, 100, 0)

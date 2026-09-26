@@ -3,3 +3,28 @@ scr_dvarv(int nd) {
   int ia = ast_ia(nd);
   int v = scr_ev(ia, 0 - 1);
 } return int v;
+given scr_dvar_t_setup ((import fixture_dvar)):(42)
+given scr_dvar_t_setup2 ((import fixture_dvar2)):(-42)
+
+// A hand-built `ast_k_var` node (conf.id: 114), name "n", wrapping the number
+// literal node_fixture (lang/ev/more/un/fixture.id) exports -- the shape
+// par_bind_node (par/cur/arg/sc/chk/bind.id) builds for a manifest's braced
+// `name = value` bindings, which is what scr_dvar reads.
+scr_dvar_t_setup() {
+  node_fixture();
+  int v_nd = ast_new_a(114, "n", 1);
+  export int fixture_dvar = v_nd;
+} return void;
+():() then ast_n:(3)
+given ast_init ():() then ast_n:(3)
+
+// The same shape wrapping un_fixture's `- 42` (lang/ev/more/un/fixture.id)
+// instead of the plain number, so scr_dvarv's two cases describe two
+// behaviours rather than one value seen twice.
+scr_dvar_t_setup2() {
+  un_fixture();
+  int v_nd = ast_new_a(114, "m", 2);
+  export int fixture_dvar2 = v_nd;
+} return void;
+():() then ast_n:(4)
+given ast_init ():() then ast_n:(4)

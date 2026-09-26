@@ -17,13 +17,19 @@
 d2_spr_px(int p) {
   int[] px = (import asset_sprpx)[p];
 } return int[] px;
+given d2_spr_t_setup (0):([5, 9, 7, 3])
+given d2_spr_t_setup (1):([11, -1, 4, 8, 2, -1])
 
 d2_spr_put(int p, int i, int c) {
   int[] d2_spr_px_v = d2_spr_px(p);
   lset(d2_spr_px_v, i, c);
 } return void;
+given d2_spr_t_setup (0, 0, 99):() then d2_spr_t_at0:(99)
+given d2_spr_t_setup (0, 3, -1):() then d2_spr_t_at3:(-1)
 
 d2_spr_at(int p, int i) {
   int[] px = d2_spr_px(p);
   int c = lget(px, i);
 } return int c;
+given d2_spr_t_setup (0, 0):(5)
+given d2_spr_t_setup (1, 5):(-1)

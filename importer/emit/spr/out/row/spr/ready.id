@@ -1,0 +1,23 @@
+// A palette with one real entry, a reader for its last slot, and a header
+// flagged as overflowed -- module state a case cannot see any other way.
+
+spr_pal_ready() {
+  spr_px_ready();
+  push((import spr_p), 999);
+} return void;
+():() then calls spr_px_ready:[1]
+():() then spr_p_last:(999)
+
+spr_p_last() {
+  int v = (import spr_p)[len((import spr_p)) - 1];
+} return int v;
+given spr_lists_ready ():(-1)
+given spr_pal_ready ():(999)
+
+spr_overflow_ready() {
+  err_init();
+  spr_hdr_ready();
+  lset((import spr_d), 9, 1);
+} return void;
+():() then calls err_init:[1]
+():() then spr_d9:(1)

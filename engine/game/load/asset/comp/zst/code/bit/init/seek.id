@@ -1,0 +1,35 @@
+// Positioning, and finding the marker bit.
+
+zb_seek(int bi) {
+  lset((import zb_st), 2, bi);
+  zb_norm();
+} return void;
+given zb_frame_setup (3):() then zb_rel_check:([1, 3, 0])
+given zb_frame_setup (-1):() then zb_rel_check:([0, 7, 0])
+
+// Stepping below bit 0 moves to the previous byte. Running below the section's
+// first byte is a fault: the caller decodes a known number of symbols, so a
+// stream that runs out has lied about something.
+zb_norm() {
+  if ((import zb_st)[2] < 0) {
+    lset((import zb_st), 1, (import zb_st)[1] - 1);
+    lset((import zb_st), 2, 7);
+  }
+} return void;
+given zb_frame_setup ():() then zb_rel_check:([1, 6, 0])
+given zb_neg_bi_setup1 ():() then zb_rel_check:([0, 7, 0])
+
+
+// The highest set bit of a byte, 0..7, or -1 for zero. Written as a scan rather
+// than a table because it runs once per bitstream, not once per bit.
+zb_hi(int v) {
+  int h = 0 - 1;
+  int i = 0;
+  while (i < 8) {
+    int inf_pow2_v = fx_pow(2, i);
+    h = zb_pick(h, i, v / inf_pow2_v % 2);
+    i = i + 1;
+  }
+} return int h;
+(128):(7)
+(1):(0)

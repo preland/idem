@@ -5,3 +5,11 @@ bl_vpush(int x, int y, int z) {
   push((import bl_v), z);
   push((import bl_v), 0 - y);
 } return void;
+given bl_geo_init (100, 200, 300):() then bl_v_t_check:([100, 300, -200])
+given bl_geo_init (0, 1000, -500):() then bl_v_t_check:([0, -500, -1000])
+
+bl_v_t_check() {
+  int[] bl_v_out = (import bl_v);
+} return int[] bl_v_out;
+given bl_geo_init ():([])
+given bl_geo_init_t_two ():([1])

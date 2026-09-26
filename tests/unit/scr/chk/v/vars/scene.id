@@ -2,15 +2,21 @@ t_vars_best() {
   int scr_get_v = scr_get(0 - 1, "best");
   print("game block: best exp 7 = " + scr_get_v);
 } return void;
+given scr_scene_ready ():() then calls scr_get:(-1, "best")
+given scr_scene_ready ():() then prints:("game block: best exp 7 = 7\n")
 
 t_vars_scene() {
   int scr_get_v2 = scr_get(0 - 1, "n");
   int scr_get_v3 = scr_get(0 - 1, "ticks");
   t_vars_scene2(scr_get_v2, scr_get_v3);
 } return void;
+given scr_scene_ready ():() then calls scr_get:(-1, "n")
+given scr_scene_ready ():() then calls t_vars_scene2:(0, 0)
 
 t_vars_scene2(int scr_get_v2, int scr_get_v3) {
   int scr_get_v4 = scr_get(0 - 1, "taps");
   int scr_get_v5 = scr_get(0 - 1, "hits");
   print("scene vars n/ticks/taps/hits exp 0 0 0 0 = " + scr_get_v2 + " " + scr_get_v3 + " " + scr_get_v4 + " " + scr_get_v5);
 } return void;
+given scr_scene_ready (0, 0):() then calls scr_get:(-1, "taps")
+given scr_scene_ready (0, 0):() then prints:("scene vars n/ticks/taps/hits exp 0 0 0 0 = 0 0 0 0\n")

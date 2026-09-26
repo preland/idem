@@ -1,0 +1,24 @@
+// Continuing the replay: two Lefts from the typed state, then the insert
+// and the two deletes.
+
+tin_moved_ready() {
+  tin_typed_ready();
+  t_tap(256, 2000);
+  t_tap(256, 2100);
+} return void;
+():() then calls tin_typed_ready:[1]
+():() then calls t_tap:(256, 2100)
+
+tin_ins_ready() {
+  tin_moved_ready();
+  t_tap(88, 2200);
+} return void;
+():() then calls tin_moved_ready:[1]
+():() then calls t_tap:(88, 2200)
+
+tin_bs_ready() {
+  tin_ins_ready();
+  t_tap(8, 2300);
+} return void;
+():() then calls tin_ins_ready:[1]
+():() then calls t_tap:(8, 2300)

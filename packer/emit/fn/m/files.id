@@ -7,9 +7,13 @@ pack_files(string src, int p, int k) {
     k = k + 3;
   }
 } return void;
+("", 0, 0):() then calls pack_open:(0)
+("", 0, 0):() then calls pack_three:("", 0, 0)
 
 pack_open(int k) {
   string pack_path_v = pack_path(k / 3);
   print("@@FILE data/" + pack_path_v + "d" + (k / 3) + ".id");
   pack_head();
 } return void;
+(0):() then calls pack_path:(0)
+(0):() then calls pack_head:[1]

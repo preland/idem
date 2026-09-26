@@ -1,0 +1,24 @@
+put_bytes(int[] gp_buf, string gp_s) {
+  int gp_i = 0;
+  while(gp_i < len(gp_s)) {
+    int gp_c = charat(gp_s, gp_i);
+    push(gp_buf, gp_c);
+    gp_i = gp_i + 1;
+  }
+} return void;
+([], "ab"):([97, 98])
+([1], ""):([1])
+
+// The long line: an opening `huge = "`, the unit gp_reps times, and the close.
+put_repeat(int[] gp_buf, string gp_unit, int gp_reps) {
+  put_bytes(gp_buf, "huge = \"");
+  int gp_j = 0;
+  while(gp_j < gp_reps) {
+    put_bytes(gp_buf, gp_unit);
+    gp_j = gp_j + 1;
+  }
+} chain (int[] gp_buf, string gp_unit, int gp_reps) {
+  put_bytes(gp_buf, "\"\n");
+} return void;
+([], "ab", 0):([104, 117, 103, 101, 32, 61, 32, 34, 34, 10])
+([], "ab", 2):([104, 117, 103, 101, 32, 61, 32, 34, 97, 98, 97, 98, 34, 10])

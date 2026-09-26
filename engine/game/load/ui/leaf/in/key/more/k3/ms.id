@@ -14,6 +14,8 @@
 tin_delay() {
   int ret_i = (import tin_base) + 20;
 } return int ret_i;
+():(420)
+():(420) then tin_rate:(30)
 
 // And how often it repeats after that: 30 ms, so 33 characters a second. A
 // frame at 60 fps is 16 ms, so this fires on every second frame at most -- which
@@ -22,3 +24,15 @@ tin_delay() {
 tin_rate() {
   int ret_i = (import tin_base) - 370;
 } return int ret_i;
+():(30)
+():(30) then tin_delay:(420)
+
+// A key (Return, 13) already down and already recorded as this frame's hit,
+// for the press/repeat dispatch in key/step.id's own cases.
+tin_t_press_setup() {
+  tin_init();
+  inp_init();
+  inp_dn(13);
+} return void;
+():() then tin_caret:(0)
+given tin_init ():() then tin_caret:(0)

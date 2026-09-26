@@ -18,11 +18,15 @@ zst_blocks(int ck) {
   }
   zst_cksum(ck);
 } return void;
+given zst_src_setup (0):()
+given zst_src_setup (1):()
 
 zst_block(int bh) {
   zst_kind(bh / 2 % 4, bh / 8);
   int ret_i = bh % 2;
 } return int ret_i;
+given zst_init (0):(0)
+given zst_init (1):(1)
 
 // Four bytes of xxhash64's low half, when the frame asked for it. It is not
 // checked: computing xxhash to verify data this decoder is about to be told is
@@ -32,3 +36,5 @@ zst_cksum(int ck) {
     zst_le(4);
   }
 } return void;
+given zst_init (0):()
+given zst_src_setup (1):()

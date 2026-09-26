@@ -1,0 +1,22 @@
+// A real one-byte section, so zf_more2 has an actual address to peek8 --
+// address 0 (what a bare fse_init leaves sa at) is out of range.
+zf_frame_bytes() {
+  export int zf_frame_p = alloc(1);
+  poke8((import zf_frame_p), 200);
+} return void;
+():() then zf_frame_byte_check:(200)
+given fse_init ():() then zf_frame_byte_check:(200)
+
+zf_frame_setup() {
+  fse_init();
+  zf_frame_bytes();
+  zf_start((import zf_frame_p), 1);
+} return void;
+():() then zf_slen_check:(1)
+given fse_init ():() then zf_slen_check:(1)
+
+zf_frame_byte_check() {
+  int zf_byte_v = peek8((import zf_frame_p));
+} return int zf_byte_v;
+given zf_frame_bytes ():(200)
+given zf_frame_setup ():(200)

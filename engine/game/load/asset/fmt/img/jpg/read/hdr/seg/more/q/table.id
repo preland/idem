@@ -4,6 +4,8 @@ jpg_dqt1(int p) {
   int pq = asset_at(p) / 16;
   int ret_i = jpg_dqt2(p, pq);
 } return int ret_i;
+given jpg_raw_fixture (24):(89) then calls jpg_dqt2:(24, 0)
+given jpg_raw_fixture (93):(158) then calls jpg_dqt2:(93, 0)
 
 jpg_qfill(int p, int tq, int pq) {
   int k = 0;
@@ -13,6 +15,8 @@ jpg_qfill(int p, int tq, int pq) {
     k = k + 1;
   }
 } return void;
+given jpg_raw_fixture (25, 0, 0):() then calls jpg_q1:(25, 0, 0) then calls jpg_q1:(25, 63, 0)
+given jpg_raw_fixture (94, 1, 1):() then calls jpg_q1:(94, 0, 1) then calls jpg_q1:(94, 63, 1)
 
 // Precision 1 means 16-bit entries, which only appears in 12-bit images; it is
 // read correctly here so that such a file fails on its sample precision rather
@@ -21,3 +25,5 @@ jpg_q1(int p, int k, int pq) {
   int v = asset_at(p + k);
   if (pq = 1) { v = asset_at(p + k * 2) * 256 + asset_at(p + k * 2 + 1); }
 } return int v;
+given jpg_raw_fixture (25, 0, 0):(3)
+given jpg_raw_fixture (94, 0, 1):(772)

@@ -17,13 +17,19 @@ t_bits() {
   poke8(ad, 140);
   t_bshow(ad);
 } return void;
+given zst_ready ():() then calls t_bshow:[1]
+given zst_surf_ready given zst_ready ():() then calls t_bshow:[1]
 
 t_bshow(word ad) {
   int a = t_bstart(ad);
   int zb_bits_v = zb_bits(3);
   t_bshow2(a, zb_bits_v);
 } return void;
+given zst_buf_ready ((import zst_buf)):() then calls t_bstart:((import zst_buf))
+given zst_buf_ready ((import zst_buf)):() then calls t_bshow2:[1]
 
 t_bshow2(int a, int b) {
   print("bit reader on 0x8C: exp 0 then 6 = " + a + " " + b);
 } return void;
+(0, 6):() then prints:("bit reader on 0x8C: exp 0 then 6 = 0 6\n")
+(1, 2):() then prints:("bit reader on 0x8C: exp 0 then 6 = 1 2\n")

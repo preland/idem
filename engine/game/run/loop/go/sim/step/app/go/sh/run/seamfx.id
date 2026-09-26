@@ -1,0 +1,9 @@
+// The seam (store.id) wired to the six stand-ins (go/open/gstub.id,
+// go/sh/l/go/gstub2.id), so anything downstream of idem_app that reads
+// eng_init/eng_stage/eng_step/eng_draw/eng_ref/eng_act has real values to
+// call instead of an uninitialised export.
+seam_fixture() {
+  eng_seam(stub_ginit, stub_gstage, stub_gstep, stub_gdraw, stub_gref, stub_gact);
+} return void;
+():() then calls eng_seam:[1]
+given idem_init ():() then calls eng_seam:[1]

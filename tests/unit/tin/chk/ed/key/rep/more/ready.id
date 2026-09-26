@@ -1,0 +1,22 @@
+// Continuing the replay: the frames before the repeat delay expires.
+
+tin_rep2_ready() {
+  tin_rep_ready();
+  t_hold(5100);
+} return void;
+():() then calls tin_rep_ready:[1]
+():() then calls t_hold:(5100)
+
+tin_rep3_ready() {
+  tin_rep2_ready();
+  t_hold(5300);
+} return void;
+():() then calls tin_rep2_ready:[1]
+():() then calls t_hold:(5300)
+
+tin_rep4_ready() {
+  tin_rep3_ready();
+  t_hold(5450);
+} return void;
+():() then calls tin_rep3_ready:[1]
+():() then calls t_hold:(5450)

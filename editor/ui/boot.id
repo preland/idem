@@ -5,12 +5,16 @@ ed_boot3() {
   d3_init();
   ed_boot4();
 } return void;
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls d2_spr_init:[1] then calls d3_init:[1]
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls d3_init:[1] then calls ed_boot4:[1]
 
 ed_boot4() {
   inp_init();
   err_init();
   ed_boot5();
 } return void;
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls inp_init:[1] then calls err_init:[1]
+given fx_trig_init given ed_t_boot2 stdin "" ():() then calls err_init:[1] then calls ed_boot5:[1]
 
 ed_run(int argc, string[] argv) {
   if (argc > 1) {
@@ -22,3 +26,5 @@ ed_run(int argc, string[] argv) {
   }
   gfx_close();
 } return void;
+given ed_t_boot stdin "" (2, ["idem", "3"]):() then calls ed_shot:(3)
+given ed_t_boot given sys_quit stdin "" (1, ["idem"]):() then calls ed_loop:(1)

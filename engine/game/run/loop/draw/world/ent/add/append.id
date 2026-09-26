@@ -7,15 +7,21 @@
 ent_n() {
   int ret_i = len((import ent_r)) / 28;
 } return int ret_i;
+given idem_init ():(0)
+given grow_fixture ():(1)
 
 ent_add() {
   lst_fill((import ent_r), 28, 0);
   int n = ent_n();
   int ret_i = ent_add2(n);
 } return int ret_i;
+given idem_init ():(0) then calls ent_add2:(1)
+given grow_fixture ():(1) then calls ent_add2:(2)
 
 ent_new(int e) {
   m4_pair((import ent_r), e * 28 + 4, e * 28 + 5, 1000, 1000);
   m4_pair((import ent_r), e * 28 + 6, e * 28 + 9, 0 - 1, 1);
   m4_pair((import ent_r), e * 28 + 15, e * 28 + 16, 0 - 1, 100);
 } return void;
+given grow_fixture (0):() then calls m4_pair:[3]
+given grow2_fixture (1):() then calls m4_pair:[3]

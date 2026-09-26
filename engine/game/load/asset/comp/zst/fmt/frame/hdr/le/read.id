@@ -8,3 +8,5 @@ zst_le_read(int n) {
     i = i + 1;
   }
 } return int v;
+given zst_src_setup (1):(1)
+given zst_src_setup (2):(513)

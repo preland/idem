@@ -12,6 +12,8 @@ tin_fire(int key, int t, int due) {
   lset((import tin_st), 3, t);
   tin_key(key);
 } return void;
+given tin_init given txt_init (72, 100, 500):() then tin_text:("H") then tin_caret:(1)
+given tin_t_hi_setup given txt_init (8, 100, 500):() then tin_text:("i") then tin_caret:(0)
 
 // The dispatch is a chain of three-way branches across four functions rather
 // than one table, because a block holds three actions and there is no `break` to
@@ -37,6 +39,8 @@ tin_key(int key) {
     tin_key2(key);
   }
 } return void;
+given tin_init given txt_init (72):() then tin_text:("H")
+given tin_t_hi_setup given txt_init (8):() then tin_text:("i") then tin_caret:(0)
 
 // Backspace (8) deletes the character *before* the caret and Delete (265) the
 // one at it, which is the difference between the two keys and the reason
@@ -51,3 +55,5 @@ tin_key2(int key) {
     tin_key3(key);
   }
 } return void;
+given tin_init (265):() then tin_text:("")
+given tin_init (256):() then tin_caret:(0) then calls tin_move:[1]

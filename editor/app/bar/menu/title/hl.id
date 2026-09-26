@@ -3,15 +3,21 @@ ed_menu_hl(int x, string s, int ok) {
     ed_menu_hl_draw(x, s);
   }
 } return void;
+given ed_t_boot stdin "" (10, "File", 1):() then calls ed_menu_hl_draw:(10, "File")
+given ed_t_boot stdin "" (10, "File", 0):() then calls ed_menu_hl_draw:[0]
 
 ed_menu_hl_draw(int x, string s) {
   int txt_ui_v = txt_ui();
   int txt_width_v = txt_width(s);
   ed_menu_hl_draw2(x, s, txt_ui_v, txt_width_v);
 } return void;
+given ed_t_boot stdin "" (10, "File"):() then calls ed_menu_hl_draw2:(10, "File", 1, 32)
+given ed_t_boot stdin "" (5, "Edit"):() then calls ed_menu_hl_draw2:(5, "Edit", 1, 32)
 
 ed_menu_hl_draw2(int x, string s, int txt_ui_v, int txt_width_v) {
   int ed_hdr_v = ed_hdr();
   int ed_col_v = ed_col(7);
   sf_rect(x - 4 * txt_ui_v, 0, txt_width_v + 8 * txt_ui_v, ed_hdr_v - 1, ed_col_v);
 } return void;
+given ed_t_boot stdin "" (10, "File", 1, 32):() then calls sf_rect:(6, 0, 40, 20, 0x4A4A4A)
+given ed_t_boot stdin "" (5, "Edit", 1, 32):() then calls sf_rect:(1, 0, 40, 20, 0x4A4A4A)

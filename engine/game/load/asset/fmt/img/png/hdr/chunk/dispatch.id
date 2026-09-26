@@ -9,11 +9,15 @@ png_chunk(int p, int n) {
   int asset_at_v2 = asset_at(p + 6);
   int ret_i = png_chunk2(p, n, asset_at_v, asset_at_v2);
 } return int ret_i;
+given png_raw_fixture (8, 13):(33) then calls png_kind:(16, 13, 72, 68)
+given png_raw_fixture (299, 102):(413) then calls png_kind:(307, 102, 68, 65)
 
 png_chunk2(int p, int n, int a, int b) {
   png_kind(p + 8, n, a, b);
   int ret_i = p + 12 + n;
 } return int ret_i;
+given png_raw_fixture (8, 13, 72, 68):(33) then calls png_kind:(16, 13, 72, 68)
+given png_raw_fixture (100, 5, 1, 2):(117) then calls png_kind:(108, 5, 1, 2)
 
 // The SECOND and THIRD bytes of the type are what tell the chunks apart: IHDR is
 // 'H' 'D' (72, 68), IDAT is 'D' 'A' (68, 65), IEND is 'E' 'N' (69, 78), PLTE is
@@ -32,3 +36,5 @@ png_kind(int p, int n, int a, int b) {
     png_kind2(p, n, a, b);
   }
 } return void;
+given png_raw_fixture (16, 13, 72, 68):() then calls png_ihdr:(16)
+given png_raw_fixture (307, 102, 68, 65):() then calls png_kind2:(307, 102, 68, 65)

@@ -16,6 +16,8 @@ d2_line_adv(int[] st, int dx, int dy, int sx, int sy) {
   d2_line_advx(st, dy, sx, e2);
   d2_line_advy(st, dx, sy, e2);
 } return void;
+([0, 0, 0], 1, 1, 1, 1):([1, 1, 0])
+([5, 5, -1], 2, 1, 1, -1):([5, 4, 1])
 
 d2_line_advx(int[] st, int dy, int sx, int e2) {
   if (e2 > 0 - dy) {
@@ -23,6 +25,8 @@ d2_line_advx(int[] st, int dy, int sx, int e2) {
     st[0] = st[0] + sx;
   }
 } return void;
+([0, 10, 5], 3, 1, 2):([1, 10, 2])
+([10, 5, 2], 5, -1, -6):([10, 5, 2])
 
 d2_line_advy(int[] st, int dx, int sy, int e2) {
   if (e2 < dx) {
@@ -30,3 +34,5 @@ d2_line_advy(int[] st, int dx, int sy, int e2) {
     st[1] = st[1] + sy;
   }
 } return void;
+([0, 0, 0], 1, 1, 0):([0, 1, 1])
+([5, 5, 10], 2, -1, 5):([5, 5, 10])

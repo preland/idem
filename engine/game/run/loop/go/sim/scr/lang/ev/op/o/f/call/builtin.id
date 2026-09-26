@@ -17,6 +17,8 @@ scr_call(int nd, int e) {
   int a = scr_arg(nd, 0, e);
   int ret_i = scr_call2(nd, e, a);
 } return int ret_i;
+given call_fixture ((import fixture_call), -1):(5)
+given idem_init (0, -1):(0) then calls scr_call2:[1]
 
 // A missing argument is 0. `random(0, 100)` and `random(100)` then differ by
 // their lower bound rather than by one being an error, which is the reading a
@@ -26,9 +28,13 @@ scr_arg(int nd, int i, int e) {
   int[] ast_ks_v = ast_ks(nd);
   if (i < len(ast_ks_v)) { int[] ast_ks_v2 = ast_ks(nd); v = scr_ev(ast_ks_v2[i], e); }
 } return int v;
+given call_fixture ((import fixture_call), 0, -1):(-5)
+given call_fixture ((import fixture_call), 1, -1):(0)
 
 scr_fn(string name, int a, int b) {
   int v = 0;
   if (name = "random") { v = rnd_range(a, b); }
   else { v = scr_fn2(name, a, b); }
 } return int v;
+given idem_init ("sin", 0, 0):(0)
+given idem_init ("random", 0, 0):(0) then calls rnd_range:[1]

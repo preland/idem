@@ -2,15 +2,21 @@ t_draw2_show() {
   int t_ink_v = t_ink(0, 0, 160, 32);
   print("field drawn: white pixels exp 538 (380 frame + 142 glyphs + 16 caret) = " + t_ink_v);
 } return void;
+given tin_draw2_ready ():() then prints:("field drawn: white pixels exp 538 (380 frame + 142 glyphs + 16 caret) = 522\n")
+given tin_draw2_ready ():() then calls t_ink:(0, 0, 160, 32)
 
 t_draw5_ink1() {
   int t_ink_v = t_ink(0, 0, 160, 4);
   int t_ink_v2 = t_ink(0, 28, 160, 4);
   int t_draw5_sum_i = t_ink_v + t_ink_v2;
 } return int t_draw5_sum_i;
+given tin_draw5_ready ():(0)
+given tin_draw4_ready ():(0)
 
 t_draw5_ink2(int t_draw5_sum_i) {
   int t_ink_v3 = t_ink(0, 4, 4, 24);
   int t_ink_v4 = t_ink(68, 4, 92, 24);
   print("ink outside the field exp 0 = " + (t_draw5_sum_i + t_ink_v3 + t_ink_v4));
 } return void;
+given tin_draw5_ready (0):() then prints:("ink outside the field exp 0 = 0\n")
+given tin_draw5_ready (5):() then prints:("ink outside the field exp 0 = 5\n")

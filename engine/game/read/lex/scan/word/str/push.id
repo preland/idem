@@ -5,3 +5,5 @@ lex_string_push(string src, int i, int e) {
   string lex_unesc_v = lex_unesc(src, i + 1, e);
   lex_push(lex_k_string_v, lex_unesc_v, 0, 0);
 } return void;
+given lex_init ("\"hi\"", 0, 3):() then calls lex_push:(14, "hi", 0, 0)
+given lex_init ("\"\"", 0, 1):() then calls lex_push:(14, "", 0, 0)

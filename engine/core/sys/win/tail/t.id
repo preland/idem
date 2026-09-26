@@ -1,0 +1,9 @@
+// sys_st exported with the window "open" and no quit pending, for sys_alive
+// and sys_quit's own cases -- their setup takes a literal (sys_st_init's own
+// ok argument), which a zero-parameter given cannot pass.
+
+sys_t_open() {
+  sys_st_init(1);
+} return void;
+():() then sys_alive:(1)
+():() then calls sys_st_init:(1)

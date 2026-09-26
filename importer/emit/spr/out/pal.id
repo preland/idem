@@ -15,6 +15,8 @@ spr_out() {
   spr_over();
   spr_emit();
 } return void;
+given spr_px_ready ():() then calls spr_pal:[1]
+given spr_px_ready ():() then calls spr_emit:[1]
 
 spr_pal() {
   int i = 0;
@@ -23,9 +25,13 @@ spr_pal() {
     i = i + 1;
   }
 } return void;
+given spr_px_ready ():() then calls spr_add:[2]
+given spr_lists_ready ():() then calls spr_add:[0]
 
 spr_add(int i) {
   if (spr_clear(i) = 0 && spr_find((import spr_px)[i]) < 0) {
     spr_push((import spr_px)[i]);
   }
 } return void;
+given spr_px_ready (0):() then calls spr_push:(0)
+given spr_al_low_ready (0):() then calls spr_push:[0]

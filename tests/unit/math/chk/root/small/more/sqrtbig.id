@@ -3,15 +3,21 @@ t_sqrtbig2(int fx_sqrt_v, int fx_sqrt_v2) {
   int fx_sqrt_v3 = fx_sqrt(2147395599);
   t_sqrtbig3(fx_sqrt_v3);
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls fx_sqrt:(2147395599)
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_sqrtbig3:[1]
 
 t_sqrtbig3(int fx_sqrt_v3) {
   int fx_sqrt_v4 = fx_sqrt(2147395600);
   int fx_sqrt_v5 = fx_sqrt(2147483646);
   t_sqrtbig4(fx_sqrt_v3, fx_sqrt_v4, fx_sqrt_v5);
 } return void;
+given fx_trig_init given rnd_seed0 (1):() then calls fx_sqrt:(2147395600)
+given fx_trig_init given rnd_seed0 (1):() then calls t_sqrtbig4:(1, 46340, 46340)
 
 t_sqrtbig4(int fx_sqrt_v3, int fx_sqrt_v4, int fx_sqrt_v5) {
   int fx_sqrt_v6 = fx_sqrt(2147483647);
   print("fx_sqrt(2147395599) exp 46339 | (2147395600) exp 46340 | (2147483646) exp 46340 | (2147483647) exp 46340 = " + fx_sqrt_v3 + " " + fx_sqrt_v4 + " " + fx_sqrt_v5 + " " + fx_sqrt_v6);
   t_hyp();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2, 3):() then calls fx_sqrt:(2147483647)
+given fx_trig_init given rnd_seed0 (4, 5, 6):() then calls t_hyp:[1]

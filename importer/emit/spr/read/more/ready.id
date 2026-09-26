@@ -1,0 +1,23 @@
+// The pixel lists, freshly exported on top of a header, and a reader for
+// spr_p's reserved first entry -- module state a case cannot see any other
+// way.
+
+spr_lists_ready() {
+  spr_hdr_ready();
+  spr_lists();
+} return void;
+():() then calls spr_hdr_ready:[1]
+():() then calls spr_lists:[1]
+
+spr_p_first() {
+  int v = (import spr_p)[0];
+} return int v;
+given spr_lists_ready ():(-1)
+given spr_lists2_ready ():(-1)
+
+spr_lists2_ready() {
+  spr_hdr2_ready();
+  spr_lists();
+} return void;
+():() then calls spr_hdr2_ready:[1]
+():() then calls spr_lists:[1]

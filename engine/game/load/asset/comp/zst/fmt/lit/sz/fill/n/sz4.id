@@ -5,4 +5,6 @@ zst_lsz4(int sf, int h, int n) {
   if (sf = 3) { n = zst_lsz3(h); }
   else { lset((import zst_st), 1, (import zst_st)[1] + 1); }
 } return int n;
+given zst_src_setup (3, 0, 256):(12320) then calls zst_lsz3:[1]
+given zst_src_setup (2, 0, 100):(100) then calls lset:[1]
 

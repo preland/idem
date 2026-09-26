@@ -20,15 +20,21 @@ scr_frame(int dt) {
   scr_upd(0 - 1);
   scr_frame2();
 } return void;
+given idem_init (0):() then calls scr_tick:[1]
+given idem_init (16):() then calls scr_frame2:[1]
 
 scr_frame2() {
   scr_ents(0);
   scr_press();
   scr_frame3();
 } return void;
+given idem_init ():() then calls scr_ents:[1]
+given idem_init ():() then calls scr_frame3:[1]
 
 scr_frame3() {
   scr_hits(0);
   scr_offs(0);
   scr_jump();
 } return void;
+given idem_init ():() then calls scr_hits:[1]
+given idem_init ():() then calls scr_jump:[1]

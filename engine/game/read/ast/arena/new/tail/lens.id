@@ -1,0 +1,22 @@
+// Column-length readers for the columns ast_new2/ast_new3/ast_new3_tail push
+// directly: each is a middle segment of the constructor with no return value
+// of its own worth checking, so a case witnesses it by how far one column grew
+// (or, as a negative check, that a column it does not touch did not).
+
+ast_b_len() {
+  int n = len((import ast_b));
+} return int n;
+given ast_init ():(1)
+given ast_init ():(1) then eprints:("")
+
+ast_c_len() {
+  int n = len((import ast_c));
+} return int n;
+given ast_init ():(1)
+given ast_init ():(1) then eprints:("")
+
+ast_line_len() {
+  int n = len((import ast_line));
+} return int n;
+given ast_init ():(1)
+given ast_init ():(1) then eprints:("")

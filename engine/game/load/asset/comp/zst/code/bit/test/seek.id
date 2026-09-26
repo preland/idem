@@ -1,0 +1,28 @@
+// A fully-initialized reader over the corrupt section.
+
+zb_frame_bad_setup() {
+  zb_init();
+  zb_frame_bad_bytes();
+  zb_start((import zb_frame_bad_p), 2);
+} return void;
+():() then zb_rel_check:([0, 7, 1])
+given zb_frame_setup ():() then zb_rel_check:([0, 7, 1])
+
+// lo/bp positioned over the valid section, but zb_mark not yet run -- for
+// cases that test zb_mark itself in isolation from zb_start.
+zb_premark_setup() {
+  zb_init();
+  zb_frame_bytes();
+  m4_pair((import zb_st), 0, 1, (import zb_frame_p), (import zb_frame_p) + 1);
+} return void;
+():() then zb_rel_check:([1, 0, 0])
+given zb_frame_setup ():() then zb_rel_check:([1, 0, 0])
+
+// Same, over the corrupt section.
+zb_premark_bad_setup() {
+  zb_init();
+  zb_frame_bad_bytes();
+  m4_pair((import zb_st), 0, 1, (import zb_frame_bad_p), (import zb_frame_bad_p) + 1);
+} return void;
+():() then zb_rel_check:([1, 0, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, 0, 0])

@@ -6,6 +6,8 @@ ed_hier_rows(int x, int y, int w, int n) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0, 22, 100, 0):() then calls ed_hier_row:[0]
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 22, 100, 2):() then calls ed_hier_row:[2]
 
 ed_hier_row(int x, int y, int w, int i) {
   string ed_label_v = ed_label(i);
@@ -13,3 +15,5 @@ ed_hier_row(int x, int y, int w, int i) {
     lset((import ed_st), 0, i);
   }
 } return void;
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 22, 100, 0):() then calls ed_row:(1, 22, 98, "game fixture", 0)
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 22, 100, 0):() then calls lset:[0]

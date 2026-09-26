@@ -12,3 +12,5 @@ par_ufill3(int[] pos, int[] kids) {
     push(kids, item);
   }
 } return void;
+given par_item_setup ([17], []):([18], [1]) then calls ast_new:(137, "child", 0, 0, 0, [])
+given par_item_setup ([18], []):([18], [])

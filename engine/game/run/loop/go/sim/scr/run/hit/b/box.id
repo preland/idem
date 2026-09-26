@@ -4,6 +4,8 @@ scr_hlive(int e) {
   int v = ent_at(e, 9);
   int hlive_val = v % 2 = 1 && v / 4 % 2 = 1;
 } return int hlive_val;
+given grow_fixture (0):(0)
+given grow2_fixture (1):(0)
 
 // Axis-aligned, centred on pos, in millunits. Touching exactly counts as a hit:
 // a bird whose edge is exactly on the floor's has landed, and the alternative --
@@ -11,7 +13,11 @@ scr_hlive(int e) {
 scr_ovl(int a, int b) {
   int v = scr_ovl_tail(a, b);
 } return int v;
+given grow_fixture (0, 0):(1) then calls scr_ovl_tail:[1]
+given grow2_fixture (0, 1):(1) then calls scr_ovl_tail:[1]
 
 scr_span(int ac, int aw, int bc, int bw) {
   int span_val = scr_span_tail(ac, aw, bc, bw);
 } return int span_val;
+given idem_init (0, 10, 5, 10):(1) then calls scr_span_tail:[1]
+given idem_init (0, 10, 20, 10):(0) then calls scr_span_tail:[1]

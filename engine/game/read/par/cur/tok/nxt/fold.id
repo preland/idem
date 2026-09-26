@@ -10,6 +10,8 @@ par_optxt(int[] pos) {
   string txt = par_text(pos);
   par_next(pos);
 } return string txt;
+given ast_init given par_tok_setup ([0]):("3.5") then calls par_next:[1]
+given ast_init given par_tok_setup ([2]):("+") then calls par_next:[1]
 
 // The binary node itself, given the operator text (a variable or a fixed
 // symbol -- every level's fold ends by calling this the same way).
@@ -17,3 +19,5 @@ par_binnode(string txt, int lv, int rv) {
   int ast_k_bin_v = (import ast_k_bin);
   int ret_i = ast_new_ab(ast_k_bin_v, txt, lv, rv);
 } return int ret_i;
+given ast_init ("+", 1, 2):(1) then ast_n:(2)
+given ast_init ("*", 3, 4):(1) then ast_n:(2)

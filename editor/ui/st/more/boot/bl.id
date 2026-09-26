@@ -17,15 +17,21 @@ ed_boot6() {
   bl_init();
   ed_boot7();
 } return void;
+given ed_t_boot stdin "" ():() then calls zst_init:() then calls bl_init:()
+given ed_t_boot stdin "" ():() then calls bl_init:() then calls ed_boot7:()
 
 ed_boot7() {
   bl_geo_init();
   png_init();
   ed_boot8();
 } return void;
+given ed_t_boot stdin "" ():() then calls bl_geo_init:() then calls png_init:()
+given ed_t_boot stdin "" ():() then calls png_init:() then calls ed_boot8:()
 
 ed_boot8() {
   inf_init();
   ent_init();
   ed_boot9();
 } return void;
+given ed_t_boot stdin "" ():() then calls inf_init:() then calls ent_init:()
+given ed_t_boot stdin "" ():() then calls ent_init:() then calls ed_boot9:()

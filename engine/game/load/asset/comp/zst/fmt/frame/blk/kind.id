@@ -7,6 +7,8 @@ zst_kind(int kd, int n) {
     zst_kind2(kd, n);
   }
 } return void;
+given zst_init (0, 0):() then calls zst_raw:[1]
+given zst_src_setup (1, 0):() then calls zst_kind2:[1]
 
 zst_kind2(int kd, int n) {
   if (kd = 1) {
@@ -17,6 +19,8 @@ zst_kind2(int kd, int n) {
     lset((import zst_st), 6, 1);
   }
 } return void;
+given zst_src_setup (1, 0):() then calls zst_rle:[1]
+given zst_init (3, 0):() then zst_err_check:(1)
 
 // Raw: n bytes straight through, source to output.
 zst_raw(int n) {
@@ -28,3 +32,5 @@ zst_raw(int n) {
   }
   lset((import zst_st), 1, (import zst_st)[1] + n);
 } return void;
+given zst_init (0):()
+given zst_src_setup (1):()

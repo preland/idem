@@ -9,6 +9,8 @@ scr_axis(string name, int k) {
   if (name = "x") { at = k; }
   else if (name = "y") { at = k + 1; }
 } return int at;
+("x", 0):(0)
+("y", 0):(1)
 
 // Stage units out, millunits in. A script says `pos.y = 200` and means two
 // hundred of the units the game declared its display in; the record holds two
@@ -18,6 +20,8 @@ scr_slot(int e, int k) {
   int v = 0;
   if (k >= 0 && e >= 0) { v = ent_at(e, k) / 1000; }
 } return int v;
+given grow_fixture (0, 4):(1)
+given idem_init (-1, 0):(0)
 
 // Writing one. The units are the store's -- millunits -- and a script says stage
 // units, so both directions scale by a thousand. `vel.y = -420` means 420 stage
@@ -25,3 +29,5 @@ scr_slot(int e, int k) {
 scr_pslot(int e, int k, int v) {
   if (k >= 0 && e >= 0) { ent_put(e, k, v * 1000); }
 } return void;
+given grow_fixture (0, 4, 7):() then calls ent_put:(0, 4, 7000)
+given idem_init (-1, 0, 7):() then calls ent_put:[0]

@@ -2,6 +2,8 @@ ed_reopen_prepare(int note) {
   string cmd = ed_reopen_cmd();
   ed_read6(cmd);
 } return void;
+given ed_t_boot stdin "" (5):() then calls ed_reopen_cmd:[1]
+given ed_t_boot stdin "" (5):() then calls ed_read6:("#root \n#file \n")
 
 // Re-read the world from the document in memory. The editor's own reader takes
 // the stream format tools/idem feeds it -- a `#root` line and a `#file` marker --
@@ -12,3 +14,5 @@ ed_reopen(int note) {
   ed_reopen_prepare(note);
   lset((import ed_st), 17, note);
 } return void;
+given ed_t_boot stdin "" (5):() then calls ed_reopen_dir:[1]
+given ed_t_boot stdin "" (5):() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 5, 1000, 0, 0], 17, 5)

@@ -9,9 +9,21 @@ ed_rd_init(int[] buf, string path) {
   int fx_max_v = fx_max(fs_size_v, 0);
   lst_fill(buf, fx_max_v, 0);
 } return void;
+([], "../test_assets/editor/scene.idml"):([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+([], "../test_assets/editor/does-not-exist.idml"):([])
 
 ed_rd(string path) {
   int[] buf = [];
   ed_rd_init(buf, path);
   string ret_s = ed_rget(path, buf);
 } return string ret_s;
+("../test_assets/editor/scene.idml"):("scene t {\n  entity f {\n    pos (20, 30)\n  }\n}\n")
+("../test_assets/editor/does-not-exist.idml"):("")
+
+// A real handle open for reading on the checked-in scene.idml, for ed_rnow's
+// own case -- ed_rnow takes an already-open handle rather than a path.
+ed_t_rhandle_open() {
+  export int ed_t_rhandle = fs_open("../test_assets/editor/scene.idml", "r");
+} return void;
+given ed_t_boot stdin "" ():() then calls ed_wshut:[0]
+given ed_t_boot given ed_t_ent stdin "" ():() then calls ed_wshut:[0]

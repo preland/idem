@@ -8,14 +8,20 @@ ed_pcx(int dx, int dy) {
   int sin_v = fx_sin((import ed_st)[2]);
   int ret_i = fx_mul(dx, cos_v, 1000) - ed_pup(dy, sin_v);
 } return int ret_i;
+given ed_t_boot stdin "" (1000, 500):(775)
+given ed_t_boot stdin "" (-500, 0):(-409)
 
 ed_pcy(int dy) {
   int fx_cos_v = fx_cos((import ed_st)[3]);
   int ret_i = 0 - fx_mul(dy, fx_cos_v, 1000);
 } return int ret_i;
+given ed_t_boot stdin "" (1000):(-988)
+given ed_t_boot stdin "" (-500):(494)
 
 ed_pcz(int dx, int dy) {
   int sin_v = fx_sin((import ed_st)[2]);
   int cos_v = fx_cos((import ed_st)[2]);
   int ret_i = 0 - fx_mul(dx, sin_v, 1000) - ed_pup(dy, cos_v);
 } return int ret_i;
+given ed_t_boot stdin "" (1000, 500):(-637)
+given ed_t_boot stdin "" (-500, 0):(287)

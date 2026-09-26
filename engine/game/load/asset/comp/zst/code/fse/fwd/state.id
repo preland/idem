@@ -12,15 +12,21 @@ fse_init4() {
   export int[] zf_st = [];
   fse_init5();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_val:(0)
 
 fse_init5() {
   lst_fill((import fse_sy), 1536, 0);
   lst_fill((import fse_nb), 1536, 0);
   fse_init6();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_len_check:(12)
 
 fse_init6() {
   lst_fill((import fse_bs), 1536, 0);
   lst_fill((import zf_st), 6, 0);
   fse_init7();
 } return void;
+given fse_init ():() then zf_st_val:(0)
+given zf_st_val_setup ():() then zf_st_len_check:(12)

@@ -31,11 +31,16 @@ txt_ui() {
   int step_h = txt_step((import sf_gh), 400);
   int ui = txt_ui_min(step_w, step_h);
 } return int ui;
+given sf_t_setup ():(1)
+given sf_t_setup ():(1) then sf_t_gw:(64)
 
 // Round-to-nearest division: (n + ref/2) / ref.
 txt_step(int n, int ref) {
   int step = (n + ref / 2) / ref;
 } return int step;
+(960, 640):(2)
+(0, 640):(0)
+(640, 640):(1)
 
 // The screen extent of font pixel i at a per-mille scale: the distance between
 // its two rounded boundaries. Consecutive pixels therefore tile exactly, with no
@@ -45,3 +50,5 @@ txt_step(int n, int ref) {
 txt_ext(int i, int sc) {
   int ext = (i + 1) * sc / 1000 - i * sc / 1000;
 } return int ext;
+(0, 1000):(1)
+(0, 500):(0)

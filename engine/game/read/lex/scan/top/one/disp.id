@@ -9,8 +9,12 @@ lex_one2(string src, int i, int[] out) {
     else { lex_one3(src, i, out); }
   }
 } return void;
+given lex_init ("5", 0, [0]):("5", 0, [1]) then calls lex_push:(13, "5", 5, 0)
+given lex_init ("#01", 0, [0]):("#01", 0, [3]) then calls lex_setpath:[0]
 
 lex_nl(string src, int i) {
   lex_bump();
   int ret_i = i + 1;
 } return int ret_i;
+given lex_init ("\n", 0):(1) then calls lex_bump:[1]
+given lex_init ("a\nb", 1):(2) then calls lex_bump:[1]

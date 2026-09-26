@@ -10,3 +10,17 @@ t_pmix(int hv, int v) {
   wp = (wp * 31 + v) % 1000000007;
   int ret_i = wp;
 } return int ret_i;
+(0, 0):(0)
+(1, 2):(33)
+
+// Test-only fixture: a small real truecolour+alpha PNG (borrowed from the spr
+// project, which already exercises it), so t_hash/t_row's own 4-byte-a-pixel
+// stride has a genuine RGBA image to walk without decoding the 2560x2560
+// sheet main.id uses (see png_ready in main/tail.id).
+png_rgba_ready() {
+  png_ready();
+  inf_init();
+  png_load("../spr/img/rgba.png");
+} return void;
+():() then calls png_ready:[1]
+():() then calls png_load:("../spr/img/rgba.png")

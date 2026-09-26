@@ -1,0 +1,31 @@
+// Hand-built AST nodes for the page/layout functions' own cases -- ui_pgset,
+// ui_pgone (app/page.id) and ui_ppage (l/pg.id) -- so they can be cased
+// without going through the real parser (docfx sits beside store.id and
+// seam3.id, the nearest directory with room).
+
+// Node 1, a plain generic-kind leaf -- neither a page nor a variant nor a
+// define, so ui_pgone's two forwarding calls both no-op on it.
+page_t_leaf() {
+  ast_init();
+  int leaf = ast_new_k(5, "leaf");
+} return void;
+():() then ast_n:(2)
+given ast_init ():() then ast_n:(2)
+
+// Node 3, a two-child parent (nodes 1 and 2) -- what ui_pgset walks.
+page_t_doc() {
+  page_t_leaf();
+  int leaf2 = ast_new_k(5, "leaf2");
+  int doc = ast_new_kids(5, "doc", [1, 2]);
+} return void;
+():() then ast_n:(4)
+given ast_init ():() then ast_n:(4)
+
+// A page-kind node (ast_k_page = 144, conf.id) carrying `a` = 42, for
+// ui_ppage's positive branch.
+page_t_node() {
+  ast_init();
+  int p = ast_new_a(144, "page", 42);
+} return void;
+():() then ast_n:(2)
+given ast_init ():() then ast_n:(2)

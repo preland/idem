@@ -12,6 +12,8 @@ par_dfin(int[] pos, int kd, string name, int a, int[] kids) {
   }
   int ret_i = ast_new(kd, name, a, 0, 0, kids);
 } return int ret_i;
+given par_dmem_setup ([16], 113, "keys2", 1, []):(9) then calls ast_new:(113, "keys2", 1, 0, 0, [4, 8])
+given par_dmem_setup ([1], 105, "Z", 99, []):(1) then calls ast_new:(105, "Z", 99, 0, 0, [])
 
 par_dinner(int[] pos, int[] kids) {
   while (par_is(pos, "}") = 0 && par_kind(pos) != (import lex_k_eof)) {
@@ -19,6 +21,9 @@ par_dinner(int[] pos, int[] kids) {
     push(kids, par_member_v);
   }
 } return void;
+given par_dmem_setup ([17], []):([23], [4, 8]) then calls ast_new:(113, "fire", 7, 0, 0, [])
+given par_dmem_setup ([10], []):([10], [])
+given par_dmem_setup ([34], []):([46], [5, 10]) then calls ast_new:(109, "a", 1, 0, 0, [4]) then calls ast_new:(109, "b", 6, 0, 0, [9])
 
 // A member is a nested declaration if its keyword is one, a script or a ui block
 // if it is one of those, and an ordinary component otherwise.
@@ -30,3 +35,5 @@ par_member(int[] pos) {
     nd = par_mem2(pos);
   }
 } return int nd;
+given par_dmem_setup ([24]):(5) then calls ast_new:(109, "bird", 1, 0, 0, [4])
+given par_dmem_setup ([0]):(3) then calls ast_new:(113, "tag", 2, 0, 0, [])

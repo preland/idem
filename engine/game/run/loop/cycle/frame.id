@@ -3,3 +3,5 @@ run_frame2(int t) {
   run_step();
   sys_pace(t, (import scn_st)[2]);
 } return void;
+given game_fixture_nd (0):() then calls run_step:[1]
+given game_fixture_nd (0):() then calls sys_pace:[1]

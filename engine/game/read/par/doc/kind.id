@@ -9,12 +9,16 @@ par_dk(string name) {
   if (name = "game") { kd = (import ast_k_game); }
   else if (name = "scene") { kd = (import ast_k_scene); }
 } return int kd;
+("game"):(107)
+("entity"):(109)
 
 par_dk2(string name) {
   int kd = par_dk3(name);
   if (name = "template") { kd = (import ast_k_template); }
   else if (name = "entity") { kd = (import ast_k_entity); }
 } return int kd;
+("entity"):(109)
+("sprite"):(105)
 
 // `sprite` and `model` are references to files now, and `import` pulls in another
 // document. Anything else is 0, which par_dkind turns into one diagnostic.
@@ -23,3 +27,9 @@ par_dk3(string name) {
   if (name = "sprite" || name = "model" || name = "font") { kd = (import ast_k_sprite); }
   else if (name = "import" || name = "define") { kd = (import ast_k_define); }
 } return int kd;
+("sprite"):(105)
+("model"):(105)
+("font"):(105)
+("import"):(142)
+("define"):(142)
+("nope"):(0)

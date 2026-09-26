@@ -1,0 +1,32 @@
+// The statements that do something to the world.
+
+scr_ex6(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = (import ast_k_spawn)) {
+    scr_spawn(nd, e);
+  } else {
+    fin = scr_ex7(nd, e);
+  }
+} return int fin;
+given idem_init (0, -1):(0) then calls scr_ex7:[1]
+given despawn_fixture ((import fixture_despawn), 0):(1) then calls scr_kill:[1]
+
+// `despawn` clears the live flag and finishes the handler. The record is not
+// removed -- an id stays valid for the frame it died in, which is what makes
+// `other` safe in a collision handler that despawns both sides.
+scr_ex7(int nd, int e) {
+  int fin = 0;
+  if (ast_kd(nd) = (import ast_k_despawn)) {
+    fin = scr_kill(e);
+  } else {
+    fin = scr_ex8(nd, e);
+  }
+} return int fin;
+given despawn_fixture ((import fixture_despawn), 0):(1) then calls scr_kill:[1]
+given idem_init (0, -1):(0) then calls scr_ex8:[1]
+
+scr_kill(int e) {
+  if (e >= 0) { int ent_at_v = ent_at(e, 9); int ent_at_v2 = ent_at(e, 9); ent_put(e, 9, ent_at_v - ent_at_v2 % 2); }
+} return int 1;
+given grow_fixture (0):(1) then calls ent_put:[1]
+given idem_init (-1):(1) then calls ent_put:[0]

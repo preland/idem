@@ -20,6 +20,8 @@ sim_step() {
   sim_ents(0, dt);
   scr_frame(dt);
 } return void;
+given idem_init ():() then calls sim_ents:(0, 16)
+given fps_fixture ():() then calls sim_ents:(0, 33)
 
 sim_ents(int e, int dt) {
   while (e < ent_n()) {
@@ -28,6 +30,8 @@ sim_ents(int e, int dt) {
   }
   lset((import sim_st), 0, (import sim_st)[0] + dt);
 } return void;
+given idem_init (0, 16):() then calls sim_one:[0]
+given game_fixture_nd (0, 16):() then calls sim_one:[2]
 
 // Simulate, then draw. A frame that drew first would show the world as it was
 // before its own input was applied, which reads as a frame of lag on every key.
@@ -35,3 +39,5 @@ run_sim() {
   sim_step();
   run_draw();
 } return void;
+given game_fixture_nd ():() then calls sim_step:[1]
+given game_fixture_nd ():() then calls run_draw:[1]

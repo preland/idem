@@ -34,9 +34,13 @@ ed_plane() {
   ed_plane_at();
   sf_unclip();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_clip_pane:[2]
+given ed_t_boot stdin "" ():() then calls ed_plane_at:[1]
 
 ed_plane3(int x, int y, int w, int h) {
   sf_rect(x, y, w, h, (import ed_gu)[1]);
   ed_pworld(x, y, w);
   ed_plane4(x, y, w, h);
 } return void;
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls sf_rect:(10, 20, 30, 40, 0x70C5CE)
+given ed_t_boot stdin "" (10, 20, 30, 40):(10, 20, 30, 40) then calls ed_pworld:(10, 20, 30)

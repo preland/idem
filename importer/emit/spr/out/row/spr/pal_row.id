@@ -6,8 +6,12 @@ spr_pal_row(int i) {
   string cs = chr(ch);
   spr_pal_row_b(i, cs);
 } return void;
+given spr_pal_ready (1):() then calls spr_pal_row_b:(1, "0")
+given spr_pal_ready (0):() then calls spr_pal_row_b:(0, ".")
 
 spr_pal_row_b(int i, string cs) {
   string h = imp_hex6((import spr_p)[i]);
   print("  " + cs + " 0x" + h);
 } return void;
+given spr_pal_ready (1, "0"):() then prints:("  0 0x0003E7\n")
+given spr_pal_ready (0, "."):() then prints:("  . 0x00000/\n")

@@ -15,6 +15,8 @@ t_case(string msg, int z0, int z1, int z2) {
   d3_zclear();
   t_draw(msg, z0, z1, z2);
 } return void;
+given d3_ready ("test", 1, 2, 3):() then calls sf_clear:(0)
+given d3_ready ("test", 1, 2, 3):() then calls t_draw:("test", 1, 2, 3)
 
 // Two units ahead, the three vertices project to (22,169), (298,169) and
 // (160,31) on a 320x200 surface -- wholly on screen, and 0.5 * 276 * 138 = 19044
@@ -24,8 +26,12 @@ t_draw(string msg, int z0, int z1, int z2) {
   d3_nclip(tri);
   t_report(msg);
 } return void;
+given d3_ready ("test", 1, 2, 3):() then calls d3_nclip:[1]
+given d3_ready ("test", 1, 2, 3):() then calls t_report:("test")
 
 t_report(string msg) {
   int t_lit_v = t_lit();
   print("nclip " + msg + " lit = " + t_lit_v);
 } return void;
+given d3_ready given t_raster ("test"):() then prints:("nclip test lit = 38074\n")
+given d3_ready ("test2"):() then prints:("nclip test2 lit = 0\n")

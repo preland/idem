@@ -3,9 +3,13 @@ ed_plane_at() {
   int pt0_v = ed_pt0();
   ed_plane_wh(pl0_v, pt0_v);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" ():() then calls ed_plane_wh:(225, 41)
+given ed_t_boot given ed_t_lay given ed_t_boot_proj stdin "" ():() then calls ed_plane_wh:(128, 75)
 
 ed_plane_wh(int x, int y) {
   int w_v = ed_gw() * ed_psc() / 1000;
   int h_v = ed_gh() * ed_psc() / 1000;
   ed_plane3(x, y, w_v, h_v);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (225, 41):(225, 41) then calls ed_plane3:(225, 41, 165, 293)
+given ed_t_boot given ed_t_lay given ed_t_boot_proj stdin "" (10, 20):(10, 20) then calls ed_plane3:(10, 20, 360, 225)

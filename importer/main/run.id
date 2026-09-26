@@ -6,3 +6,12 @@ main_run(string src) {
   flush();
   int ret_i = err_count();
 } return int ret_i;
+given imp_ready ("model x 0 0"):(0) then calls imp_go:("model x 0 0")
+given imp_ready (""):(1)
+
+imp_ready() {
+  err_init();
+  imp_init();
+} return void;
+():() then calls err_init:[1]
+():() then calls imp_init:[1]

@@ -5,11 +5,17 @@ ed_medit(int i) {
   if (i = 0) { s = "Undo"; }
   else if (i = 1) { s = "Redo"; }
 } return string s;
+(0):("Undo")
+(1):("Redo")
+(2):("Select All")
+(3):("Clear Sel")
 
 ed_medit2(int i) {
   string s = "Clear Sel";
   if (i = 2) { s = "Select All"; }
 } return string s;
+(2):("Select All")
+(0):("Clear Sel")
 
 // Undo, Redo, Import and Reload are the four that are not built. Everything else
 // on the bar works, which is the point of listing them at all -- a menu that is
@@ -18,3 +24,7 @@ ed_mon(int k, int i) {
   int ok = 1;
   if (k = 1 && i < 2 || k = 2 && i < 2) { ok = 0; }
 } return int ok;
+(1, 0):(0)
+(1, 2):(1)
+(2, 1):(0)
+(3, 0):(1)

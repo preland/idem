@@ -1,0 +1,20 @@
+// The two non-indexed colours.
+
+// A grey sample spread across three channels, scaled from its own depth to 8
+// bits. The scale is `v * 255 / (2^d - 1)` and not a shift: at depth 1 that sends
+// 1 to 255 rather than to 128, which is what "full brightness" has to mean.
+spr_grey(int r, int x) {
+  int v = png_samp(r, x) * 255 / (fx_pow(2, (import png_st)[2]) - 1);
+  int ret_i = d2_rgb(v, v, v);
+} return int ret_i;
+given spr_grey_fixture ((import spr_row_grey), 0):(0)
+given spr_grey_fixture ((import spr_row_grey), 2):(8421504)
+
+// Truecolour: the first three bytes of the pixel. peek8 is pure, so nothing here
+// depends on the order the three are evaluated in.
+spr_rgb(int r, int x) {
+  int i = r + 1 + x * (import png_st)[4];
+  int ret_i = png_pcol_rgb(i);
+} return int ret_i;
+given spr_rgb_fixture ((import spr_row_rgb), 0):(16447996)
+given spr_rgba_fixture ((import spr_row_rgba), 2):(13132850)

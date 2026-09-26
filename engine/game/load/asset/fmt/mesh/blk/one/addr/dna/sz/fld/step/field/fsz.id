@@ -2,3 +2,16 @@ bl_fsz_at(int p, int np) {
   int bl_le16_v2 = bl_le16(p);
   int ret_i = bl_fsz(bl_le16_v2, np);
 } return int ret_i;
+given bl_sfind_t_setup (97, 61):(4)
+given bl_sfind_t_setup (97, 73):(4)
+
+// bl_sfind_t_setup with a real field hit already recorded (bl_fhit(61, "x",
+// 5), the same field/offset bl_fhit's own case uses) -- for bl_fdone's own
+// case, whose reset otherwise has nothing but the fresh state's zero to
+// read back.
+bl_fhit_t_setup() {
+  bl_sfind_t_setup();
+  bl_fhit(61, "x", 5);
+} return void;
+():() then bl_fdone:(5)
+given asset_io_init ():() then bl_fdone:(5)

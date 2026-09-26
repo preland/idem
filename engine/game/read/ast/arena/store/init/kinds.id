@@ -6,6 +6,8 @@ ast_init4() {
   export int[] ast_cur = [0];
   ast_kinit();
 } return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_cur_val:(0)
 
 // The printable kind names, split out of one literal rather than pushed one at a
 // time -- fifteen more functions of three pushes each would say nothing.
@@ -13,6 +15,8 @@ ast_kinit() {
   export string[] ast_kn = [];
   ast_ksplit((import ast_kn), "nil file import palette pcol sprite model game scene entity template instance spawn comp var script on block if while repeat assign despawn goto play say stop bin un field call num str ident tuple args ui item dims vis ref cond define variant bad", 0);
 } return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_n:(2) then eprints:("")
 
 ast_ksplit(string[] strs, string s, int i) {
   while (charat(s, i) >= 0) {
@@ -21,3 +25,5 @@ ast_ksplit(string[] strs, string s, int i) {
   int kd = (import ast_k_nil);
   ast_new_k(kd, "");
 } return void;
+given ast_init ([], "nil", 0):(["nil"], "nil", 0)
+given ast_init ([], "nil file", 0):() then ast_n:(2)

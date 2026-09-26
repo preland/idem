@@ -1,0 +1,22 @@
+// Test checks for the sprite table's own cases (init.id): each just reads
+// back the length of one of the five exports so a case can witness that the
+// link that declares it actually ran, without needing a `given` -- the
+// function under test is itself the declarer.
+
+d2_spr_t_w_len() {
+  int n = len((import asset_sprw));
+} return int n;
+given d2_spr_init ():(0)
+given d2_spr_init ():(0) then d2_spr_t_f_len:(0)
+
+d2_spr_t_f_len() {
+  int n = len((import asset_sprf));
+} return int n;
+given d2_spr_init2 ():(0)
+given d2_spr_init2 ():(0) then d2_spr_t_n_len:(0)
+
+d2_spr_t_n_len() {
+  int n = len((import asset_sprn));
+} return int n;
+given d2_spr_init3 ():(0)
+given d2_spr_init2 ():(0) then d2_spr_t_f_len:(0)

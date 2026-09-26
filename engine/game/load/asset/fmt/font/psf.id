@@ -58,6 +58,8 @@ psf_load(string path) {
   int n = asset_slurp(path);
   int ret_i = psf_head(n);
 } return int ret_i;
+given txt_glyph_data given asset_io_init ("../test_assets/vga8x16.psf"):(1)
+given asset_io_init ("../test_assets/water-motion-sprite-sheet-animated-swirl-cartoon-vector.jpg"):(0)
 
 // Which of the two it is. The magic is compared byte by byte through asset_at
 // rather than as a word, because asset_at is the bounds-checked read and this
@@ -72,6 +74,8 @@ psf_head(int n) {
     ok = psf_two();
   }
 } return int ok;
+given psf_vga_fixture (4969):(1)
+given psf_vga_fixture (32):(0)
 
 // Validate, then copy. `sa` is where the glyphs start, `n` how many there are,
 // `cs` the bytes one glyph occupies and `h`/`w` its cell.
@@ -87,3 +91,5 @@ psf_one(int sa, int n, int cs, int h, int w) {
     ok = psf_copy(sa, n, cs, h, w);
   }
 } return int ok;
+given psf_vga_fixture (32, 256, 16, 16, 8):(1)
+given psf_vga_fixture (32, 256, 16, 16, 25):(0)

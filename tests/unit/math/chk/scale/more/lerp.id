@@ -3,15 +3,21 @@ t_fxlerp2(int fx_lerp_v, int fx_lerp_v2) {
   int fx_lerp_v3 = fx_lerp(0 - 1000, 1000, 750);
   t_fxlerp3(fx_lerp_v3);
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2):() then calls fx_lerp:(-1000, 1000, 750)
+given fx_trig_init given rnd_seed0 (3, 4):() then calls t_fxlerp3:[1]
 
 t_fxlerp3(int fx_lerp_v3) {
   int fx_lerp_v4 = fx_lerp(7, 7, 999);
   int fx_lerp_v5 = fx_lerp(0, 1000, 0);
   t_fxlerp4(fx_lerp_v3, fx_lerp_v4, fx_lerp_v5);
 } return void;
+given fx_trig_init given rnd_seed0 (1):() then calls fx_lerp:(7, 7, 999)
+given fx_trig_init given rnd_seed0 (1):() then calls t_fxlerp4:(1, 7, 0)
 
 t_fxlerp4(int fx_lerp_v3, int fx_lerp_v4, int fx_lerp_v5) {
   int fx_lerp_v6 = fx_lerp(0, 1000, 1000);
   print("fx_lerp(-1000,1000,750) exp 500 | (7,7,999) exp 7 | (0,1000,0) exp 0 | (0,1000,1000) exp 1000 = " + fx_lerp_v3 + " " + fx_lerp_v4 + " " + fx_lerp_v5 + " " + fx_lerp_v6);
   t_sqrt();
 } return void;
+given fx_trig_init given rnd_seed0 (1, 2, 3):() then calls fx_lerp:(0, 1000, 1000)
+given fx_trig_init given rnd_seed0 (4, 5, 6):() then calls t_sqrt:[1]

@@ -5,6 +5,8 @@ zst_lsz3(int h) {
   int n = h / 16 + zst_byte((import zst_st)[1] + 1) * 16 + zst_byte((import zst_st)[1] + 2) * 4096;
   lset((import zst_st), 1, (import zst_st)[1] + 3);
 } return int n;
+given zst_src_setup (0):(12320) then calls zst_byte:[2]
+given zst_src_setup (16):(12321) then calls lset:[1]
 
 // One buffer, allocated once at the largest a block's literals can be (a block
 // decompresses to at most 128 KiB) and reused by every block of every frame. A
@@ -15,9 +17,13 @@ zst_lbuf(int n) {
   lset((import zst_st), 10, 0);
   zst_lchk(n);
 } return void;
+given zst_src_setup (256):() then calls lset:[2]
+given zst_src_setup (8192):() then calls zst_lchk:[1]
 
 zst_lchk(int n) {
   if (n > (import zst_lmax)) {
     lset((import zst_st), 6, 1);
   }
 } return void;
+given zst_src_setup (1000):() then calls lset:[0]
+given zst_src_setup (200000):() then calls lset:[1]

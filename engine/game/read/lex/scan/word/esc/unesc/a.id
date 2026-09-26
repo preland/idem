@@ -7,6 +7,8 @@ lex_unesc(string src, int a, int b) {
   int n = lex_unfill(src, a, b, ad);
   string s = str_of_mem(ad, n);
 } return string s;
+("hi", 0, 2):("hi")
+("x", 0, 0):("")
 
 lex_unfill(string src, int a, int b, word ad) {
   int n = 0;
@@ -15,9 +17,13 @@ lex_unfill(string src, int a, int b, word ad) {
     n = n + 1;
   }
 } return int n;
+given lex_wbuf_setup ("hi", 0, 2, (import lex_wbuf)):(2) then lex_wbuf_sum:(263)
+given lex_wbuf_setup ("hi", 0, 0, (import lex_wbuf)):(0) then lex_wbuf_sum:(72)
 
 lex_unone(string src, int a, word ad) {
   int nxt = a + 1;
   int c = charat(src, a);
   int result = lex_unone_tail(src, a, c, nxt, ad);
 } return int result;
+given lex_wbuf_setup ("hi", 0, (import lex_wbuf)):(1) then lex_wbuf_sum:(167)
+given lex_wbuf_setup ("\\n", 0, (import lex_wbuf)):(2) then lex_wbuf_sum:(73)

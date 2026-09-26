@@ -3,3 +3,16 @@ t_fsum2(int a, int base, int n) {
   int c = t_fcol((import fse_bs), base, n);
   t_fshow(a, b, c);
 } return void;
+given zst_fse_ready (1, 0, 64):() then calls t_fcol:[2]
+given zst_fse_ready (1, 0, 64):() then calls t_fshow:[1]
+
+// A 4-byte buffer holding 0x8C (1000 1100) -- the known byte chk/bits/reader.id
+// reasons about -- so a case can drive the bit reader without alloc()'s
+// address (unknown ahead of time) as a case literal.
+zst_buf_ready() {
+  zst_ready();
+  export word zst_buf = alloc(4);
+  poke8(zst_buf, 140);
+} return void;
+():() then calls zst_ready:[1]
+given zst_surf_ready ():() then calls zst_ready:[1]

@@ -7,9 +7,13 @@ bl_wrx(int p, int si) {
   bl_rot_x_init(p, si);
   bl_wry(p, si);
 } return void;
+given fx_trig_init given bl_scene_t_setup (348664, 692):() then calls bl_wry:(348664, 692)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (348664, 692):() then calls bl_wry:(348664, 692)
 
 bl_rot_x_init(int p, int si) {
   int deg_v = bl_rot_angle(p, si, 4);
   m4_ident((import bl_m0));
   m4_rot4((import bl_m0), 0, 8, 2, 10, deg_v);
 } return void;
+given fx_trig_init given bl_scene_t_setup (348664, 692):() then calls bl_rot_angle:(348664, 692, 4)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (348664, 692):() then calls bl_rot_angle:(348664, 692, 4)

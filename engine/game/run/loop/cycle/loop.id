@@ -13,6 +13,8 @@
 idem_run() {
   run_loop(1);
 } return void;
+given game_fixture_nd given sys_quit ():() then calls run_frame:[1]
+given game_fixture_nd given sys_quit ():() then calls run_frame2:[1]
 
 run_loop(int alive) {
   while (alive = 1) {
@@ -20,9 +22,13 @@ run_loop(int alive) {
   }
   gfx_close();
 } return void;
+given idem_init (0):() then calls run_frame:[0]
+given idem_init (2):() then calls run_frame:[0]
 
 run_frame() {
   int t = sys_now();
   run_frame2(t);
   int ret_i = sys_alive();
 } return int ret_i;
+given game_fixture_nd ():(1) then calls run_frame2:[1]
+given game_fixture_nd ():(1) then calls sys_alive:[1]

@@ -7,3 +7,5 @@ ast_sexp_body(int nd, int kd) {
   ast_sexp2(nd, kd, strs);
   string s = strs[0];
 } return string s;
+given ast_dump_setup (4, 132):("\"hi\"")
+given ast_init (0, 100):("")

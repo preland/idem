@@ -17,15 +17,21 @@ d2_disc(int x, int y, int n, int c) {
   int[] st = [0, n, 1 - n];
   d2_disc_run(st, x, y, c);
 } return void;
+given sf_t_setup (0, 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup (0, 0, -1, 7):() then d2_blit_t_px00:(0)
 
 d2_disc_run(int[] st, int x, int y, int c) {
   while (st[0] <= st[1]) {
     d2_disc_step(st, x, y, c);
   }
 } return void;
+given sf_t_setup ([0, 0, 1], 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup ([0, -1, 1], 0, 0, 7):() then d2_blit_t_px00:(0)
 
 d2_disc_step(int[] st, int x, int y, int c) {
   d2_disc_spans(x, y, st[0], st[1], c);
   d2_circ_err(st);
   st[0] = st[0] + 1;
 } return void;
+given sf_t_setup ([0, 0, 1], 0, 0, 7):() then d2_blit_t_px00:(7)
+given sf_t_setup ([0, 0, 1], 0, 0, 3):() then d2_blit_t_px00:(3)

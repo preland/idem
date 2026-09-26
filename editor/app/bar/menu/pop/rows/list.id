@@ -6,6 +6,8 @@ ed_pop_rows(int k, int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0, 0):() then calls ed_pop_row:[5]
+given ed_t_boot stdin "" (2, 1):() then calls ed_pop_row:[2]
 
 // A live item highlights and acts; a dim one does neither, so the difference is
 // visible before it is clicked rather than after.
@@ -14,9 +16,13 @@ ed_pop_row(int k, int i) {
   int ui = txt_ui();
   ed_pop_row2(k, i, mx, ui);
 } return void;
+given ed_t_boot stdin "" (2, 0):() then calls ed_pop_row2:(2, 0, 90, 1)
+given ed_t_boot stdin "" (0, 1):() then calls ed_pop_row2:(0, 1, 6, 1)
 
 ed_pop_row2(int k, int i, int mx, int ui) {
   int hdr = ed_hdr();
   int rowh = ed_rowh();
   ed_pop_row3(k, i, mx, ui, hdr, rowh);
 } return void;
+given ed_t_boot stdin "" (2, 0, 90, 1):() then calls ed_pop_row3:(2, 0, 90, 1, 21, 18)
+given ed_t_boot stdin "" (0, 1, 6, 1):() then calls ed_pop_row3:(0, 1, 6, 1, 21, 18)

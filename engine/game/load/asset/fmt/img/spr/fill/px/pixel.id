@@ -13,6 +13,8 @@ spr_row(int p, int i, int r, int x, int cw, int sw) {
     dx = dx + 1;
   }
 } return void;
+given spr_native_fixture (0, 100, (import spr_row_native), 1, 4, 3):() then calls spr_at:((import spr_row_native), 1) then calls spr_at:((import spr_row_native), 2)
+given spr_native_fixture (0, 0, (import spr_row_native), 0, 1, 1):() then calls spr_at:((import spr_row_native), 0) then calls d2_spr_put:[1]
 
 // 128 is the alpha at which a pixel starts being drawn. The engine has no
 // blending -- a pixel is written or it is not (d2_clear) -- so a threshold is the
@@ -24,6 +26,8 @@ spr_at(int r, int x) {
     c = spr_col(r, x);
   }
 } return int c;
+given spr_ga_fixture ((import spr_row_ga), 0):(-1)
+given spr_ga_fixture ((import spr_row_ga), 2):(8421504)
 
 // Three ways a pixel can name a colour, and they are genuinely different: an
 // index looks the colour up, a grey sample *is* all three channels, and a
@@ -35,3 +39,6 @@ spr_col(int r, int x) {
   if ((import png_st)[3] = 3) { int png_samp_v = png_samp(r, x); c = png_pcol(png_samp_v); }
   else if ((import png_st)[4] >= 3) { c = spr_rgb(r, x); }
 } return int c;
+given spr_bird_fixture ((import spr_row_bird), 5):(2763306) then calls png_pcol:(1)
+given spr_rgba_fixture ((import spr_row_rgba), 2):(13132850)
+given spr_grey_fixture ((import spr_row_grey), 2):(8421504)

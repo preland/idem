@@ -13,11 +13,15 @@ spr_scale(int v, int m) {
     n = fx_div(v, fx_max_v, 255);
   }
 } return int n;
+(100, 255):(100)
+(100, 100):(255)
 
 spr_clear(int i) {
   int ok = 0;
   if ((import spr_al)[i] < 128 || spr_key((import spr_px)[i]) = 1) { ok = 1; }
 } return int ok;
+given spr_px_ready (0):(0)
+given spr_al_low_ready (0):(1)
 
 // Manhattan distance in RGB against the key, which is the right shape for
 // "the background is this flat colour, plus JPEG ringing around its edges" --
@@ -29,3 +33,5 @@ spr_key(int c) {
     ok = fx_abs(c / 65536 - (import spr_d)[4]) + fx_abs(c / 256 % 256 - (import spr_d)[5]) + fx_abs(c % 256 - (import spr_d)[6]) <= (import spr_d)[7];
   }
 } return int ok;
+given spr_hdr_ready (0):(0)
+given spr_hdr2_ready (660510):(1)

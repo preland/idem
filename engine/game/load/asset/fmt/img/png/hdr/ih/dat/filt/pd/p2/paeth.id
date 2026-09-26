@@ -4,11 +4,15 @@ png_up(int y, int i) {
   int v = 0;
   if (y > 0) { int asset_row_v = asset_row(y - 1); v = peek8(asset_row_v + 1 + i); }
 } return int v;
+given png_pd_fixture (1, 2):(128)
+given png_pd_fixture (0, 2):(0)
 
 png_ul(int y, int i) {
   int v = 0;
   if (y > 0 && i >= (import png_st)[11]) { int asset_row_v = asset_row(y - 1); v = peek8(asset_row_v + 1 + i - (import png_st)[11]); }
 } return int v;
+given png_pd_fixture (1, 2):(64)
+given png_pd_fixture (0, 2):(0)
 
 // Whichever of left, above and above-left is closest to a + b - c. Ties go to
 // left, then above -- the order is part of the specification, not a preference,
@@ -18,3 +22,5 @@ png_paeth(int a, int b, int c) {
   if (fx_abs(b + a - c - a) <= fx_abs(b + a - c - b) && fx_abs(b + a - c - a) <= fx_abs(b + a - c - c)) { v = a; }
   else if (fx_abs(b + a - c - b) <= fx_abs(b + a - c - c)) { v = b; }
 } return int v;
+(64, 128, 64):(128)
+(10, 20, 5):(20)

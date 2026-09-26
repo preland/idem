@@ -3,13 +3,19 @@ jpg_coefs(int ci) {
   jpg_coefs_w(ci);
   jpg_coefs_h(ci);
 } return void;
+given jpg_small_fixture (0):() then calls jpg_coefs_alloc:(0) then calls jpg_coefs_w:(0)
+given jpg_init (0):() then calls jpg_coefs_alloc:(0) then calls jpg_coefs_w:(0)
 
 jpg_coefs_w(int ci) {
   int jpg_cdim_v = jpg_cdim((import jpg_st)[0], (import jpg_c)[ci * 10 + 1], (import jpg_st)[3]);
   lset((import jpg_nb), ci * 2, jpg_cdim_v);
 } return void;
+given jpg_small_fixture (0):() then calls jpg_cdim:(0, 0, 0)
+given jpg_init (0):() then calls jpg_cdim:(0, 0, 0)
 
 jpg_coefs_h(int ci) {
   int jpg_cdim_v2 = jpg_cdim((import jpg_st)[1], (import jpg_c)[ci * 10 + 2], (import jpg_st)[4]);
   lset((import jpg_nb), ci * 2 + 1, jpg_cdim_v2);
 } return void;
+given jpg_small_fixture (0):() then calls jpg_cdim:(0, 0, 0)
+given jpg_init (0):() then calls jpg_cdim:(0, 0, 0)

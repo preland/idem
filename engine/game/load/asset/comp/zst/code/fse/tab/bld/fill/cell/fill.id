@@ -11,14 +11,22 @@ fse_bfill() {
     u = u + 1;
   }
 } return void;
+given fse_init ():()
+given fse_init given fse_bfill ():()
 
 fse_bcell(int u) {
   int kd = (import fse_sy)[(import fse_st)[6] + u];
   int ns = (import fse_nx)[kd];
   fse_bcell2(u, kd, ns);
 } return void;
+given fse_init (0):()
+given fse_init (1):()
 
 fse_bcell2(int u, int kd, int ns) {
   lset((import fse_nx), kd, ns + 1);
   fse_bcell2_fill(u, ns);
 } return void;
+given fse_init (0, 0, 0):()
+given fse_init (1, 0, 0):()
+given fse_init (0, 0, 1):()
+given fse_init (1, 1, 1):()

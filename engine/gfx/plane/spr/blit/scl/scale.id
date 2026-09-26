@@ -25,6 +25,8 @@
 d2_blit_scaled(int p, int x, int y, int f, int sc) {
   d2_blit_xy(p, x, y, f, sc, sc);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 2000):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, 0, 0, 0, 0):() then d2_blit_t_px00:(0)
 
 // j is a DESTINATION row now, so the source row is j * 1000 / sy. The destination
 // height is floor(h * sy / 1000), which keeps that source row below h for every
@@ -36,6 +38,8 @@ d2_scl_rows(int p, int x, int y, int i, int j, int n, int sx, int sy) {
     j = j + 1;
   }
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 0, 4, 2000, 2000):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, 0, 0, 0, 0, 0, 2000, 2000):() then d2_blit_t_px00:(0)
 
 // The extent is the SCALED width, and the left clip is passed on as u rather than
 // folded into the source index: the source column is a division of the
@@ -45,3 +49,5 @@ d2_scl_clip(int p, int x, int y, int i, int sc) {
   int w = d2_spr_w(p);
   d2_scl_clip2(p, x, y, i, sc, x0, w);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 2000):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, -1, 0, 0, 1000):() then d2_blit_t_px00:(9)

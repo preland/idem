@@ -1,0 +1,23 @@
+// A real sprite, backed by a real loaded image, for frames.id and pixel.id's
+// cases: bird.png (games/flappy/art) is 36 rows tall, tall enough for a case
+// to sample a source row several past the first without running off the end
+// -- unlike the 2x2 fixtures, and cheap enough to decode inside a case's
+// memory budget -- unlike the real 2560x2560 sheet tests/unit/spr checks.
+
+spr_native_fixture() {
+  png_init();
+  png_load("../games/flappy/art/bird.png");
+  spr_native_add();
+} return void;
+():() then spr_img_w:(17)
+given png_init ():() then spr_img_w:(17)
+
+// The table's first (and only) sprite is always id 0 -- d2_spr_init leaves
+// every column empty, and this is the first push into them.
+spr_native_add() {
+  d2_spr_init();
+  int p = d2_spr_add("native", 40, 40, 1);
+  export int spr_row_native = asset_row(0);
+} return int p;
+given spr_native_fixture ():(0)
+given png_init ():(0)

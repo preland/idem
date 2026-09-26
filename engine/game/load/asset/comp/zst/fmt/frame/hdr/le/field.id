@@ -8,10 +8,14 @@ zst_le(int n) {
   int v = zst_le_read(n);
   int ret_i = zst_skip(v, n);
 } return int ret_i;
+given zst_src_setup (1):(1)
+given zst_src_setup (2):(513)
 
 zst_skip(int v, int n) {
   lset((import zst_st), 1, (import zst_st)[1] + n);
 } return int v;
+given zst_init (5, 2):(5) then calls lset:[1]
+given zst_init (10, 0):(10) then calls lset:[1]
 
 // A source byte, bounds-checked once here so that nothing above has to. Reading
 // past the end is a fault rather than a zero: a truncated frame would otherwise
@@ -21,3 +25,5 @@ zst_byte(int p) {
   if (p >= 0 && p < (import zst_st)[2]) { v = peek8((import zst_st)[0] + p); }
   else { lset((import zst_st), 6, 1); }
 } return int v;
+given zst_src_setup (0):(1)
+given zst_src_setup (100):(0) then zst_err_check:(1)

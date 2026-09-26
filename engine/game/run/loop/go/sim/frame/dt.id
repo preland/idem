@@ -3,3 +3,5 @@ sim_dt() {
   int fps = fx_max((import scn_st)[2], 1);
   int dt = 1000 / fps;
 } return int dt;
+given idem_init ():(16)
+given fps_fixture ():(33)

@@ -2,8 +2,20 @@ t_press_rep() {
   int scr_get_v = scr_get(0 - 1, "taps");
   print("one press: taps exp 1 = " + scr_get_v);
 } return void;
+given scr_press_ready ():() then calls scr_get:(-1, "taps")
+given scr_press_ready ():() then prints:("one press: taps exp 1 = 1\n")
 
 t_spawn_rep() {
   int ent_n_v = ent_n();
   print("before: entities exp 3 = " + ent_n_v);
 } return void;
+given scr_press_ready ():() then calls ent_n:[1]
+given scr_press_ready ():() then prints:("before: entities exp 3 = 3\n")
+
+// Four ticks in (80ms) -- the state t_tick2 starts from (see ../tick.id).
+scr_tick_ready() {
+  scr_hit2_ready();
+  t_ticks(4, 20);
+} return void;
+():() then calls scr_hit2_ready:[1]
+():() then calls t_ticks:(4, 20)

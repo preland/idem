@@ -7,6 +7,8 @@ bl_num(int p) {
     p = p + 1;
   }
 } return int n;
+given bl_num_t_setup (0):(523)
+given bl_num_t_setup (1):(23)
 
 // Bytes in the flat store against an `id` string. peek8 does not touch charat's
 // one-entry length memo, so this does not thrash it the way comparing two `id`
@@ -18,8 +20,12 @@ bl_streq(int p, string name) {
   }
   int ret_i = bl_zeq(p, i, name);
 } return int ret_i;
+given bl_dna_t_bytes (73, "int"):(1)
+given bl_dna_t_bytes (73, "ins"):(0)
 
 bl_zeq(int p, int i, string name) {
   int ok = 0;
   if (charat(name, i) < 0 && asset_at(p + i) = 0) { ok = 1; }
 } return int ok;
+given bl_dna_t_bytes (73, 3, "int"):(1)
+given bl_dna_t_bytes (73, 2, "ins"):(0)

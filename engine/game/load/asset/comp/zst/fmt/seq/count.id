@@ -13,6 +13,8 @@ zst_seqs(int end) {
   int b0 = zst_le(1);
   zst_nseq(b0, end);
 } return void;
+given zst_src_setup (0):() then calls zst_nseq:[1]
+given zst_src_setup (8):() then calls zst_nseq:[1]
 
 zst_nseq(int b0, int end) {
   if (b0 = 0) {
@@ -21,6 +23,8 @@ zst_nseq(int b0, int end) {
     zst_nseq2(b0, end);
   }
 } return void;
+given zst_src_setup (0, 0):() then calls zst_lonly:[1]
+given zst_src_setup (1, 0):() then calls zst_nseq2:[1]
 
 zst_nseq2(int b0, int end) {
   if (b0 < 128) {
@@ -33,3 +37,5 @@ zst_nseq2(int b0, int end) {
     zst_smode(zst_le_v2 + 32512, end);
   }
 } return void;
+given zst_src_setup (100, 0):() then calls zst_le:[1]
+given zst_src_setup (200, 0):() then calls zst_le:[2]

@@ -1,0 +1,26 @@
+// A real unfiltered-scanline address, past its filter byte -- the same +1
+// offset png_bytes passes into png_pred and friends (row/line.id), so a
+// case here sees exactly what a real unfilter loop would.
+
+png_pd_fixture() {
+  png_init();
+  png_load("../tests/unit/spr/img/grey.png");
+  export int png_row0_data = asset_row(0) + 1;
+} return void;
+():() then spr_img_w:(4)
+given png_init ():() then spr_img_w:(4)
+
+// The byte at png_row0_data + 0, for byte.id's cases -- proof that
+// png_bytes_poke actually wrote the store and not just its return value.
+png_poke0_check() {
+  int v = peek8((import png_row0_data));
+} return int v;
+given png_pd_fixture ():(0)
+given png_poked_fixture ():(77)
+
+png_poked_fixture() {
+  png_pd_fixture();
+  poke8((import png_row0_data), 77);
+} return void;
+():() then png_poke0_check:(77)
+given png_init ():() then png_poke0_check:(77)

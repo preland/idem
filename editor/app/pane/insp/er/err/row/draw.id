@@ -2,9 +2,13 @@ ed_err_row_msg_draw(int x, int y, string fit) {
   int ui = txt_ui();
   ed_err_row_msg_paint(x, y, fit, ui);
 } return void;
+given ed_t_boot stdin "" (0, 10, "hi"):() then calls ed_err_row_msg_paint:(0, 10, "hi", 1)
+given ed_t_boot stdin "" (5, 20, "bye"):() then calls ed_err_row_msg_paint:(5, 20, "bye", 1)
 
 ed_err_row_msg_paint(int x, int y, string fit, int ui) {
   int h = ed_rowh();
   int col = ed_col(4);
   txt_draw(fit, x + 10 * ui, y + h, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "hi", 1):() then calls txt_draw:("hi", 10, 28, 0xCFCFCF)
+given ed_t_boot stdin "" (5, 20, "bye", 2):() then calls txt_draw:("bye", 25, 38, 0xCFCFCF)

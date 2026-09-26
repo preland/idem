@@ -10,6 +10,8 @@ scr_upd(int e) {
   int scr_sc_v = scr_sc(e);
   scr_fire(scr_sc_v, "update", e, "");
 } return void;
+given idem_init (-1):() then calls scr_fire:[1]
+given grow_fixture (0):() then calls scr_sc:[1]
 
 scr_ents(int e) {
   while (e < ent_n()) {
@@ -17,9 +19,13 @@ scr_ents(int e) {
     e = e + 1;
   }
 } return void;
+given idem_init (0):() then calls scr_alive:[0]
+given grow_fixture (0):() then calls scr_alive:[1]
 
 scr_alive(int e) {
   if (ent_at(e, 9) % 2 = 1) {
     scr_upd(e);
   }
 } return void;
+given grow_fixture (0):() then calls scr_upd:[1]
+given grow_fixture (0):() then calls ent_at:[2]

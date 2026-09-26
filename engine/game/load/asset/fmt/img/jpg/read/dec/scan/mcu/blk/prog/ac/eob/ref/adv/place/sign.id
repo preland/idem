@@ -2,3 +2,26 @@ jpg_rsign1(int a, int inf_pow2_v, int bt) {
   lset((import jpg_r), 2, inf_pow2_v * (2 * bt - 1));
   jpg_rgo(a);
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a), 1, 1):() then jpg_r2_check:(1) then calls jpg_rgo:((import jpg_coef_a))
+given jpg_coefbuf_fixture ((import jpg_coef_a), 1, 0):() then jpg_r2_check:(-1) then calls jpg_rgo:((import jpg_coef_a))
+
+// jpg_r[2], the value waiting to be placed by the refinement state machine.
+jpg_r2_check() {
+  int v = (import jpg_r)[2];
+} return int v;
+given jpg_init ():(0)
+given jpg_rset_fixture ():(3)
+
+// jpg_r set to four distinct, known values -- k=1, rn=2, sv=3, ph=3 -- so the
+// four fields can be told apart in a check, and phase 3 (advancing) can be
+// exercised directly without running the real advance loop to get there.
+jpg_rset_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_r), 0, 1);
+  lset((import jpg_r), 1, 2);
+} chain () {
+  lset((import jpg_r), 2, 3);
+  lset((import jpg_r), 3, 3);
+} return void;
+():() then jpg_r0_check:(1)
+given jpg_init ():() then jpg_r0_check:(1)

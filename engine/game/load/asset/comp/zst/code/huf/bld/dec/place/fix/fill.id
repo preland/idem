@@ -1,0 +1,16 @@
+// Fixture for huf_fill testing.
+
+huf_fill_setup_small() {
+  lst_set_all((import huf_st), 3, 0);
+  lset((import huf_st), 0, 2);
+} return void;
+given huf_init ():() then huf_st_log:(2)
+given huf_init ():() then huf_rk_w2:(0)
+
+huf_fill_setup_large() {
+  lst_set_all((import huf_st), 3, 0);
+  lset((import huf_st), 0, 5);
+} return void;
+given huf_init ():() then huf_st_log:(5)
+given huf_init ():() then huf_rk_w2:(0)
+

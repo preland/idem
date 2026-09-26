@@ -4,3 +4,5 @@ par_member_iskw(int[] pos) {
   string par_text_v = par_text(pos);
   int ret_i = par_dk(par_text_v);
 } return int ret_i;
+given par_dmem_setup ([24]):(109)
+given par_dmem_setup ([0]):(0)

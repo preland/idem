@@ -9,9 +9,13 @@ imp_end_ok(string src, int i) {
     ok = imp_end_ok2(c);
   }
 } return int ok;
+("hi", 0):(1)
+("hi", 2):(0)
 
 imp_end_ok2(int c) {
   int sp = imp_space(c);
   int ok = 0;
   if (sp = 0) { ok = 1; }
 } return int ok;
+(65):(1)
+(32):(0)

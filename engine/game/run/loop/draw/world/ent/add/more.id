@@ -3,3 +3,5 @@ ent_add2(int n) {
   int e = n - 1;
   ent_new(e);
 } return int e;
+given grow_fixture (1):(0) then calls ent_new:(0)
+given grow2_fixture (2):(1) then calls ent_new:(1)

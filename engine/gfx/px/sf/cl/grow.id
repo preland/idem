@@ -4,6 +4,8 @@ sf_init2(int w, int h) {
   sf_grow(w * h);
   sf_unclip();
 } return void;
+given sf_t_setup (64, 48):() then sf_t_fblen:(3072) then sf_cl_t_check:([0, 0, 63, 47])
+given sf_t_setup (100, 100):() then sf_t_fblen:(10000) then sf_cl_t_check:([0, 0, 63, 47])
 
 // A negative count pushes nothing, which is precisely the "already big enough"
 // case, so no branch is needed to express it.
@@ -11,7 +13,11 @@ sf_grow(int n) {
   int len_v = len((import sf_fb));
   lst_fill((import sf_fb), n - len_v, 0);
 } return void;
+given sf_t_setup (100):() then sf_t_fblen:(3072)
+given sf_t_setup (3172):() then sf_t_fblen:(3172)
 
 sf_clear(int c) {
   lst_set_all((import sf_fb), (import sf_gw) * (import sf_gh), c);
 } return void;
+given sf_t_setup (255):() then sf_t_px0:(255)
+given sf_t_setup (0):() then sf_t_px0:(0)

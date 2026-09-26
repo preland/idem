@@ -7,6 +7,8 @@ scr_sc(int e) {
   int nd = (import scn_st)[9];
   if (e >= 0) { nd = ent_at(e, 19); }
 } return int nd;
+given scr_fixture (-1):(0)
+given scr_fixture (1):(18)
 
 // self and the status are saved and restored around the body, because a handler
 // can spawn an entity whose own handler runs before this one has finished.
@@ -15,7 +17,11 @@ scr_hrun(int h, int e) {
   scr_hset(e, 0);
   scr_hdone(h, e, was);
 } return void;
+given idem_init (0, 0):() then calls scr_hset:[2]
+given idem_init (0, -1):() then calls scr_hdone:[1]
 
 scr_hset(int e, int fin) {
   m4_pair((import scr_st), 0, 1, e, fin);
 } return void;
+given idem_init (0, 0):() then calls m4_pair:[1]
+given idem_init (1, 1):() then calls m4_pair:[1]

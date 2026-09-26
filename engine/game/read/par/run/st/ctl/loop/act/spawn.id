@@ -5,14 +5,20 @@ par_sspawn(int[] pos) {
   string name = par_text(pos);
   int nd = par_sspawn_tail(pos, name);
 } return int nd;
+given par_prim_setup ([9]):(4) then calls ast_new_a:(112, "f", 3)
+given par_prim_setup ([0]):(3) then calls ast_new_a:(112, "hi", 2)
 
 par_sspawn_tail(int[] pos, string name) {
   par_next(pos);
   int nd = par_sspawn2(pos, name);
 } return int nd;
+given par_prim_setup ([10], "Pipe"):(4) then calls ast_new_a:(112, "Pipe", 3)
+given par_prim_setup ([1], "Boom"):(3) then calls ast_new_a:(112, "Boom", 2)
 
 par_sspawn2(int[] pos, string name) {
   par_eat(pos, "at");
   int tup = par_etuple(pos);
   int nd = par_sspawn3(name, tup);
 } return int nd;
+given par_prim_setup ([11], "Pipe"):(4) then calls ast_new_a:(112, "Pipe", 3)
+given par_prim_setup ([2], "Boom"):(3) then calls ast_new_a:(112, "Boom", 2)

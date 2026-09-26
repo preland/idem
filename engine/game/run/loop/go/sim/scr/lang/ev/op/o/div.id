@@ -4,8 +4,12 @@ scr_div(int a, int b) {
   int v = 0;
   if (b != 0) { v = a / b; }
 } return int v;
+(7, 2):(3)
+(7, 0):(0)
 
 scr_mod(int a, int b) {
   int v = 0;
   if (b != 0) { v = a % b; }
 } return int v;
+(7, 2):(1)
+(7, 0):(0)

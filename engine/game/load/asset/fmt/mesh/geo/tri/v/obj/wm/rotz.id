@@ -5,3 +5,5 @@ bl_wrot_deg(int p, int si) {
   int bl_f32_v = bl_f32(p + bl_foff_v + 8);
   int bl_deg_v = bl_deg(bl_f32_v);
 } return int bl_deg_v;
+given bl_walk_t_setup (49, 0):(0)
+given bl_walk_t_setup (0, 0):(0)

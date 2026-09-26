@@ -14,15 +14,21 @@ ed_read(string src) {
   export string[] ed_nm = [];
   ed_read2(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls ed_read2:("hello")
+given ed_t_boot stdin "" (""):() then calls ed_read2:("")
 
 ed_read2(string src) {
   export int[] ed_ln = [];
   export string[] ed_fl = [""];
   ed_read4(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls ed_read4:("hello")
+given ed_t_boot stdin "" (""):() then calls ed_read4:("")
 
 ed_read3(string src) {
   export string[] ed_as = [];
   ed_scan_as(src, 0);
   ed_read6(src);
 } return void;
+given ed_t_boot stdin "" ("hello"):() then calls ed_scan_as:("hello", 0)
+given ed_t_boot stdin "" ("hello"):() then calls ed_read6:("hello")

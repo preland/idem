@@ -5,3 +5,5 @@ bl_wts_scale2(int p, int off, int s0) {
   int s2 = bl_f32(p + off + 8);
   bl_wscale(s0, s1, s2);
 } return void;
+given bl_wm_init given bl_dna_t_bytes (17, 0, 0):() then bl_wm0_t_check:(0)
+given bl_wm_init given bl_dna_t_bytes (0, 0, 45212112):() then bl_wm0_t_check:(45212112)

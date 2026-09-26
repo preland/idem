@@ -7,3 +7,19 @@ scr_init4() {
   export int[] scr_kk = [];
   export string[] scr_ke = [];
 } return void;
+():() then scr_kklen:(0)
+():() then scr_kelen:(0)
+
+// The two lists' lengths -- a `then` witness for scr_init4 (which declares
+// them empty) and scr_key1code / scr_key1ev (which grow them).
+scr_kklen() {
+  int n = len((import scr_kk));
+} return int n;
+given idem_init ():(0)
+given key1_fixture ():(1)
+
+scr_kelen() {
+  int n = len((import scr_ke));
+} return int n;
+given idem_init ():(0)
+given key1_fixture ():(1)

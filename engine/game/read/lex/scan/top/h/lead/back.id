@@ -6,6 +6,8 @@ lex_lead2(string src, int j, int ok) {
     j = j - 1;
   }
 } return int ok;
+(" ", 0, 1):(1)
+("y", 0, 1):(0)
 
 // `#rrggbb` as a number, so a colour reaches the parser as the literal it is.
 // The digits are the same scan `0x` uses -- one hex reader, and a colour that
@@ -14,3 +16,5 @@ lex_pcol(string src, int i) {
   int e = lex_hexend(src, i + 1);
   lex_pcol_push(src, i, e);
 } return int e;
+given lex_init ("#01", 0):(3) then calls lex_push:(13, "#01", 1, 0)
+given lex_init ("#ff", 0):(3) then calls lex_push:(13, "#ff", 255, 0)

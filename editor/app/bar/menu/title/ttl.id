@@ -2,9 +2,13 @@ ed_menu_ttl(int x, int k, string s) {
   ed_menu_click(x, k, s);
   ed_menu_ttl_draw(x, s);
 } return void;
+given ed_t_boot stdin "" (10, 0, "File"):() then calls ed_menu_click:(10, 0, "File")
+given ed_t_boot stdin "" (5, 1, "Edit"):() then calls ed_menu_ttl_draw:(5, "Edit")
 
 ed_menu_ttl_draw(int x, string s) {
   int txt_ui_v = txt_ui();
   int ed_col_v = ed_col(4);
   txt_draw(s, x, 2 * txt_ui_v, ed_col_v);
 } return void;
+given ed_t_boot stdin "" (10, "File"):() then calls txt_draw:("File", 10, 2, 0xCFCFCF)
+given ed_t_boot stdin "" (5, "Edit"):() then calls txt_draw:("Edit", 5, 2, 0xCFCFCF)

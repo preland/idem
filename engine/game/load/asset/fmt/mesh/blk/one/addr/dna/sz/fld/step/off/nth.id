@@ -5,3 +5,5 @@ bl_nth(int p, int i) {
     j = j + 1;
   }
 } return int p;
+given bl_sfind_t_setup (61, 0):(61)
+given bl_sfind_t_setup (61, 1):(63)

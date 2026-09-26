@@ -2,9 +2,13 @@ ed_bar_txt(int x, int y, string title) {
   int tu = txt_ui();
   ed_bar_txt_draw(x, y, title, tu);
 } return void;
+given ed_t_boot stdin "" (1, 2, "Hi"):() then calls ed_bar_txt_draw:(1, 2, "Hi", 1)
+given ed_t_boot stdin "" (5, 6, "Yo"):() then calls ed_bar_txt_draw:(5, 6, "Yo", 1)
 
 ed_bar_txt_draw(int x, int y, string title, int tu) {
   int tu2 = txt_ui();
   int col = ed_col(4);
   txt_draw(title, x + 5 * tu, y + 2 * tu2, col);
 } return void;
+given ed_t_boot stdin "" (0, 0, "Hi", 1):() then calls txt_draw:("Hi", 5, 2, 0xCFCFCF)
+given ed_t_boot stdin "" (10, 20, "Yo", 3):() then calls txt_draw:("Yo", 25, 22, 0xCFCFCF)

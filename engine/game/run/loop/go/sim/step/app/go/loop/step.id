@@ -5,3 +5,17 @@ idem_adt(func(int) return int gs) {
   int gs_v = gs(3);
   int dt = 1000 / fx_max(gs_v, 1);
 } return int dt;
+(stub_gstage):(33)
+(fx_abs):(333)
+(fx_sign):(1000)
+
+// eng_act's half of eng_seam3's wiring (go/sh/l/lay/seam3.id), which
+// read_eng_ref alone cannot see: it calls eng_act back and reports what
+// stub_gact (go/sh/l/go/gstub2.id) recorded from the call.
+read_eng_act() {
+  func(string) return void ga = (import eng_act);
+  ga("zzz");
+  int n = (import stub_gact_n);
+} return int n;
+given seam_fixture ():(3)
+given seam_fixture given idem_init ():(3)

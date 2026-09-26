@@ -13,3 +13,5 @@ scr_tup(int tup, int i, int e) {
     }
   }
 } return int v;
+given bin_fixture ((import fixture_lhs), 0, -1):(0)
+given idem_init (0, 0, -1):(0)

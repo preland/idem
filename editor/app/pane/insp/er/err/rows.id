@@ -5,3 +5,5 @@ ed_err_rows(int x, int y, int w, int i) {
     i = i + 1;
   }
 } return void;
+given ed_t_boot stdin "" (0, 10, 100, 0):() then calls ed_err_row:[0]
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0):() then calls ed_err_row:(0, 10, 100, 0)

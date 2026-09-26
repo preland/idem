@@ -1,0 +1,20 @@
+// Test-only fixtures for pack_mode, and a reader for it -- module state a
+// case cannot see any other way.
+
+pack_mode_ready() {
+  pack_init(1, ["prog"]);
+} return void;
+():() then pack_mode0:("")
+():() then calls sset:[0]
+
+pack_app_ready() {
+  pack_init(2, ["prog", "app"]);
+} return void;
+():() then pack_mode0:("app")
+():() then calls sset:[1]
+
+pack_mode0() {
+  string s = (import pack_mode)[0];
+} return string s;
+given pack_mode_ready ():("")
+given pack_app_ready ():("app")

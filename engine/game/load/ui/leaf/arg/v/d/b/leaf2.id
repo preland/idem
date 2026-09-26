@@ -4,9 +4,13 @@ ui_leaf2_paint(int nd, string txt, int x, int y, int w, int h) {
   string ui_base_v = ui_base(txt);
   ui_paint(ui_base_v, nd, x, y, w, h);
 } return void;
+given ui_leaf_t_setup (3, "Button", 0, 0, 100, 50):() then calls ui_paint:("Button", 3, 0, 0, 100, 50)
+given ui_leaf_t_setup (1, "Row", 0, 0, 100, 50):() then calls ui_paint:("Row", 1, 0, 0, 100, 50)
 
 ui_leaf2(int nd, int x, int y, int w, int h) {
   string ast_tx_v = ast_tx(nd);
   ui_leaf2_paint(nd, ast_tx_v, x, y, w, h);
   ui_kids(nd, x, y, w, h, 0 - 1);
 } return void;
+given ui_leaf_t_setup (3, 0, 0, 100, 50):() then calls ui_leaf2_paint:(3, "Button", 0, 0, 100, 50) then calls ui_kids:(3, 0, 0, 100, 50, -1)
+given ui_leaf_t_setup (1, 0, 0, 100, 50):() then calls ui_leaf2_paint:(1, "Row", 0, 0, 100, 50) then calls ui_kids:(1, 0, 0, 100, 50, -1)

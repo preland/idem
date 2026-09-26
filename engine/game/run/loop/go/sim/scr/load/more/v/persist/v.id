@@ -7,6 +7,8 @@ scr_kev(int nd) {
   int[] ast_ks_v = ast_ks(nd);
   if (len(ast_ks_v) > 0) { int[] ast_ks_v2 = ast_ks(nd); s = ast_tx(ast_ks_v2[0]); }
 } return string s;
+given key1_node_fixture ((import fixture_key1)):("press")
+given idem_init (0):("")
 
 // `persist { high = 0 }`. These are the game's own variables: declared once,
 // before any scene, and never truncated by a scene change -- which is the whole
@@ -20,9 +22,13 @@ scr_persist(int nd, int i) {
   }
   scr_persist2();
 } return void;
+given block_fixture ((import fixture_block), 0):() then calls scr_p1:[1]
+given idem_init (0, 0):() then calls scr_persist2:[1]
 
 scr_p1(int nd) {
   string ast_tx_v = ast_tx(nd);
   int scr_kev2_v = scr_kev2(nd);
   scr_push(ast_tx_v, scr_kev2_v);
 } return void;
+given block_fixture ((import fixture_assign)):() then scr_vvlen:(4)
+given idem_init (0):() then scr_vvlen:(1)

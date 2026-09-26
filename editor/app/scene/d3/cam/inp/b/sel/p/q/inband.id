@@ -7,15 +7,21 @@ ed_inband(int e) {
   int epy_v = ed_epy(e);
   int ret_i = ed_inband2(epx_v, epy_v);
 } return int ret_i;
+given ed_t_boot given ed_t_lay given ed_t_ent stdin "" (0):(0) then calls ed_inband2:(225, 41)
+given ed_t_boot given ed_t_lay given ed_t_boot_proj given ed_t_ent stdin "" (0):(0) then calls ed_inband2:(139, 86)
 
 ed_inband2(int x, int y) {
   int bx0_v = ed_bx0();
   int by0_v = ed_by0();
   int ret_i = ed_inband3(x, y, bx0_v, by0_v);
 } return int ret_i;
+given ed_t_boot stdin "" (5, 9):(0) then calls ed_inband3:(5, 9, 0, 0)
+given ed_t_boot stdin "" (100, 50):(0) then calls ed_inband3:(100, 50, 0, 0)
 
 ed_inband3(int x, int y, int bx0, int by0) {
   int bx1_v = ed_bx1();
   int by1_v = ed_by1();
   int ret_i = ed_in2(x, y, bx0, by0, bx1_v, by1_v);
 } return int ret_i;
+given ed_t_boot given ed_t_click stdin "" (190, 140, 0, 0):(1)
+given ed_t_boot given ed_t_click stdin "" (140, 190, 0, 0):(0)

@@ -1,0 +1,24 @@
+// The ok flag (jpg_st[8]) as a value, for walk1's cases.
+jpg_ok8_check() {
+  int v = (import jpg_st)[8];
+} return int v;
+given jpg_init ():(0)
+given jpg_grad_fixture ():(1)
+
+// Raw bytes with the walk1 flags already set (ok, and the cursor stub) --
+// for mark.id's cases, which need jpg_loop to actually run its body.
+jpg_walk1_fixture() {
+  jpg_raw_fixture();
+  jpg_walk1(1);
+} return void;
+():() then jpg_ok8_check:(1)
+given jpg_init ():() then jpg_ok8_check:(1)
+
+// The same, with the cursor stepped past SOI to APP0 -- for jpg_seg's second
+// case, which is about the marker AFTER the first.
+jpg_seg1_fixture() {
+  jpg_raw_fixture();
+  lset((import jpg_st), 9, 2);
+} return void;
+():() then jpg_ok8_check:(0)
+given jpg_init ():() then jpg_ok8_check:(0)

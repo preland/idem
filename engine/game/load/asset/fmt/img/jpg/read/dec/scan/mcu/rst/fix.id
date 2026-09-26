@@ -1,0 +1,26 @@
+// A synthetic restart marker (FF D0, RST0) poked into grad.jpg's own loaded
+// bytes at file offset 300/301 -- well past the scan header, well before
+// EOI -- the bit reader positioned just before it, and the restart interval
+// flagged (jpg_st[7]=1). For rst.id and seek.id's cases.
+jpg_rstbyte_fixture() {
+  jpg_raw_fixture();
+  jpg_rstbyte_set();
+  jpg_bset(280);
+} return void;
+():() then jpg_bcursor_check:(280)
+given jpg_init ():() then jpg_bcursor_check:(280)
+
+jpg_rstbyte_set() {
+  poke8((import asset_io)[0] + 300, 255);
+  poke8((import asset_io)[0] + 301, 208);
+  lset((import jpg_st), 7, 1);
+} return void;
+given jpg_raw_fixture ():() then jpg_isrst_check:(1)
+given jpg_dht1_fixture ():() then jpg_isrst_check:(1)
+
+// jpg_isrst(300), as a value.
+jpg_isrst_check() {
+  int v = jpg_isrst(300);
+} return int v;
+given jpg_raw_fixture ():(0)
+given jpg_rstbyte_fixture ():(1)

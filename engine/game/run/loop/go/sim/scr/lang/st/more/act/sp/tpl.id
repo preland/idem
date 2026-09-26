@@ -5,6 +5,8 @@ scr_tpl(string name) {
   int i = 0;
   nd = scr_tscan(name, i, nd);
 } return int nd;
+given template_fixture ("T"):(7)
+given template_fixture ("nope"):(0)
 
 scr_tscan(string name, int i, int nd) {
   while (i < len((import scr_pn))) {
@@ -12,8 +14,12 @@ scr_tscan(string name, int i, int nd) {
     i = i + 1;
   }
 } return int nd;
+given template_fixture ("T", 0, 0):(7)
+given template_fixture ("nope", 0, 0):(0)
 
 scr_tpick(int nd, int i, int hit) {
   int v = nd;
   if (hit = 1 && nd = 0) { v = (import scr_pd)[i]; }
 } return int v;
+given template_fixture (0, 0, 1):(7)
+given template_fixture (5, 0, 0):(5)

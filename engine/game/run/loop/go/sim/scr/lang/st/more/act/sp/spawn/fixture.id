@@ -1,0 +1,17 @@
+// A real, parsed `template` declaration, so the template registry has a
+// name to find.
+template_fixture() {
+  idem_init();
+  string src = "template T {\n  pos (0, 0)\n}";
+  idem_read(src);
+} return void;
+():() then calls idem_read:[1]
+():() then calls idem_init:[1]
+
+// A hand-built `spawn T at (…)` statement, over the template above.
+spawn_fixture() {
+  template_fixture();
+  export int fixture_spawn = ast_new_abc((import ast_k_spawn), "T", 0, 0, 0);
+} return void;
+():() then calls template_fixture:[1]
+():() then calls ast_new_abc:[1]

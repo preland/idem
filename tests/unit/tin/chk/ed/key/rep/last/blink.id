@@ -3,9 +3,20 @@ t_rep8_blink1() {
   int tin_blink_v2 = tin_blink(5890);
   string msg1 = "blink at the last edit, +400, +800 exp 1 0 1 = " + tin_blink_v + " " + tin_blink_v2;
 } return string msg1;
+given tin_rep6_ready ():("blink at the last edit, +400, +800 exp 1 0 1 = 1 0")
+given tin_rep7_ready ():("blink at the last edit, +400, +800 exp 1 0 1 = 1 0")
 
 t_rep8_blink2(string msg1) {
   int tin_blink_v3 = tin_blink(6290);
   string msg2 = msg1 + " " + tin_blink_v3;
   print(msg2);
 } return void;
+given tin_rep7_ready ("a"):() then prints:("a 1\n")
+given tin_rep7_ready ("b"):() then prints:("b 1\n")
+
+tin_draw4_ready() {
+  tin_draw3_ready();
+  sf_clear(0);
+} return void;
+():() then calls tin_draw3_ready:[1]
+():() then calls sf_clear:(0)

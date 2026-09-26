@@ -3,11 +3,15 @@ ast_dtx(int nd) {
   string tx = ast_tx(nd);
   if (len(tx) > 0) { s = " " + tx; }
 } return string s;
+given ast_dump_setup (2):(" x")
+given ast_init (0):("")
 
 ast_dsp(int nd) {
   string s = "";
   if (nd != 0) { s = " " + ast_sexp(nd); }
 } return string s;
+given ast_dump_setup (0):("")
+given ast_dump_setup (1):(" 42")
 
 ast_dkl(int[] kids, int i, string s) {
   while (i < len(kids)) {
@@ -15,3 +19,5 @@ ast_dkl(int[] kids, int i, string s) {
     i = i + 1;
   }
 } return string s;
+given ast_dump_setup ([1, 2], 0, ""):(" 42 x")
+given ast_dump_setup ([], 0, "seed"):("seed")

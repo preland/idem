@@ -1,0 +1,7 @@
+// How many templates the registry holds -- a `then` witness for scr_init3
+// (which declares the table empty) and scr_tload (which grows it).
+scr_pnlen() {
+  int n = len((import scr_pn));
+} return int n;
+given idem_init ():(0)
+given template_fixture ():(1)

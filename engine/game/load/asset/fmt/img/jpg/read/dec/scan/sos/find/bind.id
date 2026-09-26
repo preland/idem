@@ -6,6 +6,8 @@ jpg_stab(int p, int k, int ns) {
     k = k + 1;
   }
 } return void;
+given jpg_raw_fixture (282, 0, 3):() then calls jpg_stab1:[3]
+given jpg_raw_fixture (282, 0, 0):() then calls jpg_stab1:[0]
 
 // Slot 18 keeps the component a scan named. For an interleaved scan it is simply
 // the last one, which nothing reads; for a non-interleaved scan it is the only
@@ -15,6 +17,8 @@ jpg_st1(int cid, int tt) {
   m4_pair((import jpg_c), ci * 10 + 4, ci * 10 + 5, tt / 16, tt % 16 + 4);
   lset((import jpg_st), 18, ci);
 } return void;
+given jpg_init (1, 0):() then calls jpg_cfind:(1)
+given jpg_init (2, 17):() then calls jpg_cfind:(2)
 
 // By component id, not by position: a scan may name components in any order and
 // a progressive scan usually names just one.
@@ -26,3 +30,5 @@ jpg_cfind(int cid) {
     k = k + 1;
   }
 } return int ci;
+given jpg_small_fixture (0):(0) then calls jpg_cpick:[1]
+given jpg_init (0):(0) then calls jpg_cpick:[0]

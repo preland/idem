@@ -5,17 +5,23 @@ t_hv(word wp, int p) {
   wp = ((wp ^ ((import bl_v)[p + 1] & 4294967295)) * 16777619) & 4294967295;
   word ret_w = ((wp ^ ((import bl_v)[p + 2] & 4294967295)) * 16777619) & 4294967295;
 } return word ret_w;
+given mesh_mesh_ready (2166136261, 0):(2752945503)
+given mesh_mesh_ready (0, 0):(1814646344)
 
 // The form a caller draws with: twelve slots, ready for d3_wtri. Filling triangle
 // 0 must reproduce vertices 0, 1 and 3 in order, with the colour on all three.
-t_fill() {
+t_fill(string path) {
   int[] tri = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   bl_tfill(0, tri, 0xB9793F);
-  t_show(tri);
+  t_show(tri, path);
 } return void;
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls bl_tfill:[1]
+given mesh_mesh_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_show:[1]
 
-t_show(int[] tri) {
+t_show(int[] tri, string path) {
   print("tfill(0) v0 exp -1000 -1000 1000 = " + tri[0] + " " + tri[1] + " " + tri[2]);
   print("tfill(0) colours exp 12155199 x3 = " + tri[9] + " " + tri[10] + " " + tri[11]);
-  t_all();
+  t_all(path);
 } return void;
+given mesh_ready ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "../../../test_assets/cube.blend"):([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "../../../test_assets/cube.blend") then calls t_all:("../../../test_assets/cube.blend")
+given mesh_ready ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "../../../test_assets/cube.blend"):([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "../../../test_assets/cube.blend") then calls t_all_open_report:("../../../test_assets/cube.blend")

@@ -5,8 +5,12 @@ scr_tent2(int e, int dt) {
   ent_put(e, 21, tmr + dt);
   scr_tent3(e);
 } return void;
+given grow_fixture (0, 16):() then calls ent_put:(0, 21, 16)
+given grow_fixture (0, 16):() then calls scr_tent3:[1]
 
 scr_tent3(int e) {
   int tmr = ent_at(e, 21);
   scr_tfire(e, tmr);
 } return void;
+given grow_fixture (0):() then calls scr_tfire:[1]
+given grow2_fixture (1):() then calls scr_tfire:[1]

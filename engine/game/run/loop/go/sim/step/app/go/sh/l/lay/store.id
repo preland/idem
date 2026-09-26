@@ -5,6 +5,8 @@ idem_alay2(string src) {
   idem_apage();
   idem_aopen();
 } return void;
+given idem_init given seam_fixture given ui_pinit given lex_init (""):() then calls idem_apage:[1]
+given idem_init given seam_fixture given ui_pinit given lex_init (""):() then calls idem_aopen:[1]
 
 // The seam itself: idem_app's six arguments, stored where go/open/boot.id,
 // go/loop/frame.id and go/sh/run/loop.id and ui/leaf/arg/t/v/val.id read them back with (import ...). Three
@@ -20,9 +22,13 @@ eng_seam(func() return void gi, func(int) return int gs, func(int) return void g
   export func(int) return int eng_stage = gs;
   eng_seam2(gt, gd, gr, ga);
 } return void;
+(stub_ginit, stub_gstage, stub_gstep, stub_gdraw, stub_gref, stub_gact):() then calls eng_seam2:(stub_gstep, stub_gdraw, stub_gref, stub_gact)
+given idem_init (stub_ginit, stub_gstage, stub_gstep, stub_gdraw, stub_gref, stub_gact):() then calls eng_seam2:(stub_gstep, stub_gdraw, stub_gref, stub_gact)
 
 eng_seam2(func(int) return void gt, func() return void gd, func(string) return int gr, func(string) return void ga) {
   export func(int) return void eng_step = gt;
   export func() return void eng_draw = gd;
   eng_seam3(gr, ga);
 } return void;
+(stub_gstep, stub_gdraw, stub_gref, stub_gact):() then calls eng_seam3:(stub_gref, stub_gact)
+given idem_init (stub_gstep, stub_gdraw, stub_gref, stub_gact):() then calls eng_seam3:(stub_gref, stub_gact)

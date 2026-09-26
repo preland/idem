@@ -1,0 +1,19 @@
+// A token stream for the statement dispatch chain (par_stmt2..par_stmt6) and
+// the block/assign productions: every statement keyword, in dispatch order,
+// then a bare assignment and the same assignment wrapped in a block. Placed
+// beside blk.id/kids.id -- block/ had room, stmt2/ did not.
+
+par_stmt_setup() {
+  lex_init();
+  ast_init();
+  par_stmt_setup2();
+} return void;
+():() then lex_kind_len:(18)
+():() then lex_kind_len:(18) then eprints:("")
+
+par_stmt_setup2() {
+  err_init();
+  lex_run("if while repeat spawn despawn goto play say stop x=5 { x=5 }");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(18)
+given lex_init given ast_init ():() then lex_kind_len:(18) then eprints:("")

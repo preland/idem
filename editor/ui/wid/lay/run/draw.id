@@ -5,8 +5,21 @@ ed_lay() {
   int txt_ui_v = txt_ui();
   ed_lay_draw(txt_ui_v);
 } return void;
+given ed_t_boot stdin "" ():() then calls ui_rclear:[1]
+given ed_t_boot stdin "" ():() then calls ed_lay_draw:(1)
 
 ed_lay_draw(int txt_ui_v) {
   lset((import ui_ts), 0, txt_ui_v * 1000);
   ui_draw((import ed_ui)[0], 0, 0, (import sf_gw), (import sf_gh));
 } return void;
+given ed_t_boot stdin "" (1):() then calls lset:((import ui_ts), 0, 1000)
+given ed_t_boot stdin "" (2):() then calls lset:((import ui_ts), 0, 2000)
+
+// A booted, laid-out editor: ed_t_boot with one frame's layout computed, so a
+// case can read real pane rects (ed_rq) instead of the zeroes ui_rect answers
+// for a name nothing has drawn yet.
+ed_t_lay() {
+  ed_lay();
+} return void;
+given ed_t_boot stdin "" ():() then calls ui_rclear:[1]
+given ed_t_boot stdin "" ():() then calls ui_draw:[18]

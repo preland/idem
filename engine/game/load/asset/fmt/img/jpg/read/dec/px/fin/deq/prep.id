@@ -1,0 +1,30 @@
+jpg_ablk_prep(int ci, int bx, int by) {
+  int jpg_bat_v = jpg_bat(ci, bx, by);
+  jpg_deq(ci, jpg_bat_v);
+} return void;
+given jpg_final_fixture (0, 0, 0):() then calls jpg_deq:(0, (import jpg_coef_a))
+given jpg_final_fixture (0, 1, 1):() then calls jpg_deq:[1]
+
+// Coefficients into the working block, multiplied by their quantiser. The
+// quantisation table is in transmission order and the block is in natural order,
+// so the zigzag map joins them -- the same pairing the decoder used to store them.
+jpg_deq(int ci, int a) {
+  int k = 0;
+  while (k < 64) {
+    jpg_deq_one(ci, a, k);
+    k = k + 1;
+  }
+} return void;
+given jpg_final_fixture (0, (import jpg_coef_a)):() then calls jpg_deq_one:[64]
+given jpg_final_fixture (1, (import jpg_coef_a)):() then calls jpg_deq_one:(1, (import jpg_coef_a), 0)
+
+// Real coefficient 10 (jpg_coef_a[0]) x real quantiser 5 (jpg_q[0]) -- 50,
+// the same DC the IDCT's own hand-derived cases already pin the transform
+// arithmetic for (jpg_idct100_fixture, scaled: 10*5=50 here vs 100 there).
+jpg_deq_one(int ci, int a, int k) {
+  int jpg_zz_v = (import jpg_zz)[k];
+  int jpg_cget_v = jpg_cget(a, (import jpg_zz)[k]);
+  lset((import jpg_f), jpg_zz_v, jpg_cget_v * (import jpg_q)[(import jpg_c)[ci * 10 + 3] * 64 + k]);
+} return void;
+given jpg_final_fixture (0, (import jpg_coef_a), 0):() then jpg_f0_check:(50)
+given jpg_final_fixture (0, (import jpg_coef_a), 1):() then jpg_f0_check:(0)

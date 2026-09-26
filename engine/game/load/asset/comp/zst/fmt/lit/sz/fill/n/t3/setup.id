@@ -3,3 +3,5 @@ zst_tabs3() {
   huf_init();
   huf_ab_init();
 } return void;
+given zst_init ():() then calls huf_init:[1]
+given zst_init ():() then calls huf_ab_init:[1]

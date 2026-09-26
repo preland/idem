@@ -4,3 +4,6 @@
 bl_deg(int mrad) {
   int ret_i = mrad * 57296 / 1000;
 } return int ret_i;
+(1000):(57296)
+(0):(0)
+(-500):(-28648)

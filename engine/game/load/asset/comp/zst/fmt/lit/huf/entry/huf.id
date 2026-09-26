@@ -21,12 +21,16 @@ zst_lhuf(int kd, int sf, int h) {
   zst_lbuf(reg);
   zst_lhuf2(kd, sf, reg);
 } return void;
+given zst_lhuf_mix_setup (2, 0, 66):() then zst_litn_check:(116) then zst_sp_check:(70)
+given zst_lhuf_four_setup (2, 3, 222):() then zst_litn_check:(17805) then zst_sp_check:(14813)
 
 zst_lhuf2(int kd, int sf, int reg) {
   int p0 = (import zst_st)[1];
   zst_ltree(kd);
   zst_lstream(sf, reg, p0);
 } return void;
+given zst_lhuf2_mix_setup (2, 0, 116):() then zst_sp_check:(70)
+given zst_lhuf2_four_setup (2, 3, 17805):() then zst_sp_check:(14813)
 
 // Slot 14 carries the compressed size out; a function answers one value and both
 // sizes are needed. It is NOT slot 3 -- that is the output address, and an earlier
@@ -36,3 +40,5 @@ zst_lreg(int sf, int h) {
   word wp = zst_lval(w);
   int ret_i = zst_lreg_comp(wp, w);
 } return int ret_i;
+given zst_src_setup (0, 0):(32)
+given zst_src_setup (2, 0):(12320)

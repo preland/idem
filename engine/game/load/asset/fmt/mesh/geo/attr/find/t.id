@@ -1,0 +1,25 @@
+// Real p (the cube's own ME block address) and si (the Mesh struct index),
+// discovered the same way bl_mesh3 does it -- for bl_afind/bl_awalk/bl_apk's
+// own direct cases, which need a real Attribute record rather than the
+// synthetic DNA cluster.
+bl_afind_t_p() {
+  int si = bl_sfind("Mesh");
+  int bl_find_v = bl_find(1296367616);
+  int p = (import bl_bp)[bl_find_v];
+} return int p;
+given bl_mesh_t_load ():(349984)
+given asset_io_init given bl_mesh_t_load ():(349984)
+
+bl_afind_t_si() {
+  int si = bl_sfind("Mesh");
+} return int si;
+given bl_mesh_t_load ():(322)
+given asset_io_init given bl_mesh_t_load ():(322)
+
+// The attribute_storage field offset within Mesh, and the resolved attribute
+// array pointer/count -- for bl_afind_walk/bl_afind_ap/bl_awalk's own cases.
+bl_afind_t_foff() {
+  int bl_foff_v = bl_foff(322, "attribute_storage");
+} return int bl_foff_v;
+given bl_mesh_t_load ():(456)
+given asset_io_init given bl_mesh_t_load ():(456)

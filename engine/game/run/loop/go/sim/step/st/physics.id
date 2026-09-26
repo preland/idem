@@ -3,6 +3,8 @@
 sim_init() {
   export int[] sim_st = [0];
 } return void;
+given idem_init ():() then read_sim_st0:(0)
+given grow_fixture ():() then read_sim_st0:(0)
 
 // A body that is not solid is the only thing that falls. A solid body is world
 // geometry -- a floor, a wall, a pipe -- and something with no body at all is
@@ -13,6 +15,8 @@ sim_grav(int e, int dt) {
     ent_put(e, 3, ent_at_v + (import scn_st)[8] * dt / 1000);
   }
 } return void;
+given grav_fixture (0, 1000):() then calls ent_put:(0, 3, 0)
+given grow_fixture (0, 1000):() then calls ent_at:[1]
 
 // Velocity is millunits per second and dt is milliseconds, so the product needs
 // dividing by a thousand and the position is already in millunits.
@@ -20,3 +24,5 @@ sim_move(int e, int dt) {
   sim_movex(e, dt);
   sim_movey(e, dt);
 } return void;
+given vel_fixture (0, 1000):() then calls sim_movex:[1]
+given vel_fixture (0, 1000):() then calls sim_movey:[1]

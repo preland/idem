@@ -5,14 +5,20 @@ ed_status() {
   int r1 = ed_rq(6, 1);
   ed_status2(r0, r1);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" ():() then calls ed_status2:(0, 379)
+given ed_t_boot given ed_t_lay stdin "" ():() then calls ed_rq:[3]
 
 ed_status2(int r0, int r1) {
   int r2 = ed_rq(6, 2);
   int col = ed_col(3);
   ed_status3(r0, r1, r2, col);
 } return void;
+given ed_t_boot given ed_t_lay stdin "" (0, 379):() then calls ed_status3:(0, 379, 640, 0x1C1C1C)
+given ed_t_boot given ed_t_lay stdin "" (5, 10):() then calls ed_status3:(5, 10, 640, 0x1C1C1C)
 
 ed_status3(int r0, int r1, int r2, int col) {
   d2_hline(r0, r1, r2, col);
   ed_status_txt(r1 + 2);
 } return void;
+given ed_t_boot stdin "" (0, 379, 640, 0x1C1C1C):() then calls d2_hline:(0, 379, 640, 0x1C1C1C)
+given ed_t_boot stdin "" (0, 379, 640, 0x1C1C1C):() then calls ed_status_txt:(381)

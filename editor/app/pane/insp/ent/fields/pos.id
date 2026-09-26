@@ -3,9 +3,13 @@ ed_insp_pos_rows(int x, int y, int w, int e) {
   int ed_rowh_v = ed_rowh();
   ed_kve(x, y + ed_rowh_v + 2, w, "pos y", e, 1);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_kve:(0, 10, 100, "pos x", 0, 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_kve:(0, 30, 100, "pos y", 0, 1)
 
 ed_insp_pos(int x, int y, int w, int e) {
   ed_insp_pos_rows(x, y, w, e);
   int h = ed_rowh();
   ed_insp_vel(x, y + 2 * (h + 2), w, e);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_pos_rows:(0, 10, 100, 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_vel:(0, 50, 100, 0)

@@ -7,12 +7,16 @@ jpg_comps(int p, int ci) {
   }
   jpg_mcus();
 } return void;
+given jpg_grad_fixture (168, 0):() then calls jpg_comp:[3] then calls jpg_mcus:[1]
+given jpg_init (168, 0):() then calls jpg_comp:[0] then calls jpg_mcus:[1]
 
 jpg_comp(int p, int ci) {
   int asset_at_v = asset_at(p);
   int asset_at_v2 = asset_at(p + 1);
   jpg_comp1(ci, p, asset_at_v, asset_at_v2);
 } return void;
+given jpg_raw_fixture (168, 0):() then calls jpg_comp1:(0, 168, 1, 17)
+given jpg_raw_fixture (171, 1):() then calls jpg_comp1:(1, 171, 2, 17)
 
 // An MCU is one block of every component at its own sampling, so its size in
 // pixels is eight times the largest sampling factor and the grid is the image
@@ -23,3 +27,5 @@ jpg_mcus() {
   jpg_grid();
   jpg_planes(0);
 } return void;
+given jpg_grad_fixture ():() then calls jpg_maxes:(0) then calls jpg_grid:[1] then calls jpg_planes:(0)
+given jpg_prog_fixture ():() then calls jpg_maxes:(0) then calls jpg_grid:[1] then calls jpg_planes:(0)

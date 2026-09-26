@@ -9,13 +9,19 @@ ed_wput(string path, int[] buf) {
   int n = ed_wnow(h, buf);
   int ret_i = n = len(buf);
 } return int ret_i;
+given ed_t_wpath_setup ((import ed_t_wpath), [72, 105]):(1) then ed_t_wpath_check:(1)
+("", [72, 105]):(0)
 
 ed_wnow(int h, int[] buf) {
   int n = 0 - 1;
   if (h >= 0) { int len_v = len(buf); n = fs_write(h, buf, len_v); }
   ed_wshut(h);
 } return int n;
+given ed_t_wpath_setup given ed_t_whandle_open ((import ed_t_whandle), [72, 105]):(2) then ed_t_wpath_check:(1)
+(-1, [72, 105]):(-1)
 
 ed_wshut(int h) {
   if (h >= 0) { fs_close(h); }
 } return void;
+(-1):()
+given ed_t_wpath_setup given ed_t_whandle_open ((import ed_t_whandle)):() then ed_t_wpath_check:(1)

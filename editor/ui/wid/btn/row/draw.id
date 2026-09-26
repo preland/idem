@@ -3,8 +3,12 @@ ed_row_text_draw(int x, int y, string fit, int k) {
   int ui4 = txt_ui();
   ed_row_text_col(x, y, fit, ui3, ui4, k);
 } return void;
+given ed_t_boot stdin "" (10, 20, "hi", 0):() then calls ed_row_text_col:(10, 20, "hi", 1, 1, 0)
+given ed_t_boot stdin "" (5, 6, "yo", 2):() then calls ed_row_text_col:(5, 6, "yo", 1, 1, 2)
 
 ed_row_text_col(int x, int y, string fit, int ui3, int ui4, int k) {
   int col = ed_col(4 + (k = 0));
   txt_draw(fit, x + 4 * ui3, y + ui4, col);
 } return void;
+given ed_t_boot stdin "" (10, 20, "hi", 1, 1, 0):() then calls txt_draw:("hi", 14, 21, 0x8A8A8A)
+given ed_t_boot stdin "" (0, 0, "z", 2, 3, 1):() then calls txt_draw:("z", 8, 3, 0xCFCFCF)

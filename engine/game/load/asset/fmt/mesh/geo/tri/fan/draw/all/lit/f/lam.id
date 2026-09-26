@@ -5,3 +5,21 @@ bl_lamc(word wp) {
   int fx_abs_v = fx_abs(a);
   int ret_i = fx_clamp(fx_abs_v, 0, 1000);
 } return int ret_i;
+(-500):(500)
+(1500):(1000)
+(0):(0)
+
+// A reader for bl_efill's own side effect: how many words bl_e holds.
+bl_e_len_t_check() {
+  int n = len((import bl_e));
+} return int n;
+given bl_lit_init ():(3)
+given asset_io_init given bl_lit_init ():(3)
+
+// A reader for bl_face's own normal.x -- bl_e[1]/bl_e[2] have their own
+// checks (bl_wcol... see wm/t.id, vis/t.id); this is the third component.
+bl_e0_t_check() {
+  int v = (import bl_e)[0];
+} return int v;
+given bl_vis_t_setup ():(-50000)
+given bl_lit_init ():(0)

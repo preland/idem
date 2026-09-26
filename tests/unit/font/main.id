@@ -35,3 +35,5 @@ main(int argc, string[] argv) {
   asset_io_init();
   t_def();
 } return int 0;
+(1, ["prog"]):(0) then calls t_def:[1]
+(2, ["prog", "x"]):(0) then calls txt_init:[1]

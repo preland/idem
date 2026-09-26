@@ -3,3 +3,24 @@ t_parse() {
   int par_doc_v = par_doc(pos);
   scn_load(par_doc_v);
 } return void;
+given scr_loaded_ready ():() then calls par_doc:[1]
+given scr_loaded_ready ():() then calls scn_load:[1]
+
+// Test-only fixtures: main.id's own init order, in stages, so a case below
+// the top of the chain does not have to replay every earlier init call
+// itself (each of main/t_boot/t_boot2/.../t_boot5 is already at the 3-action
+// limit with just its own two inits and the call onward).
+scr_s1_ready() {
+  fx_trig_init();
+  rnd_init(7);
+} return void;
+():() then calls fx_trig_init:[1]
+():() then calls rnd_init:(7)
+
+scr_s2_ready() {
+  scr_s1_ready();
+  err_init();
+  ast_init();
+} return void;
+():() then calls scr_s1_ready:[1]
+():() then calls ast_init:[1]

@@ -5,9 +5,15 @@ ed_mn(int k) {
   if (k = 0) { n = 5; }
   else { n = ed_mn2(k); }
 } return int n;
+(0):(5)
+(2):(3)
+(4):(2)
 
 ed_mn2(int k) {
   int n = 4;
   if (k = 2 || k = 3) { n = 3; }
   else if (k = 4) { n = 2; }
 } return int n;
+(2):(3)
+(4):(2)
+(1):(4)

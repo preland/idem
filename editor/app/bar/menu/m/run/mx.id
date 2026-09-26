@@ -5,6 +5,8 @@ ed_mx(int k) {
   int i = 0;
   x = ed_mxr(x, i, k);
 } return int x;
+given ed_t_boot stdin "" (0):(6)
+given ed_t_boot stdin "" (1):(48)
 
 ed_mxr(int x, int i, int k) {
   while (i < k) {
@@ -13,3 +15,5 @@ ed_mxr(int x, int i, int k) {
     i = i + 1;
   }
 } return int x;
+given ed_t_boot stdin "" (6, 0, 0):(6)
+given ed_t_boot stdin "" (6, 0, 1):(48)

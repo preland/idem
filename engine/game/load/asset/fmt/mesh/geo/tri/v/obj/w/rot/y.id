@@ -2,9 +2,13 @@ bl_wry(int p, int si) {
   int deg_v = bl_rot_angle(p, si, 0);
   bl_wry_rot(deg_v);
 } return void;
+given fx_trig_init given bl_scene_t_setup (348664, 692):() then calls bl_rot_angle:(348664, 692, 0)
+given fx_trig_init given asset_io_init given bl_scene_t_setup (348664, 692):() then calls bl_rot_angle:(348664, 692, 0)
 
 bl_wry_rot(int deg_v) {
   m4_ident((import bl_m1));
   m4_rot4((import bl_m1), 5, 6, 9, 10, deg_v);
   bl_wmul();
 } return void;
+given fx_trig_init given bl_geo_init (30000):() then calls bl_wmul:[1]
+given fx_trig_init given asset_io_init given bl_geo_init (0):() then calls bl_wmul:[1]

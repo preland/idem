@@ -10,15 +10,21 @@ t_wrap() {
   m4_pair((import ent_r), 10, 11, 0 - 144000, 432000);
   t_wrap2();
 } return void;
+given sim_e0_ready ():() then calls ent_put:(0, 9, 9)
+given sim_e0_ready ():() then calls t_wrap2:[1]
 
 t_wrap2() {
   ent_put(0, 0, 0 - 145000);
   sim_wrap(0);
   t_wrap2b();
 } return void;
+given sim_wrap_ready ():() then calls sim_wrap:(0)
+given sim_wrap_ready ():() then calls t_wrap2b:[1]
 
 t_wrap2b() {
   int ent_at_v = ent_at(0, 0);
   print("past the left bound: x exp 432000 = " + ent_at_v);
   t_wrap3();
 } return void;
+given sim_wrap_past_ready ():() then calls ent_at:(0, 0)
+given sim_wrap_past_ready ():() then prints:("past the left bound: x exp 432000 = 432000\ninside it: x unchanged exp -143000 = -143000\nframes at 0, 120, 240, 360 ms exp 0 1 2 0 = 0 1 2 0\nno anim: frame held exp 5 = 5\n")

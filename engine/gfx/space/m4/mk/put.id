@@ -11,6 +11,8 @@ m4_pair(int[] mat, int i, int j, int a, int b) {
   lset(mat, i, a);
   lset(mat, j, b);
 } return void;
+([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 0, 5, 7, 9):([7, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000], 3, 7, 100, 200):([1000, 0, 0, 100, 0, 1000, 0, 200, 0, 0, 1000, 0, 0, 0, 0, 1000])
 
 // Translation is the fourth column, in millunits, because the point's w is 1000
 // and the entries are x1000 -- the two scales cancel exactly here.
@@ -19,6 +21,8 @@ m4_translate(int x, int y, int z) {
   m4_pair(mat, 3, 7, x, y);
   lset(mat, 11, z);
 } return int[] mat;
+(5, 10, 15):([1000, 0, 0, 5, 0, 1000, 0, 10, 0, 0, 1000, 15, 0, 0, 0, 1000])
+(0, 0, 0):([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
 
 // Uniform scale, per-mille: 1000 is unscaled. The diagonal is already x1000, so
 // a per-mille factor is written straight in.
@@ -27,3 +31,5 @@ m4_scale(int sc) {
   m4_pair(mat, 0, 5, sc, sc);
   lset(mat, 10, sc);
 } return int[] mat;
+(2000):([2000, 0, 0, 0, 0, 2000, 0, 0, 0, 0, 2000, 0, 0, 0, 0, 1000])
+(1000):([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])

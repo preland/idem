@@ -9,6 +9,8 @@ scr_tfire(int e, int acc) {
   int scr_sc_v = scr_sc(e);
   scr_tscan2(scr_sc_v, e, acc, 0);
 } return void;
+given scr_fixture (-1, 100):() then calls scr_tscan2:[1]
+given grow_fixture (0, 100):() then calls scr_sc:[1]
 
 scr_tscan2(int sc, int e, int acc, int i) {
   int[] ks = ast_ks(sc);
@@ -17,9 +19,13 @@ scr_tscan2(int sc, int e, int acc, int i) {
     i = i + 1;
   }
 } return void;
+given idem_init (0, -1, 100, 0):() then calls scr_tone:[0]
+given block_fixture ((import fixture_block), -1, 100, 0):() then calls scr_tone:[1]
 
 scr_tone(int h, int e, int acc) {
   if (ast_kd(h) = (import ast_k_on) && ast_tx(h) = "timer" && scr_tdue(h, e, acc) = 1) {
     scr_hrun(h, e);
   }
 } return void;
+given idem_init (0, -1, 100):() then calls scr_tdue:[0]
+given block_fixture ((import fixture_assign), -1, 100):() then calls scr_tdue:[0]

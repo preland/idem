@@ -5,3 +5,22 @@ d3_nclip_b(int[] tri, int s0, int s1) {
   int s2 = d3_side(tri, 2);
   d3_ncase(tri, s0 + s1 * 2 + s2 * 4);
 } return void;
+given d3_t_setup ([0, 0, 40, 300, 0, 0, 0, 300, 0, 1000, 2000, 3000], 1, 0):() then d3_t_clp:([0, 0, 40, 0, 0, 40, 0, 0, 40, 1000, 1000, 1000])
+given d3_t_setup ([100, 200, 0, 300, 400, 0, 7, 8, 40, 11, 22, 33], 0, 0):() then d3_t_clp:([7, 8, 40, 7, 8, 40, 7, 8, 40, 33, 33, 33])
+
+// A full read-back of the camera's nine slots, for cases in the cam/mat batch
+// that need to show what a setter or the view-matrix chain left in (import
+// d3_cam) rather than its (unmutated) int arguments or its (void) return.
+d3_t_cam() {
+  int[] cam_v = (import d3_cam);
+} return int[] cam_v;
+given d3_t_setup ():([0, 0, 0, 0, 0, 40, 40000, 60000, 55424])
+given d3_t_fixture2 ():([500, -300, 1200, 0, 0, 40, 40000, 90000, 32000])
+
+// The world-to-camera matrix, for cases that need to show what d3_view_matrix
+// or one of its parts left in (import d3_vm).
+d3_t_vm() {
+  int[] vm_v = (import d3_vm);
+} return int[] vm_v;
+given d3_t_setup ():([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+given d3_t_dirty ():([866, 0, -500, 0, 0, 1000, 0, 0, -500, 0, -866, 0, 0, 0, 0, 1000])

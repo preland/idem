@@ -19,6 +19,11 @@ d3_unpack(int[] verts, int p, int c) {
   lset(verts, p + 1, (c / 256) % 256);
   lset(verts, p + 2, c % 256);
 } return void;
+([0, 0, 0], 0, 16711680):([255, 0, 0])
+([9, 9, 9, 9, 9], 1, 65280):([9, 0, 255, 0, 9])
+([7, 7, 7], 0, 0):([0, 0, 0])
+([0,0,0], 0, 1193046):([18,52,86])
+([7,7,7,7,7], 1, 0):([7,0,0,0,7])
 
 // a * b / z / 1000, wide. a is a camera-space coordinate in millunits, b the
 // focal length in pixels x1000, z the depth in millunits: 10^6 * 10^6 is 10^12,
@@ -28,6 +33,11 @@ d3_pscale(int a, int b, int z) {
   wp = wp * b / z / 1000;
   int ret_i = d3_pclamp(wp);
 } return int ret_i;
+(1000, 1000, 1000):(1)
+(1000000, 2000, 1):(1000000)
+(-1000000, 2000, 1):(-1000000)
+(-500000, 1000, 1000):(-500)
+(2000000000, 1000, 1):(1000000)
 
 d3_pclamp(word wp) {
   if (wp > 1000000) {
@@ -37,3 +47,9 @@ d3_pclamp(word wp) {
   }
   int ret_i = wp;
 } return int ret_i;
+(500000):(500000)
+(1000000):(1000000)
+(1000001):(1000000)
+(-1000001):(-1000000)
+(0):(0)
+(-1000000):(-1000000)

@@ -8,8 +8,20 @@ ed_play_lbl() {
   string s = "play";
   if ((import ed_st)[16] = 1) { s = "stop"; }
 } return string s;
+given ed_t_boot stdin "" ():("play")
+given ed_t_boot given ed_t_running stdin "" ():("stop")
 
 ed_play_next(int k) {
   int v = 2;
   if (k = 1) { v = 1 - ((import ed_st)[16] = 1); }
 } return int v;
+given ed_t_boot stdin "" (0):(2)
+given ed_t_boot stdin "" (1):(1)
+
+// The run state on, for ed_play_lbl's "stop" case and anything else that needs
+// ed_tick already simulating.
+ed_t_running() {
+  lset((import ed_st), 16, 1);
+} return void;
+given ed_t_boot stdin "" ():() then calls lset:([-1, -1, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1000, 0, 0], 16, 1)
+given ed_t_boot stdin "" ():() then calls lset:[1]

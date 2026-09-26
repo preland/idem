@@ -1,0 +1,10 @@
+// A one-pixel sheet on top of spr_hdr_ready's 1x1 grid, for a case that needs
+// exactly one sample rather than spr_px_ready's two.
+
+spr_px1_ready() {
+  spr_lists_ready();
+  lst_fill((import spr_al), 1, 200);
+  lst_fill((import spr_px), 1, 0);
+} return void;
+():() then calls spr_lists_ready:[1]
+():() then spr_al_last:(200)

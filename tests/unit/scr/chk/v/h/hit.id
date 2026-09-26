@@ -11,6 +11,8 @@ t_hit() {
   t_hit_rep();
   t_hit2();
 } return void;
+given scr_upd_ready ():() then calls scr_hits:(0)
+given scr_upd_ready ():() then calls t_hit2:[1]
 
 // Moved apart by more than the boxes span, they no longer touch and the count
 // does not move.
@@ -19,9 +21,13 @@ t_hit2() {
   scr_hits(0);
   t_hit3();
 } return void;
+given scr_hit_ready ():() then calls ent_put:(1, 0, 61000)
+given scr_hit_ready ():() then calls t_hit3:[1]
 
 t_hit3() {
   int scr_get_v = scr_get(0 - 1, "hits");
   print("moved apart: hits exp 1 = " + scr_get_v);
   t_tick();
 } return void;
+given scr_hit2_ready ():() then calls scr_get:(-1, "hits")
+given scr_hit2_ready ():() then prints:("moved apart: hits exp 1 = 1\nafter 80ms: ticks exp 0 = 0\nafter 100ms: ticks exp 1 = 1\none press: taps exp 1 = 1\nbefore: entities exp 3 = 3\nafter: entities exp 4 = 4\nits pos exp 30000 40000, tagged exp 1 = 30000 40000 1\nits body exp 10000 10000, solid exp 1 = 10000 10000 1\n")

@@ -14,12 +14,16 @@ scr_if(int nd, int e) {
     fin = scr_else(ic, e);
   }
 } return int fin;
+given if_fixture ((import fixture_if), -1):(0) then calls scr_ex:[1]
+given idem_init (0, -1):(0) then calls scr_else:[1]
 
 // No else is node 0, which is not a statement and must not be executed as one.
 scr_else(int nd, int e) {
   int fin = 0;
   if (nd != 0) { fin = scr_ex(nd, e); }
 } return int fin;
+given if_fixture ((import fixture_assign), -1):(0) then calls scr_ex:[1]
+given idem_init (0, -1):(0) then calls scr_ex:[0]
 
 // The turn count is the guard, and it is deliberately generous: ten thousand
 // iterations is more than any legitimate per-frame loop and far short of a hang.
@@ -34,3 +38,5 @@ scr_while(int nd, int e, int n) {
     go = scr_whilecond(nd, e, fin, n);
   }
 } return int fin;
+given while_fixture ((import fixture_while), -1, 9999):(0) then calls scr_whilebody:[1]
+given idem_init (0, -1, 0):(0) then calls scr_whilebody:[0]

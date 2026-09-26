@@ -9,8 +9,23 @@ jpg_nblk(int ci, int bx, int by) {
   jpg_blk(ci, jpg_bat_v);
   lset((import jpg_st), 12, (import jpg_st)[12] + 1);
 } return void;
+given jpg_one_fixture (0, 0, 0):() then calls jpg_nblk_setup:(0, 0, 0) then calls jpg_blk:(0, (import jpg_coef_a))
+given jpg_one_prog_fixture (0, 0, 0):() then calls jpg_blk:(0, (import jpg_coef_a)) then calls jpg_pblk:[1]
 
 jpg_nblk_setup(int ci, int bx, int by) {
   jpg_rst();
   int jpg_bat_v = jpg_bat(ci, bx, by);
 } return int jpg_bat_v;
+given jpg_bat_fixture (0, 0, 0):(100)
+given jpg_bat_fixture (0, 5, 1):(2020)
+
+// jpg_coefbuf_fixture with a run of the advance loop already switched on
+// (phase 3, a wide band) -- for jpg_radv's own case, whose loop otherwise
+// never enters against jpg_init's all-zero Se.
+jpg_radv_fixture() {
+  jpg_coefbuf_fixture();
+  lset((import jpg_st), 14, 5);
+  lset((import jpg_r), 3, 3);
+} return void;
+():() then jpg_r3_check:(3)
+given jpg_init ():() then jpg_r3_check:(3)

@@ -1,0 +1,26 @@
+// Test fixture for the whole d3 pipeline: sizes the surface, fills the trig
+// table d3_cam_fov needs for the focal length, then runs d3_init's own chain
+// (init2, init3, fill, fill2, fill3, mats, mats2, start, zalloc, cam_fov --
+// see init.id and fill.id). One `given` this reaches every export the 3D
+// pipeline declares, so a case elsewhere reads it back through the checks
+// below instead of repeating the three calls itself.
+
+d3_t_setup() {
+  sf_t_setup();
+  fx_trig_init();
+  d3_init();
+} return void;
+():() then d3_t_vts_len:(18)
+():() then d3_t_cam_fov:(60000)
+
+d3_t_vts_len() {
+  int n = len((import d3_vts));
+} return int n;
+given d3_t_setup ():(18)
+given d3_t_setup ():(18) then d3_t_cam_fov:(60000)
+
+d3_t_cam_fov() {
+  int fov = (import d3_cam)[7];
+} return int fov;
+given d3_t_setup ():(60000)
+given d3_t_setup ():(60000) then d3_t_vts_len:(18)

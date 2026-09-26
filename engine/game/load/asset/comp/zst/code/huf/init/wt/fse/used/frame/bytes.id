@@ -1,0 +1,17 @@
+// A real address+section for the top-level huf_wrun*/huf_wfse* cases, which
+// take their own zst_st_v/p/n as plain parameters rather than reading them
+// from state -- composed with huf_wstart_test_setup_a/b for the fse_rl/huf_ab
+// half, since this only needs to supply a fresh address and marker byte.
+huf_wtop_bytes() {
+  export int huf_wtop_p = alloc(2);
+  poke8((import huf_wtop_p), 165);
+  poke8((import huf_wtop_p) + 1, 128);
+} return void;
+():() then huf_wtop_byte_check:(165)
+given fse_init ():() then huf_wtop_byte_check:(165)
+
+huf_wtop_byte_check() {
+  int hufw_v = peek8((import huf_wtop_p));
+} return int hufw_v;
+given huf_wtop_bytes ():(165)
+given fse_init given huf_wtop_bytes ():(165)

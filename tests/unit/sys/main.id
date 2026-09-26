@@ -19,3 +19,5 @@ main(int argc, string[] argv) {
   sf_open(320, 200);
   t_fit();
 } return int 0;
+(1, ["prog"]):(0) then calls t_fit:[1]
+(2, ["prog", "x"]):(0) then calls sf_open:(320, 200)

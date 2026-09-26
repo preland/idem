@@ -4,12 +4,16 @@ ast_sexp3(int nd, int kd, string[] strs) {
   if (kd = (import ast_k_str)) { string ast_quote_v = ast_quote(nd); sset(strs, 0, ast_quote_v); }
   else if (kd != (import ast_k_nil)) { string ast_form_v = ast_form(nd); sset(strs, 0, ast_form_v); }
 } return void;
+given ast_dump_setup (4, 132, [""]):(4, 132, ["\"hi\""])
+given ast_init (0, 100, ["seed"]):(0, 100, ["seed"])
 
 ast_form(int nd) {
   string head = ast_fhead(nd);
   string mid = ast_fmid(nd);
   string ret_s = head + mid + ast_ftail(nd);
 } return string ret_s;
+given ast_dump_setup (3):("(call f 42 x x)")
+given ast_init (0):("(nil)")
 
 // A literal still owed fractional digits prints as 14e-1, so a golden file shows
 // whether the parser scaled it or left it for the loader.
@@ -17,3 +21,5 @@ ast_numtx(int nd) {
   string s = "" + ast_ia(nd);
   if (ast_ib(nd) > 0) { s = s + "e-" + ast_ib(nd); }
 } return string s;
+given ast_dump_setup (1):("42")
+given ast_known_setup (1):("3e-4")

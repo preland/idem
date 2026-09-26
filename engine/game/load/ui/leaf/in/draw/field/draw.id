@@ -15,6 +15,8 @@ tin_draw(int x, int y, int w, int h, int c, int t) {
   d2_frame(x, y, w, h, c);
   tin_body(x + 2, y + 2, w - 4, h - 4, c, t);
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 1, 1, 7, 0):() then d2_blit_t_px00:(7)
+given txt_init given sf_t_setup given tin_init (0, 0, 0, 0, 7, 0):() then d2_blit_t_px00:(0)
 
 // The clip is narrowed to the field's inside and put back, around *both* the
 // text and the caret. That is what makes a buffer longer than the field a
@@ -27,6 +29,8 @@ tin_body(int x, int y, int w, int h, int c, int t) {
   tin_body_draw(x, y, w, h, c, t);
   sf_unclip();
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 8, 16, 9, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup given tin_init (0, 0, 8, 16, 9, 400):() then d2_blit_t_px00:(0)
 
 // The text and the caret take the same x and the same y, already scrolled and
 // already centred, and the caret's offset from x is the caret index times the
@@ -38,3 +42,5 @@ tin_txy(int x, int y, int c, int t) {
   txt_draw(tin_text_v, x, y, c);
   tin_txy_car(x, y, c, t);
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 9, 0):() then d2_blit_t_px00:(9)
+given txt_init given sf_t_setup given tin_init (0, 0, 9, 400):() then d2_blit_t_px00:(0)

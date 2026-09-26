@@ -3,11 +3,17 @@
 g_init() {
   lset((import ed_st), 8, (import ed_st)[8]);
 } return void;
+given ed_t_boot stdin "" ():() then ed_fr_n:(0)
+given ed_t_boot given ed_mark stdin "" ():() then ed_fr_n:(1)
 
 g_step(int dt) {
   sim_step();
 } return void;
+given ed_t_boot stdin "" (5):() then calls sim_step:[1]
+given ed_t_boot stdin "" (100):() then calls sim_step:[1]
 
 g_draw() {
   ed_draw();
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_draw:[1]
+given ed_t_boot given ed_t_boot_ui stdin "" ():() then calls ed_draw:[1]

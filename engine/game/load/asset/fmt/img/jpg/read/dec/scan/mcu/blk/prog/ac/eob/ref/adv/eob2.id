@@ -6,11 +6,15 @@ jpg_reob2(int n, int rn) {
   }
   jpg_reob3(n);
 } return void;
+given jpg_coefbuf_fixture (0, 0):() then calls jpg_reob3:(0)
+given jpg_coefbuf_fixture (0, 3):() then calls jpg_reob3:(4)
 
 jpg_reob3(int n) {
   lset((import jpg_st), 17, n);
   lset((import jpg_r), 3, 1);
 } return void;
+given jpg_coefbuf_fixture (5):() then jpg_eob_check:(5) then jpg_r3_check:(1)
+given jpg_coefbuf_fixture (0):() then jpg_eob_check:(0) then jpg_r3_check:(1)
 
 // Advance over coefficients, appending a correction bit to every nonzero one and
 // counting down the run of zeros. When the run is exhausted the new coefficient
@@ -21,3 +25,5 @@ jpg_radv(int a) {
   }
   jpg_rend();
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then calls jpg_radv1:[0] then jpg_r3_check:(0)
+given jpg_radv_fixture ((import jpg_coef_a)):() then calls jpg_radv1:[1] then jpg_r3_check:(0)

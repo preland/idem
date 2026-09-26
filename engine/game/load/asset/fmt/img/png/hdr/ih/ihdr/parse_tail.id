@@ -2,14 +2,20 @@ png_ihdr_p(int p, int asset_be32_v, int asset_be32_v2) {
   m4_pair((import png_st), 0, 1, asset_be32_v, asset_be32_v2);
   png_ihdr1(p);
 } return int 0;
+given png_init (16, 17, 36):(0) then spr_img_w:(17) then calls png_ihdr1:(16)
+given png_init (0, 100, 200):(0) then spr_img_w:(100) then calls png_ihdr1:(0)
 
 png_ihdr1_p(int p, int asset_at_v, int asset_at_v2) {
   m4_pair((import png_st), 2, 3, asset_at_v, asset_at_v2);
   png_ihdr2(p);
 } return int 0;
+given png_init (16, 4, 3):(0) then calls png_ihdr2:(16)
+given png_init (0, 8, 6):(0) then calls png_ihdr2:(0)
 
 png_ihdr3() {
   int kd = (import png_st)[3];
   int n = png_chan_inline(kd);
   png_ihdr3_set(n);
 } return void;
+given png_raw_fixture ():() then calls png_chan_inline:(0) then calls png_ihdr3_set:(1)
+given spr_bird_fixture ():() then calls png_chan_inline:(3) then calls png_ihdr3_set:(1)

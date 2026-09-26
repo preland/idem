@@ -1,0 +1,18 @@
+// A token stream for the if/else chain: `if(1){x=5}else{x=5}` followed by
+// `while(1){x=5}`. Placed beside branch.id/pre.id -- ctl/ itself was already
+// at its 3-entry limit.
+
+par_if_setup() {
+  lex_init();
+  ast_init();
+  par_if_setup2();
+} return void;
+():() then lex_kind_len:(25)
+():() then lex_kind_len:(25) then eprints:("")
+
+par_if_setup2() {
+  err_init();
+  lex_run("if(1){x=5}else{x=5} while(1){x=5}");
+} return void;
+given lex_init given ast_init ():() then lex_kind_len:(25)
+given lex_init given ast_init ():() then lex_kind_len:(25) then eprints:("")

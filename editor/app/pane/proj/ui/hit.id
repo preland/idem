@@ -5,3 +5,5 @@ ed_proj_hit(int x, int y, int i, int ok) {
     lset((import ed_st), 1, i);
   }
 } return void;
+given ed_t_boot given inp_t_state stdin "" (0, 0, 5, 1):() then calls lset:([-1, 5, 35000, -9000, 9000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 1000, 0, 0], 1, 5)
+given ed_t_boot stdin "" (0, 0, 5, 0):() then calls lset:[0]

@@ -1,0 +1,7 @@
+// A reader for bl_scope's side effect: bl_st[14], the end of the address
+// range it opens -- the thing that actually verifies the scan ran.
+bl_scope_t_check() {
+  int v = (import bl_st)[14];
+} return int v;
+given bl_at_t_setup ():(1)
+given bl_init ():(0)

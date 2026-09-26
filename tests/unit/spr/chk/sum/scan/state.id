@@ -1,0 +1,15 @@
+// main.id's t_init2 delegates the t_st export here so a case can reach it
+// without also running t_small, the colour-type and big-sheet chain that
+// t_init2 calls right after in production.
+t_st_export() {
+  inf_init();
+  export int[] t_st = [0, 0, 0, 0];
+} return void;
+given spr_ready2 ():() then calls inf_init:[1]
+given spr_ready2 ():() then t_st_check:(0)
+
+t_st_check() {
+  int v = (import t_st)[1];
+} return int v;
+given t_st_export ():(0)
+given spr_ready2 given t_st_export ():(0)

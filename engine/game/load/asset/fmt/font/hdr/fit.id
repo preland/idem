@@ -2,12 +2,16 @@ psf_two3(int sa, int n) {
   int cs = psf_fld(20);
   int ret_i = psf_two4(sa, n, cs);
 } return int ret_i;
+given psf_vga_fixture (32, 256):(1)
+given psf_vga_fixture (0, 256):(0)
 
 psf_two4(int sa, int n, int cs) {
   int h = psf_fld(24);
   int w = psf_fld(28);
   int ret_i = psf_one(sa, n, cs, h, w);
 } return int ret_i;
+given psf_vga_fixture (32, 256, 16):(1)
+given psf_vga_fixture (32, 256, 300):(0)
 
 // Is this a face this engine can hold, and does its glyph data fit in the file?
 //
@@ -31,3 +35,5 @@ psf_fit(int sa, int n, int cs, int h, int w) {
     ok = n > (import txt_first) && sa > 0 && sa + n * cs <= (import asset_io)[1];
   }
 } return int ok;
+given psf_vga_fixture (32, 256, 16, 16, 8):(1)
+given psf_vga_fixture (32, 256, 16, 16, 25):(0)

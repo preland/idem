@@ -112,3 +112,5 @@ txt_glyph_data() {
     0, 0, 118, 220, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 // ~
   ];
 } return void;
+():() then txt_cell:(8) then txt_cellh:(16) then txt_bit:(8) then txt_facen:(95)
+():() then txt_glyph_arow:(16)

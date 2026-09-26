@@ -7,6 +7,8 @@
 t_next() {
   lset((import inp_st), 0, (import inp_st)[0] + 1);
 } return void;
+given tin_ready ():() then calls lset:[1]
+given tin_typed_ready ():() then calls lset:[1]
 
 // One frame in which `key` goes down and stays down. This is what a held key
 // looks like to the engine: ONE press event and nothing further until the
@@ -17,6 +19,8 @@ t_down(int key, int t) {
   inp_stamp(key);
   tin_step(t);
 } return void;
+given tin_ready (256, 100):() then calls inp_stamp:(256)
+given tin_ready (9, 200):() then calls tin_step:(200)
 
 // A tap: down and up inside one frame. The release is stamped after tin_step
 // has run, which is the order a real frame has -- the queue is drained, the
@@ -25,3 +29,5 @@ t_tap(int key, int t) {
   t_down(key, t);
   inp_stamp(key + 65536);
 } return void;
+given tin_ready (256, 100):() then calls t_down:(256, 100)
+given tin_ready (9, 200):() then calls inp_stamp:(65545)

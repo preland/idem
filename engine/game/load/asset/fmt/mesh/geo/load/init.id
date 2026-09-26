@@ -30,6 +30,8 @@ bl_geo_init() {
   export int[] bl_ti = [];
   bl_geo2();
 } return void;
+():() then bl_geo_init_t_check:(0)
+given asset_io_init ():() then bl_geo_init_t_check:(0)
 
 // The world matrix every vertex goes through, and the scratch its composition
 // needs. It is the identity unless an Object sets it, so bl_mesh -- which reads
@@ -39,3 +41,11 @@ bl_geo2() {
   export int[] bl_m1 = m4_new();
   bl_geo3();
 } return void;
+():() then calls bl_geo3:[1]
+given asset_io_init ():() then calls bl_geo3:[1]
+
+bl_geo_init_t_check() {
+  int v = len((import bl_v));
+} return int v;
+given bl_geo_init ():(0)
+given bl_geo_init_t_two ():(1)

@@ -12,12 +12,16 @@ d3_mats() {
   export int[] d3_m0 = m4_new();
   d3_mats2();
 } return void;
+given d3_t_dirty ():() then d3_t_vm:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000]) then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
+given d3_t_setup ():() then d3_t_vm:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000]) then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
 
 d3_mats2() {
   export int[] d3_m1 = m4_new();
   export int[] d3_m2 = m4_new();
   d3_start();
 } return void;
+given d3_t_dirty ():() then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000]) then d3_t_vm:([866, 0, -500, 0, 0, 1000, 0, 0, -500, 0, -866, 0, 0, 0, 0, 1000])
+given d3_t_setup ():() then d3_t_m2:([1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 1000])
 
 // The tail of the init chain: the depth buffer, which needs the surface, and the
 // focal length, which needs the trig table. Every export in this module is
@@ -28,3 +32,5 @@ d3_start() {
   d3_zalloc();
   d3_cam_fov((import d3_cam)[7]);
 } return void;
+given d3_t_dirty ():() then d3_t_cam:([0, 0, 0, 30000, 0, 40, 40000, 60000, 55424]) then d3_t_vm:([866, 0, -500, 0, 0, 1000, 0, 0, -500, 0, -866, 0, 0, 0, 0, 1000])
+given d3_t_fixture2 ():() then d3_t_cam:([500, -300, 1200, 0, 0, 40, 40000, 90000, 32000])

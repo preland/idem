@@ -5,9 +5,13 @@ idem_aframe2(int t) {
   idem_astep();
   idem_apace(t);
 } return void;
+given seam_fixture given game_fixture_nd given ui_pinit (0):() then calls idem_astep:[1]
+given seam_fixture given game_fixture_nd given ui_pinit (7):() then calls idem_apace:(7)
 
 idem_apacefps() {
   func(int) return int gs = (import eng_stage);
   int gs_v = gs(3);
   int fps = fx_max(gs_v, 1);
 } return int fps;
+given seam_fixture ():(30)
+given seam_fixture given idem_init ():(30)

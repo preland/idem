@@ -25,15 +25,21 @@ spr_go(string src) {
   spr_lists();
   spr_body(src);
 } return void;
+given imp_init ("s 1 1 1 1 -1 0 0 0 P3 1 1 255 10 20 30 P2 1 1 255 200"):() then calls spr_head:("s 1 1 1 1 -1 0 0 0 P3 1 1 255 10 20 30 P2 1 1 255 200")
+given imp_init ("s 1 1 1 1 -1 0 0 0 P3 1 1 255 10 20 30 P2 1 1 255 200"):() then calls spr_lists:[1]
 
 spr_head(string src) {
   export string[] spr_nm = [imp_tok(src)];
   export int[] spr_d = [];
   spr_dims(src);
 } return void;
+given imp_init ("s 1 1 1 1 -1 0 0 0"):() then calls spr_dims:("s 1 1 1 1 -1 0 0 0")
+given imp_init ("x 2 2 1 1 -1 0 0 0"):() then calls spr_dims:("x 2 2 1 1 -1 0 0 0")
 
 spr_dims(string src) {
   lst_fill((import spr_d), 10, 0);
   spr_dim4(src);
   spr_dim5(src);
 } return void;
+given spr_hdr_ready ("1 1 1 1 -1 0 0 0"):() then calls spr_dim4:("1 1 1 1 -1 0 0 0")
+given spr_hdr_ready ("2 2 1 1 -1 0 0 0"):() then calls spr_dim5:("2 2 1 1 -1 0 0 0")

@@ -18,14 +18,20 @@
 bl_ntri() {
   int ret_i = len((import bl_ti)) / 3;
 } return int ret_i;
+given bl_mesh_t_load ():(12)
+given bl_geo_init ():(0)
 
 bl_tfill(int i, int[] tri, int c) {
   bl_tv(tri, 0, (import bl_ti)[i * 3]);
   bl_tv(tri, 3, (import bl_ti)[i * 3 + 1]);
   bl_tfill2(i, tri, c);
 } return void;
+given bl_mesh_t_load (0, [0,0,0,0,0,0,0,0,0,0,0,0], 12155199):(0, [-1000, -1000, 1000, -1000, 1000, 1000, -1000, 1000, -1000, 12155199, 12155199, 12155199])
+given bl_mesh_t_load (1, [0,0,0,0,0,0,0,0,0,0,0,0], 0):(1, [-1000, -1000, 1000, -1000, 1000, -1000, -1000, -1000, -1000, 0, 0, 0])
 
 bl_tfill2(int i, int[] tri, int c) {
   bl_tv(tri, 6, (import bl_ti)[i * 3 + 2]);
   bl_tc(tri, c);
 } return void;
+given bl_mesh_t_load (0, [0,0,0,0,0,0,0,0,0,0,0,0], 12155199):(0, [0, 0, 0, 0, 0, 0, -1000, 1000, -1000, 12155199, 12155199, 12155199])
+given bl_mesh_t_load (1, [0,0,0,0,0,0,0,0,0,0,0,0], 0):(1, [0, 0, 0, 0, 0, 0, -1000, -1000, -1000, 0, 0, 0])

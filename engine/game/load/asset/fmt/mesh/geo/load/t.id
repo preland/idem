@@ -1,0 +1,17 @@
+// A second, distinguishable bl_v state for bl_geo_init_t_check's own cases.
+bl_geo_init_t_two() {
+  bl_geo_init();
+  push((import bl_v), 1);
+} return void;
+():() then bl_geo_init_t_check:(1)
+given asset_io_init ():() then bl_geo_init_t_check:(1)
+
+// The real cube.blend, fully decoded into bl_v/bl_ti -- for cases downstream of
+// bl_mesh that need real triangle data rather than the synthetic DNA cluster.
+bl_mesh_t_load() {
+  zst_init();
+  bl_geo_init();
+  bl_mesh("../test_assets/cube.blend");
+} return void;
+():() then bl_geo_init_t_check:(24)
+given asset_io_init ():() then bl_geo_init_t_check:(24)

@@ -3,11 +3,16 @@ par_stmt5(int[] pos, int[] out) {
   else if (par_is(pos, "say")) { out[0] = par_say(pos); }
   else { par_stmt6(pos, out); }
 } return void;
+given par_stmt_setup ([6], [0]):() then calls par_play:[1]
+given par_stmt_setup ([7], [0]):() then calls par_say:[1]
+given par_stmt_setup ([9], [0]):() then calls par_stmt6:[1]
 
 par_stmt6(int[] pos, int[] out) {
   if (par_is(pos, "stop")) { out[0] = par_stop(pos); }
   else { out[0] = par_assign(pos); }
 } return void;
+given par_stmt_setup ([8], [0]):() then calls par_stop:[1]
+given par_stmt_setup ([9], [0]):() then calls par_assign:[1]
 
 // Anything that is not a keyword is an assignment. The target is a postfix
 // expression so that `vy = 0` and `pos.y = pos.y + 1` are one rule; the value is
@@ -17,3 +22,5 @@ par_assign(int[] pos) {
   par_want(pos, "=");
   int ret_i = par_assign_node(pos, tgt);
 } return int ret_i;
+given par_stmt_setup ([9]):(3) then calls ast_new_ab:(121, "", 1, 2)
+given par_stmt_setup ([13]):(3) then calls ast_new_ab:(121, "", 1, 2)

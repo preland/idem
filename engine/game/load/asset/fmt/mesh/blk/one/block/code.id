@@ -5,3 +5,23 @@ bl_block_code(int p, int n) {
   int bl_le32_v = bl_le32(p + 4);
   bl_push(asset_be32_v, p + 32, n, bl_le32_v);
 } return void;
+given bl_dna_t_bytes (17, 5):() then bl_block_code_t_check:(1145979185)
+given bl_dna_t_bytes (0, 5):() then bl_block_code_t_check:(1112294734)
+
+// A real "ENDB" so bl_end has something that actually hits its check.
+bl_endb_t_setup() {
+  bl_al_t_setup();
+  int[] endb = [69, 78, 68, 66];
+  bl_dna_t_fill(endb, 4);
+} return void;
+():() then asset_pipe_byte0_check:(69)
+given asset_io_init ():() then asset_pipe_byte0_check:(69)
+
+// A reader for bl_block_code's side effect: the code it pushed to bl_bc.
+// Guarded so it is also safe to call against an empty bl_bc.
+bl_block_code_t_check() {
+  int v = 0 - 1;
+  if (len((import bl_bc)) > 0) { v = (import bl_bc)[0]; }
+} return int v;
+given bl_walk_t_setup ():(1145979185)
+given bl_init ():(-1)

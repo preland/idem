@@ -10,6 +10,8 @@ zst_lchk2(int n) {
     lset((import zst_st), 6, 4);
   }
 } return void;
+given zst_src_setup (0):()
+given zst_src_setup (10):()
 
 zst_lrun2(int n, int i) {
   while (i < n && (import zst_st)[6] = 0) {
@@ -18,3 +20,5 @@ zst_lrun2(int n, int i) {
     i = i + 1;
   }
 } return void;
+given zst_src_setup (0, 0):() then calls zst_put:[0]
+given zst_src_setup (1, 0):() then calls zst_put:[1]

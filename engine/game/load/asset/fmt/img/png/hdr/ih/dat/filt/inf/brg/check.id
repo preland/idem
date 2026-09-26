@@ -1,0 +1,11 @@
+// A real gathered zlib stream and a real output buffer, both already sized
+// by a genuine load -- for inf_run.id's cases, which take addresses as
+// explicit parameters rather than reading them from png_st themselves.
+
+png_inf_fixture() {
+  spr_bird_fixture();
+  export int png_inf_sa = (import asset_io)[0] + (import png_st)[5] + 2;
+  export int png_inf_da = (import png_st)[7];
+} return void;
+():() then asset_pipe_len_check:(425)
+given png_init ():() then asset_pipe_len_check:(425)

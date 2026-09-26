@@ -8,15 +8,21 @@ scr_knamed2(string name) {
   if (name = "esc" || name = "escape") { c = 27; }
   else if (name = "tab") { c = 9; }
 } return int c;
+("esc"):(27)
+("tab"):(9)
 
 scr_knamed3(string name) {
   int c = scr_knamed4(name);
   if (name = "left") { c = 256; }
   else if (name = "right") { c = 257; }
 } return int c;
+("left"):(256)
+("right"):(257)
 
 scr_knamed4(string name) {
   int c = 0;
   if (name = "up") { c = 258; }
   else if (name = "down") { c = 259; }
 } return int c;
+("up"):(258)
+("down"):(259)

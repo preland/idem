@@ -2,8 +2,12 @@ ed_err_row_msg(int x, int y, int w, int i) {
   string fit = ed_err_row_msg_fit(w, i);
   ed_err_row_msg_draw(x, y, fit);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0):() then calls ed_err_row_msg_draw:(0, 10, "one")
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0):() then calls ed_err_row_msg_fit:(100, 0)
 
 ed_err_row(int x, int y, int w, int i) {
   ed_err_where(x, y, w, i);
   ed_err_row_msg(x, y, w, i);
 } return void;
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0):() then calls ed_err_where:(0, 10, 100, 0)
+given ed_t_boot given idstd_err_t_one stdin "" (0, 10, 100, 0):() then calls ed_err_row_msg:(0, 10, 100, 0)

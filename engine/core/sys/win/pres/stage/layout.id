@@ -14,15 +14,21 @@ sys_stage() {
   lset((import sys_vp), 0, sys_scale_v);
   sys_soff();
 } return void;
+given sys_t_vp ():() then sys_scale:(1000)
+given sys_t_vp4 ():() then sys_scale:(500)
 
 sys_snap() {
   int denom1 = fx_max((import sys_vp)[3], 1);
   int denom2 = fx_max((import sys_vp)[4], 1);
   int snap = fx_min((import sf_gw) * 1000 / denom1, (import sf_gh) * 1000 / denom2);
 } return int snap;
+given sys_t_vp ():(1000)
+given sys_t_vp4 ():(500)
 
 sys_soff() {
   sys_offx();
   int sys_sh_v = sys_sh();
   lset((import sys_vp), 2, ((import sf_gh) - sys_sh_v) / 2);
 } return void;
+given sys_t_vp ():() then sys_sy:(0)
+given sys_t_vp3 ():() then sys_sy:(16)

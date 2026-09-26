@@ -9,6 +9,8 @@ t_ins() {
   t_ins_show();
   t_bs();
 } return void;
+given tin_moved_ready ():() then calls t_tap:(88, 2200)
+given tin_moved_ready ():() then calls t_ins_show:[1]
 
 // 8 is Backspace: it takes the character before the caret and moves the caret
 // back with it.
@@ -17,6 +19,8 @@ t_bs() {
   t_bs_show();
   t_del();
 } return void;
+given tin_ins_ready ():() then calls t_tap:(8, 2300)
+given tin_ins_ready ():() then calls t_bs_show:[1]
 
 // 265 is Delete: it takes the character *at* the caret and leaves the caret
 // where it was. Same operation, same guard, one index apart -- which is why
@@ -26,3 +30,5 @@ t_del() {
   t_del_show();
   t_home();
 } return void;
+given tin_bs_ready ():() then calls t_tap:(265, 2400)
+given tin_bs_ready ():() then calls t_del_show:[1]

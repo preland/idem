@@ -1,0 +1,19 @@
+// jpg_final_fixture, with a 1x1 block grid and one component -- so
+// blk.id/final.id's loop-walking cases (jpg_arow, jpg_arows, jpg_acomp) can
+// run a real, complete pass without walking off the tiny 128-byte coefficient
+// buffer jpg_coefbuf_fixture allocates.
+
+jpg_small_fixture() {
+  jpg_final_fixture();
+  jpg_small_set();
+} return void;
+():() then jpg_dc0_check:(10)
+given jpg_init ():() then jpg_dc0_check:(10)
+
+jpg_small_set() {
+  lset((import jpg_c), 8, 1);
+  lset((import jpg_c), 9, 1);
+  lset((import jpg_st), 2, 1);
+} return void;
+given jpg_final_fixture ():() then jpg_dc0_check:(10)
+given jpg_coefbuf_fixture ():() then jpg_dc0_check:(0)

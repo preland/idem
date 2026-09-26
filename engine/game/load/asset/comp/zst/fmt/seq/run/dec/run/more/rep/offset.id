@@ -10,11 +10,15 @@ zst_srep2(int i) {
   if (i = 2) { off = zst_sswap(); }
   else { off = zst_srep3(i, off); }
 } return int off;
+given zst_init (2):(0) then calls zst_sswap:[1]
+given zst_init (1):(0) then calls zst_srep3:[1]
 
 zst_srep3(int i, int off) {
   if (i = 3) { off = zst_snew((import zst_st)[13]); }
   else if (i = 4) { off = zst_snew((import zst_st)[11] - 1); }
 } return int off;
+given zst_init (3, 100):(0) then calls zst_snew:[1]
+given zst_init (4, 100):(-1) then calls zst_snew:[1]
 
 // Repeat 2 swaps the first two and leaves the third alone -- it is not a push, so
 // it cannot go through zst_snew.
@@ -23,3 +27,5 @@ zst_sswap() {
   lset((import zst_st), 12, (import zst_st)[11]);
   lset((import zst_st), 11, off);
 } return int off;
+given zst_init ():(0)
+given zst_src_setup ():(4)

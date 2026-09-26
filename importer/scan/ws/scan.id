@@ -14,6 +14,8 @@
 imp_init() {
   export int[] imp_p = [0];
 } return void;
+():() then imp_p0:(0)
+():() then eprints:("")
 
 // Past whitespace, and past a `#` comment to the end of its line. Comments are
 // here because ImageMagick writes one into a PPM header unless it is stripped,
@@ -26,6 +28,8 @@ imp_ws(string src, int i) {
     go = imp_ws_ok(src, i);
   }
 } return int i;
+("  hi", 0):(2)
+("# c\nhi", 0):(4)
 
 imp_ws2(string src, int i) {
   int nxt = i + 1;
@@ -33,3 +37,5 @@ imp_ws2(string src, int i) {
     nxt = imp_eol(src, i);
   }
 } return int nxt;
+("hi", 0):(1)
+("# c\n", 0):(4)

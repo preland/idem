@@ -5,7 +5,11 @@ scr_place2(int ne, int tup, int e) {
   ent_put(ne, 1, y * 1000);
   scr_place3(ne);
 } return void;
+given grow_fixture (0, 0, -1):() then calls ent_put:(0, 1, 0)
+given grow_fixture (0, 0, -1):() then calls scr_place3:[1]
 
 scr_place3(int ne) {
   scn_start1(ne);
 } return void;
+given grow_fixture (0):() then calls scn_start1:[1]
+given grow2_fixture (1):() then calls scn_start1:[1]

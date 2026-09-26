@@ -17,3 +17,5 @@ par_dbraced(int[] pos, int kd, int[] kids) {
     par_dinner(pos, kids);
   }
 } return void;
+given par_decl_setup ([19], 142, []):([20], 142, [1]) then calls ast_new:(137, "box", 0, 0, 0, [])
+given par_decl_setup ([10], 108, []):([16], 108, [4, 8]) then calls ast_new:(113, "size", 7, 0, 0, [])

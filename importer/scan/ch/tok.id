@@ -7,8 +7,12 @@ imp_tok(string src) {
   int e = imp_end(src, i);
   string s = imp_tok_b(e, i, src);
 } return string s;
+given imp_init ("hi there"):("hi")
+given imp_init ("  sprite x"):("sprite")
 
 imp_tok_b(int e, int i, string src) {
   lset((import imp_p), 0, e);
   string s = str_slice(src, i, e - i);
 } return string s;
+given imp_init (2, 0, "hi"):("hi")
+given imp_init (6, 0, "sprite x"):("sprite")

@@ -8,12 +8,16 @@ fse_rput(int c) {
   lset((import fse_ct), (import fse_st)[4], c);
   fse_rput_upd(c);
 } return void;
+given fsev_setup_state (1):()
+given fsev_setup_state2 (2):()
 
 fse_rnext(int c) {
   lset((import fse_st), 4, (import fse_st)[4] + 1);
   lset((import fse_st), 5, c = 0);
   fse_rshrink();
 } return void;
+given fsev_setup_state (0):()
+given fsev_setup_state2 (1):()
 
 // As the remaining mass falls below the threshold, both halve: the encoder spends
 // only as many bits as the residue can still need, and a decoder that keeps the
@@ -24,3 +28,5 @@ fse_rshrink() {
     lset((import fse_st), 2, (import fse_st)[2] / 2);
   }
 } return void;
+given fsev_setup_state ():()
+given fsev_setup_state2 ():()

@@ -6,14 +6,20 @@ zst_tabs() {
   zb_init();
   zst_tabs2();
 } return void;
+given zst_init ():() then calls zst_tabs_lit:[1]
+given zst_init ():() then calls zb_init:[1]
 
 zst_tabs_lit() {
   int v = alloc((import zst_lmax));
   lset((import zst_st), 8, v);
 } return void;
+given zst_init ():() then calls lset:[1]
+given zst_dirty_setup ():() then calls lset:[1]
 
 zst_tabs2() {
   fse_init();
   zst_stabs_init();
   zst_tabs3();
 } return void;
+given zst_init ():() then calls fse_init:[1]
+given zst_init ():() then calls zst_tabs3:[1]

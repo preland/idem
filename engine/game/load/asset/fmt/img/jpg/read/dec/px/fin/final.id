@@ -13,6 +13,8 @@ jpg_all() {
   jpg_acomp(0);
   jpg_out();
 } return void;
+given jpg_small_fixture ():() then calls jpg_acomp:(0) then calls jpg_out:[1]
+given jpg_raw_fixture ():() then calls jpg_acomp:(0) then calls jpg_out:[1]
 
 jpg_acomp(int ci) {
   while (ci < (import jpg_st)[2]) {
@@ -20,6 +22,8 @@ jpg_acomp(int ci) {
     ci = ci + 1;
   }
 } return void;
+given jpg_small_fixture (0):() then calls jpg_arows:(0, 0)
+given jpg_init (5):() then calls jpg_arows:[0]
 
 jpg_arows(int ci, int by) {
   while (by < (import jpg_c)[ci * 10 + 9]) {
@@ -27,3 +31,5 @@ jpg_arows(int ci, int by) {
     by = by + 1;
   }
 } return void;
+given jpg_small_fixture (0, 0):() then calls jpg_arow:(0, 0, 0)
+given jpg_small_fixture (0, 1):() then calls jpg_arow:[0]

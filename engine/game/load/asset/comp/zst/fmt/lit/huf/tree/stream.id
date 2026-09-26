@@ -5,6 +5,8 @@ zst_ltree4(int used) {
   huf_fill();
   lset((import zst_st), 1, (import zst_st)[1] + used);
 } return void;
+given zst_init (10):()
+given zst_init (20):()
 
 // What is left of the compressed size after the tree is the stream data, and the
 // cursor must end up past all of it.
@@ -13,6 +15,8 @@ zst_lstream(int sf, int reg, int p0) {
   zst_lrun(sf, reg, n);
   lset((import zst_st), 1, (import zst_st)[1] + n);
 } return void;
+given zst_init (0, 100, 50):()
+given zst_init (1, 200, 75):()
 
 // One stream or four, decided by Size_Format. Four exist so a decoder can run
 // them in parallel; here they run one after another, which needs the jump table
@@ -25,3 +29,5 @@ zst_lrun(int sf, int reg, int n) {
   }
   lset((import zst_st), 10, 0);
 } return void;
+given zst_init (0, 100, 50):()
+given zst_init (1, 200, 75):()

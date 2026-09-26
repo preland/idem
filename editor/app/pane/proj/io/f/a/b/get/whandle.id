@@ -1,0 +1,10 @@
+// Closing the scratch handle ed_t_whandle_open opened, then removing the
+// scratch file the same way ed_t_wpath_check does -- fs_remove on a still-open
+// handle is what left files behind (checked and removed, but the OS kept them
+// on disk until this closed the handle first).
+ed_t_whandle_check() {
+  int c = fs_close((import ed_t_whandle));
+  int gone = ed_t_wpath_check();
+} return int gone;
+given ed_t_wpath_setup given ed_t_whandle_open ():(1)
+given ed_t_wpath_setup given ed_t_whandle_open ():(1) then ed_t_wpath_check:(0)

@@ -5,14 +5,20 @@ png_pred3(int y, int r, int i, int f) {
   if (f = 3) { v = (png_left(r, i) + png_up(y, i)) / 2; }
   else if (f = 4) { v = png_pred3_p(y, r, i); }
 } return int v;
+given png_pd_fixture (0, (import png_row0_data), 2, 3):(32)
+given png_pd_fixture (1, (import png_row0_data), 2, 4):(128) then calls png_pred3_p:(1, (import png_row0_data), 2)
 
 png_pred3_p(int y, int r, int i) {
   int png_left_v = png_left(r, i);
   int png_up_v = png_up(y, i);
   int v = png_pred3_p2(y, i, png_left_v, png_up_v);
 } return int v;
+given png_pd_fixture (1, (import png_row0_data), 2):(128)
+given png_pd_fixture (0, (import png_row0_data), 2):(64)
 
 png_pred3_p2(int y, int i, int png_left_v, int png_up_v) {
   int png_ul_v = png_ul(y, i);
   int v = png_paeth(png_left_v, png_up_v, png_ul_v);
 } return int v;
+(0, 0, 5, 7):(7)
+given png_pd_fixture (1, 2, 64, 128):(128)

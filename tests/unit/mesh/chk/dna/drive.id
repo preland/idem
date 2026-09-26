@@ -9,15 +9,21 @@ t_count(int kd) {
     i = i + 1;
   }
 } return int n;
+given mesh_open_ready (1145132097):(1046)
+given mesh_open_ready (0):(0)
 
-t_dna() {
+t_dna(string path) {
   print("SDNA names/types/structs exp 5225 1131 981 = " + (import bl_st)[4] + " " + (import bl_st)[5] + " " + (import bl_st)[6]);
   t_struct_idx();
-  t_fields();
+  t_fields(path);
 } return void;
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_struct_idx:[1]
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_fields:("../../../test_assets/cube.blend")
 
-t_fields() {
+t_fields(string path) {
   t_field_vp();
   t_field_poff();
-  t_size();
+  t_size(path);
 } return void;
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_field_vp:[1]
+given mesh_open_ready ("../../../test_assets/cube.blend"):("../../../test_assets/cube.blend") then calls t_size:("../../../test_assets/cube.blend")

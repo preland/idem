@@ -4,12 +4,16 @@ par_bor(int[] pos) {
     lv = par_bor_f(pos, lv);
   }
 } return int lv;
+given par_ops2_setup ([12]):(3) then calls par_bor_f:[1]
+given par_ops2_setup ([32]):(1) then calls par_bor_f:[0]
 
 par_bor_f(int[] pos, int lv) {
   par_next(pos);
   int par_bxor_v = par_bxor(pos);
   int ret_i = par_binnode("|", lv, par_bxor_v);
 } return int ret_i;
+given par_ops2_setup ([13], 1):(2) then calls ast_new_ab:(127, "|", 1, 1)
+given par_ops2_setup ([16], 9):(2) then calls ast_new_ab:(127, "|", 9, 1)
 
 par_bxor(int[] pos) {
   int lv = par_band(pos);
@@ -17,3 +21,5 @@ par_bxor(int[] pos) {
     lv = par_bxor_f(pos, lv);
   }
 } return int lv;
+given par_ops2_setup ([15]):(3) then calls par_bxor_f:[1]
+given par_ops2_setup ([32]):(1) then calls par_bxor_f:[0]

@@ -9,6 +9,8 @@ ed_btn(int x, int y, int w, int h, string s) {
   ed_btn_draw(x, y, w, h, s, ok);
   int ret_i = ok * inp_mhit(1);
 } return int ret_i;
+given ed_t_boot stdin "" (0, 0, 10, 10, "Go"):(0) then calls ed_btn_draw:(0, 0, 10, 10, "Go", 1)
+given ed_t_boot given ed_t_click stdin "" (128, 41, 360, 294, "Go"):(1) then calls ed_btn_draw:(128, 41, 360, 294, "Go", 1)
 
 // One row of a list. `sel` draws it selected, which wins over hover: the selected
 // row must stay obvious while the pointer is somewhere else entirely.
@@ -16,9 +18,13 @@ ed_row(int x, int y, int w, string s, int sel) {
   int h = ed_rowh();
   int ret_i = ed_row_interact(x, y, w, h, s, sel);
 } return int ret_i;
+given ed_t_boot stdin "" (1, 2, 3, "r", 0):(0) then calls ed_row_interact:(1, 2, 3, 18, "r", 0)
+given ed_t_boot stdin "" (10, 20, 30, "z", 2):(0) then calls ed_row_interact:(10, 20, 30, 18, "z", 2)
 
 ed_row_interact(int x, int y, int w, int h, string s, int sel) {
   int ok = ed_in(x, y, w, h);
   ed_row_draw(x, y, w, s, sel + ok);
   int ret_i = ok * inp_mhit(1);
 } return int ret_i;
+given ed_t_boot stdin "" (0, 0, 10, 20, "r", 0):(0) then calls ed_row_draw:(0, 0, 10, "r", 1)
+given ed_t_boot given ed_t_click stdin "" (128, 41, 360, 294, "r", 3):(1) then calls ed_row_draw:(128, 41, 360, "r", 4)

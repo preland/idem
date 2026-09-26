@@ -6,15 +6,21 @@ t_pal3b(int png_pcol_v, int png_pcol_v2) {
   int png_pcol_v4 = png_pcol(3);
   t_pal3c(png_pcol_v, png_pcol_v2, png_pcol_v3, png_pcol_v4);
 } return void;
+given png_bird_ready (1, 2):() then calls png_pcol:(0)
+given png_bird_ready (1, 2):() then calls t_pal3c:(1, 2, 0, 16777215)
 
 t_pal3c(int png_pcol_v, int png_pcol_v2, int png_pcol_v3, int png_pcol_v4) {
   int png_pcol_v5 = png_pcol(0);
   print("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = " + png_pcol_v + " " + png_pcol_v2 + " " + png_pcol_v3 + " " + png_pcol_v4 + " " + png_pcol_v5);
   t_pal3d();
 } return void;
+given png_bird_ready (0, 16245020, 0, 16777215):() then prints:("  those colours exp 0 16245020 0 16777215 0 (0xf7e11c, 0xffffff) = 0 16245020 0 16777215 0\n  those alphas exp 0 255 0 255 0 = 0 255 0 255 0\ndigits.png exp 1 = 1\n  w/h/depth/colour/stride exp 4 60 1 0 2 = 4 60 1 0 2\n  rows 0..2 exp 1111 1001 1001 = 1111 1001 1001\n  every sample, hash exp 680646057 = 680646057\n  bird.png every sample, hash exp 880280616 = 880280616\n")
+given png_bird_ready (0, 16245020, 0, 16777215):() then calls t_pal3d:[1]
 
 t_pal3d() {
   int png_palpha_v = png_palpha(0);
   int png_palpha_v2 = png_palpha(2);
   t_pal3e(png_palpha_v, png_palpha_v2);
 } return void;
+given png_bird_ready ():() then calls png_palpha:(0)
+given png_bird_ready ():() then calls t_pal3e:[1]

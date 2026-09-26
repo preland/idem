@@ -1,0 +1,16 @@
+// Two hand-built number leaves, so a binary node has real operands.
+num_pair_fixture() {
+  idem_init();
+  export int fixture_lhs = ast_new_num(3, 0);
+  export int fixture_rhs = ast_new_num(4, 0);
+} return void;
+():() then calls idem_init:[1]
+():() then calls ast_new_num:[2]
+
+// `3 + 4`, hand-built over the pair above.
+bin_fixture() {
+  num_pair_fixture();
+  export int fixture_bin = ast_new_abc((import ast_k_bin), "+", (import fixture_lhs), (import fixture_rhs), 0);
+} return void;
+():() then calls num_pair_fixture:[1]
+():() then calls ast_new_abc:[1]

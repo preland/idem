@@ -3,6 +3,8 @@ par_while2(int[] pos, int cond) {
   int block = par_block(pos);
   int nd = par_while_node(cond, block);
 } return int nd;
+given par_if_setup ([18], 1):(5) then calls ast_new_ab:(119, "", 1, 4)
+given par_if_setup ([18], 1):(5) then calls par_block:[1]
 
 // `repeat n { }` -- no parentheses, so the count expression stops at the '{'.
 par_repeat(int[] pos) {
@@ -10,9 +12,13 @@ par_repeat(int[] pos) {
   int n = par_expr(pos);
   int nd = par_repeat2(pos, n);
 } return int nd;
+given par_repeat_setup ([0]):(6) then calls ast_new_ab:(120, "", 1, 5)
+given par_repeat_setup ([0]):(6) then calls par_repeat2:[1]
 
 par_repeat2(int[] pos, int n) {
   int block = par_block(pos);
   int ast_k_repeat_v = (import ast_k_repeat);
   int nd = ast_new_ab(ast_k_repeat_v, "", n, block);
 } return int nd;
+given par_repeat_setup ([2], 1):(5) then calls ast_new_ab:(120, "", 1, 4)
+given par_repeat_setup ([2], 1):(5) then calls par_block:[1]

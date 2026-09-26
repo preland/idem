@@ -2,6 +2,8 @@ par_else(int[] pos) {
   par_next(pos);
   int ret_i = par_else2(pos);
 } return int ret_i;
+given par_if_setup ([9]):(4) then calls ast_new_kids:(117, "", [3])
+given par_if_setup ([9]):(4) then calls par_else2:[1]
 
 // `else if` chains by making the else arm another `if` node rather than a block,
 // so the tree has no special case and neither does the interpreter.
@@ -9,9 +11,13 @@ par_else2(int[] pos) {
   int nd = 0;
   if (par_is(pos, "if")) { nd = par_if(pos); } else { nd = par_block(pos); }
 } return int nd;
+given par_if_setup ([10]):(4) then calls ast_new_kids:(117, "", [3])
+given par_if_setup ([0]):(10) then calls ast_new_abc:(118, "", 1, 5, 9)
 
 par_while(int[] pos) {
   par_if_pre(pos);
   int par_expr_v = par_expr(pos);
   int ret_i = par_while2(pos, par_expr_v);
 } return int ret_i;
+given par_if_setup ([15]):(6) then calls ast_new_ab:(119, "", 1, 5)
+given par_if_setup ([15]):(6) then calls par_while2:[1]

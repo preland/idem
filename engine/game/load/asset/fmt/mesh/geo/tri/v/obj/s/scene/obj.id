@@ -4,3 +4,29 @@ bl_obj(int i) {
     bl_obj2(i);
   }
 } return void;
+given fx_trig_init given bl_scene_t_setup (1033):() then calls bl_obj2:[1]
+given bl_geo_init given bl_walk_t_setup (0):() then calls bl_obj2:[0]
+
+// The cube, walked through bl_scene -- for bl_scene2's own cases, which need
+// a real bl_bc/bl_st[11] rather than an empty file.
+bl_scene_t_setup() {
+  zst_init();
+  bl_geo_init();
+  bl_scene("../test_assets/cube.blend");
+} return void;
+given fx_trig_init ():() then bl_ntri:(12)
+given fx_trig_init given asset_io_init ():() then bl_ntri:(12)
+
+// The cube's own OBJECT block index -- for bl_obj/bl_obj2's own cases, which
+// need a real i rather than a fabricated one (bl_bc has one entry per block
+// in the whole file, not per object).
+bl_scene_t_oi() {
+  int i = 0;
+  int bl_oi = 0 - 1;
+  while (i < len((import bl_bc)) && bl_oi < 0) {
+    if ((import bl_bc)[i] = 1329725440) { bl_oi = i; }
+    i = i + 1;
+  }
+} return int bl_oi;
+given fx_trig_init given bl_scene_t_setup ():(1033)
+given fx_trig_init given asset_io_init given bl_scene_t_setup ():(1033)

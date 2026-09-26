@@ -6,3 +6,19 @@ spr_plane_b(string src, int n) {
   int mx = spr_max(src);
   spr_fill(src, n, mx);
 } return void;
+given spr_px_ready given imp_init ("1 1 255 10", 3):() then calls spr_max:("1 1 255 10")
+given spr_px_ready given imp_init ("1 1 255 10", 3):() then calls spr_fill:("1 1 255 10", 3, 255)
+
+spr_px_ready() {
+  spr_lists2_ready();
+  lst_fill((import spr_al), 2, 200);
+  lst_fill((import spr_px), 2, 0);
+} return void;
+():() then calls spr_lists2_ready:[1]
+():() then spr_p_first:(-1)
+
+spr_al_last() {
+  int v = (import spr_al)[len((import spr_al)) - 1];
+} return int v;
+given spr_px_ready ():(200)
+given spr_al_low_ready ():(127)

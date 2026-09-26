@@ -8,15 +8,21 @@ t_cos() {
   int fx_cos_v2 = fx_cos(60000);
   t_cos2(fx_cos_v, fx_cos_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls fx_cos:(0)
+given fx_trig_init given rnd_seed0 ():() then calls t_cos2:(1000, 500)
 
 t_lin() {
   int idstd_fx_sin_lin_v = idstd_fx_sin_lin(0);
   int idstd_fx_sin_lin_v2 = idstd_fx_sin_lin(45000);
   t_lin2(idstd_fx_sin_lin_v, idstd_fx_sin_lin_v2);
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls idstd_fx_sin_lin:(0)
+given fx_trig_init given rnd_seed0 ():() then calls t_lin2:(0, 707)
 
 t_rnd() {
   int rnd_next_v = rnd_next();
   print("rnd_next draw 1 exp 207499222 = " + rnd_next_v);
   t_rnd2();
 } return void;
+given fx_trig_init given rnd_seed0 ():() then calls rnd_next:()
+given fx_trig_init given rnd_seed0 ():() then calls t_rnd2:[1]

@@ -1,0 +1,24 @@
+// Fixture for utility function tests (bl_al, bl_le16, bl_tlen).
+
+bl_al_t_setup() {
+  bl_init();
+  asset_slurp_alloc(256);
+  lset((import asset_io), 1, 256);
+} return void;
+():() then asset_pipe_len_check:(256)
+given asset_io_init ():() then asset_pipe_len_check:(256)
+
+bl_tlen_t_bytes() {
+  bl_al_t_setup();
+  int[] mybytes = [4, 0, 8, 0];
+  bl_dna_t_fill(mybytes, 4);
+} return void;
+():() then asset_pipe_byte0_check:(4)
+given asset_io_init ():() then asset_pipe_byte0_check:(4)
+
+bl_tlen_t_setup() {
+  bl_tlen_t_bytes();
+  lset((import bl_st), 9, 0);
+} return void;
+():() then asset_pipe_byte0_check:(4)
+given asset_io_init ():() then asset_pipe_byte0_check:(4)

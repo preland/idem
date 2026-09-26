@@ -2,3 +2,26 @@ t_dec_alloc(int n) {
   int fx_max_v = fx_max(n, 1);
   int da = alloc(fx_max_v);
 } return int da;
+(5):(8) then calls fx_max:(5, 1)
+(0):(8) then calls fx_max:(0, 1)
+
+// argv[1]/argv[2], when given, name a small fixture and its byte count a case
+// can afford; tools/test.sh runs the binary with no arguments, so production
+// keeps the real showroom.blend path and size.
+t_main_path(int argc, string[] argv) {
+  string path = "../../../test_assets/showroom.blend";
+  if (argc > 1) {
+    path = argv[1];
+  }
+} return string path;
+(2, ["zst", "img/raw.zst"]):("img/raw.zst")
+(1, ["zst"]):("../../../test_assets/showroom.blend")
+
+t_main_n(int argc, string[] argv) {
+  int n = 39481933;
+  if (argc > 2) {
+    n = to_int(argv[2]);
+  }
+} return int n;
+(3, ["zst", "img/raw.zst", "64"]):(64)
+(1, ["zst"]):(39481933)

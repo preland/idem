@@ -2,14 +2,20 @@ ed_proj_txt_draw_do(int x, int y, string fit, int ui) {
   int col = ed_col(4);
   txt_draw(fit, x + 4 * ui, y + 8 * ui, col);
 } return void;
+given ed_t_boot stdin "" (0, 10, "abc", 1):() then calls txt_draw:("abc", 4, 18, 0xCFCFCF)
+given ed_t_boot stdin "" (5, 20, "xy", 2):() then calls txt_draw:("xy", 13, 36, 0xCFCFCF)
 
 ed_proj_txt_draw(int x, int y, int i) {
   string fit = ed_fit((import ed_dir)[i], 8);
   int ui = txt_ui();
   ed_proj_txt_draw_do(x, y, fit, ui);
 } return void;
+given ed_t_boot stdin "" (0, 10, 0):() then calls ed_proj_txt_draw_do:(0, 10, "<input>", 1)
+given ed_t_boot given ed_t_boot_proj stdin "" (0, 10, 0):() then calls ed_proj_txt_draw_do:(0, 10, "main.idm", 1)
 
 ed_proj_txt(int x, int y, int i, int ok) {
   ed_proj_txt_draw(x, y, i);
   ed_proj_hit(x, y, i, ok);
 } return void;
+given ed_t_boot stdin "" (0, 10, 0, 1):() then calls ed_proj_txt_draw:(0, 10, 0)
+given ed_t_boot stdin "" (0, 10, 0, 1):() then calls ed_proj_hit:(0, 10, 0, 1)

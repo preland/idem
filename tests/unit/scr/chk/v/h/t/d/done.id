@@ -5,8 +5,20 @@ t_done() {
   int ent_at_v2 = ent_at(3, 13);
   t_done_rep(ent_at_v, ent_at_v2);
 } return void;
+given scr_spawn2_ready ():() then calls ent_at:(3, 12)
+given scr_spawn2_ready ():() then calls t_done_rep:(10000, 10000)
 
 t_done_rep(int ent_at_v, int ent_at_v2) {
   int ent_at_v3 = ent_at(3, 9);
   print("its body exp 10000 10000, solid exp 1 = " + ent_at_v + " " + ent_at_v2 + " " + (ent_at_v3 / 2 % 2));
 } return void;
+given scr_spawn2_ready (10000, 10000):() then calls ent_at:(3, 9)
+given scr_spawn2_ready (10000, 10000):() then prints:("its body exp 10000 10000, solid exp 1 = 10000 10000 1\n")
+
+// Five ticks in, one press applied (see t_press in ./sp/press.id).
+scr_press_ready() {
+  scr_tick2_ready();
+  scr_pall("press", 0 - 1);
+} return void;
+():() then calls scr_tick2_ready:[1]
+():() then calls scr_pall:("press", -1)

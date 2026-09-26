@@ -11,6 +11,8 @@ t_quiet() {
   t_quiet_show();
   t_rep();
 } return void;
+given tin_esc_ready ():() then calls t_hold:(3200)
+given tin_esc_ready ():() then calls t_quiet_show:[1]
 
 // tin_set drops the caret at the end, which is where Backspace has to bite.
 t_rep() {
@@ -18,6 +20,8 @@ t_rep() {
   t_down(8, 5000);
   t_rep2();
 } return void;
+given tin_quiet_ready ():() then calls tin_set:("123456789")
+given tin_quiet_ready ():() then calls t_down:(8, 5000)
 
 // The press itself fires once, immediately. A field that waited out the delay
 // before the FIRST character would feel broken in a way no amount of correct
@@ -27,3 +31,5 @@ t_rep2() {
   t_hold(5100);
   t_rep3();
 } return void;
+given tin_rep_ready ():() then calls t_rep2_show:[1]
+given tin_rep_ready ():() then calls t_hold:(5100)

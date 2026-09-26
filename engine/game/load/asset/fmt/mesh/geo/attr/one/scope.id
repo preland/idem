@@ -8,3 +8,24 @@ bl_mone(int i) {
   bl_scope(i);
   int ret_i = bl_mesh3((import bl_bp)[i]);
 } return int ret_i;
+given bl_mesh_t_load (1034):(1)
+given asset_io_init given bl_mesh_t_load (1034):(1)
+
+// The AttributeArray block index for the cube's "position" record (address
+// 352244, attr/find/loc.id) -- for bl_adata_get's own cases, which need a
+// real block index rather than a raw address.
+bl_adata_t_i() {
+  word bl_lew_v = bl_lew(352244 + 16);
+  int i = bl_at(bl_lew_v);
+} return int i;
+given bl_mesh_t_load ():(1064)
+given asset_io_init given bl_mesh_t_load ():(1064)
+
+// The real ".corner_vert" attribute's values block index for the cube -- for
+// bl_faces_tris/bl_tris/bl_tris_fan's own cases, which need a real cv rather
+// than a fabricated one (a wrong cv sends bl_fan into a wild loop).
+bl_faces_t_cv() {
+  int cv = bl_afind(349984, 322, ".corner_vert");
+} return int cv;
+given bl_mesh_t_load ():(1069)
+given asset_io_init given bl_mesh_t_load ():(1069)

@@ -11,13 +11,17 @@ jpg_rcorr(int a, int k) {
     jpg_rbump(a, jpg_zz_v, jpg_cget_v);
   }
 } return void;
+given jpg_cset_fixture ((import jpg_coef_a), 0):() then calls jpg_rbump:((import jpg_coef_a), 0, 777)
+given jpg_coefbuf2_fixture ((import jpg_coef_a), 0):() then calls jpg_rbump:[0]
 
 jpg_rbump(int a, int k, int v) {
-  if ((v & inf_pow2((import jpg_st)[16])) = 0) {
-    int inf_pow2_v = inf_pow2((import jpg_st)[16]);
+  if ((v & fx_pow(2, (import jpg_st)[16])) = 0) {
+    int inf_pow2_v = fx_pow(2, (import jpg_st)[16]);
     jpg_cset(a, k, v + inf_pow2_v * (2 * (v >= 0) - 1));
   }
 } return void;
+given jpg_cset_fixture ((import jpg_coef_a), 0, 777):() then jpg_dc0_check:(777)
+given jpg_cset_fixture ((import jpg_coef_a), 0, 4):() then jpg_dc0_check:(5)
 
 // Phase 1: every remaining nonzero coefficient in the band still takes a
 // correction bit, even though the band ended -- the run says "no more new
@@ -29,3 +33,5 @@ jpg_rtail(int a) {
     jpg_rtail1(a);
   }
 } return void;
+given jpg_coefbuf_fixture ((import jpg_coef_a)):() then calls jpg_rtail1:((import jpg_coef_a)) then calls jpg_rdone:[0]
+given jpg_rset_fixture ((import jpg_coef_a)):() then calls jpg_rdone:[1] then calls jpg_rtail1:[0]

@@ -3,9 +3,13 @@ ed_status_wh2(int x, int y) {
   x = ed_snum(x, y, "x", sh);
   ed_status_f(x, y);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_status_f:(44, 10)
+given ed_t_boot stdin "" (0, 10):() then calls ed_snum:(0, 10, "x", 400)
 
 ed_status_e2(int x, int y) {
   int errs = err_count();
   x = ed_snum(x, y, "errs", errs);
   ed_snum(x, y, "frame", (import ed_st)[8]);
 } return void;
+given ed_t_boot stdin "" (0, 10):() then calls ed_snum:(0, 10, "errs", 0)
+given ed_t_boot stdin "" (0, 10):() then calls ed_snum:(52, 10, "frame", 0)

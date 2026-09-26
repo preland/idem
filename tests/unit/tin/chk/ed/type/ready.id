@@ -1,0 +1,24 @@
+// Test-only fixtures, incrementally replaying main.id's own state so a case
+// can start partway through the chain without re-running everything for
+// real. Each one calls the previous stage directly, never through a case.
+
+tin_boot_base() {
+  txt_init();
+  inp_init();
+} return void;
+():() then calls txt_init:[1]
+():() then calls inp_init:[1]
+
+tin_ready() {
+  tin_boot_base();
+  tin_init();
+} return void;
+():() then calls tin_boot_base:[1]
+():() then calls tin_init:[1]
+
+tin_typed_ready() {
+  tin_ready();
+  t_type("abc", 0, 1000);
+} return void;
+():() then calls tin_ready:[1]
+():() then calls t_type:("abc", 0, 1000)

@@ -5,9 +5,13 @@ idem_aopen1b(func(int) return int gs) {
   int h = gs(1);
   idem_aopen1c(gs, w, h);
 } return void;
+(stub_gstage):() then calls idem_aopen1c:(stub_gstage, 0, 10)
+(fx_abs):() then calls idem_aopen1c:(fx_abs, 0, 1)
 
 idem_aopen1c(func(int) return int gs, int w, int h) {
   int sc = gs(2);
   sys_open(w, h, sc, "idem");
   idem_aopen2();
 } return void;
+(stub_gstage, 0, 10):() then calls idem_aopen2:[1]
+(fx_abs, 1, 1):() then calls idem_aopen2:[1]

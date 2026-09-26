@@ -1,0 +1,9 @@
+// A declared fps, so sim_dt has a second real frame time to read besides
+// the manifest's own default.
+fps_fixture() {
+  idem_init();
+  string src = "game g { fps 30 }";
+  idem_read(src);
+} return void;
+():() then calls idem_read:[1]
+():() then calls idem_init:[1]

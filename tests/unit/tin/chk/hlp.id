@@ -7,6 +7,8 @@ t_hold(int t) {
   t_next();
   tin_step(t);
 } return void;
+given tin_ready (100):() then calls tin_step:(100)
+given tin_typed_ready (200):() then calls tin_step:(200)
 
 // 65536 is GFX_RELEASED: a release arrives as the key's own code plus that.
 t_up(int key, int t) {
@@ -14,6 +16,8 @@ t_up(int key, int t) {
   inp_stamp(key + 65536);
   tin_step(t);
 } return void;
+given tin_ready (8, 100):() then calls inp_stamp:(65544)
+given tin_ready (9, 200):() then calls tin_step:(200)
 
 // One character per frame, which is what typing is. The time advances with the
 // index so that no two of them share an instant -- a repeat deadline computed
@@ -25,3 +29,5 @@ t_type(string s, int i, int t) {
     i = i + 1;
   }
 } return void;
+given tin_ready ("a", 0, 100):() then calls t_tap:(97, 100)
+given tin_ready ("bc", 0, 100):() then calls t_tap:(98, 100)

@@ -1,0 +1,13 @@
+// Checker functions for FSE value table tests.
+
+fsev_ct_idx(int idx) {
+  int fsev_c = (import fse_ct)[idx];
+} return int fsev_c;
+given fse_init (0):(0)
+given fse_init (100):(0)
+
+fsev_ct_len() {
+  int fsev_len = len((import fse_ct));
+} return int fsev_len;
+given fse_init ():(256)
+given zf_st_val_setup ():(256)

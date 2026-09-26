@@ -24,6 +24,8 @@ ed_pan() {
     ed_pan3d();
   }
 } return void;
+given ed_t_boot stdin "" ():() then calls ed_pan3d:[1]
+given ed_t_boot given ed_t_2d stdin "" ():() then calls ed_pan2d:[1]
 
 // One pixel of drag, in millunits of world. fx_max keeps a panel that has not
 // been laid out yet from dividing by zero.
@@ -32,9 +34,13 @@ ed_prate(int d) {
   int ed_rq_v = ed_rq(3, 2);
   int ret_i = d * ed_st_v / fx_max(ed_rq_v, 1);
 } return int ret_i;
+given ed_t_boot given ed_t_lay stdin "" (1000):(25000)
+given ed_t_boot given ed_t_lay stdin "" (-360):(-9000)
 
 ed_pan_by(int dx, int dy) {
   ed_pan_cx(dx, dy);
   ed_pan_cy(dy);
   ed_pan_cz(dx, dy);
 } return void;
+given ed_t_boot stdin "" (10, 20):(10, 20) then calls ed_pan_cx:(10, 20)
+given ed_t_boot stdin "" (10, 20):(10, 20) then calls ed_pan_cz:(10, 20)

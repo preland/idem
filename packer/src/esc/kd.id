@@ -18,14 +18,20 @@ pack_esc_kd(int ch) {
   if (ch = 92 || ch = 34) { esc = ch; }
   else { esc = pack_esc_kd2(ch); }
 } return int esc;
+(92):(92)
+(65):(0) then calls pack_esc_kd2:(65)
 
 pack_esc_kd2(int ch) {
   int esc = pack_esc_kd3(ch);
   if (ch = 10) { esc = 110; }
 } return int esc;
+(10):(110)
+(65):(0) then calls pack_esc_kd3:(65)
 
 pack_esc_kd3(int ch) {
   int esc = 0;
   if (ch = 9) { esc = 116; }
   else if (ch = 13) { esc = 114; }
 } return int esc;
+(9):(116)
+(13):(114)

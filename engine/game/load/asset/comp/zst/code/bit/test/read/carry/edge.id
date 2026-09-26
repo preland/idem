@@ -1,0 +1,9 @@
+// bp pulled back to exactly lo -- the last real byte of the section, still
+// readable, not the "one past the end" that zb_exhausted_setup builds. Pins
+// the boundary between zb_bitv's two branches (bp < lo vs bp == lo).
+zb_edge_setup() {
+  zb_frame_setup();
+  lset((import zb_st), 1, (import zb_st)[0]);
+} return void;
+():() then zb_rel_check:([0, 6, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([0, 6, 0])

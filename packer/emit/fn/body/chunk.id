@@ -15,6 +15,8 @@ pack_sig(int k) {
   string pack_name_v = pack_name(k);
   print(pack_name_v + "(string[] chunks) {");
 } return void;
+(0):() then prints:("\ndata_src(string[] chunks) {\n")
+(3):() then prints:("\ndata_s3(string[] chunks) {\n")
 
 // The literal goes out with put, in one piece, straight from the escape buffer.
 // Wrapping it in a `"  push(chunks, \"" + esc + "\");"` concatenation would copy a
@@ -24,9 +26,13 @@ pack_body(string src, int p, int nxt, int k) {
   string es = pack_esc(src, p, nxt - p);
   pack_body_b(es, src, nxt, k);
 } return void;
+("hi", 0, 2, 0):() then calls pack_esc:("hi", 0, 2)
+("hi", 0, 2, 0):() then calls pack_body_b:[1]
 
 pack_tail(string src, int nxt, int k) {
   print("\");");
   pack_next(src, nxt, k);
   print("} return void;");
 } return void;
+("hi", 2, 0):() then prints:("\");\n} return void;\n")
+("hello", 2, 0):() then prints:("\");\n  data_s1(chunks);\n} return void;\n")

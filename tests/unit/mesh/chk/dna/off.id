@@ -2,8 +2,20 @@ t_totvert_off() {
   int bl_sfind_v = bl_sfind("Mesh");
   int bl_foff_v = bl_foff(bl_sfind_v, "totvert");
 } return int bl_foff_v;
+given mesh_open_ready ():(432) then calls bl_sfind:("Mesh")
+given mesh_open_ready ():(432) then calls bl_foff:[1]
 
 t_totpoly_off() {
   int bl_sfind_v2 = bl_sfind("Mesh");
   int bl_foff_v2 = bl_foff(bl_sfind_v2, "totpoly");
 } return int bl_foff_v2;
+given mesh_open_ready ():(440) then calls bl_sfind:("Mesh")
+given mesh_open_ready ():(440) then calls bl_foff:[1]
+
+// Test-only fixture: cube.blend opened (see t_main_open in ../../rep.id).
+mesh_open_ready() {
+  mesh_ready();
+  bl_open("../../../test_assets/cube.blend");
+} return void;
+():() then calls mesh_ready:[1]
+():() then calls bl_open:("../../../test_assets/cube.blend")

@@ -15,6 +15,8 @@ tin_key3(int key) {
     tin_key4(key);
   }
 } return void;
+given tin_t_hi_setup (257):() then tin_caret:(2)
+given tin_t_hi_setup (260):() then tin_caret:(0)
 
 // End (261), Return (13) and Escape (27). The last two only record what
 // happened; they do not touch the buffer, because committing and cancelling mean
@@ -30,6 +32,8 @@ tin_key4(int key) {
     lset((import tin_st), 4, 1 + (key = 27));
   }
 } return void;
+given tin_t_hi_setup (261):() then tin_caret:(2)
+given tin_init (27):() then tin_act:(2)
 
 // The caret, moved by mv and clamped by tin_put -- so walking off either end is a
 // no-op rather than an index that later slices out of range. (`mv` and not `d`:
@@ -39,3 +43,5 @@ tin_move(int mv) {
   string tin_text_v = tin_text();
   tin_put(tin_text_v, (import tin_st)[0] + mv);
 } return void;
+given tin_t_hi_setup (1):() then tin_caret:(2)
+given tin_t_hi_setup (-1):() then tin_caret:(0)

@@ -1,0 +1,18 @@
+// Real faces in the store: PSF2 (vga8x16, 8x16, 256 glyphs) and PSF1
+// (latgrkcyr8x16, mode bit 0 set) cover both magics the decoder reads.
+
+psf_vga_fixture() {
+  txt_glyph_data();
+  asset_io_init();
+  asset_slurp("../test_assets/vga8x16.psf");
+} return void;
+():() then asset_pipe_len_check:(4969)
+given asset_io_init ():() then asset_pipe_len_check:(4969)
+
+psf_lat_fixture() {
+  txt_glyph_data();
+  asset_io_init();
+  asset_slurp("../test_assets/latgrkcyr8x16.psf");
+} return void;
+():() then asset_pipe_len_check:(10508)
+given asset_io_init ():() then asset_pipe_len_check:(10508)

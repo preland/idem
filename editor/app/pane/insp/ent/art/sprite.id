@@ -3,15 +3,21 @@ ed_insp_art_frame(int x, int y, int e) {
   int frame = ent_at(e, 7);
   ed_kvn(x, y + h + 2, "frame", frame);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 0):() then calls ed_kvn:(0, 30, "frame", 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 0):() then calls ent_at:(0, 7)
 
 ed_insp_art_sprite(int x, int y, int e) {
   int sprite = ent_at(e, 6);
   ed_kvn(x, y, "sprite", sprite);
   ed_insp_art_frame(x, y, e);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 0):() then calls ed_kvn:(0, 10, "sprite", -1)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 0):() then calls ed_insp_art_frame:(0, 10, 0)
 
 ed_insp_art(int x, int y, int w, int e) {
   ed_insp_art_sprite(x, y, e);
   int h = ed_rowh();
   ed_insp_tag(x, y + 2 * (h + 2), w, e);
 } return void;
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_art_sprite:(0, 10, 0)
+given ed_t_boot given ed_t_ent stdin "" (0, 10, 100, 0):() then calls ed_insp_tag:(0, 50, 100, 0)

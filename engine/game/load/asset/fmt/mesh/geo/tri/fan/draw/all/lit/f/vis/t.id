@@ -1,0 +1,17 @@
+// One real face's normal and the camera/view state it needs -- shared by
+// bl_front/bl_front_sum/bl_vis/bl_shade's own cases, which otherwise have no
+// way to put a non-degenerate value into bl_e.
+
+bl_vis_t_setup() {
+  d3_t_setup();
+  bl_lit_init();
+  bl_face([0, 0, -1000, 1000, 0, -950, 500, 1000, -1024, 0, 0, 0]);
+} return void;
+():() then bl_e2_t_check:(1000000)
+given asset_io_init ():() then bl_e2_t_check:(1000000)
+
+bl_e2_t_check() {
+  int v = (import bl_e)[2];
+} return int v;
+given bl_vis_t_setup ():(1000000)
+given bl_lit_init ():(0)

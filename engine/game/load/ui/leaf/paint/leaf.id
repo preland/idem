@@ -33,6 +33,8 @@ ui_leaf(int nd, int x, int y, int w, int h) {
     ui_leaf2(nd, x, y, w, h);
   }
 } return void;
+given ui_leaf_t_setup (3, 0, 0, 100, 50):() then calls ui_leaf2:[1]
+given ui_leaf_t_setup (1, 0, 0, 100, 50):() then calls ui_leaf2:[1]
 
 ui_paint(string name, int nd, int x, int y, int w, int h) {
   if (name = "Fill") {
@@ -42,6 +44,8 @@ ui_paint(string name, int nd, int x, int y, int w, int h) {
     ui_paint2(name, nd, x, y, w, h);
   }
 } return void;
+given sf_t_setup given ui_leaf_t_setup ("Fill", 3, 0, 0, 100, 50):() then calls sf_rect:[1]
+given ui_leaf_t_setup ("Other", 3, 0, 0, 100, 50):() then calls ui_paint2:[1]
 
 ui_paint2(string name, int nd, int x, int y, int w, int h) {
   if (name = "Frame") {
@@ -51,3 +55,5 @@ ui_paint2(string name, int nd, int x, int y, int w, int h) {
     ui_text(nd, x, y, w, h);
   }
 } return void;
+given sf_t_setup given ui_leaf_t_setup ("Frame", 3, 0, 0, 100, 50):() then calls d2_frame:[1]
+given ui_leaf_t_setup ("Spacer", 3, 0, 0, 100, 50):() then calls d2_frame:[0]

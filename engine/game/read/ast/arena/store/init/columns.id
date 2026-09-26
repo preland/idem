@@ -13,15 +13,21 @@ ast_init() {
   export string[] ast_text = [];
   ast_init2();
 } return void;
+():() then ast_n:(1)
+():() then ast_cur_val:(0)
 
 ast_init2() {
   export int[] ast_a = [];
   export int[] ast_b = [];
   ast_init3();
 } return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_cur_val:(0)
 
 ast_init3() {
   export int[] ast_c = [];
   export int[] ast_line = [];
   ast_init4();
 } return void;
+given ast_init ():() then ast_n:(2)
+given ast_init ():() then ast_cur_val:(0)

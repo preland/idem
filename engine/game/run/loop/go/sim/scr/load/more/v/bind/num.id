@@ -13,6 +13,8 @@ scr_kev2(int nd) {
     v = shot_val(txt, 0, 0);
   }
 } return int v;
+given digit_fixture ((import fixture_digit)):(5)
+given idem_init (0):(0)
 
 // A member that declares a variable.
 //
@@ -31,6 +33,8 @@ scr_dmem(int nd) {
     scr_dbind(arg);
   }
 } return void;
+given var_fixture ((import fixture_var)):() then calls scr_dbind:[1]
+given idem_init (0):() then calls scr_dbind:[0]
 
 // The `=` expression, and the binding form the manifest's braced blocks produce.
 // Both spellings mean the same thing and a game may use either.
@@ -46,3 +50,5 @@ scr_dbind(int nd) {
     scr_dvar(nd);
   }
 } return void;
+given bind_fixture ((import fixture_bind)):() then calls scr_dbind_set:[1]
+given idem_init (0):() then calls scr_dvar:[0]

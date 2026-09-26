@@ -15,3 +15,5 @@ psf_row(int sa, int nb) {
     i = i + 1;
   }
 } return int v;
+given psf_vga_fixture (0, 4):(1924483718)
+given psf_vga_fixture (0, 1):(114)

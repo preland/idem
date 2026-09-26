@@ -1,0 +1,32 @@
+// One entity, on top of a booted editor -- for a case that needs ent_n() > 0
+// (a selection, a hierarchy row, a fields panel) without loading a whole
+// project through stdin. ent_add (engine's ent/add/append.id) is the same
+// primitive the engine's own grow_fixture uses.
+
+ed_t_ent() {
+  ent_add();
+} return void;
+given ed_t_boot stdin "" ():() then calls ent_add:[1]
+given ed_t_boot stdin "" ():() then calls ent_add2:[1]
+
+// A booted editor with a real project read -- one file (main.idml), one game
+// declaration and one scene with one entity -- for status-line/hierarchy cases
+// that read ed_fl/ed_nm/ed_dir rather than boot's empty-project defaults.
+// ed_read runs a second time, over ed_t_boot's own (empty) read, which is the
+// same re-export-in-place pattern sf_open/inp_init already use for a resize.
+ed_t_boot_proj() {
+  string src = ed_rd("../test_assets/editor/stream.idml");
+  ed_read(src);
+} return void;
+given ed_t_boot stdin "" ():() then calls ed_read:[1]
+given ed_t_boot stdin "" ():() then calls lex_run:[1]
+
+// A booted editor with a two-file project read -- for a case that needs a
+// `#file` boundary to actually cross (ed_dir/ed_file's own job), which
+// ed_t_boot_proj's single file never does.
+ed_t_boot_proj2() {
+  string src = ed_rd("../test_assets/editor/two_files.idml");
+  ed_read(src);
+} return void;
+given ed_t_boot stdin "" ():() then calls ed_read:[1]
+given ed_t_boot stdin "" ():() then calls lex_run:[1]

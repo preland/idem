@@ -5,9 +5,13 @@ bl_faces_po(int p, int si) {
   word bl_lew_v = bl_lew(p + bl_foff_v);
   int po = bl_at(bl_lew_v);
 } return int po;
+given bl_mesh_t_load (349984, 322):(1074)
+given bl_geo_init given bl_dna_t_bytes (0, 0):(-1)
 
 bl_faces_tris(int cv, int po, int p, int si) {
   int bl_mint_v = bl_mint(p, si, "totpoly");
   bl_tris(cv, po, bl_mint_v);
   int ret_i = bl_ok(cv, po);
 } return int ret_i;
+given bl_mesh_t_load (0, 1074, 349984, 322):(1)
+given asset_io_init given bl_mesh_t_load (0, 1074, 349984, 322):(1)

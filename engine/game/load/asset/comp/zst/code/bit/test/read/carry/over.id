@@ -1,0 +1,16 @@
+// bi pushed to 10, one byte over -- zb_carry needs one pass through its
+// loop to land back in range.
+zb_over_bi_setup() {
+  zb_frame_setup();
+  lset((import zb_st), 2, 10);
+} return void;
+():() then zb_rel_check:([1, 10, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, 10, 0])
+
+// bi pushed to 20, two bytes over -- zb_carry needs two passes.
+zb_over_bi_setup2() {
+  zb_frame_setup();
+  lset((import zb_st), 2, 20);
+} return void;
+():() then zb_rel_check:([1, 20, 0])
+given zb_frame_bad_setup ():() then zb_rel_check:([1, 20, 0])

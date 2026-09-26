@@ -6,3 +6,27 @@ d3_viewport_b(int cx, int cy, int w, int h, int x, int y) {
   d3_vp_hi(x + w - 1, y + h - 1);
   d3_vp_mid();
 } return void;
+given d3_t_setup (5, 3, 10, 8, 5, 3):() then d3_vp_w:(10)
+given d3_t_setup (5, 3, 100, 90, 5, 3):() then d3_vp_w:(59)
+
+// A setup that leaves the viewport at an odd, off-default rect (not the whole
+// surface): used by cases elsewhere in the vp/init/fill chain that need to show
+// a mutated d3_vp getting reset or re-derived, rather than only the fixture's
+// own already-full-surface default.
+d3_t_vp_odd_setup() {
+  d3_t_setup();
+  d3_viewport(3, 2, 10, 9);
+} return void;
+():() then d3_vp_w:(10)
+():() then d3_t_vp_cx:(8)
+
+// d3_t_yawed's pose, run through the full view-matrix chain once, so d3_vm,
+// d3_m1 and d3_m2 all hold non-identity values -- for cases in the cam/mat
+// batch that need to show a matrix getting reset or re-derived rather than
+// only the fixture's own already-identity default.
+d3_t_dirty() {
+  d3_t_yawed();
+  d3_view_matrix();
+} return void;
+():() then d3_t_vm:([866, 0, -500, 0, 0, 1000, 0, 0, -500, 0, -866, 0, 0, 0, 0, 1000])
+():() then d3_t_m2:([866, 0, -500, 0, 0, 1000, 0, 0, 500, 0, 866, 0, 0, 0, 0, 1000])

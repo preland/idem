@@ -3,8 +3,12 @@ bl_aname(int o, string name) {
   int i = bl_at(bl_lew_v);
   int ok = bl_aname_check(i, name);
 } return int ok;
+given bl_mesh_t_load (352244, "position"):(1)
+given bl_mesh_t_load (352244, "nope"):(0)
 
 bl_aname_check(int i, string name) {
   int ok = 0;
   if (i >= 0) { ok = bl_streq((import bl_bp)[i], name); }
 } return int ok;
+given bl_mesh_t_load (999, "position"):(0)
+given bl_mesh_t_load (-1, "position"):(0)

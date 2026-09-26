@@ -9,6 +9,8 @@ scn_one4(int nd) {
     ui_dload(nd);
   }
 } return void;
+given idem_init (0):() then calls ui_vload:[0]
+given game_fixture_nd ((import fixture_nd)):() then calls ui_dload:[0]
 
 // `scale`, `keys` and `persist`. The first is the window's; the other two are the
 // interpreter's, and both are read here because the manifest is walked once.
@@ -21,6 +23,8 @@ scn_prop3(int nd) {
     scn_prop4(nd);
   }
 } return void;
+given ident_fixture ((import fixture_ident)):() then calls scn_prop4:[1]
+given idem_init (0):() then calls scn_prop4:[1]
 
 scn_prop4(int nd) {
   if (ast_tx(nd) = "keys") {
@@ -29,3 +33,5 @@ scn_prop4(int nd) {
     scr_persist(nd, 0);
   }
 } return void;
+given idem_init (0):() then calls scr_keys:[0]
+given ident_fixture ((import fixture_ident)):() then calls scr_persist:[0]

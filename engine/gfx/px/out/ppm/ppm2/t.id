@@ -1,0 +1,15 @@
+// Test checks for ppm_init's own cases (dump.id): the decimal-string table it
+// builds has no argument to show mutated, so a case reads it back through
+// these instead.
+
+ppm_t_len() {
+  int n = len((import ppm_num));
+} return int n;
+given ppm_init ():(256)
+given ppm_init ():(256) then ppm_t_first:("0")
+
+ppm_t_first() {
+  string s = (import ppm_num)[0];
+} return string s;
+given ppm_init ():("0")
+given ppm_init ():("0") then ppm_t_len:(256)

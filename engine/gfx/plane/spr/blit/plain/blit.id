@@ -21,6 +21,8 @@ d2_blit(int p, int x, int y, int f) {
   int h = d2_spr_h(p);
   d2_blit_setup(p, x, y, f, w, h);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, -1, 0, 0):() then d2_blit_t_px00:(9)
 
 // j is the sprite row, so y + j is the surface row and i + w * j the first source
 // pixel of it. j starts at the first row that is on-screen, not at 0.
@@ -31,6 +33,8 @@ d2_blit_rows(int p, int x, int y, int i, int j, int n) {
     j = j + 1;
   }
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0, 0, 2):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, 0, 0, 0, 0, 0):() then d2_blit_t_px00:(0)
 
 // The row's extent, clipped once. x0..x1 are surface columns; the source index
 // skips the same number of pixels the left clip removed, which is what keeps a
@@ -40,3 +44,5 @@ d2_blit_clip(int p, int x, int y, int i) {
   int w = d2_spr_w(p);
   d2_blit_clip2(p, x, y, i, x0, w);
 } return void;
+given d2_blit_t_setup (0, 0, 0, 0):() then d2_blit_t_px00:(5)
+given d2_blit_t_setup (0, 0, 1, 2):() then d2_blit_t_px00:(0)

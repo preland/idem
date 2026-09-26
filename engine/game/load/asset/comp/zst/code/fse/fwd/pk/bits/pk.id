@@ -1,18 +1,25 @@
 // One byte into the buffer, and the peek/drop pair.
 
 zf_more2() {
-  int v = (import zf_st)[2] + peek8((import zf_st)[0] + (import zf_st)[1]) * inf_pow2((import zf_st)[3]);
+  int v = (import zf_st)[2] + peek8((import zf_st)[0] + (import zf_st)[1]) * fx_pow(2, (import zf_st)[3]);
   lset((import zf_st), 2, v);
   m4_pair((import zf_st), 1, 3, (import zf_st)[1] + 1, (import zf_st)[3] + 8);
 } return void;
+given zf_frame_setup ():() then zf_st_val:(200)
+given zf_frame_setup ():() then zf_nbits_check:(8)
+
 
 zf_peek(int n) {
   zf_fill(n);
-  int ret_i = (import zf_st)[2] % inf_pow2(n);
+  int ret_i = (import zf_st)[2] % fx_pow(2, n);
 } return int ret_i;
+given fse_init (1):(0)
+given fse_init (2):(0)
 
 zf_drop(int n) {
   int zf_st_v = (import zf_st)[2];
-  int inf_pow2_v = inf_pow2(n);
+  int inf_pow2_v = fx_pow(2, n);
   zf_drop_update(zf_st_v, inf_pow2_v, n);
 } return void;
+given fse_init (1):()
+given fse_init (2):()

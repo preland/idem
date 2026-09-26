@@ -1,0 +1,10 @@
+// Fixture for huf_first testing.
+
+huf_first_setup() {
+  lst_set_all((import huf_rk), 16, 0);
+  lset((import huf_rk), 1, 2);
+  lset((import huf_rk), 2, 3);
+} return void;
+given huf_init ():() then huf_rk_w2:(3)
+given huf_init ():() then huf_st_log:(0)
+

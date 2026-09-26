@@ -12,6 +12,8 @@ tin_car(int x, int y, int c, int t) {
     sf_rect(x, y, txt_ui_v, txt_cellh_v * txt_ui_v, c);
   }
 } return void;
+given txt_init given sf_t_setup given tin_init (0, 0, 42, 0):() then d2_blit_t_px00:(42)
+given txt_init given sf_t_setup given tin_init (0, 0, 42, 400):() then d2_blit_t_px00:(0)
 
 // Visible for the first half of each period since the last edit -- so it is
 // solid the instant a key is pressed and stays solid for a full half-period
@@ -21,6 +23,8 @@ tin_car(int x, int y, int c, int t) {
 tin_blink(int t) {
   int ret_i = (t - (import tin_st)[3]) / (import tin_base) % 2 = 0;
 } return int ret_i;
+given tin_init (0):(1)
+given tin_init (400):(0)
 
 // How far left the text is shifted so the caret stays inside a field n pixels
 // wide: zero until the caret would leave the right-hand edge, and after that
@@ -35,3 +39,5 @@ tin_off(int n) {
   int txt_ui_v = txt_ui();
   int ret_i = fx_max(((import tin_st)[0] + 1) * txt_cell_v * txt_ui_v - n, 0);
 } return int ret_i;
+given tin_init given txt_init given sf_t_setup (0):(8)
+given tin_init given txt_init given sf_t_setup (100):(0)
