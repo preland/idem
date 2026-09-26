@@ -30,6 +30,8 @@ sys_present() {
     gfx_present((import sf_fb));
   }
 } return void;
+given sf_t_setup ():()
+given sf_t_zero ():()
 
 // Nothing to do unless the size actually changed -- and with no display at all
 // gfx_width answers 0, which is not a size, so the surface keeps whatever it was

@@ -1,0 +1,9 @@
+// A surface opened at 0x0 -- gfx_width/gfx_height's own answer with no
+// display (frame.id's own comment), so sys_present's size check agrees on
+// its first import and goes on to read its second, the path sf_t_setup's
+// 64x48 never reaches (it disagrees on the first and never gets that far).
+sf_t_zero() {
+  sf_open(0, 0);
+} return void;
+():() then sf_t_gw:(0)
+():() then sf_t_gh:(0)
