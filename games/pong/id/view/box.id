@@ -12,9 +12,11 @@ g_box(int x, int y, int w, int h, int c) {
 } return void;
 
 g_px(int v) {
-} return int v * (import sys_vp)[0] / 1000000;
+  int px = v * (import sys_vp)[0] / 1000000;
+} return int px;
 
 // Floored at one pixel: a shape thinner than a pixel is still something the game
 // asked to show, and a zero-width rect draws nothing at all.
 g_ext(int v) {
-} return int fx_max(v * (import sys_vp)[0] / 1000000, 1);
+  int ext = fx_max(v * (import sys_vp)[0] / 1000000, 1);
+} return int ext;
