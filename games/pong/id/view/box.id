@@ -10,13 +10,19 @@
 g_box(int x, int y, int w, int h, int c) {
   sf_rect(sys_sx() + g_px(x - w / 2), sys_sy() + g_px(y - h / 2), g_ext(w), g_ext(h), c);
 } return void;
+given sys_t_vp (14000, 100000, 6000, 40000, 0xF0F0F0):() then calls sf_rect:(11, 80, 6, 40, 0xF0F0F0)
+given sys_t_vp (306000, 50000, 4000, 8000, 255):() then calls sf_rect:(304, 46, 4, 8, 255)
 
 g_px(int v) {
   int px = v * (import sys_vp)[0] / 1000000;
 } return int px;
+given sys_t_vp (11000):(11)
+given sys_t_vp (2500):(2)
 
 // Floored at one pixel: a shape thinner than a pixel is still something the game
 // asked to show, and a zero-width rect draws nothing at all.
 g_ext(int v) {
   int ext = fx_max(v * (import sys_vp)[0] / 1000000, 1);
 } return int ext;
+given sys_t_vp (6000):(6)
+given sys_t_vp (200):(1)

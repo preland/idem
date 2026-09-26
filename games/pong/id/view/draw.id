@@ -9,12 +9,18 @@ g_draw() {
   g_pads();
   g_dot();
 } return void;
+given g_init given sys_t_vp ():() then calls sf_rect:(0, 0, 64, 48, 0x101820) then calls g_pads:[1] then calls g_dot:[1]
+given g_init given g_press given sys_t_vp ():() then calls sf_rect:(0, 0, 64, 48, 0x101820) then calls g_pads:[1] then calls g_dot:[1]
 
 g_pads() {
   g_box(14000, (import g_st)[0], 6000, 40000, 0xF0F0F0);
   g_box(306000, (import g_st)[2], 6000, 40000, 0xF0F0F0);
 } return void;
+given g_init given sys_t_vp ():() then calls g_box:(14000, 100000, 6000, 40000, 0xF0F0F0) then calls g_box:(306000, 100000, 6000, 40000, 0xF0F0F0)
+given g_t_padpos given sys_t_vp ():() then calls g_box:(14000, 40000, 6000, 40000, 0xF0F0F0) then calls g_box:(306000, 160000, 6000, 40000, 0xF0F0F0)
 
 g_dot() {
   g_box((import g_st)[4], (import g_st)[5], 6000, 6000, 0xF0E060);
 } return void;
+given g_init given sys_t_vp ():() then calls g_box:(160000, 100000, 6000, 6000, 0xF0E060)
+given g_t_topwall given sys_t_vp ():() then calls g_box:(160000, 2000, 6000, 6000, 0xF0E060)

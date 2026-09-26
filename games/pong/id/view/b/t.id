@@ -1,0 +1,32 @@
+// A full read-back of the game's state, for cases elsewhere that need to show
+// what a play/ or view/ function left in (import g_st) rather than its
+// (void) return, plus two small setups those cases lean on.
+
+g_t_st() {
+  int[] st_v = (import g_st);
+} return int[] st_v;
+given g_init ():([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+given g_t_padpos ():([40000, 0, 160000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+
+// The paddles pulled apart to asymmetric heights, so a case that reads them
+// back catches a left/right (or y/v index) swap that a matched pair would hide.
+g_t_padpos() {
+  g_init();
+  lset((import g_st), 0, 40000);
+  lset((import g_st), 2, 160000);
+} return void;
+():() then g_t_st:([40000, 0, 160000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+():() then calls g_init:[1]
+
+// Both paddle speeds parked on an off-zero decoy before g_pad runs, so a case
+// sees g_pad overwrite them rather than coincidentally leaving them at 0. The
+// case that uses this still needs `given inp_init` alongside it: g_pad reads
+// input, and this fixture leaves that to the composed setup instead of a
+// fourth action here.
+g_t_decoy() {
+  g_init();
+  lset((import g_st), 1, 999);
+  lset((import g_st), 3, -999);
+} return void;
+():() then g_t_st:([100000, 999, 100000, -999, 160000, 100000, 150000, 95000, 0, 0, 1])
+():() then calls g_init:[1]

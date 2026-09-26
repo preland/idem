@@ -9,12 +9,16 @@ g_ref(string name) {
   if (name = "lscore") { v = (import g_st)[8]; }
   else { v = g_ref2(name); }
 } return int v;
+given g_init ("lscore"):(0) then calls g_ref2:[0]
+given g_init ("rscore"):(0) then calls g_ref2:("rscore")
 
 g_ref2(string name) {
   int v = 0;
   if (name = "rscore") { v = (import g_st)[9]; }
   else if (name = "waiting") { v = (import g_st)[10]; }
 } return int v;
+given g_init ("rscore"):(0)
+given g_init ("waiting"):(1)
 
 // One action, one meaning. A game with more would chain these the way g_ref
 // does; a game with none would still define it, because the engine calls it.
@@ -23,3 +27,5 @@ g_act(string name) {
     g_press();
   }
 } return void;
+given g_init ("press"):() then calls g_press:[1] then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 0])
+given g_init ("other"):() then calls g_press:[0] then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])

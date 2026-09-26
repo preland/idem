@@ -20,6 +20,8 @@
 g_init() {
   export int[] g_st = [100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1];
 } return void;
+():() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+given g_init given g_press ():() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
 
 // One frame. dt is milliseconds; the engine calls this before it draws.
 g_step(int dt) {
@@ -27,6 +29,8 @@ g_step(int dt) {
   g_pad(2, 3, 258, 259, dt);
   g_ball(dt);
 } return void;
+given g_init given inp_init (16):() then calls g_pad:(0, 1, 119, 115, 16) then calls g_pad:(2, 3, 258, 259, 16) then calls g_ball:(16) then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+given g_init given inp_init given g_press (33):() then calls g_ball:(33) then g_t_st:([100000, 0, 100000, 0, 164950, 103135, 150000, 95000, 0, 0, 0])
 
 // One paddle. `up` and `dn` are key codes -- an ASCII byte for a key that makes a
 // character, 258/259 for the arrows. The clamp keeps it inside the playfield,
@@ -36,3 +40,5 @@ g_pad(int y, int v, int up, int dn, int dt) {
   lset((import g_st), v, 260000 * (inp_down(dn) - inp_down(up)));
   lset((import g_st), y, fx_clamp((import g_st)[y] + (import g_st)[v] * dt / 1000, 22000, 178000));
 } return void;
+given g_t_decoy given inp_init (0, 1, 119, 115, 16):() then g_t_st:([100000, 0, 100000, -999, 160000, 100000, 150000, 95000, 0, 0, 1])
+given g_t_decoy given inp_init (2, 3, 258, 259, 50):() then g_t_st:([100000, 999, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])

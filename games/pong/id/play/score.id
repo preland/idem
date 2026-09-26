@@ -7,6 +7,8 @@ g_serve() {
     g_point(8);
   }
 } return void;
+given g_t_edge_l ():() then calls g_point:(9)
+given g_t_edge_r ():() then calls g_point:(8)
 
 // A point puts the ball back in the middle and leaves its direction alone, so
 // the next rally starts towards whoever just conceded.
@@ -15,9 +17,13 @@ g_point(int k) {
   lset((import g_st), 4, 160000);
   lset((import g_st), 5, 100000);
 } return void;
+given g_t_edge_l (9):() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 1, 1])
+given g_t_edge_r (8):() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 1, 0, 1])
 
 // The one input the game has, and its one meaning: begin. `press` is the name
 // idml would bind a Tap to; here it is called from g_act.
 g_press() {
   lset((import g_st), 10, 0);
 } return void;
+given g_init ():() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 0])
+given g_init given g_press ():() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 0])

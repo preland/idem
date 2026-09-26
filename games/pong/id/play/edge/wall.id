@@ -5,6 +5,8 @@ g_wall() {
     lset((import g_st), 7, 0 - (import g_st)[7]);
   }
 } return void;
+given g_init ():() then g_t_st:([100000, 0, 100000, 0, 160000, 100000, 150000, 95000, 0, 0, 1])
+given g_t_topwall ():() then g_t_st:([100000, 0, 100000, 0, 160000, 2000, 150000, 50000, 0, 0, 1])
 
 // A paddle at `x`, whose centre is p[y]. The ball reverses only when it is
 // travelling *towards* that paddle, for the same reason the wall test checks its
@@ -15,9 +17,13 @@ g_hit(int x, int y) {
     g_face(x);
   }
 } return void;
+given g_init (14000, 0):() then calls g_face:[0]
+given g_t_leftpad (14000, 0):() then calls g_face:(14000)
 
 g_face(int x) {
   if (((import g_st)[4] < 160000) = ((import g_st)[6] < 0)) {
     lset((import g_st), 6, 0 - (import g_st)[6]);
   }
 } return void;
+given g_t_leftpad (14000):() then g_t_st:([100000, 0, 100000, 0, 14000, 100000, 150000, 95000, 0, 0, 1])
+given g_t_edge_r (14000):() then g_t_st:([100000, 0, 100000, 0, 319000, 100000, -150000, 95000, 0, 0, 1])

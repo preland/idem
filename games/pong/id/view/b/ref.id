@@ -13,9 +13,13 @@ g_stage(int k) {
   if (k = 0) { v = 320; }
   else { v = g_stage2(k); }
 } return int v;
+(0):(320)
+(1):(200) then calls g_stage2:(1)
 
 g_stage2(int k) {
   int v = 60;
   if (k = 1) { v = 200; }
   else if (k = 2) { v = 2; }
 } return int v;
+(1):(200)
+(2):(2)

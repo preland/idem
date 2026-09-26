@@ -1,0 +1,15 @@
+// The ball parked past each goal line, for g_serve's two cases.
+
+g_t_edge_l() {
+  g_init();
+  lset((import g_st), 4, 500);
+} return void;
+():() then g_t_st:([100000, 0, 100000, 0, 500, 100000, 150000, 95000, 0, 0, 1])
+():() then calls g_init:[1]
+
+g_t_edge_r() {
+  g_init();
+  lset((import g_st), 4, 319000);
+} return void;
+():() then g_t_st:([100000, 0, 100000, 0, 319000, 100000, 150000, 95000, 0, 0, 1])
+():() then calls g_init:[1]

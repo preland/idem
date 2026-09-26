@@ -1,0 +1,17 @@
+// Two ball placements the wall and paddle-face cases need: moving the wrong
+// way to be flipped, and sitting under the left paddle.
+
+g_t_topwall() {
+  g_init();
+  lset((import g_st), 5, 2000);
+  lset((import g_st), 7, -50000);
+} return void;
+():() then g_t_st:([100000, 0, 100000, 0, 160000, 2000, 150000, -50000, 0, 0, 1])
+():() then calls g_init:[1]
+
+g_t_leftpad() {
+  g_init();
+  lset((import g_st), 4, 14000);
+} return void;
+():() then g_t_st:([100000, 0, 100000, 0, 14000, 100000, 150000, 95000, 0, 0, 1])
+():() then calls g_init:[1]
