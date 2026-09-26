@@ -274,7 +274,7 @@ even where prior art in `id_development` uses a bare name (`gw`, `gh`, `fb`).
 | `sys_st` | `int[]` | `sys_st_init` | window opened / quit asked / frames presented |
 | `d3_zb` | `int[]` | `d3_zalloc` | the depth buffer, one entry per pixel |
 | `d3_vp` | `int[]` | `d3_fill3` | the 3D viewport: x0, y0, x1, y1, centre x, centre y |
-| `d3_vts` `d3_spn` `d3_gs` `d3_clp` | `int[]` | `d3_init` | the rasteriser's scratch records (§`gfx/space/view/st/init.id`) |
+| `d3_vts` `d3_spn` `d3_gs` `d3_clp` | `int[]` | `d3_init` | the rasteriser's scratch records (§`gfx/space/view/st/init/state.id`) |
 | `d3_cam` `d3_env` | `int[]` | `d3_init` | camera pose and lens; scene lighting and fog |
 | `d3_vm` `d3_m0` `d3_m1` `d3_m2` | `int[]` | `d3_mats` | the view matrix and the three it is composed in |
 | `fx_sintab` | `int[]` | `fx_trig_init` | sin(0°…90°) × 1000, 91 entries |

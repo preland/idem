@@ -17,7 +17,7 @@
 //     0..2  eye x, y, z
 //     3     yaw     0 faces world -Z; positive turns left
 //     4     pitch   positive looks up
-//     5     near    clip plane, floored at 40 (tri/zb.id: 2^36/40 is the largest
+//     5     near    clip plane, floored at 40 (tri/zb/depth.id: 2^36/40 is the largest
 //                   depth key that still fits an int)
 //     6     far     clip plane
 //     7     fov     horizontal field of view

@@ -6,7 +6,7 @@
 //
 //     +0 sx    pixels, x right
 //     +1 sy    pixels, y DOWN (the framebuffer's own axis)
-//     +2 dz    inverse-depth key, 2^36 / z   (tri/zb.id)
+//     +2 dz    inverse-depth key, 2^36 / z   (tri/zb/depth.id)
 //     +3 cr    +4 cg    +5 cb                unpacked, 0..255
 //
 // The projection is one divide per axis, not a matrix multiply: the only

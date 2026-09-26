@@ -2,7 +2,7 @@
 //
 // The near plane is floored at 40 millunits (0.04 world units) because the depth
 // key is 2^36/z and 2^36/40 is 1.7 * 10^9 against an int ceiling of 2.1 * 10^9
-// (tri/zb.id). A camera allowed closer would wrap the key and see through walls,
+// (tri/zb/depth.id). A camera allowed closer would wrap the key and see through walls,
 // which looks like a rendering bug and is really a units bug -- so it is refused
 // here rather than diagnosed there.
 //
