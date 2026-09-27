@@ -16,6 +16,8 @@ t_one(string msg, int x, int y) {
   word peek8_v = peek8(p);
   t_one2(msg, p, peek8_v);
 } return void;
+given png_rgba_ready ("(0,0) of rgba.png, exp 250 249 252 0", 0, 0):() then prints:("(0,0) of rgba.png, exp 250 249 252 0 = 250 249 252 0\n")
+given png_rgba_ready ("(1,0) of rgba.png, exp 10 20 30 255", 1, 0):() then prints:("(1,0) of rgba.png, exp 10 20 30 255 = 10 20 30 255\n")
 
 // FNV-1a over every decoded byte, in a word because the offset basis does not fit
 // an int and the product needs 56 bits before it is masked back to 32. One number

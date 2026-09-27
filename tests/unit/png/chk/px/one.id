@@ -6,8 +6,12 @@ t_one2(string msg, int p, word peek8_v) {
   word peek8_v3 = peek8(p + 2);
   t_one3(msg, p, peek8_v, peek8_v2, peek8_v3);
 } return void;
+given png_rgba_row0_ready ("(0,0) of rgba.png, bytes 1-2 exp 249 252", (import png_row0), 0):() then prints:("(0,0) of rgba.png, bytes 1-2 exp 249 252 = 0 249 252 0\n")
+given png_rgba_row0_ready ("(0,0) of rgba.png, bytes 1-2 exp 249 252", (import png_row0), 99):() then prints:("(0,0) of rgba.png, bytes 1-2 exp 249 252 = 99 249 252 0\n")
 
 t_one3(string msg, int p, word peek8_v, word peek8_v2, word peek8_v3) {
   word peek8_v4 = peek8(p + 3);
   print(msg + " = " + peek8_v + " " + peek8_v2 + " " + peek8_v3 + " " + peek8_v4);
 } return void;
+given png_rgba_row0_ready ("probe e", (import png_row0), 1, 2, 3):() then prints:("probe e = 1 2 3 0\n")
+given png_rgba_row0_ready ("probe f", (import png_row0), 9, 9, 9):() then prints:("probe f = 9 9 9 0\n")

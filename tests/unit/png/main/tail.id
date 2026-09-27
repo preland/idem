@@ -6,13 +6,24 @@ t_load_p(int png_load_v) {
 } return void;
 
 // Test-only fixture: main.id's own init order, minus the load itself --
-// every case below t_pal in this project uses a small asset it loads on its
-// own, and deliberately does not touch the 2560x2560 sheet main.id loads: a
-// case is capped at 1 GiB (idc/README.md, "Memory ceiling"), and even a
-// single decode of that file segfaults a case, confirmed by probing it
-// directly. main/t_load/t_load_p/t_head/t_px/t_one/t_one2/t_one3/t_sum and
-// t_lace/t_lace_p/t_again (which reloads the same file after the interlace
-// refusal) are skipped for that reason.
+// main/t_load/t_load_p/t_head/t_px/t_sum and t_lace/t_lace_p/t_again (which
+// reloads the same file after the interlace refusal) are skipped below,
+// tried and measured (2026-09-26): the decoder's per-symbol scratch lists
+// used to be allocated fresh on every LZ77 symbol -- idstd's inf_run/
+// inf_back/inf_bits, and `id` never frees a list -- which made one decode of
+// this file ~990MB/1.2s and put a case over the 1 GiB cap (idc/README.md,
+// "Memory ceiling"). Reusing an exported scratch list per inflate call
+// (idstd/core/data/seq/byte/inflate) cut that to ~267MB/0.8s, comfortably
+// inside the cap. But every case here is a fresh process, and these 8
+// functions each call the next, so even one case for any of them reaches
+// t_again's second real decode; casing all 8 with two real cases apiece
+// measured at ~173s for this project's build, against the 60s project cap
+// (idc/tools/casework.sh's rule). Left uncased pending a decision this
+// file's own docstring should not make silently: accept the slower build,
+// or accept a smaller stand-in for the one asset the header comment says
+// has to be the real 2560x2560 sheet. t_one/t_one2/t_one3 (../chk/px/) do
+// not need this fixture: they read four bytes at a caller-given address and
+// are cased against spr/img/rgba.png instead, real but small.
 png_ready() {
   fx_trig_init();
   png_init();
